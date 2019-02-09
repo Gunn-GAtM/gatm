@@ -1,14 +1,18 @@
 #!/bin/bash
 
-bash buildfolder.sh cover
+echo "Building cover..."
+bash bf.sh cover
+echo "Built cover."
 
-pdflatex --output-directory=build gatm.tex
+echo "Clearing build folder"
+rm build/*
+
+echo "Building GaTM Stage 1"
+pdflatex -shell-escape -interaction=nonstopmode --output-directory=build gatm.tex | grep ".*:[0-9]*:.*"
+echo "Rendering Asymptote"
 asy build/*.asy
-pdflatex --output-directory=build gatm.tex
+echo "Building GaTM Stage 2"
+pdflatex -shell-escape -interaction=nonstopmode --output-directory=build gatm.tex | grep ".*:[0-9]*:.*"
 
-rm *.pdf
-rm *.asy
-rm *.aux
-rm *.log
-rm *.pre
-rm gatm-*.tex
+echo "Cleaning"
+rm *.pdf *.asy *.log *.aux gatm-*.tex >/dev/null 2&>1
