@@ -15,4 +15,4 @@ echo "Building GaTM Stage 2"
 pdflatex -shell-escape -interaction=nonstopmode --output-directory=build gatm.tex | grep ".*:[0-9]*:.*"
 
 echo "Cleaning"
-rm *.pdf *.asy *.log *.aux gatm-*.tex >/dev/null 2>&1
+rm *.pdf *.asy *.log *.aux gatm-*.tex *.pre >/dev/null 2>&1
