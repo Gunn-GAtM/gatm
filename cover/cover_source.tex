@@ -1,0 +1,78 @@
+\documentclass[11pt, a4paper]{article}
+% 11 point font, A4-sized paper
+
+\usepackage[utf8]{inputenc}
+% Specifies that the input is UTF-8
+
+\usepackage[inline]{asymptote}
+
+\usepackage{anyfontsize}
+
+\begin{document}
+
+\begin{titlepage}
+	% Title page
+    \centering  		% keeps everything centered
+    \vfill 				% Fills up the top with whitespace
+    
+    {
+    
+        { \bfseries\Large	% Boldface, large font
+        A Geometric Approach to }
+        \par \vspace{.5cm}
+        { \bfseries \fontsize{80}{100} \selectfont  % Massive font
+        Matrices }
+        
+        \vspace{3cm}		% Some vertical space
+        
+        % Cover page figure
+        
+       	\begin{asy}
+			size(200);
+			
+			pair cis(real theta) { // Gives points on the unit circle
+				return (cos(theta), sin(theta));
+			}
+			
+       		pair A = cis(-pi/6), B = cis(pi/2), C = cis(7*pi/6); // Starting triangle corners
+		    
+		    for (int i = 0; i < 4; ++i) { // Draws the triangles and dots
+			    draw(A--B--C--cycle);
+			    
+			    dot(A);
+			    dot(B);
+			    dot(C);
+			    
+		    	if (i < 3) {
+					A *= -2; B *= -2; C *= -2; // Scales A,B,C to the next triangle
+				}
+		    }
+		    
+		    dot((0,0)); // Center dot
+		    
+		    draw(A--(-1/2 * A), dashed);
+		    draw(B--(-1/2 * B), dashed);
+		    draw(C--(-1/2 * C), dashed);
+		    
+		    
+		    draw(circle((0,0), 8));
+		    
+       	\end{asy}
+	
+        \vspace{3cm}
+        
+		{ \Huge by Peter Herreshoff \textit{et al.} }
+		\par
+		
+        \vspace{1cm}
+        
+		{ \large Henry M. Gunn High School }
+		\par\vspace{.5cm}
+		{ \Huge Analysis H }
+		
+		\vfill
+    }
+    
+\end{titlepage}
+
+\end{document}
