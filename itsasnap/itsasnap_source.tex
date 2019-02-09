@@ -1,0 +1,99 @@
+\documentclass[../build/gatm.tex]{subfiles}
+
+\begin{document}
+
+\begin{asydef}
+
+int factorial(int n) { // Tail recursion... why not?
+	if (n == 0 || n == 1)
+		return 1;
+	return n * factorial(n - 1);
+}
+
+void drawConnect(pair tloffset, int[] mapping = {0}, int cols = 3, real xd = 1, real yd = 1.5) {
+	int rows = mapping.length + 1;
+	for (int x = 0; x < cols; ++x) {
+		for (int y = 0; y < rows; ++y) {
+			if (y < rows - 1) {
+				int map = mapping[y];
+				int[] needs;
+				int[] truemap;
+				
+				for (int c = 0; c < cols; ++c) needs.push(c);
+				
+				for (int i = 0; i < cols; ++i) {
+					int fact = factorial(cols - i - 1);
+					
+					int egg = map # fact; // Integer division lolololol
+					int indx = needs[egg];
+					needs.delete(egg);
+					
+					map %= fact;
+					
+					draw((tloffset + (i * xd, -y * yd)) -- (tloffset + (indx * xd, (-y-1) * yd)));
+				}
+			}
+			
+			dot(tloffset + (x * xd, -y * yd));
+		}
+	}
+}
+
+\end{asydef}
+
+\section{It's a Snap}
+
+We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory. You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have a basis to start your investigation. The other three words may be unfamiliar at this point. You will be coming back to this problem in a series of investigations over the coming weeks.
+
+Consider a rectangle of posts with $n$ rows and $3$ columns. An elastic string is anchored to one post in the topmost row and one post in the bottommost row. As the string descends top to bottom, it loops taut around one post in each row. Two other elastic strings are anchored and looped in the same way, with the condition that each post has exactly one string on it; no more, no less. An example where $n=3$ is depicted in Figure ~\ref{n_rows_3_cols_ex}.
+
+\begin{figure}
+
+\begin{center}
+
+\begin{asy}
+size(70);
+
+int[] ms = {2,5};
+
+drawConnect((0, 0), ms);
+
+draw(brace((-0.6, -3.2), (-0.6, 0.2), .3), black+1bp);
+draw(brace((-0.2, 0.6), (2.2, 0.6), .3), black+1bp);
+
+label("$n$", (-0.8, -1.5), W);
+label("$3$", (1, 0.9), N);
+\end{asy}
+
+\caption{A grid of posts with three strings.}
+\label{n_rows_3_cols_ex}
+\end{center}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{center}
+
+\begin{asy}
+size(250);
+
+int[] indices = {0,1,5,2,4,3};
+string[] labels = {"I", "A", "B", "C", "D", "E"};
+
+for (int i = 0; i < 6; ++i) {
+	int[] indx = {indices[i]};
+	drawConnect((4 * i, 0), indx);
+	label("$" + labels[i] + "$", (4 * i + 1, -2.5));
+}
+\end{asy}
+
+\caption{A grid of posts with three strings.}
+\label{all_3_cols}
+\end{center}
+
+\end{figure}
+
+Figure ~\ref{all_3_cols} shows the six ways that two consecutive rows can be connected in this way --- convince yourself these are the only six. I have labeled them with letters $I$, $A$, $B$, $C$, $D$, and $E$. We will call each of these six ways an \textit{element} of our group. Each element has $6$ posts (points) and $3$ strings (segments).
+
+\end{document}
