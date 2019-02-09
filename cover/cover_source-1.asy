@@ -10,6 +10,7 @@ settings.embed=true;
 settings.toolbar=false;
 viewportmargin=(2,2);
 
+// I HATE THIS SO MUCH EWW
 size(200);
 
 pair cis(real theta) { // Gives points on the unit circle
