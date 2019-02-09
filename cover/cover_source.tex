@@ -4,35 +4,33 @@
 \usepackage[utf8]{inputenc}
 % Specifies that the input is UTF-8
 
+\usepackage[margin=.2in]{geometry}
+
 \usepackage[inline]{asymptote}
 
 \usepackage{anyfontsize}
+
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
 
 \begin{document}
 
 \begin{titlepage}
 	% Title page
-    \centering  		% keeps everything centered
-    \vfill 				% Fills up the top with whitespace
+	\vspace*{\fill}
     
-    {
-    
-        { \bfseries\Large	% Boldface, large font
-        A Geometric Approach to }
-        \par \vspace{.5cm}
-        { \bfseries \fontsize{80}{100} \selectfont  % Massive font
-        Matrices }
-        
-        \vspace{3cm}		% Some vertical space
+    \begin{center}
         
         % Cover page figure
-        
+       
        	\begin{asy}
-			size(200);
+			size(480);
 			
 			pair cis(real theta) { // Gives points on the unit circle
 				return (cos(theta), sin(theta));
 			}
+			
 			
        		pair A = cis(-pi/6), B = cis(pi/2), C = cis(7*pi/6); // Starting triangle corners
 		    
@@ -55,24 +53,25 @@
 		    draw(C--(-1/2 * C), dashed);
 		    
 		    
+			label("{\bfseries \Huge{}A Geometric Approach to}", -1/2 * B, N);
 		    draw(circle((0,0), 8));
+		    label("{\bfseries \fontsize{60}{80} \selectfont{}Matrices}", 5/8 * B); 
 		    
        	\end{asy}
 	
-        \vspace{3cm}
+        \vspace{4cm}
         
-		{ \Huge by Peter Herreshoff \textit{et al.} }
+		{\Huge Peter Herreshoff}
 		\par
 		
-        \vspace{1cm}
+        \vspace{.3cm}
         
-		{ \large Henry M. Gunn High School }
-		\par\vspace{.5cm}
-		{ \Huge Analysis H }
-		
-		\vfill
-    }
+		{\large Gunn High School Analysis H }
     
+    \end{center}
+    
+	\vspace*{\fill}
 \end{titlepage}
+
 
 \end{document}

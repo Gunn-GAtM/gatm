@@ -1,0 +1,28 @@
+\documentclass[8pt, twosided, a4paper]{article}
+% 8 point font, A4-sized paper
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+
+\usepackage{pdfpages}
+\usepackage{subfiles}
+\usepackage{setspace}
+
+\usepackage[inline]{asymptote}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\includepdf[noautoscale=true,pages=-,width=\paperwidth]{./cover/cover_source.pdf} % cover
+
+\subfile{credits/credits_source.tex}
+\pagebreak
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\subfile{itsasnap/itsasnap_source.tex}
+
+\end{document}

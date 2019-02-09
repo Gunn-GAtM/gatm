@@ -10,11 +10,12 @@ settings.embed=true;
 settings.toolbar=false;
 viewportmargin=(2,2);
 
-size(200);
+size(480);
 
 pair cis(real theta) { // Gives points on the unit circle
 return (cos(theta), sin(theta));
 }
+
 
 pair A = cis(-pi/6), B = cis(pi/2), C = cis(7*pi/6); // Starting triangle corners
 
@@ -37,5 +38,7 @@ draw(B--(-1/2 * B), dashed);
 draw(C--(-1/2 * C), dashed);
 
 
+label("{\bfseries \Huge{}A Geometric Approach to}", -1/2 * B, N);
 draw(circle((0,0), 8));
+label("{\bfseries \fontsize{60}{80} \selectfont{}Matrices}", 5/8 * B);
 
