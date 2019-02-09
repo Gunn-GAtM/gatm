@@ -1,8 +1,11 @@
+% I MADE SOME TENTATIVE CHANGES, WIP, WILL BE BETTER LATER
+
 \documentclass[11pt, a4paper]{article}
 % 11 point font, A4-sized paper
 
 \usepackage[utf8]{inputenc}
 % Specifies that the input is UTF-8
+% thanks for specifying that, i was unsure what "utf8" meant lmao
 
 \usepackage[inline]{asymptote}
 
@@ -17,17 +20,17 @@
     
     {
     
-        { \bfseries\Large	% Boldface, large font
-        A Geometric Approach to }
+        { \fontsize{30}{30} \selectfont	% Boldface, large font
+        	A Geometric Approach to } % please intent properly lol
         \par \vspace{.5cm}
-        { \bfseries \fontsize{80}{100} \selectfont  % Massive font
-        Matrices }
+        { \fontsize{60}{60} \selectfont	% Massive font
+        	Matrices } % i changed some of the styling for flow & shape
         
         \vspace{3cm}		% Some vertical space
         
         % Cover page figure
         
-       	\begin{asy}
+       	\begin{asy} // I HATE THIS SO MUCH EWW
 			size(200);
 			
 			pair cis(real theta) { // Gives points on the unit circle
@@ -61,14 +64,12 @@
 	
         \vspace{3cm}
         
-		{ \Huge by Peter Herreshoff \textit{et al.} }
-		\par
+		{ \fontsize{30}{30} \selectfont by Peter Herreshoff \textit{et al.} }
+		\par % QUESTION: why et al.? are you planning on writing new stuff?
 		
-        \vspace{1cm}
+        \vspace{0.25cm}
         
-		{ \large Henry M. Gunn High School }
-		\par\vspace{.5cm}
-		{ \Huge Analysis H }
+		{ \fontsize{18}{18} \selectfont Gunn High School Analysis H }
 		
 		\vfill
     }
