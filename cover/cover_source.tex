@@ -1,8 +1,11 @@
+% I MADE SOME TENTATIVE CHANGES, WIP, WILL BE BETTER LATER
+
 \documentclass[11pt, a4paper]{article}
 % 11 point font, A4-sized paper
 
 \usepackage[utf8]{inputenc}
 % Specifies that the input is UTF-8
+% thanks for specifying that, i was unsure what "utf8" meant lmao
 
 \usepackage[margin=.2in]{geometry}
 
@@ -11,7 +14,7 @@
 \usepackage{anyfontsize}
 
 \usepackage[scaled]{helvet}
-\renewcommand\familydefault{\sfdefault} 
+\renewcommand\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
 
 \begin{document}
@@ -19,57 +22,57 @@
 \begin{titlepage}
 	% Title page
 	\vspace*{\fill}
-    
+
     \begin{center}
-        
+
         % Cover page figure
-       
+
        	\begin{asy}
 			size(480);
-			
+
 			pair cis(real theta) { // Gives points on the unit circle
 				return (cos(theta), sin(theta));
 			}
-			
-			
+
+
        		pair A = cis(-pi/6), B = cis(pi/2), C = cis(7*pi/6); // Starting triangle corners
-		    
+
 		    for (int i = 0; i < 4; ++i) { // Draws the triangles and dots
 			    draw(A--B--C--cycle);
-			    
+
 			    dot(A);
 			    dot(B);
 			    dot(C);
-			    
+
 		    	if (i < 3) {
 					A *= -2; B *= -2; C *= -2; // Scales A,B,C to the next triangle
 				}
 		    }
-		    
+
 		    dot((0,0)); // Center dot
-		    
+
 		    draw(A--(-1/2 * A), dashed);
 		    draw(B--(-1/2 * B), dashed);
 		    draw(C--(-1/2 * C), dashed);
-		    
-		    
+
+
 			label("{\bfseries \Huge{}A Geometric Approach to}", -1/2 * B, N);
 		    draw(circle((0,0), 8));
-		    label("{\bfseries \fontsize{60}{80} \selectfont{}Matrices}", 5/8 * B); 
-		    
+		    label("{\bfseries \fontsize{60}{80} \selectfont{}Matrices}", 5/8 * B);
+
        	\end{asy}
-	
+
         \vspace{4cm}
-        
+
 		{\Huge Peter Herreshoff}
 		\par
-		
+
         \vspace{.3cm}
-        
+
 		{\large Gunn High School Analysis H }
-    
+
     \end{center}
-    
+
 	\vspace*{\fill}
 \end{titlepage}
 
