@@ -2,7 +2,7 @@ if(!settings.multipleView) settings.batchView=false;
 settings.tex="pdflatex";
 settings.inlinetex=true;
 deletepreamble();
-defaultfilename="gatm-2";
+defaultfilename="gatm-3";
 if(settings.render < 0) settings.render=4;
 settings.outformat="";
 settings.inlineimage=true;
@@ -47,13 +47,28 @@ dot(tloffset + (x * xd, -y * yd));
 }
 
 
-size(250);
+size(0, 60);
 
 int[] indices = {0,1,5,2,4,3};
 string[] labels = {"I", "A", "B", "C", "D", "E"};
 
-for (int i = 0; i < 6; ++i) {
-int[] indx = {indices[i]};
-drawConnect((4 * i, 0), indx);
-label("$" + labels[i] + "$", (4 * i + 1, -2.5));
-}
+int[] egg = {5, 1};
+
+drawConnect((0, 0), egg);
+
+int[] newf = {3};
+
+drawConnect((5, 0), newf, 3, 1, 3);
+label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -1.5));
+
+draw(brace((-0.6, -3.2), (-0.6, 0.2), .3), white+1bp);
+draw(brace((-0.2, 0.6), (2.2, 0.6), .3), white+1bp);
+
+label("$n$", (-0.8, -1.5), W, white);
+label("$3$", (1, 0.9), N, white);
+
+label("$B$", (-0.5, -0.75), W);
+label("$A$", (-0.5, -2.25), W);
+
+label("$E$", (7.5, -1.5), E);
+

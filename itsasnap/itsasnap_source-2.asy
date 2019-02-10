@@ -47,13 +47,20 @@ dot(tloffset + (x * xd, -y * yd));
 }
 
 
-size(250);
+size(0, 60);
 
-int[] indices = {0,1,5,2,4,3};
-string[] labels = {"I", "A", "B", "C", "D", "E"};
+int[] ms = {2,5};
 
-for (int i = 0; i < 6; ++i) {
-int[] indx = {indices[i]};
-drawConnect((4 * i, 0), indx);
-label("$" + labels[i] + "$", (4 * i + 1, -2.5));
-}
+drawConnect((0, 0), ms);
+
+draw(brace((-0.6, -3.2), (-0.6, 0.2), .3), black+1bp);
+draw(brace((-0.2, 0.6), (2.2, 0.6), .3), black+1bp);
+
+label("$n$", (-0.8, -1.5), W);
+label("$3$", (1, 0.9), N);
+
+label("$\rightarrow Y$", (2.5, -0.75), E);
+label("$\rightarrow X$", (2.5, -2.25), E);
+
+for (int i = 0; i < 3; ++i)
+dot((i, -1.5), filltype=FillDraw(fillpen=white, drawpen=black));
