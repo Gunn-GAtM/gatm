@@ -147,6 +147,25 @@ These six ways, along with the operation $\snap$, form a mathematical \textit{gr
 
 \subsection{Problems}
 
+% https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
+\newcolumntype{C}{>{\centering\arraybackslash}p{1em}}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{C|C|C|C|C|C|C|}
+$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+$I$    &   &   &   &   &   &   \\ \hline
+$A$    &   &   & $E$ &   &   &   \\ \hline
+$B$    &   &   &   &   &   &   \\ \hline
+$C$    &   &   &   &   &   &   \\ \hline
+$D$    &   &   &   &   &   &   \\ \hline
+$E$    &   &   &   &   &   &   \\ \hline
+\end{tabular}
+\end{center}
+\caption{Unfilled $3$-post snap group table.}
+\label{sbstable}
+\end{figure}
+
 \begin{enumerate}
 \item Fill out a $6\times 6$ table like the one shown in Figure ~\ref{sbstable}, showing the results of each of the $6\cdot 6 = 36$ possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column.
 \item Would this table look different if you named the elements $A$ through $E$ in a different order?
