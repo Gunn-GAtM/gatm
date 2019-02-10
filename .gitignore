@@ -1,3 +1,6 @@
+*.pdf
+!build/gatm.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
