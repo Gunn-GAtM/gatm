@@ -10,7 +10,7 @@ settings.embed=true;
 settings.toolbar=false;
 viewportmargin=(2,2);
 
-size(480);
+size(540);
 
 pair cis(real theta) { // Gives points on the unit circle
 return (cos(theta), sin(theta));
@@ -38,7 +38,9 @@ draw(B--(-1/2 * B), dashed);
 draw(C--(-1/2 * C), dashed);
 
 
-label("{\bfseries \Huge{}A Geometric Approach to}", -1/2 * B, N);
+label("{\bfseries \fontsize{36}{48} \selectfont A Geometric Approach to}", -59/128 * B, N); // preferably i wouldn't have this so arbitrary, this -59/128 is to position it perfectly on the triangle.
 draw(circle((0,0), 8));
-label("{\bfseries \fontsize{60}{80} \selectfont{}Matrices}", 5/8 * B);
+label("{\bfseries \fontsize{84}{112} \selectfont Matrices}", 23/64 * B);
+label("{\bfseries \fontsize{18}{24} \selectfont Peter Herreshoff \textit{et al.}}", 11/16 * B);
+label("{\bfseries \fontsize{12}{16} \selectfont Gunn High School Analysis H}", 12/16 * B);
 
