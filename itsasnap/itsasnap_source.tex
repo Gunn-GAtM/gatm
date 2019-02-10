@@ -179,7 +179,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 \end{enumerate}
 \item What do you think is the definition of a mathematical group? (Hint: consider your answers to Problems $2$--$6$.)
 \item If you constructed a $5\times 5$ table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table requiring an element outside of these $5$. Therefore, a group must be \textit{closed} under its operation; if $X,Y\in G$, then $X\snap Y\in G$ for all $X,Y$. Some subsets, however, are closed. Write valid group tables using exactly $1$, $2$, and $3$ elements from the snap group.
-\item Notice that $E\snap E\snap E=I$. This means that $E$ has a period of $3$ when acting upon itself. Which elements have a period of $1$, $2$, and $3$?
+\item Notice that $E\snap E\snap E=I$. (See Figure ~\ref{eper3}.) This means that $E$ has a period of $3$ when acting upon itself. Which elements have a period of $1$, $2$, and $3$?
 \item \begin{enumerate}
 \item How many elements would there be if there were only $2$ posts per row?
 \item Draw and name them systematically.
@@ -199,5 +199,47 @@ $E$    &   &   &   &   &   &   \\ \hline
 \item As we learned, a \textit{permutation} of some things is an order they can be arranged in. What is the relationship between the set of permutations of $M$ things and the $M$-post snap group?
 \end{enumerate}
 
+\begin{figure}
+\begin{minipage}{.5\textwidth}
+
+\begin{center}
+\begin{asy}
+size(0, 60);
+
+int[] indices = {0,1,5,2,4,3};
+string[] labels = {"I", "A", "B", "C", "D", "E"};
+
+int[] egg = {3, 3, 3};
+
+drawConnect((0, 0), egg);
+
+int[] newf = {0};
+
+drawConnect((5, 0), newf, 3, 1, 4.5);
+label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -2.25));
+
+\end{asy}
+
+\caption{$E\snap E\snap E = I$; $E$ has period $3$.}
+\label{eper3}
+\end{center}
+\end{minipage}%
+\begin{minipage}{.4\textwidth}
+
+\begin{center}
+\begin{asy}
+size(0, 60);
+
+for (int i = 0; i < 24; i += 3) {
+	int[] eggf = {i};
+	drawConnect((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), eggf, 4); 
+}
+\end{asy}
+
+\caption{Some $4$-post group elements.}
+\label{fpge}
+\end{center}
+\end{minipage}
+\end{figure}
 
 \end{document}
