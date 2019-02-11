@@ -14,16 +14,19 @@
 
 \usepackage[inline]{asymptote}
 
+\usepackage{array}
+
 \begin{document}
 \pagenumbering{gobble}
 
 \includepdf[noautoscale=true,pages=-,width=\paperwidth]{./cover/cover_source.pdf} % cover
 
 \subfile{credits/credits_source.tex}
+\setcounter{page}{0}
 \pagebreak
-
 \pagenumbering{arabic}
-\setcounter{page}{1}
-\subfile{itsasnap/itsasnap_source.tex}
+
+
+\includepdf[noautoscale=true,pages=-,width=\paperwidth]{itsasnap/itsasnap_source.pdf}
 
 \end{document}
