@@ -1,0 +1,121 @@
+\documentclass[../gatm.tex]{subfiles}
+
+\begin{document}
+
+\section{From Snaps to Flips}
+
+\begin{asydef}
+pair unitify(pair p) {
+return p / (sqrt(p.x * p.x + p.y * p.y));
+}
+
+void drawTriangle(pair offset, real v_stretch, string[] order, bool showaxes = false) {
+pair A = offset + (sqrt(3), 0);
+pair B = offset + (0, 1);
+pair C = offset + (0, -1);
+pair O = offset + (sqrt(3) / 3, 0);
+
+draw(A--B--C--cycle);
+
+real egg = v_stretch - 1;
+
+label(order[0], (O + egg * A) / v_stretch);
+label(order[1], (O + egg * B) / v_stretch);
+label(order[2], (O + egg * C) / v_stretch);
+
+void drawExtLine(pair A, pair B, real extra = 0.2, string labelstr = "") {
+	pair C = (A + extra * (A - B)), D = (B + extra * (B - A));
+	draw(C -- D, dashed);
+	label(labelstr, C, unitify(A - B));
+}
+
+if (showaxes) {
+pair[] vertices = {A, B, C};
+string[] axisnames = {"$A$", "$B$", "$C$"};
+
+for (int i = 0; i < 3; ++i) {
+	pair vertex = vertices[i];
+	string axisname = axisnames[i];
+	pair sum = 0;
+	
+	for (int j = 0; j < 3; ++j) {
+		if (j == i) continue;
+		sum += vertices[j];
+	}
+	
+	sum /= 2;
+	drawExtLine(vertex, sum, axisname);
+}
+}
+
+}
+
+\end{asydef}
+
+\begin{figure}[h]
+\begin{minipage}{0.3\textwidth}
+\begin{center}
+\begin{asy}
+unitsize(1cm);
+
+pair offset = (0,0);
+string[] order = {"1", "2", "3"};
+
+drawTriangle(offset, 2, order);
+\end{asy}
+\end{center}
+\caption{The paper triangle.}
+\label{paper_triangle}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{center}
+\begin{asy}
+unitsize(1cm);
+
+pair offset = (0,0);
+string[] order = {"", "", ""};
+
+drawTriangle(offset, 2, order, true);
+\end{asy}
+\end{center}
+\caption{The triangles axes of reflection.}
+\label{triangle_reflections}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+
+\begin{asy}
+unitsize(0.7cm);
+string _1 = "1";
+string _2 = "2";
+string _3 = "3";
+
+string[][] orders = {
+{_1, _2, _3},
+{_1, _3, _2},
+{_3, _2, _1},
+{_2, _1, _3},
+{_3, _1, _2},
+{_2, _3, _1}
+};
+
+string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
+
+drawTriangle((-4, 0), 2, orders[0], false);
+label("$\stackrel{\mbox{\small flip!}}{\Longrightarrow}$", (-1, 0));
+for (int i = 0; i < 6; ++i) {
+	drawTriangle((2.4 * i, 0), 2, orders[i], false);
+	label(names[i], (2.4 * i + sqrt(3) / 2, -1.4));
+}
+\end{asy}
+
+\caption{The six triangle isometries.}
+\label{triangle_isos}
+\end{figure}
+
+Cut out a paper equilateral triangle and label its vertices $1$, $2$, and $3$ in permanent marker as shown in Figure ~\ref{paper_triangle}, and place it down on a table in the shown orientation. This triangle has several \textit{isometries} to itself, which are ways of mapping the triangle to itself. For example, you could \textit{reflect} it around the three axes $A$, $B$ and $C$, as shown in Figure ~\ref{triangle_reflections}. You could also rotate it by $120^{\circ}$ or $240^{\circ}$.
+
+There are six isometries of the triangle to consider. These are shown in Figure ~\ref{triangle_isos}.
+
+\end{document}

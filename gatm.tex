@@ -26,7 +26,14 @@
 \pagebreak
 \pagenumbering{arabic}
 
+\restoregeometry % Because the credits have a different margin setting
 
-\includepdf[noautoscale=true,pages=-,width=\paperwidth]{itsasnap/itsasnap_source.pdf}
+\tableofcontents
+\pagebreak
+
+\subfile{itsasnap/itsasnap_source.tex}
+\pagebreak
+
+\subfile{fromsnapstoflips/fromsnapstoflips_source.tex}
 
 \end{document}
