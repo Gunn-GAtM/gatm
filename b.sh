@@ -4,10 +4,6 @@ echo "Building cover..."
 bash bf.sh cover
 echo "Built cover."
 
-echo "Building snap..."
-bash bf.sh itsasnap
-echo "Built snap."
-
 echo "Clearing build folder"
 rm build/*
 

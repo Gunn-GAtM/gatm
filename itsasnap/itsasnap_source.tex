@@ -45,11 +45,7 @@ void drawConnect(pair tloffset, int[] mapping = {0}, int cols = 3, real xd = 1, 
 
 \newcommand\snap{\bullet}
 
-We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory. You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have a basis to start your investigation. The other three words may be unfamiliar at this point. You will be coming back to this problem in a series of investigations over the coming weeks.
-
-Consider a rectangle of posts with $n$ rows and $3$ columns. An elastic string is anchored to one post in the topmost row and one post in the bottommost row. As the string descends top to bottom, it loops taut around one post in each row. Two other elastic strings are anchored and looped in the same way, with the condition that each post has exactly one string on it; no more, no less. An example where $n=3$ is depicted in Figure ~\ref{n_rows_3_cols_ex}.
-
-\begin{figure}
+\begin{figure}[h]
 
 \begin{center}
 
@@ -72,7 +68,7 @@ for (int i = 0; i < 6; ++i) {
 
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \begin{minipage}{.5\textwidth}
 \begin{center}
 
@@ -138,6 +134,10 @@ label("$E$", (7.5, -1.5), E);
 \end{minipage}
 
 \end{figure}
+
+We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory. You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have a basis to start your investigation. The other three topics may be unfamiliar at this point. You will be coming back to this problem in a series of investigations over the coming weeks.
+
+Consider a rectangle of posts with $n$ rows and $3$ columns. An elastic string is anchored to one post in the topmost row and one post in the bottommost row. As the string descends top to bottom, it loops taut around one post in each row. Two other elastic strings are anchored and looped in the same way, with the condition that each post has exactly one string on it; no more, no less. An example where $n=3$ is depicted in Figure ~\ref{n_rows_3_cols_ex}.
 
 Figure ~\ref{all_3_cols} shows the six ``ways'' that two consecutive rows can be connected in this way --- convince yourself these are the only six. I have labeled them with letters $I$, $A$, $B$, $C$, $D$, and $E$.
 
