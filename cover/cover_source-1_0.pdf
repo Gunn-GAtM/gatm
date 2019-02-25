@@ -45,12 +45,12 @@ endobj
 <?adobe-xap-filters esc="CRLF"?>
 <x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='XMP toolkit 2.9.1-13, framework 1.6'>
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:iX='http://ns.adobe.com/iX/1.0/'>
-<rdf:Description rdf:about='uuid:4941ca35-7024-11f4-0000-e1e324339635' xmlns:pdf='http://ns.adobe.com/pdf/1.3/' pdf:Producer='GPL Ghostscript 9.23'/>
-<rdf:Description rdf:about='uuid:4941ca35-7024-11f4-0000-e1e324339635' xmlns:xmp='http://ns.adobe.com/xap/1.0/'><xmp:ModifyDate>2019-02-23T23:42:29-08:00</xmp:ModifyDate>
-<xmp:CreateDate>2019-02-23T23:42:29-08:00</xmp:CreateDate>
-<xmp:CreatorTool>UnknownApplication</xmp:CreatorTool></rdf:Description>
-<rdf:Description rdf:about='uuid:4941ca35-7024-11f4-0000-e1e324339635' xmlns:xapMM='http://ns.adobe.com/xap/1.0/mm/' xapMM:DocumentID='uuid:4941ca35-7024-11f4-0000-e1e324339635'/>
-<rdf:Description rdf:about='uuid:4941ca35-7024-11f4-0000-e1e324339635' xmlns:dc='http://purl.org/dc/elements/1.1/' dc:format='application/pdf'><dc:title><rdf:Alt><rdf:li xml:lang='x-default'>Untitled</rdf:li></rdf:Alt></dc:title></rdf:Description>
+<rdf:Description rdf:about='uuid:6da6b643-3afb-11e9-0000-e1e324339635' xmlns:pdf='http://ns.adobe.com/pdf/1.3/' pdf:Producer='GPL Ghostscript 9.26'/>
+<rdf:Description rdf:about='uuid:6da6b643-3afb-11e9-0000-e1e324339635' xmlns:xmp='http://ns.adobe.com/xap/1.0/'><xmp:ModifyDate>2019-02-24T17:51:55-08:00</xmp:ModifyDate>
+<xmp:CreateDate>2019-02-24T17:51:55-08:00</xmp:CreateDate>
+<xmp:CreatorTool>Asymptote 2.442.44</xmp:CreatorTool></rdf:Description>
+<rdf:Description rdf:about='uuid:6da6b643-3afb-11e9-0000-e1e324339635' xmlns:xapMM='http://ns.adobe.com/xap/1.0/mm/' xapMM:DocumentID='uuid:6da6b643-3afb-11e9-0000-e1e324339635'/>
+<rdf:Description rdf:about='uuid:6da6b643-3afb-11e9-0000-e1e324339635' xmlns:dc='http://purl.org/dc/elements/1.1/' dc:format='application/pdf'><dc:title><rdf:Alt><rdf:li xml:lang='x-default'>Untitled</rdf:li></rdf:Alt></dc:title></rdf:Description>
 </rdf:RDF>
 </x:xmpmeta>
                                                                         
@@ -59,9 +59,10 @@ endobj
 endstream
 endobj
 2 0 obj
-<</Producer(GPL Ghostscript 9.23)
-/CreationDate(D:20190223234229-08'00')
-/ModDate(D:20190223234229-08'00')>>endobj
+<</Producer(GPL Ghostscript 9.26)
+/CreationDate(D:20190224175155-08'00')
+/ModDate(D:20190224175155-08'00')
+/Creator(Asymptote 2.442.44)>>endobj
 xref
 0 10
 0000000000 65535 f 
@@ -76,8 +77,8 @@ xref
 0000000758 00000 n 
 trailer
 << /Size 10 /Root 1 0 R /Info 2 0 R
-/ID [<97D6E0D2BD2B222328C4DC537260C8F5><97D6E0D2BD2B222328C4DC537260C8F5>]
+/ID [<89593D031F2D22910F9ED2895427F929><89593D031F2D22910F9ED2895427F929>]
 >>
 startxref
-2301
+2330
 %%EOF
