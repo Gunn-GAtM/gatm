@@ -135,11 +135,11 @@ label("$E$", (7.5, -1.5), E);
 
 \end{figure}
 
-\noindent Let's start with a concept that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory. You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have good start on this investigation. The other three topics, however, may be unfamiliar.
+\noindent We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory. You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have a basis to start your investigation. The other three topics may be a bit unfamiliar at this point.
 
-Consider a grid of posts with $3$ rows and $3$ columns. An elastic string is anchored to one post in the top row and one post in the bottom row, and loops around one post in the middle row. Two other strings are anchored and looped in the same way. Each post must have exactly one string touching it; no more, no less. An example is depicted in Figure ~\ref{n_rows_3_cols_ex}.
+Consider a rectangle of posts with $3$ rows and $3$ columns. An elastic string is anchored to one post in the top row and one post in the bottom row. As the string descends top to bottom, it loops taut around a middle post. Two other elastic strings are anchored and looped in the same way, with the condition that each post has exactly one string touching it; no more, no less. An example is depicted in Figure ~\ref{n_rows_3_cols_ex}.
 
-Figure ~\ref{all_3_cols} shows the six configurations in which two rows of three posts can be connected with these rules. We'll call them $I$, $A$, $B$, $C$, $D$, and $E$.
+Figure ~\ref{all_3_cols} shows the six configurations in which two consecutive rows can be connected in this way --- convince yourself these are the only six. I have labeled them with letters $I$, $A$, $B$, $C$, $D$, and $E$.
 
 Now, look at a $3\times 3$ rectangle of posts, like the one in Figure ~\ref{n_rows_3_cols_ex}. You should have two configurations $X$ and $Y$, stacked so that $Y$ is on top of $X$. When you remove the middle posts (the posts indicated by $\circ$), the elastic string will \textbf{snap} to one of the six configurations we drew initially. Let's call this operation snap, or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.'' Keep in mind that when writing it this way, the bottom configuration $X$ goes first, and the top configuration $Y$ goes last. As an example, $A\snap B = E$, as shown in Figure ~\ref{snap_ex}.
 
@@ -177,10 +177,10 @@ $E$    &   &   &   &   &   &   \\ \hline
 \item For any elements $X, Y$, is there always an element $Z$ so that $X\snap Z=Y$?
 \item Is $Z$ always unique?
 \end{enumerate}
-\item What do you think is the definition of a mathematical group? (Hint: consider your answers to Problems $2$--$6$.)
-\item If you constructed a $5\times 5$ table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table in those $5$. Therefore, a group must be \textbf{closed} under its operation; if $X,Y\in G$, then $X\snap Y\in G$ for all $X,Y$. Some subsets, however, are closed. Write valid group tables using exactly $1$, $2$, and $3$ elements from the snap group.
+\item What do you think is the definition of a mathematical group? (Hint: consider your answers to Problems 2--6.)
+\item If you constructed a $5\times 5$ table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table requiring an element outside of these $5$. Therefore, a group must be \textbf{closed} under its operation; if $X,Y\in G$, then $X\snap Y\in G$ for all $X,Y$. Some subsets, however, are closed. Write valid group tables using exactly $1$, $2$, and $3$ elements from the snap group.
 \item Notice that $E\snap E\snap E=I$. (See Figure ~\ref{eper3}.) This means that $E$ has a period of $3$ when acting upon itself. Which elements have a period of $1$, $2$, and $3$?
-\item Answer the following with $1$, $2$, and $4$ posts.\begin{enumerate}
+\item Answer the following with the $1$, $2$, and $4$-post snap groups $S_1$, $S_2$ and $S_4$.\begin{enumerate}
 \item How many elements would there be?
 \item Draw and name them systematically.
 \item Make a group table of these elements. For $4$ posts, instead of creating the massive table, give the number of entries that table would have.
