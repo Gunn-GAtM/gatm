@@ -159,11 +159,14 @@ for (int i = 0; i < 6; ++i) {
 \label{triangle_isos}
 \end{figure}
 
-\noindent Cut out a paper equilateral triangle, label its front vertices $1$, $2$, and $3$ in marker as shown in Figure ~\ref{paper_triangle}, and place it down on a table in the shown orientation. From this starting position, you can reflect the triangle over one of three axes --- $A$, $B$, or $C$, as shown in Figure ~\ref{triangle_reflections} --- or rotate the triangle 120\degree{} or 240\degree{} counterclockwise. The final possible positions are shown in Figure ~\ref{triangle_isos}.
+% stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes.
+% VOCAB: DIHEDRAL GROUP, ISOMETRY, ISOMORPHIC (probs gonna change?), GENERATOR
+
+\noindent You can use a paper triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure ~\ref{paper_triangle}, and place it down in the shown orientation. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure ~\ref{triangle_reflections}. Or you can rotate the triangle 120\degree{} or 240\degree{} counterclockwise. The final possible positions are shown in Figure ~\ref{triangle_isos}.
 
 Notice that each position corresponds to a different operation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the A axis,'' and $D$ means ``rotate the triangle 120\degree{} counterclockwise.'' We can combine these operations to form other operations by writing them in sequence. Unlike most cases, however, we evaluate them right-to-left rather than left-to-right. For example, $AID=B$, as shown in Figure ~\ref{aid_is_b}.
 
-Naturally, these six positions form another group: the \textbf{dihedral group} of order $3$, $D_3$. Splitting up ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces,'' just like the two faces of our paper triangle. Let's study the properties of this group.
+These six positions form another group: the \textbf{dihedral group} of order $3$, or $D_3$. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces,'' just like the two faces of our paper triangle. Let's study the properties of this group.
 
 \subsection{Problems}
 
@@ -173,8 +176,8 @@ Naturally, these six positions form another group: the \textbf{dihedral group} o
 \begin{figure}[H]
 \begin{minipage}{0.6\textwidth}
 \begin{enumerate}
-\item Figure ~\ref{triangle_isos} shows six \textbf{isometries} of the triangle. Are there any other isometries? Isometries are ways of mapping the triangle to itself, preserving shape and location.
-\item As with the snap group, we can make a group table for the flip group. Make and fill out table like the one in Figure ~\ref{sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $D$\textsuperscript{th} column.
+\item Figure ~\ref{triangle_isos} shows six \textbf{isometries} of the triangle. Isometries are ways of mapping the triangle to itself, preserving shape and location. Are there any others?
+\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure ~\ref{sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $Y$\textsuperscript{th} column.
 \newcounter{enumLast}
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
@@ -196,23 +199,17 @@ $E$    &   &   &   &   &   &   \\ \hline
 %
 \begin{enumerate}
 \setcounter{enumi}{\theenumLast}
-\item What is the relationship between the table for the snap group $S_3$ and the flip group $D_3$?
-\item $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Two groups $({A_i}, \bullet)$ and $({B_i}, \cdot)$ are isomorphic if you can find a bijection between the two groups' elements $A_1\leftrightarrow B_1, A_2\leftrightarrow B_2, \cdots, A_n \leftrightarrow B_n$ so that $A_j \bullet A_k = A_l \leftrightarrow B_j \cdot B_k = B_m$.
+\item What is the relationship between the tables for the snap group $S_3$ and the flip group $D_3$?
+\item $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Two groups $A$ with operation $\bullet$ and $B$ with the operation $\star$ are isomorphic if you can find a bijection between the two groups' elements. This means $A_1\leftrightarrow B_1, A_2\leftrightarrow B_2, \cdots, A_n \leftrightarrow B_n$ and that $A_j \bullet A_k = A_l \leftrightarrow B_j \star B_k = B_m$.
 \item \begin{enumerate}
-\item Make a table for the subgroup of the flip group $D_3$ containing no reflections, only rotations.
+\item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
 \item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
 \end{enumerate}
-\begin{enumerate}
-\item What geometric's rotation-reflection group is isomorphic to the two post snap group $S_2$?
-\item For $S_1$?
-\item For $S_4$? (Hint: it's not a square.)
-\item For $S_5$?
-\end{enumerate}
+\item What shape's dihedral (rotation and reflection) group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
 \item Find an combination of $A$ and $D$ that yields $C$.
-\item We call $A$ and $D$ generators of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure ~\ref{alttable}. \textit{Note that the element order is different!}
-\item What other pairs of elements could you have used to generate the table for the dihedral group of the equilateral triangle?
-\item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it?
-\item Name the two possible generators of this three-element group.
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure ~\ref{alttable}. \textit{Note that the element order is different!}
+\item What other pairs of elements could you have used to generate that table?
+\item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \item Explain why each element of the flip group $D_3$ has the period it has.
 \item Some pairs of elements of the flip group are two-element subgroups. What are they?
 \item One of the elements forms a one-element subgroup. What is it?
@@ -221,7 +218,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 \begin{enumerate}
 \item The identity element?
 \item The inverse of $A$?
-\item The inverse of $E$
+\item The inverse of $E$?
 \end{enumerate}
 \end{enumerate}
 
