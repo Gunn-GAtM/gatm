@@ -79,10 +79,10 @@ int[] ms = {2,5};
 
 drawConnect((0, 0), ms);
 
-draw(brace((-0.6, -3.2), (-0.6, 0.2), .3), black+1bp);
+// draw(brace((-0.6, -3.2), (-0.6, 0.2), .3), black+1bp);
 draw(brace((-0.2, 0.6), (2.2, 0.6), .3), black+1bp);
 
-label("$n$", (-0.8, -1.5), W);
+// label("$n$", (-0.8, -1.5), W);
 label("$3$", (1, 0.9), N);
 
 label("$\rightarrow Y$", (2.5, -0.75), E);
@@ -102,9 +102,6 @@ for (int i = 0; i < 3; ++i)
 \begin{center}
 \begin{asy}
 size(0, 60);
-
-int[] indices = {0,1,5,2,4,3};
-string[] labels = {"I", "A", "B", "C", "D", "E"};
 
 int[] egg = {5, 1};
 
@@ -143,7 +140,7 @@ Figure ~\ref{all_3_cols} shows the six configurations in which two consecutive r
 
 Now, look at a $3\times 3$ rectangle of posts, like the one in Figure ~\ref{n_rows_3_cols_ex}. You should have two configurations $X$ and $Y$, stacked so that $Y$ is on top of $X$. When you remove the middle posts (the posts indicated by $\circ$), the elastic string will \textbf{snap} to one of the six configurations we drew initially. Let's call this operation snap, or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.'' Keep in mind that when writing it this way, the bottom configuration $X$ goes first, and the top configuration $Y$ goes last. As an example, $A\snap B = E$, as shown in Figure ~\ref{snap_ex}.
 
-These six configurations, along with the operation $\snap$, form a mathematical \textbf{group}, and we say that each is an \textbf{element} of our group. In particular, we will call this the \textbf{snap group} of size $3$, or $S_3$. Groups are the central objects studied in \textbf{group theory}, a topic mentioned at the beginning of this chapter. Let's study the snap group and characterize its properties.
+These six configurations, along with the operation $\snap$, form a mathematical \textbf{group}, and we say that each is an \textbf{element} of our group. In particular, we will call this the \textbf{snap group} of size $3$, or $S_3$. Groups are the central objects studied in \textbf{group theory}, a topic mentioned at the beginning of this section. Let's study the snap group and characterize its properties.
 
 \subsection{Problems}
 
