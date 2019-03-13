@@ -132,15 +132,25 @@ label("$E$", (7.5, -1.5), E);
 
 \end{figure}
 
+% Vocabulary: SNAP, GROUP, ELEMENT, SNAP GROUP, IDENTITY ELEMENT
+
 \noindent We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory. You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have a basis to start your investigation. The other three topics may be a bit unfamiliar at this point.
 
-Consider a rectangle of posts with $3$ rows and $3$ columns. An elastic string is anchored to one post in the top row and one post in the bottom row. As the string descends top to bottom, it loops taut around a middle post. Two other elastic strings are anchored and looped in the same way, with the condition that each post has exactly one string touching it; no more, no less. An example is depicted in Figure ~\ref{n_rows_3_cols_ex}.
+Consider a grid of posts with $3$ rows and $3$ columns. An elastic string is anchored to one post in the top row and one post in the bottom row. As the string descends from top to bottom, it loops around a post in the middle row. Two other strings are anchored and looped in the same way, with the condition that each post has exactly one string touching it. An example is depicted in Figure ~\ref{n_rows_3_cols_ex}.
 
-Figure ~\ref{all_3_cols} shows the six configurations in which two consecutive rows can be connected in this way --- convince yourself these are the only six. I have labeled them with letters $I$, $A$, $B$, $C$, $D$, and $E$.
+Figure ~\ref{all_3_cols} shows the six ways two rows can be connected with these rules -- convince yourself that these are the only six. I have labeled them as $I$, $A$, $B$, $C$, $D$, and $E$.
 
-Now, look at a $3\times 3$ rectangle of posts, like the one in Figure ~\ref{n_rows_3_cols_ex}. You should have two configurations $X$ and $Y$, stacked so that $Y$ is on top of $X$. When you remove the middle posts (the posts indicated by $\circ$), the elastic string will \textbf{snap} to one of the six configurations we drew initially. Let's call this operation snap, or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.'' Keep in mind that when writing it this way, the bottom configuration $X$ goes first, and the top configuration $Y$ goes last. As an example, $A\snap B = E$, as shown in Figure ~\ref{snap_ex}.
+% to me, "convince yourself" seems pretty condescending and holds an air of superiority that I don't like. but i won't edit it cuz PERSONALITY HAHAHA OMG EVERY DAY I PRAY TO THIS GOD.
 
+% remember kids, always prioritize pride over improvement! this is a very important lesson.
+
+Now, look at a $3\times 3$ rectangle of posts, like the one in Figure ~\ref{n_rows_3_cols_ex}. You should have two configurations $X$ and $Y$, stacked so that $Y$ is on top of $X$. When you remove the middle posts (the posts indicated by $\circ$), the elastic string will \textbf{snap} to one of the six configurations we drew initially. Let's call this operation ``snap'', or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.'' Keep in mind that when writing it this way, the bottom configuration $X$ goes first, and the top configuration $Y$ goes last. As an example, $A\snap B = E$, as shown in Figure ~\ref{snap_ex}.
+
+<<<<<<< HEAD
 These six configurations, along with the operation $\snap$, form a mathematical \textbf{group}, and we say that each is an \textbf{element} of our group. In particular, we will call this the \textbf{snap group} of size $3$, or $S_3$. Groups are the central objects studied in \textbf{group theory}, a topic mentioned at the beginning of this section. Let's study the snap group and characterize its properties.
+=======
+These six configurations form a mathematical \textbf{group} under the $\snap$ operation, and we say that each configuration is an \textbf{element} of our group. We will call this the \textbf{snap group} of size $3$, or $S_3$. The group is unsurprisingly the main concept studied in \textbf{group theory}, a topic mentioned at the beginning of this chapter. Let's study the snap group and its properties.
+>>>>>>> 685fb488b1cfb5eb2b8068b637542960d79fd69e
 
 \subsection{Problems}
 
@@ -165,9 +175,9 @@ $E$    &   &   &   &   &   &   \\ \hline
 
 \begin{enumerate}
 \item Fill out a $6\times 6$ table like the one in Figure ~\ref{sbstable}, showing the results of each of the $36$ ($6\cdot 6$) possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column.
-\item Would this table look different if you named the elements $A$ through $E$ in a different order?
+\item Would this table look different if you wrote the elements $A$ through $E$ in a different order?
 \item Which of the elements is the \textbf{identity element}?
-\item Does every element have an inverse (is there a way to get the identity element from every element using only one snap)?
+\item Does every element have an inverse (can you get to the identity element from every element using only one snap)?
 \item Is the snap operation commutative (does $X \snap Y = Y \snap X$ for all $X,Y$)?
 \item Is the snap operation associative (does $(X \snap Y) \snap Z = X \snap (Y\snap Z)$ for all $X,Y,Z$)?
 \item \begin{enumerate}
@@ -175,7 +185,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 \item Is $Z$ always unique?
 \end{enumerate}
 \item What do you think is the definition of a mathematical group? (Hint: consider your answers to Problems 2--6.)
-\item If you constructed a $5\times 5$ table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table requiring an element outside of these $5$. Therefore, a group must be \textbf{closed} under its operation; if $X,Y\in G$, then $X\snap Y\in G$ for all $X,Y$. Some subsets, however, are closed. Write valid group tables using exactly $1$, $2$, and $3$ elements from the snap group.
+\item If you constructed a $5\times 5$ table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table not in those $5$. Therefore, a group must be \textbf{closed} under its operation; if $X,Y\in G$ ($\in$ means ``is/are in''), then $X\snap Y\in G$ for all $X,Y$. Some subsets, however, do happen to be closed. Write valid group tables using exactly $1$, $2$, and $3$ elements from the snap group.
 \item Notice that $E\snap E\snap E=I$. (See Figure ~\ref{eper3}.) This means that $E$ has a period of $3$ when acting upon itself. Which elements have a period of $1$, $2$, and $3$?
 \item Answer the following with the $1$, $2$, and $4$-post snap groups $S_1$, $S_2$ and $S_4$.\begin{enumerate}
 \item How many elements would there be?
@@ -183,7 +193,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 \item Make a group table of these elements. For $4$ posts, instead of creating the massive table, give the number of entries that table would have.
 \item What is the relationship of this new table to your original table?
 \end{enumerate}
-\item Can you think of an easier way to construct the a snap group table without drawing all the possible configurations?
+\item Can you think of an easier way to generate a snap group table without drawing all the possible configurations?
 \item \begin{enumerate}
 \item How many elements would there be in the $5$-post snap group?
 \item How many entries would its table have?
