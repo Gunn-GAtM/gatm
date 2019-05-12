@@ -1,0 +1,146 @@
+\documentclass{minimal}
+
+\usepackage[inline]{asymptote}
+
+\begin{document}
+\topskip0pt
+
+\newcommand{\degree}{\ensuremath{^\circ}}
+
+\begin{asydef}
+pair unitify(pair p) {
+return p / (sqrt(p.x * p.x + p.y * p.y));
+}
+
+pair cis(real angle) {
+return (cos(angle), sin(angle));
+}
+
+void drawTriangle(pair offset, real v_stretch, string[] order, bool rotate = false, bool showaxes = false, bool[] shownaxes = {true, true, true}, bool labelaxes = true) {
+pair A = offset + (sqrt(3), 0);
+pair B = offset + (0, 1);
+pair C = offset + (0, -1);
+pair O = offset + (sqrt(3) / 3, 0);
+
+draw(A--B--C--cycle);
+
+real egg = v_stretch - 1;
+
+label(rotate(90) * order[0], (O + egg * A) / v_stretch);
+label(rotate(210) * order[1], (O + egg * B) / v_stretch);
+label(rotate(-30) * order[2], (O + egg * C) / v_stretch);
+
+}
+
+void drawFlippedTriangle(pair offset, real v_stretch, string[] order, bool rotate = false, bool showaxes = false, bool[] shownaxes = {true, true, true}, bool labelaxes = true) {
+pair A = offset + (0, 0);
+pair B = offset + (sqrt(3), 1);
+pair C = offset + (sqrt(3), -1);
+pair O = offset + (2 * sqrt(3) / 3, 0);
+
+draw(A--B--C--cycle);
+
+real egg = v_stretch - 1;
+
+label(rotate(-90)*order[0], (O + egg * A) / v_stretch);
+label(rotate(120) * order[1], (O + egg * B) / v_stretch);
+label(rotate(60) * order[2], (O + egg * C) / v_stretch);
+
+}
+
+string _1 = "1";
+string _2 = "2";
+string _3 = "3";
+
+string[][] orders = {
+{_1, _2, _3},
+{_1, _3, _2},
+{_3, _2, _1},
+{_2, _1, _3},
+{_3, _1, _2},
+{_2, _3, _1}
+};
+
+string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
+
+string[] axes = {"$A$", "$B$", "$C$"};
+
+\end{asydef}
+
+\begin{center}
+\begin{asy}
+size(420,0);
+
+for (int i = 0; i < 4; ++i) {
+	for (int j = 0; j < 8; ++j) {
+		real x = i * sqrt(3);
+		real y = (i % 2 == 0) ? j : j + 1;
+		if (j % 2 == 0) {
+			drawTriangle((x, y), 3, orders[0], true);
+		} else {
+			drawFlippedTriangle((x, y), 3, orders[0], true);
+		}
+	}
+}
+
+\end{asy}
+\end{center}
+
+\begin{center}
+\begin{asy}
+size(420,0);
+
+for (int i = 0; i < 4; ++i) {
+	for (int j = 0; j < 8; ++j) {
+		real x = i * sqrt(3);
+		real y = (i % 2 == 1) ? j : j + 1;
+		if (j % 2 == 0) {
+			drawFlippedTriangle((x, y), 3, orders[0], true);
+		} else {
+			drawTriangle((x, y), 3, orders[0], true);
+		}
+	}
+}
+
+\end{asy}
+\end{center}
+
+\begin{center}
+\begin{asy}
+size(420,0);
+
+for (int i = 0; i < 4; ++i) {
+	for (int j = 0; j < 8; ++j) {
+		real x = i * sqrt(3);
+		real y = (i % 2 == 0) ? j : j + 1;
+		if (j % 2 == 0) {
+			drawTriangle((x, y), 3, axes);
+		} else {
+			drawFlippedTriangle((x, y), 3, axes);
+		}
+	}
+}
+
+\end{asy}
+\end{center}
+
+\begin{center}
+\begin{asy}
+size(420,0);
+
+for (int i = 0; i < 4; ++i) {
+	for (int j = 0; j < 8; ++j) {
+		real x = i * sqrt(3);
+		real y = (i % 2 == 1) ? j : j + 1;
+		if (j % 2 == 0) {
+			drawFlippedTriangle((x, y), 3, axes);
+		} else {
+			drawTriangle((x, y), 3, axes);
+		}
+	}
+}
+
+\end{asy}
+\end{center}
+
+\end{document}

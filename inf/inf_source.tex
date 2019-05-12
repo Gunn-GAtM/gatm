@@ -1,0 +1,44 @@
+\documentclass[../gatm.tex]{subfiles}
+
+\begin{document}
+
+\section{Infinite Groups}
+
+\newcounter{problem_i}
+
+All of the groups we've seen so far are finite in size. We can also construct groups of an infinite size.
+
+A quick review: \textit{iso}- means the same and -\textit{morphic} means form. Two groups are said to be isomorphic if there is a mapping which takes each element of the first group to an element of the second group and vice versa, so that the products of the elements map in the same way.
+
+\begin{enumerate}
+\item Where have you come across the roots \textit{iso}- and -\textit{morphic} before?
+\item Could two groups be isomorphic if they had different orders?
+\item The rotation group for the hexagon $H$ has six elements: the identity, and rotations of $\frac{\pi}{3}$, $\frac{2\pi}{3}$, $\pi$, $\frac{4\pi}{3}$, $\frac{5\pi}{3}$ radians. A rotation of $\frac{\pi}{3}$ generates the group. Which other rotation generates the group? What is the period of each element.
+\item $H$ has the same number of elements as the dihedral group $D_3$. Are the two groups isomorphic? How do you know? What is the period of each element of $D_3$, What can you say if the sets of the periods of the elements of each group are not the same? Which subgroups of $C_6$ and $D_3$ are isomorphic?
+\item Could an infinite group be isomorphic to a finite group.
+\item Do you think all infinite groups are isomorphic to each other. Find a counterexample if you can.
+\setcounter{problem_i}{\value{enumi}}
+\end{enumerate}
+
+If an infinite group was somehow ``bigger'' than the other, they wouldn't be isomorphic. (Can you think of an example of two groups with the same ``size'' that also aren't isomorphic?) This raises the question: are all infinities equally big?
+
+We can formalize the notion of sizes of infinity. Let's say that two infinite sets are of the same size if their elements can be put into a one-to-one correspondence with each other. For example, the positive numbers ${1,2,...}=\mathbb{N}$ and negative numbers ${-1,-2,...}=-\mathbb{N}$ are of the same size, because we have the one-to-one correspondence $\mathbb{N} \ni n\leftrightarrow -n \in \mathbb{N}$. Every element of the positive numbers has exactly one ``partner'' in the negative numbers, and vice versa.
+
+Make guesses to the relative sizes of the following pairs of sets. You may use shorthand like $a < b$, $a > b$, $a = b$. After you have made your guesses, we will analyze some of the cases and you can find out how good your intuition was.
+
+\begin{tabular}{llll}
+(a) & natural numbers, $\mathbb{N}$ & vs. & positive even numbers, $2\mathbb{N}$ \\
+(b) & natural numbers, $\mathbb{N}$ & vs. & positive rational numbers, $\mathbb{Q}^+$ \\
+(c) & natural numbers, $\mathbb{N}$ & vs. & real numbers between zero and one, $[0,1)$ \\
+(d) & real numbers, $\mathbb{R}$ & vs. & complex numbers, $\mathbb{C}$ \\
+(e) & real numbers, $\mathbb{R}$ & vs. & points on a line \\
+(f) & points on a line & vs. & points on a line segment \\
+(g) & points on a line & vs. & points on a plane \\
+(h) & rational numbers, $\mathbb{Q}$ & vs. & Cantor set (look this up or ask your teacher) \\
+\end{tabular}
+
+It turns out that studying infinity involves some strange mathematics. For instance, even though it seems that there should be half as many positive even numbers as natural numbers (see 7a), we can construct a one-to-one correspondence between the two sets so that every positive even number is paired with a natural numbers and vice versa: $2\mathbb{N} \ni 2n \leftrightarrow n \in \mathbb{N}$. The existence of this correspondence means that the two sets are equal in size.
+
+More surprisingly, we can establish a correspondence between the non-negative rational numbers and the natural numbers. 
+
+\end{document}
