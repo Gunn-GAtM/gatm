@@ -4,7 +4,7 @@
 
 \section{Infinite Groups}
 
-\newcounter{problem_i}
+\newcounter{problem_i} % for keeping track of which problem we're on
 
 All of the groups we've seen so far are finite in size. We can also construct groups of an infinite size.
 
@@ -24,9 +24,11 @@ If an infinite group was somehow ``bigger'' than the other, they wouldn't be iso
 
 We can formalize the notion of sizes of infinity. Let's say that two infinite sets are of the same size if their elements can be put into a one-to-one correspondence with each other. For example, the positive numbers ${1,2,...}=\mathbb{N}$ and negative numbers ${-1,-2,...}=-\mathbb{N}$ are of the same size, because we have the one-to-one correspondence $\mathbb{N} \ni n\leftrightarrow -n \in \mathbb{N}$. Every element of the positive numbers has exactly one ``partner'' in the negative numbers, and vice versa.
 
-Make guesses to the relative sizes of the following pairs of sets. You may use shorthand like $a < b$, $a > b$, $a = b$. After you have made your guesses, we will analyze some of the cases and you can find out how good your intuition was.
+\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+\item Make guesses to the relative sizes of the following pairs of sets. You may use shorthand like $a < b$, $a > b$, $a = b$. After you have made your guesses, we will analyze some of the cases and you can find out how good your intuition was.
 
-\begin{tabular}{llll}
+\begin{tabular}{llll} % used instead of enumerate to facilitate alignment of the "versus" symbols. There is probably other ways to do this
 (a) & natural numbers, $\mathbb{N}$ & vs. & positive even numbers, $2\mathbb{N}$ \\
 (b) & natural numbers, $\mathbb{N}$ & vs. & positive rational numbers, $\mathbb{Q}^+$ \\
 (c) & natural numbers, $\mathbb{N}$ & vs. & real numbers between zero and one, $[0,1)$ \\
@@ -34,11 +36,129 @@ Make guesses to the relative sizes of the following pairs of sets. You may use s
 (e) & real numbers, $\mathbb{R}$ & vs. & points on a line \\
 (f) & points on a line & vs. & points on a line segment \\
 (g) & points on a line & vs. & points on a plane \\
-(h) & rational numbers, $\mathbb{Q}$ & vs. & Cantor set (look this up or ask your teacher) \\
+(h) & rational numbers, $\mathbb{Q}$ & vs. & Cantor set (look this up or ask your teacher) \\ % changed this from an incomprehensible explanation
 \end{tabular}
 
-It turns out that studying infinity involves some strange mathematics. For instance, even though it seems that there should be half as many positive even numbers as natural numbers (see 7a), we can construct a one-to-one correspondence between the two sets so that every positive even number is paired with a natural numbers and vice versa: $2\mathbb{N} \ni 2n \leftrightarrow n \in \mathbb{N}$. The existence of this correspondence means that the two sets are equal in size.
+\setcounter{problem_i}{\value{enumi}}
+\end{enumerate}
 
-More surprisingly, we can establish a correspondence between the non-negative rational numbers and the natural numbers. 
+
+It turns out that studying infinity involves some strange mathematics. For instance, even though it seems that there should be half as many positive even numbers as natural numbers (see 7a), we can construct a one-to-one correspondence between the two sets such that every positive even number is paired with a natural number and vice versa: $2\mathbb{N} \ni 2n \leftrightarrow n \in \mathbb{N}$. The existence of this correspondence means that the two sets are equal in size. % "bijection" removed because it was only mentioned once. \ni is the set \in symbol but backwards lol
+
+More surprisingly, we can establish a correspondence between the non-negative rational numbers ($\mathbb{Q}^+$) and the natural numbers. Draw the rational numbers in a table as shown in Figure~\ref{rat_ordering_1}, and pair these numbers up with the numbers $1,2,3,4$.... You can see that you will eventually list all of the non-negative rational numbers, multiple times, into a correspondence with the natural numbers. To make it one-to-one, only pair the rational numbers that are in simplest form. Here, we pair $2$ with $\frac{1}{1}$ instead of $\frac{0}{2}$ -- since $\frac{0}{1}$ is the same number, and is already paired with $1$. This correspondence is depicted in Figure~\ref{rat_ordering_2}. This prevents multiple natural numbers from being paired up with the same rational number: the correspondence is now one-to-one.
+
+The real numbers between $0$ and $1$, however, cannot be put into a one-to-one correspondence with $\mathbb{N}$ (see 7c). We will prove this with contradiction. Suppose I told you that I have paired each real number $0 <= r_k < 1$ with a unique natural number $k$, and vice versa. Then, you can construct a real number $r_\omega$\footnote{Pronounced ``r omega.''} whose $1$\textsuperscript{st} digit (after the decimal point) differs from $r_1$’s, whose $2$\textsuperscript{nd} digit differs from $r_2$’s, and so on. In other words, it differs from $r_n$ in the $n$\textsuperscript{th} digit. We can make better sense of this construction by writing the numbers out in a table, as shown in Figure~\ref{cantor_diag}. Your new number $r_\omega$ is at the bottom; it differs from all the previous numbers in at least one place, so it is a new real number. Therefore, my original list is incomplete, and the correspondence doesn’t exist. This is called Cantor’s diagonal argument, because the differing digits make a diagonal. (In the diagram, $C_10$ is the Champernowne constant, the result of joining all the natural numbers together to make a decimal.) % mfw CHAMPERNOWNE CONSTANT and R OMEGA
+
+% I did not do these by hand; they were generated by accessories/scripts/create_rational_correspondence_table.py
+% This command makes the cancelling symbol for the rational <-> natural number correspondence
+\newcommand{\corr}[3] {$\cancelto{#3}{\frac{#1}{#2}}$}
+% This command colors stuff gray
+\newcommand{\tcg}[1] {\textcolor{gray}{$#1$}}
+
+% Figure: Correspondence between rationals and naturals
+\begin{figure}[h]
+\begin{minipage}[b]{0.45\textwidth}
+\renewcommand*{\arraystretch}{2} % stops fractions from colliding by putting more vertical stretch
+\begin{center}
+\begin{tabular}{lllllllll} % 9 columns
+ & & \multicolumn{5}{c}{Num. $\rightarrow$} & & \\ % "Num. ->" on the top
+ & & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $\cdots{}$ \\
+\multirow{5}{*}{\rotatebox[origin=c]{-90}{Den. $\rightarrow$}}  % "Den. ->" on the left, rotated sideways
+
+ & $1$ & \corr{0}{1}{1} & \corr{1}{1}{3} & \corr{2}{1}{6} & \corr{3}{1}{10} & \corr{4}{1}{15} & \corr{5}{1}{21} & $\cdots{}$ \\
+ & $2$ & \corr{0}{2}{2} & \corr{1}{2}{5} & \corr{2}{2}{9} & \corr{3}{2}{14} & \corr{4}{2}{20} & \corr{5}{2}{27} & $\cdots{}$ \\
+ & $3$ & \corr{0}{3}{4} & \corr{1}{3}{8} & \corr{2}{3}{13} & \corr{3}{3}{19} & \corr{4}{3}{26} & \corr{5}{3}{34} & $\cdots{}$ \\
+ & $4$ & \corr{0}{4}{7} & \corr{1}{4}{12} & \corr{2}{4}{18} & \corr{3}{4}{25} & \corr{4}{4}{33} & \corr{5}{4}{42} & $\cdots{}$ \\
+ & $5$ & \corr{0}{5}{11} & \corr{1}{5}{17} & \corr{2}{5}{24} & \corr{3}{5}{32} & \corr{4}{5}{41} & \corr{5}{5}{51} & $\cdots{}$ \\
+& $\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ & $\ddots{}$ \\
+
+% cdots = centered 3 dots, vdots = vertical 3 dots, ddots = 3 dots going down-right
+\end{tabular}
+\end{center}
+\end{minipage}
+\hfill % put a little padding between the minipages
+\begin{minipage}[b]{0.45\textwidth}
+\renewcommand*{\arraystretch}{2}
+\begin{center}
+\begin{tabular}{lllllllll} % 9 columns
+ & & \multicolumn{5}{c}{Num. $\rightarrow$} & & \\
+ & & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $\cdots{}$ \\
+\multirow{5}{*}{\rotatebox[origin=c]{-90}{Den. $\rightarrow$}}
+
+ & $1$ & \corr{0}{1}{1} & \corr{1}{1}{2} & \corr{2}{1}{4} & \corr{3}{1}{6} & \corr{4}{1}{10} & \corr{5}{1}{12} & $\cdots{}$ \\
+ & $2$ & \textcolor{gray}{\corr{0}{2}{\textcolor{black}{(1)}}} & \corr{1}{2}{3} & \textcolor{gray}{\corr{2}{2}{\textcolor{black}{(2)}}} & \corr{3}{2}{9} & \textcolor{gray}{\corr{4}{2}{\textcolor{black}{(4)}}} & \corr{5}{2}{17} & $\cdots{}$ \\
+ & $3$ & \textcolor{gray}{\corr{0}{3}{\textcolor{black}{(1)}}} & \corr{1}{3}{5} & \corr{2}{3}{8} & \textcolor{gray}{\corr{3}{3}{\textcolor{black}{(2)}}} & \corr{4}{3}{16} & \corr{5}{3}{21} & $\cdots{}$ \\
+ & $4$ & \textcolor{gray}{\corr{0}{4}{\textcolor{black}{(1)}}} & \corr{1}{4}{7} & \textcolor{gray}{\corr{2}{4}{\textcolor{black}{(3)}}} & \corr{3}{4}{15} & \textcolor{gray}{\corr{4}{4}{\textcolor{black}{(2)}}} & \corr{5}{4}{26} & $\cdots{}$ \\
+ & $5$ & \textcolor{gray}{\corr{0}{5}{\textcolor{black}{(1)}}} & \corr{1}{5}{11} & \corr{2}{5}{14} & \corr{3}{5}{20} & \corr{4}{5}{25} & \textcolor{gray}{\corr{5}{5}{\textcolor{black}{(2)}}} & $\cdots{}$ \\
+& $\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ & $\ddots{}$ \\
+\end{tabular}
+\end{center}
+\end{minipage}
+% Two pairs of minipages: first pair is the tables, second pair is the captions. This is so that the tables can be bottom-aligned, while the captions can be top-aligned.
+\begin{minipage}[t]{0.45\textwidth}
+\caption{A correspondence between $\mathbb{Q}^+$ and $\mathbb{N}$, but not one-to-one.}
+\label{fig:rat_ordering_1}
+\end{minipage}
+\hfill % again, put a little padding
+\begin{minipage}[t]{0.45\textwidth}
+\caption{The previous correspondence, with duplicates parenthesized but not counted; it is now one-to-one.}
+\label{fig:rat_ordering_2}
+\end{minipage}
+\end{figure}
+
+% Figure: Cantor's argument
+\begin{figure}[h]
+\setlength{\tabcolsep}{3.5pt} % Decreases the horizontal padding, which is useful here because we only have single digits
+\begin{center}
+\begin{tabular}{rlllllllllllllllllll} % 19 columns
+& & & \multicolumn{16}{c}{Decimal Expansion $\rightarrow$} \\
+% A note: the \Aboxed command from math tools allows boxed things to be aligned from inside the box. Without this, the entry would be aligned from the left side of the BOX, not the DIGIT, which is a bit triggering
+$r_{1}$ & $0$ & \tcg{0.}\Aboxed{ & 0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & $\cdots{}$ \\
+$r_{2}$ & $\frac{1}{4}$ & \tcg{0.} & \tcg{2} \Aboxed{ & 5} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & \tcg{0} & $\cdots{}$ \\
+$r_{3}$ & $\frac{\pi}{4}$ & \tcg{0.} & \tcg{7} & \tcg{8} \Aboxed{ & 5} & \tcg{3} & \tcg{9} & \tcg{8} & \tcg{1} & \tcg{6} & \tcg{3} & \tcg{3} & \tcg{9} & \tcg{7} & \tcg{4} & \tcg{4} & \tcg{8} & \tcg{3} & $\cdots{}$ \\
+$r_{4}$ & $C_{10}$ & \tcg{0.} & \tcg{1} & \tcg{2} & \tcg{3} \Aboxed{ & 4} & \tcg{5} & \tcg{6} & \tcg{7} & \tcg{8} & \tcg{9} & \tcg{1} & \tcg{0} & \tcg{1} & \tcg{1} & \tcg{1} & \tcg{2} & \tcg{1} & $\cdots{}$ \\
+$r_{5}$ & $e-2$ & \tcg{0.} & \tcg{7} & \tcg{1} & \tcg{8} & \tcg{2} \Aboxed{ & 8} & \tcg{1} & \tcg{8} & \tcg{2} & \tcg{8} & \tcg{4} & \tcg{5} & \tcg{9} & \tcg{0} & \tcg{4} & \tcg{5} & \tcg{2} & $\cdots{}$ \\
+$r_{6}$ & $\frac{\sqrt{2}}{10}$ & \tcg{0.} & \tcg{1} & \tcg{4} & \tcg{1} & \tcg{4} & \tcg{2} \Aboxed{ & 1} & \tcg{3} & \tcg{5} & \tcg{6} & \tcg{2} & \tcg{3} & \tcg{7} & \tcg{3} & \tcg{0} & \tcg{9} & \tcg{5} & $\cdots{}$ \\
+$\vdots{}$ & $\vdots{}$ ~~ & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ &  & $\vdots{}$ & $\ddots{}$ \\
+$r_\omega$ &  & $0.$ & $1$ & $6$ & $6$ & $5$ & $9$ & $2$ & \multicolumn{5}{l}{$\cdots{}$} \\
+\end{tabular}
+\end{center}
+\caption{Cantor's diagonal argument. Notice how, by construction, $r_\omega$ differs from $r_i$ in the circled digits.}
+\label{fig:cantor_diag}
+\end{figure}
+
+\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+\item Now, please return to problem 7 and revise your answers. Justify each answer by producing a one-to-one correspondence, or showing the impossibility of doing so. Part (h) is an optional challenge.
+\setcounter{problem_i}{\value{enumi}}
+\end{enumerate}
+
+By the way, the infinities in problem 7 come in only two sizes: \textbf{countable} infinity---like the number of natural numbers---and \textbf{uncountable} infinity---like the number of real numbers. There are in fact an infinite number of sizes of infinity, but these two are the only ones we'll deal with in this class. Are there any infinities \textit{between} the two we’ve discussed, uncountable and countable? This is a very deep mathematical question, known as the continuum hypothesis. It turns out that both the answer ``yes'' and ``no'' are consistent with the rest of our mathematics, so either can be taken as an axiom.
+
+Two infinite groups can be the same, infinite size and still not be isomorphic, in the same way that two finite groups of the same size are sometimes not isomorphic (like $D_3\neq S_6$). For example, the group of all rotations of a rational number of degrees about the origin is countably infinite. So is the group of integers---positive and negative---under addition. But these two groups have completely different structures. For example, the former has two elements which are their own inverse: $0^\circ$ and $180^\circ$. The latter has only one such element: $0$.
+
+\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+\item Here’s a list of infinite sets, each with an operation. For each pair, answer: i.~Does it form a group? ii.~Which previous group(s) is it isomorphic to?
+\begin{enumerate}
+\item natural numbers, addition
+\item integers, addition
+\item even integers, addition
+\item odd integers, addition
+\item rational numbers, addition
+\item real numbers, addition
+\item complex numbers, addition
+\item integers, multiplication
+\item integer powers of $2$, multiplication
+\item rational numbers, multiplication
+\item rational numbers excluding 0, multiplication
+\item complex numbers, multiplication
+\item rotation by a rational number of degrees
+\item rotation by a rational number of radians
+\item rotation by an integer number of radians
+\end{enumerate}
+\item Can an irrational number taken to an irrational power ever be rational? Consider the potential example $a = \sqrt{2}^{\sqrt{2}}$. To help you answer this question, let $b = a^{\sqrt{2}}$. Simplify $b$, and explain why we don’t need to know whether $a$ is rational or irrational.
+\end{enumerate}
+
 
 \end{document}
