@@ -38,6 +38,9 @@
 \pagebreak
 \pagenumbering{arabic}
 
+% Reset to correct value
+\setlength{\parskip}{0em}
+
 \restoregeometry % Because the credits have a different margin setting
 
 \tableofcontents
@@ -53,6 +56,9 @@
 \pagebreak
 
 \subfile{inf/inf_source.tex} % Infinite groups
+\pagebreak
+
+\subfile{cmplx_geo/cmplx_geo_source.tex} % Geometry of complex numbers
 \pagebreak
 
 \end{document}
