@@ -1,5 +1,5 @@
 *.pdf
-!build/gatm.pdf
+!build/*.pdf
 **/.DS_Store
 
 ## Core latex/pdflatex auxiliary files:
