@@ -1,0 +1,90 @@
+\documentclass[../gatm.tex]{subfiles}
+
+\begin{document}
+
+\section{Your Daily Dose of Vitamin $i$}
+
+\newcommand{\Arg} {\operatorname{Arg}}
+\newcommand{\cis} {\operatorname{cis}}
+\newcommand{\Real} {\operatorname{Re}}
+\newcommand{\Imag} {\operatorname{Im}}
+
+\textit{Attach one of these to each of your homework sets for the next eight days starting after the completion of ``Geometry of Complex Numbers.''}
+
+\newcounter{vit_i_problem_ii}
+
+\begin{enumerate}
+\item We will use complex numbers to find identities for $\cot$. Use Pascal's triangle to expand the following:
+\begin{multicols}{3}
+\begin{enumerate}
+\item $(a+b)^3$
+\item $(a+b)^4$
+\item $(a+b)^5$
+\setcounter{vit_i_problem_ii}{\value{enumii}}
+\end{enumerate}
+\end{multicols}
+Then substitute $b=i=\sqrt{-1}$ and expand:
+\begin{multicols}{3}
+\begin{enumerate}
+\setcounter{enumii}{\value{vit_i_problem_ii}}
+\item $(a+i)^3$
+\item $(a+i)^4$
+\item $(a+i)^5$
+\setcounter{vit_i_problem_ii}{\value{enumii}}
+\end{enumerate}
+\end{multicols}
+Finally, substitute $a=\cot \theta$ and expand:
+\begin{multicols}{3}
+\begin{enumerate}
+\setcounter{enumii}{\value{vit_i_problem_ii}}
+\item $(\cot \theta +i)^3$
+\item $(\cot \theta +i)^4$
+\item $(\cot \theta +i)^5$
+\setcounter{vit_i_problem_ii}{\value{enumii}}
+\end{enumerate}
+\end{multicols}{3}
+Consider $z=i+\cot\theta$.
+\begin{enumerate}
+\setcounter{enumii}{\value{vit_i_problem_ii}}
+\item Use the above results to find identities for $\cot 3\theta$, $\cot 4\theta$, and $\cot 5\theta$.
+\item Graph $z$, $z^2$, $z^3$, $z^4$, and $z^5$, with $\theta \approx 75^\circ$. What is your solution method?
+\end{enumerate}
+
+\item Compute $(1+i)^n$ for $n=3,4,5,\ldots$. Can you find a general pattern?
+\item Expand and graph $\cis^n \theta$ for $n=2,3,4,\ldots$.
+
+\begin{enumerate}
+\item Why is the real part $\cos n\theta$ and the imaginary part $\sin n\theta$?
+\item Use your results to write identities for $\cos n\theta$ and $\sin n\theta$ for $n=2,3,4,5$.
+\end{enumerate}
+
+\newcommand{\cosdeg}[1] {\cos #1^\circ}
+
+\item Compute $\cosdeg{7} + \cosdeg{79} + \cosdeg{151} + \cosdeg{223} + \cos{295}$ without a calculator. (Hint: what does this have to do with complex numbers?)
+\item Factor the following:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $x^6-1$ as a difference of squares
+\item $x^6-1$ as a difference of cubes
+\item $x^4+x^2+1$ over the real numbers
+\item $x^6-1$ completely
+\item $x^4+x^2+1$ completely
+\end{enumerate}
+\end{multicols}
+
+\item Let $f(z)=\frac{z+1}{z-1}$.
+\begin{enumerate}
+\item Without a calculator, compute $f^{2014}(z)$.
+\item What if you replace $2014$ with the current year?
+\end{enumerate}
+
+\item Find $\Imag\left((\cis 12^\circ + \cis 48^\circ)^6\right)$.
+
+\item Let $x$ satisfy the equation $x+\frac{1}{x}=2\cos\theta$.
+\begin{enumerate}
+\item Compute $x^2+\frac{1}{x^2}$ in terms of $\theta$.
+\item Compute $x^n+\frac{1}{x^n}$ in terms of $n$ and $\theta$.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

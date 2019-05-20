@@ -2,6 +2,9 @@
 
 \usepackage[inline]{asymptote}
 
+\usepackage[a4paper, total={7.5in, 10in}]{geometry}
+\usepackage{graphicx}
+
 \begin{document}
 \topskip0pt
 
@@ -24,6 +27,7 @@ pair O = offset + (sqrt(3) / 3, 0);
 
 draw(A--B--C--cycle);
 
+v_stretch = 2.2;
 real egg = v_stretch - 1;
 
 label(rotate(90) * order[0], (O + egg * A) / v_stretch);
@@ -40,17 +44,19 @@ pair O = offset + (2 * sqrt(3) / 3, 0);
 
 draw(A--B--C--cycle);
 
+v_stretch = 2.5;
+
 real egg = v_stretch - 1;
 
 label(rotate(-90)*order[0], (O + egg * A) / v_stretch);
-label(rotate(120) * order[1], (O + egg * B) / v_stretch);
-label(rotate(60) * order[2], (O + egg * C) / v_stretch);
+label(rotate(150)*order[1], (O + egg * B) / v_stretch);
+label(rotate(30)*order[2], (O + egg * C) / v_stretch);
 
 }
 
-string _1 = "1";
-string _2 = "2";
-string _3 = "3";
+string _1 = "$\resizebox{.4cm}{!}{1}$";
+string _2 = "$\resizebox{.4cm}{!}{2}$";
+string _3 = "$\resizebox{.4cm}{!}{3}$";
 
 string[][] orders = {
 {_1, _2, _3},
@@ -67,12 +73,13 @@ string[] axes = {"$A$", "$B$", "$C$"};
 
 \end{asydef}
 
+\vfill
 \begin{center}
 \begin{asy}
 size(420,0);
 
-for (int i = 0; i < 4; ++i) {
-	for (int j = 0; j < 8; ++j) {
+for (int i = 0; i < 2; ++i) {
+	for (int j = 0; j < 4; ++j) {
 		real x = i * sqrt(3);
 		real y = (i % 2 == 0) ? j : j + 1;
 		if (j % 2 == 0) {
@@ -85,13 +92,16 @@ for (int i = 0; i < 4; ++i) {
 
 \end{asy}
 \end{center}
+\vfill
+
+\vfill
 
 \begin{center}
 \begin{asy}
 size(420,0);
 
-for (int i = 0; i < 4; ++i) {
-	for (int j = 0; j < 8; ++j) {
+for (int i = 0; i < 2; ++i) {
+	for (int j = 0; j < 4; ++j) {
 		real x = i * sqrt(3);
 		real y = (i % 2 == 1) ? j : j + 1;
 		if (j % 2 == 0) {
@@ -104,43 +114,6 @@ for (int i = 0; i < 4; ++i) {
 
 \end{asy}
 \end{center}
-
-\begin{center}
-\begin{asy}
-size(420,0);
-
-for (int i = 0; i < 4; ++i) {
-	for (int j = 0; j < 8; ++j) {
-		real x = i * sqrt(3);
-		real y = (i % 2 == 0) ? j : j + 1;
-		if (j % 2 == 0) {
-			drawTriangle((x, y), 3, axes);
-		} else {
-			drawFlippedTriangle((x, y), 3, axes);
-		}
-	}
-}
-
-\end{asy}
-\end{center}
-
-\begin{center}
-\begin{asy}
-size(420,0);
-
-for (int i = 0; i < 4; ++i) {
-	for (int j = 0; j < 8; ++j) {
-		real x = i * sqrt(3);
-		real y = (i % 2 == 1) ? j : j + 1;
-		if (j % 2 == 0) {
-			drawFlippedTriangle((x, y), 3, axes);
-		} else {
-			drawTriangle((x, y), 3, axes);
-		}
-	}
-}
-
-\end{asy}
-\end{center}
+\vfill
 
 \end{document}

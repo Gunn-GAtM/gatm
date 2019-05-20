@@ -24,6 +24,8 @@
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{tikz}
+\usetikzlibrary{matrix,fit}
+\usepackage{blkarray}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -37,6 +39,9 @@
 \setcounter{page}{0}
 \pagebreak
 \pagenumbering{arabic}
+
+% Reset to correct value
+\setlength{\parskip}{0em}
 
 \restoregeometry % Because the credits have a different margin setting
 
@@ -54,5 +59,13 @@
 
 \subfile{inf/inf_source.tex} % Infinite groups
 \pagebreak
+
+\subfile{cmplx_geo/cmplx_geo_source.tex} % Geometry of complex numbers
+\pagebreak
+
+\subfile{vitamin_i/vitamin_i_source.tex} % Vitamin i
+\pagebreak
+
+\subfile{mtrx_mult/mtrx_mult_source.tex} % Matrix multiplication
 
 \end{document}

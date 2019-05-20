@@ -1,5 +1,9 @@
 *.pdf
-!build/gatm.pdf
+!build/*.pdf
+**/.DS_Store
+
+*source-*.tex
+*autopp-*.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -21,7 +25,7 @@
 *-converted-to.*
 # these rules might exclude image files for figures etc.
 # *.ps
-# *.eps
+*.eps
 # *.pdf
 *.asy
 
