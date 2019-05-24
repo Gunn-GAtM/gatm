@@ -5,6 +5,9 @@
 *source-*.tex
 *autopp-*.tex
 
+*.prc
+*.pbsdat
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
