@@ -1,0 +1,212 @@
+\documentclass[../gatm.tex]{subfiles}
+
+\begin{document}
+
+\section{Eigenvectors and Eigenvalues}
+
+\newcommand{\twovec}[2] {\left[\begin{array}{c} #1 \\ #2 \end{array}\right]}
+\newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
+
+We've spent a good deal of time mapping the plane with matrices. We discovered that we could decompose any invertible $2\times 2$ matrix into a list of matrices which, under multiplication, are isomorphic to primary transformations of the plane. That is, we can interpret any such matrix as a sequence of reflections, rotations, shears, stretches, and size changes. We can even reduce the list to stretches and reflections. Unfortunately, doing this tends to be rather clumsy in practice. In addition, the decomposition is not unique.
+
+We are now going to find a new way to decompose matrices. This method will have the virtue that if two people decompose the same matrix, their results will be recognizably ``the same.'' In addition, this process is much easier to do.
+
+Consider the matrix $\left[\begin{smallmatrix}3 & 24 \\ 4 & 7\end{smallmatrix}\right]$ which you examined on page 45. If you multiply a random vector like $\left[\begin{smallmatrix}4 \\ 7\end{smallmatrix}\right]$ by this matrix, you'll get $\left[\begin{smallmatrix}180 \\ 65\end{smallmatrix}\right]$. These two vectors have very different directions, as shown in Figure~\ref{fig:average_joe}. But if you pick the ``right'' preimage vector, you can get a vector which has the same---or directly opposite---direction, meaning that the image is a constant multiple of the preimage. For example, if you pick $\left[\begin{smallmatrix}2 \\ 1 \end{smallmatrix}\right]$, then
+
+\begin{align*}
+\twomat{3}{24}{4}{7}\left[\begin{array}{c} 2 \\ 1 \end{array}\right]&=\left[\begin{array}{c} 30 \\ 15 \end{array}\right] \\
+&= 15\left[\begin{array}{c} 2 \\ 1 \end{array}\right].
+\end{align*}
+
+Similarly, if I pick $\left[\begin{smallmatrix}3 \\ -1\end{smallmatrix}\right]$, then 
+
+\begin{align*}
+\twomat{3}{24}{4}{7}\left[\begin{array}{c} 3 \\ -1 \end{array}\right]&=\left[\begin{array}{c} -15 \\ 5 \end{array}\right] \\
+&= -5\left[\begin{array}{c} 3 \\ -1 \end{array}\right].
+\end{align*}
+
+These two vectors $\left[\begin{smallmatrix}2 \\ 1 \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3 \\ -1 \end{smallmatrix}\right]$ are called \textbf{eigenvectors} of the matrix, and are characteristic to the matrix. Their multiplications are shown in Figure~\ref{fig:eigenvectors_demo} This matrix has only two, \textbf{linearly independent} eigenvectors. Linearly independent means that one is not a multiple of another; they have different directions. The vectors' scale factors, $15$ and $-5$, are the \textbf{eigenvalues} of the matrix. They are each associated with one eigenvector.
+
+In fact, any pair of vectors $\left[\begin{smallmatrix}2s \\ s \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3t \\ -t \end{smallmatrix}\right]$, as long as $s,t\neq 0$, could be considered the eigenvectors of $\left[\begin{smallmatrix}3 & 24 \\ 4 & 7\end{smallmatrix}\right]$. We just pick a form that is as simple to write as possible.
+
+We do not consider $\left[\begin{smallmatrix} 0 \\ 0 \end{smallmatrix}\right]$ an eigenvector, because it satisfies $M\left[\begin{smallmatrix} 0 \\ 0 \end{smallmatrix}\right]=\left[\begin{smallmatrix} 0 \\ 0 \end{smallmatrix}\right]$ for any $2\times 2$ matrix $M$ and isn't very interesting. You can also justify it on the fact that it cannot have a defined eigenvalue.
+
+\begin{figure}
+\centering
+\begin{minipage}[b]{0.6\textwidth}
+\begin{asy}[width=\textwidth]
+draw((-17,0)--(32,0),Arrow);
+draw((0,-4)--(0,17),Arrow);
+
+draw((0,0)--(2,1),ArcArrow);
+draw((0,0)--(3,-1),Arrow);
+
+draw((0,0)--(30,15),ArcArrow);
+draw((0,0)--(-15,5),Arrow);
+
+label("$\stwovec{2}{1}$", (2,1), 3*N);
+label("$\stwovec{3}{-1}$", (3,-1), SE);
+label("$\stwovec{30}{15}$", (30,15), 2*NW);
+label("$\stwovec{-15}{5}$", (-15,5), NW);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}[b]{0.35\textwidth}
+\begin{asy}[width=\textwidth]
+draw((-4,0)--(200,0),Arrow);
+draw((0,-4)--(0,70),Arrow);
+
+draw((0,0)--(4,7),Arrow);
+draw((0,0)--(180,65),Arrow);
+
+label("$\stwovec{4}{7}$", (4,7), 2*NNE);
+label("$\stwovec{180}{65}$", (180,65), 2*NW);
+\end{asy}
+\end{minipage}
+\begin{minipage}[t]{0.6\textwidth}
+\caption[A matrix acts on two eigenvectors]{The matrix $\left[\begin{smallmatrix}3 & 24 \\ 4 & 7\end{smallmatrix}\right]$ acts on two eigenvectors.}
+\label{fig:eigenvectors_demo}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\caption{The average Joe does not get to be an eigenvector.}
+\label{fig:average_joe}
+\end{minipage}
+\end{figure}
+
+We can represent any vector in the plane by adding combinations of the eigenvectors. For instance, we can represent $\left[\begin{smallmatrix} 4 \\ 7 \end{smallmatrix}\right]$ as follows:
+
+$$\twovec{4}{7} = 5\twovec{2}{1} - 2\twovec{3}{-1}.$$
+
+The right hand side is known as the \textbf{eigenspace} representation. Along with the eigenvalues, this is helpful in matrix multiplication:
+
+\begin{align*}
+\twomat{3}{24}{4}{7}\twovec{4}{7}&=\twomat{3}{24}{4}{7}\left(5\twovec{2}{1}-2\twovec{3}{-1}\right) & \text{Substituting eigenspace representation} \\
+&= 15\cdot 5 \twovec{2}{1} - (-5)\cdot 2 \twovec{3}{-1} & \text{Distributive property} \\
+&= \twovec{180}{65}. \\
+\end{align*}
+
+In generic terms: if a matrix $M$ has linearly independent eigenvectors $v_1$ and $v_2$ with corresponding eigenvalues $\lambda_1\quad$\footnote{This is the Greek letter lambda. It is traditionally used for eigenvalues} and $\lambda_2$, then for any vector $v$ with an eigenspace representation $v=av_1+bv_2$,
+
+$$Mv=\lambda_1av_1 + \lambda_2bv_2.$$
+
+An issue still remains: I just gave you the eigenvectors. How does one find the eigenvalues and eigenvectors of a matrix? This turns out to be relatively easy algebraically, but we'll try to develop some geometric intuition first.
+
+\begin{enumerate}
+\item Consider the matrix equation $\twomat{0}{1}{6}{1}\twovec{x}{y} = \twovec{y}{6x+y}=\twovec{x'}{y'}$. We wish to find an eigenvector $\twovec{x}{y}$.
+\begin{enumerate}
+\item On graph paper, draw what the matrix $\twomat{0}{1}{6}{1}$ does to the vectors $\twovec{1}{0}$ and $\twovec{0}{1}$.
+\item In your picture, draw a rough line through the origin where you think a family of eigenvectors may be.
+\item Try some lattice points, say $\stwovec{1}{1}$, $\stwovec{1}{2}$, $\stwovec{1}{3}$, $\stwovec{1}{4}$, $\stwovec{1}{5}$. What does the matrix transform each vector into?
+\item Which of these is an eigenvector?
+\item Does it lie near the line you drew earlier?
+\end{enumerate}
+\item This guess-and-check process for finding eigenvectors is terrible, so let's develop a procedure to find the eigen values and eigenvectors for any $2\times 2$ matrix. We will use the same example.
+
+\begin{align*}
+\twomat{0}{1}{6}{1}\twovec{x}{y} &= \lambda\twovec{x}{y} & \text{Definition of eigenvector} \\
+&= \lambda\twomat{1}{0}{0}{1}\twovec{x}{y} \\
+\Longrightarrow \left(\twomat{0}{1}{6}{1}-\lambda\twomat{1}{0}{0}{1}\right)\twovec{x}{y}&=\twovec{0}{0} & \text{Subtraction and factoring} \\
+\Longrightarrow \twomat{-\lambda}{1}{6}{1-\lambda}\twovec{x}{y} &= \twovec{0}{0}
+\end{align*}
+
+\begin{enumerate}
+\item If $\stwovec{x}{y}\neq \stwovec{0}{0}$, then $$\det \twomat{-\lambda}{1}{6}{1-\lambda}=0.$$ Why? Think inverses.
+\item Find the above determinant in terms of $\lambda$ and solve for the eigenvalues.
+\item One eigenvalue is $\lambda=3$. We solve for the eigenvector like so:
+\begin{align*}
+\twovec{0}{0} &= \twomat{-\lambda}{1}{6}{1-\lambda}\twovec{x}{y}\twovec{x}{y} \\
+&= \twomat{-3}{1}{6}{-2}\twovec{x}{y} \\
+\Longrightarrow \twovec{0}{0} &= \twovec{-3x+y}{6x-2y} \\
+\Longrightarrow y&=3x \rightarrow \twovec{x}{y}=s\twovec{1}{3}
+\end{align*}
+Solve for the other eigenvector using the other eigenvalue from part (b).
+\item Check your work by multiplying the matrix by the eigenvector!
+\end{enumerate}
+\item Solve for the eigenvectors and eigenvalues of the following matrices:
+\begin{multicols}{3}
+\begin{enumerate}
+\item $\twomat{3}{24}{4}{7}$
+\item $\twomat{3}{1}{2}{4}$
+\item $\twomat{1}{-1}{4}{6}$
+\end{enumerate}
+\end{multicols}
+\item Fill in the blanks: The image of an eigenvector will stay the same \underline{\phantom{00000}} through the \underline{\phantom{00000}} when acted on by any power of the transformation \underline{\phantom{00000}} for which it is an eigenvector. Therefore, the image of the eigenvector is simply the \underline{\phantom{00000}} of the \underline{\phantom{00000}} itself by its corresponding \underline{\phantom{00000}}.
+\item \begin{enumerate}
+\item If the transformational matrix were a reflection over a line $y=x\tan\theta$, in what directions would the two eigenvectors point? Think geometrically.
+\item What would the angle between them be?
+\item What would their eigenvalues be?
+\end{enumerate}
+\item Recall that multiplication by $\twomat{\cos 2\theta}{\sin 2\theta}{\sin 2\theta}{-\cos 2\theta}$ results in a reflection over $y=x\tan \theta$
+\begin{enumerate}
+\item Write a matrix that results in a reflection over the line $y=\frac{\sqrt{3}}{3}x.$
+\item Find the eigenvalues of that matrix, and the corresponding eigenvectors.
+\item Do your calculations agree with your answers to the previous problem?
+\item What are the relationships between the two eigenvectors and between the two eigenvalues?
+\end{enumerate}
+\item \begin{enumerate}
+\item Write a matrix which results in a $60^\circ$ rotation counterclockwise.
+\item Find the eigenvalues. What do you find strange?
+\item Find the eigenvectors for those eigenvalues. What's strange about them?
+\item Explain what's going on.
+\item What are the relationships between the two eigenvectors and between the two eigenvalues?
+\end{enumerate}
+\item The matrix $\twomat{1}{2}{0}{1}$ is a shear parallel to the $x$ axis.
+\begin{enumerate}
+\item What vectors don't change direction when multiplied by this matrix?
+\item What would you expect the eigenvectors to be?
+\item Find the eigenvectors and eigenvalues of this matrix.
+\item What is different this time?
+\item Can you represent every vector as sums of eigenvectors?
+\end{enumerate}
+\item The matrices $\left[\begin{smallmatrix} 2 & 0 \\ 0 & 5 \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3 & 0 \\ 0 & 3 \end{smallmatrix}\right]$ result in some stretches. Find the eigenvectors and eigenvalues for both
+\item Note that most $2\times 2$ matrices have two eigenvectors. How many would you expect to find for an $n\times n$ matrix?
+\item Assuming that $p,q,r,s,t,u,x,y$ are real, what conditions would you impose on them in the matrices (i)~$\twomat{3}{p}{q}{4}$, (ii)~$\twomat{x}{-2}{3}{y}$, and (iii)~$\twomat{r}{s}{t}{u}$ to have...
+\begin{enumerate}
+\item ... two real eigenvalues?
+\item ... two complex eigenvalues?
+\item ... only one eigenvalue?
+\end{enumerate}
+\item \begin{enumerate}
+\item Write a $3\times 3$ matrix showing a rotation of $\theta$ around the $z$ axis.
+\item Name the real eigenvector (this shouldn't require any work).
+\item Then find all three eigenvectors.
+\end{enumerate}
+\item \begin{enumerate}
+\item What should the absolute value of any eigenvalue of any pure, rotation matrix be?
+\item The complex eigenvalues relate to the angle of rotation. What is that relationship?
+\end{enumerate}
+\item In a right-handed coordinate system, rotations in three dimensions are performed by combinations of the three matrices
+$$X=\threemat{1}{0}{0}{0}{\cos\alpha}{-\sin\alpha}{0}{\sin\alpha}{\cos\alpha},\, Y=\threemat{\cos\beta}{0}{\sin\beta}{0}{1}{0}{-\sin\beta}{0}{\cos\beta},\, Z=\threemat{\cos\gamma}{-\sin\gamma}{0}{\sin\gamma}{\cos\gamma}{0}{0}{0}{1}.$$
+Each matrix $X,Y,Z$ rotates around the $x,y,z$ axes by $\alpha,\beta,\gamma$, respectively.
+
+In 2D, rotations combine to make other rotations. Similarly, if we combine any number of these rotations, the net result will be a rotation about some axis---though not necessarily a \textit{coordinate} axis. Another way to picture this is that if we operate on an origin-centered sphere with these matrices, there will always be two opposite points\footnote{These are often called antipodes.} on the sphere which have no net movement.
+
+Try computing the following products.
+\begin{multicols}{4}
+\begin{enumerate}
+\item XY
+\item XZ
+\item YX
+\item ZX
+\end{enumerate}
+\end{multicols}
+\item \begin{enumerate}
+\item Without matrices, consider a cube with side length $2$ at the origin so its faces are perpendicular to the coordinate axes. Rotate it, first $90^\circ$ about the $y$ axis, then $90^\circ$ about the $x$ axis. The net result should leave two vertices fixed. Which two?
+\item Write a vector for the axis of rotation. How many degrees do you think the net rotation of the cube is? Be careful; the answer is not $180^\circ$.
+\item Let's check our answers using matrices. Write a matrix product that corresponds to a rotation of $90^\circ$ about the $y$ axis, followed by $90^\circ$ about the $x$ axis.
+\item Multiply out the matrix product.
+\item Remember that the real eigenvector in a rotation gives the axis of rotation, and the complex eigenvalues give information about the net rotation. Evaluate these and check your answers for (a) and (b).
+\end{enumerate}
+\item Here are three rotation matrices:
+$$\threemat{\frac{2}{3}}{-\frac{2}{3}}{-\frac{1}{3}}{\frac{1}{3}}{\frac{2}{3}}{-\frac{2}{3}}{\frac{2}{3}}{\frac{1}{3}}{\frac{2}{3}}
+\threemat{\frac{7}{9}}{\frac{4}{9}}{\frac{4}{9}}{-\frac{4}{9}}{-\frac{1}{9}}{\frac{8}{9}}{\frac{4}{9}}{-\frac{8}{9}}{\frac{1}{9}}
+\threemat{\cos\gamma}{-\sin\gamma}{0}{\cos\alpha\sin\gamma}{\cos\alpha\sin\gamma}{-\sin\alpha}{\sin\alpha\sin\gamma}{\sin\alpha\cos\gamma}{\cos\alpha}$$
+\begin{enumerate}
+\item What is the determinant of each matrix? (Don't work, think!)
+\item What is true of each row and each column?
+\item Find the axis of rotation associated with each matrix.
+\item Find the angle of rotation associated with each matrix.
+\item Decompose the last matrix into two rotations about coordinate axes.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
