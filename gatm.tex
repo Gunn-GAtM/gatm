@@ -28,6 +28,9 @@
 \usepackage{blkarray}
 \usepackage{caption}
 
+\newcommand{\twomat}[4] {\left[\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right]}
+\newcommand{\threemat}[9] {\left[\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right]}
+
 \begin{document}
 \pagenumbering{gobble}
 
@@ -68,5 +71,15 @@
 \pagebreak
 
 \subfile{mtrx_mult/mtrx_mult_source.tex} % Matrix multiplication
+\pagebreak
+
+\subfile{map_plane/map_plane_source.tex} % Mapping the Plane
+\pagebreak
+
+\subfile{plane_rot/plane_rot_source.tex} % Plane rotate
+\pagebreak
+
+\subfile{mat_gen/mat_gen_source.tex} % Matrices generate groups
+\pagebreak
 
 \end{document}
