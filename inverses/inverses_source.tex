@@ -1,0 +1,257 @@
+\documentclass[../gatm.tex]{subfiles}
+
+\begin{document}
+
+\section{Inverses}
+
+Now that we've talked about matrix multiplication quite a bit, it's time to start talking about matrix ``division.'' We've seen how matrix multiplication transforms the plane; since division is the opposite of multiplication, division will ``untransform'' the plane, putting all the points back where they started. First, we'll review division in a few more familiar contexts.
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item With real numbers, one of the important purposes of division is that it lets you solve equations like $ax=b$ for $x$. Solve this by division (difficult!).
+\item If division didn't exist, you could still solve this equation by multiplication. The number you'd multiply by is called the ``multiplicative inverse'' of $a$. What is the property that defines this special number?
+\item The multiplicative inverse of $a$ is often written $a^{-1}$. Why does this notation make sense?
+\end{enumerate}
+\item \begin{enumerate}
+\item You might think that the equation $ax=b$ has only one solution, but sometimes it can have zero or infinitely many. Give an example of both cases.
+\item How does the existence of a unique solution relate to the idea of multiplicative invertibility?
+\item Are there any other possible numbers of solutions?
+\end{enumerate}
+\item \begin{enumerate}
+\item Define ``one-to-one'' function.
+\item Is $f(x)=ax$ a one-to-one function for all real $a$? (Hint: look for the silly exception(s)!)
+\end{enumerate}
+\item Would your answers to the previous numbers change if you were talking about complex numbers instead of just real numbers? Why or why not?
+\end{enumerate}
+
+\begin{wrapfigure}{hr}{0.3\textwidth}
+\centering
+\begin{asy}[width=0.25\textwidth]
+real clock_r = 5;
+real hour_text_r = 3.8;
+real hour_hand_r = 3;
+
+// st = small tick, lt = large tick
+real st_inner_r = 4.8;
+real lt_inner_r = 4.4;
+
+draw((clock_r,0)..(0,clock_r)..(-clock_r,0)..(0,-clock_r)..cycle); // draw an approximate circle
+
+for (int i = 0; i < 12; ++i) {
+	real angle = - 2 * pi / 12 * i + pi / 2;
+	pair tick_direction_unit = (cos(angle), sin(angle));
+	
+	label(string(i), hour_text_r * tick_direction_unit);
+}
+
+
+for (int i = 0; i < 60; ++i) {
+	real angle = 2 * pi / 60 * i + pi / 2;
+	pair tick_direction_unit = (cos(angle), sin(angle));
+	
+	draw((tick_direction_unit * ((i % 5 == 0) ? lt_inner_r : st_inner_r)) -- (tick_direction_unit * clock_r));
+}
+
+pair start_hour_unit = (cos(4*pi/3),sin(4*pi/3));
+pair end_hour_unit = (cos(pi/6),sin(pi/6));
+pair mid_hour_unit = -(cos(10.5*pi/6),sin(10.5*pi/6));
+
+draw((0,0)--hour_hand_r*start_hour_unit,gray,ArcArrow);
+draw((0,0)--hour_hand_r*end_hour_unit,ArcArrow);
+
+real motion_depiction_r = 1.33;
+path motion_arc = motion_depiction_r*start_hour_unit .. motion_depiction_r * mid_hour_unit .. motion_depiction_r*end_hour_unit;
+draw(motion_arc, Arrow);
+label("$+7$", motion_arc, NW);
+
+\end{asy}
+\captionof{figure}{$7+7\equiv 2$ on the clock.}
+\label{fig:clock_arithm}
+\vspace{-2cm} % due to the annoying wrap figure adding extra white space at the bottom
+\end{wrapfigure}
+
+Now, let's consider ``clock arithmetic,'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.
+
+As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic modulo $12$.''
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Find all solutions of $5x\equiv 7$ in clock arithmetic.
+\item Find all solutions of $2x\equiv 6$ in clock arithmetic.
+\item Find all solutions of $6x\equiv 6$ in clock arithmetic.
+\item Find all solutions of $2x\equiv 7$ in clock arithmetic.
+\item What are all possible numbers of solutions that $ax\equiv b$ can have in clock arithmetic?
+\end{enumerate}
+\item How does the number of solutions to $ax\equiv b$ relate to the idea of multiplicative inverse? (Hint: You can try solving for $5,2,6,3$ and $b=1$. What numbers would be $5^{-1}$, $2^{-1}$, $6^{-1}$, and $3^{-1}$ in clock arithmetic.)
+\item \begin{enumerate}
+\item In clock arithmetic, for what values of $a$ is $f(x)\equiv ax$ a one-to-one function?
+\item How does this relate to whether $ax=1$ has exactly one solution?
+\end{enumerate}
+\item How does this all relate to groups?
+\begin{enumerate}
+\item The clock numbers are a group under clock addition. Name that group!
+\item They are not a group under multiplication. Why?
+\item A subset of four of the clock numbers form a group under the operation of multiplication. Find them, and write a group table.
+\item Describe this group. What is the inverse of each element?
+\item What symmetry group is it isomorphic to?
+\end{enumerate}
+\item If the numbers on an advanced Mars clock went from $1$ to $5$,
+\begin{enumerate}
+\item They would form a group under addition. Make a group table!
+\item What group is this isomorphic to?
+\item A subset of four of these numbers forms a group under multiplication. Find them and write a group table.
+\item Describe this multiplication group.
+\item What symmetry group is it isomorphic to?
+\end{enumerate}
+\end{enumerate}
+
+Now we've seen how division (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices. In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of two equations with two unknowns.
+\item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$
+\item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 10 \end{array}\right]$
+\item What are all possible numbers of solutions that $AX=B$ can have in matrices? Use your knowledge of the properties of systems of equations.
+\end{enumerate}
+\item Now, let's relate the two matrices from the previous problem to the transformations we know.
+\begin{enumerate}
+\item Contrast the mapping properties of $\twomat{1}{2}{3}{4}$ and $\twomat{1}{2}{2}{4}$.
+\item Find the determinants of these matrices. What do you notice?
+\item When is $f(X)=AX$ a one-to-one function? That is, in mapping the plane, when does each point in the image have exactly one preimage?
+\item Compare how you find the number of solutions of the real number equation $ax=b$ with how you find the number of solutions of the matrix equation $AX=B$.
+\end{enumerate}
+\item Let $K=\twomat{5}{7}{8}{-3}$.\begin{enumerate}
+\item Find all solutions to $K\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 10 \\ 2 \end{array}\right]$.
+\item If we knew a matrix which was the inverse of $K$, which is written $K^{-1}$, we could write the following equation:
+
+$$K^{-1}K\left[\begin{array}{c} x \\ y \end{array}\right]=K^{-1}\left[\begin{array}{c} 5 \\ 10 \end{array}\right].$$
+
+What would the left side reduce to?
+\end{enumerate}
+\end{enumerate}
+
+Note that the right side would entail only very simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's modern problems!
+
+Our problem simplifies as follows: how do we find the inverse of a $2\times 2$ matrix? We've actually already done this. On page ??, you read the following string of matrices:
+
+$$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
+
+The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitute $\twomat{a}{b}{c}{d}^{-1}$.
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Now look at your results from problem ?? on page ??. Multiply the matrices that undid $\twomat{3}{4}{2}{-5}$. Did you get $\frac{1}{23}\twomat{-5}{-4}{-2}{3}$?
+\item Do the same for problem ?? on page ?? and problems ?? and ?? on page ??.
+\item You should have found a problem in inverting the matrix in ??. What is it? Answer geometrically, making reference to the matrix's mapping.
+\end{enumerate}
+\item \begin{enumerate}
+\item Look for a pattern in the answers to problems ?? and ??.
+\item Describe the inverse of an arbitrary matrix: $\twomat{a}{c}{b}{d}^{-1}=\frac{1}{\phantom{000000}}\twomat{}{}{}{}.$ Use the word determinant in your answer.
+\item We've been writing the inverse of matrix $A$ as $A^{-1}$. Why does this notation make sense?
+\item Find the product of the four matrices to the left of $\twomat{a}{c}{b}{d}$ between problems ?? and ?? on page ?? and compare to problem ??.
+\end{enumerate}
+\item Now, see what happens when you multiply the following matrices:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $-\frac{1}{2}\twomat{2}{3}{4}{5}\twomat{5}{-3}{-4}{2}$
+\item $\frac{1}{71}\twomat{5}{7}{8}{-3}\twomat{3}{7}{8}{-5}$
+\item $\twomat{a}{c}{b}{d}\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}$
+\item $\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}\twomat{a}{c}{b}{d}$
+\end{enumerate}
+\end{multicols}
+\item For another approach to finding the inverse of a matrix, solve the following for $w,x,y,z$ in terms of $a,b,c,d$ by converting the matrix equations into a set of four linear equations:
+
+$$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
+\end{enumerate}
+
+Gauss-Jordan elimination is an effective method we use to find inverses. If a matrix $A$ is invertible, then as we've seen with matrix decomposition, there is a set of steps to reduce it to the identity matrix. Therefore, we have some set of elementary matrices $E_i$ such that
+
+$$E_nE_{n-1}\cdots E_2E_1A=I.$$
+
+Multiplying by $A^{-1}$ on the right, we get
+
+$$E_nE_{n-1}\cdots E_2E_1I=A^{-1}.$$
+
+Before, these elementary matrices were stretches, shears and the like. We will restrict ourselves to matrices like $\twomat{a}{0}{0}{1}$, which multiply a row by $a$, or matrices like $\twomat{1}{0}{1}{1}$, which adds the first row to the second. That's because instead of thinking ``matrix so and so,'' we simply have to think ``multiply this row by $a$'' or ``add these rows together,'' content that they are valid matrix multiplications. Some valid row operations are as follows:
+
+\begin{itemize}
+\item Swapping rows $i$ and $j$
+\item Adding row $i$ to $j$
+\item Multiplying row $i$ by a constant $a\neq 0$
+\item Adding $a$ times row $i$ to $j$
+\item Adding multiple rows to another
+\item Taking multiple rows, multiplying them by any nonzero coefficients, and adding them to another
+\end{itemize}
+
+This last operation is the most powerful and encompasses most of the previous ones. To apply our multiplications easily, we \textbf{augment} a matrix $A$ by juxtaposing it with the identity matrix. Also, we write what row operation we actually did on the left after each step. As shown in the first equation, we have multiplied all the elementary matrices once $A$ has become $I$. But in that process, $I$ will have become $A^{-1}$!
+
+Choosing the steps is a bit of an art, which takes practice. Let's see Gauss-Jordan elimination in action on the matrix $A=\twomat{3}{-4}{-2}{3}$.
+
+We first augment the matrix like so:
+
+$$\left[\begin{array}{c|c}A & I \end{array}\right] = \left[\begin{array}{cc|cc} 3 & -4 & 1 & 0 \\ -2 & 3 & 0 & 1 \end{array}\right].$$
+
+The line is there just so we remember this is no ordinary matrix, but two matrices joined together for convenience. Again, we want to turn the left side into the identity matrix.
+
+We need a $1$ in the bottom right corner, so we can add the top row to the bottom row to get $-1$:
+
+$$\left[\begin{array}{cc|cc} 3 & -4 & 1 & 0 \\ -2 & 3 & 0 & 1 \end{array}\right]\quad\Longrightarrow
+\begin{blockarray}{c[cc|cc]}
+& 3 & -4 & 1 & 0 \\ 
+R_2=R_1+R_2 & 1 & -1 & 1 & 1
+\end{blockarray}.$$
+
+We can then get $1$ by multiplying the bottom row by $-1$. The rest of the steps are shown and justified as well:
+\begin{align*}
+&\Longrightarrow
+\begin{blockarray}{c[cc|cc]}
+& 3 & -4 & 1 & 0 \\ 
+R_2=-R_2 & -1 & 1 & -1 & -1
+\end{blockarray} \\
+\text{Want}-1\text{ in the top left corner} &\Longrightarrow
+\begin{blockarray}{c[cc|cc]}
+R_1=R_1+4R_2 & -1 & 0 & -3 & -4 \\ 
+& -1 & 1 & -1 & -1
+\end{blockarray} \\
+\text{Turn}-1\text{ into }1 &\Longrightarrow
+\begin{blockarray}{c[cc|cc]}
+R_1=-R_1 & 1 & 0 & 3 & 4 \\ 
+& -1 & 1 & -1 & -1
+\end{blockarray} \\
+\text{Get rid of}-1\text{ in bottom left corner}&\Longrightarrow
+\begin{blockarray}{c[cc|cc]}
+& 1 & 0 & 3 & 4 \\ 
+R_2=R_1+R_2 & 0 & 1 & 2 & 3
+\end{blockarray}. \\
+\end{align*}
+Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end{smallmatrix}\right]$. Let's try this new technique out on some systems of equations.
+
+\begin{enumerate}
+\item Rewrite each system of equations in matrix form. Use your calculator to calculate a matrix inverse, solve the system, and finally, check your answer. Remember to make clear in your work when you have used a calculator.
+\begin{multicols}{3}
+\begin{enumerate}
+\item $\begin{cases} 2x+3y &= 5 \\ 4x+5y &= 7 \end{cases}$
+\item $\begin{cases} 37x+12y &= 65 \\ 93x+40y &= 156\end{cases}$
+\item $\begin{cases} 2x+5y+3z &= 5 \\ 3x+2y+4z &= 7 \\ 13x+16y+18z &= 4\end{cases}$
+\item $\begin{cases} w + 2x + 3y + 4z &= 7 \\ 3w-x-2y-5z&=5 \\ 5w+3x-y-4z&=3 \\ 7w+9x+5y-2z&=2\end{cases}$
+\item $\begin{cases} 2x+5y+2z &= 1 \\ 3x+2y+4z &= 1 \\ 13x+16y+18z &= 5 \end{cases}$
+\item When can you use matrix inverses to solve a system of equations?
+\end{enumerate}
+\end{multicols}
+\item You can fit a polynomial to any set of points in the plane, so long as the points pass the Vertical Line Test.
+\begin{enumerate}
+\item What is the least degree polynomial through
+\begin{multicols}{4}
+\begin{enumerate}
+\item One point?
+\item Two points?
+\item Three points?
+\item $n$ points?
+\end{enumerate}
+\end{multicols}
+\item Find a polynomial of least degree that passes through $(0,3)$, $(1,5)$, $(2,-3)$, $(3,4)$, and $(4,7)$.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

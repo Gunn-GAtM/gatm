@@ -27,6 +27,7 @@
 \usetikzlibrary{matrix,fit,tikzmark,calc}
 \usepackage{blkarray}
 \usepackage{caption}
+\usepackage{wrapfig}
 
 \newcommand{\twomat}[4] {\left[\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right]}
 \newcommand{\threemat}[9] {\left[\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right]}
@@ -84,7 +85,10 @@
 \subfile{mat_gen/mat_gen_source.tex} % Matrices generate groups
 \pagebreak
 
-\subfile{mat_gen/mat_gen_source.tex} % Matrices generate groups
+\subfile{comp_map/comp_map_source.tex} % Composite mappings (fat one)
+\pagebreak
+
+\subfile{inverses/inverses_source.tex} % Composite mappings (fat one)
 \pagebreak
 
 \end{document}
