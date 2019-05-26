@@ -1,0 +1,278 @@
+\documentclass[../gatm.tex]{subfiles}
+
+\begin{document}
+
+\section{Composing Mappings of the Plane}
+
+So far we have identified matrices that result in some specific mappings of the plane. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens if we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin followed by a reflection across the $x$ axis does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the $(u,v)$.
+
+\begin{enumerate}
+\item For parts a through e, fill in the blank.
+\begin{enumerate}
+\item We could start by finding the images of our points under the $-90^\circ$ rotation. 
+\begin{enumerate}
+\item Find the matrix $R$ which results in a $-90^\circ$ rotation.
+\item Multiply $R$ by our unit vectors and point $(u,v)$: $$\twomat{}{}{}{}\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right] = \left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right].$$
+\end{enumerate}
+\item Next, we reflect those intermediate image points over the line $y=0$.
+\begin{enumerate}
+\item Find the matrix $S$ which does this.
+\item Multiply $S$ by the result of a, subpart ii.
+\end{enumerate}
+\item You should notice that the net result of the two transformations taken together is a reflection over the line $y=x$. Which matrix that represents this transformation? 
+\item Notice that what we did to achieve this mapping was $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right]=\left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right],$$
+where we multiplied the two rightmost matrices first but didn't use the commutative property to multiply the two leftmost matrices first. See what happens when you multiply the two left hand matrices together: $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\twomat{}{}{}{}.$$ Look familiar?
+\item See what happens when you reverse the order of multiplication:
+$$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\twomat{}{}{}{}$$
+\item \begin{enumerate}
+\item What transformation does this new matrix result in?
+\item How is a reflection followed by a rotation different from a rotation followed by a reflection? Visualize this by following what happens to a point under both sets of transformations.
+\end{enumerate}
+\item Notice that we apply the transformations from right to left. If you wanted to read from left to right, what would you have to change about the way you wrote the mapping matrices, the vectors representing points, and the order of the matrices?
+\item How does our convention for ordering transformation matrices compare…
+\begin{enumerate}
+\item ... to the convention for writing composite functions?
+\item ... to the ``followed by'' convention we used for ``From Snaps to Flips?''
+\item ... to the ``from \underline{\phantom{0}} to \underline{\phantom{0}}'' convention for transportation matrices?
+\end{enumerate}
+\end{enumerate}
+\item There are two, infinite classes of matrices which, taken together under multiplication, form a group isomorphic to the isometries of the plane. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
+\begin{enumerate}
+\item What is the result of a rotation by an angle $\theta$ followed by one of $\phi$?
+\item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\twomat{}{}{}{}.$
+\item Use angle addition formulae to simplify your answer.
+\item Should the result be the same if you reverse the order of rotation?
+\item What happens to the points $(1,0)$, $(0,1)$, and $(x,y)$ when you operate on them with the rotation matrix? $$\twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}\left[\begin{array}{ccc} 1 & 0 & x \\ 0 & 1 & y \end{array}\right].$$
+\end{enumerate}
+\item Now let's check for the generalized reflection matrix.
+\begin{enumerate}
+\item Take the matrix which results in a reflection over the line $y=x\tan \frac{\theta}{2}$ and reflect over that line twice: $$\twomat{\cos\theta}{\sin\theta}{\sin\theta}{-\cos\theta}\twomat{\cos\theta}{\sin\theta}{\sin\theta}{-\cos\theta}.$$
+\item Simplify your answer and explain the result.
+\item Now let's do a reflection over the line $y=\tan\frac{\theta}{2}$ followed by a reflection over the line $y=\tan\frac{\phi}{2}$:
+$$\twomat{\cos\theta}{\sin\theta}{\sin\theta}{-\cos\theta}\twomat{\cos\phi}{\sin\phi}{\sin\phi}{-\cos\phi}.$$
+\item Simplify your answer using the angle addition formulae and interpret.
+\item Does it make a difference which reflection comes first? Do the matrix multiplication to confirm your answer.
+\end{enumerate}
+\item We've found specific matrices which map the plane in the following ways:
+\begin{itemize}
+\item identity
+\item rotation about the origin by $\theta$
+\item reflection over a line $y=x \tan\frac{\theta}{2}$
+\item size change by some factor centered at the origin
+\item stretching along a specific line through the origin by some factor
+\item shearing perpendicular to a specific line through the origin by some factor
+\end{itemize}
+We want to generalize those ideas. What does each of the following matrices do? Be quantitative by specifying angle, equation of line, and/or factor:
+\begin{multicols}{3}
+\begin{enumerate}
+\item $\twomat{1}{0}{0}{1}$
+\item $\twomat{a}{0}{0}{a}$
+\item $\twomat{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}$
+\item $\twomat{\cos\theta}{\sin\theta}{-\sin\theta}{\cos\theta}$
+\item $\twomat{a}{0}{0}{1}$
+\item $\twomat{1}{0}{0}{a}$
+\item $\twomat{1}{a}{0}{1}$
+\item $\twomat{1}{0}{a}{1}$
+\item $\twomat{a}{b}{ca}{cb}$
+\item $\twomat{-1}{0}{0}{1}$
+\item $\twomat{0}{-1}{-1}{0}$
+\item $\twomat{\cos 2\theta}{\sin 2\theta}{\sin 2\theta}{-\cos 2\theta}$
+\end{enumerate}
+\end{multicols}
+\item What matrix/transformation undoes each of Problem 4, parts a through l? For instance, j is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is represented by matrix k.
+\item In these exercises you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage and image, and identify the transformations and their order. Note the effect of order on the outcome! But first, an example:
+$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
+This is a rotation of about $\tan^{-1}\left(-\frac{3}{4}\right)=-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left.
+
+\begin{multicols}{3}
+\begin{enumerate}
+\item $\twomat{1}{2}{0}{1}\twomat{.6}{-.8}{.8}{.6}$
+\item $\twomat{.6}{-.8}{.8}{.6}\twomat{1}{2}{0}{1}$
+\item $\twomat{4}{0}{0}{1}\twomat{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}$
+\item $\twomat{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}\twomat{4}{0}{0}{1}$
+\item $\twomat{.8}{.6}{-.6}{.8}\twomat{5}{0}{0}{5}$
+\item $\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}$
+\item $\twomat{.6}{-.8}{.8}{.6}\twomat{.8}{-.6}{.6}{.8}$
+\item $\twomat{.6}{.8}{.8}{-.6}\twomat{.6}{.8}{.8}{-.6}$
+\item $\twomat{.6}{.8}{.8}{-.6}\twomat{.8}{.6}{.6}{-.8}$
+\end{enumerate}
+\end{multicols}
+\item A linear mapping $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. That is, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem 4. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
+\item There are two isometries of the plane we have neglected; what are they?
+\item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the results.
+\begin{enumerate}
+\item Rotation by $-135^\circ$ followed by a shear by a factor of $\frac{1}{2}$ perpendicular to the $y$-axis
+\item Same transformations as in a, but reversed
+\item Stretch in the $y$ direction by a factor of $3$ followed by a rotation of $60^\circ$
+\item Same transformations as in c, but reversed
+\item Projection onto the line $y=5x$
+\item Reflection over $\theta=\frac{\pi}{12}$ followed by a stretch in the $x$ direction by a factor of $2$
+\item Same transformations as in f, but reversed
+\end{enumerate}
+\item Write a set of matrices which undoes Problem 8, parts a-g above. You will find one of them impossible to undo; explain why for that one.
+\item \begin{enumerate}
+\item Find the height of the parallelogram in terms of $b$ and a trig function in terms of $T$.
+\item Find the area of the parallelogram in terms of $a$, $b$, and $T$.
+\end{enumerate}
+\item At top right we have put our parallelogram onto a coordinate plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. $T=\phi-theta$.
+\begin{enumerate}
+\item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
+\item Find the $x$ and $y$ coordinates of the endpoints of $a$ and $b$ in terms of $a$, $b$, $\phi$, $\theta$.
+\item These coordinates form two column vectors which, taken together as a matrix, map the plane. Write the matrix so that the first column contains the coordinates of $a$ and the second column contains the coordinates of $b$.
+\item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
+\item Use angle addition formulas to simplify your answer.
+\item You should find some relationship between your answers to problems 11a and 11d. What is it?
+\item The difference of the products of the two diagonals of a two by two matrix is called the determinant of the matrix. What does it measure?
+\item Find a matrix which produces a rotation. What is its determinant?
+\item Find a matrix that produces a reflection.
+\begin{enumerate}
+\item What is the absolute value of its determinant?
+\item How does its determinant differ from that of a rotation matrix?
+\item What property is not conserved under rotation?
+\item What does the size of a determinant indicate?
+\end{enumerate}
+\end{enumerate}
+\item Here is another way to think about the area of the image of the unit square under a linear transformation by the matrix $\twomat{a}{c}{b}{d}$ and use it to transform the unit square into a parallelogram. We then graph the image:
+\begin{enumerate}
+\item There are three rectangles and four triangles in the figure. Find the dimensions and the area of each one. You can use this information to figure out the area of the parallelogram in terms of $a$, $b$, $c$, and $d$. Write a sentence or equation explaining how you can use the seven areas to find the area of the parallelogram.
+\item Carry out the algebra to find the area.
+\item Calculate the determinant of the matrix.
+\item What is the relationship between the determinant of the matrix and the area of its associated parallelogram?
+\item How would the area you calculated be different if $(a,b)$ and $(c,d)$ had switched places in the graph? What property would no longer be preserved by the transformation? What isometry would have been included in any composition yielding the mapping? What would be true of the determinant?
+\item What does a reversal of the orientation of figure in its image say about the determinant of the transformation matrix? What does that same property of the determinant imply that a transformational matrix does? (What isometry reverses orientation?)
+\item What would have happened to the parallelogram if $\left[\begin{smallmatrix}c \\ d \end{smallmatrix}\right]=k\left[\begin{smallmatrix}c \\ d \end{smallmatrix}\right]$? What would its area be? What would the determinant of the matrix be? What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$?
+\end{enumerate}
+\end{enumerate}
+
+Now that we are aware that the determinant of a matrix is a measure of size change and orientation change, we can decompose any linear mapping into a set of operations that we can visualize. Technically speaking, we can reduce all two dimensional transformational matrices into a combination of reflections and stretches along an axis. It is more intuitive, however, to include rotations, dilations, and shears along an axis in our repertoire of basic operations.
+
+We will look at the image of the unit square under an arbitrary transformation and see how we can undo the transformation in steps until we are left with a unit square. Then we will retrace our steps, undoing each step until we have arrived at our original transformation through a set of mappings, each of which is easily visualized. We are looking for a recipe. Perhaps you can improve on the one that we will outline here! Start with $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=\left[\begin{smallmatrix}2 & 3 \\ 4 & 1 \end{smallmatrix}\right]$.
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Start by checking the determinant. If it is nonzero, continue to step b. Otherwise, you are done. Why?
+\item [INSERT BETTER RECIPE]
+\end{enumerate}
+\item Look at Figure~\ref{undo_matrix}, which is a visual representation of the previous problem, and describe what is going on in each step.
+\end{enumerate}
+
+To reiterate, our process for undoing a matrix $M=\twomat{a}{c}{b}{d}$ with $a>0$ and $\det M\neq 0$ is:
+$$\left[\begin{array}{c}\text{shear} \\ \text{in x}\end{array}\right]
+\left[\begin{array}{c}\text{stretch} \\ \text{in y}\end{array}\right]
+\left[\begin{array}{c}\text{shear} \\ \text{in y}\end{array}\right]
+\left[\begin{array}{c}\text{stretch} \\ \text{in x}\end{array}\right]
+\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
+Filling it in with numbers, we get
+$$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
+
+Don't forget to multiply from right to left.
+
+Our ultimate goal is to build up the matrix from basic operations, not to just undo it. Fortunately, we can easily figure out how to undo each of these basic operations. Remember that matrix multiplication is associative, but not commutative.
+
+\begin{enumerate}
+\item \begin{multicols}{2}
+\begin{enumerate}
+\item How do you undo a shear in the $x$ direction?
+$$\twomat{}{}{}{}\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$$
+\item How do you undo a shear in the $y$ direction?
+$$\twomat{}{}{}{}\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$$
+\item How do you undo a stretch along the $x$ axis?
+$$\twomat{}{}{}{}\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$$
+\item How do you undo a stretch along the $y$ axis?
+$$\twomat{}{}{}{}\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$$
+\end{enumerate}
+\end{multicols}
+\item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ is composed. Order is important!
+
+\vspace{1.5cm}
+$$\mathop{\twomat{}{}{}{}}^{\tikzmark{a1}}
+\mathop{\twomat{}{}{}{}}^{\tikzmark{b1}}
+\mathop{\twomat{}{}{}{}}^{\tikzmark{c1}}
+\mathop{\twomat{}{}{}{}}^{\tikzmark{d1}}
+\mathop{\twomat{1}{-\frac{c}{a}}{0}{1}}^{\tikzmark{d2}}
+\mathop{\twomat{1}{0}{0}{\frac{a}{ad-bc}}}^{\tikzmark{c2}}
+\mathop{\twomat{1}{0}{-b}{1}}^{\tikzmark{b2}}
+\mathop{\twomat{\frac{1}{a}}{0}{0}{1}}^{\tikzmark{a2}}
+\twomat{a}{c}{b}{d}$$
+$$\Longrightarrow \twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{1}{0}{0}{1} = \twomat{a}{c}{b}{d}$$
+
+\tikz[remember picture,auto]{
+\path[overlay, ->] (pic cs:a1) edge [bend left] node {undoes} (pic cs:a2);
+\path[overlay, ->] (pic cs:b1) edge [bend left] node {undoes} (pic cs:b2);
+\path[overlay, ->] (pic cs:c1) edge [bend left] node {undoes} (pic cs:c2);
+\path[overlay, ->] (pic cs:d1) edge [bend left] node {undoes} (pic cs:d2);
+}
+
+\end{enumerate}
+
+Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
+
+\begin{enumerate}
+\item Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
+\begin{multicols}{2}
+\begin{enumerate}[label=(\roman*)]
+\item Stretch along the $x$ axis by factor of $\frac{1}{3}$.
+$$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}=\twomat{1}{\frac{4}{3}}{2}{-5}$$
+\item Shear perpendicular to the $x$ axis by $-2$
+$$\twomat{1}{0}{-2}{1}\twomat{1}{\frac{4}{3}}{2}{-5}=\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}$$
+\item Stretch along $y$ axis by $-\frac{3}{23}$
+$$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twomat{1}{\frac{4}{3}}{0}{1}$$
+\item Shear perpendicular to the $y$ axis by $-\frac{4}{3}$
+$$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
+\end{enumerate}
+\end{multicols}
+
+Taken all together, the decomposition is:
+$$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}$$.
+
+Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$ What does each matrix do?
+\item Here is another way that you could have decomposed the above matrix.
+$$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
+\mathop{\twomat{1}{-\frac{2}{23}}{0}{1}}^{\text{ii}}
+\mathop{\twomat{\frac{1}{\sqrt{13}}}{0}{0}{\frac{1}{\sqrt{13}}}}^{\text{iii}}
+\mathop{\twomat{\frac{3}{\sqrt{13}}}{-\frac{2}{\sqrt{13}}}{\frac{2}{\sqrt{13}}}{\frac{3}{\sqrt{13}}}}^{\text{iv}}
+\mathop{\twomat{1}{0}{0}{-1}}^{\text{v}}
+\twomat{3}{4}{2}{-5}=\twomat{1}{0}{0}{1}.$$
+\begin{enumerate}
+\item Identify what each matrix i through v does.
+\end{enumerate}
+Next, we undo this sequence of operations by working backwards.
+$$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
+\mathop{\twomat{\frac{3}{\sqrt{13}}}{\frac{2}{\sqrt{13}}}{-\frac{2}{\sqrt{13}}}{\frac{3}{\sqrt{13}}}}^{\text{ii}}
+\mathop{\twomat{\sqrt{13}}{0}{0}{\sqrt{13}}}^{\text{iii}}
+\mathop{\twomat{1}{\frac{2}{23}}{0}{1}}^{\text{iv}}
+\mathop{\twomat{1}{0}{0}{\frac{23}{13}}}^{\text{v}}
+\twomat{1}{0}{0}{1}=\twomat{3}{4}{2}{-5}.$$
+
+\begin{enumerate}
+\item Explain what happens at each matrix, i through v.
+\end{enumerate}
+\item Find a set of basic transformations which is equivalent to each of the following matrices.
+\begin{multicols}{3}
+\begin{enumerate}
+\item $\twomat{12}{8}{5}{15}$
+\item $\twomat{3}{24}{4}{7}$
+\item $\twomat{2}{3}{4}{6}$
+\end{enumerate}
+\end{multicols}
+\item One of the matrices in problem ?? is a projection onto a line.
+\begin{enumerate}
+\item Which matrix is it?
+\item What line does it project onto?
+\item If you try to decompose this matrix to the identity matrix, what happens? Why?
+\end{enumerate}
+\item Onto what line does $\twomat{a}{b}{2a}{2b}$ project the plane? Solve for $a$ and $b$ such that the matrix projects orthogonally (at right angles) onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns).
+\item Use problem 21 to decompose $\twomat{2}{3}{4}{6}$ into a projection perpendicular to a line followed by a size change.
+\item Decompose $\twomat{1}{2}{3}{6}$ into a projection perpendicular to a line followed by a size change.
+\item Write matrices which project onto the following lines:
+\begin{multicols}{3}
+\begin{enumerate}
+\item $y=x$
+\item $y=5x$
+\item $y=mx$
+\end{enumerate}
+\end{multicols}
+\end{enumerate}
+
+
+\end{document}
