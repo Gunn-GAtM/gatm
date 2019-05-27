@@ -4,11 +4,11 @@
 
 \section{Eigenvectors and Eigenvalues}
 
-We've spent a good deal of time mapping the plane with matrices. We discovered that we could decompose any invertible $2\times 2$ matrix into a list of matrices which, under multiplication, are isomorphic to primary transformations of the plane. That is, we can interpret any such matrix as a sequence of reflections, rotations, shears, stretches, and size changes. We can even reduce the list to stretches and reflections. Unfortunately, doing this tends to be rather clumsy in practice. In addition, the decomposition is not unique.
+We've spent a good deal of time mapping the plane with matrices. We discovered that we could decompose any invertible $2\times 2$ matrix into a list of matrices which, under multiplication, are a sequence of transformations of the plane. That is, we can interpret any such matrix as a sequence of reflections, rotations, shears, stretches, and dilations. We can even reduce the list to stretches and reflections. Unfortunately, doing this tends to be rather clumsy in practice. In any case, this decomposition method does not produce a unique result.
 
-We are now going to find a new way to decompose matrices. This method will have the virtue that if two people decompose the same matrix, their results will be recognizably ``the same.'' In addition, this process is much easier to do.
+We are now going to find a new way to decompose matrices. This method will have the virtue that if two people decompose the same matrix, their results will be recognizably ``the same.'' This process is also much easier to do.
 
-Consider the matrix $\left[\begin{smallmatrix}3 & 24 \\ 4 & 7\end{smallmatrix}\right]$ which you examined on page 45. If you multiply a random vector like $\left[\begin{smallmatrix}4 \\ 7\end{smallmatrix}\right]$ by this matrix, you'll get $\left[\begin{smallmatrix}180 \\ 65\end{smallmatrix}\right]$. These two vectors have very different directions, as shown in Figure~\ref{fig:average_joe}. But if you pick the ``right'' preimage vector, you can get a vector which has the same---or directly opposite---direction, meaning that the image is a constant multiple of the preimage. For example, if you pick $\left[\begin{smallmatrix}2 \\ 1 \end{smallmatrix}\right]$, then
+Consider the matrix $\left[\begin{smallmatrix}3 & 24 \\ 4 & 7\end{smallmatrix}\right]$. If you multiply a random vector like $\left[\begin{smallmatrix}4 \\ 7\end{smallmatrix}\right]$ by this matrix, you'll get $\left[\begin{smallmatrix}180 \\ 65\end{smallmatrix}\right]$. These two vectors have very different directions, as shown in Figure~\ref{fig:average_joe}. But if you pick the ``right'' preimage vector, you can get a vector which has the same---or directly opposite---direction, meaning that the image is a constant multiple of the preimage. For example, if you pick $\left[\begin{smallmatrix}2 \\ 1 \end{smallmatrix}\right]$, then
 
 \begin{align*}
 \twomat{3}{24}{4}{7}\left[\begin{array}{c} 2 \\ 1 \end{array}\right]&=\left[\begin{array}{c} 30 \\ 15 \end{array}\right] \\
@@ -22,7 +22,7 @@ Similarly, if I pick $\left[\begin{smallmatrix}3 \\ -1\end{smallmatrix}\right]$,
 &= -5\left[\begin{array}{c} 3 \\ -1 \end{array}\right].
 \end{align*}
 
-These two vectors $\left[\begin{smallmatrix}2 \\ 1 \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3 \\ -1 \end{smallmatrix}\right]$ are called \textbf{eigenvectors} of the matrix, and are characteristic to the matrix. Their multiplications are shown in Figure~\ref{fig:eigenvectors_demo} This matrix has only two, \textbf{linearly independent} eigenvectors. Linearly independent means that one is not a multiple of another; they have different directions. The vectors' scale factors, $15$ and $-5$, are the \textbf{eigenvalues} of the matrix. They are each associated with one eigenvector.
+These two vectors $\left[\begin{smallmatrix}2 \\ 1 \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3 \\ -1 \end{smallmatrix}\right]$ are called \textbf{eigenvectors} of the matrix, and are characteristic to the matrix. Their multiplications are shown in Figure~\ref{fig:eigenvectors_demo}. This matrix has only two, \textbf{linearly independent} eigenvectors. Linearly independent means that one is not a multiple of another; they have different directions. The vectors' scale factors, $15$ and $-5$, are the \textbf{eigenvalues} of the matrix. They are each associated with one eigenvector.
 
 In fact, any pair of vectors $\left[\begin{smallmatrix}2s \\ s \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3t \\ -t \end{smallmatrix}\right]$, as long as $s,t\neq 0$, could be considered the eigenvectors of $\left[\begin{smallmatrix}3 & 24 \\ 4 & 7\end{smallmatrix}\right]$. We just pick a form that is as simple to write as possible.
 
@@ -85,7 +85,7 @@ In generic terms: if a matrix $M$ has linearly independent eigenvectors $v_1$ an
 
 $$Mv=\lambda_1av_1 + \lambda_2bv_2.$$
 
-An issue still remains: I just gave you the eigenvectors. How does one find the eigenvalues and eigenvectors of a matrix? This turns out to be relatively easy algebraically, but we'll try to develop some geometric intuition first.
+An issue still remains: I just \textit{gave} you the eigenvectors. How does one find the eigenvalues and eigenvectors of a matrix in the first place? This turns out to be relatively easy algebraically, but we'll try to develop some geometric intuition first.
 
 \begin{enumerate}
 \item Consider the matrix equation $\twomat{0}{1}{6}{1}\twovec{x}{y} = \twovec{y}{6x+y}=\twovec{x'}{y'}$. We wish to find an eigenvector $\twovec{x}{y}$.
@@ -96,7 +96,7 @@ An issue still remains: I just gave you the eigenvectors. How does one find the 
 \item Which of these is an eigenvector?
 \item Does it lie near the line you drew earlier?
 \end{enumerate}
-\item This guess-and-check process for finding eigenvectors is terrible, so let's develop a procedure to find the eigen values and eigenvectors for any $2\times 2$ matrix. We will use the same example.
+\item This guess-and-check process for finding eigenvectors is terrible, so let's develop a procedure to find the eigenvalues and eigenvectors for any $2\times 2$ matrix. We will use the same example.
 
 \begin{align*}
 \twomat{0}{1}{6}{1}\twovec{x}{y} &= \lambda\twovec{x}{y} & \text{Definition of eigenvector} \\
@@ -108,9 +108,9 @@ An issue still remains: I just gave you the eigenvectors. How does one find the 
 \begin{enumerate}
 \item If $\stwovec{x}{y}\neq \stwovec{0}{0}$, then $$\det \twomat{-\lambda}{1}{6}{1-\lambda}=0.$$ Why? Think inverses.
 \item Find the above determinant in terms of $\lambda$ and solve for the eigenvalues.
-\item One eigenvalue is $\lambda=3$. We solve for the eigenvector like so:
+\item One eigenvalue is $\lambda=3$. We solve for the associated eigenvector like so:
 \begin{align*}
-\twovec{0}{0} &= \twomat{-\lambda}{1}{6}{1-\lambda}\twovec{x}{y}\twovec{x}{y} \\
+\twovec{0}{0} &= \twomat{-\lambda}{1}{6}{1-\lambda}\twovec{x}{y} \\
 &= \twomat{-3}{1}{6}{-2}\twovec{x}{y} \\
 \Longrightarrow \twovec{0}{0} &= \twovec{-3x+y}{6x-2y} \\
 \Longrightarrow y&=3x \rightarrow \twovec{x}{y}=s\twovec{1}{3}
@@ -132,7 +132,7 @@ Solve for the other eigenvector using the other eigenvalue from part (b).
 \item What would the angle between them be?
 \item What would their eigenvalues be?
 \end{enumerate}
-\item Recall that multiplication by $\twomat{\cos 2\theta}{\sin 2\theta}{\sin 2\theta}{-\cos 2\theta}$ results in a reflection over $y=x\tan \theta$
+\item Recall that multiplication by $\twomat{\cos 2\theta}{\sin 2\theta}{\sin 2\theta}{-\cos 2\theta}$ results in a reflection over $y=x\tan \theta$.
 \begin{enumerate}
 \item Write a matrix that results in a reflection over the line $y=\frac{\sqrt{3}}{3}x.$
 \item Find the eigenvalues of that matrix, and the corresponding eigenvectors.
@@ -165,10 +165,10 @@ Solve for the other eigenvector using the other eigenvalue from part (b).
 \item \begin{enumerate}
 \item Write a $3\times 3$ matrix showing a rotation of $\theta$ around the $z$ axis.
 \item Name the real eigenvector (this shouldn't require any work).
-\item Then find all three eigenvectors.
+\item Find all three eigenvectors.
 \end{enumerate}
 \item \begin{enumerate}
-\item What should the absolute value of any eigenvalue of any pure, rotation matrix be?
+\item What should the absolute value of an eigenvalue of any rotation matrix be?
 \item The complex eigenvalues relate to the angle of rotation. What is that relationship?
 \end{enumerate}
 \item In a right-handed coordinate system, rotations in three dimensions are performed by combinations of the three matrices
@@ -180,10 +180,10 @@ In 2D, rotations combine to make other rotations. Similarly, if we combine any n
 Try computing the following products.
 \begin{multicols}{4}
 \begin{enumerate}
-\item XY
-\item XZ
-\item YX
-\item ZX
+\item $XY$
+\item $XZ$
+\item $YX$
+\item $ZX$
 \end{enumerate}
 \end{multicols}
 \item \begin{enumerate}
