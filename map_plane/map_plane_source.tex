@@ -48,7 +48,7 @@ draw(point(between, 0.04) -- point(between, 0.96), Arrow);
 \begin{enumerate}
 \item \begin{enumerate}
 \item Use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on the points $(0,0)$, $(1,0)$, and $(0,1)$. What are their images? Graph them.
-\item The preimage includes two perpendicular unit vectors, $(0,1)$ and $(1,0)$. What is the ratio of the lengths of their images? What is the angle of between the images?
+\item The preimage includes two perpendicular unit vectors, $(0,1)$ and $(1,0)$. What is the (i) ratio of the lengths of their images and (ii) angle between the images?
 \item You can conclude that multiplication by matrices does not, in general, preserve which two quantities between the image and preimage?
 \end{enumerate}
 \item \begin{enumerate}
@@ -57,7 +57,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \left[\begin{array}{cccc}2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2\end{array}\right]
 =\left[\begin{array}{cccc}\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} \\ \phantom{0}\end{array}\right].$$
 \item Graph and label the preimage and the image of each point onto the same set of axes.
-\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: what is $y$ in terms of $x$?)
+\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: What is $y$ in terms of $x$?)
 \item Write an equation for the image of that set.
 \item What other characteristic of the preimage points also applies to the image?
 \item Name two things that seem to be conserved when mapping points with a matrix.
@@ -65,7 +65,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-In Problem 2, you should have noticed that the points of the preimage were collinear, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix or set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
+In Problem 2, you should have noticed that the points of the preimage were collinear, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
@@ -95,6 +95,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
+
 Matrix multiplication is a linear transformation. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
 
 \newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
@@ -102,7 +103,7 @@ Matrix multiplication is a linear transformation. One way to think of a linear t
 \begin{minipage}{0.65\textwidth}
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
-\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri}.
+\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right.
 \begin{enumerate}
 \item Map it with the following matrices.
 \begin{multicols}{3}
@@ -145,7 +146,7 @@ label("$10$", (0,10), W);
 \begin{minipage}{0.6\textwidth}
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
-\item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square}: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will later be useful.
+\item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square} on the right: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later.
 \begin{enumerate}
 \item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
 \item Of $(0,0)$?
@@ -241,16 +242,16 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 \setcounter{enumi}{\value{mp_problem_i}}
 \item Carry out the following multiplications and convince yourself that the mappings are equivalent.\begin{multicols}{2}
 \begin{enumerate}
-\item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$
+\item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
 \end{enumerate}
 \end{multicols}
 \item \begin{enumerate}
-\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$
+\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
 \item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
 \end{enumerate}
 \item \begin{enumerate}
-\item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units, leaving $z$ fixed at $1$.
+\item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units in the $y$ direction, leaving $z$ fixed at $1$.
 \item Check your work by applying your matrix to the point $(3,5,1)$.
 \end{enumerate}
 \item Do these two multiplications. What does each represent?
@@ -264,11 +265,11 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 \begin{multicols}{2}
 \begin{enumerate}
 \item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
-\item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & 1 & \cos\theta \\ 0 & 0 & 1 \end{array}\right]$
+\item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \end{enumerate}
 \end{multicols}
 \item \begin{enumerate}
-\item Rewrite your translation matrix from problem 12 and your preimage vector so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
+\item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
 \item Write a matrix product that translates the point $(2,3,-5)$ by the vector $(4,-1,2)$.
 \end{enumerate}
 \end{enumerate}
