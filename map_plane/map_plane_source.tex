@@ -273,9 +273,11 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 \end{enumerate}
 \end{enumerate}
 
+For the curious, the translation matrix $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]$ is actually two shears in 3D, as shown in Figure~\ref{fig:translate_3d}.
+
 \begin{figure}[h]
 \begin{center}
-\begin{asy}[width=0.9\textwidth]
+\begin{asy}[width=\textwidth]
 import three;
 
 currentprojection=perspective(14,17,11);
@@ -339,21 +341,32 @@ draw((B+Tu)--Bp,dashed);
 draw((C+Tu)--Cp,dashed);
 draw((D+Tu)--Dp,dashed);
 
-draw((Ap+Tu)--App,dashed);
-draw((Bp+Tu)--Bpp,dashed);
-draw((Cp+Tu)--Cpp,dashed);
-draw((Dp+Tu)--Dpp,dashed);
+draw((Ap+Tu)--App);
+draw((Bp+Tu)--Bpp);
+draw((Cp+Tu)--Cpp);
+draw((Dp+Tu)--Dpp);
+
+draw((A+Tu)--A,dashed);
+draw((B+Tu)--B,dashed);
+draw((C+Tu)--C,dashed);
+draw((D+Tu)--D,dashed);
+
+draw((Ap+Tu)--Ap);
+draw((Bp+Tu)--Bp);
+draw((Cp+Tu)--Cp);
+draw((Dp+Tu)--Dp);
 
 path3 Zplane = (-1.2, -1.2, 1.001) -- (5, -1.2, 1.001) -- (5, 5.7, 1.001) -- (-1.2, 5.7, 1.001) -- cycle;
 draw(surface(Zplane), opacity(0.2)+gray(0.2));
 draw(Zplane, opacity(0.2)+dashed);
 
-draw(rotate(19.5) * "\begin{center}Shear by $\alpha$ in $x$ \\ $\longleftarrow$\end{center}", (2,0,2));
-draw(rotate(-30) * "\begin{center}Shear by $\beta$ in $y$ \\ $\longrightarrow$\end{center}", (0,4,2));
+draw(XZ() * "\begin{center}Shear by $\alpha$ in $x$ \\ $\longleftarrow$\end{center}", (2,0,1.8));
+draw(YZ() * "\begin{center}Shear by $\beta$ in $y$ \\ $\longrightarrow$\end{center}", (0,4,1.8));
 
 label("$z=1$", (-1.2,5.7,1.001),10*W);
 \end{asy}
 \end{center}
-\caption{Translating a square by $(\alpha, \beta)$ in the plane $z=1$.}
+\caption{Translating a square by $(\alpha, \beta)$ in the plane $z=1$. The first shear, in $x$, is shown in dashed lines. The second shear, in $y$, is shown in solid lines. The net movement is $(\alpha,\beta,0)$.}
+\label{fig:translate_3d}
 \end{figure}
 \end{document}

@@ -15,6 +15,7 @@ echo "Building GaTM Stage 2: expect superfluous errors."
 pdflatex -shell-escape -interaction=nonstopmode -file-line-error --output-directory=build gatm.tex | grep ".*:[0-9]*:.*"
 echo "Building GaTM Stage 3"
 pdflatex -shell-escape -interaction=nonstopmode -file-line-error --output-directory=build gatm.tex | grep ".*:[0-9]*:.*"
+pdflatex -shell-escape -interaction=nonstopmode -file-line-error --output-directory=build gatm.tex | grep ".*:[0-9]*:.*"
 echo "Cleaning"
 
 rm *.out *.pbsdat *.js *.prc

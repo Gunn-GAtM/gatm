@@ -87,7 +87,7 @@ drawTriangle(offset, 2, order);
 \end{asy}
 \end{center}
 \caption{The paper triangle.}
-\label{paper_triangle}
+\label{fig:paper_triangle_sf}
 \end{minipage}
 %
 \begin{minipage}{0.3\textwidth}
@@ -102,7 +102,7 @@ drawTriangle(offset, 2, order, true);
 \end{asy}
 \end{center}
 \caption{Its axes of reflection.}
-\label{triangle_reflections}
+\label{fig:triangle_reflections_sf}
 \end{minipage}
 %
 \begin{minipage}{0.3\textwidth}
@@ -119,7 +119,7 @@ label("$\stackrel{A}{\Longrightarrow}$", (2.4, 0.2));
 \end{asy}
 \end{center}
 \caption{$AD = B$; Notice the RTL evaluation.}
-\label{aid_is_b}
+\label{fig:aid_is_b}
 \end{minipage}
 \end{figure}
 
@@ -154,15 +154,15 @@ for (int i = 0; i < 6; ++i) {
 \end{asy}
 \end{center}
 \caption{The six ending positions.}
-\label{triangle_isos}
+\label{fig:triangle_isos_sf}
 \end{figure}
 
 % Brandon to Timothy: stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes.
 % VOCAB: DIHEDRAL GROUP, ISOMETRY, ISOMORPHIC (probs gonna change?), GENERATOR
 
-\noindent You can use a paper/cardboard triangle to help visualize the next concept: cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure ~\ref{paper_triangle}, and place it down in the shown orientation. Consider the possible ways to move this triangle From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure ~\ref{triangle_reflections}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure ~\ref{triangle_isos}.
+\noindent You can use a paper/cardboard triangle to help visualize the next concept: cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to move this triangle From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
-Notice that each position corresponds to a different operation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by writing them in sequence. Unlike most cases, however, we evaluate them right-to-left (RTL) rather than left-to-right (LTR). For example, $AD=B$, as shown in Figure ~\ref{aid_is_b}.
+Notice that each position corresponds to a different operation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by writing them in sequence. Unlike most cases, however, we evaluate them right-to-left (RTL) rather than left-to-right (LTR). For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
 These six positions form another group: the \textbf{dihedral group} of order $3$, or $D_3$. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; these are the two faces of our paper triangle. Let's study the properties of this group.
 
@@ -173,7 +173,7 @@ These six positions form another group: the \textbf{dihedral group} of order $3$
 \begin{minipage}{0.6\textwidth}
 \begin{enumerate}
 \item The six positions or ``operations'' are considered to be isometries. Isometries are ways of mapping the triangle to itself, preserving shape and location. Are there any others on this triangle?
-\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure ~\ref{sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $Y$\textsuperscript{th} column.
+\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $Y$\textsuperscript{th} column.
 \newcounter{enumLast}
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
@@ -189,7 +189,7 @@ $D$    &   &   &   &   &   &   \\ \hline
 $E$    &   &   &   &   &   &   \\ \hline
 \end{tabular}
 \caption{Unfilled $D_3$ group table.}
-\label{sbstable}
+\label{fig:sbstable}
 \end{minipage}
 \end{figure}
 %
@@ -203,7 +203,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 \end{enumerate}
 \item What shape's dihedral (rotation and reflection) group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
 \item Find an combination of $A$ and $D$ that yields $C$.
-\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure ~\ref{alttable}. \textit{Note that the element order is different!}
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
 \item What other pairs of elements could you have used to generate that table?
 \item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \item Explain why each element of the flip group $D_3$ has the period it has.
@@ -243,7 +243,7 @@ $fr^2$    &   &   &   &   &   &   \\ \hline
 \end{tabular}
 \end{center}
 \caption{Unfilled alternate $D_3$ table.}
-\label{alttable}
+\label{fig:alttable}
 \end{minipage}%
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -265,7 +265,7 @@ label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
 \end{asy}
 \end{center}
 \caption{$fr^2=C$. Again, notice the RTL evaluation.}
-\label{fr2}
+\label{fig:fr2}
 \end{minipage}
 \end{figure}
 

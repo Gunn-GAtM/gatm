@@ -33,6 +33,9 @@
 \newcommand{\twomat}[4] {\left[\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right]}
 \newcommand{\threemat}[9] {\left[\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right]}
 
+\newcommand{\twovec}[2] {\left[\begin{array}{c} #1 \\ #2 \end{array}\right]}
+\newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
+
 \begin{document}
 \pagenumbering{gobble}
 
@@ -62,7 +65,7 @@
 \subfile{itsasnap/itsasnap_source.tex}
 \pagebreak
 
-\subfile{fromsnapstoflips/fromsnapstoflips_source.tex}
+\subfile{snap_flip/snap_flip_source.tex}
 \pagebreak
 
 \subfile{rrg/rrg_source.tex} % Rotation reflection groups

@@ -80,9 +80,42 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \end{enumerate}
 \end{multicols}
 \item What matrix/transformation undoes each of Problem 4, parts a through l? For instance, j is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is represented by matrix k.
-\item In these exercises you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage and image, and identify the transformations and their order. Note the effect of order on the outcome! But first, an example:
+\item In these exercises you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage and image, and identify the transformations and their order. Note the effect of order on the outcome!
+
+\begin{minipage}{0.7\textwidth}
+But first, an example:
 $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
-This is a rotation of about $\tan^{-1}\left(-\frac{3}{4}\right)=-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left.
+This is a rotation of about $\tan^{-1}\left(-\frac{3}{4}\right)=-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+\end{minipage}\hfill
+\begin{minipage}{0.25\textwidth}
+\begin{asy}[width=\textwidth]
+draw((-2,0)--(9.5,0),Arrow);
+draw((0,-5)--(0,6.5),Arrow);
+
+for (int i = -1; i < 9; ++i) {
+	for (int j = -4; j < 6; ++j) {
+		dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
+	}
+}
+filltype fillc =FillDraw(fillpen=black,drawpen=black);
+pen size = 1+currentpen;
+
+dot((0,0), size, fillc);
+dot((5,0), size, fillc);
+dot((0,5), size, fillc);
+
+dot((3,4), size, fillc);
+dot((4,-3), size, fillc);
+
+path rot1=(0,5)..5*(cos(pi/2-0.32),sin(pi/2-0.32))..(3,4);
+path rot2=(5,0)..5*(cos(-0.32), sin(-0.32))..(4,-3);
+
+draw(subpath(rot1,0.3,1.7),Arrow);
+draw(subpath(rot2,0.3,1.7),Arrow);
+\end{asy}
+\captionof{figure}{The preimage and image.}
+\label{fig:preimage_image_mat}
+\end{minipage}
 
 \begin{multicols}{3}
 \begin{enumerate}
@@ -111,15 +144,85 @@ This is a rotation of about $\tan^{-1}\left(-\frac{3}{4}\right)=-37^\circ$, foll
 \end{enumerate}
 \item Write a set of matrices which undoes Problem 8, parts a-g above. You will find one of them impossible to undo; explain why for that one.
 \item \begin{enumerate}
-\item Find the height of the parallelogram in terms of $b$ and a trig function in terms of $T$.
-\item Find the area of the parallelogram in terms of $a$, $b$, and $T$.
+\item Find the height of the parallelogram in terms of $b$ and a trig function in terms of $\varphi$.
+\item Find the area of the parallelogram in terms of $a$, $b$, and $\varphi$.
 \end{enumerate}
-\item At top right we have put our parallelogram onto a coordinate plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. $T=\phi-theta$.
+\end{enumerate}
+\begin{figure}[h]
+\begin{minipage}{0.4\textwidth}
+\begin{asy}[width=\textwidth]
+pair A = (0,0);
+pair B = (4,4);
+pair D = (8,0);
+pair C = B+D;
+draw(A--B--C--D--cycle);
+draw(B--(4,0));
+
+label("$\varphi$", A, 2.8*ENE);
+draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
+label("$h$", (4,2),W);
+label("$b$", A--B, NW);
+
+path a_brace = shift(0,-0.2)*brace(D,A);
+draw(a_brace);
+
+draw((4,0.6)--(3.4,0.6)--(3.4,0));
+
+label("$a$", a_brace, S);
+\end{asy}
+\caption{A parallelogram.}
+\end{minipage}\hfill
+\begin{minipage}{0.4\textwidth}
+\begin{asy}[width=\textwidth]
+pair A = (0,0);
+pair B = (4,4);
+pair D = (8,0);
+pair C = B+D;
+
+path a_brace = rotate(20)*shift(0,-0.74)*brace(D,A);
+path angle_mark = arc((0,0), point(A--D,0.25), rotate(20)*point(A--B, 0.25));
+path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20)*point(A--D, 0.25));
+
+A = rotate(20)*A;
+B = rotate(20)*B;
+C = rotate(20)*C;
+D = rotate(20)*D;
+
+draw(A--B--C--D--cycle);
+draw(B--rotate(20)*(4,0));
+
+draw(angle_mark);
+draw(angle_mark2);
+label("$h$", rotate(20)*(4,2),NE);
+label("$b$", rotate(20)*A--B, NW);
+
+draw(a_brace);
+
+draw(rotate(20)*((4,0.6)--(3.4,0.6)--(3.4,0)));
+
+label("$a$", a_brace, rotate(20)*S);
+label("$\theta$", angle_mark2, ENE);
+label("$\phi$", angle_mark, ENE);
+
+draw((-2,0)--(10,0),Arrow);
+draw((0,-2)--(0,8),Arrow);
+
+label("$P$", A, SW);
+label("$Q$", B, NW);
+label("$R$", C, NE);
+label("$S$", D, ESE);
+\end{asy}
+\caption{The parallelogram in the $xy$ plane.}
+\label{fig:para_in_xy}
+\end{minipage}
+\end{figure}
+\begin{enumerate}
+\item In Figure~\ref{fig:para_in_xy} we have put our parallelogram onto a coordinate plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
 \begin{enumerate}
 \item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
-\item Find the $x$ and $y$ coordinates of the endpoints of $a$ and $b$ in terms of $a$, $b$, $\phi$, $\theta$.
-\item These coordinates form two column vectors which, taken together as a matrix, map the plane. Write the matrix so that the first column contains the coordinates of $a$ and the second column contains the coordinates of $b$.
-\item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
+\item Find the $x$ and $y$ coordinates of $P,Q,R,S$ in terms of $a$, $b$, $\phi$, $\theta$.
+\item These coordinates form two column vectors which, taken together as a matrix, map the plane. Write the matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$.
+\item Your matrix has two diagonals, $\overline{PR}$ and $\overline{QS}$. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
 \item Use angle addition formulas to simplify your answer.
 \item You should find some relationship between your answers to problems 11a and 11d. What is it?
 \item The difference of the products of the two diagonals of a two by two matrix is called the determinant of the matrix. What does it measure?
@@ -144,16 +247,158 @@ This is a rotation of about $\tan^{-1}\left(-\frac{3}{4}\right)=-37^\circ$, foll
 \end{enumerate}
 \end{enumerate}
 
+\begin{figure}[h]
+\centering
+\begin{asy}[width=0.38\textwidth]
+import patterns;
+
+add("brick",brick());
+
+draw((0,0)--(7,0),Arrow);
+draw((0,0)--(0,6),Arrow);
+
+pair A = (0,0);
+pair B = (1,3);
+pair C = (6,5);
+pair D = (5,2);
+
+draw(A--B--C--D--cycle);
+pair K1 = (0,3);
+pair K2=(5,3);
+pair K3 = (5,0);
+pair L0 = (1,2);
+pair L1 = (1,5);
+pair L3 = (6,2);
+
+draw(A--K1--K2--K3--cycle);
+draw(L0--L1--C--L3--cycle);
+
+filldraw(A--K1--B--cycle, pattern("brick"));
+filldraw(A--K3--D--cycle, pattern("brick"));
+filldraw(L0--B--K2--D--cycle, pattern("brick"));
+filldraw(B--L1--C--cycle, pattern("brick"));
+filldraw(D--C--L3--cycle, pattern("brick"));
+
+\end{asy}
+\caption{Scenario for Problem ??}
+\label{fig:para_scenario}
+\end{figure}
+
 Now that we are aware that the determinant of a matrix is a measure of size change and orientation change, we can decompose any linear mapping into a set of operations that we can visualize. Technically speaking, we can reduce all two dimensional transformational matrices into a combination of reflections and stretches along an axis. It is more intuitive, however, to include rotations, dilations, and shears along an axis in our repertoire of basic operations.
 
-We will look at the image of the unit square under an arbitrary transformation and see how we can undo the transformation in steps until we are left with a unit square. Then we will retrace our steps, undoing each step until we have arrived at our original transformation through a set of mappings, each of which is easily visualized. We are looking for a recipe. Perhaps you can improve on the one that we will outline here! Start with $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=\left[\begin{smallmatrix}2 & 3 \\ 4 & 1 \end{smallmatrix}\right]$.
+We will look at the image of the unit square under an arbitrary transformation and see how we can undo the transformation in steps until we are left with a unit square. Then we will retrace our steps, undoing each step until we have arrived at our original transformation through a set of mappings, each of which is easily visualized. We are looking for a recipe. Perhaps you can improve on the one that we will outline here! %Start with $$.
+
+\newcounter{first_para}
+
+\begin{enumerate}[label=\roman*.]
+\item Start by checking the determinant. If it is nonzero, continue to step b. Otherwise, you are done.\footnote{Why?}
+\setcounter{first_para}{\value{enumi}}
+\item If $a=0$, rotate the whole matrix $90^\circ$ so that $a$ becomes nonzero.
+\item Stretch or shrink your matrix along the $x$ axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero.
+
+$$\twomat{\frac{1}{a}}{0}{0}{\frac{1}{a}}\twomat{a}{c}{b}{d} = \twomat{1}{\frac{c}{a}}{\frac{b}{a}}{\frac{d}{a}}.$$
+
+\item Shear the vector $\twovec{1}{b}$ to $\twovec{1}{0}$ so that it is parallel to the $x$ axis.
+
+\begin{align*}
+\twomat{1}{0}{-\frac{b}{a}}{1}\twomat{1}{\frac{c}{a}}{\frac{b}{a}}{\frac{d}{a}} &= \twomat{1}{\frac{c}{a}}{0}{-\frac{bc}{a^2}+\frac{d}{a}} \\
+&= \twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a^2}}
+\end{align*}
+
+\item Stretch in the $y$ direction to make the bottom right entry $1$:
+
+$$\twomat{1}{0}{0}{\frac{a^2}{ad-bc}}\twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a^2}}=\twomat{1}{\frac{ac}{ad-bc}}{0}{1}.$$
+
+\item Shear in the $x$ direction to make the top right entry $0$:
+
+$$\twomat{1}{-\frac{ac}{ad-bc}}{0}{1}\twomat{1}{\frac{ac}{ad-bc}}{0}{1}=\twomat{1}{0}{0}{1}.$$
+\end{enumerate}
+
+Let's see this process applied to the matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=\left[\begin{smallmatrix}2 & 3 \\ 4 & 1 \end{smallmatrix}\right]$.
+
+\begin{asydef}
+void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real cp, real bp, real dp) {
+	a *= s_x;
+	c *= s_x;
+	ap *= s_x;
+	cp *= s_x;
+	b *= s_y;
+	d *= s_y;
+	bp *= s_y;
+	dp *= s_y;
+	
+	real max_x = 1.2*max(a,c,ap,cp,a+c,ap+cp);
+	real min_x = 1.2*min(a,c,ap,cp,a+c,ap+cp,0);
+	real max_y = 1.2*max(b,d,bp,dp,b+d,bp+dp,1.5);
+	real min_y = 1.2*min(b,d,bp,dp,0,b+d,bp+dp);
+	
+	draw((min_x,0)--(max_x,0), Arrow);
+	draw((0,min_y)--(0,max_y), Arrow);
+	
+	draw((0,0)--(a,b)--(a+c,b+d)--(c,d)--cycle, dashed);
+	draw((0,0)--(ap,bp)--(ap+cp,bp+dp)--(cp,dp)--cycle);
+	
+	if (s_x != 1 || s_y != 1) {
+		label("Not to scale", (0,max_y), NE);
+	}
+}
+\end{asydef}
+
+\begin{figure}[h]
+\begin{minipage}{0.5\textwidth}
+
+\begin{minipage}{0.45\textwidth}
+i.
+\begin{asy}[width=\textwidth]
+drawFor(1,1,2,3,4,1,2,3,4,1);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.45\textwidth}
+iii.
+\begin{asy}[width=\textwidth]
+drawFor(1,1,2,3,4,1,1,3/2,4,1);
+\end{asy}
+\end{minipage}
+
+\begin{minipage}{0.45\textwidth}
+iv.
+\begin{asy}[width=\textwidth]
+drawFor(3,1,1,3/2,4,1,1,3/2,0,-5);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.45\textwidth}
+v.
+\begin{asy}[width=\textwidth]
+drawFor(3,1,1,3/2,0,-5,1,3/2,0,1);
+\end{asy}
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+vi.
+\begin{asy}[width=\textwidth]
+drawFor(1,1,1,3/2,0,1,1,0,0,1);
+\end{asy}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\caption{The undoing steps, visualized.}
+\label{fig:undo_matrix}
+\end{minipage}
+
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{enumerate}[label=\roman*.]
+\item The determinant is not $0$, so we continue.
+\item $a\neq 0$, so we continue.
+\item $\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{4}{1}=\twomat{1}{\frac{3}{2}}{4}{1}.$
+\item $\twomat{1}{0}{-4}{1}\twomat{1}{\frac{3}{2}}{4}{2}=\twomat{1}{\frac{3}{2}}{0}{-5}.$
+\item $\twomat{1}{0}{0}{-\frac{1}{5}}\twomat{1}{\frac{3}{2}}{0}{5}=\twomat{1}{\frac{3}{2}}{0}{1}.$
+\item $\twomat{1}{-\frac{3}{2}}{0}{1}\twomat{1}{\frac{3}{2}}{0}{1}=\twomat{1}{0}{0}{1}.$
+\end{enumerate}
+\end{minipage}
+\end{figure}
 
 \begin{enumerate}
-\item \begin{enumerate}
-\item Start by checking the determinant. If it is nonzero, continue to step b. Otherwise, you are done. Why?
-\item [INSERT BETTER RECIPE]
-\end{enumerate}
-\item Look at Figure~\ref{undo_matrix}, which is a visual representation of the previous problem, and describe what is going on in each step.
+\item Look at Figure~\ref{fig:undo_matrix}, which is a visual representation of the previous problem, and describe the transformation in each step.
 \end{enumerate}
 
 To reiterate, our process for undoing a matrix $M=\twomat{a}{c}{b}{d}$ with $a>0$ and $\det M\neq 0$ is:
@@ -168,20 +413,20 @@ $$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-
 Don't forget to multiply from right to left.
 
 Our ultimate goal is to build up the matrix from basic operations, not to just undo it. Fortunately, we can easily figure out how to undo each of these basic operations. Remember that matrix multiplication is associative, but not commutative.
+\vspace{10ex}
 
 \begin{enumerate}
-\item \begin{multicols}{2}
-\begin{enumerate}
+\item \begin{enumerate}
 \item How do you undo a shear in the $x$ direction?
-$$\twomat{}{}{}{}\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$$
-\item How do you undo a shear in the $y$ direction?
-$$\twomat{}{}{}{}\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$$
+$\twomat{}{}{}{}\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a stretch along the $x$ axis?
-$$\twomat{}{}{}{}\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$$
+$\twomat{}{}{}{}\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$
+\item How do you undo a shear in the $y$ direction?
+$\twomat{}{}{}{}\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a stretch along the $y$ axis?
-$$\twomat{}{}{}{}\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$$
+$\twomat{}{}{}{}\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$
 \end{enumerate}
-\end{multicols}
+
 \item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ is composed. Order is important!
 
 \vspace{1.5cm}
@@ -221,12 +466,11 @@ $$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twom
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
 \end{enumerate}
 \end{multicols}
-
 Taken all together, the decomposition is:
-$$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}$$.
-
+$$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}.$$
 Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$ What does each matrix do?
 \item Here is another way that you could have decomposed the above matrix.
+\vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \mathop{\twomat{1}{-\frac{2}{23}}{0}{1}}^{\text{ii}}
 \mathop{\twomat{\frac{1}{\sqrt{13}}}{0}{0}{\frac{1}{\sqrt{13}}}}^{\text{iii}}
@@ -237,13 +481,13 @@ $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \item Identify what each matrix i through v does.
 \end{enumerate}
 Next, we undo this sequence of operations by working backwards.
+\vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \mathop{\twomat{\frac{3}{\sqrt{13}}}{\frac{2}{\sqrt{13}}}{-\frac{2}{\sqrt{13}}}{\frac{3}{\sqrt{13}}}}^{\text{ii}}
 \mathop{\twomat{\sqrt{13}}{0}{0}{\sqrt{13}}}^{\text{iii}}
 \mathop{\twomat{1}{\frac{2}{23}}{0}{1}}^{\text{iv}}
 \mathop{\twomat{1}{0}{0}{\frac{23}{13}}}^{\text{v}}
 \twomat{1}{0}{0}{1}=\twomat{3}{4}{2}{-5}.$$
-
 \begin{enumerate}
 \item Explain what happens at each matrix, i through v.
 \end{enumerate}
@@ -256,23 +500,22 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \end{enumerate}
 \end{multicols}
 \item One of the matrices in problem ?? is a projection onto a line.
+\begin{multicols}{2}
 \begin{enumerate}
 \item Which matrix is it?
 \item What line does it project onto?
 \item If you try to decompose this matrix to the identity matrix, what happens? Why?
 \end{enumerate}
-\item Onto what line does $\twomat{a}{b}{2a}{2b}$ project the plane? Solve for $a$ and $b$ such that the matrix projects orthogonally (at right angles) onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns).
-\item Use problem 21 to decompose $\twomat{2}{3}{4}{6}$ into a projection perpendicular to a line followed by a size change.
-\item Decompose $\twomat{1}{2}{3}{6}$ into a projection perpendicular to a line followed by a size change.
+\end{multicols}
+\item Onto what line does $\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$ project the plane? Solve for $a$ and $b$ such that the matrix projects orthogonally (at right angles) onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns).
+\item Use Problem ?? to decompose $\left[\begin{smallmatrix} 2 & 3 \\ 4 & 6 \end{smallmatrix}\right]$ into a projection to a line followed by a size change.
+\item Decompose $\left[\begin{smallmatrix} 1 & 2 \\ 3 & 6\end{smallmatrix}\right]$ into a projection perpendicular to a line followed by a size change.
 \item Write matrices which project onto the following lines:
-\begin{multicols}{3}
 \begin{enumerate}
 \item $y=x$
 \item $y=5x$
 \item $y=mx$
 \end{enumerate}
-\end{multicols}
+\vspace{-10ex}
 \end{enumerate}
-
-
 \end{document}
