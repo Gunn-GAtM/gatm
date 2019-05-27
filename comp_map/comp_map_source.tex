@@ -420,7 +420,7 @@ $$\left[\begin{array}{c}\text{shear} \\ \text{in x}\end{array}\right]
 \left[\begin{array}{c}\text{stretch} \\ \text{in x}\end{array}\right]
 \twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 Filling it in with numbers, we get
-$$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
+$$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$ \label{prob:list_of_matrices}
 
 Don't forget to multiply from right to left.
 
@@ -465,7 +465,7 @@ $$\Longrightarrow \twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\t
 Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
 
 \begin{enumerate}
-\item Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
+\item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
 \begin{multicols}{2}
 \begin{enumerate}[label=(\roman*)]
 \item Stretch along the $x$ axis by factor of $\frac{1}{3}$.
@@ -481,7 +481,7 @@ $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1
 Taken all together, the decomposition is:
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}.$$
 Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$ What does each matrix do?
-\item Here is another way that you could have decomposed the above matrix.
+\item\label{prob:needed_for_matrix_undo2}Here is another way that you could have decomposed the above matrix.
 \vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \mathop{\twomat{1}{-\frac{2}{23}}{0}{1}}^{\text{ii}}

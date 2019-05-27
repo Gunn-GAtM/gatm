@@ -4,7 +4,7 @@
 
 \section{Inverses}
 
-Now that we've talked about matrix multiplication quite a bit, it's time to start talking about matrix ``division.'' We've seen how matrix multiplication transforms the plane; since division is the opposite of multiplication, division will ``untransform'' the plane, putting all the points back where they started. First, we'll review division in a few more familiar contexts.
+Now that we've talked about matrix multiplication quite a bit, it's time to start talking about matrix ``division.'' We've seen how matrix multiplication transforms the plane; since division is the opposite of multiplication, division will ``untransform'' the plane, putting all the points back where they started. But first, we'll review division in a few more familiar contexts.
 
 \begin{enumerate}
 \item \begin{enumerate}
@@ -19,7 +19,7 @@ Now that we've talked about matrix multiplication quite a bit, it's time to star
 \end{enumerate}
 \item \begin{enumerate}
 \item Define ``one-to-one'' function.
-\item Is $f(x)=ax$ a one-to-one function for all real $a$? (Hint: look for the silly exception(s)!)
+\item Is $f(x)=ax$ a one-to-one function for all real $a$? (Hint: Look for the silly exception(s)!)
 \end{enumerate}
 \item Would your answers to the previous numbers change if you were talking about complex numbers instead of just real numbers? Why or why not?
 \end{enumerate}
@@ -72,7 +72,7 @@ label("$+7$", motion_arc, NW);
 
 Now, let's consider ``clock arithmetic,'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.
 
-As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic modulo $12$.''
+As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic modulo $12$.''
 
 \begin{enumerate}
 \item \begin{enumerate}
@@ -82,7 +82,7 @@ As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is 
 \item Find all solutions of $2x\equiv 7$ in clock arithmetic.
 \item What are all possible numbers of solutions that $ax\equiv b$ can have in clock arithmetic?
 \end{enumerate}
-\item How does the number of solutions to $ax\equiv b$ relate to the idea of multiplicative inverse? (Hint: You can try solving for $5,2,6,3$ and $b=1$. What numbers would be $5^{-1}$, $2^{-1}$, $6^{-1}$, and $3^{-1}$ in clock arithmetic.)
+\item How does the number of solutions to $ax\equiv b$ relate to the idea of multiplicative inverse? (Hint: You can try solving for $a=5,2,6,3$ and $b=1$. What numbers would be $5^{-1}$, $2^{-1}$, $6^{-1}$, and $3^{-1}$ in clock arithmetic?)
 \item \begin{enumerate}
 \item In clock arithmetic, for what values of $a$ is $f(x)\equiv ax$ a one-to-one function?
 \item How does this relate to whether $ax=1$ has exactly one solution?
@@ -95,7 +95,7 @@ As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is 
 \item Describe this group. What is the inverse of each element?
 \item What symmetry group is it isomorphic to?
 \end{enumerate}
-\item If the numbers on an advanced Mars clock went from $1$ to $5$,
+\item If the numbers on an advanced Mars clock went from $0$ to $4$,
 \begin{enumerate}
 \item They would form a group under addition. Make a group table!
 \item What group is this isomorphic to?
@@ -105,12 +105,12 @@ As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is 
 \end{enumerate}
 \end{enumerate}
 
-Now we've seen how division (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices. In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
+Now we've seen how ``division'' (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices. In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
 
 \begin{enumerate}
 \item \begin{enumerate}
-\item Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of two equations with two unknowns.
-\item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$
+\item \label{prob:needed_for_matrix_undo3}Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of equations.
+\item \label{prob:needed_for_matrix_undo4}Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$
 \item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 10 \end{array}\right]$
 \item What are all possible numbers of solutions that $AX=B$ can have in matrices? Use your knowledge of the properties of systems of equations.
 \end{enumerate}
@@ -123,7 +123,7 @@ Now we've seen how division (multiplicative inversion, or just inversion for sho
 \end{enumerate}
 \item Let $K=\twomat{5}{7}{8}{-3}$.\begin{enumerate}
 \item Find all solutions to $K\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 10 \\ 2 \end{array}\right]$.
-\item If we knew a matrix which was the inverse of $K$, which is written $K^{-1}$, we could write the following equation:
+\item If we knew a matrix which was the inverse of $K$, written $K^{-1}$, we could write the following equation:
 
 $$K^{-1}K\left[\begin{array}{c} x \\ y \end{array}\right]=K^{-1}\left[\begin{array}{c} 5 \\ 10 \end{array}\right].$$
 
@@ -131,9 +131,9 @@ What would the left side reduce to?
 \end{enumerate}
 \end{enumerate}
 
-Note that the right side would entail only very simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's modern problems!
+Note that evaluating the right side would only entail simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's computer problems!
 
-Our problem simplifies as follows: how do we find the inverse of a $2\times 2$ matrix? We've actually already done this. On page ??, you read the following string of matrices:
+Our problem simplifies as follows: how do we find the inverse of a $2\times 2$ matrix? We've actually already done this. On page~\pageref{prob:list_of_matrices}, you read the following string of matrices:
 
 $$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 
@@ -141,15 +141,14 @@ The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitut
 
 \begin{enumerate}
 \item \begin{enumerate}
-\item Now look at your results from problem ?? on page ??. Multiply the matrices that undid $\twomat{3}{4}{2}{-5}$. Did you get $\frac{1}{23}\twomat{-5}{-4}{-2}{3}$?
-\item Do the same for problem ?? on page ?? and problems ?? and ?? on page ??.
-\item You should have found a problem in inverting the matrix in ??. What is it? Answer geometrically, making reference to the matrix's mapping.
+\item \label{prob:why_did_herreshoff_do_this1}Now look at your results from Problem~\ref{prob:needed_for_matrix_undo1} on page~\pageref{prob:needed_for_matrix_undo1}. Multiply the matrices that undid $\twomat{3}{4}{2}{-5}$. Did you get $\frac{1}{23}\twomat{-5}{-4}{-2}{3}$?
+\item \label{prob:why_did_herreshoff_do_this2}Do the same for Problem~\ref{prob:needed_for_matrix_undo2} on page~\pageref{prob:needed_for_matrix_undo2} and Problems~\ref{prob:needed_for_matrix_undo3} and~\ref{prob:needed_for_matrix_undo4} on page~\pageref{prob:needed_for_matrix_undo3}.
+\item You should have found a problem in inverting the matrix in~\ref{prob:needed_for_matrix_undo4}. What is it? Answer geometrically, making reference to the matrix's mapping.
 \end{enumerate}
 \item \begin{enumerate}
-\item Look for a pattern in the answers to problems ?? and ??.
+\item Look for a pattern in the answers to Problems \label{prob:why_did_herreshoff_do_this1} and \label{prob:why_did_herreshoff_do_this2}.
 \item Describe the inverse of an arbitrary matrix: $\twomat{a}{c}{b}{d}^{-1}=\frac{1}{\phantom{000000}}\twomat{}{}{}{}.$ Use the word determinant in your answer.
 \item We've been writing the inverse of matrix $A$ as $A^{-1}$. Why does this notation make sense?
-\item Find the product of the four matrices to the left of $\twomat{a}{c}{b}{d}$ between problems ?? and ?? on page ?? and compare to problem ??.
 \end{enumerate}
 \item Now, see what happens when you multiply the following matrices:
 \begin{multicols}{2}
