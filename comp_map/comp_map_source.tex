@@ -3,6 +3,7 @@
 \begin{document}
 
 \section{Composite Mappings of the Plane}
+\setcounter{problem_i}{0}
 
 So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
 
@@ -147,6 +148,7 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \item Find the height of the parallelogram in Figure~\ref{parallelogram_generic} in terms of $b$ and a trig function in terms of $\varphi$.
 \item Find the area of the parallelogram in terms of $a$, $b$, and $\varphi$.
 \end{enumerate}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 \begin{figure}[h]
 \begin{minipage}{0.3\textwidth}
@@ -252,6 +254,7 @@ filldraw(D--C--L3--cycle, pattern("brick"));
 \end{minipage}
 \end{figure}
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
 \begin{enumerate}
 \item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
@@ -294,6 +297,7 @@ filldraw(D--C--L3--cycle, pattern("brick"));
 \item What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$?
 \end{enumerate}
 \end{enumerate}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 Now that we are aware that the determinant of a matrix is a measure of size change and orientation change, we can decompose any linear mapping into a set of operations that we can visualize. Technically speaking, we can reduce all two dimensional transformational matrices into a combination of reflections and stretches along an axis. It is more intuitive, however, to include rotations, dilations, and shears along an axis in our repertoire of basic operations.
@@ -410,7 +414,9 @@ drawFor(1,1,1,3/2,0,1,1,0,0,1);
 \end{figure}
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item Look at Figure~\ref{fig:undo_matrix} and describe the transformation in each step.
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 To reiterate, our process for undoing a matrix $M=\twomat{a}{c}{b}{d}$ with $a>0$ and $\det M\neq 0$ is:
@@ -428,6 +434,7 @@ Our ultimate goal is to build up the matrix from basic operations, not to just u
 \vspace{10ex}
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item How do you undo a shear in the $x$ direction?
 $\twomat{}{}{}{}\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$
@@ -459,12 +466,13 @@ $$\Longrightarrow \twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\t
 \path[overlay, ->] (pic cs:c1) edge [bend left] node {undoes} (pic cs:c2);
 \path[overlay, ->] (pic cs:d1) edge [bend left] node {undoes} (pic cs:d2);
 }
-
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
 \begin{multicols}{2}
 \begin{enumerate}[label=(\roman*)]

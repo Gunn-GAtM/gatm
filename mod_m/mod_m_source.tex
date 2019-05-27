@@ -3,6 +3,7 @@
 \begin{document}
 
 \section{Multiplication Modulo $m$ Meets Groups}
+\setcounter{problem_i}{0}
 
 In this section, we will.be finding the largest subset of integers that forms a group under multiplication, modulo various numbers. We will then find a symmetry group which is isomorphic to each modulo multiplication group. Let's start with some small moduli first.
 
@@ -34,6 +35,7 @@ $$\begin{array}{|c|c|c|c|c|}
 \item Clearly some of these numbers cannot be elements of a group. For instance, in both cases, $0$ cannot be used, since it prevents the existence of an inverse. In the case of mod $4$, $2$ cannot be used either. Why not?
 \item How could we have known that these numbers would not work in advance?
 \item Euler's totient function $\varphi(m)$ tells us how many numbers are relatively prime to a given number $m$. That is, $\varphi(m)$ is the count of numbers $n$ such that $\gcd(m,n)=1$. What does the maximum size of a group under multiplication mod $m$ have to do with this function?
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 Taking out the numbers which cannot be members of a group, we get these two tables:
@@ -64,6 +66,7 @@ $$\begin{array}{|c|c|c|}
 We now have two groups isomorphic to each other, as well as to $C_2$, $D_2$, and $P_2$.
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item We will write tables for the largest possible groups under multiplication mod $5$ and mod $8$.
 \begin{enumerate}
 \item Make a prediction as to how many elements will be in each group.
@@ -101,6 +104,7 @@ We now have two groups isomorphic to each other, as well as to $C_2$, $D_2$, and
 \item multiplication mod a composite
 \end{enumerate}
 \end{multicols}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 If you want to dig deeper, here's some investigations you can try. Some of these questions are deeply connected to number theory.

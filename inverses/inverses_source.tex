@@ -3,10 +3,12 @@
 \begin{document}
 
 \section{Inverses}
+\setcounter{problem_i}{0}
 
 Now that we've talked about matrix multiplication quite a bit, it's time to start talking about matrix ``division.'' We've seen how matrix multiplication transforms the plane; since division is the opposite of multiplication, division will ``untransform'' the plane, putting all the points back where they started. But first, we'll review division in a few more familiar contexts.
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item With real numbers, one of the important purposes of division is that it lets you solve equations like $ax=b$ for $x$. Solve this by division (difficult!).
 \item If division didn't exist, you could still solve this equation by multiplication. The number you'd multiply by is called the ``multiplicative inverse'' of $a$. What is the property that defines this special number?
@@ -22,6 +24,7 @@ Now that we've talked about matrix multiplication quite a bit, it's time to star
 \item Is $f(x)=ax$ a one-to-one function for all real $a$? (Hint: Look for the silly exception(s)!)
 \end{enumerate}
 \item Would your answers to the previous numbers change if you were talking about complex numbers instead of just real numbers? Why or why not?
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \begin{wrapfigure}{hr}{0.3\textwidth}
@@ -75,6 +78,7 @@ Now, let's consider ``clock arithmetic,'' in which we deal with integers $0$ thr
 As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic modulo $12$.''
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item Find all solutions of $5x\equiv 7$ in clock arithmetic.
 \item Find all solutions of $2x\equiv 6$ in clock arithmetic.
@@ -103,11 +107,13 @@ As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is 
 \item Describe this multiplication group.
 \item What symmetry group is it isomorphic to?
 \end{enumerate}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 Now we've seen how ``division'' (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices. In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item \label{prob:needed_for_matrix_undo3}Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of equations.
 \item \label{prob:needed_for_matrix_undo4}Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$
@@ -129,6 +135,7 @@ $$K^{-1}K\left[\begin{array}{c} x \\ y \end{array}\right]=K^{-1}\left[\begin{arr
 
 What would the left side reduce to?
 \end{enumerate}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 Note that evaluating the right side would only entail simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's computer problems!
@@ -140,6 +147,7 @@ $$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\two
 The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitute $\twomat{a}{b}{c}{d}^{-1}$.
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item \label{prob:why_did_herreshoff_do_this1}Now look at your results from Problem~\ref{prob:needed_for_matrix_undo1} on page~\pageref{prob:needed_for_matrix_undo1}. Multiply the matrices that undid $\twomat{3}{4}{2}{-5}$. Did you get $\frac{1}{23}\twomat{-5}{-4}{-2}{3}$?
 \item \label{prob:why_did_herreshoff_do_this2}Do the same for Problem~\ref{prob:needed_for_matrix_undo2} on page~\pageref{prob:needed_for_matrix_undo2} and Problems~\ref{prob:needed_for_matrix_undo3} and~\ref{prob:needed_for_matrix_undo4} on page~\pageref{prob:needed_for_matrix_undo3}.
@@ -162,6 +170,7 @@ The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitut
 \item For another approach to finding the inverse of a matrix, solve the following for $w,x,y,z$ in terms of $a,b,c,d$ by converting the matrix equations into a set of four linear equations:
 
 $$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 Gauss-Jordan elimination is an effective method we use to find inverses. If a matrix $A$ is invertible, then as we've seen with matrix decomposition, there is a set of steps to reduce it to the identity matrix. Therefore, we have some set of elementary matrices $E_i$ such that
@@ -227,6 +236,7 @@ R_2=R_1+R_2 & 0 & 1 & 2 & 3
 Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end{smallmatrix}\right]$. Let's try this new technique out on some systems of equations.
 
 \begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
 \item Rewrite each system of equations in matrix form. Use your calculator to calculate a matrix inverse, solve the system, and finally, check your answer. Remember to make clear in your work when you have used a calculator.
 \begin{multicols}{3}
 \begin{enumerate}
@@ -251,6 +261,7 @@ Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end
 \end{multicols}%
 \item Find a polynomial of least degree that passes through $(0,3)$, $(1,5)$, $(2,-3)$, $(3,4)$, and $(4,7)$.
 \end{enumerate}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \end{document}
