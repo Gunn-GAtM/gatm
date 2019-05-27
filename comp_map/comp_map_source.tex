@@ -179,28 +179,27 @@ pair B = (4,4);
 pair D = (8,0);
 pair C = B+D;
 
-path a_brace = rotate(20)*shift(0,-0.74)*brace(D,A);
-path angle_mark = arc((0,0), point(A--D,0.25), rotate(20)*point(A--B, 0.25));
-path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20)*point(A--D, 0.25));
+path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
+path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
+path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
 
-A = rotate(20)*A;
-B = rotate(20)*B;
-C = rotate(20)*C;
-D = rotate(20)*D;
+A = rotate(20.0)*A;
+B = rotate(20.0)*B;
+C = rotate(20.0)*C;
+D = rotate(20.0)*D;
 
 draw(A--B--C--D--cycle);
-draw(B--rotate(20)*(4,0));
+draw(B--rotate(20.0)*(4,0));
 
 draw(angle_mark);
 draw(angle_mark2);
-label("$h$", rotate(20)*(4,2),NE);
-label("$b$", rotate(20)*A--B, NW);
+label("$h$", rotate(20.0)*(4,2),NE);
+label("$b$", rotate(20.0)*A--B, NW);
 
 draw(a_brace);
+draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
 
-draw(rotate(20)*((4,0.6)--(3.4,0.6)--(3.4,0)));
-
-label("$a$", a_brace, rotate(20)*S);
+label("$a$", a_brace, rotate(20.0)*S);
 label("$\theta$", angle_mark2, ENE);
 label("$\phi$", angle_mark, ENE);
 

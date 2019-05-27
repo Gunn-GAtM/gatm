@@ -186,7 +186,7 @@ Before, these elementary matrices were stretches, shears and the like. We will r
 
 This last operation is the most powerful and encompasses most of the previous ones. To apply our multiplications easily, we \textbf{augment} a matrix $A$ by juxtaposing it with the identity matrix. Also, we write what row operation we actually did on the left after each step. As shown in the first equation, we have multiplied all the elementary matrices once $A$ has become $I$. But in that process, $I$ will have become $A^{-1}$!
 
-Choosing the steps is a bit of an art, which takes practice. Let's see Gauss-Jordan elimination in action on the matrix $A=\twomat{3}{-4}{-2}{3}$.
+Choosing the steps is a bit of an art, which takes practice. Let's see Gauss-Jordan elimination in action on the matrix $A=\left[\begin{smallmatrix}3 & -4 \\ -2 & 3\end{smallmatrix}\right]$.
 
 We first augment the matrix like so:
 
@@ -202,7 +202,7 @@ $$\left[\begin{array}{cc|cc} 3 & -4 & 1 & 0 \\ -2 & 3 & 0 & 1 \end{array}\right]
 R_2=R_1+R_2 & 1 & -1 & 1 & 1
 \end{blockarray}.$$
 
-We can then get $1$ by multiplying the bottom row by $-1$. The rest of the steps are shown and justified as well:
+We can then get $1$ by multiplying the bottom row by $-1$. The rest of the steps are shown/justified as well:
 \begin{align*}
 &\Longrightarrow
 \begin{blockarray}{c[cc|cc]}
@@ -241,15 +241,15 @@ Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end
 \end{multicols}
 \item You can fit a polynomial to any set of points in the plane, so long as the points pass the Vertical Line Test.
 \begin{enumerate}
-\item What is the least degree polynomial through
-\begin{multicols}{4}
-\begin{enumerate}
+\item What is the least degree polynomial through%
+\begin{multicols}{4}%
+\begin{enumerate}%
 \item One point?
 \item Two points?
 \item Three points?
 \item $n$ points?
-\end{enumerate}
-\end{multicols}
+\end{enumerate}%
+\end{multicols}%
 \item Find a polynomial of least degree that passes through $(0,3)$, $(1,5)$, $(2,-3)$, $(3,4)$, and $(4,7)$.
 \end{enumerate}
 \end{enumerate}
