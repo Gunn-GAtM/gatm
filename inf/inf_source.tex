@@ -6,7 +6,7 @@
 
 \newcounter{inf_problem_i} % for keeping track of which problem we're on
 
-All of the groups we've seen so far are finite in size. We can also construct groups of an infinite size.
+All of the groups we've seen so far are finite in size. We can also construct groups of an infinite size; these are known simply as \textbf{infinite groups}.
 
 A quick review: \textit{iso}- means the same and -\textit{morphic} means form. Two groups are said to be isomorphic if there is a mapping which takes each element of the first group to an element of the second group and vice versa, so that the products of the elements map in the same way.
 
@@ -23,16 +23,16 @@ A quick review: \textit{iso}- means the same and -\textit{morphic} means form. T
 \item Are the two groups isomorphic? How do you know?
 \item What is the period of each element of $D_3$?
 \item What can you say if the sets of the periods of the elements of each group are not the same?
-\item Which subgroups of $C_6$ and $D_3$ are isomorphic?
+\item Which subgroups of the cyclic group $C_6$ and $D_3$ are isomorphic?
 \end{enumerate}
 \item Could an infinite group be isomorphic to a finite group?
 \item Do you think all infinite groups are isomorphic to each other? Find a counterexample if you can.
 \setcounter{inf_problem_i}{\value{enumi}}
 \end{enumerate}
 
-If an infinite group was somehow ``bigger'' than the other, they wouldn't be isomorphic.\footnote{Can you think of an example of two groups with the same ``size'' that also aren't isomorphic?} This raises the question: are all infinities equally big?
+If an infinite group was somehow ``bigger'' than another, they wouldn't be isomorphic.\footnote{Can you think of an example of two groups with the same ``size'' that also aren't isomorphic?} This raises the question: are all infinities equally big?
 
-We can formalize the notion of sizes of infinity. Let's say that two infinite sets are of the same size if their elements can be put into a one-to-one correspondence with each other. For example, the positive numbers ${1,2,...}=\mathbb{N}$ and negative numbers ${-1,-2,...}=-\mathbb{N}$ are of the same size, because we have the one-to-one correspondence $\mathbb{N} \ni n\leftrightarrow -n \in \mathbb{N}$. Every element of the positive numbers has exactly one ``partner'' in the negative numbers, and vice versa.
+We can formalize the notion of sizes of infinity. Let's say that two infinite sets are of the same size if their elements can be put into a \textbf{one-to-one correspondence} with each other. For example, the positive numbers ${1,2,...}=\mathbb{N}$ and negative numbers ${-1,-2,...}=-\mathbb{N}$ are of the same size, because we have the one-to-one correspondence $\mathbb{N} \ni n\leftrightarrow -n \in \mathbb{N}$. Every element of the positive numbers has exactly one ``partner'' in the negative numbers, and vice versa.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{inf_problem_i}}
@@ -57,7 +57,7 @@ It turns out that studying infinity involves some strange mathematics. For insta
 
 More surprisingly, we can establish a correspondence between the non-negative rational numbers $\mathbb{Q}^+$ and the natural numbers. Draw the rational numbers in a table as shown in Figure~\ref{fig:rat_ordering_1}, and pair these numbers up with the numbers $1,2,3,$.... You can see that you will eventually list all of the non-negative rational numbers, multiple times, into a correspondence with the natural numbers. To make it one-to-one, only pair the rational numbers that are in simplest form. Here, we pair $2$ with $\frac{1}{1}$ instead of $\frac{0}{2}$, since $\frac{0}{1}$ is the same number and is already paired with $1$. This correspondence is depicted in Figure~\ref{fig:rat_ordering_2}. This prevents multiple natural numbers from being paired up with the same rational number: the correspondence is now one-to-one.
 
-The real numbers between $0$ and $1$, however, cannot be put into a one-to-one correspondence with $\mathbb{N}$ (see 7c). We will prove this with contradiction. Suppose I told you that I have paired each real number $0 \leq r_k < 1$ with a unique natural number $k$, and vice versa. Then, you can construct a real number $r_\omega$\footnote{Pronounced ``r omega.''} whose $1$\textsuperscript{st} digit (after the decimal point) differs from $r_1$’s, whose $2$\textsuperscript{nd} digit differs from $r_2$’s, and so on. In other words, it differs from $r_n$ in the $n$\textsuperscript{th} digit. We can make better sense of this construction by writing the numbers out in a table, as shown in Figure~\ref{fig:cantor_diag}. Your new number $r_\omega$ is at the bottom; it differs from all the previous numbers in at least one place, so it is a new real number. Therefore, my original list is incomplete, and the correspondence doesn’t exist. This is called Cantor’s diagonal argument, because the differing digits make a diagonal. \footnote{In the diagram, $C_{10}$ is the Champernowne constant, the result of joining all the natural numbers together to make a decimal.} % mfw CHAMPERNOWNE CONSTANT and R OMEGA
+The real numbers between $0$ and $1$, however, cannot be put into a one-to-one correspondence with $\mathbb{N}$ (see 7c). We will prove this with contradiction. Suppose I told you that I have paired each real number $0 \leq r_k < 1$ with a unique natural number $k$, and vice versa. Then, you can construct a real number $r_\omega$\footnote{Pronounced ``r omega.''} whose $1$\textsuperscript{st} digit (after the decimal point) differs from $r_1$’s, whose $2$\textsuperscript{nd} digit differs from $r_2$’s, and so on. In other words, it differs from $r_n$ in the $n$\textsuperscript{th} digit. We can make better sense of this construction by writing the numbers out in a table, as shown in Figure~\ref{fig:cantor_diag}. Your new number $r_\omega$ is at the bottom; it differs from all the previous numbers in at least one place, so it is a new real number. Therefore, my original list is incomplete, and the correspondence doesn’t exist. This is called \textbf{Cantor’s diagonal argument}, because the differing digits make a diagonal. \footnote{In the diagram, $C_{10}$ is the Champernowne constant, the result of joining all the natural numbers together to make a decimal.} % mfw CHAMPERNOWNE CONSTANT and R OMEGA
 
 % I did not do these by hand; they were generated by accessories/scripts/create_rational_correspondence_table.py
 % This command makes the cancelling symbol for the rational <-> natural number correspondence

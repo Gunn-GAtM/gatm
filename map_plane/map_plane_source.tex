@@ -8,7 +8,7 @@ By this time, you should be comfortable with the idea and process of matrix mult
 
 Now we are going to consider $2\times 2$ matrices as operators, which map each point in the plane to another point in the plane. This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
 
-Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The preimage $(2,1)$ is mapped to the image $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}.
+Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
 \begin{figure}
 \begin{minipage}{0.3\textwidth}
@@ -48,10 +48,10 @@ draw(point(between, 0.04) -- point(between, 0.96), Arrow);
 \begin{enumerate}
 \item \begin{enumerate}
 \item Use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on the points $(0,0)$, $(1,0)$, and $(0,1)$. What are their images? Graph them.
-\item The preimage includes two perpendicular unit vectors, $(0,1)$ and $(1,0)$. What is the (i) ratio of the lengths of their images and (ii) angle between the images?
+\item The preimage includes two perpendicular \textbf{unit vectors}, $(0,1)$ and $(1,0)$. What is the (i) ratio of the lengths of their images and (ii) angle between the images?
 \item You can conclude that multiplication by matrices does not, in general, preserve which two quantities between the image and preimage?
 \end{enumerate}
-\item \begin{enumerate}
+\item \label{prob:consolidate_matrix} \begin{enumerate}
 \item Now, use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on each of these points: $(2,1)$, $(1,0)$, $(0,-1)$ and $(-1,-2)$. Do this by consolidating all the points into one matrix, with each point as a column vector, then performing a multiplication:
 $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \left[\begin{array}{cccc}2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2\end{array}\right]
@@ -65,7 +65,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-In Problem 2, you should have noticed that the points of the preimage were collinear, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
+In Problem~\ref{prob:consolidate_matrix}, you should have noticed that the points of the preimage were \textbf{collinear}, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
@@ -87,7 +87,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item Can you find values for $a$, $b$, $c$, and $d$ so that the image does not lie on a unique line? (Hint: all of the points in the image must lie on no line, or on multiple lines.)
 \item Use the distance formula---or some other justification---to answer whether the points in the image are equally spaced.
 \end{enumerate}
-\item There is a point which remains fixed---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
+\item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
 \begin{enumerate}
 \item Solve the above matrix equation for $x$ and $y$ to find the point.
 \item There is a point $Q$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
@@ -96,7 +96,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-Matrix multiplication is a linear transformation. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
+Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
 
 \newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
 
@@ -202,8 +202,8 @@ A' & B' & C' & D' \\
 \end{block}
 \end{blockarray}.$$
 
-This mapping is called a shear\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
-\item What happens to the area of image versus the preimage?
+This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
+\item What happens to the area of the image versus the preimage?
 \item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
 \end{enumerate}
 \item \begin{enumerate}

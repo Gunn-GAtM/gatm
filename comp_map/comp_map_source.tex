@@ -131,7 +131,7 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \item $\twomat{.6}{.8}{.8}{-.6}\twomat{.8}{.6}{.6}{-.8}$
 \end{enumerate}
 \end{multicols}
-\item A linear mapping $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
+\item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
 \item There are two isometries of the plane we have neglected; what are they?
 \item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the results.
 \begin{enumerate}
@@ -145,13 +145,13 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \end{enumerate}
 \item Write a set of matrices which undoes Problems~\ref{prob:matrix_prod_start} to~\ref{prob:matrix_prod_end}. You will find one of them impossible to undo; explain why.
 \item \begin{enumerate}
-\item Find the height of the parallelogram in Figure~\ref{parallelogram_generic} in terms of $b$ and a trig function in terms of $\varphi$.
+\item Find the height of the parallelogram in Figure~\ref{fig:parallelogram_generic} in terms of $b$ and a trig function in terms of $\varphi$.
 \item Find the area of the parallelogram in terms of $a$, $b$, and $\varphi$.
 \end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 \begin{figure}[h]
-\begin{minipage}{0.3\textwidth}
+\begin{minipage}{0.33\textwidth}
 \begin{asy}[width=\textwidth]
 pair A = (0,0);
 pair B = (4,4);
@@ -175,7 +175,7 @@ label("$a$", a_brace, S);
 \caption{A parallelogram.}
 \label{fig:parallelogram_generic}
 \end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
+\begin{minipage}{0.33\textwidth}
 \begin{asy}[width=\textwidth]
 pair A = (0,0);
 pair B = (4,4);
@@ -217,7 +217,7 @@ label("$S$", D, ESE);
 \caption{The parallelogram in the $xy$ plane.}
 \label{fig:para_in_xy}
 \end{minipage}
-\begin{minipage}{0.29\textwidth}
+\begin{minipage}{0.33\textwidth}
 \begin{asy}[width=\textwidth]
 import patterns;
 
@@ -248,6 +248,14 @@ filldraw(L0--B--K2--D--cycle, pattern("brick"));
 filldraw(B--L1--C--cycle, pattern("brick"));
 filldraw(D--C--L3--cycle, pattern("brick"));
 
+label("$(a,b)$", B, NW);
+label("$(c,d)$", D, SE);
+label("$(a+c,b+d)$", C, N);
+
+dot(B);
+dot(D);
+dot(C);
+
 \end{asy}
 \caption{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
 \label{fig:para_scenario}
@@ -263,7 +271,7 @@ filldraw(D--C--L3--cycle, pattern("brick"));
 \item Your matrix has two diagonals, $\overline{PR}$ and $\overline{QS}$. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
 \item Use angle addition formulas to simplify your answer.
 \item You should find some relationship between your answers to problems 11a and 11d. What is it?
-\item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the determinant of the matrix, written $\det M$. What does it measure?
+\item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=ad-bc$. What does it measure?
 \item Find a matrix which produces a rotation. What is its determinant?
 \item Find a matrix that produces a reflection.
 \begin{enumerate}
@@ -312,22 +320,22 @@ We will look at the image of the unit square under an arbitrary transformation a
 \item If $a=0$, rotate the whole matrix $90^\circ$ so that $a$ becomes nonzero.
 \item Stretch or shrink your matrix along the $x$ axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero.
 
-$$\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d} = \twomat{1}{\frac{c}{a}}{\frac{b}{a}}{\frac{d}{a}}.$$
+$$\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d} = \twomat{1}{\frac{c}{a}}{b}{d}.$$
 
 \item Shear the vector $\twovec{1}{b}$ to $\twovec{1}{0}$ so that it is parallel to the $x$ axis.
 
 \begin{align*}
-\twomat{1}{0}{-\frac{b}{a}}{1}\twomat{1}{\frac{c}{a}}{\frac{b}{a}}{\frac{d}{a}} &= \twomat{1}{\frac{c}{a}}{0}{-\frac{bc}{a^2}+\frac{d}{a}} \\
-&= \twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a^2}}
+\twomat{1}{0}{-b}{1}\twomat{1}{\frac{c}{a}}{b}{d} &= \twomat{1}{\frac{c}{a}}{0}{-\frac{bc}{a}+d} \\
+&= \twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a}}
 \end{align*}
 
 \item Stretch in the $y$ direction to make the bottom right entry $1$:
 
-$$\twomat{1}{0}{0}{\frac{a^2}{ad-bc}}\twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a^2}}=\twomat{1}{\frac{ac}{ad-bc}}{0}{1}.$$
+$$\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a}}=\twomat{1}{\frac{c}{a}}{0}{1}.$$
 
 \item Shear in the $x$ direction to make the top right entry $0$:
 
-$$\twomat{1}{-\frac{ac}{ad-bc}}{0}{1}\twomat{1}{\frac{ac}{ad-bc}}{0}{1}=\twomat{1}{0}{0}{1}.$$
+$$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{\frac{c}{a}}{0}{1}=\twomat{1}{0}{0}{1}.$$
 \end{enumerate}
 
 This process applied to the matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=\left[\begin{smallmatrix}2 & 3 \\ 4 & 1 \end{smallmatrix}\right]$, is shown in Figure~\ref{fig:undo_matrix}.
@@ -469,7 +477,7 @@ $$\Longrightarrow \twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\t
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
+This process is known as \textbf{matrix decomposition}, because you are decomposing the matrix into simpler pieces. Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}

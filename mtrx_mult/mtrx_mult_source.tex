@@ -8,11 +8,11 @@
 \newcommand{\colind}[2]{\displaystyle\smash{\mathop{#1}^{\raisebox{.5\normalbaselineskip}{$#2$}}}}
 \newcommand{\rowind}[1]{\mbox{$#1$}}
 
-You've all seen a bunch of numbers organized in a table. Sometimes a table is just a table, but sometimes we will call it a matrix.
+You've all seen a bunch of numbers organized in a table. Sometimes a table is just a table, but sometimes we will call it a \textbf{matrix}.
 
 What makes a matrix different from a table? Although they encapsulate the same information, we can meaningfully \textit{multiply} matrices. This lesson's purpose is to explain why the matrix multiplication rule makes sense and when it is useful.
 
-Consider a region with four towns, creatively named $A,B,C,D$. There are modes of transport between these towns; a path can go from a town to any town, including the same town. These paths are shown in Figure~\ref{fig:four_town_scenario}. At each ``step,'' you can take any path from one town to the next. For example, you might start on $A$, then take either of the two paths to $D$. But you cannot start on $D$ and go directly to $B$. When there is more than one path between nodes, we could also just draw a line and label it with a number: this is shown in Figure~\ref{fig:scenario_with_nums}. Note how each town has a ``path'' going to itself. Taking this means you don't go anywhere.
+Consider a region with four towns, creatively named $A,B,C,D$. There are modes of transport between these towns; a path can go from a town to any town, including the same town. These paths are shown in Figure~\ref{fig:four_town_scenario}. At each ``step,'' you can take any path from one town to the next. For example, you might start on $A$, then take either of the two paths to $D$. But you cannot start on $D$ and go directly to $B$. When there is more than one path between towns, we could also just draw a line and label it with a number: this is shown in Figure~\ref{fig:scenario_with_nums}. Note how each town has a ``path'' going to itself. Taking this means you don't go anywhere.
 
 \begin{asydef}
 pair A = (0,1);
@@ -114,7 +114,7 @@ draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
 \end{minipage}
 \end{figure}
 
-Let us consider the \textbf{transportation matrix}, also known as an adjacency matrix, in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$. This last fact is reflected in the matrix: $a_{42}=a_{24}=0$.
+Let us consider the \textbf{transportation matrix}, also known as an \textbf{adjacency matrix}, in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$. This last fact is reflected in the matrix: $a_{42}=a_{24}=0$.
 % huge thanks to https://tex.stackexchange.com/questions/331691/how-can-i-get-a-matrix-with-row-and-column-labels-that-can-also-be-aligned-with
 %print(' \\\\\n'.join(" & ".join("a_{%s%s}" % (i,j) for j in range(1, 5)) for i in range(1,5)) + " \\\\" )
 
@@ -143,7 +143,7 @@ a_{41} & a_{42} & a_{43} & a_{44} \\
   }
 $$
 
-This matrix is \textit{symmetric}, meaning there are no one-way paths. In mathematical terms, we have $a_{ij}=a_{ji}$ for all valid $i,j$. In visual terms, the matrix is symmetric about the \textbf{main diagonal}, going from top left to bottom right. Furthermore, the main diagonal is all $1$s, because we allow staying in the town you start in.
+This matrix is \textbf{symmetric}, meaning there are no one-way paths. In mathematical terms, we have $a_{ij}=a_{ji}$ for all valid $i,j$. In visual terms, the matrix is symmetric about the \textbf{main diagonal}, going from top left to bottom right. Furthermore, the main diagonal is all $1$s, because we allow staying in the town you start in.
 
 Suppose there's a shuttle bus that only goes one way, from town $A$ to $B$ to $C$ to $D$ and then back to $A$ again. The transportation matrix for this scenario---again, allowing staying still---is shown in Figure~\ref{fig:adjacency_b}.
 
@@ -217,7 +217,7 @@ draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
 \end{minipage}
 \end{figure}
 
-Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix would therefore be directed; it would have arrows indicating the direction of each street. This is shown in Figure~\ref{fig:directed}.
+Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix would therefore be ``directed''; it would have arrows indicating the direction of each street. This is shown in Figure~\ref{fig:directed}.
 
 Now, suppose you wanted to know the total number of ways to go from town to town in one step, by path or by bus. To find the total, you add the matrices in the obvious way: term by term, or $(a+b)_{ij}=a_{ij}+b_{ij}$. This is shown in Figure~\ref{fig:mtrx_add}.
 
@@ -295,12 +295,12 @@ Observe the boxed numbers. To get $139$, we multiplied the boxed rows and column
 
 $${<} 4, 5, 6{>} \bullet {<} 7, 9, 11{>} = 139.$$
 
-In our example, to find the top left number $a_{11}$, we'd do ${<}1,2,3{>} \bullet {<}7,9,11{>}$. In general, to find $(XY)_{ij}$, we find the dot product of the $i$th row vector of $X$ and $j$th column vector of $Y$.
+In our example, to find the top left number $a_{11}$, we'd do ${<}1,2,3{>} \bullet {<}7,9,11{>}$. In general, to find $(XY)_{ij}$, we find the dot product of the $i$th \textbf{row vector} of $X$ and $j$th \textbf{column vector} of $Y$.
 
 With the ability to multiply matrices more easily, let's try some problems.
 
 \begin{enumerate}
-\item The three-post snap group can be represented by a set of graphs, each with three nodes. The posts are the towns and the elastic bands are the roads. For example, \label{prob:adjacency_matrices_map_subgroup}
+\item The three-post snap group can be represented by a set of graphs, each with three towns. The posts are the towns and the elastic bands are the roads. For example, \label{prob:adjacency_matrices_map_subgroup}
 
 $$A=\rotatebox[origin=c]{90}{from}\;\,
   \begin{array}{@{}c@{}}
@@ -361,7 +361,7 @@ $$
 \setcounter{mtrx_mult_problem_i}{\value{enumi}}
 \end{enumerate}
 
-Review of sigma notation! Sigma notation represents a sum. It is defined as
+It's time for a review of \textbf{sigma notation}! Sigma notation represents a sum. It is defined as
 $$S=\sum_{k=m}^{n} f(k)=f(m)+f(m+1)+\cdots + f(n),$$
 for function $f$ and integers $m,n$. $k$ is the index over which the summation is taking place. It takes on all integer values between $m$ and $n$, inclusive. You might read the sum portion like so: ``The summation of $f$ of $k$ from $k$ equals $m$ to $n$ is equal to $f$ equals $S$.''
 
@@ -451,9 +451,9 @@ The bakery wants to know how much the ingredients cost for one batch of bread, a
 \item For a party, Cook's provides $10$ Captain's orders and $5$ Regular orders. Write this as a matrix and use matrix multiplication to find how many pieces of fish and orders of chips are provided.
 \item Now use matrix multiplication to find out the cost of the party.
 \end{enumerate}
-\item We will find matrices to be particularly useful for solving systems of linear equations. For instance, $$\begin{cases}3x+4y&=5 \\ 6x+4y &= 8\end{cases}\quad\longleftrightarrow\quad\left[\begin{array}{cc} 3 & 4 \\ 6 & 7 \\ \end{array}\right]\left[\begin{array}{c} x \\ y \\ \end{array}\right]=\left[\begin{array}{c} 5 \\ 8 \\ \end{array}\right].$$ Rewrite $$\begin{cases}2x+3y+4z&=5 \\ 5x-4y+2z &= 2 \\ x+2y &= 7\end{cases}$$ in this way.
+\item We will find matrices to be particularly useful for solving systems of linear equations. For instance, $$\begin{cases}3x+4y&=5 \\ 6x+4y &= 8\end{cases}\quad\longleftrightarrow\quad\left[\begin{array}{cc} 3 & 4 \\ 6 & 7 \\ \end{array}\right]\left[\begin{array}{c} x \\ y \\ \end{array}\right]=\left[\begin{array}{c} 5 \\ 8 \\ \end{array}\right].$$ Rewrite $$\begin{cases}2x+3y+4z&=5 \\ 5x-4y+2z &= 2 \\ x+2y &= 7\end{cases}$$ as a matrix equation in this way.
 \item \begin{enumerate}
-\item What is the transpose of the matrix $M$ from the previous problem?
+\item What is the transpose of the $3\times 3$ matrix $M$ from the previous problem?
 \item Use $M^T$ to rewrite the system in the previous problem.
 \item What is the transpose of the transpose matrix, $(M^T)^T$?
 \end{enumerate}

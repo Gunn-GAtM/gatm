@@ -11,7 +11,7 @@ Now that we've talked about matrix multiplication quite a bit, it's time to star
 \setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item With real numbers, one of the important purposes of division is that it lets you solve equations like $ax=b$ for $x$. Solve this by division (difficult!).
-\item If division didn't exist, you could still solve this equation by multiplication. The number you'd multiply by is called the ``multiplicative inverse'' of $a$. What is the property that defines this special number?
+\item If division didn't exist, you could still solve this equation by multiplication. The number you'd multiply by is called the ``\textbf{multiplicative inverse}'' of $a$. What is the property that defines this special number?
 \item The multiplicative inverse of $a$ is often written $a^{-1}$. Why does this notation make sense?
 \end{enumerate}
 \item \begin{enumerate}
@@ -73,9 +73,9 @@ label("$+7$", motion_arc, NW);
 \vspace{-2cm} % due to the annoying wrap figure adding extra white space at the bottom
 \end{wrapfigure}
 
-Now, let's consider ``clock arithmetic,'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.
+Now, let's consider ``\textbf{clock arithmetic},'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.
 
-As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic modulo $12$.''
+As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -110,7 +110,7 @@ As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is 
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-Now we've seen how ``division'' (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices. In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
+Now we've seen how ``division'' (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices! In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -173,7 +173,7 @@ $$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-Gauss-Jordan elimination is an effective method we use to find inverses. If a matrix $A$ is invertible, then as we've seen with matrix decomposition, there is a set of steps to reduce it to the identity matrix. Therefore, we have some set of elementary matrices $E_i$ such that
+\textbf{Gauss-Jordan elimination} is an effective method we use to find inverses. If a matrix $A$ is invertible, then as we've seen with matrix decomposition, there is a set of steps to reduce it to the identity matrix. Therefore, we have some set of elementary matrices $E_i$ such that
 
 $$E_nE_{n-1}\cdots E_2E_1A=I.$$
 
@@ -181,7 +181,7 @@ Multiplying by $A^{-1}$ on the right, we get
 
 $$E_nE_{n-1}\cdots E_2E_1I=A^{-1}.$$
 
-Before, these elementary matrices were stretches, shears and the like. We will restrict ourselves to matrices like $\twomat{a}{0}{0}{1}$, which multiply a row by $a$, or matrices like $\twomat{1}{0}{1}{1}$, which adds the first row to the second. That's because instead of thinking ``matrix so and so,'' we simply have to think ``multiply this row by $a$'' or ``add these rows together,'' content that they are valid matrix multiplications. Some valid row operations are as follows:
+Before, these elementary matrices were stretches, shears and the like. We will restrict ourselves to matrices like $\twomat{a}{0}{0}{1}$, which multiply a row by $a$, or matrices like $\twomat{1}{0}{2}{1}$, which adds a multiple of the first row to the second. That's because instead of thinking of a matrix, we simply have to think ``multiply this row by $a$'' or ``add these rows together,'' content that they are valid matrix multiplications. Some valid row operations are as follows:
 
 \begin{itemize}
 \item Swapping rows $i$ and $j$
