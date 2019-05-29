@@ -10,7 +10,7 @@
 
 \usepackage{anyfontsize}
 
-\usepackage[scaled]{helvet}
+\usepackage[scaled]{helvet} % Helvetica again, for consistency
 \renewcommand\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
 
@@ -35,46 +35,38 @@
 		\vspace*{-2.5in}
 		\hspace*{4.25in}
        	\begin{asy}
-			//size(540);
-			size(480);
+			size(480); // Sets the size of the cover page figure
 
 			pair cis(real theta) { // Gives points on the unit circle
 				return (cos(theta), sin(theta));
 			}
 
-
        		pair A = cis(-pi/6), B = cis(pi/2), C = cis(7*pi/6); // Starting triangle corners
 
 		    for (int i = 0; i < 4; ++i) { // Draws the triangles and dots
-			    draw(A--B--C--cycle);
+			    draw(A--B--C--cycle); // the triangle
 
-			    dot(A);
+			    dot(A); // the dots
 			    dot(B);
 			    dot(C);
 
-		    	if (i < 3) {
-					A *= -2; B *= -2; C *= -2; // Scales A,B,C to the next triangle
+		    		if (i < 3) {
+					A *= -2; B *= -2; C *= -2; // Scales A, B, C through (0,0) to the next triangle
 				}
 		    }
 
 		    dot((0,0)); // Center dot
 
-		    draw(A--(-1/2 * A), dashed);
+		    draw(A--(-1/2 * A), dashed); // draw the transformation between the current triangle and previous
 		    draw(B--(-1/2 * B), dashed);
 		    draw(C--(-1/2 * C), dashed);
 		    
-		    draw(circle((0,0), 8));
-
-			//label("{\bfseries \fontsize{36}{48} \selectfont A Geometric Approach to}", -118/256 * B, N); // preferably i wouldn't have this so arbitrary, this -59/128 is to position it perfectly on the triangle.
-		    //label("{\bfseries \fontsize{84}{112} \selectfont Matrices}", 91/256 * B);
-		    //label("{\bfseries \fontsize{18}{24} \selectfont Peter Herreshoff \textit{et al.}}", 11/16 * B);
-		    //label("{\bfseries \fontsize{12}{16} \selectfont Gunn High School Analysis H}", 12/16 * B);
-
+		    draw(circle((0,0), 8)); // draw the unit circle surrounding the whole thing
        	\end{asy}
        	
     \end{center}
 
-	\vspace*{\fill}
+	\vspace*{\fill} % along with top copy of this: centers the page
 \end{titlepage}
 
 
