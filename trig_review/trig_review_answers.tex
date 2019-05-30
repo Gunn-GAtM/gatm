@@ -2,6 +2,8 @@
 
 \begin{document}
 
+\allowdisplaybreaks
+
 \section{Trigonometry Review}
 
 \begin{figure}
@@ -256,7 +258,7 @@ D_1^2&=D_2^2 \\
 $$\arraycolsep=1pt\begin{array}{rlrlrl}
 \sin(A+B)&=\qquad\qquad\phantom{.}&\sin(A-B) &=\qquad\qquad\phantom{.}&\cos(A+B) &= \\
 \tan(A+B)&= &\tan(A-B) &= &\sin(2A) &= \\
-\cos(2A)&= &\tan(2A) &= &\sin(\frac{A}{2}) &= \\
+\cos(2A)&= &\tan(2A) &= &\sin\left(\frac{A}{2}\right) &= \\
 \cos\left(\frac{A}{2}\right)&= &\tan\left(\frac{A}{2}\right) &= & & \\
 \end{array}$$
 \end{outer_problem}
@@ -264,27 +266,87 @@ $$\arraycolsep=1pt\begin{array}{rlrlrl}
 You should probably memorize these for convenience.
 
 \renewcommand{\arraystretch}{1.1}
-$$\arraycolsep=1pt\begin{array}{rlrlrl}
-\sin(A+B)&= \sin A \cos B + \cos A \sin A &\sin(A-B) &= \sin A \cos B - \cos A \sin B &\cos(A+B) &= \\
-\tan(A+B)&= &\tan(A-B) &= &\sin(2A) &= \\
-\cos(2A)&= &\tan(2A) &= &\sin(\frac{A}{2}) &= \\
-\cos\left(\frac{A}{2}\right)&= &\tan\left(\frac{A}{2}\right) &= & & \\
-\end{array}$$
+\begin{align*}
+\sin(A+B)&= \sin A \cos B + \cos A \sin A \\
+\sin(A-B) &= \sin A \cos B - \cos A \sin B \\
+\cos(A+B) &= \cos A \cos B - \sin A \sin B \\
+\tan(A+B)&= \frac{\tan A + \tan B}{1-\tan A\tan B}\\
+\tan(A-B) &= \frac{\tan A - \tan B}{1+\tan A\tan B}\\
+\sin(2A) &= 2\sin A\cos A\\
+\cos(2A)&= 2\cos^2 A - 1 = 1 - 2\sin^2 A = \cos^2 A - \sin^2 A \\
+\tan(2A) &= \frac{2\tan A}{1-\tan^2 A}\\
+\sin\left(\frac{A}{2}\right) &= \pm\sqrt{\frac{1-\cos A}{2}}\\
+\cos\left(\frac{A}{2}\right)&= \pm\sqrt{\frac{1+\cos A}{2}}\\
+\tan\left(\frac{A}{2}\right) &= \frac{\sin A}{1+\cos A} = \frac{1-\cos A}{\sin A}
+\end{align*}
 
 \begin{outer_problem}
 \item Let's review complex numbers and DeMoivre's theorem.
 \end{outer_problem}
 
 \begin{inner_problem}
+\setcounter{enumi}{0}
 \item Recall that you can write a complex number both in Cartesian and polar forms. Let
 
 $$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
 
 What is $r$ in terms of $a$ and $b$?
+\end{inner_problem}
+
+$r$ is just the distance to the origin from $a+bi$. Draw a right triangle as shown in Figure~\ref{fig:a_plus_b_i}. By the pythagorean theorem, $r=\sqrt{a^2+b^2}$.
+
+\begin{figure}[h]
+\centering
+\begin{asy}[width=0.5\textwidth]
+pair Z = (4,3);
+pair O = (0,0);
+pair T = (4,0);
+
+draw((-1,0)--(5,0), Arrow);
+draw((0,-1)--(0,4), Arrow);
+label("$x$", (5,0), E);
+label("$y$", (0,4), N);
+
+draw(O--Z);
+draw(O--T--Z, dashed);
+label("$z=a+bi$", Z, NW);
+label("$a$", O--T, S);
+label("$b$", T--Z, E);
+label(rotate(atan2(3,4) * 180 / pi)*"$\sqrt{a^2+b^2}$", O--Z, NW);
+
+dot(Z);
+\end{asy}
+\caption{$a+bi$ in the complex plane.}
+\label{fig:a_plus_b_i}
+\end{figure}
+
+\begin{inner_problem}
 \item Multiply $(a+bi)(c+di)$ out using FOIL.
+\end{inner_problem}
+
+\begin{align*}
+(a+bi)(c+di)&=ac+adi+bci+(bi)(di) \\
+&= ac + (ad + bc)i - bd \\
+&= ac - bd + (ad + bc)i.
+\end{align*}
+
+\begin{inner_problem}
 \item Convert the two multiplicands\footnote{This is the word for parts of a multiplication! So for example, if $a\cdot b=c$, then $a$ and $b$ are the multiplicands.} to polar form, noting that the two lengths and angles are different numbers. Call them $r_1(\cos\theta + i\sin\theta)$ and $r_2(\cos\phi + i\sin\phi)$.
+\end{inner_problem}
+
+We have $r_1=\sqrt{a^2+b^2}$ and $\theta=\tan^{-1}\left(\frac{b}{a}\right)\quad$\footnote{You can get this from drawing a right triangle.}; similarly, $r_2=\sqrt{c^2+d^2}$ and $\phi=\tan^{-1}\left(\frac{d}{c}\right)$.
+
+\begin{inner_problem}
 \item Multiply them, and use your results from Problems 3c and 3d to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
-\item Use part (c) to simplify $(\sqrt{3}+i)^{18}$.
+\end{inner_problem}
+
+\begin{align*}
+r_1(\cos\theta + i\sin\theta)r_2(\cos\phi + i\sin\phi) &= r_1r_2(\cos\theta\cos\phi - \sin\theta\sin\phi + i(\sin\theta\cos\phi + \cos\theta\sin\phi)) \\
+&= r_1r_2(\cos(\theta+\phi) + i \sin(\theta+\phi)).
+\end{align*}
+
+\begin{inner_problem}
+\item Use part (d) to simplify $(\sqrt{3}+i)^{18}$.
 \end{inner_problem}
 
 \begin{outer_problem}
