@@ -312,8 +312,8 @@ Let's study the snap group and characterize its properties.
 				size(0, 60);
 
 				for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
-				int[] elem = {i};
-				drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // TERNARY OPERATOR used to make them into a grid
+					int[] elem = {i};
+					drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // TERNARY OPERATOR used to make them into a grid
 				}
 			\end{asy}
 
