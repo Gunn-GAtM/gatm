@@ -49,11 +49,11 @@
 \newcounter{problem_ii}
 
 \newlist{outer_problem}{enumerate}{1}
-\setlist*[outer_problem]{resume=outer,label=\arabic*.}
+\setlist*[outer_problem]{resume=outer,label=\arabic*.,ref=\arabic*}
 \newlist{inner_problem}{enumerate}{1}
-\setlist*[inner_problem]{resume=inner,label=(\alph*)}
+\setlist*[inner_problem]{resume=inner,label=(\alph*),ref=\alph*}
 \newlist{iinner_problem}{enumerate}{1}
-\setlist*[iinner_problem]{resume=iinner,label=\roman*.}
+\setlist*[iinner_problem]{resume=iinner,label=\roman*.,ref=\roman*}
 
 \begin{document}
 \pagenumbering{gobble}
