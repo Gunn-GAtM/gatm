@@ -284,8 +284,7 @@ You should probably memorize these for convenience.
 \item Let's review complex numbers and DeMoivre's theorem.
 \end{outer_problem}
 
-\begin{inner_problem}
-\setcounter{enumi}{0}
+\begin{inner_problem}[start=1]
 \item Recall that you can write a complex number both in Cartesian and polar forms. Let
 
 $$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
@@ -349,20 +348,154 @@ r_1(\cos\theta + i\sin\theta)r_2(\cos\phi + i\sin\phi) &= r_1r_2(\cos\theta\cos\
 \item Use part (d) to simplify $(\sqrt{3}+i)^{18}$.
 \end{inner_problem}
 
+We have $\sqrt{3}+i=r(\cos\theta + i\sin\theta) = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)$.
+
+\begin{align*}
+(2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right))^{18} &= 2^{18} \cdot \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)^{18} \\
+&= 2^{18}\cdot \underbrace{\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)\cdots \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)}_{18\text{ copies}} \\
+&= 2^{18}\cdot \left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right) \underbrace{\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)\cdots \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)}_{16\text{ copies}} \\
+&= \vdots \\
+&= 2^{18}\cdot \left(\cos 3\pi + i\sin 3\pi\right) \\
+&= 2^{18}\cdot -1 \\
+&= -2^{18}. \\
+\end{align*}
+
 \begin{outer_problem}
 \item Here is a review of 2D rotation.
-\begin{enumerate}
-\item Remember that we can graph complex numbers as 2D ordered pairs in the complex plane. Now, consider the complex number $z=\cos \theta + i\sin\theta$, where $\theta$ is fixed. What is the magnitude of $z$?
-\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ counterclockwise by the angle $\theta$ around the origin. What if we wanted to rotate clockwise by $\theta$ instead?
-\end{enumerate}
-\item Rotate the following conics by (i) $30^\circ$, (ii) $45^\circ$, and (iii) $\theta$:
-\begin{multicols}{3}
-\begin{enumerate}
-\item $x^2-y^2=1$
-\item $\frac{x^2}{16}-\frac{y^2}{9}=1$
-\item $y^2=4Cx$
-\end{enumerate}
-\end{multicols}
 \end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Remember that we can graph complex numbers as 2D ordered pairs in the complex plane. Now, consider the complex number $z=\cos \theta + i\sin\theta$, where $\theta$ is fixed. What is the magnitude of $z$?
+\end{inner_problem}
+
+We have $$|z|=\sqrt{\cos^2\theta + \sin^2\theta}=\sqrt{1}=1.$$
+
+\begin{inner_problem}
+\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ counterclockwise by the angle $\theta$ around the origin. What if we wanted to rotate clockwise by $\theta$ instead?
+\end{inner_problem}
+
+We can multiply by the conjugate of $z$, since
+
+$$\overline{z}=\cos\theta - i\sin\theta = \cos-\theta + i\sin-\theta.$$
+
+Thus, the operation is $\overline{z}\cdot (x+yi)$ to rotate clockwise by $\theta$.
+
+\begin{outer_problem}
+\item Rotate the following conics by (i) $30^\circ$, (ii) $45^\circ$, and (iii) $\theta$:
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $x^2-y^2=1$
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $30^\circ$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos 30^\circ - y\sin 30^\circ=\frac{\sqrt{3}}{2}x-\frac{y}{2}$ and $y'=x\sin 30^\circ + y\cos 30^\circ=\frac{x}{2}+\frac{\sqrt{3}}{2}y$:
+
+\begin{align*}
+x'^2-y'^2&=1 \\
+\left(\frac{\sqrt{3}}{2}x-\frac{y}{2}\right)^2 - \left(\frac{x}{2}+\frac{\sqrt{3}}{2}y\right)^2 &= 1 \\
+x^2/2 - sqrt(3) x y - y^2/2 &= 1
+\end{align*}
+
+\begin{iinner_problem}
+\item $45^\circ$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos 45^\circ - y\sin 45^\circ=\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y$ and $y'=x\sin 45^\circ + y\cos 45^\circ=\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y$:
+
+\begin{align*}
+x'^2-y'^2 &= 1 \\
+\left(\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y\right)^2 - \left(\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y\right)^2 &= 1 \\
+-2xy &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $\theta$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos \theta - y\sin \theta$ and $y'=x\sin \theta + y\cos \theta$:
+
+\begin{align*}
+x'^2-y'^2&=1 \\
+(x \cos \theta - y\sin \theta)^2 - (x\sin \theta + y\cos \theta)^2 &= 1. \\
+\end{align*}
+
+\begin{inner_problem}
+\item $\frac{x^2}{16}-\frac{y^2}{9}=1.$
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $30^\circ$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos 30^\circ - y\sin 30^\circ=\frac{\sqrt{3}}{2}x-\frac{y}{2}$ and $y'=x\sin 30^\circ + y\cos 30^\circ=\frac{x}{2}+\frac{\sqrt{3}}{2}y$:
+
+\begin{align*}
+\frac{x'^2}{16}-\frac{y'^2}{9} &= 1 \\
+\frac{\left(\frac{\sqrt{3}}{2}x-\frac{y}{2}\right)^2}{16} - \frac{\left(\frac{x}{2}+\frac{\sqrt{3}}{2}y\right)^2}{9} &= 1 \\
+\frac{1}{576} (11 x^2 - 50 \sqrt{3} x y - 39 y^2) &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $45^\circ$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos 45^\circ - y\sin 45^\circ=\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y$ and $y'=x\sin 45^\circ + y\cos 45^\circ=\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y$:
+
+\begin{align*}
+\frac{x'^2}{16}-\frac{y'^2}{9} &= 1 \\
+\frac{\left(\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y\right)^2}{16} - \frac{\left(\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y\right)^2}{9} &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $\theta$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos \theta - y\sin \theta$ and $y'=x\sin \theta + y\cos \theta$:
+
+\begin{align*}
+\frac{x'^2}{16}-\frac{y'^2}{9} &= 1 \\
+\frac{\left(x \cos \theta - y\sin \theta\right)^2}{16} - \frac{\left(x\sin \theta + y\cos \theta\right)^2}{9} &= 1.
+\end{align*}
+
+\begin{inner_problem}
+\item $y^2=4Cx$
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $30^\circ$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos 30^\circ - y\sin 30^\circ=\frac{\sqrt{3}}{2}x-\frac{y}{2}$ and $y'=x\sin 30^\circ + y\cos 30^\circ=\frac{x}{2}+\frac{\sqrt{3}}{2}y$:
+
+\begin{align*}
+y'^2&=4Cx' \\
+\left(\frac{x}{2}+\frac{\sqrt{3}}{2}y\right)^2 &= 4C\left(\frac{\sqrt{3}}{2}x-\frac{y}{2}\right).
+\end{align*}
+
+\begin{iinner_problem}
+\item $45^\circ$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos 45^\circ - y\sin 45^\circ=\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y$ and $y'=x\sin 45^\circ + y\cos 45^\circ=\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y$:
+
+\begin{align*}
+y'^2&=4Cx' \\
+\left(\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y\right)^2 &= 4C\left(\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y\right).
+\end{align*}
+
+\begin{iinner_problem}
+\item $\theta$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos \theta - y\sin \theta$ and $y'=x\sin \theta + y\cos \theta$:
+
+\begin{align*}
+y'^2&=4Cx' \\
+\left(x \cos \theta - y\sin \theta\right)^2 &= 4C\left(x\sin \theta + y\cos \theta\right).
+\end{align*}
 
 \end{document}
