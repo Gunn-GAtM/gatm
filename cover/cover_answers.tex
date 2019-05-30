@@ -1,0 +1,75 @@
+\documentclass[11pt, a4paper]{article}
+% 11 point font, A4-sized paper
+
+\usepackage[utf8]{inputenc}
+% Specifies that the input is UTF-8
+
+\usepackage[margin=.2in]{geometry}
+
+\usepackage[inline]{asymptote}
+
+\usepackage{anyfontsize}
+
+\usepackage[scaled]{helvet} % Helvetica again, for consistency
+\renewcommand\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\begin{document}
+
+\begin{titlepage}
+	% Title page
+	\vspace*{\fill}
+
+    \begin{center}
+
+        % Cover page figure
+		
+		\begin{flushleft}
+			\fontsize{32}{32}\selectfont{\textbf{A Geometric Approach\\To Matrices}}\\
+			\vspace{0.2in}
+			\fontsize{24}{24}\selectfont{\textbf{Answer Key}}\\
+			\vspace{0.5in}
+			\fontsize{16}{16}\selectfont{\textbf{Timothy Herchen}\\Henry M. Gunn High School\\Analysis Honors}
+		\end{flushleft}
+	
+		\vspace*{-2.5in}
+		\hspace*{4.25in}
+       	\begin{asy}
+			size(480); // Sets the size of the cover page figure
+
+			pair cis(real theta) { // Gives points on the unit circle
+				return (cos(theta), sin(theta));
+			}
+
+       		pair A = cis(-pi/6), B = cis(pi/2), C = cis(7*pi/6); // Starting triangle corners
+
+		    for (int i = 0; i < 4; ++i) { // Draws the triangles and dots
+			    draw(A--B--C--cycle); // the triangle
+
+			    dot(A); // the dots
+			    dot(B);
+			    dot(C);
+
+		    		if (i < 3) {
+					A *= -2; B *= -2; C *= -2; // Scales A, B, C through (0,0) to the next triangle
+				}
+		    }
+
+		    dot((0,0)); // Center dot
+
+		    draw(A--(-1/2 * A), dashed); // draw the transformation between the current triangle and previous
+		    draw(B--(-1/2 * B), dashed);
+		    draw(C--(-1/2 * C), dashed);
+		    
+		    draw(circle((0,0), 8)); // draw the unit circle surrounding the whole thing
+       	\end{asy}
+       	
+    \end{center}
+
+	\vspace*{\fill} % along with top copy of this: centers the page
+\end{titlepage}
+
+
+\end{document}
