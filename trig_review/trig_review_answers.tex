@@ -71,6 +71,133 @@ label("$F$", F, NE);
 \end{minipage}
 \end{figure}
 
+\begin{outer_problem}
+\item Prove the Pythagorean theorem using ``conservation of area.'' Start with Figure~\ref{fig:square_inscribed}.
+\end{outer_problem}
+
+In Figure~\ref{fig:square_inscribed}, the larger square has side length $a+b$. The smaller, nested square has side length $c$. Four copies of the right triangle with side lengths $a,b,c$ are placed around the square. We have
+
+\begin{align*}
+A_{\text{triangles}} + A_{\text{small sq.}} &= A_{\text{big sq.}} & \text{[Conservation of area]} \\
+4A_{\text{triangle}} + A_{\text{small sq.}} &= A_{\text{big sq.}} \\
+4\left(\frac{1}{2}ab\right) + c^2 &= (a+b)^2 & \text{[Areas of triangle, square]} \\
+2ab + c^2 &= a^2+2ab+b^2 & \text{[Expanding]} \\
+c^2 &= a^2+b^2. & \text{Q.E.D.}
+\end{align*}
+
+\begin{outer_problem}
+\item Prove the Pythagorean theorem using a right triangle with an altitude drawn to its hypotenuse, making use of similar right triangles. This is shown in Figure~\ref{fig:pythag_sim_tri}.
+\end{outer_problem}
+
+Let $h=CF$, the length of the altitude to the hypotenuse. $\triangle ACF\sim \triangle ABC$ by AA Similarity because they share an angle and both have a right angle. Therefore, $\frac{AF}{AC}=\frac{AC}{AB}$. Substituting named variables for these lengths, we get $$\frac{AF}{b}=\frac{b}{c}\Longrightarrow AF = \frac{b^2}{c}.$$ Applying the same logic to $\triangle CFB$,
+ we get $\triangle CFB\sim \triangle ABC$, so $\frac{BF}{BC}=\frac{BC}{AB}.$ Substituting, we get $$\frac{BF}{a}=\frac{a}{c} \Longrightarrow BF=\frac{a^2}{c}.$$ Since $F$ is between $A$ and $B$, we have $AB=AF+FB$; substituting our found values for $AF$ and $FB$, we get
+ 
+\begin{align*}
+c=AB &= AF+FB \\
+c &= \frac{b^2}{c}+\frac{a^2}{c} \\
+c^2 &= b^2 + a^2. & \text{Q.E.D.}
+\end{align*}
+
+\begin{outer_problem}
+\item Now you will prove the trig identities.
+\end{outer_problem}
+
+\begin{inner_problem}
+\item Draw and label a right triangle and a unit circle, then write trig definitions for $\cos$, $\sin$, $\tan$, and $\sec$ in terms of your drawing.
+\end{inner_problem}
+
+The scenario is depicted in Figure~\ref{fig:right_tri_unit_circ}. By the definition of sine and cosine, we have $\sin\theta=AP$ and $\cos\theta=OA$. Since $\triangle OAP \sim \triangle OPT$ by AA Similarity, we have $\frac{TP}{OP}=\frac{AP}{OA}$. Substituting known values, we get $$\frac{TP}{1}=\frac{\sin\theta}{\cos\theta}\Longrightarrow TP=\tan\theta.$$ Also, $\triangle OAP \sim \triangle OKS$ by AA, so $\frac{OS}{OK}=\frac{1}{\cos\theta}$. Similarly, we have $$\frac{OS}{1}=\frac{1}{\cos\theta}\Longrightarrow OS=\sec\theta.$$ Finally, as an alternate interpretation of $\tan$, we have $\frac{KS}{OK}=\frac{AP}{OA}$, so $$\frac{KS}{1}=\frac{\sin\theta}{\cos\theta}\Longrightarrow KS = \tan\theta.$$
+
+\begin{figure}[h]
+\centering
+\begin{asy}[width=0.6\textwidth]
+real angle = 60 * pi / 180;
+
+pair O = (0,0);
+pair P = (cos(angle), sin(angle));
+pair A = (cos(angle), 0);
+
+draw(circle((0,0), 1));
+
+draw(O--A--P--cycle);
+
+dot(O);
+dot(P);
+dot(A);
+
+label("$O$", O, SW);
+label("$A$", A, SE);
+label("$P$", P, E+NE);
+
+draw(arc(O, point(O--A,0.25), P));
+label("$\theta$", O, 3*(cos(angle/2), sin(angle/2)));
+
+real protrude = 2.5;
+
+draw((-protrude/2,0)--(protrude,0),Arrow);
+draw((0,-protrude/2)--(0,protrude/1.5),Arrow);
+
+label("$x$", (protrude,0), E);
+label("$y$", (0,protrude/1.5), N);
+
+path cos_brace = shift(0,-0.05)*brace(A, O);
+draw(cos_brace);
+label("$\sin\theta$", A--P, SE);
+label("$\cos\theta$", cos_brace, S);
+
+label("$1$", O--P, NW);
+
+pair T = (2,0);
+
+draw(P--T);
+
+dot(T);
+label("$T$", T, S);
+
+real ras = 0.1;
+
+draw(shift(P)*rotate(-120)*((0,ras)--(ras,ras)--(ras,0)));
+draw("$\tan\theta$", P--T, ENE);
+
+pair S = 2*P;
+pair K = (1,0);
+
+draw(P--S);
+draw(S--K,dashed);
+
+path sec_brace = shift(rotate(90)*(S-O)/10)*brace(O,S);
+draw(sec_brace);
+
+label("$\tan\theta$", S--K, E);
+label("$\sec\theta$", sec_brace, 2*W+NW);
+
+dot(S);
+label("$S$", S, NE);
+
+dot(K);
+label("$K$", K, SE);
+
+
+\end{asy}
+\caption{The right triangle and unit circle.}
+\label{fig:right_tri_unit_circ}
+\end{figure}
+
+\begin{inner_problem}
+\item Use a right triangle and the definitions of $\sin$ and $\cos$ to find and prove a value for $\sin^2 \theta + \cos^2 \theta$.
+\end{inner_problem}
+
+Referring back to Figure~\ref{fig:right_tri_unit_circ}, focus on $\triangle OAP$. It is a right triangle with side lengths $a=\cos\theta$, $b=\sin\theta$, and $c=1$. By the Pythagorean theorem, we have
+\begin{align*}
+OA^2+AP^2&=OP^2 & \text{[Pythagorean theorem]} \\
+\cos^2\theta + \sin^2\theta &= 1^2 & \text{[Substitution]} \\
+\sin^2\theta + \cos^2\theta &= 1 & \text{[Rearrange]} \\
+\end{align*}
+
+\begin{inner_problem}
+\item Use the picture of the unit circle in Figure~\ref{fig:unit_circle} to find and prove a value for $\cos(A-B)$. Note that $D_1$ and $D_2$ are the same length because they subtend the same size arc of the circle. Set them equal and work through the algebra, using the distance formula and part (b) of this problem.
+\end{inner_problem}
+
 \begin{figure}
 \centering
 \begin{minipage}{0.6\textwidth}
@@ -100,7 +227,7 @@ draw(Ap--Bp);
 label("$(\cos B, \sin B)$", Bp, NW);
 label("$(\cos A, \sin A)$", Ap, SW);
 label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
-label("$0$", (1,0),SE);
+label("$0^\circ$", (1,0),SE);
 
 label("$D_1$", ABp--(1,0), .2*SW);
 label("$D_2$", Ap--Bp, .2*SE);
@@ -111,45 +238,18 @@ label("$D_2$", Ap--Bp, .2*SE);
 \end{minipage}
 \end{figure}
 
-\begin{enumerate}
-\item Prove the Pythagorean theorem using ``conservation of area.'' Start with Figure~\ref{fig:square_inscribed}.
-\end{enumerate}
-
-In Figure~\ref{fig:square_inscribed}, the larger square has side length $a+b$. The smaller, nested square has side length $c$. Four copies of the right triangle with side lengths $a,b,c$ are placed around the square. We have
-
+We have $D_1=D_2$, so
 \begin{align*}
-A_{\text{triangles}} + A_{\text{small sq.}} &= A_{\text{big sq.}} & \text{[Conservation of area]} \\
-4A_{\text{triangle}} + A_{\text{small sq.}} &= A_{\text{big sq.}} \\
-4\left(\frac{1}{2}ab\right) + c^2 &= (a+b)^2 & \text{[Areas of triangle, square]} \\
-2ab + c^2 &= a^2+2ab+b^2 & \text{[Expanding]} \\
-c^2 &= a^2+b^2. & \text{Q.E.D.}
+D_1^2&=D_2^2 \\
+(\cos A - \cos B)^2 + (\sin A - \sin B)^2 &= (\cos(A-B)-1)^2+\sin^2 (A-B) \\
+\cos^2 A - 2\cos A\cos B + \cos^2 B + \sin^2 A - 2\sin A\sin B + \sin^2 B &= \cos^2 (A-B) - 2\cos(A-B) + \\ &\phantom{=} 1+\sin^2(A-B) \\
+(\cos^2 A + \sin^2 A) + (\cos^2 B + \sin^2 A) - 2\sin A\sin B &= (\cos^2 (A-B) + \sin^2(A-B)) + \\ &\phantom{=} 1 - 2\cos(A-B) \\
+\cancelto{0}{1 + 1} - 2\sin A\sin B - 2\cos A\cos B &= \cancelto{0}{1 + 1} - 2\cos(A-B) \\
+2\sin A\sin B + 2\cos A\cos B &= 2\cos(A-B) \\
+\sin A\sin B + \cos A\cos B &= \cos(A-B). & \text{Q.E.D.} \\
 \end{align*}
 
-\begin{enumerate}[resume]
-\item Prove the Pythagorean theorem using a right triangle with an altitude drawn to its hypotenuse, making use of similar right triangles. This is shown in Figure~\ref{fig:pythag_sim_tri}.
-\end{enumerate}
-
-Let $h=CF$, the length of the altitude to the hypotenuse. $\triangle ACF\sim \triangle ABC$ by AA Similarity because they share an angle and both have a right angle. Therefore, $\frac{AF}{AC}=\frac{AC}{AB}$. Substituting named variables for these lengths, we get $$\frac{AF}{b}=\frac{b}{c}\Longrightarrow AF = \frac{b^2}{c}.$$ Applying the same logic to $\triangle CFB$,
- we get $\triangle CFB\sim \triangle ABC$, so $\frac{BF}{BC}=\frac{BC}{AB}.$ Substituting, we get $$\frac{BF}{a}=\frac{a}{c} \Longrightarrow BF=\frac{a^2}{c}.$$ Since $F$ is between $A$ and $B$, we have $AB=AF+FB$; substituting our found values for $AF$ and $FB$, we get
- 
-\begin{align*}
-c=AB &= AF+FB \\
-c &= \frac{b^2}{c}+\frac{a^2}{c} \\
-c^2 &= b^2 + a^2. & \text{Q.E.D.}
-\end{align*}
-
-\begin{enumerate}[resume]
-\item Now you will prove the trig identities.
-\begin{enumerate}
-\item Draw and label a right triangle and a unit circle, then write trig definitions for $\cos$, $\sin$, $\tan$, and $\sec$ in terms of your drawing.
-\end{enumerate}
-\end{enumerate}
-
-\begin{enumerate}
-\item \begin{enumerate}
-\item Use a right triangle and the definitions of $\sin$ and $\cos$ to find and prove a value for $\sin^2 \theta + \cos^2 \theta$.
-\item Use the picture of the unit circle in Figure~\ref{fig:unit_circle} to find and prove a value for $\cos(A-B)$. Note that $D_1$ and $D_2$ are the same length because they subtend the same size arc of the circle. Set them equal and work through the algebra, using the distance formula and part (b) of this problem.
-\end{enumerate}
+\begin{outer_problem}
 \item Write down as many trig identities as you can. There's no need to prove all of these right now.
 
 \renewcommand{\arraystretch}{1.1}
@@ -159,9 +259,23 @@ $$\arraycolsep=1pt\begin{array}{rlrlrl}
 \cos(2A)&= &\tan(2A) &= &\sin(\frac{A}{2}) &= \\
 \cos\left(\frac{A}{2}\right)&= &\tan\left(\frac{A}{2}\right) &= & & \\
 \end{array}$$
+\end{outer_problem}
 
+You should probably memorize these for convenience.
+
+\renewcommand{\arraystretch}{1.1}
+$$\arraycolsep=1pt\begin{array}{rlrlrl}
+\sin(A+B)&= \sin A \cos B + \cos A \sin A &\sin(A-B) &= \sin A \cos B - \cos A \sin B &\cos(A+B) &= \\
+\tan(A+B)&= &\tan(A-B) &= &\sin(2A) &= \\
+\cos(2A)&= &\tan(2A) &= &\sin(\frac{A}{2}) &= \\
+\cos\left(\frac{A}{2}\right)&= &\tan\left(\frac{A}{2}\right) &= & & \\
+\end{array}$$
+
+\begin{outer_problem}
 \item Let's review complex numbers and DeMoivre's theorem.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}
 \item Recall that you can write a complex number both in Cartesian and polar forms. Let
 
 $$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
@@ -171,7 +285,9 @@ What is $r$ in terms of $a$ and $b$?
 \item Convert the two multiplicands\footnote{This is the word for parts of a multiplication! So for example, if $a\cdot b=c$, then $a$ and $b$ are the multiplicands.} to polar form, noting that the two lengths and angles are different numbers. Call them $r_1(\cos\theta + i\sin\theta)$ and $r_2(\cos\phi + i\sin\phi)$.
 \item Multiply them, and use your results from Problems 3c and 3d to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
 \item Use part (c) to simplify $(\sqrt{3}+i)^{18}$.
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Here is a review of 2D rotation.
 \begin{enumerate}
 \item Remember that we can graph complex numbers as 2D ordered pairs in the complex plane. Now, consider the complex number $z=\cos \theta + i\sin\theta$, where $\theta$ is fixed. What is the magnitude of $z$?
@@ -185,6 +301,6 @@ What is $r$ in terms of $a$ and $b$?
 \item $y^2=4Cx$
 \end{enumerate}
 \end{multicols}
-\end{enumerate}
+\end{outer_problem}
 
 \end{document}
