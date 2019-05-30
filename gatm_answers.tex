@@ -1,0 +1,117 @@
+\documentclass[8pt, twosided, a4paper]{article}
+% 8 point font, A4-sized paper
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+
+\usepackage{pdfpages}
+\usepackage{subfiles}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+
+\usepackage{cancel}
+
+\usepackage[inline]{asymptote}
+
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{matrix,fit,tikzmark,calc}
+\usepackage{blkarray}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{hhline}
+
+\newcommand{\twomat}[4] {\begin{pmatrix} #1 & #2 \\ #3 & #4 \end{pmatrix}}
+\newcommand{\stwomat}[4] {\left[\begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix}\right]}
+\newcommand{\threemat}[9] {\begin{pmatrix} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{pmatrix}}
+
+\newcommand{\twovec}[2] {\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
+\newcommand{\threevec}[3] {\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}
+
+\newcommand{\Imag} {\operatorname{Im}}
+\newcommand{\Real} {\operatorname{Re}}
+\newcommand{\Arg} {\operatorname{Arg}}
+\newcommand{\cis} {\operatorname{cis}}
+
+\newcounter{problem_i}
+\newcounter{problem_ii}
+
+\begin{document}
+\pagenumbering{gobble}
+
+% I did this because it was too dense without it
+\setlength{\parskip}{1em}
+
+\includepdf[noautoscale=true,pages=-,width=\paperwidth]{./cover/cover_answers.pdf} % cover
+
+\pagenumbering{arabic}
+
+\restoregeometry % Because the credits have a different margin setting
+
+\setlength{\parskip}{0.5em}
+
+\tableofcontents
+\pagebreak
+
+% Reset to correct value
+\setlength{\parskip}{0em}
+
+\subfile{trig_review/trig_review_answers.tex} % trig review
+\pagebreak
+%\setcounter{figure}{0}
+%\subfile{itsasnap/itsasnap_source.tex}
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{snap_flip/snap_flip_source.tex}
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{rrg/rrg_source.tex} % Rotation reflection groups
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{inf/inf_source.tex} % Infinite groups
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{cmplx_geo/cmplx_geo_source.tex} % Geometry of complex numbers
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{vitamin_i/vitamin_i_source.tex} % Vitamin i
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{mtrx_mult/mtrx_mult_source.tex} % Matrix multiplication
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{map_plane/map_plane_source.tex} % Mapping the Plane
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{plane_rot/plane_rot_source.tex} % Plane rotate
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{mat_gen/mat_gen_source.tex} % Matrices generate groups
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{comp_map/comp_map_source.tex} % Composite mappings (fat one)
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{inverses/inverses_source.tex} % Composite mappings (fat one)
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{mod_m/mod_m_source.tex} % Modulo m meets groups
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{eigen/eigen_source.tex} % eigenvectors and eigenvalues
+%\pagebreak
+%\setcounter{figure}{0}
+%\subfile{comp_func/comp_func_source.tex} % Composition of functions
+%\pagebreak
+
+\end{document}
