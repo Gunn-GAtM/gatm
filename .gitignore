@@ -2,6 +2,7 @@
 !build/*.pdf
 **/.DS_Store
 
+*answers-*.tex
 *source-*.tex
 *autopp-*.tex
 
