@@ -1,0 +1,127 @@
+\documentclass[../gatm_answers.tex]{subfiles}
+
+\begin{document}
+
+\section{From Snaps to Flips}
+
+\begin{outer_problem}[start=1]
+\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving shape and location. Are there any others for this triangle?
+\end{outer_problem}
+
+There are no other isometries for this triangle; our list of operations is complete. To see why, note that the vertices must exchange places. At most there is $3!=6$ ways to do this, so we have already achieved the maximum possible number of isometries.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{c|c|c|c|c|c|c|}
+$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+$I$    &   &   &   &   &   &   \\ \hline
+$A$    &   &   &   &   & $B$  &   \\ \hline
+$B$    &   &   &   &   &   &   \\ \hline
+$C$    &   &   &   &   &   &   \\ \hline
+$D$    &   &   &   &   &   &   \\ \hline
+$E$    &   &   &   &   &   &   \\ \hline
+\end{tabular}
+\caption{Unfilled $D_3$ group table.}
+\label{fig:sbstable}
+\end{figure}
+
+\begin{outer_problem}
+\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $Y$\textsuperscript{th} column. $AD=B$ is done for you.
+\end{outer_problem}
+
+The completed table is shown in Figure~\ref{fig:complete_sbs_table}.
+
+\begin{figure}[h]
+\centering
+$\begin{array}{c|c|c|c|c|c|c|}
+\cdot & I & A & B & C & D & E \\ \hline
+I & I & A & B & C & D & E \\ \hline
+A & A & I & D & E & B & C \\ \hline
+B & B & E & I & D & C & A \\ \hline
+C & C & D & E & I & A & B \\ \hline
+D & D & C & A & B & E & I \\ \hline
+E & E & B & C & A & I & D \\ \hline
+\end{array}$
+\caption{Completed $D_3$ group table.}
+\label{fig:complete_sbs_table}
+\end{figure}
+
+\begin{outer_problem}
+\item What is the relationship between the tables for the snap group $S_3$ and the flip group $D_3$?
+\end{outer_problem}
+
+$D_3$'s table is $S_3$'s table flipped over the top left--bottom right diagonal, and vice versa. This is known as the transpose, if this were matrix: we'll get to that later.
+
+\begin{outer_problem}
+\item Check your understanding by defining isomorphic in your own words.
+\end{outer_problem}
+
+(Answers may vary.)
+
+Isomorphic means that two groups have the same structure.
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item What shape's dihedral group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Find a combination of $A$ and $D$ that yields $C$.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120^\circ$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120^\circ = 240^\circ$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
+\end{outer_problem}
+
+\begin{outer_problem}
+\item What other pairs of elements could you have used to generate the table?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Explain why each element of the flip group $D_3$ has the period it has.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Some pairs of elements of the flip group are two-element subgroups. Which pairs are they?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item One of the elements forms a one-element subgroup. Which is it?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Addition of two numbers is a binary operation, while addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item In your original flip group table, what is
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item The identity element?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item The inverse of $A$?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item The inverse of $E$?
+\end{inner_problem}
+
+\end{document}
