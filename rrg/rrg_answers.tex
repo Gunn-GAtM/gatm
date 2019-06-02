@@ -1,0 +1,572 @@
+\documentclass[../gatm_answers.tex]{subfiles}
+
+\begin{document}
+
+\section{Rotation and Reflection Groups}
+
+\begin{outer_problem}
+\item Notice that the original dihedral group had twice as many elements as the rotation group. Why?
+\end{outer_problem}
+
+(Answers may vary.)
+
+There are a couple ways to think about this, but an intuitive way is to consider a ``mirror world'' of reflection and the ``normal world'' where the orientation in normal. Here, orientation is not absolute orientation, but the difference between clockwise and counterclockwise. For chemistry nerds, it is like chirality. Rotation preserves orientation, but reflection does not. Instead, it takes us between these two ``worlds.'' Thus, it allows twice the number of elements.
+
+\begin{outer_problem}
+\item Make and justify a conjecture extending this observation to the dihedral groups of other shapes like rectangles, squares, hexagons, cubes, etc.
+\end{outer_problem}
+
+(Answers may vary.)
+
+Conjecture: The dihedral groups of a shape has twice the order of its rotation group.
+
+Informal Justification: A shape can be flipped or not, and it can have whatever rotational isometries applied to it whether it's flipped or not. Thus, the dihedral group allows for twice the number of elements as the rotation group.
+
+\begin{outer_problem}
+\item Let $r$ be a $180^{\circ}$ rotation, $x$ be a reflection over the $x$-axis, and $y$ be a reflection over the $y$-axis. Write a table for the dihedral group of the rectangle, recalling that the allowed isometries are reflections and rotations. How does this table differ from the dihedral group of the equilateral triangle?
+\end{outer_problem}
+
+\begin{center}
+$\begin{array}{c|c|c|c|c|}
+\cdot & I & r & x & y \\ \hline
+I & I & r & x & y \\ \hline
+r & r & I & y & x \\ \hline
+x & x & y & I & r \\ \hline
+y & y & x & r & I \\ \hline
+\end{array}$
+\end{center}
+The table is shown above. The four elements are shown acting on a rectangle with ``P'' painted on it in Figure~\ref{fig:p_rectangle} to show the transformation a bit better.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+path rect = (0,0)--(2,0)--(2,1)--(0,1)--cycle;
+
+path P_outer = shift(1-0.35/2,0.5-0.5/2)*scale(0.1)*((0,0)--(1,0)--(1,2.5)--(2.5,2.5)..(3.5,3.75)..(2.5,5)--(0,5)--cycle);
+path P_inner = shift(1-0.35/2,0.5-0.5/2)*scale(0.1)*((1,3.25)--(2,3.25)..(2.5,3.75)..(2,4.25)--(1,4.25)--cycle);
+
+pair lp = (1,-0.5);
+
+draw(rect);
+filldraw(P_outer, gray(0.5));
+filldraw(P_inner, white);
+label("$I$", lp);
+
+transform tr = shift(5,0)*scale(-1,1);
+
+draw(tr*rect);
+filldraw(tr*P_outer, gray(0.5));
+filldraw(tr*P_inner, white);
+label("$y$", shift(3,0)*lp);
+
+draw((4,1.3)--(4,-0.3),dashed);
+
+tr = shift(0,-1.5)*scale(1,-1);
+
+draw(tr*rect);
+filldraw(tr*P_outer, gray(0.5));
+filldraw(tr*P_inner, white);
+label("$x$", shift(0,-2.5)*lp);
+
+draw((-0.3,-2)--(2.3,-2),dashed);
+
+tr = shift(5,-1.5)*rotate(180);
+
+draw(tr*rect);
+filldraw(tr*P_outer, gray(0.5));
+filldraw(tr*P_inner, white);
+label("$r$", shift(3,-2.5)*lp);
+\end{asy}
+\captionof{figure}{A rectangle AMBULATES and FLIPS around.}
+\label{fig:p_rectangle}
+\end{center}
+
+This differs from the dihedral group of the equilateral triangle, $D_3$, in several ways. The most obvious is that there are only $4$ elements. Also, all elements besides $I$ in this group have a period of $2$, while $D_3$ has two elements with a period of $3$.
+
+\begin{outer_problem}
+\item Write a table for the rotation group of the square, with $4$ elements and $16$ entries. Compare this table to problem 3.
+\end{outer_problem}
+
+The elements are $I=r_0$, $r=r_{90}$, $r^2=r_{180}$, and $r^3=r_{270}$. The table is shown below.
+\begin{center}
+$\begin{array}{c|c|c|c|c|}
+\cdot & I & r & r^2 & r^3 \\ \hline
+I & I & r & r^2 & r^3 \\ \hline
+r & r & r^2 & r^3 & I \\ \hline
+r^2 & r^2 & r^3 & I & r \\ \hline
+r^3 & I & r & r^2 & r^3 \\ \hline
+\end{array}$
+\end{center}
+
+While this has the same order as the rectangle's dihedral group, it has a different structure. There are two elements with period $4$ ($r$, $r^3$) and one element with period $2$ ($r^2$).
+
+For each of the following problems, find the following:
+
+\begin{enumerate}[label=(\alph*)]
+\item Number of elements; this is known as the \textbf{order}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\item A smallest possible \textbf{generating set}; in other words, the list of elements which generate a group\footnote{There may be multiple generating sets of the same size.}
+\item Whether the group is \textbf{commutative}; in other words, whether its operation $X\cdot Y$ doesn't care about the order of its operands ($X$ and $Y$)
+\end{enumerate}
+
+\begin{outer_problem}
+\item Rectangle under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+This group has two elements, the identity and the rotation of $180^\circ$.
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+As stated, they are the identity $I$ and the rotation $r$ of $180^\circ$, as shown in Figure~\ref{fig:rect_rot}.
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+pair A = (0,0);
+pair B = (2,0);
+pair C = (2,1);
+pair D = (0,1);
+
+draw(A--B--C--D--cycle);
+
+dot(A);
+dot(B);
+dot(C);
+dot(D);
+
+label("$A$", A, SW);
+label("$B$", B, SE);
+label("$C$", C, NE);
+label("$D$", D, NW);
+
+label("$I$", (1,-0.5));
+
+transform so = shift(3,0);
+
+pair Ap = so*A;
+pair Bp = so*B;
+pair Cp = so*C;
+pair Dp = so*D;
+
+draw(Ap--Bp--Cp--Dp--cycle);
+
+label("$C'$", Ap, SW);
+label("$D'$", Bp, SE);
+label("$A'$", Cp, NE);
+label("$B'$", Dp, NW);
+
+label("$r$", so*(1,-0.5));
+\end{asy}
+\captionof{figure}{Rectangle under rotation.}
+\label{fig:rect_rot}
+\end{center}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+The smallest possible generating set is the singleton $\{r\}$.
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+The group is commutative, since it's only comprised of rotations, which commute.
+
+\begin{outer_problem}
+\item Rectangle under reflection
+\end{outer_problem}
+
+We already considered this in problem $3$.
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+There are $4$ elements in this group.
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+The elements are the identity $I$, rotation $r$ by $180^\circ$, reflection $x$ over the $x$-axis, and reflection $y$ over the $y$-axis.
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+(Answers may vary.)
+
+$\{r,x\}$, $\{r,y\}$, and $\{x,y\}$ all generate the group. No single element, however, can generate the group.
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+This group is commutative.
+
+\begin{outer_problem}
+\item Square under rotation
+\end{outer_problem}
+
+Again, we have considered this group before.
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+There are $4$ elements.
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+The elements are rotations $I=r_0$, $r=r_{90}$, $r^2=r_{180}$, and $r^3=r_{270}$.
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+(Answers may vary.)
+
+Both $\{r\}$ and $\{r^3\}$ generate the group, because $1,3$ are coprime to $4$.
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+The group is commutative, since it consists of all rotations.
+
+\begin{outer_problem}
+\item Square under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+There are $8$ elements in this group. We can quickly see this by noting that it is the dihedral group of the square, which has twice the order of the rotation group of the square. We just found that had $4$ elements, and $2\cdot 4=8$.
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+The elements are as follows:
+
+Rotations $I=r_0$, $r=r_{90}$, $r^2=r_{180}$, and $r^3=r_{270}$;
+reflections $f=$ flip over the $x$-axis, $fr=r$ then $f$, $fr^2$ and $fr^3$.
+
+Recall that rotations can be generated by a sequence of two reflections.
+
+Each of these elements is shown in Figure~\ref{fig:square_reflect}.
+\begin{center}
+\begin{asy}[width=0.8\textwidth]
+string[][] elements = {
+{"I","A","B","C","D"},
+{"r","D","A","B","C"},
+{"r^2","C","D","A","B"},
+{"r^3","B","C","D","A"},
+{"f","D","C","B","A"},
+{"fr","C","B","A","D"},
+{"fr^2","B","A","D","C"},
+{"fr^3","A","D","C","B"}
+};
+
+pair getTL(int i) {
+	return (2*(i%4),-2.5*(i#4));
+}
+
+pair A = (0,0);
+pair B = (1,0);
+pair C = (1,1);
+pair D = (0,1);
+pair labl = (0.5,-0.4);
+string d = "$";
+
+path sq = A--B--C--D--cycle;
+
+for (int i = 0; i < 8; ++i) {
+	string[] element = elements[i];
+	pair tl = getTL(i);
+	transform tlshf = shift(tl);	
+	
+	draw(tlshf*sq);
+	label(d+element[1]+d, tlshf*A, SW);
+	label(d+element[2]+d, tlshf*B, SE);
+	label(d+element[3]+d, tlshf*C, NE);
+	label(d+element[4]+d, tlshf*D, NW);
+	label(d+element[0]+d, tlshf*labl);
+	
+	if (i >= 4) {
+		// flip element; let's draw a flip line!
+		
+		if (i % 2 == 0) { // across x or y axis
+			draw(tlshf*rotate(i%4 * 45, (0.5,0.5))*((-0.3,0.5)--(1.3,0.5)),dashed);
+		} else {
+			draw(tlshf*rotate((i-1)%4 * 45, (0.5,0.5))*((1.3,-0.3)--(-0.3,1.3)),dashed);
+		}
+	}
+}
+\end{asy}
+\captionof{figure}{Reflections of a square.}
+\label{fig:square_reflect}
+\end{center}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+(Answers may vary.)
+
+Any pair of a rotation and flip will generate the set, except for $\{r^2,fr^2\}$ and $\{r^2,f\}$; these will produce the rectangle group instead. Any pair of two flips will also work. As an example of both of these, both $\{r^2,fr^3\}$ and $\{f,fr\}$ will generate the group.
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+This group is not commutative. For example, $fr=fr$, but $rf=fr^3$.
+
+\begin{outer_problem}
+\item Square prism under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Square prism under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Pentagon under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Pentagon under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Pentagonal prism under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Pentagonal prism under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Pentagonal pyramid under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Pentagonal pyramid under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Tetrahedron (triangular pyramid) under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Tetrahedron under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Cube under rotation
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Cube under reflection
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Number of elements
+\end{inner_problem}
+
+\begin{inner_problem}
+\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
+\end{inner_problem}
+
+\begin{inner_problem}
+\item A smallest possible \textbf{generating set}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Whether the group is \textbf{commutative}
+\end{inner_problem}
+
+\end{document}

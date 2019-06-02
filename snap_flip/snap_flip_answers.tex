@@ -262,7 +262,7 @@ label(YZ()*"Rotate $180^\circ$ about axis $l$", center_path, N);
 
 This is isomorphic to the dihedral group of the $4$-dimensional equivalent of the tetrahedron, also known as the regular $4$-simplex. A projection is shown in Figure~\ref{fig:four_simplex_attempt}, but it cannot be faithfully represented on this paper.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \begin{asy}[width=0.6\textwidth]
 
@@ -298,13 +298,10 @@ dot(E);
 \item Find a combination of $A$ and $D$ that yields $C$.
 \end{outer_problem}
 
-
-
 \begin{outer_problem}
 \item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120^\circ$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120^\circ = 240^\circ$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
 \end{outer_problem}
 
-\begin{figure}[h]
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|}
 $\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
@@ -315,14 +312,11 @@ $f$    &   &   &   &   &   &   \\ \hline
 $fr$    &   &   &   &   &   &   \\ \hline
 $fr^2$    &   &   &   &   &   &   \\ \hline
 \end{tabular}
-\end{center}
-\caption{Unfilled alternate $D_3$ table.}
+\captionof{figure}{Unfilled alternate $D_3$ table.}
 \label{fig:alttable}
-\end{figure}
+\end{center}
 
 The filled table is shown in Figure~\ref{fig:filled_alttable} below.
-
-\begin{figure}[h]
 \begin{center}
 $\begin{array}{c|c|c|c|c|c|c|}
 \cdot & I & r & r^2 & f & fr & fr^2 \\ \hline
@@ -333,10 +327,9 @@ f & f & fr & fr^2 & I & r & r^2 \\ \hline
 fr & fr & fr^2 & f & r^2 & I & r \\ \hline
 fr^2 & fr^2 & f & fr & r & r^2 & I \\ \hline
 \end{array}$
-\end{center}
-\caption{Completed alternate $D_3$ table.}
+\captionof{figure}{Completed alternate $D_3$ table.}
 \label{fig:filled_alttable}
-\end{figure}
+\end{center}
 
 Note that $I=I$, $A=f$, $B=fr$, $C=fr^2$, $D=r$, and $E=r^2$.
 
@@ -364,7 +357,7 @@ $I$ has a period of $1$ because it is the identity. $A,B,C$ have periods of $2$ 
 
 These would be the pairs ${I,A}$, ${I,B}$, and ${I,C}$, since $A\cdot A=B\cdot B=C\cdot C = I$ so the subgroup is closed. These are shown in Figure~\ref{fig:two_elem_subgroups}.
 
-\begin{figure}[h]
+\begin{center}
 \begin{minipage}{0.3\textwidth}
 \centering
 $\begin{array}{c|c|c|}
@@ -389,25 +382,23 @@ I & I & C \\ \hline
 C & C & I \\ \hline
 \end{array}$
 \end{minipage}
-\caption{The three two-element subgroups.}
+\captionof{figure}{The three two-element subgroups.}
 \label{fig:two_elem_subgroups}
-\end{figure}
+\end{center}
 
 \begin{outer_problem}
 \item One of the elements forms a one-element subgroup. Which is it?
 \end{outer_problem}
 
-The element $I$ forms the so-called trivial group, or the only group of order $1$. It is not very interesting.
-\begin{figure}[h]
+The element $I$ forms the so-called trivial group, or the only group of order $1$; this is shown in Figure~\ref{fig:trivial_group}. It is not very interesting.
 \begin{center}
 $\begin{array}{c|c|}
 \cdot & I \\ \hline
 I & I \\ \hline
 \end{array}$
-\caption{The trivial group.}
+\captionof{figure}{The trivial group.}
 \label{fig:trivial_group}
 \end{center}
-\end{figure}
 
 \begin{outer_problem}
 \item Addition of two numbers is a binary operation, while addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
