@@ -32,6 +32,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 The completed table is shown in Figure~\ref{fig:complete_sbs_table}.
 
 \begin{figure}[h]
+\begin{minipage}{0.45\textwidth}
 \centering
 $\begin{array}{c|c|c|c|c|c|c|}
 \cdot & I & A & B & C & D & E \\ \hline
@@ -44,13 +45,28 @@ E & E & B & C & A & I & D \\ \hline
 \end{array}$
 \caption{Completed $D_3$ group table.}
 \label{fig:complete_sbs_table}
+\end{minipage}\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+$\begin{array}{c|c|c|c|c|c|c|}
+\bullet & I & A & B & C & D & E \\ \hline
+I & I & A & B & C & D & E \\ \hline
+A & A & I & E & D & C & B \\ \hline
+B & B & D & I & E & A & C \\ \hline
+C & C & E & D & I & B & A \\ \hline
+D & D & B & C & A & E & I \\ \hline
+E & E & C & A & B & I & D \\ \hline
+\end{array}$
+\caption{Completed $S_3$ group table from the last chapter.}
+\label{fig:complete_sts_table}
+\end{minipage}
 \end{figure}
 
 \begin{outer_problem}
 \item What is the relationship between the tables for the snap group $S_3$ and the flip group $D_3$?
 \end{outer_problem}
 
-$D_3$'s table is $S_3$'s table flipped over the top left--bottom right diagonal, and vice versa. This is known as the transpose, if this were matrix: we'll get to that later.
+$D_3$'s table is $S_3$'s table flipped over the top left--bottom right diagonal, and vice versa. Contrast $D_3$ from Figure~\ref{fig:complete_sbs_table} to $S_3$ in Figure~\ref{fig:complete_sts_table}. If these were matrices, one would be the transpose of the other: we'll get to that later.
 
 \begin{outer_problem}
 \item Check your understanding by defining isomorphic in your own words.
@@ -59,6 +75,8 @@ $D_3$'s table is $S_3$'s table flipped over the top left--bottom right diagonal,
 (Answers may vary.)
 
 Isomorphic means that two groups have the same structure.
+Isomorphic means that there is a correspondence between the elements of two groups so that the correspondence preserves the order.
+In the language of abstract algebra, an isomorphism between groups $A$ and $B$ exists if there is a homomorphism from $A$ to $B$ and from $B$ to $A$.
 
 \begin{outer_problem}
 \item
@@ -68,45 +86,352 @@ Isomorphic means that two groups have the same structure.
 \item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
 \end{inner_problem}
 
+The table is shown below. Note that the identity element $I$ is a rotation of $0$.
+\begin{center}
+$\begin{array}{c|c|c|c|}
+\cdot & I & D & E \\ \hline
+I & I & D & E \\ \hline
+D & D & E & I \\ \hline
+E & E & I & D \\ \hline
+\end{array}$
+\end{center}
+
+Interestingly, this subgroup is a commutative group, also known as an abelian group.
+
 \begin{inner_problem}
 \item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
 \end{inner_problem}
 
+The same elements (nominally) make the same subgroup:
+\begin{center}
+$\begin{array}{c|c|c|c|}
+\bullet & I & D & E \\ \hline
+I & I & D & E \\ \hline
+D & D & E & I \\ \hline
+E & E & I & D \\ \hline
+\end{array}$
+\end{center}
+
 \begin{outer_problem}
-\item What shape's dihedral group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
+\item What shape's dihedral group is isomorphic to
 \end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item the two post snap group $S_2$?
+\end{inner_problem}
+
+The dihedral group of a line segment is isomorphic to $S_2$. After all, you can only reflect it over its midpoint, which is the other element of $S_2$ besides the identity. We can also think of this as permuting the two endpoints or vertices of a line segment.
+
+\begin{inner_problem}
+\item the one post snap group $S_1$?
+\end{inner_problem}
+
+The dihedral group of a point is isomorphic to $S_1$, because the only element is the identity element. This is permuting the one vertex of a point.
+
+\begin{inner_problem}
+\item the four post snap group $S_4$?
+\end{inner_problem}
+
+For this question we need to think $3$ dimensions. There are four vertices to permute, but we can't do that on a square since diagonal points will remain on diagonals, as shown in Figure~\ref{fig:impossiblus_square}.
+
+\begin{figure}[h]
+\centering
+\begin{asy}[width=0.4\textwidth]
+draw((0,0)--(1,0)--(1,1)--(0,1)--cycle);
+
+label("$A$", (0,0), SW);
+label("$B$", (1,0), SE);
+label("$C$", (1,1), NE);
+label("$D$", (0,1), NW);
+
+draw(shift(2.5,0)*((0,0)--(1,0)--(1,1)--(0,1)--cycle));
+
+label("$A'$", (2.5,0), SW);
+label("$C'$", (3.5,0), SE);
+label("$B'$", (3.5,1), NE);
+label("$D'$", (2.5,1), NW);
+
+label("$\not\longrightarrow$", (3.5/2, 0.5));
+\end{asy}
+\caption{At right is a valid permutation of the vertices, but not a valid isometry of the square.}
+\label{fig:impossiblus_square}
+\end{figure}
+
+Instead, we choose the regular tetrahedron, so that there are no ``diagonals''; every permutation is achievable. Note that rotations and reflections are now in $3$ dimensional space, which is a bit difficult to visualize. A sample rotation is depicted in Figure~\ref{fig:tetra_element}.
+
+\begin{asydef}
+import three;
+
+triple[] generate_tetrahedron() {
+	triple[] ret = {};
+	
+	triple A = (0,0,0);
+	triple B = (1,0,0); // 1 unit in the x direction
+	triple C = (1/2, sqrt(3)/2, 0); // mid way between A--B, then jutting out sqrt(3)/2 in y
+	
+	// the height of this tetrahedron is sqrt(2/3)
+	// the peak vertex is above the centroid of the base
+	triple D = (A+B+C)/3 + (0,0,sqrt(2/3));
+	
+	ret[0] = A;
+	ret[1] = B;
+	ret[2] = C;
+	ret[3] = D;
+	
+	return ret;
+}
+
+void draw_tetra(triple[] vertices) {
+	for (int i = 0; i < 4; ++i) {
+		for (int j = i + 1; j < 4; ++j) {
+			draw(vertices[i]--vertices[j], i == 0 ? dashed : currentpen);
+		}
+	}
+}
+
+\end{asydef}
+
+\begin{figure}[h]
+\centering
+\begin{asy}[width=0.7\textwidth]
+currentprojection = orthographic(50,40,20);
+
+triple[] tetra = generate_tetrahedron();
+
+draw_tetra(tetra);
+
+label("$A$", tetra[0], S);
+label("$B$", tetra[1], SW);
+label("$C$", tetra[2], SE);
+label("$D$", tetra[3], N);
+
+triple[] new_tetra = generate_tetrahedron();
+
+for (int i = 0; i < 4; ++i) new_tetra[i] = 3 * (0, sqrt(3)/2, 0) + new_tetra[i];
+
+label("$D'$", new_tetra[0], 1.5*S);
+label("$C'$", new_tetra[1], SW);
+label("$B'$", new_tetra[2], SE);
+label("$A'$", new_tetra[3], N);
+
+draw_tetra(new_tetra);
+
+triple axis1 = (tetra[0]+tetra[3])/2;
+triple axis2 = (tetra[1]+tetra[2])/2;
+
+triple rot_mc = 2*axis2 - axis1;
+
+draw((2*axis1 - axis2) -- rot_mc, dotted);
+
+dot(axis1);
+dot(axis2);
+
+label("$l$", rot_mc, NW);
+
+triple unitify(triple d) {
+	return d * 1 / sqrt(d.x*d.x+d.y*d.y+d.z*d.z);
+}
+
+triple rot_center = 1.5*axis2 - 0.5*axis1;
+
+triple rcsdv = 0.4 * (0.5*axis2 - 0.5*axis1); // rotation center deviant
+
+triple rot_s = rotate(-90, tetra[2]-tetra[1]) * rcsdv + rot_center;
+triple rot_e = rotate(90, tetra[2]-tetra[1]) * rcsdv + rot_center;
+triple rot_i = rotate(90, axis1, axis2) * rot_e;
+
+draw(rot_s..rot_i..rot_e, Arrow3);
+
+
+triple center1 = (tetra[0] + tetra[1] + tetra[2] + tetra[3]) / 4;
+triple center2 = (new_tetra[0] + new_tetra[1] + new_tetra[2] + new_tetra[3]) / 4;
+
+path3 center_path = center1--center2;
+
+draw(point(center_path,0.3)--point(center_path,0.7),Arrow3);
+
+label(YZ()*"Rotate $180^\circ$ about axis $l$", center_path, N);
+\end{asy}
+\caption{A rotation of the tetrahedron (orthographic view).}
+\label{fig:tetra_element}
+\end{figure}
+
+\begin{inner_problem}
+\item the five post snap group $S_5$?
+\end{inner_problem}
+
+This is isomorphic to the dihedral group of the $4$-dimensional equivalent of the tetrahedron, also known as the regular $4$-simplex. A projection is shown in Figure~\ref{fig:four_simplex_attempt}, but it cannot be faithfully represented on this paper.
+
+\begin{figure}[h]
+\centering
+\begin{asy}[width=0.6\textwidth]
+
+triple[] vertices = generate_tetrahedron();
+
+currentprojection = perspective(5,5.6,2);
+
+draw_tetra(vertices);
+
+
+label("$A$", vertices[0], NE);
+label("$B$", vertices[1], SW);
+label("$C$", vertices[2], E);
+label("$D$", vertices[3], N);
+
+triple E = (vertices[0] + vertices[1] + vertices[2] + vertices[3])/4;
+
+for (int i = 0; i < 4; ++i) {
+	draw(E--vertices[i],dashed);
+	dot(vertices[i]);
+}
+
+label("$E$", E, S);
+
+dot(E);
+
+\end{asy}
+\caption{A 3D projection of the regular $4$-simplex. In a true realization, every line segment here would be the same length.}
+\label{fig:four_simplex_attempt}
+\end{figure}
 
 \begin{outer_problem}
 \item Find a combination of $A$ and $D$ that yields $C$.
 \end{outer_problem}
 
+
+
 \begin{outer_problem}
 \item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120^\circ$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120^\circ = 240^\circ$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
 \end{outer_problem}
+
+\begin{figure}[h]
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c|}
+$\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
+$I$    &   &   &   &   &   &   \\ \hline
+$r$    &   &   &   & $fr^2$  &   &   \\ \hline
+$r^2$    &   &   &   &   &   &   \\ \hline
+$f$    &   &   &   &   &   &   \\ \hline
+$fr$    &   &   &   &   &   &   \\ \hline
+$fr^2$    &   &   &   &   &   &   \\ \hline
+\end{tabular}
+\end{center}
+\caption{Unfilled alternate $D_3$ table.}
+\label{fig:alttable}
+\end{figure}
+
+The filled table is shown in Figure~\ref{fig:filled_alttable} below.
+
+\begin{figure}[h]
+\begin{center}
+$\begin{array}{c|c|c|c|c|c|c|}
+\cdot & I & r & r^2 & f & fr & fr^2 \\ \hline
+I & I & r & r^2 & f & fr & fr^2 \\ \hline
+r & r & r^2 & I & fr^2 & f & fr \\ \hline
+r^2 & r^2 & I & r & fr & fr^2 & f \\ \hline
+f & f & fr & fr^2 & I & r & r^2 \\ \hline
+fr & fr & fr^2 & f & r^2 & I & r \\ \hline
+fr^2 & fr^2 & f & fr & r & r^2 & I \\ \hline
+\end{array}$
+\end{center}
+\caption{Completed alternate $D_3$ table.}
+\label{fig:filled_alttable}
+\end{figure}
+
+Note that $I=I$, $A=f$, $B=fr$, $C=fr^2$, $D=r$, and $E=r^2$.
 
 \begin{outer_problem}
 \item What other pairs of elements could you have used to generate the table?
 \end{outer_problem}
 
+You could also use any of the following pairs: ${A,E}$, ${B,D}$, ${B,E}$, ${C,D}$, ${C,E}$, ${A,B}$, ${B,C}$, ${A,C}$. In essence, you can generate it with any rotation element and any reflection element, or with any two reflection elements.
+
 \begin{outer_problem}
 \item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \end{outer_problem}
+
+This is the cyclic group of order $3$, $C_3$, also known as the rotation group of the equilateral triangle. The two possible generators are $r$ and $r^2$.
 
 \begin{outer_problem}
 \item Explain why each element of the flip group $D_3$ has the period it has.
 \end{outer_problem}
 
+$I$ has a period of $1$ because it is the identity. $A,B,C$ have periods of $2$ because they are reflections, so they are their own inverse transformation. $D$ and $E$ are rotations of a multiple of $1/3$ of a turn. Since $3$ is a prime, they take $3$ iterations to resolve, and thus have period $3$.
+
 \begin{outer_problem}
 \item Some pairs of elements of the flip group are two-element subgroups. Which pairs are they?
 \end{outer_problem}
+
+These would be the pairs ${I,A}$, ${I,B}$, and ${I,C}$, since $A\cdot A=B\cdot B=C\cdot C = I$ so the subgroup is closed. These are shown in Figure~\ref{fig:two_elem_subgroups}.
+
+\begin{figure}[h]
+\begin{minipage}{0.3\textwidth}
+\centering
+$\begin{array}{c|c|c|}
+\cdot & I & A \\ \hline
+I & I & A \\ \hline
+A & A & I \\ \hline
+\end{array}$
+\end{minipage}\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+$\begin{array}{c|c|c|}
+\cdot & I & B \\ \hline
+I & I & B \\ \hline
+B & B & I \\ \hline
+\end{array}$
+\end{minipage}\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+$\begin{array}{c|c|c|}
+\cdot & I & C \\ \hline
+I & I & C \\ \hline
+C & C & I \\ \hline
+\end{array}$
+\end{minipage}
+\caption{The three two-element subgroups.}
+\label{fig:two_elem_subgroups}
+\end{figure}
 
 \begin{outer_problem}
 \item One of the elements forms a one-element subgroup. Which is it?
 \end{outer_problem}
 
+The element $I$ forms the so-called trivial group, or the only group of order $1$. It is not very interesting.
+\begin{figure}[h]
+\begin{center}
+$\begin{array}{c|c|}
+\cdot & I \\ \hline
+I & I \\ \hline
+\end{array}$
+\caption{The trivial group.}
+\label{fig:trivial_group}
+\end{center}
+\end{figure}
+
 \begin{outer_problem}
 \item Addition of two numbers is a binary operation, while addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
 \end{outer_problem}
+
+(Answers may vary.)
+
+A binary operation is an operation with two arguments.
+
+Some binary operations:
+\begin{multicols}{4}
+\begin{enumerate}
+\item multiplication
+\item exponentiation
+\item addition
+\item subtraction
+\item division
+\item modulo operator
+\item bitwise OR
+\item bitwise AND
+\item snap operation ($\bullet$)
+\item function convolution
+\end{enumerate}
+\end{multicols}
 
 \begin{outer_problem}
 \item In your original flip group table, what is
@@ -116,12 +441,18 @@ Isomorphic means that two groups have the same structure.
 \item The identity element?
 \end{inner_problem}
 
+The identity element is $I$.
+
 \begin{inner_problem}
 \item The inverse of $A$?
 \end{inner_problem}
 
+The inverse of $A$ is also $A$, since it is a reflection.
+
 \begin{inner_problem}
 \item The inverse of $E$?
 \end{inner_problem}
+
+The inverse of $E$ is $D$, since $240^\circ+120^\circ\equiv 0^\circ$.
 
 \end{document}
