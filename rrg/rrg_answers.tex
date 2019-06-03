@@ -333,6 +333,8 @@ This group is not commutative. For example, $fr=fr$, but $rf=fr^3$.
 \item Square prism under rotation
 \end{outer_problem}
 
+This group is isomorphic to the dihedral group of the square in Problem 8.
+
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
@@ -345,7 +347,38 @@ This is a bit more difficult than the previous questions, because we need to und
 
 The set of elements are shown below. Let $a$ be a rotation of $90^\circ$ around the central axis, going through the centers of both square faces; let $b$ be a rotation of $180^\circ$ around an axis going through the centers of faces $\square ABB'A'$ and $\square DCC'D'$.
 
+\begin{asydef}
+import three;
 
+void draw_rect_prism(string[] labels, triple loc=(0,0,0)) {
+	triple A = (0,0,0);
+	triple B = (0,1,0);
+	triple C = (-1,1,0);
+	triple D = (-1,0,0);
+	
+	transform3 sd = shift(0,0,-2);
+	
+	triple Ap = sd*A;
+	triple Bp = sd*B;
+	triple Cp = sd*C;
+	triple Dp = sd*D;
+	
+	draw(A--B--C--D--A);
+	draw(A--Ap--Bp--B);
+	draw(Bp--Cp--C);
+	draw(Ap--Dp--D, dashed);
+	draw(Dp--Cp, dashed);
+	
+	label(l
+}
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.6\textwidth]
+string[] labels = {"A","B","C","D","A'","B'","C'","D'"};
+draw_rect_prism(labels, (0,0,0));
+\end{asy}
+\end{center}
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
