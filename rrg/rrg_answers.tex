@@ -804,7 +804,7 @@ We know the order because the rotation group of the pentagonal prism has $10$ el
 
 If $a$ is a rotation of $72^\circ$ about the central axis, $b$ is a rotation of $180^\circ$ about a horizontal axis, and $d$ is a reflection across the midplane between the two pentagonal faces, then $\{a,b,d\}$ generates the set, since $\{a,b\}$ generates all rotations and $d$ turns them into their mirror images. But this isn't the right answer.
 
-Are there any smaller generating sets? The previous trick asserting no using more advanced abstract algebra doesn't actually work\footnote{If you understand it, it's because $Z_2\times Z_2\times Z_2$ isn't a quotient of this group, since this group $D_5 \times Z_2$ has order $20$ which is not divisible by $8$.}. We have $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$, so that we can potentially generate $a$, $b$ and $d$.
+Are there any smaller generating sets? The previous trick asserting no using more advanced abstract algebra doesn't actually work\footnote{If you understand it, it's because $Z_2\times Z_2\times Z_2$ isn't a quotient of this group, since this group $D_5 \times Z_2$ has order $20$ which is not divisible by $8$.}. Well, since $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$.
 
 Let's try $ad$ and $b$. Taking successive powers of $ad$, we get
 
@@ -863,192 +863,33 @@ We know the order because this is the rotation group of a tetrahedron, and the r
 
 Another difficult problem!
 
-Let's figure out where the rotation axes actually are. There are $4$ axes going through a vertex---let's call these \textit{vertex} axes $v_i$. There are also $3$ axes going through the midpoints of opposite edges: let's call these \textit{edge} axes $e_i$. These axes are enumerated and shown in Figure~\ref{fig:tetra_rot_axes}.
+Let's figure out where the rotation axes actually are. There are $4$ axes going through a vertex---let's call these \textit{vertex} rotations. There are also $3$ axes going through the centers of opposite edges: let's call these \textit{edge} rotations.
 
-\begin{asydef}
-void draw_axis(string name, pair dir, triple a, triple b, real stretch=0.3) {
-	triple start = (1+stretch)*a-stretch*b;
-	triple end = (1+stretch)*b-stretch*a;
-	
-	draw(start--end,dotted);
-	label("$" + name + "$", start, dir);
-}
-\end{asydef}
-
-\begin{center}
-\begin{asy}[width=0.5\textwidth]
-currentprojection=orthographic(2,5,5);
-triple A = (0,0,0);
-triple B = (1,0,0);
-triple C = (0.5,sqrt(3)/2,0);
-triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
-
-draw(B--C--D--A);
-draw(A--B,dashed);
-draw(D--B);
-draw(A--C);
-
-label("$A$", A, E);
-label("$B$", B, W);
-label("$C$", C, S);
-label("$D$", D, N);
-
-draw_axis("v_A", E, A, (B+C+D)/3);
-draw_axis("v_B", W, B, (A+C+D)/3);
-draw_axis("v_C", S, C, (A+B+D)/3);
-draw_axis("v_D", N, D, (A+B+C)/3);
-
-draw_axis("e_1", E, (D+C)/2, (A+B)/2);
-draw_axis("e_2", S, (B+C)/2, (A+D)/2);
-draw_axis("e_3", SE, (A+C)/2, (B+D)/2);
-
-triple[] cows = {A,B,C,D};
-
-for (int i = 0; i < 4; ++i) {
-	for (int j = i; j < 4; ++j) {
-		dot((cows[i]+cows[j])/2);
-	}
-}
-
-for (int i = 0; i < 4; ++i) {
-	dot((cows[0]+cows[1]+cows[2]+cows[3]-cows[i])/3);
-}
-
-\end{asy}
-\captionof{figure}{Regular tetrahedron's succulent rotation axes.}
-\label{fig:tetra_rot_axes}
-\end{center}
-
-We can rotate by $120^\circ$ or $240^\circ$ (counterclockwise as viewed from the vertex) about any $v_i$, but only by $180^\circ$ about any $e_i$. Along with the identity, this gives all $2\cdot 4+3+1=12$ elements.
-
-To make manipulating these elements easier, treat them as moving elements in a list. We name this list with indices as shown in Figure~\ref{fig:tetra_indices}. Thus, the identity element $I$ is $(A,B,C,D)$. A rotation of $240^\circ$ around $v_A$ swaps vertices in positions $(3\quad 4)$ then $(2\quad 3)$, so $v_A=(A,D,B,C)$ as shown in Figure~\ref{fig:v_a_repr}.
-
-\begin{center}
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=0.9\textwidth]
-currentprojection=orthographic(2,5,5);
-triple A = (0,0,0);
-triple B = (1,0,0);
-triple C = (0.5,sqrt(3)/2,0);
-triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
-
-draw(B--C--D--A);
-draw(A--B,dashed);
-draw(D--B);
-draw(A--C);
-
-label("$1$", A, E);
-label("$2$", B, W);
-label("$3$", C, S);
-label("$4$", D, N);
-
-\end{asy}
-\captionof{figure}{Regular tetrahedron's indices.}
-\label{fig:tetra_indices}
-\end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=0.9\textwidth]
-currentprojection=orthographic(2,5,5);
-triple A = (0,0,0);
-triple B = (1,0,0);
-triple C = (0.5,sqrt(3)/2,0);
-triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
-
-draw(B--C--D--A);
-draw(A--B,dashed);
-draw(D--B);
-draw(A--C);
-
-label("$1=A$", A, E);
-label("$2=D$", B, W);
-label("$3=B$", C, S);
-label("$4=C$", D, N);
-
-draw_axis("v_A", E, A, (B+C+D)/3,0.6);
-dot((B+C+D)/3);
-\end{asy}
-\captionof{figure}{$v_A=(A,D,B,C)$.}
-\label{fig:v_a_repr}
-\end{minipage}
-\end{center}
-
-If we take a look at an edge rotation, say $e_1$, you will see it also swaps two vertices: in this case, $(3\quad 4)$ and $(1\quad 2)$. In general, any edge rotation or vertex rotation will swap two vertices---you can see this by plain symmetry or if you want, working it out for each rotation.
-
-We now have a more abstract representation of this group: namely, it is the group of \textit{even permutations} of $(A,B,C,D)$. Even permutations are permutations made by swapping two pairs at a time. For example, $(B,A,D,C)$ is even, but $(A,B,D,C)$ is not. The group operation is composing two permutations by chaining them together. Note that the identity, $(A,B,C,D)$ is considered even, just as $0$ is considered even.
-
-One element is clearly not enough, because this group is not cyclic. Can we do it in two elements though?
-
-Consider two vertex rotations, which cycle (without loss of generality) the first three vertices and the last three vertices. That is, $a=(3,1,2,4)$ and $b=(1,4,2,3)$. Can we get every even permutation with combinations of $a$ and $b$? Let's try list them out:
-
-\begin{alignat*}{9}
-a &=(3,1,2,4), \qquad &&a^2&&=(2,3,1,4), \qquad &&a^3=I&&=(1,2,3,4), \qquad  &&b&&=(1,4,2,3), \\
-b^2&=(1,3,4,2), &&\cancel{b^3}=I&&=a^3, &&ab&&=(2,1,4,3), &&ab^2&&=(4,1,3,2), \\
-a^2b&=(4,2,1,3), &&a^2b^2&&=(3,4,1,2), &&\cancel{ba}&&=a^2b^2, &&b^2a&&=(3,2,4,1), \\
-ba^2&=(2,4,3,1), &&\cancel{b^2a^2}&&=ab, &&\cancel{bab}&&=a^2, &&\cancel{b^2ab}&&=ba^2, \\
-\cancel{bab^2}&=a^2b, &&b^2ab^2&&=(4,3,2,1)=ba^2b &&\\
-\end{alignat*}
-
-We have successfully generated all $12$ elements with the set $\{a,b\}$. Thus, a two element generating set is sufficient!
-
-For the curious, this group is known as the alternating group $A_4$.
+One element is clearly not enough, because this group is not cyclic.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
-
-The group is clearly not commutative, since $ab\neq ba$.
 
 \begin{outer_problem}
 \item Tetrahedron under reflection
 \end{outer_problem}
 
-This is just the snap group of order $4$, $S_4$.
-
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
-
-As we found in the first problem, $S_4$ has $4!=24$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
-As we found in the first problem, $S_4$ has $4!=24$ elements.
-
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
-This is tricky.
-
-The obvious thing to do is keep $\{a,b\}$ from the previous problem and add some reflection $c$. Then $\{a,b,c\}$ has all $24$ elements, since $\{a,b\}$ makes $12$ elements and $c$ makes a copy of each ``in the mirror world.'' This is not, however, the right answer.
-
-A generating of $2$ elements is actually possible! There are several ways to see this, but I find a permutation argument easiest to follow.
-
-$S_4$ is not just the reflection group of the tetrahedron, but also the group of all permutations of $(1,2,3,4)$. Consider the permutation $j=(4,1,2,3)$, which cycles all the elements, and the permutation $k=(2,1,3,4)$, which swaps the first elements. Then
-
-$j=(4,1,2,3),\quad j^2=(3,4,1,2),\quad j^3=(2,3,4,1),\quad j^4=I=(1,2,3,4).$
-
-We can flip any two adjacent elements (as well as the first and last elements) by doing the following:
-\begin{enumerate}
-\item Cycle using powers of $j$ until the two elements in question are the first two elements.
-\item Swap them with an application of $k$.
-\item Cycle back to the starting position with powers of $j$.
-\end{enumerate}
-In more mathematical terms, we can swap indices $i$ and $i+1$, where $1\leq i \leq 3$, with the following element.
-
-$$j^{i-1}kj^{5-i}.$$
-
-Intuitively, if you can swap any two adjacent elements, you can make any permutations. The proof of this is pretty standard and outside the scope of this answer key.
-
-Thus, the true minimal generating set is $\{j,k\}$ as described.
-
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
-
-This group is certainly not commutative, since the previous group from Problem 17 was not commutative and is a subgroup of this group.
 
 \begin{outer_problem}
 \item Cube under rotation
