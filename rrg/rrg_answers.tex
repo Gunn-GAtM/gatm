@@ -321,7 +321,7 @@ for (int i = 0; i < 8; ++i) {
 
 (Answers may vary.)
 
-Any pair of a rotation and flip will generate the set, except for $\{r^2,fr^2\}$ and $\{r^2,f\}$; these will produce the rectangle group instead. Any pair of two flips will also work. As an example of both of these, both $\{r^2,fr^3\}$ and $\{f,fr\}$ will generate the group.
+Any pair of a rotation and flip will generate the set, except for $\{r^2,fr^2\}$ and $\{r^2,f\}$; these will produce the rectangle group instead. Any pair of two flips, except for $\{f,fr^2\}$, will also work. As an example of both of these categories, both $\{r^2,fr^3\}$ and $\{f,fr\}$ will generate the group.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
@@ -345,12 +345,14 @@ This is a bit more difficult than the previous questions, because we need to und
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
-The set of elements are shown below. Let $a$ be a rotation of $90^\circ$ around the central axis, going through the centers of both square faces; let $b$ be a rotation of $180^\circ$ around an axis going through the centers of faces $\square ABB'A'$ and $\square DCC'D'$.
+The set of elements are shown in Figure~\ref{fig:this_took_me_so_long} below. Let $a$ be a rotation of $90^\circ$ counterclockwise---as viewed from the top---around the central axis, going through the centers of both square faces; let $b$ be a rotation of $180^\circ$ around an axis going through the centers of faces $\square ABB'A'$ and $\square DCC'D'$.
 
 \begin{asydef}
 import three;
 
-void draw_rect_prism(string[] labels, triple loc=(0,0,0)) {
+string d = "$"; // $
+
+void draw_rect_prism(string[] labels, triple loc=(0,0,0), bool midplane_oof) {
 	triple A = (0,0,0);
 	triple B = (0,1,0);
 	triple C = (-1,1,0);
@@ -363,30 +365,177 @@ void draw_rect_prism(string[] labels, triple loc=(0,0,0)) {
 	triple Cp = sd*C;
 	triple Dp = sd*D;
 	
-	draw(A--B--C--D--A);
-	draw(A--Ap--Bp--B);
-	draw(Bp--Cp--C);
-	draw(Ap--Dp--D, dashed);
-	draw(Dp--Cp, dashed);
+	if (!midplane_oof) {
+		draw(A--B--C--D--A);
+		draw(A--Ap--Bp--B);
+		draw(Bp--Cp--C);
+		draw(Ap--Dp--D, dashed);
+		draw(Dp--Cp, dashed);
+	} else {
+		real rat = 0.9;
 	
-	label(l
+		draw(A--(A+D)/2);
+		draw(A--B--(B+C)/2);
+		draw(D--C);
+		draw(A--Ap--Bp--B);
+		draw(C--Cp);
+		draw(Ap--Dp,dashed);
+		draw(Bp--(Bp+Cp)/2);
+		draw(D--Dp,dashed);
+		draw(Ap--Dp--Cp,dashed);
+		
+		draw((Bp+Cp)/2--point(Bp--Cp,rat),dashed);
+		draw(point(Bp--Cp,rat)--Cp);
+		draw((B+C)/2--point(B--C,rat),dashed);
+		draw(point(B--C,rat)--C);
+		draw((A+D)/2--point(A--D,rat),dashed);
+		draw(point(A--D,rat)--D);
+	}
+	
+	label(d + labels[0] + d, A, NW);
+	label(d + labels[1] + d, B, N);
+	label(d + labels[2] + d, C, NE);
+	label(d + labels[3] + d, D, N);
+	
+	label(d + labels[4] + d, Ap, SW);
+	label(d + labels[5] + d, Bp, SE);
+	label(d + labels[6] + d, Cp, SE);
+	label(d + labels[7] + d, Dp, S);
+}
+
+void draw_rect_prism_c(string elem, string[] labels, bool midplane_oof) {
+	draw_rect_prism(labels, (0,0,0), midplane_oof);
+	if (substr(elem,0,1) == "a") { // Vertical rotation
+		int deg = length(elem) == 1 ? 1 : (int) substr(elem,2,1);
+		real ang = deg*pi/2;
+		
+		dot((-0.5,0.5,0));
+		dot((-0.5,0.5,-2));
+		
+		draw((-0.5,0.5,0.2) -- (-0.5,0.5,-2.2), dotted);
+		draw(((-0.3,0.5,0)..(-0.5,0.5,0) + 0.2 * (cos(ang/2), sin(ang/2), 0)..(-0.5,0.5,0) + 0.2 * (cos(ang), sin(ang), 0)), Arrow3);
+	}
+
+	triple[] diag_axes = {(0,0,-1),(0,1,-1),(-1,1,-1),(-1,0,-1)};
+	triple[] cntr_axes = {(0,0.5,-1),(-0.5,1,-1),(-1,0.5,-1),(-0.5,0,-1)};
+
+	if (substr(elem,0,1) == "b") { // Horizontal rotation
+		int deg = length(elem) == 1 ? 0 : (length(elem) == 2 ? 1 : (int) substr(elem,3,1));
+		triple a1,a2;
+	
+		path3 rotate180 = shift(0,0.5,-1) * ((0,-0.2,0)..(0,0,0.2)..(0,0.2,0));
+	
+		if (deg % 2 == 0) { // Center rotation
+			a1 = cntr_axes[deg # 2];
+			a2 = cntr_axes[2+deg # 2];
+		} else { // Diagonal rotation
+			a1 = diag_axes[(deg - 1)#2];
+			a2 = diag_axes[2+(deg-1)#2];
+		}
+		
+		dot(a1);
+		dot(a2);
+		
+		draw((1.4*a1-0.4*a2)--(1.4*a2-0.4*a1),dotted);
+		draw(rotate((45 * (deg-2*(deg%2))), (-0.5,0.5,0), (-0.5,0.5,1)) * shift((deg%2) * (sqrt(2)/2 - 0.5), 0, 0) * rotate180, Arrow3);
+	
+	}
+}
+
+string[] elems = {"I","a","a^2","a^3","b","ba","ba^2","ba^3"};
+string[][] labels_list = {
+{"A","B","C","D","A'","B'","C'","D'"},
+{"D","A","B","C","D'","A'","B'","C'"},
+{"C","D","A","B","C'","D'","A'","B'"},
+{"B","C","D","A","B'","C'","D'","A'"},
+{"B'","A'","D'","C'","B","A","D","C"},
+{"A'","D'","C'","B'","A","D","C","B"},
+{"D'","C'","B'","A'","D","C","B","A"},
+{"C'","B'","A'","D'","C","B","A","D"}
+};
+
+void draw_elem(int indx, bool midplane_oof = false) {
+	draw_rect_prism_c(elems[indx],labels_list[indx],midplane_oof);
+	label(d + elems[indx] + d, (-0.5,0.5,-2.8)); 
 }
 \end{asydef}
 
-\begin{center}
-\begin{asy}[width=0.6\textwidth]
-string[] labels = {"A","B","C","D","A'","B'","C'","D'"};
-draw_rect_prism(labels, (0,0,0));
+% I don't want to manually do this, but Asymptote forces me to
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(0);
 \end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(1);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(2);
+\end{asy}
+\end{minipage}
+
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(3);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(4);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,2,4);
+draw_elem(5);
+\end{asy}
+\end{minipage}
+
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(6);
+\end{asy}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import three;
+currentprojection = orthographic(5,3,4);
+draw_elem(7);
+\end{asy}
+\end{minipage}
+\begin{center}
+\captionof{figure}{The elements of the rotation group of the rectangular prism.}
+\label{fig:this_took_me_so_long}
 \end{center}
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+(Answers may vary.)
+The elements with $b$ in their name are equivalent to the reflections in the dihedral group of the square. Thus, we need a ``reflection'' $ba^n$ and a rotation $a^m$, or two separate reflections. All such pairs work except for $\{a^2,ba^2\}$, $\{a^2,b\}$ and $\{b,ba^2\}$. An example from each category: $\{a,b\}$, $\{b,ba\}$.
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+This group is not commutative. For example, $ba=ba$, but $ab=ba^3$.
 
 \begin{outer_problem}
 \item Square prism under reflection
@@ -396,17 +545,139 @@ draw_rect_prism(labels, (0,0,0));
 \item Number of elements
 \end{inner_problem}
 
+If the previous group---the rotation group of the square prism---had $8$ elements, then this group should have $16$ elements.
+
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
+
+We know the order because the previous group has $8$ elements, and dihedral groups have twice the number of elements of the rotation group, this group has $16$ elements.
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+(Answers may vary significantly.)
+
+Since we could generate the previous group with (most) pairs of $\{ba^n,a^m\}$, or (most) pairs of $\{a^n,a^m\}$, we could just add another element $c$ which is a true geometric reflection about, say, the midplane $P$ between $\square DCD'C'$ and $\square ABB'A$ as shown in Figure~\ref{fig:midplane_elem_c}.
+
+\begin{center}
+$$\vcenter{\hbox{
+\begin{asy}
+size(200);
+import three;
+currentprojection = orthographic(5,4,4);
+draw_elem(0,true);
+
+path3 midplane_boundary = (-0.5,-0.3,0.3)--(-0.5,1.3,0.3)--(-0.5,1.3,-2.3)--(-0.5,-0.3,-2.3)--cycle;
+
+draw(midplane_boundary,dotted);
+draw(surface(midplane_boundary),opacity(0.4)+gray(0.4));
+
+label("$M$", point(midplane_boundary,2), S);
+
+dot((-0.5,0,0));
+dot((-0.5,1,0));
+dot((-0.5,1,-2));
+dot((-0.5,0,-2));
+\end{asy}
+}}
+\mathop{\longrightarrow}^\text{reflection}
+\vcenter{\hbox{
+\begin{asy}
+size(200);
+import three;
+
+string[] vertices = {"D","C","B","A","D'","C'","B'","A'"};
+
+currentprojection = orthographic(5,4,4);
+draw_rect_prism_c("oof", vertices, false);
+label(d + "$c$" + d, (-0.5,0.5,-2.8)); 
+\end{asy}
+}}
+$$
+\captionof{figure}{3D reflection over the midplane $M$ is $c$.}
+\label{fig:midplane_elem_c}
+\end{center}
+
+Thus, $\{a,b,c\}$ can generate the group. You can prove that two generators are impossible, but the proof either requires making the group table or some more sophisticated abstract algebra. I will give the latter for those who are well-versed in group theory already, but it will probably be inaccessible to most.
+
+\begin{center}
+$$
+\vcenter{\hbox{
+\begin{asy}
+size(200);
+import three;
+currentprojection = orthographic(5,4,4);
+draw_elem(0);
+
+path3 midplane_boundary = (0.3,-0.3,-1)--(-1.3,-0.3,-1)--(-1.3,1.3,-1)--(0.3,1.3,-1)--cycle;
+
+draw(midplane_boundary,dotted);
+draw(surface(midplane_boundary),opacity(0.4)+gray(0.4));
+
+label("$P$", point(midplane_boundary,0), W);
+
+dot((0,0,-1));
+dot((-1,1,-1));
+dot((-1,0,-1));
+dot((0,1,-1));
+\end{asy}
+}}
+\mathop{\longrightarrow}^\text{reflection}
+\vcenter{\hbox{
+\begin{asy}
+size(200);
+import three;
+
+string[] vertices = {"A'","B'","C'","D'","A","B","C","D"};
+
+currentprojection = orthographic(5,4,4);
+draw_rect_prism_c("oof", vertices, false);
+label(d + "$d$" + d, (-0.5,0.5,-2.8)); 
+\end{asy}
+}}
+$$
+\captionof{figure}{$d$ is the reflection through midplane $P$.}
+\label{fig:midplane_elem_d}
+\end{center}
+
+The rotation group generated by $\{a,b\}$ is $D_4$. Define a new element $d$ which is the reflection through the midplane $P$ between the two square faces.\footnote{For the curious, $d=cba^2$.} This is crudely shown in Figure~\ref{fig:midplane_elem_d}; I couldn't be bothered to make a nicer figure. Then the reflection group generated by $\{d\}$ is $Z_2$. Furthermore, the operation sets $\{a,b\}$ and $\{d\}$ are separable, in that $a^xb^yd=da^xb^y\quad$\footnote{This can be shown concretely by simply showing geometrically that $ad=da$ and $bd=db$.}. Thus, the group $G$ described in this problem is (isomorphic to) the direct product:
+
+$$G\cong D_4\times Z_2.$$
+
+We wish to show that $Z_2\times Z_2\times Z_2$ is a quotient of this group. That is, we wish to find a normal subgroup $N$ such that
+
+$$G/N = Z_2\times Z_2\times Z_2.$$
+
+If this is true, then the minimal generating set of $G$ has at least cardinality $3$. All that remains is to find $N$ and $G/N$.
+
+It suffices to show that $Z_2\times Z_2\triangleleft D_4$, since then $Z_2\times Z_2\times Z_2\triangleleft D_4\times Z_2.$ We have $|Z_2\times Z_2| = 2^2 = 4$, so we want $|D_4/N|=4$. We know $|D_4|=8$, so by Lagrange's theorem, $|N|=2$.
+
+A normal subgroup of $D_4$ is $N=\{1,a^2\}$. It is normal because for $x\in\{0,1,2,3\}$ and $y\in\{0,1\}$:
+\begin{align*}
+(b^xa^y)a^2(b^xa^y)^{-1} &= (b^xa^y)a^2(a^{-y}b^{-x}) \\
+&= b^xa^{2+y-y}b^{-x} \\
+&= b^xa^2b^{-x} \\
+&= b^xb^{-x}a^2 \\
+&= a^2 \in \{1,a^2\}.
+\end{align*}
+
+The corresponding quotient group is
+
+$$D_4/N = \{\{1,a^2\}, \{a,a^3\}, \{b,ba^2\}, \{ba, ba^3\}\}.$$
+
+We have the isomorphism $\{b^xa^{y},b^xa^{y+2}\}\leftrightarrow (x,y)$ under the operation of element-wise addition modulo $2$. After all,
+
+$$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} = \{b^{x_1+x_2}a^{y_1+y_2},b^{x_1+x_2}a^{y_1+y_2+2}\}.$$
+
+Therefore, $$D_4/N \cong Z_2 \times Z_2,$$ so $$Z_2 \times Z_2 \times Z_2 \triangleleft D_4\times Z_2=G.$$ Since the minimal generating set of $Z_2\times Z_2\times Z_2$ is $3$, $G$'s generating set is at least $3$. But we've already found the set $\{a,b,c\}$ which generates $G$!\footnote{$\{a,b,d\}$ also generates $G$.} Thus, it is minimal.
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+As we found in the previous problem, the rotation group of the square prism is not commutative, and since that's a subgroup of this group, this group certainly isn't commutative.
 
 \begin{outer_problem}
 \item Pentagon under rotation
@@ -416,17 +687,64 @@ draw_rect_prism(labels, (0,0,0));
 \item Number of elements
 \end{inner_problem}
 
+This is just the cyclic group of order $5$, so there are $5$ elements.
+
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
+
+The elements are rotations of $I=r_0$, $r=r_{72}$, $r^2=r_{144}$, $r^3=r_{216}$, $r^4=r_{288}$. They are shown below.
+
+\begin{center}
+\begin{asy}[width=\textwidth]
+void draw_pentagon(string[] labels, pair pos=(0,0)) {
+	pair prev_pt;
+	for (int i = 0; i < 6; ++i) {
+		real ang = pi/2 + i * 2 * pi / 5;
+		pair cist = (cos(ang),sin(ang));
+		pair vertex = pos + (cos(ang),sin(ang));
+		
+		if (i != 0) {
+			draw(vertex--prev_pt);
+			label("$" + labels[i % 5] + "$", vertex, cist);
+		}
+		
+		prev_pt = vertex;
+	}
+}
+
+string[] vertices = {"A","B","C","D","E"};
+string[] labels = {"I","r","r^2","r^3","r^4"};
+
+real r = 0.5;
+
+for (int i = 0; i < 5; ++i) {
+	draw_pentagon(vertices, (3*i,0));
+	label("$"+labels[i]+"$", (3*i,-1), S);
+	
+	real ang = i * 2 * pi / 5;
+	
+	if (i != 0) draw(shift(3*i,0)*((r,0)..r*(cos(ang/2),sin(ang/2))..r*(cos(ang),sin(ang))), Arrow);
+	
+	vertices.insert(0, vertices[4]);
+	vertices.delete(5);
+}
+\end{asy}
+\end{center}
+
+Pentagons should always wear helmets, lest they want to damage their vertices.
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+Any rotation by itself $\{r^n\}$ works, since $5$ is a prime.
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+The group is indeed commutative, since all operations are rotations.
 
 \begin{outer_problem}
 \item Pentagon under reflection
@@ -436,113 +754,118 @@ draw_rect_prism(labels, (0,0,0));
 \item Number of elements
 \end{inner_problem}
 
+This is the dihedral group of the pentagon, which has $2\cdots 5=10$ elements.
+
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
+
+We know the order because it should have twice the number of elements as the rotation group, which has $5$ elements, giving $10$ elements total.
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+We can either do a rotation and a reflection or two reflections. Since $5$ is prime, all pairs work (unlike for the square). Let $f$ is a flip over the vertical axis. Examples of each are $\{r,f\}$ and $\{f,fr\}$.
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+The group is not commutative. For example, $fr=fr$, but $rf=fr^4$.
 
 \begin{outer_problem}
 \item Pentagonal prism under rotation
 \end{outer_problem}
 
-\begin{inner_problem}[start=1]
-\item Number of elements
-\end{inner_problem}
-
-\begin{inner_problem}
-\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
-\end{inner_problem}
-
-\begin{inner_problem}
-\item A smallest possible \textbf{generating set}
-\end{inner_problem}
-
-\begin{inner_problem}
-\item Whether the group is \textbf{commutative}
-\end{inner_problem}
+This is isomorphic to the dihedral group of the pentagon, which is Problem 12. The reason is the same as for Problem 9's dependence on 8, thus I will not explain it.
 
 \begin{outer_problem}
 \item Pentagonal prism under reflection
 \end{outer_problem}
 
+This is akin to Problem 10.
+
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
+
+$2\cdot 10=20.$
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
+We know the order because the rotation group of the pentagonal prism has $10$ elements, so its dihedral group has $20$ elements.
+
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+If $a$ is a rotation of $72^\circ$ about the central axis, $b$ is a rotation of $180^\circ$ about a horizontal axis, and $d$ is a reflection across the midplane between the two pentagonal faces, then $\{a,b,d\}$ generates the set, since $\{a,b\}$ generates all rotations and $d$ turns them into their mirror images. But this isn't the right answer.
+
+Are there any smaller generating sets? The previous trick asserting no using more advanced abstract algebra doesn't actually work\footnote{If you understand it, it's because $Z_2\times Z_2\times Z_2$ isn't a quotient of this group, since this group $D_5 \times Z_2$ has order $20$ which is not divisible by $8$.}. Well, since $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$.
+
+Let's try $ad$ and $b$. Taking successive powers of $ad$, we get
+
+\begin{align*}
+ad &= ad \\
+(ad)^2 &= a^2 \\
+(ad)^3 &= a^3d \\
+(ad)^4 &= a^4 \\
+(ad)^5 &= a^5d = d \\
+(ad)^6 &= a \\
+\end{align*}
+
+We've just generated $d$ and $a$ from $ad$ alone! Since we have $b$ already, we have created $\{a,b,d\}$ from $\{ad,b\}$. Thus, the smallest generating set has size $2$. (We can't have size $1$ because then the group would be cyclic and thus commutative, which this group certainly isn't.)
+
+This is a hard problem. Don't worry if you didn't get it.
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+The dihedral group of the pentagon is a subgroup of this group, and is not commutative, so this group is not commutative.
 
 \begin{outer_problem}
 \item Pentagonal pyramid under rotation
 \end{outer_problem}
 
-\begin{inner_problem}[start=1]
-\item Number of elements
-\end{inner_problem}
-
-\begin{inner_problem}
-\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
-\end{inner_problem}
-
-\begin{inner_problem}
-\item A smallest possible \textbf{generating set}
-\end{inner_problem}
-
-\begin{inner_problem}
-\item Whether the group is \textbf{commutative}
-\end{inner_problem}
+This is just isomorphic to the rotation group of the pentagon, or Problem 11.
 
 \begin{outer_problem}
 \item Pentagonal pyramid under reflection
 \end{outer_problem}
 
-\begin{inner_problem}[start=1]
-\item Number of elements
-\end{inner_problem}
-
-\begin{inner_problem}
-\item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
-\end{inner_problem}
-
-\begin{inner_problem}
-\item A smallest possible \textbf{generating set}
-\end{inner_problem}
-
-\begin{inner_problem}
-\item Whether the group is \textbf{commutative}
-\end{inner_problem}
+This is just isomorphic to the reflection group of the pentagon, or Problem 12.
 
 \begin{outer_problem}
 \item Tetrahedron (triangular pyramid) under rotation
 \end{outer_problem}
 
+This is isomorphic to a subgroup of $S_4$, the snap group of order $24$.
+
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
+
+The snap group includes reflections, but this does not: thus, this group has $\frac{4!}{2}=12$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
+We know the order because this is the rotation group of a tetrahedron, and the reflection group of a tetrahedron has $24$ elements, so this must have half that.
+
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
+
+Another difficult problem!
+
+Let's figure out where the rotation axes actually are. There are $4$ axes going through a vertex---let's call these \textit{vertex} rotations. There are also $3$ axes going through the centers of opposite edges: let's call these \textit{edge} rotations.
+
+One element is clearly not enough, because this group is not cyclic.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
