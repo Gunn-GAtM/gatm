@@ -804,7 +804,7 @@ We know the order because the rotation group of the pentagonal prism has $10$ el
 
 If $a$ is a rotation of $72^\circ$ about the central axis, $b$ is a rotation of $180^\circ$ about a horizontal axis, and $d$ is a reflection across the midplane between the two pentagonal faces, then $\{a,b,d\}$ generates the set, since $\{a,b\}$ generates all rotations and $d$ turns them into their mirror images. But this isn't the right answer.
 
-Are there any smaller generating sets? The previous trick asserting no using more advanced abstract algebra doesn't actually work\footnote{If you understand it, it's because $Z_2\times Z_2\times Z_2$ isn't a quotient of this group, since this group $D_5 \times Z_2$ has order $20$ which is not divisible by $8$.}. Well, since $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$.
+Are there any smaller generating sets? The previous trick asserting no using more advanced abstract algebra doesn't actually work\footnote{If you understand it, it's because $Z_2\times Z_2\times Z_2$ isn't a quotient of this group, since this group $D_5 \times Z_2$ has order $20$ which is not divisible by $8$.}. We have $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$, so that we can potentially generate $a$, $b$ and $d$.
 
 Let's try $ad$ and $b$. Taking successive powers of $ad$, we get
 
@@ -863,53 +863,474 @@ We know the order because this is the rotation group of a tetrahedron, and the r
 
 Another difficult problem!
 
-Let's figure out where the rotation axes actually are. There are $4$ axes going through a vertex---let's call these \textit{vertex} rotations. There are also $3$ axes going through the centers of opposite edges: let's call these \textit{edge} rotations.
+Let's figure out where the rotation axes actually are. There are $4$ axes going through a vertex---let's call these \textit{vertex} axes $v_i$. There are also $3$ axes going through the midpoints of opposite edges: let's call these \textit{edge} axes $e_i$. These axes are enumerated and shown in Figure~\ref{fig:tetra_rot_axes}.
 
-One element is clearly not enough, because this group is not cyclic.
+\begin{asydef}
+void draw_axis(string name, pair dir, triple a, triple b, real stretch=0.3) {
+	triple start = (1+stretch)*a-stretch*b;
+	triple end = (1+stretch)*b-stretch*a;
+	
+	draw(start--end,dotted);
+	label("$" + name + "$", start, dir);
+}
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+currentprojection=orthographic(2,5,5);
+triple A = (0,0,0);
+triple B = (1,0,0);
+triple C = (0.5,sqrt(3)/2,0);
+triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
+
+draw(B--C--D--A);
+draw(A--B,dashed);
+draw(D--B);
+draw(A--C);
+
+label("$A$", A, E);
+label("$B$", B, W);
+label("$C$", C, S);
+label("$D$", D, N);
+
+draw_axis("v_A", E, A, (B+C+D)/3);
+draw_axis("v_B", W, B, (A+C+D)/3);
+draw_axis("v_C", S, C, (A+B+D)/3);
+draw_axis("v_D", N, D, (A+B+C)/3);
+
+draw_axis("e_1", E, (D+C)/2, (A+B)/2);
+draw_axis("e_2", S, (B+C)/2, (A+D)/2);
+draw_axis("e_3", SE, (A+C)/2, (B+D)/2);
+
+triple[] cows = {A,B,C,D};
+
+for (int i = 0; i < 4; ++i) {
+	for (int j = i; j < 4; ++j) {
+		dot((cows[i]+cows[j])/2);
+	}
+}
+
+for (int i = 0; i < 4; ++i) {
+	dot((cows[0]+cows[1]+cows[2]+cows[3]-cows[i])/3);
+}
+
+\end{asy}
+\captionof{figure}{Regular tetrahedron's succulent rotation axes.}
+\label{fig:tetra_rot_axes}
+\end{center}
+
+We can rotate by $120^\circ$ or $240^\circ$ (counterclockwise as viewed from the vertex) about any $v_i$, but only by $180^\circ$ about any $e_i$. Along with the identity, this gives all $2\cdot 4+3+1=12$ elements.
+
+To make manipulating these elements easier, treat them as moving elements in a list. We name this list with indices as shown in Figure~\ref{fig:tetra_indices}. Thus, the identity element $I$ is $(A,B,C,D)$. A rotation of $240^\circ$ around $v_A$ swaps vertices in positions $(3\quad 4)$ then $(2\quad 3)$, so $v_A=(A,D,B,C)$ as shown in Figure~\ref{fig:v_a_repr}.
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{asy}[width=0.9\textwidth]
+currentprojection=orthographic(2,5,5);
+triple A = (0,0,0);
+triple B = (1,0,0);
+triple C = (0.5,sqrt(3)/2,0);
+triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
+
+draw(B--C--D--A);
+draw(A--B,dashed);
+draw(D--B);
+draw(A--C);
+
+label("$1$", A, E);
+label("$2$", B, W);
+label("$3$", C, S);
+label("$4$", D, N);
+
+\end{asy}
+\captionof{figure}{Regular tetrahedron's indices.}
+\label{fig:tetra_indices}
+\end{minipage}\hfill
+\begin{minipage}{0.4\textwidth}
+\begin{asy}[width=0.9\textwidth]
+currentprojection=orthographic(2,5,5);
+triple A = (0,0,0);
+triple B = (1,0,0);
+triple C = (0.5,sqrt(3)/2,0);
+triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
+
+draw(B--C--D--A);
+draw(A--B,dashed);
+draw(D--B);
+draw(A--C);
+
+label("$1=A$", A, E);
+label("$2=D$", B, W);
+label("$3=B$", C, S);
+label("$4=C$", D, N);
+
+draw_axis("v_A", E, A, (B+C+D)/3,0.6);
+dot((B+C+D)/3);
+\end{asy}
+\captionof{figure}{$v_A=(A,D,B,C)$.}
+\label{fig:v_a_repr}
+\end{minipage}
+\end{center}
+
+If we take a look at an edge rotation, say $e_1$, you will see it also swaps two vertices: in this case, $(3\quad 4)$ and $(1\quad 2)$. In general, any edge rotation or vertex rotation will swap two vertices---you can see this by plain symmetry or if you want, working it out for each rotation.
+
+We now have a more abstract representation of this group: namely, it is the group of \textit{even permutations} of $(A,B,C,D)$. Even permutations are permutations made by swapping two pairs at a time. For example, $(B,A,D,C)$ is even, but $(A,B,D,C)$ is not. The group operation is composing two permutations by chaining them together. Note that the identity, $(A,B,C,D)$ is considered even, just as $0$ is considered even.
+
+One element is clearly not enough, because this group is not cyclic. Can we do it in two elements though?
+
+Consider two vertex rotations, which cycle (without loss of generality) the first three vertices and the last three vertices. That is, $a=(3,1,2,4)$ and $b=(1,4,2,3)$. Can we get every even permutation with combinations of $a$ and $b$? Let's try list them out:
+
+\begin{alignat*}{9}
+a &=(3,1,2,4), \qquad &&a^2&&=(2,3,1,4), \qquad &&a^3=I&&=(1,2,3,4), \qquad  &&b&&=(1,4,2,3), \\
+b^2&=(1,3,4,2), &&\cancel{b^3}=I&&=a^3, &&ab&&=(2,1,4,3), &&ab^2&&=(4,1,3,2), \\
+a^2b&=(4,2,1,3), &&a^2b^2&&=(3,4,1,2), &&\cancel{ba}&&=a^2b^2, &&b^2a&&=(3,2,4,1), \\
+ba^2&=(2,4,3,1), &&\cancel{b^2a^2}&&=ab, &&\cancel{bab}&&=a^2, &&\cancel{b^2ab}&&=ba^2, \\
+\cancel{bab^2}&=a^2b, &&b^2ab^2&&=(4,3,2,1)=ba^2b &&\\
+\end{alignat*}
+
+We have successfully generated all $12$ elements with the set $\{a,b\}$. Thus, a two element generating set is sufficient! Interestingly, this means you can turn a tetrahedron however you want by holding it at two corners and twisting it with each.
+
+For the curious, this group is known as the alternating group $A_4$.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+The group is clearly not commutative, since $ab\neq ba$.
 
 \begin{outer_problem}
 \item Tetrahedron under reflection
 \end{outer_problem}
 
+This is just the snap group of order $4$, $S_4$.
+
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
+
+As we found in the first problem, $S_4$ has $4!=24$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
+As we found in the first problem, $S_4$ has $4!=24$ elements.
+
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+This is tricky.
+
+The obvious thing to do is keep $\{a,b\}$ from the previous problem and add some reflection $c$. Then $\{a,b,c\}$ has all $24$ elements, since $\{a,b\}$ makes $12$ elements and $c$ makes a copy of each ``in the mirror world.'' This is not, however, the right answer.
+
+A generating of $2$ elements is actually possible! There are several ways to see this, but I find a permutation argument easiest to follow.
+
+$S_4$ is not just the reflection group of the tetrahedron, but also the group of all permutations of $(1,2,3,4)$. Consider the permutation $j=(4,1,2,3)$, which cycles all the elements, and the permutation $k=(2,1,3,4)$, which swaps the first elements. Then
+
+$$j=(4,1,2,3),\quad j^2=(3,4,1,2),\quad j^3=(2,3,4,1),\quad j^4=I=(1,2,3,4).$$
+
+We can flip any two adjacent elements (as well as the first and last elements) by doing the following:
+\begin{enumerate}
+\item Cycle using powers of $j$ until the two elements in question are the first two elements.
+\item Swap them with an application of $k$.
+\item Cycle back to the starting position with powers of $j$.
+\end{enumerate}
+In more mathematical terms, we can swap indices $i$ and $i+1$, where $1\leq i \leq 3$, with the following element.
+
+$$j^{i-1}kj^{5-i}.$$
+
+Intuitively, if you can swap any two adjacent elements, you can make any permutations. The proof of this is pretty standard and outside the scope of this answer key.
+
+For fun, let's see what the elements $j$ and $k$ actually are, operating on the tetrahedron.
+
+\begin{center}
+\begin{minipage}{0.3\textwidth}
+\centering
+\begin{asy}[width=0.9\textwidth]
+currentprojection=orthographic(2,5,5);
+triple A = (0,0,0);
+triple B = (1,0,0);
+triple C = (0.5,sqrt(3)/2,0);
+triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
+
+draw(B--C--D--A);
+draw(A--B,dashed);
+draw(D--B);
+draw(A--C);
+
+label("$1$", A, E);
+label("$2$", B, W);
+label("$3$", C, S);
+label("$4$", D, N);
+\end{asy}
+
+$I$
+\end{minipage}\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+\begin{asy}[width=0.9\textwidth]
+currentprojection=orthographic(2,5,5);
+triple A = (0,0,0);
+triple B = (1,0,0);
+triple C = (0.5,sqrt(3)/2,0);
+triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
+
+draw(B--C--D--A);
+draw(A--B,dashed);
+draw(D--B);
+draw(A--C);
+
+label("$4$", A, E);
+label("$1$", B, W);
+label("$2$", C, S);
+label("$3$", D, N);
+
+draw_axis("e_1", E, (D+C)/2, (A+B)/2);
+dot((D+C)/2);
+dot((A+B)/2);
+\end{asy}
+
+$j$
+\end{minipage}\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+\begin{asy}[width=0.9\textwidth]
+currentprojection=orthographic(2,5,5);
+triple A = (0,0,0);
+triple B = (1,0,0);
+triple C = (0.5,sqrt(3)/2,0);
+triple D = (A+B+C)/3 + (0,0,sqrt(6)/3);
+
+draw(B--C--D);
+triple inter1 = point(D--A,0.375);
+draw(D--inter1,dashed);
+draw(inter1--A);
+triple inter2 = point(C--A,0.48);
+draw(C--inter2,dashed);
+draw(inter2--A);
+draw(A--B,dashed);
+draw(D--B);
+
+label("$2$", A, E);
+label("$1$", B, W);
+label("$3$", C, S);
+label("$4$", D, N);
+
+path3 midplane = (0.5,-0.2,-0.2)--(0.5,sqrt(3)/2+0.2,-0.2)--(0.5,sqrt(3)/2+0.2,1)--(0.5,-0.2,1)--cycle;
+
+draw(midplane, dotted);
+draw(surface(midplane), opacity(0.4)+gray(0.3));
+
+dot((A+B)/2);
+\end{asy}
+
+$k$
+\end{minipage}
+\captionof{figure}{The two elements $j$ and $k$ generate the full symmetry group of the tetrahedron.}
+\end{center}
+
+Thus, the true minimal generating set is $\{j,k\}$ as described.
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+This group is certainly not commutative, since the previous group from Problem 17 was not commutative and is a subgroup of this group.
 
 \begin{outer_problem}
 \item Cube under rotation
 \end{outer_problem}
 
+There are a couple ways to analyze this. My favorite one is to choose a face to make the top face, which can be done in $6$ ways, then choose which rotation that face should be in, which can be done in $4$ ways.
+
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
+
+Since we choose a front face in $6$ ways, and its rotations in $4$ ways, we have $6\cdot 4=24$ total rotations.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
+The order is found above.
+
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+This is tough until you make a key observation. If we label space-diagonally opposite vertices (that is, vertices which don't share a face) with the same number, as shown in Figure~\ref{fig:cube_vertices_label}, then we can easily enumerate valid rotations.
+
+\begin{asydef}
+triple A = (0,0,0); // Vertices of a cube
+triple B = (0,1,0);
+triple C = (-1,1,0);
+triple D = (-1,0,0);
+
+transform3 sd = shift(0,0,-1);
+
+triple Ap = sd * A;
+triple Bp = sd * B;
+triple Cp = sd * C;
+triple Dp = sd * D;
+
+void drawCube(picture pic, string[] labels) {
+    draw(pic,A--B--C--Cp--Bp--Ap--A--B--Bp);
+    draw(pic,B--C);
+    draw(pic,A--D--C);
+    draw(pic,Ap--Dp--D,dashed); // behind the cube
+    draw(pic,Dp--Cp,dashed);
+
+    if (labels.length > 0) {
+        label(pic, d + labels[0] + d, A, NW);
+        label(pic, d + labels[1] + d, B, N);
+        label(pic, d + labels[2] + d, C, NE);
+        label(pic, d + labels[3] + d, D, N);
+        label(pic, d + labels[4] + d, Ap, SW);
+        label(pic, d + labels[5] + d, Bp, S);
+        label(pic, d + labels[6] + d, Cp, SE);
+        label(pic, d + labels[7] + d, Dp, S);
+    }
+}
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.3\textwidth]
+draw(A--Cp,dotted);
+draw(B--Dp,dotted);
+draw(Ap--C,dotted);
+draw(Bp--D,dotted);
+
+dot(A);
+dot(B);
+dot(C);
+dot(D);
+dot(Ap);
+dot(Bp);
+dot(Cp);
+dot(Dp);
+
+string[] labels = {"1","2","3","4","3","4","1","2"};
+drawCube(currentpicture, labels);
+\end{asy}
+\captionof{figure}{Marking opposite pairs of vertices.}
+\label{fig:cube_vertices_label}
+\end{center}
+
+The front face starts off saying ``1,2,3,4.'' I claim that the $4!$ permutations of these four labels on the front face yields every rotation, and only rotations. This can be manually verified, but the higher-level argument isn't too bad.
+
+First, note that you will always see the numbers ``1,2,3,4`` in \textit{some order} on the front face; you cannot see two of one number because all numbers are placed on diagonals of each other, and never share a side.
+
+Second, note that the list of four numbers on the front face uniquely determines the other labels, since each has exactly one pair on the back face. For example, if there is a $3$ in the closest corner to the camera, then there \textit{must} be a $3$ in the furthest corner of the camera.
+
+Third, we demonstrate that the permutation of labels can always be represented as a rotation. There are six fundamentally different types of label squares under rotation \textit{rotation}, as shown in Figure~\ref{fig:six_labelings}. But all appear somewhere as a face on the cube, as shown in Figure~\ref{fig:labelings_appear}.
+
+\begin{center}
+\begin{minipage}{0.6\textwidth}
+\begin{asy}[width=0.9\textwidth]
+int[] type_list = {
+1,2,4,3,2,3,1,4,3,4,2,1,4,1,3,2,1,4,3,2,3,2,1,4
+};
+string[] name_list = { "$\alpha$","$\beta$","$\gamma$","$\delta$","$\epsilon$","$\zeta$" };
+
+void draw_sq(pair loc, int a, int b, int c, int d) {
+
+transform ls = shift(2*loc);
+
+pair A = ls*(0,0);
+pair B = ls*(1,0);
+pair C = ls*(1,-1);
+pair D = ls*(0,-1);
+
+draw(A--B--C--D--cycle);
+
+label("$" + (string) a + "$", A, NW);
+label("$" + (string) b + "$", B, NE);
+label("$" + (string) c + "$", C, SE);
+label("$" + (string) d + "$", D, SW);
+
+}
+
+for (int i = 0; i < 6; ++i) {
+	real x = i%3;
+	real y = -(i # 3);
+	draw_sq((x,y), type_list[4*i],type_list[4*i+1],type_list[4*i+2],type_list[4*i+3]);
+	label(name_list[i], (2*x+0.5,2*y-0.5)); 
+}
+\end{asy}
+\captionof{figure}{The six different labelings of a square.}
+\label{fig:six_labelings}
+\end{minipage}\hfill
+\begin{minipage}{0.35\textwidth}
+\begin{asy}[width=\textwidth]
+string[] labels = {"1","2","3","4","3","4","1","2"};
+drawCube(currentpicture, labels);
+
+label(YZ()*"$\alpha$", (0,0.5,-0.5));
+label(XZ()*"$\beta$", (-0.5,1,-0.5));
+label(YZ()*"$\gamma$", (-1,0.5,-0.5));
+label(XZ()*"$\delta$", (-0.5,0,-0.5));
+label(XY()*"$\epsilon$", (-0.5,0.5,0));
+label(XY()*"$\zeta$", (-0.5,0.5,-1));
+\end{asy}
+\captionof{figure}{The six different labelings indeed appear on the cube!}
+\label{fig:labelings_appear}
+\end{minipage}
+\end{center}
+
+We have demonstrated that every permutation of the front face labels 1. creates a unique orientation of the cube and 2. that orientation is a rotations. Since there are $24$ unique permutations and $24$ unique rotations, every rotation has exactly one corresponding permutation and vice versa. We can now construct an isomorphism! The set of label permutations under the operation of composing permutations (as we did with the tetrahedron) and the set of rotations under the operation of composing rotations are \textit{isomorphic}. In symbols, $S_4\cong G$, our group.
+
+So the group of rotations of a cube is actually $S_4$, the permutation group of $4$ elements. I find this incredible.
+
+Back to the main question: what is the minimal generating set? In the previous question, we found that the permutations $(4,1,2,3)$--cycling all elements forward--and $(2,1,3,4)$--swapping the first two elements--generating $S_4$. For the cube, those are two rotations $a$ and $b$ as shown in Figure~\ref{fig:cube_generating_rotations}.
+
+\begin{center}
+\begin{minipage}{0.3\textwidth}
+\centering
+\begin{asy}[width=\textwidth]
+string[] labels = {"4","1","2","3","2","3","4","1"};
+drawCube(currentpicture, labels);
+
+dot((-0.5,0.5,0));
+dot((-0.5,0.5,-1));
+
+draw((-0.5,0.5,0.2)--(-0.5,0.5,-1.2),dotted);
+triple c = (-0.5,0.5,0);
+real r = 0.2;
+
+draw((c+r*(0,-1,0))..(c+(r*sqrt(2)/2,-r*sqrt(2)/2,0))..(c+r*(1,0,0)),Arrow3);
+
+\end{asy}
+$a$
+\end{minipage}\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+\begin{asy}[width=\textwidth]
+string[] labels = {"2","1","3","4","3","4","2","1"};
+drawCube(currentpicture, labels);
+
+dot((-0.5,0,-0.5));
+dot((-0.5,1,-0.5));
+
+draw((-0.5,-0.2,-0.5)--(-0.5,1.2,-0.5),dotted);
+triple c = (-0.5,1,-0.5);
+real r = 0.2;
+
+draw((c+r*(0,0,1))..(c+r*(-1,0,0))..(c+r*(0,0,-1)),Arrow3);
+\end{asy}
+$b$
+\end{minipage}
+\captionof{figure}{The two rotations $a$ and $b$.}
+\label{fig:cube_generating_rotations}
+\end{center}
+
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+This group is not commutative, since $S_4$ is not commutative.
 
 \begin{outer_problem}
 \item Cube under reflection
@@ -919,16 +1340,78 @@ One element is clearly not enough, because this group is not cyclic.
 \item Number of elements
 \end{inner_problem}
 
+There are $24$ elements in the rotation group of the cube, so naturally there are $48$ elements in the reflection group.
+
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
+
+For each of the $24$ rotations of the cube, there is also a reflected version over some plane. This gives $2\cdot 24=48$ total elements in this group.
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
+If $c$ is a reflection about, say, the origin of the cube, then $\{a,b,c\}$ (where $a,b$ are the rotations from before) would generate the whole group, since $\{a,b\}$ generates all rotations and $\{c\}$ generates their respective reflections. But can we do it in two?
+
+As usual it seems, the answer is yes! The proof is not mine, because I couldn't figure it out, but due to math.SE user \textbf{verret}. It does require some more advanced concepts, so it is probably inaccessible to most.
+
+The group we've been analyzing is $S_4\times Z_2$. Let $S_4$ be permuting elements $\{1,2,3,4\}$ and $Z_2$ be permuting elements $\{5,6\}$ (note that $Z_2=S_2$). Then given two elements $g=(4,1,2,3,5,6)$ in our notation, meaning that indices $(1,2,3,4)$ are cycled, and $h=(3,1,2,4,6,5)$, meaning that indices $(1,2,3)$ and $(5,6)$ are cycled, we can construct the group.
+
+Note that $h^2=(2,3,1,5,6)$ is in $S_4$, since it does not permute indices $5,6$. It has a period of $3$, and thus generates a subgroup of order $3$. Furthermore, $h^3$ only permutes $(5,6)$. Furthermore, $g$ is an element in $S_4$ and has a period of $4$. Thus, since $\gcd(3,4)=1$, by Lagrange's theorem we know that $\{h^2,g\}$ generates a subgroup of $S_4$ of at least order $3\cdot 4=12$.
+
+The only such subgroup, besides $S_4$ itself, is the alternating group $A_4$. But $g$ is outside of $A_4$, since it is an odd permutation:
+
+$$(1,2,\boxed{3,4})\to (1,\boxed{2,4},3)\to (\boxed{1,4},2,3) \to (4,1,2,3).$$
+
+Thus, $\{h^2,g\}$ does not generate $A_4$, and must generate $S_4$. Adding $h^3$, the generator for $Z_2$, to this set gives the full $S_4,Z_2$. The minimal generating set is therefore $\{g,h\}$ as defined.
+
+For the curious, using our vertex ``labeling'' convention as before, the elements $g$ and $h$ are shown in Figure~\ref{fig:elements_g_and_h}.
+
+\begin{center}
+\centering
+\begin{minipage}{0.3\textwidth}
+\begin{asy}[width=\textwidth]
+string[] labels = {"A","B","C","D","A'","B'","C'","D'"};
+drawCube(currentpicture, labels);
+\end{asy}
+
+$I$
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\centering
+\begin{asy}[width=\textwidth]
+string[] labels = {"D","A","B","C","D'","A'","B'","C'"};
+drawCube(currentpicture, labels);
+
+dot((-0.5,0.5,0));
+dot((-0.5,0.5,-1));
+
+draw((-0.5,0.5,0.2)--(-0.5,0.5,-1.2),dotted);
+triple c = (-0.5,0.5,0);
+real r = 0.2;
+
+draw((c+r*(0,-1,0))..(c+(r*sqrt(2)/2,-r*sqrt(2)/2,0))..(c+r*(1,0,0)),Arrow3);
+
+\end{asy}
+$g$
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{asy}[width=\textwidth]
+
+string[] labels = {"A'","A","B","B'","D'","D","C","C'"};
+drawCube(currentpicture, labels);
+\end{asy}
+$h$
+\end{minipage}
+\captionof{figure}{Elements $g$ and $h$. Note that $h$ is not solely a reflection about a mirror plane, but actually a combination of a rotation and reflection: a so-called rotoreflection!}
+\label{fig:elements_g_and_h}
+\end{center}
+
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
+
+The subgroup of rotations of the cube, $S_4$, is not commutative, so this group is definitely not commutative.
 
 \end{document}
