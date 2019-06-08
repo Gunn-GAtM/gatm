@@ -2,7 +2,576 @@
 
 \begin{document}
 
-\section{Trigonometry Review}
+\section{Geometry of Complex Numbers}
 
+\begin{outer_problem}[start=1]
+\item Explain why $iz$ is perpendicular to $z$, without using DeMoivre's theorem.
+\end{outer_problem}
+
+Let $z=a+bi$. Then $iz=i(a+bi)=-b+ai$, which is the transformation $(a,b)\to (-b,a)$. Drawing this out on the 2D plane makes clear that the angle between the two points and the origin is $90^\circ$, simply by subtracting angles: $(90^\circ +\theta)-\theta = 90^\circ$. This is shown in Figure~\ref{fig:iz_perp_to_z}.
+
+\begin{center}
+\begin{asy}[width=0.6\textwidth]
+pair A = (4,2);
+pair O = (0,0);
+pair Ap = (-2,4);
+
+pair Af = (4,0);
+pair Apf = (0,4);
+
+draw((-2,0)--(5,0), Arrow);
+draw((0,-2)--(0,5), Arrow);
+
+dot(A);
+dot(O);
+dot(Ap);
+
+label("$z=(a,b)$", A, NE);
+label("$(-b,a)=iz$", Ap, NW);
+
+draw(O--A);
+draw(O--Ap);
+
+draw(A--Af, dashed);
+draw(Ap--Apf, dashed);
+
+label("$b$", Ap--Apf, N);
+label("$a$", O--Apf, E);
+
+label("$b$", Af--A, E);
+label("$a$", O--Af, S);
+
+path arc1 = arc(O, (1,0), A);
+
+label("$\theta$", arc1, expi(atan2(2,4) / 2));
+draw(arc1);
+
+path arc2 = arc(O, (0.7,0), Ap);
+
+label("$90^\circ+\theta$", arc2, 3*expi(atan2(4,-2)/2));
+draw(arc2, Arrow);
+\end{asy}
+\captionof{figure}{$iz$ is perpendicular to $z$ as long as $z\neq 0$.}
+\label{fig:iz_perp_to_z}
+\end{center}
+
+\begin{outer_problem}
+\item How does $\Arg \overline{z}$ relate to $\Arg z$? (Hint: symmetry!)
+\end{outer_problem}
+
+Again, let $z=a+bi$. $\overline{z}=a-bi$ is flipped over the $x$-axis, since the imaginary part is negated. Thus, $\Arg \overline{z} = -\Arg z$ due to congruent triangles formed by $z$ and $\overline{z}$.\footnote{If we are to be pedantic, we'd either use the multivalued function $\arg$ or say this is modulo $2\pi$.} The geometric interpretation is shown in Figure~\ref{fig:arg_conjugate_z}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+
+real markscalefactor=0.03;
+
+picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=currentpen)
+{ 
+	picture pict; 
+	pair A,B,C,direct; 
+	real t,l=arclength(g), space=spacing*markscalefactor, halftick=s*markscalefactor/2, startpt; 
+	if (n>0) 
+	{  
+		direct=unit(dir(g,arctime(g,r*l)));  
+		startpt=r*l-(n-1)/2*space;  
+		for (int i=0; i<n; ++i)  
+		{  
+			t=startpt+i*space;  
+			B=point(g,arctime(g,t))+(0,1)*halftick*direct;  
+			C=B+2*(0,-1)*halftick*direct;  
+			draw(pict,B--C,p);  
+		} 
+	} 
+	return pict;
+}
+
+draw((-2,0)--(3,0), Arrow);
+draw((0,-2)--(0,3), Arrow);
+
+pair z = (2.5,1.5);
+pair z_conj = (2.5,-1.5);
+pair O = (0,0);
+
+label("$z$", z, NE);
+label("$\overline{z}$", z_conj, SE);
+
+pair zf = (2.5,0);
+
+dot(zf);
+
+draw(O--z);
+draw(O--z_conj);
+draw(z--z_conj, dashed);
+
+add(pathticks(O--z,1,0.5,4,6));
+add(pathticks(O--z_conj,1,0.5,4,6));
+add(pathticks(zf--z,2,0.5,4,6));
+add(pathticks(zf--z_conj,2,0.5,4,6));
+add(pathticks(O--zf,3,0.5,4,6));
+
+path arcc = arc(O, (z_conj/5), z);
+draw(arcc, Arrows);
+
+label("$-\theta$", point(arcc,0.5), expi(atan2(-2,4)/2));
+label("$\theta$", point(arcc,1.5), expi(atan2(2,4)/2));
+\end{asy}
+\captionof{figure}{$z$ and $\overline{z}$ form congruent triangles, showing that $\Arg z = -\Arg \overline{z}$.}
+\label{fig:arg_conjugate_z}
+\end{center}
+
+\begin{outer_problem}
+\item Compute $z\overline{z}$ and relate it to the $\cis$ form of $z$.
+\end{outer_problem}
+
+Once more, let $z=a+bi$. Then
+
+$$z\overline{z}=(a+bi)(a-bi)=a^2-(bi)^2 = a^2+b^2.$$
+
+If $z=r\cis\theta$, then $z\overline{z} = r^2$. In other words, it is the square of the distance from $z$ to the origin.
+
+\begin{outer_problem}
+\item Explain, using a picture, why $\tan (\Arg z) = \frac{\Imag(z)}{\Real(z)}$.\end{outer_problem}
+
+This is basically just an application of soh-cah-toa to a triangle in the complex plane. The details are shown in Figure~\ref{fig:tan_arg_z}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+pair A = (4,2);
+pair O = (0,0);
+
+pair Af = (4,0);
+
+draw((-2,0)--(5,0), Arrow);
+draw((0,-2)--(0,3), Arrow);
+
+dot(A);
+dot(O);
+
+label("$z=(a,b)$", A, NE);
+
+draw(O--A);
+draw(A--Af, dashed);
+
+label("$b=\Imag (z)$", Af--A, E);
+label("$a=\Real (z)$", O--Af, S);
+
+path arc1 = arc(O, (1,0), A);
+
+label("$\Arg z$", arc1, expi(atan2(2,4) / 1.3));
+draw(arc1);
+\end{asy}
+\captionof{figure}{$\tan (\Arg z)=\frac{b}{a}=\frac{\Imag(z)}{\Real (z)}$.}
+\label{fig:tan_arg_z}.
+\end{center}
+
+\begin{outer_problem}
+\item Divide $\frac{a+bi}{c+di}$ by rationalizing the denominator.
+\end{outer_problem}
+
+\begin{align*}
+\frac{a+bi}{c+di}\cdot \frac{c-di}{c-di} &= \frac{(a+bi)(c-di)}{c^2+d^2} \\
+&= \frac{ac+bd+(bc-ad)i}{c^2+d^2}.
+\end{align*}
+
+\begin{outer_problem}
+\item Divide $\frac{r_1\cis \theta}{r_2\cis \phi}$ using DeMoivre's theorem.\end{outer_problem}
+
+We don't have a rule yet for applying DeMoivre's theorem for division, but we can quickly derive it. We have
+
+\begin{align*}
+\frac{r_1\cis \theta}{r_2\cis \phi} \cdot \frac{\overline{\cis \phi}}{\overline{\cis \phi}} &= \frac{r_1\cis \theta \, \overline{\cis \phi}}{r_2\underbrace{\cis \phi \, \overline{\cis \phi}}_{=1}} & \text{Multiplying by conjugate} \\
+&= \frac{r_1\cis \theta \cis (-\phi)}{r_2} & \text{Using }\Arg z = -\Arg \overline{z} \\
+&= \frac{r_1}{r_2}\cis (\theta-\phi). & \text{Use DeMoivre's theorem} \\
+\end{align*}
+
+\begin{outer_problem}
+\item Compare and contrast the methods of division in problems 5 and 6. Which is more convenient? Or does it depend on the circumstance?
+\end{outer_problem}
+
+Opinions may vary, but 6 is definitely faster to do if the dividend and divisor are already in $\cis$ form. 5 is likely convenient than converting from rectangular to $\cis$, then back to rectangular.
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item If $z = r\cis \theta$, what is $\frac{1}{z}$?
+\end{inner_problem}
+
+As we hinted at in the previous problem, $\frac{1}{z}=\frac{1}{r}\cis (-\theta)$:
+
+\begin{align*}
+\frac{1}{r\cis\theta} \cdot \frac{\overline{\cis\theta}}{\overline{\cis\theta}} &= \frac{\overline{\cis\theta}}{r\cis\theta\,\overline{\cis\theta}} \\
+&= \frac{\cis(-\theta)}{r|\cis\theta|^2} \\
+&= \frac{1}{r} \cis(-\theta).
+\end{align*}
+
+\begin{inner_problem}
+\item Explain how this shows $\frac{1}{a+bi}=\frac{a-bi}{a^2+b^2}$, without having to rationalize the denominator. (Hint: use problems 3, 4, and 7.)
+\end{inner_problem}
+
+Let $a+bi=r\cis\theta$. We have
+
+\begin{align*}
+\frac{1}{r\cis\theta} &= \frac{1}{r}\cis (-\theta) \\
+&= \frac{r\cis (-\theta)}{r^2} \\
+&= \frac{a-bi}{a^2+b^2}.
+\end{align*}
+
+\begin{outer_problem}
+\item Compute $(1+i)^{13}$; pencil, paper, and brains only. No calculators!
+\end{outer_problem}
+
+We have $1+i=\sqrt{2} \cis \frac{\pi}{4}$, since it forms a $45^\circ$ angle with the $x$-axis. Applying DeMoivre's theorem,
+
+\begin{align*}
+(1+i)^{13} &= \left(\sqrt{2} \cis \frac{\pi}{4}\right)^{13} \\
+&= (\sqrt{2})^13 \cis \frac{13\pi}{4} \\
+&= 64\sqrt{2} \left(\cos \frac{5\pi}{4} + i\sin \frac{5\pi}{4}\right) \\
+&= 64\sqrt{2} \left(-\frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}}i\right) \\
+&= 64 (-1-i) \\
+&= -64-64i.
+\end{align*}
+
+\begin{outer_problem}
+\item Compute $\frac{(1+i\sqrt{3})^3}{(1-i)^2}$ without a calculator.
+\end{outer_problem}
+
+We convert to $\cis$ form and apply DeMoivre's theorem.
+
+\begin{align*}
+\frac{(1+i\sqrt{3})^3}{(1-i)^2} &= \frac{\left(2\cis \frac{\pi}{3}\right)^3}{\left(\sqrt{2}\cis -\frac{\pi}{4}\right)^2} \\
+&= \frac{8\cis(-\pi)}{2\cis -\frac{\pi}{2}} \\
+&= \frac{8 \cdot -1}{2 \cdot -i} \\
+&= \frac{4}{i}\cdot \frac{-i}{-i} \\
+&= -4i.
+\end{align*}
+
+\begin{outer_problem}
+\item Draw $\cis\left(\frac{\pi}{4}\right) + \cis\left(\frac{\pi}{2}\right)$. Use your picture to prove an expression for $\tan\left(\frac{3\pi}{8}\right)$. (Hint: add them as vectors.)
+\end{outer_problem}
+
+\begin{center}
+\begin{asy}[width=0.55\textwidth]
+pair w = (sqrt(2)/2, sqrt(2)/2);
+pair z = w + (0,1);
+pair O = (0,0);
+
+draw(O--w, Arrow);
+draw(w--z, Arrow);
+draw(O--z);
+
+label("$z=\left(\frac{\sqrt{2}}{2}, 1+\frac{\sqrt{2}}{2}\right)$", z, NE);
+label("$w=\left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}\right)$", w, E);
+
+dot(w);
+dot(z);
+
+path arc1 = arc(O, (0.23,0), w);
+path arc2 = arc(O, (0.4,0), z);
+
+draw(arc1);
+
+label("$\frac{\pi}{4}$", arc1, dir(45/2));
+label("$\frac{3\pi}{8}$", arc2, dir(45/2)*2);
+
+draw(arc2, Arrow);
+
+label("$1$", point(O--w,0.7), SE);
+label("$1$", w--z, E);
+
+draw(w--(sqrt(2)/2, 0),dashed);
+
+draw((-0.6,0)--(1.6,0),Arrow);
+draw((0,-0.6)--(0,2),Arrow);
+\end{asy}
+\captionof{figure}{Addition of $\cis\left(\frac{\pi}{4}\right) + \cis\left(\frac{\pi}{2}\right)$ as vectors.}
+\label{fig:add_vectors_prove_expr}
+\end{center}
+
+The drawing is shown in Figure~\ref{fig:add_vectors_prove_expr}. The first vector, starting at the origin, is $\cis \frac{\pi}{4}$. The second vector, starting at the endpoint of the first vector, is $\cis \frac{\pi}{2}$. The origin, along with points $w$ and $z$, form an isosceles triangle. Furthermore, the apex of this triangle, at $w$, has a measure of $\pi - \frac{\pi}{4} = \frac{3\pi}{4}$ radians. Thus, the base angles of the isosceles triangle are
+
+$$\frac{\pi - \frac{3\pi}{4}}{2} = \frac{\pi}{8}.$$
+
+Adding this with $\frac{\pi}{4}$ shows that the angle $z$ forms with the $x$-axis is
+
+$$\frac{\pi}{8} + \frac{\pi}{4} = \frac{3\pi}{8},$$
+
+our desired angle to analyze. We wish to find the tangent of this angle, which is just $\tan(\Arg z)$. But we know how to compute that!
+
+\begin{align*}
+\tan(\Arg z) = \frac{\Imag(z)}{\Real(z)} &= \frac{1 + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \cdot \frac{\sqrt{2}}{\sqrt{2}} \\
+&= \frac{\sqrt{2} + 1}{1} \\
+\tan \left( \frac{3\pi}{8} \right) &= \sqrt{2} + 1.
+\end{align*}
+
+\begin{outer_problem}
+\item Solve $z^3 = 1$, and show that its solutions under the operation of multiplication form a group, isomorphic to the rotation group of the equilateral triangle. Write a group table!
+\end{outer_problem}
+
+There's numerous ways to solve this, but let's use $\cis$ form as usual. Let $z=r\cis\theta$. Then
+
+\begin{align*}
+z^3 = r^3\cis 3\theta &= 1 \\
+\Longrightarrow r &= 1 \\
+\cis 3\theta &= 1 \\
+\cos 3\theta &= 1 \\
+3\theta &= 2\pi k & \text{For } k\in\mathbb{Z} \\
+\theta &= \frac{2\pi k}{3}
+\Longrightarrow \theta \in \left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\}
+\Longrightarrow z \in \left\{\cis 0,\cis \frac{2\pi}{3},\cis \frac{4\pi}{3}\right\}.
+\end{align*}
+
+Under multiplication, these three values of $z$ indeed form a group isomorphic to the rotation group of the equilateral triangle, $C_3$. In particular, $\cis 0$ is the identity, $\cis \frac{2\pi}{3}$ is a rotation by $120^\circ$ counterclockwise, and $\cis \frac{4\pi}{3}$ is a rotation by $240^\circ$ counterclockwise. Let $I=\cis 0$, $r=\cis\frac{2\pi}{3}$, and $r^2=\cis \frac{4\pi}{3}$. Then, we have the following group table:
+
+$$\begin{array}{c|c|c|c|}
+\cdot & I & r & r^2 \\ \hline
+I & I & r & r^2 \\ \hline
+r & r & r^2 & I \\ \hline
+r^2 & r^2 & I & r \\ \hline
+\end{array}$$
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Find multiplication groups of complex numbers which are isomorphic to the rotation groups for
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item a non-square rectangle
+\end{iinner_problem}
+
+Since this rotation group is just the identity and a rotation of $180^\circ$, we can just choose the group $\{-1,1\}$ under multiplication. $1$ is the identity, and $-1=\cis 180^\circ$ is the rotation.
+
+\begin{iinner_problem}
+\item a regular hexagon.
+\end{iinner_problem}
+
+We following in the footsteps of the equivalent problem for the equilateral triangle. We have elements
+
+$$\left\{\cis 0, \cis 60^\circ, \cis 120^\circ, \cis 180^\circ, \cis 240^\circ, \circ 300^\circ \right\}.$$
+
+As should be obvious, these are rotations of $0$, $60^\circ$, $120^\circ$, $180^\circ$, $240^\circ$, and $300^\circ$ respectively. Under multiplication, this is isomorphic to the rotation group of the hexagon, $C_6$.
+
+\begin{inner_problem}
+\item Make a table for each group.
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item a non-square rectangle
+\end{iinner_problem}
+
+Let $I$ be the identity and $r$ be the rotation of $180^\circ$.
+
+$$\begin{array}{c|c|c|}
+\cdot & I & r \\ \hline
+I & I & r \\ \hline
+r & r & I \\ \hline
+\end{array}$$
+
+\begin{iinner_problem}
+\item a regular hexagon.
+\end{iinner_problem}
+
+Let $I$ be the identity and $r$ be the rotation of $60^\circ$. $r^n$ is defined in the natural way, by raising $\cis 60^\circ$ to the power $n$.
+
+$$\begin{array}{c|c|c|c|c|c|c|}
+\cdot & I & r & r^2 & r^3 & r^4 & r^5 \\ \hline
+I & I & r & r^2 & r^3 & r^4 & r^5 \\ \hline
+r & r & r^2 & r^3 & r^4 & r^5 & I \\ \hline
+r^2 & r^2 & r^3 & r^4 & r^5 & I & r \\ \hline
+r^3 & r^3 & r^4 & r^5 & I & r & r^2 \\ \hline
+r^4 & r^4 & r^5 & I & r & r^2 & r^3 \\ \hline
+r^5 & r^5 & I & r & r^2 & r^3 & r^4 \\ \hline
+\end{array}$$
+
+\begin{inner_problem}
+\item Compare the regular hexagon's group to the dihedral group of the equilateral triangle, $D_3$. Consider: how are they the same? How are they different? Is the difference fundamental?
+\end{inner_problem}
+
+The two groups are not isomorphic, although they are the same size; the difference is fundamental. The hexagon's rotation group, $C_6$, has elements of periods $\{1,2,3,3,6,6\}$, while $D_3$ has elements of periods $\{1,2,2,2,3,3\}$. They do share some subgroups however: the trivial subgroup of just the identity, and the subgroups generated by $r^2$ and by $r^3$ in $C_6$, which are $C_3$ and $C_2$ respectively.
+
+\begin{outer_problem}
+\item Which of the following sets is a group under (i) addition and (ii) multiplication?
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $\{0\}$
+\item $\{1\}$
+\item $\{0,1\}$
+\item $\{-1,1\}$
+\item $\{1, -1, i, -i\}$
+\item $\{\text{naturals}\}$
+\item $\{\text{integers}\}$
+\item $\{\text{rationals}\}, \mathbb{Q}$
+\item $\{\mathbb{Q}\text{ without zero}\}$
+\item $\{\text{complex numbers}\}, \mathbb{C}$
+\item $\{\mathbb{C}\text{ without zero}\}$
+\end{inner_problem}
+
+\begin{outer_problem}
+\item For what values $a$ and $b$ does $\{a + b\sqrt{2}\}$ generate a group under (a) addition and (b) multiplication? Look for several answers.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Prove that $(r_1\cis \theta)(r_2\cis \phi) = r_1r_2 \cis(\theta + \phi)$ using brute force and the angle-sum trig identities for $\cos$ and $\sin$. Do you prefer this method or the one on the previous page? Which method gives you a better understanding of why DeMoivre's works?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Find an identity for $\sin 3\theta$ as we have done for $\cos$. Most of the work is already done for you!
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Your friend's textbook says $\cos 3\theta = 4\cos^3\theta - 3\cos \theta$, different from our identity. Who's right?
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Now you can finish the rest of the proof.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Draw $a,b,c,d,m,n$ approximately for the quadrilateral on the previous page.
+\item Why does showing $n=\pm im$ prove the segments are (i) perpendicular and (ii) the same length?
+\item Explain why $q=2a+b+ib$.
+\item Find formulae for $r$ and $s$ in terms of $c$ and $d$.
+\item Find $m$ and $n$ in terms of $a$, $b$, $c$, and $d$.
+\item Check that $n+im=0$, using the fact that $a+b+c+d=0$.
+\end{inner_problem}
+
+\begin{outer_problem}
+\item In the previous problem, we drew squares outside a quadrilateral and connected their centers. Conjecture what happens if we draw equilateral triangles outside a triangle and connect their centers. Prove your conjecture using complex numbers.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item The hard way to find an identity for $\tan 3\theta$ is to divide the identity for $\sin$ and $\cos$ that we already found. Try this. Make sure your answer is in terms of $\tan$ only!
+\end{outer_problem}
+
+\begin{outer_problem}
+\item The easier way to get an identity for $\tan 3\theta$ starts with setting $z = 1 + i\tan\theta$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Why is $\Arg z = \theta$?
+\item Why is $\tan 3\theta = \frac{\Imag(z^3)}{\Real(z^3)}$?
+\item Use (b) to find an identity for $\tan 3\theta$.
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Find multiplication groups of complex numbers isomorphic to rotation groups for the
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item regular octagon, and
+\item regular pentagon.
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Make tables for
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item the rotation group of the regular octagon, and
+\item the dihedral group of the square.
+\item Is the difference between them fundamental?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Which of the following tables defines a group? Why or why not?
+\end{outer_problem}
+
+\begin{inner_problem}
+\item \begin{tabular}{c|c|c|c|c|c|}
+\$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
+$I$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
+$A$ & $A$ & $C$ & $D$ & $B$ & $I$ \\ \hline
+$B$ & $B$ & $I$ & $C$ & $D$ & $A$ \\ \hline
+$C$ & $C$ & $D$ & $A$ & $I$ & $B$ \\ \hline
+$D$ & $D$ & $B$ & $I$ & $A$ & $C$ \\ \hline
+\end{tabular}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item \begin{tabular}{c|c|c|c|c|c|}
+\# & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
+$I$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
+$A$ & $A$ & $B$ & $C$ & $D$ & $I$ \\ \hline
+$B$ & $B$ & $C$ & $D$ & $I$ & $A$ \\ \hline
+$C$ & $C$ & $D$ & $I$ & $A$ & $B$ \\ \hline
+$D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
+\end{tabular}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Which subsets of the complex numbers are groups under multiplication? After you list a few of each type, generalize.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Prove with a diagram that if $|z|=1$, then $\Imag\left(\frac{z}{(z+1)^2}\right)=0$.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Prove geometrically that if $|z|=1$, then $|1-z|=2\sin\left(\frac{\Arg z}{2}\right)$.
+\end{outer_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Prove that if $(z-1)^{10}=z^{10}$, then $\Real (z) = \frac{1}{2}$. (Hint: if two numbers are equal, they have the same magnitude.)
+\end{inner_problem}
+
+\begin{inner_problem}
+\item How many solutions does this equation have?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item I claim that $e^{i\theta}=\cos\theta + i\sin\theta = \cis\theta$, for $\theta$ in radians.
+\setcounter{store_outer_problem}{\value{outer_problemi}}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Find $e^{-it}$.
+\item Find $\frac{e^{i\theta} + e^{-i\theta}}{2}$.
+\item Find $\frac{e^{i\theta} - e^{-i\theta}}{2i}$.
+\end{inner_problem}
+
+\begin{outer_problem}[start=\value{store_outer_problem}]
+\item (cont.) Use your new, complex definitions for $\cos$ and $\sin$ to find:%
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $\cos^2\theta + \sin^2\theta$
+\item $\tan\theta$
+\item $\cos 2\theta$
+\item $\sin 2\theta$
+\item What kind of group is generated by $e^{i\theta}$ under the operation of multiplication if $\theta$ is an integer? A rational multiple of $\pi$?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item You've used the quadratic equation throughout high school, but there's also a cubic equation that finds the roots of any cubic. Let's derive it, starting with the cubic $x^3+bx^2+cx+d=0$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Make the substitution $x=y-\frac{b}{3}$. Combine like terms to create an equation of the form $y^3-3py-2q=0$, with $p,q$ in terms of $b,c$, and $d$.
+\item Rearrange this equation as $y^3=3py+2q$.
+\item Make the substitution $y=s+t$, and prove that $y$ is a solution of the cubic in part (a) if $st=p$ and $s^3+t^3=2q$.
+\item Eliminate $t$ between these two equations to get a quadratic in $s^3$.
+\item Solve this quadratic to find $s^3$. By symmetry, what is $t^3$?
+\item Find a formula for $y$ in terms of $p$ and $q$. What about a formula for $x$?
+\item What if we started with $ax^3+bx^2+cx+d=0$, with a coefficient in front of the $x^3$ term as well? Can you come up with a formula for $x$?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Starting with the same cubic as in problem 31b.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Let $c=\cos\theta$. Remember that $\cos 3\theta=4c^3-3c$, as we proved. Substitute $y=2c\sqrt{p}$ into $y^3=3py+2q$ to obtain $4c^3-3c=\frac{q}{p^{3/2}}$.
+\item Provided that $q^2\leq p^3$, show that $y=2\sqrt{p}\cos\left(\frac{1}{3}(\phi+4\pi n)\right)$, where $n$ is an integer. Why does this yield all three solutions?
+\end{inner_problem}
 
 \end{document}
