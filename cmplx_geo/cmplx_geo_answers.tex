@@ -55,15 +55,15 @@ draw(arc2, Arrow);
 \label{fig:iz_perp_to_z}
 \end{center}
 
+You can also rationalize it by the fact that the lines through $z$/$iz$ and the origin have slopes of $\frac{b}{a}$ and $-\frac{a}{b}$, respectively, so they must be perpendicular. Also, $<a,b>\bullet <-b,a> = 0$.
+
 \begin{outer_problem}
 \item How does $\Arg \overline{z}$ relate to $\Arg z$? (Hint: symmetry!)
 \end{outer_problem}
 
 Again, let $z=a+bi$. $\overline{z}=a-bi$ is flipped over the $x$-axis, since the imaginary part is negated. Thus, $\Arg \overline{z} = -\Arg z$ due to congruent triangles formed by $z$ and $\overline{z}$.\footnote{If we are to be pedantic, we'd either use the multivalued function $\arg$ or say this is modulo $2\pi$.} The geometric interpretation is shown in Figure~\ref{fig:arg_conjugate_z}.
 
-\begin{center}
-\begin{asy}[width=0.5\textwidth]
-
+\begin{asydef}
 real markscalefactor=0.03;
 
 picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=currentpen)
@@ -85,6 +85,10 @@ picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=cu
 	} 
 	return pict;
 }
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
 
 draw((-2,0)--(3,0), Arrow);
 draw((0,-2)--(0,3), Arrow);
@@ -319,7 +323,7 @@ z^3 = r^3\cis 3\theta &= 1 \\
 \cos 3\theta &= 1 \\
 3\theta &= 2\pi k & \text{For } k\in\mathbb{Z} \\
 \theta &= \frac{2\pi k}{3}
-\Longrightarrow \theta \in \left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\}
+\Longrightarrow \theta \in \left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\} \\
 \Longrightarrow z \in \left\{\cis 0,\cis \frac{2\pi}{3},\cis \frac{4\pi}{3}\right\}.
 \end{align*}
 
@@ -400,54 +404,571 @@ The two groups are not isomorphic, although they are the same size; the differen
 
 \begin{inner_problem}[start=1]
 \item $\{0\}$
+\end{inner_problem}
+
+This is a group under (i) addition, since it has an identity $0$, is closed, has $0$ as $0$'s inverse, and $0+(0+0)=(0+0)+0$. It also is a group under (ii) multiplication, for the same reasons.
+
+\begin{inner_problem}
 \item $\{1\}$
+\end{inner_problem}
+
+This is not a group under (i) addition, since $1+1=2\not\in \{1\}$. It is a group under multiplication, though, since $1\cdot 1 = 1$ and all other properties are satisfied.
+
+\begin{inner_problem}
 \item $\{0,1\}$
+\end{inner_problem}
+
+This is not a group under (i) addition, since $1+1=2\not\in \{0,1\}$. It is also not a group under (ii) multiplication. $0$ can't be the identity, since $1\cdot 0=0\neq 1$. $1$ also can't be the identity, since then $0$ has no inverse $K$ such that $0\cdot K = 1$.
+
+\begin{inner_problem}
 \item $\{-1,1\}$
+\end{inner_problem}
+
+This is not a group under (i) addition, since $1+(-1)=0\not\in\{\pm 1\}$. It is a group under (ii) multiplication, since it satisfies the group properties.
+
+Identity: $1$ is the identity
+Associativity: Multiplication is associative anyways
+Invertibility: Each element is their own inverse
+Closure: $(\pm 1)(\pm 1) \in \{ \pm 1 \}$
+
+\begin{inner_problem}
 \item $\{1, -1, i, -i\}$
+\end{inner_problem}
+
+This is not a group under (i) addition, since the sum of any two of the elements takes you out of the set. It is a group under (ii) multiplication, however. One easy way to see this is that $1=\cis 0$, $-1 = \cis \pi$, $i=\cis \frac{\pi}{2}$, and $-i=\frac{3\pi}{2}$, which are all rotations of multiples of $90^\circ$. In particular, it is isomorphic to $C_4$, the rotation group of the square.
+
+\begin{inner_problem}
 \item $\{\text{naturals}\}$
+\end{inner_problem}
+
+This is not a group under (i) addition, because it cannot satisfy invertibility. There is no element $X\in \mathbb{N}$ such that $1+X=I=0$, for example. This is also not a group under (ii) multiplication for the same reason.
+
+\begin{inner_problem}
 \item $\{\text{integers}\}$
+\end{inner_problem}
+
+This is a group under (i) addition, because all the group properties are satisfied. The inverse of an element $n$ is just $-n$, addition is associative, the identity is $0$, and the sum of two integers is another integer. It is a not a group under (ii) multiplication, because no numbers except $\pm 1$ have integer multiplicative inverses.
+
+\begin{inner_problem}
 \item $\{\text{rationals}\}, \mathbb{Q}$
+\end{inner_problem}
+
+This is a group under (i) addition with identity element $0$. The inverse of an element $\frac{p}{q}$ is $-\frac{p}{q}$, addition is associative, and the sum of two rational numbers is another rational number. It is not a group under (ii) multiplication, because no number is the multiplicative inverse of $0$.
+
+\begin{inner_problem}
 \item $\{\mathbb{Q}\text{ without zero}\}$
+\end{inner_problem}
+
+This is no longer a group under (i) addition, since the identity element needs to be $0$. It is now, however, group under (ii) multiplication, because all numbers have their inverses. Multiplication is associative, the inverse of $\frac{p}{q}$ is $\frac{q}{p}$, and the product of two rationals is another rational.
+
+\begin{inner_problem}
 \item $\{\text{complex numbers}\}, \mathbb{C}$
+\end{inner_problem}
+
+This is a group under (i) addition with identity element $0$. The inverse of an element $z$ is $-z$, addition is associative, and the sum of two complex numbers is another complex number. This is not a group under (ii) multiplication, because again, no number is the multiplicative inverse of $0$.
+
+\begin{inner_problem}
 \item $\{\mathbb{C}\text{ without zero}\}$
 \end{inner_problem}
+
+This is no longer a group under (i) addition, since the identity element needs to be $0$. It is now, however, a group under (ii) multiplication, because all numbers have their inverses. Multiplication is associative, the inverse of $z$ is $\frac{1}{z}$, and the product of two complex numbers is another complex number.
 
 \begin{outer_problem}
 \item For what values $a$ and $b$ does $\{a + b\sqrt{2}\}$ generate a group under (a) addition and (b) multiplication? Look for several answers.
 \end{outer_problem}
 
+\begin{inner_problem}[start=1]
+\item addition
+\end{inner_problem}
+
+Let $x=a+b\sqrt{2}$. At some point, we must generate the additive inverse of $x$, which is $-x$. This would also generate the identity, since $x+(-x)=0$, and all group criteria would be satisfied. As we add $x$ to itself, all we can do is scale it by some positive integer factor. Thus,
+
+$$-x=nx$$
+
+for $n\in \mathbb{Z}^+$. But this is not true for any $x\in \mathbb{C}$ except $0$. Thus, the only solution is $a=b=0\to x=0$, which generates the trivial group $\{0\}$ under addition.
+
+\begin{inner_problem}[start=1]
+\item multiplication
+\end{inner_problem}
+
+Again, let $x=a+b\sqrt{2}$. We can only generate elements of the form $x^n$, where $n\in \mathbb{Z}^+$. We must eventually generate the identity $1$, so we have $x^n=1$. For real $x$, the only solution is $x=0$. For complex $x$, we need to have $x^n=1$. Thus, let $x=r\cis \theta$, and proceed:
+
+$$x^n = r^n \cis n\theta = 1$$
+$$\Longrightarrow r = 1$$
+$$n\theta = 2\pi k$$
+$$\theta = \frac{2\pi k}{n}.$$
+
+for $k\in\mathbb{Z}$. Thus, the general complex solutions are $x=\cis \frac{2\pi k}{n}$ for $k,n\in\mathbb{Z}$, $\gcd (k,n) = 1$ and $n\neq 0$.
+
 \begin{outer_problem}
 \item Prove that $(r_1\cis \theta)(r_2\cis \phi) = r_1r_2 \cis(\theta + \phi)$ using brute force and the angle-sum trig identities for $\cos$ and $\sin$. Do you prefer this method or the one on the previous page? Which method gives you a better understanding of why DeMoivre's works?
 \end{outer_problem}
+
+\begin{align*}
+(r_1\cis \theta)(r_2\cis \phi) &= r_1r_2(\cos \theta + i\sin \theta)(\cos \phi + i\sin \phi) \\
+&= r_1r_2(\cos\theta\cos\phi + i\cos\theta\sin\phi + i\sin\theta\cos\phi - \sin\theta\sin\phi) \\
+&= r_1r_2((\cos\theta\cos\phi - \sin\theta\sin\phi) + i(\cos\theta\sin\phi+\sin\theta\cos\phi)) \\
+&= r_1r_2(\cos(\theta+\phi) + i\sin(\theta + \phi) \\
+&= r_1r_2\cis(\theta + \phi)
+\end{align*}
+
+I actually prefer this because it's kind of satisfying, but the previous way gives a better understanding of the underlying mechanics probably.
 
 \begin{outer_problem}
 \item Find an identity for $\sin 3\theta$ as we have done for $\cos$. Most of the work is already done for you!
 \end{outer_problem}
 
+We already know that
+
+$$\cos 3\theta + i\sin 3\theta = \cis 3\theta = (c^3 - 3c^2) + i (3c^2 s - s^3),$$
+
+where $c=\cos\theta$ and $s=\sin\theta$. Equating imaginary parts, we have
+
+\begin{align*}
+\sin 3\theta &= 3c^2 s - s^3 \\
+&= 3\cos^2\theta\sin\theta - \sin^3\theta.
+\end{align*}
+
 \begin{outer_problem}
 \item Your friend's textbook says $\cos 3\theta = 4\cos^3\theta - 3\cos \theta$, different from our identity. Who's right?
 \end{outer_problem}
+
+Both are right. Our identity is
+
+$$\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta.$$
+
+Remembering that $\sin^2\theta = 1-\cos^2\theta$, we can pretty easily change the form:
+
+\begin{align*}
+\cos^3\theta - 3\cos\theta\sin^2\theta &= \cos^3\theta - 3\cos\theta(1-\cos^2\theta) \\
+&= \cos^3\theta + 3\cos^3\theta - 3\cos\theta \\
+&= 4\cos^3\theta - 3\cos\theta.
+\end{align*}
 
 \begin{outer_problem}
 \item Now you can finish the rest of the proof.
 \end{outer_problem}
 
+If you need context for this answer, check out the relevant textbook section.
+
 \begin{inner_problem}[start=1]
 \item Draw $a,b,c,d,m,n$ approximately for the quadrilateral on the previous page.
-\item Why does showing $n=\pm im$ prove the segments are (i) perpendicular and (ii) the same length?
-\item Explain why $q=2a+b+ib$.
-\item Find formulae for $r$ and $s$ in terms of $c$ and $d$.
-\item Find $m$ and $n$ in terms of $a$, $b$, $c$, and $d$.
-\item Check that $n+im=0$, using the fact that $a+b+c+d=0$.
 \end{inner_problem}
+
+The quadrilateral is shown in Figure~\ref{fig:quad_square}.
+
+\begin{asydef}
+pair A = (0,0);
+pair B = (1,6);
+pair C = (5.5,3);
+pair D = (4,0);
+
+pair rotate(pair p, real degrees=0) {
+	real rads = degrees * pi / 180;
+	real c = cos(rads);
+	real s = sin(rads);
+	
+	return (p.x*c-p.y*s,p.y*c+p.x*s);
+}
+
+path squareOn(pair A, pair B) {
+	return A--B--(B+rotate(A-B,-90))--(A+rotate(B-A,90))--cycle;
+}
+
+pair a = (B-A)/2;
+pair b = (C-B)/2;
+pair c = (D-C)/2;
+pair d = (A-D)/2;
+
+pair P = a + rotate(a,90);
+pair Q = B + b + rotate(b,90);
+pair R = C + c + rotate(c,90);
+pair SS = D + d + rotate(d,90);
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+draw(A--B--C--D--cycle);
+
+label("$0=A$", A, SW);
+label("$B$", B, NNW);
+label("$C$", C, NE+0.7*E);
+label("$D$", D, 1.3 * SE + 0.6 * S);
+
+draw(squareOn(A,B));
+draw(squareOn(B,C));
+draw(squareOn(C,D));
+draw(squareOn(D,A));
+
+draw((-6,0)--(9.5,0), Arrow);
+draw((0,-5)--(0,11), Arrow);
+
+dot(A);
+dot(B);
+dot(C);
+dot(D);
+dot(P);
+dot(Q);
+dot(R);
+dot(SS);
+
+draw(P--R);
+draw(Q--SS);
+
+label("$P$", P, W);
+label("$R$", R, E);
+label("$Q$", Q, N);
+label("$S$", SS, S);
+
+label("$m$", (1.5*P + R) / 2.5, S);
+label("$n$", (1.5*Q + SS) / 2.5, W);
+\end{asy}
+\captionof{figure}{The quadrilateral to analyze.}
+\label{fig:quad_square}
+\end{center}
+
+The relative magnitudes and directions are shown in Figure~\ref{fig:approx_abcdmn} below. We find $a,b,c,d$ from halving the sides of the quadrilateral. $m$ and $n$ are just the vectors from $P$ to $R$ and $Q$ to $S$, respectively.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+pair m = R-P;
+pair n = Q-SS;
+
+draw((-1,0)--(6,0),Arrow);
+draw((0,-1)--(0,6),Arrow);
+
+label("$x$", (6,0), E);
+label("$y$", (0,6), N);
+
+pair O = (0,0);
+
+draw(O--a,Arrow);
+draw(O--b,Arrow);
+draw(O--c,Arrow);
+draw(O--d,Arrow);
+draw(O--m,Arrow);
+draw(O--n,Arrow);
+
+label("$a$", a, N);
+label("$b$", b, SE);
+label("$c$", c, S);
+label("$d$", d, W);
+label("$m$", m, SE);
+label("$n$", n, NE);
+
+dot(a);
+dot(b);
+dot(c);
+dot(d);
+dot(m);
+dot(n);
+
+\end{asy}
+\captionof{figure}{The relative magnitudes and directions of $a,b,c,d,m,n$.}
+\label{fig:approx_abcdmn}
+\end{center}
+
+\begin{inner_problem}
+\item Why does showing $n=\pm im$ prove the segments are (i) perpendicular and (ii) the same length?
+\end{inner_problem}
+
+They are (i) perpendicular because $iz$ is perpendicular to $z$ for all $z\neq 0$, and (ii) are the same length because $|n|=|\pm im| = |im| = |m|$.
+
+\begin{inner_problem}
+\item Explain why $Q=2a+b+ib$.
+\end{inner_problem}
+
+The justification is geometric. We know that $B=2a$, and we can get to the midpoint of $\overline{BC}$ by adding $b$. Then, we go up to the center of the square on $\overline{BC}$ by adding $ib$. This process is shown in Figure~\ref{fig:add_2a_b_ib}.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+draw(A--B--C--D--cycle);
+
+label("$A$", A, SW);
+label("$B$", B, NNW);
+label("$C$", C, NE+0.7*E);
+label("$D$", D, 1.3 * SE + 0.6 * S);
+
+draw(squareOn(B,C));
+
+draw((-2,0)--(9.5,0), Arrow);
+draw((0,-2)--(0,11), Arrow);
+
+dot(A);
+dot(B);
+dot(C);
+dot(D);
+dot(Q);
+
+pair ib = rotate(b, 90);
+
+label("$Q$", Q, N);
+
+draw(A--B, Arrow);
+label("$2a$", A--B, E);
+
+draw(B--(B+b), Arrow);
+label("$b$", B--(B+b), S);
+
+draw((B+b)--(B+b+ib), Arrow);
+label("$ib$", (B+b)--(B+b+ib), E);
+\end{asy}
+\captionof{figure}{$Q=2a+b+ib$.}
+\label{fig:add_2a_b_ib}
+\end{center}
+
+\begin{inner_problem}
+\item Find formulae for $R$ and $S$ in terms of $c$ and $d$.
+\end{inner_problem}
+
+In a similar fashion, we have $S=-d+id$ (note that it is $-d$ because we are going counterclockwise now) and $R=-2d-c+ic$. The interpretations of these are shown in Figure~\ref{fig:add_2d_c_ic_d_id} below.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+draw(A--B--C--D--cycle);
+
+label("$A$", A, SW);
+label("$B$", B, NNW);
+label("$C$", C, NE+0.7*E);
+label("$D$", D, 1.3 * SE + 0.6 * S);
+
+draw(squareOn(C,D));
+draw(squareOn(D,A));
+
+draw((-2,0)--(9.5,0), Arrow);
+draw((0,-5)--(0,7), Arrow);
+
+dot(A);
+dot(B);
+dot(C);
+dot(D);
+dot(R);
+dot(SS);
+
+pair ic = rotate(c, 90);
+pair id = rotate(d, 90);
+
+label("$R$", R, E);
+label("$S$", SS, S);
+
+draw(A--(A+id), Arrow);
+label("$id$", A--(A+id), W);
+
+draw((A+id)--SS, Arrow);
+label("$-d$", (A+id)--SS, N);
+
+draw(A--D, Arrow);
+label("$-2d$", A--D, N);
+
+draw(D--(D-c),Arrow);
+label("$-c$", D--(D-c), NW);
+
+draw((D-c)--(D-c+ic),Arrow);
+label("$ic$", (D-c)--(D-c+ic), NE);
+\end{asy}
+\captionof{figure}{$S=-d+id$ and $R=-2d-c_ic$.}
+\label{fig:add_2d_c_ic_d_id}
+\end{center}
+
+\begin{inner_problem}
+\item Find $m$ and $n$ in terms of $a$, $b$, $c$, and $d$.
+\end{inner_problem}
+
+We have $m=R-P=(-2d-c+ic)-(a+ia)$ and $n=Q-S=(2a+b+ib)-(-d+id)$.
+
+\begin{inner_problem}
+\item Check that $n-im=0$, using the fact that $a+b+c+d=0$.
+\end{inner_problem}
+
+We evaluate straightforwardly:
+
+\begin{align*}
+(2a+b+ib+d-id)-i(-2d-c+ic-a-ia) &= 2a + b + ib + d - id + 2id + ic + c + ia - a \\
+&= a+b+c+d+ia+ib+ic+id \\
+&= (a+b+c+d)(1+i) \\
+&= 0.
+\end{align*}
 
 \begin{outer_problem}
 \item In the previous problem, we drew squares outside a quadrilateral and connected their centers. Conjecture what happens if we draw equilateral triangles outside a triangle and connect their centers. Prove your conjecture using complex numbers.
 \end{outer_problem}
 
+We conjecture that following this construction leads to connecting together another equilateral triangle. An example, with the variables we'll use labeled, is shown in Figure~\ref{fig:napoleon_theorem}.
+
+\begin{asydef}
+pair A = (0,0);
+pair B = (2,4);
+pair C = (5,-3);
+
+pair a = (B-A)/2;
+pair b = (C-B)/2;
+pair c = (A-C)/2;
+
+pair ia = rotate(a,90);
+pair ib = rotate(b,90);
+pair ic = rotate(c,90);
+
+pair P = A + a + ia * sqrt(3) / 3;
+pair Q = B + b + ib * sqrt(3) / 3;
+pair R = C + c + ic * sqrt(3) / 3;
+
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.56\textwidth]
+
+path triangleOn(pair A, pair B) {
+	pair v = (B-A)/2;
+	pair V = A + v + rotate(v,90) * sqrt(3);
+	
+	return (A -- V -- B -- cycle);
+}
+
+draw((-1,0)--(13,0), Arrow);
+draw((0,-1)--(0,6), gray(0.1), Arrow);
+
+dot(A);
+dot(B);
+dot(C);
+
+label("$0=A$", A, SW);
+label("$B$", B, N);
+label("$C$", C, S);
+
+draw(A--B--C--cycle);
+
+draw(triangleOn(A,B));
+draw(triangleOn(B,C));
+draw(triangleOn(C,A));
+
+draw(B--Q--(B+b)--cycle, dotted);
+draw((B+0.9*b) -- (B+0.9*b+0.1*ib) -- (B+b+0.1*ib));
+
+draw(P--Q--R--cycle, dashed);
+
+label("$Q'$", B + b, SW);
+
+dot(P);
+dot(Q);
+dot(R);
+
+label("$P$", P, W);
+label("$Q$", Q, E);
+label("$R$", R, S);
+
+\end{asy}
+\captionof{figure}{Equilateral triangles around a central, arbitrary triangle $\triangle ABC$ with $A$ at the origin.}
+\label{fig:napoleon_theorem}
+\end{center}
+
+Similar to the last problem, let $A$, $B$, and $C$ be numbers in the complex plane. Without loss of generality, let $A=0$ be the origin. Also, define $a=\frac{B-A}{2}$, $b=\frac{C-B}{2}$, and $c=\frac{A-C}{2}$ to be the vectors going halfway along each of $\overrightarrow{AB}$, $\overrightarrow{BC}$, and $\overrightarrow{CA}$. Finally, let $P$, $Q$, and $R$ be the centers of the triangles on sides $AB$, $BC$, and $CA$ respectively.
+
+Consider $Q$ in the figure. It is on the $60\circ$ vertex of a 30-60-90 triangle $\triangle BB'Q$, outlined in dotted line. We know that $\overrightarrow{BB'}=b$. Thus, since $BB'\, :\, B'Q=\sqrt{3}\, :\, 1$,
+
+$$B'Q = \frac{|b|}{\sqrt{3}}.$$
+
+Furthermore, since $\overline{B'Q}\perp \overline{BB'}$, we know that it is $s\cdot ib$ for some real $s$. Combining these facts,
+
+$$B'Q = \frac{ib}{|ib|} \frac{|b|}{\sqrt{3}} = \frac{ib}{\sqrt{3}}.$$
+
+Since $Q=\overrightarrow{AB} + \overrightarrow{BB'} + \overrightarrow{B'Q}$, we have
+
+$$Q = 2a + b + \frac{ib}{\sqrt{3}}.$$
+
+With similar logic, we know that
+
+\begin{align*}
+P &= a + \frac{ia}{\sqrt{3}} \\
+R &= -c + \frac{ic}{\sqrt{3}} \\
+\end{align*}
+
+Like with the quadrilateral, we know $a+b+c=0$, since $2(a+b+c)=0$. To prove the dashed triangle is indeed equilateral, we can just show that $P-R=(Q-P)\cis 120^\circ$. After all, if the vectors $\overrightarrow{RP}$ and $\overrightarrow{PQ}$ have an angle of $120^\circ$ between them and they have the same magnitude, $\triangle PQR$ is equilateral by SAS Congruence as shown in Figure~\ref{fig:remember_sas_congruence}. Substituting in our found values for $P,Q,R$ in terms of $a,b,c$, we get
+
+\begin{align*}
+P - R &= (Q - P) \cis 120^\circ \\
+a + \frac{ia}{\sqrt{3}} - \left(-c + \frac{ic}{\sqrt{3}}\right) &= \left(2a + b + \frac{ib}{\sqrt{3}} - \left(a + \frac{ia}{\sqrt{3}}\right)\right) \left(-\frac{1}{2} + \frac{\sqrt{3}}{2}i\right) \\
+(a+c) + \frac{ia-ic}{\sqrt{3}} &= \left(a+b+\frac{ib-ia}{\sqrt{3}}\right)\left(-\frac{1}{2} + \frac{\sqrt{3}}{2}i\right) \\
+ &= -\frac{1}{2} a - \frac{1}{2} b - \frac{ib-ia}{2\sqrt{3}} + \frac{\sqrt{3}}{2}ia + \frac{\sqrt{3}}{2}ib + \frac{ib-ia}{2}\cdot i \\
+ &= \left( -\frac{1}{2} a - \frac{1}{2} b + \frac{ib-ia}{2} \cdot i \right) + \left(-\frac{ib-ia}{2\sqrt{3}} + \frac{\sqrt{3}}{2}ia + \frac{\sqrt{3}}{2}ib\right) \\
+ &= \left( -\frac{1}{2} a - \frac{1}{2} b - \frac{1}{2} b + \frac{1}{2} a\right) + \left(\frac{ia-ib+3ia+3ib}{2\sqrt{3}}\right) \\
+ &= \left( -b \right) + \left(\frac{4ia+2ib}{2\sqrt{3}}\right) \\
+ &= \left( -b + a + b + c\right) + \left(\frac{i(2a + b)}{\sqrt{3}}\right) \\
+ &= (a + c) + \frac{i(2a + b - (a+b+c))}{\sqrt{3}} \\
+(a+c) + \frac{ia-ic}{\sqrt{3}} &= (a+c) + \frac{ia-ic}{\sqrt{3}} \\
+\end{align*}
+
+Tedious, but it worked.
+
+\begin{center}
+\begin{asy}[width=0.8\textwidth]
+draw((-2,0)--(8,0),Arrow);
+draw((0,-5)--(0,6),Arrow);
+
+pair O = (0,0);
+
+draw(O -- (P-R), Arrow);
+dot(P-R);
+label("$P-R$", P-R, N);
+
+draw(O -- (Q-P), Arrow);
+dot(Q-P);
+label("$Q-P$", Q-P, E);
+
+path arc1 = arc(O, (Q-P)/6, (P-R));
+
+draw(arc1,Arrow);
+label("$120^\circ$", point(arc1,1), 3*dir(60));
+
+label("$\longrightarrow$", (10, 0.5));
+
+transform sx = shift(14,0);
+
+add(pathticks(O--(P-R),1,0.5,4,20));
+add(pathticks(O--(Q-P),1,0.5,4,20));
+
+draw(sx*((-2,0)--(8,0)),Arrow);
+draw(sx*((0,-5)--(0,6)),Arrow);
+
+pair Pp = sx * P;
+pair Qp = sx * Q;
+pair Rp = sx * R;
+
+draw(Pp--Qp--Rp--cycle,dashed);
+
+dot(Pp);
+dot(Qp);
+dot(Rp);
+
+label("$P$", Pp, W);
+label("$Q$", Qp, E);
+label("$R$", Rp, S);
+
+add(pathticks(Pp--Qp,1,0.5,4,20));
+add(pathticks(Pp--Rp,1,0.5,4,20));
+
+path arc2 = sx * arc(P, point(P--R,0.25), Q);
+
+draw(arc2);
+label("$60^\circ$", midpoint(arc2), SE);
+
+\end{asy}
+\captionof{figure}{SAS Congruence lets us say that $P-R=(Q-P)\cis 120^\circ$ is sufficient to prove the triangle $\triangle PQR$ is equilateral.}
+\label{fig:remember_sas_congruence}
+\end{center}
+
 \begin{outer_problem}
 \item The hard way to find an identity for $\tan 3\theta$ is to divide the identity for $\sin$ and $\cos$ that we already found. Try this. Make sure your answer is in terms of $\tan$ only!
 \end{outer_problem}
+
+We have found that $\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta$ and $\sin 3\theta = 3\cos^2\theta\sin\theta - \sin^3\theta$. We set $\tan\theta = \frac{\sin\theta}{\cos\theta}$ and evaluate:
+
+\begin{align*}
+\tan\theta = \frac{\sin\theta}{\cos\theta} &= \frac{3\cos^2\theta\sin\theta - \sin^3\theta}{\cos^3\theta - 3\cos\theta\sin^2\theta} \\
+&= \frac{\sin\theta}{\cos\theta} \cdot \frac{3\cos^2\theta - \sin^2\theta}{\cos^2\theta - 3\sin^2\theta} \cdot \frac{\frac{1}{\cos^2\theta}}{\frac{1}{\cos^2\theta}}\\
+&= \tan\theta \cdot \frac{3 - \frac{\sin^2\theta}{\cos^2\theta}}{1 - \frac{3\sin^2\theta}{\cos^2\theta}} \\
+&= \tan\theta \cdot \frac{3 - \tan^2\theta}{1 - 3\tan^2\theta} \\
+&= \frac{3\tan\theta - \tan^3\theta}{1-3\tan^2\theta}.
+\end{align*}
 
 \begin{outer_problem}
 \item The easier way to get an identity for $\tan 3\theta$ starts with setting $z = 1 + i\tan\theta$.
@@ -455,9 +976,71 @@ The two groups are not isomorphic, although they are the same size; the differen
 
 \begin{inner_problem}[start=1]
 \item Why is $\Arg z = \theta$?
+\end{inner_problem}
+
+You can see this pretty quickly with a diagram, like in Figure~\ref{fig:one_plus_tan_theta}. More algebraically, we have
+
+$$\tan(\Arg z)=\Imag(z)=\tan(\theta)$$
+$$\Longrightarrow \Arg z = \theta.$$
+
+\begin{center}
+\begin{asy}[width=0.2\textwidth]
+draw((-0.5,0)--(1.5,0),Arrow);
+draw((0,-0.5)--(0,3),Arrow);
+real ang = 3 * pi / 8;
+pair z = (1, tan(ang));
+pair f = (1, 0);
+pair O = (0,0);
+
+draw(O--z);
+draw(O--f--z,dashed);
+
+dot(z);
+
+label("$z$", z, N);
+label("$\tan\theta$", f--z, E);
+label("$1$", O--f, S);
+
+path arc1 = arc(O, f * 0.23, z);
+
+draw(arc1);
+label("$\theta$", midpoint(arc1), expi(ang / 2) * 1.4);
+\end{asy}
+\captionof{figure}{$\Arg z = \tan^{-1} \left(\frac{\tan\theta}{1}\right) = \theta$.}
+\label{fig:one_plus_tan_theta}
+\end{center}
+
+\begin{inner_problem}
 \item Why is $\tan 3\theta = \frac{\Imag(z^3)}{\Real(z^3)}$?
+\end{inner_problem}
+
+We have
+
+$$\tan 3\theta=\frac{\sin 3\theta}{\cos 3\theta}=\frac{\Imag(\cis 3\theta)}{\Real(\cis 3\theta)}.$$
+
+But since $z$ makes an angle of $\theta$ with the $x$ axis, we can express it as $r\cis \theta$ for some real $r$. Thus,
+
+$$\frac{\Imag(z^3)}{\Real(z^3)} = \frac{\Imag(r^3 \cis 3\theta)}{\Real(r^3\cis 3\theta)} =\frac{\Imag(\cis 3\theta)}{\Real(\cis 3\theta)},$$
+
+which matches the expression for $\tan 3\theta$. 
+
+\begin{inner_problem}
 \item Use (b) to find an identity for $\tan 3\theta$.
 \end{inner_problem}
+
+We expand out $z^3$ and factor into real and imaginary parts:
+
+\begin{align*}
+z^3 = (1+i\tan\theta)^3 &= 1^3 + 3i\tan\theta - 3\tan^2\theta - i\tan^3\theta \\
+&= (1-3\tan^2\theta) + i(3\tan\theta - \tan^3\theta).
+\end{align*}
+
+Then we use our expression for $\tan 3\theta$ in terms of $z^3$:
+
+\begin{align*}
+\tan 3\theta &= \frac{\Imag(z^3)}{\Real(z^3)} \\
+&= \frac{3\tan\theta - \tan^3\theta}{1-3\tan^2\theta}.
+\end{align*}
 
 \begin{outer_problem}
 \item Find multiplication groups of complex numbers isomorphic to rotation groups for the
