@@ -1067,10 +1067,46 @@ $$z= \left\{\cis 0, \cis \frac{2\pi}{5}, \cis \frac{4\pi}{5}, \cis \frac{6\pi}{5
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item the rotation group of the regular octagon, and
+\item the rotation group of the regular octagon.
+\end{inner_problem}
+
+There are $8$ elements. If $r$ is a rotation by $45^\circ$, then the elements are $I, r, r^2, ..., r^7$. The group table is shown below.
+
+$$\begin{array}{c|c|c|c|c|c|c|c|c|}
+\cdot & I & r & r^2 & r^3 & r^4 & r^5 & r^6 & r^7 \\ \hline
+I & I & r & r^2 & r^3 & r^4 & r^5 & r^6 & r^7 \\ \hline
+r & r & r^2 & r^3 & r^4 & r^5 & r^6 & r^7 & I \\ \hline
+r^2 & r^2 & r^3 & r^4 & r^5 & r^6 & r^7 & I & r \\ \hline
+r^3 & r^3 & r^4 & r^5 & r^6 & r^7 & I & r & r^2 \\ \hline
+r^4 & r^4 & r^5 & r^6 & r^7 & I & r & r^2 & r^3 \\ \hline
+r^5 & r^5 & r^6 & r^7 & I & r & r^2 & r^3 & r^4 \\ \hline
+r^6 & r^6 & r^7 & I & r & r^2 & r^3 & r^4 & r^5 \\ \hline
+r^7 & r^7 & I & r & r^2 & r^3 & r^4 & r^5 & r^6 \\ \hline
+\end{array}$$
+
+\begin{inner_problem}
 \item the dihedral group of the square.
+\end{inner_problem}
+
+There are, once again, $4\cdot 2 = 8$ elements. Let $r$ be a rotation by $90^\circ$, and $f$ be a flip about say, the $x$-axis. The group table is shown below.
+
+$$\begin{array}{c|c|c|c|c|c|c|c|c|}
+\cdot & I & r & r^2 & r^3 & f & fr & fr^2 & fr^3 \\ \hline
+I & I & r & r^2 & r^3 & f & fr & fr^2 & fr^3 \\ \hline
+r & r & r^2 & r^3 & I & fr^3 & f & fr & fr^2 \\ \hline
+r^2 & r^2 & r^3 & I & r & fr^2 & fr^3 & f & fr \\ \hline
+r^3 & r^3 & I & r & r^2 & fr & fr^2 & fr^3 & f \\ \hline
+f & f & fr & fr^2 & fr^3 & I & r & r^2 & r^3 \\ \hline
+fr & fr & fr^2 & fr^3 & f & r^3 & I & r & r^2 \\ \hline
+fr^2 & fr^2 & fr^3 & f & fr & r^2 & r^3 & I & r \\ \hline
+fr^3 & fr^3 & f & fr & fr^2 & r & r^2 & r^3 & I \\ \hline
+\end{array}$$
+
+\begin{inner_problem}
 \item Is the difference between them fundamental?
 \end{inner_problem}
+
+Yes, the difference is fundamental, even though they have the same order. The easiest way to see this is that the latter group has $4$ elements of order $2$, but the former group has only $1$ such element.
 
 \begin{outer_problem}
 \item Which of the following tables defines a group? Why or why not?
@@ -1087,6 +1123,8 @@ $D$ & $D$ & $B$ & $I$ & $A$ & $C$ \\ \hline
 \end{tabular}
 \end{inner_problem}
 
+This table does not define a group, because it does not follow associativity. For example, $(D \$ A) \$ A = B \$ A = I$, but $D \$ (A \$ A) = D \$ C = A$.
+
 \begin{inner_problem}
 \item \begin{tabular}{c|c|c|c|c|c|}
 \# & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
@@ -1098,17 +1136,301 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 \end{tabular}
 \end{inner_problem}
 
+This table is a group; in fact, it is a commutative group. The quickest way to see this is noting that it is (up to isomorphism) the cyclic group of order $5$, where $A=r$, $B=r^2$, $C=r^3$, and $D=r^4$.
+
 \begin{outer_problem}
 \item Which subsets of the complex numbers are groups under multiplication? After you list a few of each type, generalize.
 \end{outer_problem}
+
+Some simple examples: $\{1\}$, $\{\pm 1\}$, $\{\pm 1, \pm i\}$.
+
+In general, we choose the $n$th roots of unity: the numbers of the form $\cis \frac{2\pi k}{n}$ for $k\in \mathbb{Z}$. Each rotation is a symmetry of the $n$-gon, and thus this set under multiplication is isomorphic to the cyclic group of order $n$.
 
 \begin{outer_problem}
 \item Prove with a diagram that if $|z|=1$, then $\Imag\left(\frac{z}{(z+1)^2}\right)=0$.
 \end{outer_problem}
 
+To draw a diagram, we need to interpret these expressions as points on the complex plane. $|z|=1$ implies that $z$ is $1$ away from the origin. $z+1$ is $z$, translated right by $1$ unit in the $x$-axis. Let $z+1=r\cis \theta$. Then $(z+1)^2=r^2\cis 2\theta$, so it forms an angle of $2\theta$ with the origin.
+
+If the quotient $\frac{z}{(z+1)^2}$ has no imaginary part, then $(z+1)^2$ is a real scalar times $z$. In other words, the two numbers have the same complex argument. Thus, we wish to prove that $\Arg z$ and $\Arg (z+1)^2$ are equal.
+
+The scenario is shown in Figure~\ref{fig:z_over_z_plus_1_sq}.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+pair O = (0,0);
+pair z = expi(3 * pi / 8);
+pair z1 = z + (1,0);
+pair z12 = z1 * z1;
+
+dot(O);
+dot(z);
+dot(z1);
+dot(z12);
+
+label("$z$", z, NW);
+label("$z+1$", z1, E);
+label("$(z+1)^2$", z12, N);
+
+path arc1 = arc(O, (0.2,0), z1);
+
+draw(arc1);
+label("$\theta$", midpoint(arc1), expi(atan2(z1.y, z1.x) / 2));
+
+draw((-0.4,0)--(1.5,0),Arrow);
+draw((0,-0.4)--(0,2.5),Arrow);
+
+draw(O--z1, dashed);
+
+label("$1$", O--z, NW);
+label("$1$", z--z1, N);
+
+draw(z--z1, dashed);
+draw(O--z1, dashed);
+draw(O--z, dashed);
+
+path arc2 = arc(z1, z + (0.8,0), O);
+
+draw(arc2);
+
+path arc3_1 = arc(O, unit(z1)*0.25, z);
+path arc3_2 = arc(O, unit(z1)*0.28, z);
+
+draw(arc3_1);
+draw(arc3_2);
+
+label("$\theta$", midpoint(arc2), expi(atan2(z1.y, z1.x) / 2 + pi));
+\end{asy}
+\captionof{figure}{A graph of $z$, $z+1$, and $(z+1)^2$.}
+\label{fig:z_over_z_plus_1_sq}
+\end{center}
+
+As shown in the diagram, $\Arg (z+1) = \theta$. The triangle formed by $O$, $z$ and $z+1$ is isosceles, since it has two sides of length $1$. Furthermore, it has a base angle of $\theta$ by the Parallel Postulate. Thus, the angle marked with a double line is also $\theta$, and $\Arg z = 2\theta$. But $\Arg (z+1)^2 = 2\theta$! Thus, we have
+
+\begin{align*}
+\Imag\left(\frac{z}{(z+1)^2}\right) &= \Imag\left(\frac{r_1\cis 2\theta}{r_2\cis 2\theta}\right) \\
+&= \Imag\left(\frac{r_1}{r_2} + 0i\right) \\
+&= 0.
+\end{align*}
+
+This is not truly complete, because we have only considered $z$ in the first quadrant. In this case, extending it to other locations of $z$ is pretty trivial. Nonetheless, I provide an algebraic solution for fun.
+
+We wish to show that $(z+1)^2 = kz$ for some real $k$. Express $z$ as $\cis\theta$. Then
+
+$$(\cis\theta + 1)^2 = \cis^2\theta + 2\cis\theta + 1.$$
+
+Our supposed $k$ is
+
+\begin{align*}
+k = \frac{(z+1)^2}{z} &= \frac{\cis^2\theta + 2\cis\theta + 1}{\cis\theta} \\
+&= \cis\theta + 2 + \cis(-\theta) \\
+&= \cis\theta + 2 + \overline{\cis\theta} \\
+&= 2\Real(\cis \theta) + 2,
+\end{align*}
+
+which is indeed real. It's interesting what the scale factor actually is. Furthermore, since $\Real(\cis \theta)=\cos\theta$, we have a polar equation
+
+$$|kz|=r=2\cos\theta + 2,$$
+
+hinting that the path traced out by $(z+1)^2$ is in fact a cardioid! The cardioid produced is shown in Figure~\ref{fig:mfw_cardioid} below.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+import graph;
+
+real f(real t) {return 2*cos(t)+2;}
+
+path g=polargraph(f,0,2pi,operator ..)--cycle;
+
+xaxis("$x$");
+yaxis("$y$",above=true);
+draw(g);
+
+dot(Label,(4,0),NE);
+dot(Label,(0,2),SE);
+dot(Label,(0,-2),NE);
+\end{asy}
+\captionof{figure}{The cardioid produced by $(z+1)^2$ for $|z|=1$.}
+\label{fig:mfw_cardioid}
+\end{center}
+
+It's all connected, guys.
+
 \begin{outer_problem}
-\item Prove geometrically that if $|z|=1$, then $|1-z|=2\sin\left(\frac{\Arg z}{2}\right)$.
+\item Prove geometrically that if $|z|=1$, then $|1-z|=\left|2\sin\left(\frac{\Arg z}{2}\right)\right|$.
 \end{outer_problem}
+
+To prove this geometrically, we must again consider what the various expressions in the desired equation mean. $|z|=1$ means that $z$ is distance $1$ from the origin. $1-z$ is the reflection of $z$ across the origin, then translated by $1$ units right.
+
+To geometrically interpret $A=2\sin\left(\frac{\Arg z}{2}\right)$, we halve the angle $\theta = \Arg z$ and draw a vector of length $2$; the imaginary component, or $y$ height, of this new point is the desired quantity.
+
+The diagram of all this is shown in Figure~\ref{fig:one_minus_z}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+real ang = 54; 
+pair z = dir(ang);
+pair omz = (1,0) - z;
+
+pair O = (0,0);
+
+dot(z);
+dot(omz);
+dot(-z);
+
+label("$z$", z, N);
+label("$1-z$", omz, E);
+label("$-z$", -z, S);
+
+label("$1$", O--z, NW);
+label("$1$", O--(-z), NW);
+label("$1$", (-z)--omz, SW);
+
+draw(O--(-z)--omz--cycle, dashed);
+
+draw((-0.9,0)--(2.2,0),Arrow);
+draw((0,-1)--(0,1), Arrow);
+
+draw(O--z);
+pair fz = (z.x, 0);
+draw(O--fz--z, dashed);
+
+path arc1 = arc(O, (0.4,0), z);
+
+draw(arc1, Arrow);
+label("$\theta$", point(arc1,0.7), expi(atan2(z.y, z.x)/1.2));
+
+pair nv = dir(ang/2) * 2;
+pair nvf = (nv.x, 0);
+
+draw(O--nv--nvf--O, dotted);
+label("$A=2\cis\frac{\theta}{2}$", nv, N);
+dot(nv);
+
+path arc2 = arc(O, (0.75,0), nv);
+label("$\theta / 2$", midpoint(arc2), expi(atan2(nv.y, nv.x)/2));
+draw(arc2, Arrow);
+
+label(rotate(ang/2)*"$2$", O--nv, N);
+
+draw(shift(scale(0.1) * rotate(-90.0) * unit(O-omz))*brace(O, omz));
+draw(shift(scale(0.1) * rotate(-90.0) * unit(nv-nvf))*brace(nv, nvf));
+
+real ras = 0.15;
+
+draw(shift(nvf)*((0,ras)--(-ras,ras)--(-ras,0)));
+
+path arc3 = arc(-z, -z+(0.2,0), O);
+draw(arc3);
+label("$\theta$", midpoint(arc3), expi(atan2(z.y, z.x)/2));
+
+\end{asy}
+\captionof{figure}{Graph of $z$, $1-z$, and $\sin\left(\frac{\theta}{2}\right)$.}
+\label{fig:one_minus_z}
+\end{center}
+
+We wish to show that the two lengths indicated in braces are equal. There's a couple of ways to do this; perhaps the most natural is to find a triangle congruent to the one formed by the origin, $-z$, and $1-z$. This is the other dashed triangle shown in Figure~\ref{fig:find_the_triangle}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+
+real ang = 54; 
+pair z = dir(ang);
+pair omz = (1,0) - z;
+
+pair O = (0,0);
+
+dot(omz);
+dot(-z);
+
+label("$1-z$", omz, E);
+label("$-z$", -z, S);
+
+label("$1$", O--(-z), NW);
+label("$1$", (-z)--omz, SW);
+
+draw(O--(-z)--omz--cycle, dashed);
+
+draw((-0.9,0)--(2.2,0),Arrow);
+draw((0,-1)--(0,1), Arrow);
+
+pair fz = (z.x, 0);
+
+pair nv = dir(ang/2) * 2;
+pair nvf = (nv.x, 0);
+
+label("$A=2\cis\frac{\theta}{2}$", nv, N);
+dot(nv);
+
+path arc2 = arc(O, (0.3,0), nv);
+label("$\theta / 2$", midpoint(arc2), expi(atan2(nv.y, nv.x)/2));
+draw(arc2);
+
+pair nvm = nv / 2;
+
+draw(O--nvm, dotted);
+
+label(rotate(ang/2)*"$1$", O--nvm, N);
+label(rotate(ang/2)*"$1$", nvm--nv, N);
+label(rotate(-ang/2)*"$1$", nvm--nvf, N);
+
+draw(nvm--nv--nvf--cycle, dashed);
+
+draw(shift(scale(0.1) * rotate(-90.0) * unit(O-omz))*brace(O, omz));
+draw(shift(scale(0.1) * rotate(-90.0) * unit(nv-nvf))*brace(nv, nvf));
+
+real ras = 0.15;
+
+draw(shift(nvf)*((0,ras)--(-ras,ras)--(-ras,0)));
+
+path arc3 = arc(-z, -z+(0.2,0), O);
+draw(arc3);
+label("$\theta$", midpoint(arc3), expi(atan2(z.y, z.x)/2));
+
+label("$O$", O, NW);
+label("$M$", nvm, NW);
+label("$F$", nvf, S);
+
+dot(nvm);
+dot(nvf);
+dot(O);
+dot(nvm);
+
+\end{asy}
+\captionof{figure}{The succulent triangle,}
+\label{fig:find_the_triangle}
+\end{center}
+
+Because the angles of a triangle sum to $\pi$, we know the angle $\angle MAF$ is $\pi - \frac{\theta}{2} - \frac{\pi}{2} = \frac{\pi-\theta}{2}$. Furthermore, $\triangle AMF$ is isosceles with an apex at $M$, since the midpoint of the hypotenuse of a right triangle is equidistant from all vertices. Thus, $\angle MAF = \angle MFA$, and we have
+
+$$\angle AMF = \pi - \angle MAF - \angle MFA = \pi - \frac{\pi - \theta}{2} \cdot 2 = \theta.$$
+
+Thus, by SAS Congruence, the two dashed triangles are congruent. Finally, pairing up the previously indicated sides, we have
+
+$$|1-z|=\overline{AF}=\left|\Imag\left(2\cis\frac{\theta}{2}\right)\right|,$$
+
+as desired.
+
+Technically, this proof is slightly incomplete, because some of these triangles do not exist as described for $\theta \geq 90^\circ$. You can extend it to these cases with no problem, but I'd also like to give a algebraic proof to show its perks.
+
+By the half-angle identity,
+
+$$\left|2 \sin\left(\frac{\Arg z}{2}\right)\right| = \left|\pm 2\sqrt{\frac{1 - \cos\Arg z}{2}}\right| = \sqrt{2(1-\cos\Arg z)}.$$
+
+Let $z=a+bi=\cis \theta$; note that $r=1$ since $|z|=1$. We know that $\cos\Arg z = a$. Then
+
+\begin{align*}
+|1-(a+bi)| &= |(1-a) - bi| \\
+&= \sqrt{b^2 + (1-a)^2} \\
+&= \sqrt{1 - a^2 + (1 - 2a + a^2)} \\
+&= \sqrt{2 - 2a} \\
+&= \sqrt{2(1-a)} \\
+&= \sqrt{2(1-\cos\Arg z)}.
+\end{align*}
+
+This matches our expression using half-angle for $\left|2\sin\left(\frac{\Arg z}{2}\right)\right|$.
+
+Personally, I strongly prefer the algebraic solution because it is quick, easy to understand, and truly complete. Nonetheless, the geometric solution gives a better idea of \textit{why} the equation is true.
 
 \begin{outer_problem}
 \item 
@@ -1118,9 +1440,93 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 \item Prove that if $(z-1)^{10}=z^{10}$, then $\Real (z) = \frac{1}{2}$. (Hint: if two numbers are equal, they have the same magnitude.)
 \end{inner_problem}
 
+We do as the hint suggests. We know that $|(z-1)^{10}|=|z^{10}|$. Expanding this out would be rough, but we can take the exponents out of the inside of the magnitude symbols\footnote{This is true because $|(r\cis \theta)^n|=|r^n\cis n\theta| = |r^n|$.}.
+
+So $|z-1|^10=|z|^10$. Since $|n|\geq 0$, we have $|z-1|=|z|$.
+
+Let $z=a+bi$. Then $|a+bi-1|=\sqrt{(a-1)^2+b^2}$ and $|a+bi|=\sqrt{a^2+b^2}$. We set these equal and solve:
+
+\begin{align*}
+\sqrt{(a-1)^2+b^2} &= \sqrt{a^2+b^2} \\
+(a-1)^2 + b^2 &= a^2 + b^2 \\
+(a-1)^2 &= a^2 \\
+a-1 = \pm a. \\
+\end{align*}
+
+If $a-1=a$, then $-1=0$, which is dumb. Thus, $a-1=-a$, so $a=\frac{1}{2}$ and indeed, $\Real(z) = \frac{1}{2}$ as desired.
+
 \begin{inner_problem}
 \item How many solutions does this equation have?
 \end{inner_problem}
+
+We have $(z-1)^{10}=z^{10}$, so $(z-1)^{10}-z^{10} = P(z) = 0$, where $P$ is a polynomial of degree $9$. Thus, by the Fundamental Theorem of Algebra, there are $9$ solutions... if there aren't any repeated roots. So this is only truly complete if we know there are no roots which appear in the factorization twice or more. Unfortunately, I can't think of a way to do this without calculus\footnote{For that route, we simply check that $P''(z)=0$ for all solutions, which isn't pleasant until a clever rearrangement and substitution. Try it if you know how!}.
+
+Let's start over. We should use the fact that $\Real(z)=\frac{1}{2}$. A simple diagram reveals that $z$ and $z-1$ are symmetric about the $y$-axis, since $\Real(z) = \Real\left(\frac{1}{2}+bi\right) = -\Real\left(\frac{1}{2}+bi-1\right)$. The diagram is shown in Figure~\ref{fig:z_and_one_minus_z}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+draw((-1,0)--(1,0),Arrow);
+draw((0,-0.2)--(0,1.5),Arrow);
+
+pair z = (1/2, 0.7);
+pair z1 = (-1/2, z.y);
+
+draw(z--z1, dashed);
+
+draw((1/2,-0.2)--(1/2,1.5), dashed);
+label("$\Real(z)=\frac{1}{2}$", (1/2,1.5), SW);
+
+dot(z);
+dot(z1);
+
+label("$z$", z, NE);
+label("$z-1$", z1, NW);
+
+pair O = (0,0);
+draw(O -- z, dashed);
+draw(O -- z1, dashed);
+
+real arc_r = 0.2;
+
+draw(arc(O, (arc_r,0), z), Arrow);
+draw(arc(O, point(O--unit(z),arc_r), (0,arc_r)), Arrow);
+draw(arc(O, (0,arc_r),z1), Arrow);
+
+real ang = atan2(z.y,z.x);
+
+label("$\frac{\pi}{2}-\phi$", 1.9 * arc_r*expi(ang / 2)); 
+label("$\phi$", 1.4 * arc_r*expi((pi/2 - ang)/2 + ang));
+label("$\phi$", 1.4 * arc_r*expi((pi/2 - ang)/2 + pi/2));
+\end{asy}
+\captionof{figure}{$z$ and $1-z$, residents of the complex plane.}
+\label{fig:z_and_one_minus_z}
+\end{center}
+
+Let $z$ in the first quadrant make a angle $\phi$ to the $\pm y$-axis. Note that we're using the $y$-axis, not the $x$-axis, for mathematical convenience. In general, for $z$ in the first and fourth quadrants\footnote{If $z$ is in the fourth quadrant, then you'd define $\phi$ as $\pi + \text{angle to negative }y\text {axis.}$, where the angle is taken clockwise so it's positive.}, we have $\Arg z = \frac{\pi}{2} - \phi$ and $\Arg(z-1) = \frac{\pi}{2} + \phi$. Since $|z|=|z-1|=r$, we have
+
+$$z = r\cis \left(\frac{\pi}{2} - \phi \right); \; z-1 = r\cis \left(\frac{\pi}{2} + \phi \right).$$
+
+Since $(z-1)^{10}=z^{10}$, we have
+
+\begin{align*}
+\left(r\cis \left(\frac{\pi}{2} - \phi \right)\right)^{10} &= \left(r\cis \left(\frac{\pi}{2} + \phi \right)\right)^{10} \\
+r^{10} \cis (5\pi - 10\phi) &= r^{10} \cis (5\pi + 10\phi) \\
+\cis (5\pi - 10\phi) &= \cis (5\pi + 10\phi) \\
+5\pi - 10\phi + 2\pi k &= 5\pi + 10\phi  & \text{For some } k \in \mathbb{Z} \\
+20\phi &= 2\pi k \\
+\phi &= \frac{2\pi k}{20}.
+\end{align*}
+
+To find all unique solutions, we restrict $k$ to the range $0\leq k\leq 19$... wait, isn't that $20$ solutions?
+
+The issue is that $z$ must be in the first or fourth quadrant, so that our premise $|z|=|z-1|$ is true. That means $0 < \phi < \pi$, a strict relation because $\phi = 0$ or $\phi=\pi$ only gives values along the $y$-axis, which does not intersect with $\Real(z) = 0$. Solving this gives
+
+$$0 < \frac{2\pi k}{20} < \pi$$
+$$0 < \pi k < 10\pi$$
+$$0 < k < 10$$
+$$k\in \{1,2,\cdots, 8,9\},$$
+
+which is $9$ solutions, in agreement with our polynomial argument.
 
 \begin{outer_problem}
 \item I claim that $e^{i\theta}=\cos\theta + i\sin\theta = \cis\theta$, for $\theta$ in radians.
@@ -1129,21 +1535,77 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 
 \begin{inner_problem}[start=1]
 \item Find $e^{-it}$.
+\end{inner_problem}
+
+$$e^{-it} = \cos (-t) + i\sin(-t) = \cos t - i\sin t.$$
+
+\begin{inner_problem}
 \item Find $\frac{e^{i\theta} + e^{-i\theta}}{2}$.
+\end{inner_problem}
+
+\begin{align*}
+\frac{e^{i\theta} + e^{-i\theta}}{2} &= \frac{\cos \theta + i\sin\theta + \cos\theta - i\sin\theta}{2} \\
+&= \cos\theta.
+\end{align*}
+
+\begin{inner_problem}
 \item Find $\frac{e^{i\theta} - e^{-i\theta}}{2i}$.
 \end{inner_problem}
+
+\begin{align*}
+\frac{e^{i\theta} - e^{-i\theta}}{2i} &= \frac{\cos \theta + i\sin\theta - (\cos\theta - i\sin\theta)}{2i} \\
+&= \sin\theta.
+\end{align*}
 
 \begin{outer_problem}[start=\value{store_outer_problem}]
 \item (cont.) Use your new, complex definitions for $\cos$ and $\sin$ to find:%
 \end{outer_problem}
 
-\begin{inner_problem}[start=1]
+\begin{inner_problem}
 \item $\cos^2\theta + \sin^2\theta$
-\item $\tan\theta$
-\item $\cos 2\theta$
-\item $\sin 2\theta$
-\item What kind of group is generated by $e^{i\theta}$ under the operation of multiplication if $\theta$ is an integer? A rational multiple of $\pi$?
 \end{inner_problem}
+
+\begin{align*}
+\left(\frac{e^{i\theta} + e^{-i\theta}}{2}\right)^2 + \left(\frac{e^{i\theta} - e^{-i\theta}}{2i}\right)^2 &= \left(\frac{e^{i\theta} + e^{-i\theta}}{2}\right)^2 - \left(\frac{e^{i\theta} - e^{-i\theta}}{2}\right)^2 \\
+&= \left(\frac{e^{i\theta} + e^{-i\theta}}{2} + \frac{e^{i\theta} - e^{-i\theta}}{2}\right)\left(\frac{e^{i\theta} + e^{-i\theta}}{2} - \frac{e^{i\theta} - e^{-i\theta}}{2}\right) \\
+&= \left( e^{-\theta} \right)\left( e^{i\theta} \right) \\
+&= e^{-\theta + \theta} \\
+&= e^0 \\
+&= 1. \\
+\end{align*}
+
+That was expected.
+
+\begin{inner_problem}
+\item $\tan\theta$
+\end{inner_problem}
+
+\begin{align*}
+\tan\theta = \frac{\sin\theta}{\cos\theta} &= \frac{\frac{e^{i\theta} - e^{-i\theta}}{2i}}{\frac{e^{i\theta} + e^{-i\theta}}{2}} \\
+&= \frac{e^{i\theta} - e^{-i\theta}}{i(e^{i\theta}+e^{-i\theta})}.
+\end{align*}
+
+\begin{inner_problem}
+\item $\cos 2\theta$
+\end{inner_problem}
+
+$$\cos 2\theta = \frac{e^{2i\theta} + e^{-2i\theta}}{2}.$$
+
+\begin{inner_problem}
+\item $\sin 2\theta$
+\end{inner_problem}
+
+$$\sin 2\theta = \frac{e^{2i\theta} - e^{-2i\theta}}{2i}.$$
+
+\begin{inner_problem}
+\item What kind of group is generated by $\left\{e^{i\theta}, e^{-i\theta}\right\}$ under the operation of multiplication if $\theta$ is an integer? A rational multiple of $\pi$?
+\end{inner_problem}
+
+If $\theta=0$, then the group is the trivial group of order $1$. If $\theta$ is any other integer, then a group isomorphic to the additive group of the integers is generated. We correspond $e^{ik\theta}$ with the integer $k$, so that
+
+$$e^{ik_1\theta}\cdot e^{ik_2\theta} = e^{i(k_1+k_2)\theta} \leftrightarrow k_1+k_2.$$
+
+If $\theta$ is a rational multiple of $\pi$, say $\frac{p}{q}\cdot 2\pi$ where $\gcd(p,q)=1$, then we get (up to isomorphism) cyclic group of order $q$. 
 
 \begin{outer_problem}
 \item You've used the quadratic equation throughout high school, but there's also a cubic equation that finds the roots of any cubic. Let's derive it, starting with the cubic $x^3+bx^2+cx+d=0$.
@@ -1151,13 +1613,106 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 
 \begin{inner_problem}[start=1]
 \item Make the substitution $x=y-\frac{b}{3}$. Combine like terms to create an equation of the form $y^3-3py-2q=0$, with $p,q$ in terms of $b,c$, and $d$.
+\end{inner_problem}
+
+\begin{align*}
+\left(y-\frac{b}{3}\right)^3+b\left(y-\frac{b}{3}\right)^2+c\left(y-\frac{b}{3}\right)+d&=0 \\
+\left(y^{3}-3\cdot\frac{by^2}{3}+3\cdot\frac{b^2y}{9}-\frac{b^3}{27}\right) +\left(by^2-\frac{2b^2y}{3}+\frac{b^3}{9}\right) + \left(cy-\frac{bc}{3}\right) + d &= 0 \\
+y^3 + \left(-b+b\right)y^2 + \left(\frac{b^2y}{3} - \frac{2b^2y}{3} + c\right)y + \left(-\frac{b^3}{27}+\frac{b^3}{9}-\frac{bc}{3}+d\right) &= 0 \\
+y^3 + \left(c-\frac{b^2}{3}\right)y + \left(d - \frac{bc}{3} + \frac{2b^3}{27}\right) &= 0 \\
+y^3 - 3\underbrace{\left(\frac{b^2}{9} - \frac{c}{3}\right)}_{p}y - 2 \underbrace{\left(\frac{bc}{6} - \frac{b^3}{27} - \frac{d}{2}\right)}_{q} &= 0. \\
+\end{align*}
+
+Thus, $p = \frac{b^2}{9} - \frac{c}{3}$ and $q=\frac{bc}{6} - \frac{b^3}{27} - \frac{d}{2}$.
+
+\begin{inner_problem}
 \item Rearrange this equation as $y^3=3py+2q$.
-\item Make the substitution $y=s+t$, and prove that $y$ is a solution of the cubic in part (a) if $st=p$ and $s^3+t^3=2q$.
+\end{inner_problem}
+
+$$y^3 = 3\left(\frac{b^2}{9} - \frac{c}{3}\right)y + 2 \left(\frac{bc}{6} - \frac{b^3}{27} - \frac{d}{2}\right).$$
+
+\begin{inner_problem}
+\item Make the substitution $y=s+t$ into (b), and prove that $y$ is a solution of the cubic in part (a) if $st=p$ and $s^3+t^3=2q$.
+\end{inner_problem}
+
+We substitute $y=s+t$ and use the fact that $st=p$ and $s^3+t^3=2q$ to simplify.
+
+\begin{align*}
+(s+t)^3 &= 3p(s+t) + 2q \\
+s^3 + 3s^2t + 3st^2 + t^3 &= 3ps + 3pt + 2q \\
+3s(st) + 3t(st) + s^3 + t^3 &= 3ps + 3pt + 2q \\
+3sp + 3tp + 2q &= 3ps + 3pt + 2q \\
+0 &= 0.
+\end{align*}
+
+This checks out.
+
+\begin{inner_problem}
 \item Eliminate $t$ between these two equations to get a quadratic in $s^3$.
+\end{inner_problem}
+
+We have $t^3=2q-s^3$. Also, $(st)^3=p^3$, so
+
+\begin{align*}
+(st)^3=s^3t^3=s^3(2q-s^3) &= p^3 \\
+-(s^3)^2 + 2qs^3 - p^3 &= 0 \\
+(s^3)^2 - 2qs^3 + p^3 &= 0.
+\end{align*}
+
+\begin{inner_problem}
 \item Solve this quadratic to find $s^3$. By symmetry, what is $t^3$?
+\end{inner_problem}
+
+Let $w=s^3$. Then the above quadratic is $w^2 - 2qw + p^3 = 0$. The solutions are
+
+$$s^3 = w = \frac{2q \pm \sqrt{4q^2 - 4p^3}}{2}=\frac{2q\pm 2\sqrt{q^2 - p^3}}{2} = q\pm \sqrt{q^2 - p^3}.$$
+
+We have $t^3 = 2q - s^3 = 2q - (q \pm \sqrt{q^2 - p^3}) = q \mp \sqrt{q^2-p^3}$. This inverted $\pm$ sign, $\mp$, means that when $s^3$'s $\pm$ sign is positive, the $\mp$ sign is negative, and vice versa.
+
+\begin{inner_problem}
 \item Find a formula for $y$ in terms of $p$ and $q$. What about a formula for $x$?
+\end{inner_problem}
+
+Taking cube roots of both sides of our expressions for $t^3$ and $s^3$, we find that
+
+\begin{align*}
+s&=\sqrt[3]{q \pm \sqrt{q^2 - p^3}}, \\
+t&=\sqrt[3]{q \mp \sqrt{q^2 - p^3}}. \\
+\end{align*}
+
+We must keep in mind, however, that over the complex numbers, cube rooting has $3$ possible values. Thus, the three solutions for $s$ and $t$ are
+
+\begin{align*}
+s&=\sqrt[3]{q \pm \sqrt{q^2 - p^3}}\cdot \cis \frac{2\pi k}{3}, \\
+t&=\sqrt[3]{q \mp \sqrt{q^2 - p^3}}\cdot \cis \left(2\pi - \frac{2\pi k}{3}\right), \\
+\end{align*}
+
+where $k\in \{0,1,2\}$ and the cube root is taking its principal value. We multiply them by $\cis$ with these angles to preserve the fact that $st = q$, since otherwise it would produce another result:
+
+\begin{align*}
+\sqrt[3]{q \pm \sqrt{q^2 - p^3}}\cdot \cis \frac{2\pi k}{3} \cdot \sqrt[3]{q \mp \sqrt{q^2 - p^3}}\cdot \cis \left(2\pi - \frac{2\pi k}{3}\right) &= \sqrt[3]{\left(q \pm \sqrt{q^2 - p^3}\right)\left(q \mp \sqrt{q^2 - p^3}\right)}\cdot \cis 2\pi \\
+&= \sqrt[3]{q^2 - (q^2 + p^3)} \\
+&= p.
+\end{align*}
+
+Thus, we have $$y=s+t=\sqrt[3]{q \pm \sqrt{q^2 - p^3}} \cdot \cis \frac{2\pi k}{3} + \sqrt[3]{q \mp \sqrt{q^2 - p^3}} \cdot \cis \left(2\pi - \frac{2\pi k}{3}\right).$$
+
+To get $x$, we substitute $x=y-\frac{b}{3}$ to get 
+
+$$x= \sqrt[3]{q \pm \sqrt{q^2 - p^3}} \cdot \cis \frac{2\pi k}{3} + \sqrt[3]{q \mp \sqrt{q^2 - p^3}} \cdot \cis \left(2\pi - \frac{2\pi k}{3}\right) - \frac{b}{3}.$$
+
+You could substitute our values of $p,q$ in terms of $b,c,d$ to get a monstrous equation for $x$ in terms of only $b,c,d$... but no thanks.
+
+\begin{inner_problem}
 \item What if we started with $ax^3+bx^2+cx+d=0$, with a coefficient in front of the $x^3$ term as well? Can you come up with a formula for $x$?
 \end{inner_problem}
+
+Sure! We divide through the equation by $a$:
+
+$$\frac{ax^3+bx^2+cx+d}{a}=0$$
+$$\Longrightarrow x^3 + \frac{b}{a} + \frac{c}{a} + \frac{d}{a} = 0.$$
+
+We can then attack this as we already did, setting $b'=\frac{b}{a}$, $c'=\frac{c}{a}$ and $d'=\frac{d}{a}$, then applying the formula.
 
 \begin{outer_problem}
 \item Starting with the same cubic as in problem 31b.
@@ -1165,7 +1720,51 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 
 \begin{inner_problem}[start=1]
 \item Let $c=\cos\theta$. Remember that $\cos 3\theta=4c^3-3c$, as we proved. Substitute $y=2c\sqrt{p}$ into $y^3=3py+2q$ to obtain $4c^3-3c=\frac{q}{p^{3/2}}$.
-\item Provided that $q^2\leq p^3$, show that $y=2\sqrt{p}\cos\left(\frac{1}{3}(\phi+4\pi n)\right)$, where $n$ is an integer. Why does this yield all three solutions?
 \end{inner_problem}
+
+We substitute and proceed:
+
+\begin{align*}
+y^3 &= 3py+2q \\
+(2c\sqrt{p})^3 &= 3p(2c\sqrt{p}) + 2q \\
+8c^3 p^{3/2} &= 6c p^{3/2} + 2q \\
+8c^3 p^{3/2} - 6c p^{3/2} &= 2q \\
+4c^3 - 3c &= \frac{2q}{2p^{3/2}} = \frac{q}{p^{3/2}}. \\
+\end{align*}
+
+\begin{inner_problem}
+\item Provided that $q^2\leq p^3$, show that $y=2\sqrt{p}\cos\left(\theta + \frac{2\pi n}{3})\right)$, where $n$ is an integer. Why does this yield all three solutions?
+\end{inner_problem}
+
+This isn't actually hard. We know that $\cos 3\theta = 4c^3-3c = \frac{q}{p^{3/2}}$, so there are three possible values for $\cos\theta = c$. Namely, if $\theta_0 = \cos^{-1} \frac{q}{p^{3/2}}$ is the principal value, then we also have unique solutions
+
+$$\theta_1 = \frac{2\pi}{3} + \theta_0, \, \theta_2 = \frac{4\pi}{3} + \theta_0,$$
+
+because multiplying these by $3$ to get $\theta$ just adds a multiple of $2\pi$. Indeed, we have $$c = \cos\left(\theta + \frac{2\pi n}{3}\right)$$ as a solution for any integer $n$. Substituting into the expression for $y$, we get
+
+$$y=2c\sqrt{p}=2\cos\left(\theta + \frac{2\pi n}{3}\right)\sqrt{p},$$
+
+as desired. This yields all three solutions because, as we observed, the only unique values this makes are for $n\in \{0,1,2\}$.
+
+Note that if $q^2 > p^3$, then this strategy actually still works, but you have to define $\cos$ (and $\cos^-1$) over a larger, complex domain. This is certainly possible though!
+
+\begin{inner_problem}
+\item Explain how you would find $\theta$ from $p$ and $q$, and how we would use what we have found to solve an arbitrary cubic $ax^3+bx^2+cx+d=0$.
+\end{inner_problem}
+
+We have $\cos 3\theta = \frac{q}{p^{3/2}}$, so
+
+$$\theta = \cos^{-1} \frac{q}{p^{3/2}}.$$
+
+The steps to solving an arbitrary cubic are the following:
+
+\begin{enumerate}
+\item Divide through by $a$ to get a new cubic $x^3 + b'x^2 + c'x + d' = 0$.
+\item Compute $p = \frac{b'^2}{9} - \frac{c'}{3}$ and $q=\frac{b'c'}{6} - \frac{b'^3}{27} - \frac{d'}{2}$.
+\item Compute $\theta = \cos^{-1} \frac{q}{p^{3/2}}$.
+\item Substitute this value of $\theta$ into $x=y-\frac{b}{3}=2\sqrt{p}\cos\left(\frac{1}{3}(\theta+2\pi n)\right)-\frac{b}{3}$, where $n\in \{0,1,2\}$.
+\end{enumerate}
+
+These two problems were a doozy!
 
 \end{document}
