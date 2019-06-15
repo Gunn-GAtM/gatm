@@ -563,16 +563,8 @@ pair B = (1,6);
 pair C = (5.5,3);
 pair D = (4,0);
 
-pair rotate(pair p, real degrees=0) {
-	real rads = degrees * pi / 180;
-	real c = cos(rads);
-	real s = sin(rads);
-	
-	return (p.x*c-p.y*s,p.y*c+p.x*s);
-}
-
 path squareOn(pair A, pair B) {
-	return A--B--(B+rotate(A-B,-90))--(A+rotate(B-A,90))--cycle;
+	return A--B--(B+rotate(-90)*(A-B))--(A+rotate(90)*(B-A))--cycle;
 }
 
 pair a = (B-A)/2;
@@ -580,10 +572,10 @@ pair b = (C-B)/2;
 pair c = (D-C)/2;
 pair d = (A-D)/2;
 
-pair P = a + rotate(a,90);
-pair Q = B + b + rotate(b,90);
-pair R = C + c + rotate(c,90);
-pair SS = D + d + rotate(d,90);
+pair P = a + rotate(90)*a;
+pair Q = B + b + rotate(90)*b;
+pair R = C + c + rotate(90)*c;
+pair SS = D + d + rotate(90)*d;
 \end{asydef}
 
 \begin{center}
@@ -700,7 +692,7 @@ dot(C);
 dot(D);
 dot(Q);
 
-pair ib = rotate(b, 90);
+pair ib = rotate(90)*b;
 
 label("$Q$", Q, N);
 
@@ -745,8 +737,8 @@ dot(D);
 dot(R);
 dot(SS);
 
-pair ic = rotate(c, 90);
-pair id = rotate(d, 90);
+pair ic = rotate(90)*c;
+pair id = rotate(90)*d;
 
 label("$R$", R, E);
 label("$S$", SS, S);
@@ -804,9 +796,9 @@ pair a = (B-A)/2;
 pair b = (C-B)/2;
 pair c = (A-C)/2;
 
-pair ia = rotate(a,90);
-pair ib = rotate(b,90);
-pair ic = rotate(c,90);
+pair ia = rotate(90)*a;
+pair ib = rotate(90)*b;
+pair ic = rotate(90)*c;
 
 pair P = A + a + ia * sqrt(3) / 3;
 pair Q = B + b + ib * sqrt(3) / 3;
@@ -819,7 +811,7 @@ pair R = C + c + ic * sqrt(3) / 3;
 
 path triangleOn(pair A, pair B) {
 	pair v = (B-A)/2;
-	pair V = A + v + rotate(v,90) * sqrt(3);
+	pair V = A + v + rotate(90)* v* sqrt(3);
 	
 	return (A -- V -- B -- cycle);
 }
