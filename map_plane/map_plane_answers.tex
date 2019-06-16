@@ -1,0 +1,540 @@
+\documentclass[../gatm_answers.tex]{subfiles}
+
+\begin{document}
+
+\section{Mapping the Plane with Matrices}
+
+\begin{center}
+\centering
+\begin{minipage}{0.3\textwidth}
+$$\mathop{\left[ \begin{array}{cc} 2 & 3 \\ -1 & 1 \end{array}\right]}^{M}
+\mathop{\left[ \begin{array}{c} 2 \\ 1 \end{array}\right]}^{P} = \mathop{\left[ \begin{array}{c} 7 \\ -1 \end{array} \right]}^{P'}$$
+\end{minipage}\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{asy}[width=\textwidth]
+pair A = (2, 1);
+pair B = (7, -1);
+
+draw((-2,0)--(8,0), Arrow);
+draw((0,-2)--(0,3), Arrow);
+
+dot(A);
+dot(B);
+
+label("$P=\left[ \begin{array}{c} 2 \\ 1 \end{array}\right]$", A, NE);
+label("$P'=\left[ \begin{array}{c} 7 \\ -1 \end{array} \right]$", B, SE);
+
+path between = A--B;
+draw(point(between, 0.04) -- point(between, 0.96), Arrow);
+\end{asy}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\captionof{figure}{Matrix multiplication is a transformation.}
+\label{fig:random_matrix}
+\end{minipage}
+\end{center}
+
+\begin{outer_problem}[start=1]
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on the points $(0,0)$, $(1,0)$, and $(0,1)$. What are their images? Graph them.
+\end{inner_problem}
+
+The matrix is $M=\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}$. We multiply this by the column vectors $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ and $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ to get
+
+\begin{align*}
+\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 0 \end{bmatrix} &= \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
+\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} &= \begin{bmatrix} 2 \\ -1 \end{bmatrix} \\
+\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 0 \end{bmatrix} &= \begin{bmatrix} 3 \\ 1 \end{bmatrix}. \\
+\end{align*}
+
+Thus, the right hand sides are the images of the left hand side. I graphed the transformation in Figure~\ref{fig:random_mtrx_transformation}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+import graph;
+
+pair A = (0,0);
+pair B = (1,0);
+pair C = (0,1);
+
+pair Ap = (0,0);
+pair Bp = (2,-1);
+pair Cp = (3,1);
+
+dot(A);
+dot(B);
+dot(C);
+dot(Ap);
+dot(Bp);
+dot(Cp);
+
+label("$(0,0)=A'=A$", A, SW);
+label("$B=(1,0)$", B, N);
+label("$C=(0,1)$", C, NE);
+
+label("$B'=(2,-1)$", Bp, S);
+label("$C'=(3,1)$", Cp, N);
+
+draw(point(B--Bp,0.1)--point(B--Bp,0.9), Arrow);
+draw(point(C--Cp,0.1)--point(C--Cp,0.9), Arrow);
+
+xaxis("$x$");
+yaxis("$y$");
+
+\end{asy}
+\captionof{figure}{The matrix operating on points $(0,0)$, $(1,0)$, and $(0,1)$.}
+\label{fig:random_mtrx_transformation}
+\end{center}
+
+\begin{inner_problem}
+\item The preimage includes two perpendicular \textbf{unit vectors}, $(0,1)$ and $(1,0)$. What is the (i) ratio of the lengths of their images and (ii) angle between the images?
+\end{inner_problem}
+
+The (i) ratio of the lengths of their images is
+
+$$\frac{|C'|}{|B'|} = \frac{\sqrt{3^2+1^2}}{\sqrt{2^2+(-1)^2}} = \sqrt{\frac{10}{5}} = \sqrt{2}.$$
+
+The (ii) angle between their images is a bit less straightforward, but we can compute it by summing the angle from $C'$ to the $x$-axis with the (positive) angle from $B'$ to the $x$-axis:
+
+$$\tan^{-1} \frac{1}{3} + \left|\tan^{-1} \frac{-1}{2}\right| = \frac{\pi}{4} = 45^\circ.$$
+
+Oh. Well another way to find the angle is to draw the $45-45-90$ triangle between $A$, $B'$ and $C'$, which shows that $\angle C'AB' = 45^\circ$. We know it's $45-45-90$ because the side lengths are $\sqrt{5}$, $\sqrt{5}$ and $\sqrt{10}$ as determined by the Pythagorean Theorem. This triangle is shown in Figure~\ref{fig:succulent_triangle}.
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+import graph;
+
+pair Ap = (0,0);
+pair Bp = (2,-1);
+pair Cp = (3,1);
+
+dot(Ap);
+dot(Bp);
+dot(Cp);
+
+label("$(0,0)=A'=A$", Ap, SW);
+
+label("$B'=(2,-1)$", Bp, S);
+label("$C'=(3,1)$", Cp, N);
+
+draw(Ap--Bp--Cp--cycle);
+label("$\sqrt{5}$", Ap--Bp, SW);
+label("$\sqrt{5}$", Bp--Cp, SE);
+label("$\sqrt{10}$", Cp--Ap, NW);
+
+xaxis("$x$");
+yaxis("$y$");
+
+\end{asy}
+\captionof{figure}{A helpful $45-45-90$ triangle $\triangle AB'C'$.}
+\label{fig:succulent_triangle}
+\end{center}
+
+\begin{inner_problem}
+\item You can conclude that multiplication by matrices does not, in general, preserve which two quantities between the image and preimage?
+\end{inner_problem}
+
+It does not preserve the ratio of lengths or the angle between two vectors. After all, the angle was $90^\circ$ and is now $45^\circ$. Also, the ratio used to be $1$, but is now $\sqrt{2}$ (or $\sqrt{2}{2}$).
+
+\begin{outer_problem}
+\item \label{prob:consolidate_matrix}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Now, use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on each of these points: $(2,1)$, $(1,0)$, $(0,-1)$ and $(-1,-2)$. Do this by consolidating all the points into one matrix, with each point as a column vector, then performing a multiplication:
+$$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
+\left[\begin{array}{cccc}2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2\end{array}\right]
+=\left[\begin{array}{cccc}\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} \\ \phantom{0}\end{array}\right].$$
+\end{inner_problem}
+
+We perform the multiplication:
+
+$$\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}
+\begin{bmatrix} 2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2 \end{bmatrix}
+= \begin{bmatrix}
+7 & 2 & -3 & -8 \\
+-1 & -1 & -1 & -1
+\end{bmatrix}.$$
+
+\begin{inner_problem}
+\item Graph and label the preimage and the image of each point onto the same set of axes.
+\end{inner_problem}
+
+The graph is shown in Figure~\ref{fig:preimage_and_image_x}.
+
+\begin{center}
+\begin{asy}[width=0.6\textwidth]
+import graph;
+
+pair A = (2,1);
+pair B = (1,0);
+pair C = (0,-1);
+pair D = (-1,-2);
+
+pair Ap = (7,-1);
+pair Bp = (2,-1);
+pair Cp = (-3,-1);
+pair Dp = (-8,-1);
+
+dot(A);
+dot(B);
+dot(C);
+dot(D);
+dot(Ap);
+dot(Bp);
+dot(Cp);
+dot(Dp);
+
+label("$A$", A, N);
+label("$B$", B, N);
+label("$C$", C, NE);
+label("$D$", D, N);
+
+label("$A'$", Ap, S);
+label("$B'$", Bp, S);
+label("$C'$", Cp, S);
+label("$D'$", Dp, S);
+
+xaxis("$x$");
+yaxis("$y$");
+\end{asy}
+\captionof{figure}{The preimage and image.}
+\label{fig:preimage_and_image_x}
+\end{center}
+
+\begin{inner_problem}
+\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: What is $y$ in terms of $x$?)
+\end{inner_problem}
+
+They belong to a line! More precisely, they are all on the line $y=x-1$.
+
+\begin{inner_problem}
+\item Write an equation for the image of that set.
+\end{inner_problem}
+
+It appears the equation of the image is simply $y=-1$. We can verify this by multiplying $M$ by $\begin{bmatrix} t+1 \\ t \end{bmatrix}$:
+
+$$\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} t+1 \\ t \end{bmatrix} = \begin{bmatrix} 2(t+1) + 3t \\ -(t+1) + t \end{bmatrix} = \begin{bmatrix} 5t + 2 \\ 1 \end{bmatrix}.$$
+
+Indeed, the $y$ coordinate of the image is $-1$, and the $x$ coordinate can be any real number.
+
+\begin{inner_problem}
+\item What other characteristic of the preimage points also applies to the image?
+\end{inner_problem}
+
+The points in the preimage are equidistant, taken as consecutive pairs. This is also true of the image.
+
+\begin{inner_problem}
+\item Name two things that seem to be conserved when mapping points with a matrix.
+\end{inner_problem}
+
+It seems (i) collinearity and (ii) equally spaced points have their characteristics preserved. Note that not all equidistant points will have this property conserved. Think back to the first problem, for example, where the pairs of points $((0,0),(1,0))$ and $((0,0),(0,1))$ started off equidistant, but ended up not equidistant. Indeed, they have to be collinear for this to be preserved.
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Choose a different $2\times 2$ matrix and a different set of three collinear, equally spaced unique points. Perform the appropriate matrix multiplication.
+\end{inner_problem}
+
+I'm gonna choose the transformation matrix $M = \begin{bmatrix} 3 & -2 \\ 2 & 3 \end{bmatrix}$, and the points $\begin{bmatrix} 2 & 4 & 6 \\ -1 & 0 & 1 \end{bmatrix}$. The multiplication is straightforward:
+
+$$\begin{bmatrix} 3 & -2 \\ 2 & 3 \end{bmatrix} \begin{bmatrix} 2 & 4 & 6 \\ -1 & 0 & 1 \end{bmatrix} = \begin{bmatrix} 8 & 12 & 16 \\ 1 & 8 & 15 \end{bmatrix}.$$
+
+\begin{inner_problem}
+\item Graph and label the preimage points and the image points.
+\end{inner_problem}
+
+The picture is shown in Figure~\ref{fig:preimage_and_image_y}.
+
+\begin{center}
+\begin{asy}[width=0.45\textwidth]
+import graph;
+
+pair A = (2,-1);
+pair B = (4,0);
+pair C = (6,1);
+
+pair Ap = (8,1);
+pair Bp = (12,8);
+pair Cp = (16,15);
+
+dot(A);
+dot(B);
+dot(C);
+
+dot(Ap);
+dot(Bp);
+dot(Cp);
+
+label("$A$", A, S);
+label("$B$", B, N);
+label("$C$", C, N);
+
+label("$A'$", Ap, SE);
+label("$B'$", Bp, S);
+label("$C'$", Cp, S);
+
+draw((1.4 * C - 0.4 * A) -- (1.2 * A - 0.2 * C), dashed);
+draw((1.2 * Cp - 0.2 * Ap) -- (1.4 * Ap - 0.4 * Cp), dashed);
+
+xaxis("$x$");
+yaxis("$y$");
+\end{asy}
+\captionof{figure}{The preimage and image.}
+\label{fig:preimage_and_image_y}
+\end{center}
+
+\begin{inner_problem}
+\item Have the collinearity and equal spacing been preserved?
+\end{inner_problem}
+
+Indeed! The vector from $(8,1)$ to $(12,8)$ is $\langle 4, 7\rangle$ and the vector from $(12,8)$ to $(16,15)$ is also $\langle 4, 7\rangle$.
+
+\begin{inner_problem}
+\item Make a conjecture about when a matrix will preserve collinearity and when a matrix will preserve equal spacing.
+\end{inner_problem}
+
+Since two random matrices have both done it, we conjecture that all matrices do so.
+
+\begin{outer_problem}
+\item Now, we will check your conjecture.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Start with a general $2\times 2$ matrix and three equally spaced points on a line, and multiply the two matrices:
+$$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
+\left[\begin{array}{ccc}x-h & x & x+h \\ m(x-h)+k & mx+k & m(x+h)+k\end{array}\right]=
+\left[\begin{array}{ccc}\phantom{0} & \phantom{0} & \phantom{0} \\ \phantom{0} \end{array}\right].$$
+\end{inner_problem}
+
+$$\begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x-h & x & x+h \\ m(x-h)+k & mx+k & m(x+h)+k \end{bmatrix}$$
+
+$$ = \begin{bmatrix} a(x-h) + b(m(x-h)+k) & ax + b(mx+k) & a(x+h) + b(m(x+h)+k) \\ c(x-h)+d(m(x-h)+k) & cx + d(mx+k) & c(x+h) + d(m(x+h)+k) \end{bmatrix}.$$
+
+\begin{inner_problem}
+\item How do you know that the second matrix indeed represents collinear and equally spaced points?
+\end{inner_problem}
+
+There's a couple of ways to rationalize this, but my favorite is to simply consider the vector between consecutive points.
+
+Our second matrix is $\begin{bmatrix} x-h & x & x+h \\ m(x-h)+k & mx+k & m(x+h)+k \end{bmatrix}$. The vector from the first point to the second is $\langle h, mh \rangle$; similarly, the vector from the second point to the third is $\langle h, mh \rangle$. This means the points are collinear, because the vectors between each pair have the same direction, and equidistant, because each consecutive pair has the same distance.
+
+\begin{inner_problem}
+\item Are there any sets of collinear points that aren't representable by the $2\times 3$ matrix?
+\end{inner_problem}
+
+Yes there are. We cannot represent collinear points that go directly vertically, because (informally) that would mean $h=0$ and $m=\infty$. More precisely, we must have $h=0$, but then there is no real $m$ such that $m(x-h)+k\neq mx+k \neq m(x+h)+k$. As an example, we cannot represent the points $$\begin{bmatrix} 1 & 1 & 1 \\ -50 & 0 & 50 \end{bmatrix}.$$
+
+\begin{inner_problem}
+\item Are the points in the image collinear? Show why or why not.
+\end{inner_problem}
+
+Yes they are. Again, we think about the vector between consecutive points: for the first pair it's
+
+\begin{align*}
+V_1 &= \langle (ax+b(mx+k)) - (a(x-h) + b(m(x-h)+k)), (cx + d(mx+k)) - (c(x-h)+d(m(x-h)+k)) \rangle \\
+&= \langle ah + bmh, ch + dmh \rangle;
+\end{align*}
+
+for the second pair it's
+
+\begin{align*}
+V_2 &= \langle (a(x+h) + b(m(x+h)+k)) - (ax + b(mx+k)), (c(x+h) + d(m(x+h)+k)) - (cx + d(mx+k)) \rangle \\
+&= \langle ah + bmh, ch + dmh \rangle = V_1.
+\end{align*}
+
+Since $V_2=V_1$, the points are collinear (and equidistant).
+
+\begin{inner_problem}
+\item Can you find values for $a$, $b$, $c$, and $d$ so that the image does not lie on a unique line? (Hint: all of the points in the image must lie on no line, or on multiple lines.)
+\end{inner_problem}
+
+At first this seems like it's contradicting our conjecture, but the devil's in the details. If all the points are coincident---that is, they're all equal---then there are infinitely many lines passing through it.
+
+We set $a=b=c=d=0$ so that $M=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix]$, which maps every point to $(0,0)$. Then there are infinitely many lines going through the image.
+
+\begin{inner_problem}
+\item Use the distance formula---or some other justification---to answer whether the points in the image are equally spaced.
+\end{inner_problem}
+
+We showed that they're equidistant two subproblems ago already, with vectors. But I'll also show it with the distance formula since that what the question suggests.
+
+The distance between the first two points is
+
+$$\sqrt{((ax+b(mx+k)) - (a(x-h) + b(m(x-h)+k)))^2 + ((cx + d(mx+k)) - (c(x-h)+d(m(x-h)+k)))^2}$$
+$$=\sqrt{(ah+bmh)^2 + (ch+dmh)^2}.$$
+
+Looks familiar.... The distance between the second points is
+$$\sqrt{((a(x+h) + b(m(x+h)+k)) - (ax + b(mx+k)))^2 + ((c(x+h) + d(m(x+h)+k)) - (cx + d(mx+k)))^2}$$
+$$=\sqrt{(ah+bmh)^2 + (ch+dmh)^2}.$$
+
+The distances are equal; they are equidistant.
+
+\begin{outer_problem}
+\item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Solve the above matrix equation for $x$ and $y$ to find the point.
+\end{inner_problem}
+
+We multiply out the right side:
+
+$$\begin{bmatrix}2 & 3 \\ 4 & 5 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix}2x + 3y \\ 4x + 5y \end{bmatrix}.$$
+
+Equating corresponding entries, we get the system of equations
+
+$$\begin{cases} x = 2x + 3y \\ y = 4x + 5y \end{cases}.$$
+
+Solving this system gives $(x,y)=(0,0)$. How mundane....
+
+\begin{inner_problem}
+\item There is a point $Q$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
+\end{inner_problem}
+
+Looks like the point is $Q=\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, given the answer to the previous subproblem.
+
+\begin{inner_problem}
+\item Prove your conjecture by plugging your point $Q$ into $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]Q=Q$.
+\end{inner_problem}
+
+We do the multiplication:
+
+$$\begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} = Q.$$
+
+Indeed, $Q$ always remains fixed.
+
+\begin{outer_problem}
+\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Map it with the following matrices.
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $\left[\begin{array}{cc}1 & 0 \\ 0 & 1 \end{array}\right]$
+\end{iinner_problem}
+
+\begin{iinner_problem}
+\item $\left[\begin{array}{cc}.6 & -.8 \\ .8 & .6 \end{array}\right]$
+\end{iinner_problem}
+
+\begin{iinner_problem}
+\item $\left[\begin{array}{cc}.6 & .8 \\ .8 & -.6 \end{array}\right]$
+\end{iinner_problem}
+
+\begin{inner_problem}
+\item Graph the preimage, then the image for each matrix on three separate sets of axes.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Soon, we will map the unit square: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Of $(0,0)$?
+\end{inner_problem}
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Take the matrix $\left[\begin{smallmatrix}1 & 2 \\ 0 & 1\end{smallmatrix}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
+
+$$\begin{blockarray}{cccccc}
+& & A & B & C & D \\
+\begin{block}{[cc][cccc]}
+1 & 2 & 0 & 1 & 1 & 0 \\
+0 & 1 & 0 & 0 & 1 & 1 \\
+\end{block}
+\end{blockarray} =
+\begin{blockarray}{cccc}
+A' & B' & C' & D' \\
+\begin{block}{[cccc]}
+0 & 1 & 3 & 2 \\
+0 & 0 & 1 & 1 \\
+\end{block}
+\end{blockarray}.$$
+
+This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
+\item What happens to the area of the image versus the preimage?
+\item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
+\end{enumerate}
+\item \begin{enumerate}
+\item When is the ratio of distances between points in the image the same as the preimage?
+\item What is the image of the origin under any matrix mapping?
+\item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
+\item Knowing the images of $(1,0)$ and $(0,1)$, where is $(1,1)$ algebraically and geometrically?
+\end{enumerate}
+\item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
+\newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
+\begin{multicols}{4}
+\begin{enumerate}
+\item \mtrxtbt{1}{0}{0}{-1}
+\item \mtrxtbt{-1}{0}{0}{-1}
+\item \mtrxtbt{2}{0}{0}{2}
+\item \mtrxtbt{0}{1}{-1}{0}
+\item \mtrxtbt{0}{1}{1}{0}
+\item \mtrxtbt{0}{0}{0}{0}
+\item \mtrxtbt{1}{0}{0}{1}
+\item \mtrxtbt{3}{0}{0}{1}
+\item \mtrxtbt{1}{0}{-3}{1}
+\item \mtrxtbt{2}{2}{-3}{-3}
+\item \mtrxtbt{3}{2}{4}{-1}
+\item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}
+\item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}
+\item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}
+\item \mtrxtbt{\frac{\sqrt{3}}{2}}{-\frac{1}{2}}{\frac{1}{2}}{\frac{\sqrt{3}}{2}}
+\item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}
+\end{enumerate}
+\end{multicols}
+\end{enumerate}
+
+\begin{enumerate}
+\item Carry out the following multiplications and convince yourself that the mappings are equivalent.\begin{multicols}{2}
+\begin{enumerate}
+\item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
+\item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
+\end{enumerate}
+\end{multicols}
+\item \begin{enumerate}
+\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
+\item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
+\end{enumerate}
+\item \begin{enumerate}
+\item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units in the $y$ direction, leaving $z$ fixed at $1$.
+\item Check your work by applying your matrix to the point $(3,5,1)$.
+\end{enumerate}
+\item Do these two multiplications. What does each represent?
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]$
+\item $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]$
+\end{enumerate}
+\end{multicols}
+\item What does each of these matrices represent?
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
+\item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
+\end{enumerate}
+\end{multicols}
+\item \begin{enumerate}
+\item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
+\item Write a matrix product that translates the point $(2,3,-5)$ by the vector $(4,-1,2)$.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
