@@ -2,16 +2,16 @@
 A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM") by Peter Herreshoff.
 
 GAtM Rough Draft:
-http://progressed.io/bar/100?title=progress
+![](http://progressed.io/bar/100?title=progress)
 
 GAtM Final:
-http://progressed.io/bar/2?title=progress
+![](http://progressed.io/bar/2?title=progress)
 
 GAtM Answer Key Rough Draft:
-http://progressed.io/bar/52?title=progress
+![](http://progressed.io/bar/52?title=progress)
 
 GAtM Answer Key Final:
-http://progressed.io/bar/0?title=progress
+![](http://progressed.io/bar/0?title=progress)
 
 **Contributors**: Timothy Herchen and Brandon Chung
 
