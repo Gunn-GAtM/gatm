@@ -356,7 +356,7 @@ Since $V_2=V_1$, the points are collinear (and equidistant).
 
 At first this seems like it's contradicting our conjecture, but the devil's in the details. If all the points are coincident---that is, they're all equal---then there are infinitely many lines passing through it.
 
-We set $a=b=c=d=0$ so that $M=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix]$, which maps every point to $(0,0)$. Then there are infinitely many lines going through the image.
+We set $a=b=c=d=0$ so that $M=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$, which maps every point to $(0,0)$. Then there are infinitely many lines going through the image.
 
 \begin{inner_problem}
 \item Use the distance formula---or some other justification---to answer whether the points in the image are equally spaced.
@@ -413,6 +413,7 @@ Indeed, $Q$ always remains fixed.
 \item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$.
 \end{outer_problem}
 
+
 \begin{inner_problem}[start=1]
 \item Map it with the following matrices.
 \end{inner_problem}
@@ -421,21 +422,140 @@ Indeed, $Q$ always remains fixed.
 \item $\left[\begin{array}{cc}1 & 0 \\ 0 & 1 \end{array}\right]$
 \end{iinner_problem}
 
+We multiply them:
+
+$$\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 5 & 10 & 5 \\ 0 & 0 & 10 \end{bmatrix} = \begin{bmatrix} 5 & 10 & 5 \\ 0 & 0 & 10 \end{bmatrix}.$$
+
 \begin{iinner_problem}
 \item $\left[\begin{array}{cc}.6 & -.8 \\ .8 & .6 \end{array}\right]$
 \end{iinner_problem}
+
+$$\begin{bmatrix} .6 & -.8 \\ .8 & .6 \end{bmatrix} \begin{bmatrix} 5 & 10 & 5 \\ 0 & 0 & 10 \end{bmatrix} = \begin{bmatrix} 3 & 6 & -5 \\ 4 & 8 & 10 \end{bmatrix}.$$
 
 \begin{iinner_problem}
 \item $\left[\begin{array}{cc}.6 & .8 \\ .8 & -.6 \end{array}\right]$
 \end{iinner_problem}
 
+$$\begin{bmatrix} .6 & .8 \\ .8 & -.6 \end{bmatrix} \begin{bmatrix} 5 & 10 & 5 \\ 0 & 0 & 10 \end{bmatrix} = \begin{bmatrix} 3 & 6 & 11 \\ 4 & 8 & -2 \end{bmatrix}.$$
+
 \begin{inner_problem}
 \item Graph the preimage, then the image for each matrix on three separate sets of axes.
 \end{inner_problem}
 
+(i) is shown in Figure~\ref{fig:preimage_and_image_i}; (ii) is shown in Figure~\ref{fig:preimage_and_image_ii}; (iii) is shown in Figure~\ref{fig:preimage_and_image_iii}.
+
+\begin{minipage}{0.49\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import graph;
+
+pair A = (5, 0);
+pair B = (10,0);
+pair C = (5,10);
+
+pair Ap = A;
+pair Bp = B;
+pair Cp = C;
+
+dot(A);
+dot(B);
+dot(C);
+
+label("$A=A'$", A, 1.5*NW);
+label("$B=B'$", B, NE);
+label("$C=C'$", C, N);
+
+xaxis("$x$", Bottom, LeftTicks, xmin=0);
+yaxis("$y$", Left, RightTicks);
+
+draw(A--B--C--cycle,dashed);
+\end{asy}
+\captionof{figure}{Preimage and image for (i).}
+\label{fig:preimage_and_image_i}
+\end{minipage}\hfill
+\begin{minipage}{0.49\textwidth}
+\begin{asy}[width=0.9\textwidth]
+import graph;
+
+pair A = (5, 0);
+pair B = (10,0);
+pair C = (5,10);
+
+pair Ap = (3,4);
+pair Bp = (6,8);
+pair Cp = (-5,10);
+
+dot(A);
+dot(B);
+dot(C);
+
+dot(Ap);
+dot(Bp);
+dot(Cp);
+
+label("$A$", A, 1.5*NW);
+label("$B$", B, NE);
+label("$C$", C, N);
+
+label("$A'$", Ap, SW);
+label("$B'$", Bp, NE);
+label("$C'$", Cp, NW);
+
+draw(A--B--C--cycle,dashed);
+draw(Ap--Bp--Cp--cycle,dashed);
+
+xaxis("$x$", Bottom, LeftTicks, xmin=-7);
+yaxis("$y$", Left, RightTicks);
+\end{asy}
+\captionof{figure}{Preimage and image for (ii).}
+\label{fig:preimage_and_image_ii}
+\end{minipage}
+\begin{center}
+\begin{asy}[width=0.44\textwidth]
+import graph;
+
+pair A = (5, 0);
+pair B = (10,0);
+pair C = (5,10);
+
+pair Ap = (3,4);
+pair Bp = (6,8);
+pair Cp = (11,-2);
+
+dot(A);
+dot(B);
+dot(C);
+
+dot(Ap);
+dot(Bp);
+dot(Cp);
+
+label("$A$", A, 1.5*NW);
+label("$B$", B, NE);
+label("$C$", C, N);
+
+label("$A'$", Ap, SW);
+label("$B'$", Bp, NE);
+label("$C'$", Cp, S);
+
+draw(A--B--C--cycle,dashed);
+draw(Ap--Bp--Cp--cycle,dashed);
+
+xaxis("$x$", YEquals(-4), LeftTicks, xmin=0);
+yaxis("$y$", Left, RightTicks, ymin=-4);
+\end{asy}
+\captionof{figure}{Preimage and image for (iii).}
+\label{fig:preimage_and_image_iii}
+\end{center}
+
 \begin{inner_problem}
 \item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
 \end{inner_problem}
+
+(i) is the identity transformation; it does absolutely nothing. Indeed, the matrix $I_2=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is called the identity matrix of size $2$.
+
+(ii) is a rotation about the origin by $\tan^{-1} \frac{4}{3} \approx 53.13^\circ$. This is found by taking $\tan^{-1} \frac{y}{x}$ for the point $(x,y)=A'=(3,4)$.
+
+(iii) is a reflection about the line $y = \frac{x}{2}$. The easiest way to see this is that because the origin is fixed, the reflection line must pass through $(0,0)$, so it is $y =mx$ for some real number $m$. But it also must pass through the midpoint of $\overline{AA'}$ (and $\overline{BB'}$, $\overline{CC'}$), which is $(4,2)$. Thus, $m=\frac{2}{4}=\frac{1}{2}$.
 
 \begin{outer_problem}
 \item Soon, we will map the unit square: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later.
@@ -445,12 +565,23 @@ Indeed, $Q$ always remains fixed.
 \item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
 \end{inner_problem}
 
+We can use the associative property of matrix multiplication to help us! If the image of a point $P$ is $i_P$, then we have
+
+$$i_(1,1) = M\begin{bmatrix} 1 \\ 1 \end{bmatrix} = M\left(\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 1 \\ 0 \end{bmatrix}\right) = M\begin{bmatrix} 1 \\ 0 \end{bmatrix} + M\begin{bmatrix} 0 \\ 1 \end{bmatrix} = i_{(1,0)} + i_{(0,1)}.$$
+
+In words, we sum the images of $(1,0)$ and $(0,1)$ to get the image of $(1,1)$. Neat!
+
 \begin{inner_problem}
 \item Of $(0,0)$?
 \end{inner_problem}
 
-\begin{enumerate}
-\item \begin{enumerate}
+This is sort of a trick question. We have $i_{(0,0)} = M\begin{bmatrix} 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix},$ so the image is always $(0,0)$.
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Take the matrix $\left[\begin{smallmatrix}1 & 2 \\ 0 & 1\end{smallmatrix}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
 
 $$\begin{blockarray}{cccccc}
@@ -467,74 +598,383 @@ A' & B' & C' & D' \\
 0 & 0 & 1 & 1 \\
 \end{block}
 \end{blockarray}.$$
+\end{inner_problem}
 
-This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
+\begin{asydef}
+import graph;
+
+void drawUnitSquareTransform(real a, real b, real c, real d, pair dirA, pair dirB, pair dirC, pair dirD) {
+	pair A = (0,0);
+	pair B = (1,0);
+	pair C = (1,1);
+	pair D = (0,1);
+	
+	pair Ap = (0,0);
+	pair Bp = (a,c);
+	pair Dp = (b,d);
+	pair Cp = Bp+Dp;
+	
+	draw(A--B--C--D--A,dashed);
+	draw(Ap--Bp--Cp--Dp--Ap);
+	
+	dot(Ap);
+	dot(Bp);
+	dot(Cp);
+	dot(Dp);
+	
+	pair[] original = {A,B,C,D};
+	pair[] image = {Ap,Bp,Cp,Dp};
+	
+	pair[] original_dirs = {SW, SE, NE, NW};
+	pair[] image_dirs = {unit(Ap-Cp),unit(Bp-Dp),unit(Cp-Ap),unit(Dp-Bp)};
+	
+	string[] original_names = {"A","B","C","D"};
+	int[] images_labeled_already = {0,0,0,0};
+	
+	for (int i = 0; i < 4; ++i) {
+		pair original_p = original[i];
+		pair original_d = original_dirs[i];
+		string original_n = original_names[i];
+		
+		string[] extra_names = {};
+		
+		for (int j = 0; j < 4; ++j) {
+			if (length(image[j]-original[i]) < 0.001) { // Good enough
+				extra_names.push(original_names[j] + "'");
+				
+				images_labeled_already[j] = 1;
+			}
+		}
+		
+		string label_str = "$" + original_n;
+		
+		for (int j = 0; j < extra_names.length; ++j) {
+			label_str += "=" + extra_names[j];
+		}
+		
+		label_str += "$";
+		
+		label(label_str, original_p, original_d);
+	}
+	
+	for (int i = 0; i < 4; ++i) {
+		if (images_labeled_already[i] == 1) continue;
+		
+		label("$" + original_names[i] + "'$", image[i], image_dirs[i]);
+	}
+	
+	xaxis();
+	yaxis();
+}
+\end{asydef}
+
+\begin{center}
+\begin{asy}[width=0.5\textwidth]
+drawUnitSquareTransform(1,2,0,1,N,N,NE,NW);
+\end{asy}
+\end{center}
+
+\begin{inner_problem}
 \item What happens to the area of the image versus the preimage?
-\item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
-\end{enumerate}
-\item \begin{enumerate}
-\item When is the ratio of distances between points in the image the same as the preimage?
-\item What is the image of the origin under any matrix mapping?
-\item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
-\item Knowing the images of $(1,0)$ and $(0,1)$, where is $(1,1)$ algebraically and geometrically?
-\end{enumerate}
-\item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
-\newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
-\begin{multicols}{4}
-\begin{enumerate}
-\item \mtrxtbt{1}{0}{0}{-1}
-\item \mtrxtbt{-1}{0}{0}{-1}
-\item \mtrxtbt{2}{0}{0}{2}
-\item \mtrxtbt{0}{1}{-1}{0}
-\item \mtrxtbt{0}{1}{1}{0}
-\item \mtrxtbt{0}{0}{0}{0}
-\item \mtrxtbt{1}{0}{0}{1}
-\item \mtrxtbt{3}{0}{0}{1}
-\item \mtrxtbt{1}{0}{-3}{1}
-\item \mtrxtbt{2}{2}{-3}{-3}
-\item \mtrxtbt{3}{2}{4}{-1}
-\item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}
-\item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}
-\item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}
-\item \mtrxtbt{\frac{\sqrt{3}}{2}}{-\frac{1}{2}}{\frac{1}{2}}{\frac{\sqrt{3}}{2}}
-\item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}
-\end{enumerate}
-\end{multicols}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{enumerate}
-\item Carry out the following multiplications and convince yourself that the mappings are equivalent.\begin{multicols}{2}
-\begin{enumerate}
+They are equal. After all, both are parallelograms with base $1$ and height $1$.
+
+\begin{inner_problem}
+\item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
+\end{inner_problem}
+
+No, $A'B' \neq B'C'$. It doesn't have to, because though the points are equidistant, they are not collinear, and don't have to be equidistant in the image.
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item When is the ratio of distances between points in the image the same as the preimage?
+\end{inner_problem}
+
+This is true when the image is a dilation, reflection, or rotation: or combination of the three.
+
+\begin{inner_problem}
+\item What is the image of the origin under any matrix mapping?
+\end{inner_problem}
+
+The image of $(0,0)$ is always $(0,0)$.
+
+\begin{inner_problem}
+\item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
+\end{inner_problem}
+
+The image of $(1,0)$ is just $(a,c)$. The image of $(0,1)$ is $(b,d)$.
+
+\begin{inner_problem}
+\item Knowing the images of $(1,0)$ and $(0,1)$, where is $(1,1)$ algebraically and geometrically?
+\end{inner_problem}
+
+The image of $(1,1)$, as we found earlier, is the sum of the images of $(1,0)$ and $(0,1)$. Thus, it is $(a+c,b+d)$. Geometrically, it forms a parallelogram with the images of $(1,0)$ and $(0,1)$.
+
+\begin{outer_problem}
+\item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
+\end{outer_problem}
+
+\newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
+\begin{inner_problem}[start=1]
+\item \mtrxtbt{1}{0}{0}{-1}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 1 & 1 & 0 \\ 0 & 0 & -1 & -1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(1,0,0,-1,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a reflection over the $x$-axis.
+
+\begin{inner_problem}
+\item \mtrxtbt{-1}{0}{0}{-1}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & -1 & -1 & 0 \\ 0 & 0 & -1 & -1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(-1,0,0,-1,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a reflection about the origin $(0,0)$.
+
+\begin{inner_problem}
+\item \mtrxtbt{2}{0}{0}{2}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 2 & 2 & 0 \\ 0 & 0 & 2 & 2 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(2,0,0,2,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a dilation about the origin $(0,0)$ by a factor of $2$.
+
+\begin{inner_problem}
+\item \mtrxtbt{0}{1}{-1}{0}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 0 & 1 & 1 \\ 0 & -1 & -1 & 0 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(0,1,-1,0,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a rotation by $90^\circ=\frac{\pi}{2}$ clockwise, or $270^\circ=\frac{3\pi}{2}$ counterclockwise.
+
+\begin{inner_problem}
+\item \mtrxtbt{0}{1}{1}{0}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 0 & 1 & 1 \\ 0 & 1 & 1 & 0 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+draw((-0.5,-0.5)--(1.5,1.5), dashed);
+drawUnitSquareTransform(0,1,1,0,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a reflection about the line $y=x$, which is marked in the diagram.
+
+\begin{inner_problem}
+\item \mtrxtbt{0}{0}{0}{0}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(0,0,0,0,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a projection onto the point $(0,0)$. Every point goes to $(0,0)$!
+
+\begin{inner_problem}
+\item \mtrxtbt{1}{0}{0}{1}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(1,0,0,1,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is the identity transformation: it does nothing. Every point is mapped to itself.
+
+\begin{inner_problem}
+\item \mtrxtbt{3}{0}{0}{1}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 3 & 3 & 0 \\ 0 & 0 & 1 & 1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(3,0,0,1,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a stretch by a factor of $3$ along the $x$-axis.
+
+\begin{inner_problem}
+\item \mtrxtbt{1}{0}{-3}{1}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 1 & 1 & 0 \\ 0 & -3 & -2 & 1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(1,0,-3,1,N,N,N,N);
+\end{asy}
+\end{center}
+
+INS
+
+\begin{inner_problem}
+\item \mtrxtbt{2}{2}{-3}{-3}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 2 & 4 & 2 \\ 0 & -3 & 1 & 1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(2,2,-3,-3,N,N,N,N);
+\end{asy}
+\end{center}
+
+INS
+
+\begin{inner_problem}
+\item \mtrxtbt{3}{2}{4}{-1}
+\end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & 3 & 5 & 2 \\ 0 & 4 & 3 & -1 \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(3,2,4,-1,N,N,N,N);
+\end{asy}
+\end{center}
+
+INS
+
+\begin{inner_problem}
+\item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item \mtrxtbt{\frac{\sqrt{3}}{2}}{-\frac{1}{2}}{\frac{1}{2}}{\frac{\sqrt{3}}{2}}
+\end{inner_problem}
+
+\begin{inner_problem}
+\item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Carry out the following multiplications and convince yourself that the mappings are equivalent.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
-\end{enumerate}
-\end{multicols}
-\item \begin{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
-\end{enumerate}
-\item \begin{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units in the $y$ direction, leaving $z$ fixed at $1$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Check your work by applying your matrix to the point $(3,5,1)$.
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Do these two multiplications. What does each represent?
-\begin{multicols}{2}
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]$
-\end{enumerate}
-\end{multicols}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item What does each of these matrices represent?
-\begin{multicols}{2}
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
-\end{enumerate}
-\end{multicols}
-\item \begin{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Write a matrix product that translates the point $(2,3,-5)$ by the vector $(4,-1,2)$.
-\end{enumerate}
-\end{enumerate}
+\end{inner_problem}
 
 \end{document}
