@@ -626,7 +626,10 @@ void drawUnitSquareTransform(real a, real b, real c, real d, pair dirA, pair dir
 	pair[] image = {Ap,Bp,Cp,Dp};
 	
 	pair[] original_dirs = {SW, SE, NE, NW};
-	pair[] image_dirs = {unit(Ap-Cp),unit(Bp-Dp),unit(Cp-Ap),unit(Dp-Bp)};
+	pair[] image_dirs = {unit(unit(Ap-Dp)+unit(Ap-Bp)),
+	unit(unit(Bp-Cp)+unit(Bp-Ap)),
+	unit(unit(Cp-Dp)+unit(Cp-Bp)),
+	unit(unit(Dp-Cp)+unit(Dp-Ap))};
 	
 	string[] original_names = {"A","B","C","D"};
 	int[] images_labeled_already = {0,0,0,0};
@@ -660,7 +663,18 @@ void drawUnitSquareTransform(real a, real b, real c, real d, pair dirA, pair dir
 	for (int i = 0; i < 4; ++i) {
 		if (images_labeled_already[i] == 1) continue;
 		
-		label("$" + original_names[i] + "'$", image[i], image_dirs[i]);
+		string extra = "";
+		
+		for (int j = i+1; j < 4; ++j) {
+			if (images_labeled_already[j] == 1) continue;
+			
+			if (length(image[j]-image[i]) < 0.001) {
+				extra += "= " + original_names[j] + "'";
+				images_labeled_already[j] = 1;
+			}
+		}
+		
+		label("$" + original_names[i] + "'" + extra + "$", image[i], image_dirs[i]);
 	}
 	
 	xaxis();
@@ -853,13 +867,13 @@ drawUnitSquareTransform(1,0,-3,1,N,N,N,N);
 \end{asy}
 \end{center}
 
-INS
+This is a shear by a factor of $3$ along the negative $y$-axis.
 
 \begin{inner_problem}
 \item \mtrxtbt{2}{2}{-3}{-3}
 \end{inner_problem}
 
-Image matrix: $\begin{bmatrix} 0 & 2 & 4 & 2 \\ 0 & -3 & 1 & 1 \end{bmatrix}$.
+Image matrix: $\begin{bmatrix} 0 & 2 & 4 & 2 \\ 0 & -3 & -6 & -3 \end{bmatrix}$.
 
 \begin{center}
 \begin{asy}
@@ -868,7 +882,7 @@ drawUnitSquareTransform(2,2,-3,-3,N,N,N,N);
 \end{asy}
 \end{center}
 
-INS
+This is a mapping onto the line $-3x=2y\Longrightarrow 3x+2y=0$. Note that this isn't a \textit{projection}, since that has extra constraints.
 
 \begin{inner_problem}
 \item \mtrxtbt{3}{2}{4}{-1}
@@ -883,27 +897,101 @@ drawUnitSquareTransform(3,2,4,-1,N,N,N,N);
 \end{asy}
 \end{center}
 
-INS
+This is a rather complex transformation. We'll learn later how to tackle this properly. If you're curious, this matrix is the following operations in order:
+
+\begin{itemize}
+\item Shear by $\frac{2}{3}$ along the (positive) $x$-axis
+\item Stretch by $-\frac{11}{3}$ along the $y$-axis
+\item Shear by $4$ along the $y$-axis
+\item Stretch by $3$ along the $x$-axis.
+\end{itemize}
 
 \begin{inner_problem}
 \item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}
 \end{inner_problem}
 
+Image matrix: $\begin{bmatrix} 0 & \frac{\sqrt{2}}{2} & \sqrt{2} & \frac{\sqrt{2}}{2} \\ 0 & \frac{\sqrt{2}}{2} & 0 & -\frac{\sqrt{2}}{2} \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(200);
+real sq2f = sqrt(2)/2;
+pair St = (-1,-sqrt(2)+1);
+pair Et = -2*St;
+
+draw(St--Et, dotted);
+label("$\theta=\frac{\pi}{8}$", Et, NE);
+drawUnitSquareTransform(sq2f,sq2f,sq2f,-sq2f,N,N,N,N);
+\end{asy}
+\end{center}
+
+This a reflection over the line $\theta=22.5^\circ=\frac{\pi}{8}$, or $y=(\sqrt{2}-1)x$.
+
 \begin{inner_problem}
 \item \mtrxtbt{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}{-\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}}
 \end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & \frac{\sqrt{2}}{2} & \sqrt{2} & \frac{\sqrt{2}}{2} \\ 0 & -\frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2} \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+real sq2f = sqrt(2)/2;
+drawUnitSquareTransform(sq2f,sq2f,-sq2f,sq2f,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a rotation by $45^\circ=\frac{\pi}{4}$ clockwise about the origin, or a rotation of $315^\circ = \frac{7\pi}{4}$ counterclockwise about the origin.
 
 \begin{inner_problem}
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}
 \end{inner_problem}
 
+Image matrix: $\begin{bmatrix} 0 & \frac{\sqrt{3}}{2} & \frac{1+\sqrt{3}}{2} & \frac{1}{2} \\ 0 & \frac{1}{2} & \frac{1-\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+pair St = (-1,sqrt(3)-2);
+pair Et = -1.5*St;
+
+draw(St--Et, dotted);
+label("$\theta=\frac{\pi}{12}$", Et, NE);
+drawUnitSquareTransform(sqrt(3)/2, 1/2, 1/2, -sqrt(3)/2,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a reflection about the line $\theta = 15^\circ = \frac{\pi}{12}$, or the line $y=(2-\sqrt{3})x$.
+
 \begin{inner_problem}
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{-\frac{1}{2}}{\frac{1}{2}}{\frac{\sqrt{3}}{2}}
 \end{inner_problem}
 
+Image matrix: $\begin{bmatrix} 0 & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}-1}{2} & -\frac{1}{2} \\ 0 & \frac{1}{2} & \frac{1+\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(sqrt(3)/2, -1/2, 1/2, sqrt(3)/2,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is a rotation of $30^\circ = \frac{\pi}{6}$ counterclockwise about the origin.
+
 \begin{inner_problem}
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}
 \end{inner_problem}
+
+Image matrix: $\begin{bmatrix} 0 & \frac{\sqrt{3}}{2} & \frac{1+\sqrt{3}}{2} & \frac{1}{2} \\ 0 & -\frac{1}{2} & \frac{\sqrt{3}-1}{2} & \frac{\sqrt{3}}{2} \end{bmatrix}$.
+
+\begin{center}
+\begin{asy}
+size(150);
+drawUnitSquareTransform(sqrt(3)/2, 1/2, -1/2, sqrt(3)/2,N,N,N,N);
+\end{asy}
+\end{center}
+
+This is rotation of $30^\circ = \frac{\pi}{6}$ \textit{clockwise} about the origin, or $330^\circ = \frac{11\pi}{6}$ counterclockwise about the origin.
 
 \begin{outer_problem}
 \item Carry out the following multiplications and convince yourself that the mappings are equivalent.
@@ -913,21 +1001,33 @@ INS
 \item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
 \end{inner_problem}
 
+This is simple:
+
+$$\begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} u \\ v \end{bmatrix} = \begin{bmatrix} au+bv \\ cu+dv \end{bmatrix}.$$
+
 \begin{inner_problem}
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
 \end{inner_problem}
+
+$$\begin{bmatrix} a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} au + bv + 0\cdot 1 \\ cu + dv + 0\cdot 1 \\ 0u + 0v + 0\cdot 1 \end{bmatrix} \begin{bmatrix} au+bv \\ cu+dv \\ 1 \end{bmatrix}.$$
+
+They are equivalent because the $x,y$ components of each are the same, and $z$ is unchanged in the second equation.
 
 \begin{outer_problem}
 \item 
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
+\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ 
 \end{inner_problem}
+
+$$\begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix}u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} u + \alpha \\ v + \beta \\ 1 \end{bmatrix}.$$
 
 \begin{inner_problem}
 \item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
 \end{inner_problem}
+
+The result of the above multiplication is that the point $(u,v,1)$ has been translated by \underline{$u$} in the $x$ direction, \underline{$v$} in the $y$ direction, and is still anchored to the plane $z=$\underline{$1$}.
 
 \begin{outer_problem}
 \item 
@@ -937,9 +1037,19 @@ INS
 \item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units in the $y$ direction, leaving $z$ fixed at $1$.
 \end{inner_problem}
 
+We have $\alpha = 4$ and $\beta = 7$:
+
+$$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} x + 4 \\ y + 7 \\ 1 \end{bmatrix}.$$
+
 \begin{inner_problem}
 \item Check your work by applying your matrix to the point $(3,5,1)$.
 \end{inner_problem}
+
+The expected result is $(3+4,5+7,1)=(7,12,1)$. We multiply:
+
+$$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 3 \\ 5 \\ 1 \end{bmatrix} = \begin{bmatrix} 7 \\ 12 \\ 1 \end{bmatrix}.$$
+
+Looks good.
 
 \begin{outer_problem}
 \item Do these two multiplications. What does each represent?
@@ -949,9 +1059,22 @@ INS
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \end{inner_problem}
 
+We multiply:
+
+$$\begin{bmatrix} a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix} a & b & a\alpha + b\beta \\ c & d & c\alpha + d\beta \\ 0 & 0 & 1 \end{bmatrix}$$
+
+Because we have chosen the column vector to represent points, the transformations take place from right to left. Thus, the right matrix is the first transformation, and the left matrix is the second transformation. Therefore, this multiplication represents a translation by $\langle\alpha,\beta,0\rangle$, then a 2D matrix transformation by $\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}$.
+
 \begin{inner_problem}
 \item $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]$
 \end{inner_problem}
+
+We multiply:
+
+$$\begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix}
+a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{bmatrix}.$$
+
+Well that was easy. In the same logic as the previous subproblem, this multiplication represents a 2D matrix transformation by $\left[\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\right]$, then a translation by $\langle \alpha, \beta, 0\rangle$.
 
 \begin{outer_problem}
 \item What does each of these matrices represent?
@@ -961,20 +1084,32 @@ INS
 \item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \end{inner_problem}
 
+This is the result to Problem~14b, so it's a 2D matrix transformation by $\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}$, then a translation by $\langle \alpha, \beta, 0\rangle$.
+
 \begin{inner_problem}
 \item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \end{inner_problem}
+
+We recognize the 2D matrix transformation here as a rotation by $\theta$ radians counterclockwise. Thus, this is a rotation by $\theta$ radians counterclockwise, followed by a translation by $\langle \alpha, \beta, 0\rangle$.
 
 \begin{outer_problem}
 \item 
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
+\item Rewrite your translation matrix and your preimage vector from Problem~12a so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
 \end{inner_problem}
+
+We do as the problem hints, and construct a $4\times 4$ matrix which translates by $\langle \alpha, \beta, \gamma, 0\rangle$ in four dimensions.
+
+$$\begin{bmatrix} 1 & 0 & 0 & \alpha \\ 0 & 1 & 0 & \beta \\ 0 & 0 & 1 & \gamma \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} x + \alpha \\ y + \beta \\ z + \gamma \\ 1\end{bmatrix}.$$
 
 \begin{inner_problem}
 \item Write a matrix product that translates the point $(2,3,-5)$ by the vector $(4,-1,2)$.
 \end{inner_problem}
+
+We have $(x,y,z)=(2,3,-5)$ and $(\alpha,\beta,\gamma) = (4,-1,2)$:
+
+$$\begin{bmatrix} 1 & 0 & 0 & 4 \\ 0 & 1 & 0 & -1 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 2 \\ 3 \\ -5 \\ 1 \end{bmatrix} = \begin{bmatrix} 6 \\ 2 \\ -3 \\ 1\end{bmatrix}.$$
 
 \end{document}
