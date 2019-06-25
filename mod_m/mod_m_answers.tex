@@ -1,7 +1,56 @@
-\documentclass[../gatm.tex]{subfiles}
+\documentclass[../gatm_answers.tex]{subfiles}
 
 \begin{document}
 
-\section{Bijection Between Quinoa and Groups}
+\section{Multiplication Modulo $m$ Meets Groups}
+
+\begin{enumerate}
+\item Clearly some of these numbers cannot be elements of a group. For instance, in both cases, $0$ cannot be used, since it prevents the existence of an inverse. In the case of mod $4$, $2$ cannot be used either. Why not?
+\item How could we have known that these numbers would not work in advance?
+\item \textbf{Euler's totient function} $\varphi(m)$ tells us how many numbers are relatively prime to a given number $m$. That is, $\varphi(m)$ is the count of numbers $n$ such that $\gcd(m,n)=1$. What does the maximum size of a group under multiplication mod $m$ have to do with this function?
+\setcounter{problem_i}{\value{enumi}}
+\end{enumerate}
+
+\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+\item We will write tables for the largest possible groups under multiplication mod $5$ and mod $8$.
+\begin{enumerate}
+\item Make a prediction as to how many elements will be in each group.
+\item Which numbers can you eliminate from consideration?
+\item Do you think that the groups will be isomorphic to those of multiplication mod $3$ and mod $4$, or to each other?
+\item Find the period of each element in the group and write its \textbf{orbit}: the list of its powers until it reaches the identity.
+\item Make the tables, and analyze them to confirm/correct your predictions.
+\item Are there any subgroups?
+\end{enumerate}
+\item Now use a program to find the largest possible group under multiplication mod $14$.
+\begin{enumerate}
+\item What are its elements?
+\item Write the orbit for each element and make a table for the group.
+\item It might be good to order the numbers at the top of the table so that they start with a $1$ and go by successive powers of $3$.
+\item What group is it isomorphic to?
+\item Does it have any subgroups; if so, what are they?
+\end{enumerate}
+\item Now, a surprise: find the powers of $10$, mod $14$.
+\begin{enumerate}
+\item How long is the period of this orbit?
+\item What number appears to be the identity element?
+\item Make a table in which the identity element comes first.
+\item Find a number besides $10$ whose group of powers mod $14$ is isomorphic to this group.
+\item Are these groups isomorphic to a multiplication group of a smaller modulus?
+\end{enumerate}
+\item To really tell if two groups are isomorphic, you can write their tables in such an order that they would be identical if you substituted them in place. Why is it helpful to first note the periods and orbits of each element?
+\item What properties do the following types of groups have?
+\begin{multicols}{2}
+\begin{enumerate}
+\item multiplication mod $p$, a prime
+\item multiplication mod $3^n$
+\item multiplication mod $p^n$
+\item multiplication mod $2^n$
+\item multiplication mod $5^n$
+\item multiplication mod a composite
+\end{enumerate}
+\end{multicols}
+\setcounter{problem_i}{\value{enumi}}
+\end{enumerate}
 
 \end{document}

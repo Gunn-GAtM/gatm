@@ -7,78 +7,180 @@
 \newcommand{\Mat}{\operatorname{M}}
 \newcommand{\cis}{\operatorname{cis}}
 
-\begin{enumerate}
-\item \label{prob:pr_start}\begin{enumerate}
+\begin{outer_problem}[start=1]
+\item \label{prob:pr_start}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Which matrix changes nothing, so that the image is the same as the preimage?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Which complex number changes nothing?
-\end{enumerate}
-\item \begin{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Which matrix doubles the length of every vector but leaves angles unchanged?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Which complex number corresponds to the same transformation?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Based on your answers to the previous problems, which matrix corresponds to the real number $r$? Let's call this $\Mat (r)$ for short.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item Explain why $\Mat (u)+\Mat(v)=\Mat(u+v).$
+\end{outer_problem}
+
+\begin{outer_problem}
 \item Under a $90^\circ$ counterclockwise rotation, what is the image of (a) $(1,0)$ and (b) $(0,1)$?
-\item \label{prob:pr_end}\begin{enumerate}
+\end{outer_problem}
+
+\begin{outer_problem}
+\item \label{prob:pr_end}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Which matrix corresponds to a $90^\circ$ rotation?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Which complex number corresponds to the same rotation?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Based on your answers to Problems~\ref{prob:pr_start} to~\ref{prob:pr_end}, what matrix corresponds to the complex number $x+yi$? Let's extend our function $\Mat$ and call this $\Mat (x+yi)$ for short.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item Check that $\Mat (a+bi)+\Mat (c+di)=\Mat((a+bi)+(c+di))$. That is, prove that $\Mat$ has the same addition rules as complex numbers.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item Check that $\Mat (a+bi)\Mat (c+di)=\Mat((a+bi)(c+di))$. That is, prove that $\Mat$ has the same multiplication rules as complex numbers.
-\item Recall that multiplying by $\cis\theta$ rotates a complex number by $\theta$ radians. 
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{outer_problem}
+\item Recall that multiplying by $\cis\theta$ rotates a complex number by $\theta$ radians.
+\end{outer_problem} 
+
+\begin{inner_problem}[start=1]
 \item Find $\Mat (\cis\theta)$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item To prove that this matrix really does rotate by $\theta$:
-\begin{enumerate}
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
 \item Check that the image and preimage have the same length;
+\end{iinner_problem}
+
+\begin{iinner_problem}
 \item Check that the angle of the image with the $x$ axis is $\theta$ more than the preimage.
-\end{enumerate}
-\end{enumerate}
-\item \begin{enumerate}
+\end{iinner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Find $\Mat (r\cis\theta)$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item To prove that this matrix really does rotate by $\theta$ and stretch by $r$:
-\begin{enumerate}
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
 \item Check that the length of the image is $r$ times the length of the preimage;
+\end{iinner_problem}
+
+\begin{iinner_problem}
 \item Check that the angle of the image with the $x$ axis is $\theta$ more than the preimage. (Hint: You may want to use the previous problem, or the tangent addition formulas.)
-\end{enumerate}
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{iinner_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
-\item\begin{enumerate}
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What matrix reflects over the $x$ axis, taking $(x,y)\to (x,-y)$?
-\item What is the complex number operation equivalent to this transformation?
-\item Is there a complex number multiplication equivalent to this transformation? Justify your answer.
-\end{enumerate}
-\item\begin{enumerate}
-\item What matrix reflects through the origin, taking $(x,y)\to (-x,-y)$?
-\item What is the complex number operation equivalent to this transformation?
-\item Is there a complex number multiplication equivalent to this transformation? Justify your answer.
-\end{enumerate}
-\item \begin{enumerate}
-\item Which of the $16$ matrices on page~\pageref{prob:map_plane_sixteen_matrices}, for Problem~\ref{prob:map_plane_sixteen_matrices}, have corresponding complex numbers? Which do not?
-\item How can you tell algebraically?
-\item How can you tell geometrically?
-\end{enumerate}
-\item Make multiplication tables with the set of matrices which correspond to the elements of the rotation group for the square (a $4\times 4$ table) and the equilateral triangle (a $3\times 3$ table).
-\item \begin{enumerate}
-\item Write a matrix for a rotation of $\theta$ around the origin followed by a translation by $(a,b)$.
-\item Write a matrix for a translation by $(a,b)$ followed by a rotation of $\theta$ around the origin.
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{inner_problem}
+\item What is the complex number operation equivalent to this transformation?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Is there a complex number multiplication equivalent to this transformation? Justify your answer.
+\end{inner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item What matrix reflects through the origin, taking $(x,y)\to (-x,-y)$?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item What is the complex number operation equivalent to this transformation?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Is there a complex number multiplication equivalent to this transformation? Justify your answer.
+\end{inner_problem}
+
+\begin{outer_problem}
+\item 
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Which of the $16$ matrices on page~\pageref{prob:map_plane_sixteen_matrices}, for Problem~\ref{prob:map_plane_sixteen_matrices}, have corresponding complex numbers? Which do not?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item How can you tell algebraically?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item How can you tell geometrically?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Make multiplication tables with the set of matrices which correspond to the elements of the rotation group for the square (a $4\times 4$ table) and the equilateral triangle (a $3\times 3$ table).
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Write a matrix for a rotation of $\theta$ around the origin followed by a translation by $(a,b)$.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Write a matrix for a translation by $(a,b)$ followed by a rotation of $\theta$ around the origin.
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Use matrix multiplication to find the image $(x',y')$ of a point $(x,y)$ rotated by $\theta$.
-\item \begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Given the parabola $x=t,y=t^2$, use matrix multiplication to rotate it by $45^\circ$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Graph the new parametric equations on your calculator.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Does it look like a rotation clockwise or counterclockwise? Why?
-\end{enumerate}
-\end{enumerate}
+\end{inner_problem}
 
 \end{document}
