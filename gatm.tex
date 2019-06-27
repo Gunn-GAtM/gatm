@@ -24,9 +24,20 @@
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{tikz}
-\usetikzlibrary{matrix,fit}
+\usetikzlibrary{matrix,fit,tikzmark,calc}
 \usepackage{blkarray}
 \usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{hhline}
+
+\newcommand{\twomat}[4] {\left[\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right]}
+\newcommand{\threemat}[9] {\left[\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right]}
+
+\newcommand{\twovec}[2] {\left[\begin{array}{c} #1 \\ #2 \end{array}\right]}
+\newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
+
+\newcounter{problem_i}
+\newcounter{problem_ii}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -41,9 +52,6 @@
 \pagebreak
 \pagenumbering{arabic}
 
-% Reset to correct value
-\setlength{\parskip}{0em}
-
 \restoregeometry % Because the credits have a different margin setting
 
 \setlength{\parskip}{0.5em}
@@ -51,24 +59,55 @@
 \tableofcontents
 \pagebreak
 
+% Reset to correct value
+\setlength{\parskip}{0em}
+
+\subfile{trig_review/trig_review_source.tex} % trig review
+\pagebreak
+\setcounter{figure}{0}
 \subfile{itsasnap/itsasnap_source.tex}
 \pagebreak
-
-\subfile{fromsnapstoflips/fromsnapstoflips_source.tex}
+\setcounter{figure}{0}
+\subfile{snap_flip/snap_flip_source.tex}
 \pagebreak
-
+\setcounter{figure}{0}
 \subfile{rrg/rrg_source.tex} % Rotation reflection groups
 \pagebreak
-
+\setcounter{figure}{0}
 \subfile{inf/inf_source.tex} % Infinite groups
 \pagebreak
-
+\setcounter{figure}{0}
 \subfile{cmplx_geo/cmplx_geo_source.tex} % Geometry of complex numbers
 \pagebreak
-
+\setcounter{figure}{0}
 \subfile{vitamin_i/vitamin_i_source.tex} % Vitamin i
 \pagebreak
-
+\setcounter{figure}{0}
 \subfile{mtrx_mult/mtrx_mult_source.tex} % Matrix multiplication
+\pagebreak
+\setcounter{figure}{0}
+\subfile{map_plane/map_plane_source.tex} % Mapping the Plane
+\pagebreak
+\setcounter{figure}{0}
+\subfile{plane_rot/plane_rot_source.tex} % Plane rotate
+\pagebreak
+\setcounter{figure}{0}
+\subfile{mat_gen/mat_gen_source.tex} % Matrices generate groups
+\pagebreak
+\setcounter{figure}{0}
+\subfile{comp_map/comp_map_source.tex} % Composite mappings (fat one)
+\pagebreak
+\setcounter{figure}{0}
+\subfile{inverses/inverses_source.tex} % Composite mappings (fat one)
+\pagebreak
+\setcounter{figure}{0}
+\subfile{mod_m/mod_m_source.tex} % Modulo m meets groups
+\pagebreak
+\setcounter{figure}{0}
+\subfile{eigen/eigen_source.tex} % eigenvectors and eigenvalues
+\pagebreak
+\setcounter{figure}{0}
+\subfile{comp_func/comp_func_source.tex} % Composition of functions
+\pagebreak
 
 \end{document}

@@ -8,7 +8,7 @@ By this time, you should be comfortable with the idea and process of matrix mult
 
 Now we are going to consider $2\times 2$ matrices as operators, which map each point in the plane to another point in the plane. This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
 
-Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The preimage $(2,1)$ is mapped to the image $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}.
+Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
 \begin{figure}
 \begin{minipage}{0.3\textwidth}
@@ -48,16 +48,16 @@ draw(point(between, 0.04) -- point(between, 0.96), Arrow);
 \begin{enumerate}
 \item \begin{enumerate}
 \item Use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on the points $(0,0)$, $(1,0)$, and $(0,1)$. What are their images? Graph them.
-\item The preimage includes two perpendicular unit vectors, $(0,1)$ and $(1,0)$. What is the ratio of the lengths of their images? What is the angle of between the images?
+\item The preimage includes two perpendicular \textbf{unit vectors}, $(0,1)$ and $(1,0)$. What is the (i) ratio of the lengths of their images and (ii) angle between the images?
 \item You can conclude that multiplication by matrices does not, in general, preserve which two quantities between the image and preimage?
 \end{enumerate}
-\item \begin{enumerate}
+\item \label{prob:consolidate_matrix} \begin{enumerate}
 \item Now, use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on each of these points: $(2,1)$, $(1,0)$, $(0,-1)$ and $(-1,-2)$. Do this by consolidating all the points into one matrix, with each point as a column vector, then performing a multiplication:
 $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \left[\begin{array}{cccc}2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2\end{array}\right]
 =\left[\begin{array}{cccc}\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} \\ \phantom{0}\end{array}\right].$$
 \item Graph and label the preimage and the image of each point onto the same set of axes.
-\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: what is $y$ in terms of $x$?)
+\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: What is $y$ in terms of $x$?)
 \item Write an equation for the image of that set.
 \item What other characteristic of the preimage points also applies to the image?
 \item Name two things that seem to be conserved when mapping points with a matrix.
@@ -65,7 +65,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-In Problem 2, you should have noticed that the points of the preimage were collinear, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix or set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
+In Problem~\ref{prob:consolidate_matrix}, you should have noticed that the points of the preimage were \textbf{collinear}, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
@@ -87,7 +87,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item Can you find values for $a$, $b$, $c$, and $d$ so that the image does not lie on a unique line? (Hint: all of the points in the image must lie on no line, or on multiple lines.)
 \item Use the distance formula---or some other justification---to answer whether the points in the image are equally spaced.
 \end{enumerate}
-\item There is a point which remains fixed---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
+\item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
 \begin{enumerate}
 \item Solve the above matrix equation for $x$ and $y$ to find the point.
 \item There is a point $Q$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
@@ -95,14 +95,15 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
-Matrix multiplication is a linear transformation. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
+
+Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
 
 \newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
 
 \begin{minipage}{0.65\textwidth}
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
-\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri}.
+\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right.
 \begin{enumerate}
 \item Map it with the following matrices.
 \begin{multicols}{3}
@@ -145,7 +146,7 @@ label("$10$", (0,10), W);
 \begin{minipage}{0.6\textwidth}
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
-\item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square}: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will later be useful.
+\item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square} on the right: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later.
 \begin{enumerate}
 \item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
 \item Of $(0,0)$?
@@ -201,8 +202,8 @@ A' & B' & C' & D' \\
 \end{block}
 \end{blockarray}.$$
 
-This mapping is called a shear\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
-\item What happens to the area of image versus the preimage?
+This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
+\item What happens to the area of the image versus the preimage?
 \item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
 \end{enumerate}
 \item \begin{enumerate}
@@ -211,7 +212,7 @@ This mapping is called a shear\footnote{You may have heard of wind shear, which 
 \item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
 \item Knowing the images of $(1,0)$ and $(0,1)$, where is $(1,1)$ algebraically and geometrically?
 \end{enumerate}
-\item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction.
+\item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
 \begin{multicols}{4}
 \begin{enumerate}
 \item \mtrxtbt{1}{0}{0}{-1}
@@ -241,16 +242,16 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 \setcounter{enumi}{\value{mp_problem_i}}
 \item Carry out the following multiplications and convince yourself that the mappings are equivalent.\begin{multicols}{2}
 \begin{enumerate}
-\item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$
+\item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
 \end{enumerate}
 \end{multicols}
 \item \begin{enumerate}
-\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$
+\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
 \item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
 \end{enumerate}
 \item \begin{enumerate}
-\item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units, leaving $z$ fixed at $1$.
+\item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units in the $y$ direction, leaving $z$ fixed at $1$.
 \item Check your work by applying your matrix to the point $(3,5,1)$.
 \end{enumerate}
 \item Do these two multiplications. What does each represent?
@@ -264,18 +265,20 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 \begin{multicols}{2}
 \begin{enumerate}
 \item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
-\item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & 1 & \cos\theta \\ 0 & 0 & 1 \end{array}\right]$
+\item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \end{enumerate}
 \end{multicols}
 \item \begin{enumerate}
-\item Rewrite your translation matrix from problem 12 and your preimage vector so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
+\item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
 \item Write a matrix product that translates the point $(2,3,-5)$ by the vector $(4,-1,2)$.
 \end{enumerate}
 \end{enumerate}
 
+For the curious, the translation matrix $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]$ is actually two shears in 3D, as shown in Figure~\ref{fig:translate_3d}.
+
 \begin{figure}[h]
 \begin{center}
-\begin{asy}[width=0.9\textwidth]
+\begin{asy}[width=\textwidth]
 import three;
 
 currentprojection=perspective(14,17,11);
@@ -339,21 +342,32 @@ draw((B+Tu)--Bp,dashed);
 draw((C+Tu)--Cp,dashed);
 draw((D+Tu)--Dp,dashed);
 
-draw((Ap+Tu)--App,dashed);
-draw((Bp+Tu)--Bpp,dashed);
-draw((Cp+Tu)--Cpp,dashed);
-draw((Dp+Tu)--Dpp,dashed);
+draw((Ap+Tu)--App);
+draw((Bp+Tu)--Bpp);
+draw((Cp+Tu)--Cpp);
+draw((Dp+Tu)--Dpp);
+
+draw((A+Tu)--A,dashed);
+draw((B+Tu)--B,dashed);
+draw((C+Tu)--C,dashed);
+draw((D+Tu)--D,dashed);
+
+draw((Ap+Tu)--Ap);
+draw((Bp+Tu)--Bp);
+draw((Cp+Tu)--Cp);
+draw((Dp+Tu)--Dp);
 
 path3 Zplane = (-1.2, -1.2, 1.001) -- (5, -1.2, 1.001) -- (5, 5.7, 1.001) -- (-1.2, 5.7, 1.001) -- cycle;
 draw(surface(Zplane), opacity(0.2)+gray(0.2));
 draw(Zplane, opacity(0.2)+dashed);
 
-draw(rotate(19.5) * "\begin{center}Shear by $\alpha$ in $x$ \\ $\longleftarrow$\end{center}", (2,0,2));
-draw(rotate(-30) * "\begin{center}Shear by $\beta$ in $y$ \\ $\longrightarrow$\end{center}", (0,4,2));
+draw(XZ() * "\begin{center}Shear by $\alpha$ in $x$ \\ $\longleftarrow$\end{center}", (2,0,1.8));
+draw(YZ() * "\begin{center}Shear by $\beta$ in $y$ \\ $\longrightarrow$\end{center}", (0,4,1.8));
 
 label("$z=1$", (-1.2,5.7,1.001),10*W);
 \end{asy}
 \end{center}
-\caption{Translating a square by $(\alpha, \beta)$ in the plane $z=1$.}
+\caption{Translating a square by $(\alpha, \beta)$ in the plane $z=1$. The first shear, in $x$, is shown in dashed lines. The second shear, in $y$, is shown in solid lines. The net movement is $(\alpha,\beta,0)$.}
+\label{fig:translate_3d}
 \end{figure}
 \end{document}

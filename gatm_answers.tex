@@ -1,0 +1,113 @@
+\documentclass[8pt, twosided, a4paper]{article}
+% 8 point font, A4-sized paper
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+
+\usepackage{pdfpages}
+\usepackage{subfiles}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{mathtools}
+
+\usepackage{cancel}
+
+\usepackage[inline]{asymptote}
+
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{matrix,fit,tikzmark,calc}
+\usepackage{blkarray}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{hhline}
+\usepackage{stix}
+
+\newcommand{\twomat}[4] {\begin{pmatrix} #1 & #2 \\ #3 & #4 \end{pmatrix}}
+\newcommand{\stwomat}[4] {\left[\begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix}\right]}
+\newcommand{\threemat}[9] {\begin{pmatrix} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{pmatrix}}
+
+\newcommand{\twovec}[2] {\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
+\newcommand{\threevec}[3] {\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}
+
+\newcommand{\Imag} {\operatorname{Im}}
+\newcommand{\Real} {\operatorname{Re}}
+\newcommand{\Arg} {\operatorname{Arg}}
+\newcommand{\cis} {\operatorname{cis}}
+
+\newcounter{problem_i}
+\newcounter{problem_ii}
+
+\newlist{outer_problem}{enumerate}{1}
+\setlist*[outer_problem]{resume=outer,label=\arabic*.,ref=\arabic*}
+\newlist{inner_problem}{enumerate}{1}
+\setlist*[inner_problem]{resume=inner,label=(\alph*),ref=\alph*}
+\newlist{iinner_problem}{enumerate}{1}
+\setlist*[iinner_problem]{resume=iinner,label=\roman*.,ref=\roman*}
+\newcounter{store_outer_problem}
+
+\begin{document}
+\pagenumbering{gobble}
+
+% I did this because it was too dense without it
+\setlength{\parskip}{1em}
+
+\includepdf[noautoscale=true,pages=-,width=\paperwidth]{./cover/cover_answers.pdf} % cover
+
+\pagenumbering{arabic}
+
+\restoregeometry % Because the credits have a different margin setting
+
+\setlength{\parskip}{0.5em}
+
+\tableofcontents
+\pagebreak
+
+% Reset to correct value
+\setlength{\parskip}{0em}
+
+\subfile{trig_review/trig_review_answers.tex} % trig review
+\pagebreak
+\subfile{itsasnap/itsasnap_answers.tex}
+\pagebreak
+\subfile{snap_flip/snap_flip_answers.tex}
+\pagebreak
+\subfile{rrg/rrg_answers.tex} % Rotation reflection groups
+\pagebreak
+\subfile{inf/inf_answers.tex} % Infinite groups
+\pagebreak
+\subfile{cmplx_geo/cmplx_geo_answers.tex} % Geometry of complex numbers
+\pagebreak
+\subfile{vitamin_i/vitamin_i_answers.tex} % Vitamin i
+\pagebreak
+\subfile{mtrx_mult/mtrx_mult_answers.tex} % Matrix multiplication
+\pagebreak
+\subfile{map_plane/map_plane_answers.tex} % Mapping the Plane
+\pagebreak
+\subfile{plane_rot/plane_rot_answers.tex} % Plane rotate
+\pagebreak
+\subfile{mat_gen/mat_gen_answers.tex} % Matrices generate groups
+\pagebreak
+\subfile{comp_map/comp_map_answers.tex} % Composite mappings (fat one)
+\pagebreak
+\subfile{inverses/inverses_answers.tex} % Inverses
+\pagebreak
+\subfile{mod_m/mod_m_answers.tex} % Modulo m meets groups
+\pagebreak
+\subfile{eigen/eigen_answers.tex} % eigenvectors and eigenvalues
+\pagebreak
+\subfile{comp_func/comp_func_answers.tex} % Composition of functions
+\pagebreak
+
+\end{document}
