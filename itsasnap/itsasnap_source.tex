@@ -146,16 +146,20 @@ These six configurations form a mathematical \textbf{group} under the $\snap$ op
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
 \newcolumntype{C}{>{\centering\arraybackslash}p{1em}}
-
+\definecolor{light-gray}{gray}{0.95}
 \begin{figure}
 \begin{center}
-\begin{tabular}{C|C|C|C|C|C|C|}
+\begin{tabular}{C|C C C C C C}
+\hline
 $\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
-$I$    &   &   &   &   &   &   \\ \hline
-$A$    &   &   & $E$ &   &   &   \\ \hline
-$B$    &   &   &   &   &   &   \\ \hline
-$C$    &   &   &   &   &   &   \\ \hline
-$D$    &   &   &   &   &   &   \\ \hline
+\rowcolor{light-gray}
+$I$    &   &   &   &   &   &   \\ 
+$A$    &   &   & $E$ &   &   &   \\ 
+\rowcolor{light-gray}
+$B$    &   &   &   &   &   &   \\ 
+$C$    &   &   &   &   &   &   \\ 
+\rowcolor{light-gray}
+$D$    &   &   &   &   &   &   \\ 
 $E$    &   &   &   &   &   &   \\ \hline
 \end{tabular}
 \end{center}
