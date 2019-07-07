@@ -13,17 +13,33 @@ $$I=\left[\begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right], A=\left[\begin{ar
 \item Specify the elements of the matrix group, unless they are all given.
 \end{iinner_problem}
 
+They are all given.
+
 \begin{iinner_problem}
 \item Describe what each matrix does to the plane.
 \end{iinner_problem}
+
+$I$ does nothing. $A$ rotates by $90^\circ=\frac{\pi}{2}$ counterclockwise. $B$ reflects over the origin, or rotates $180^\circ=\pi$ counterclockwise. $C$ rotates by $90^\circ=\frac{\pi}{2}$ clockwise, or $270^\circ=\frac{3\pi}{2}$ counterclockwise.
 
 \begin{iinner_problem}
 \item Construct a group table; you can use a calculator.
 \end{iinner_problem}
 
+This is pretty simple. Everything is a rotation by a factor of $90^\circ=\frac{\pi}{2}$.
+
+$$\begin{array}{c|c|c|c|c|}
+\cdot & I & A & B & C \\
+I & I & A & B & C \\
+A & A & B & C & I \\
+B & B & C & I & A \\
+C & C & I & A & B \\
+\end{array}$$
+
 \begin{iinner_problem}
 \item Decide which symmetry group your matrix is isomorphic to.
 \end{iinner_problem}
+
+This is the cyclic group $C_4$, which is (up to isomorphism) the rotation group of the square.
 
 \begin{outer_problem}
 \item The matrix $\left[\begin{array}{cc} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2}\end{array}\right]$ generates a group of order $3$. Enumerate the elements of this group and analyze per the example.
@@ -33,17 +49,35 @@ $$I=\left[\begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right], A=\left[\begin{ar
 \item Specify the elements of the matrix group, unless they are all given.
 \end{iinner_problem}
 
+Let the given matrix be $M=\begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2}\end{bmatrix}$. Then
+
+$$M^2=\begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2}\end{bmatrix};$$
+$$M^3=I=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}.$$
+
 \begin{iinner_problem}
 \item Describe what each matrix does to the plane.
 \end{iinner_problem}
+
+$M$ rotates by $120^\circ=\frac{2\pi}{3}$ counterclockwise. $M^2$ rotates by $240^\circ=\frac{4\pi}{3}$ counterclockwise, or $120^\circ=\frac{2\pi}{3}$ clockwise. $I$ does nothing.
 
 \begin{iinner_problem}
 \item Construct a group table; you can use a calculator.
 \end{iinner_problem}
 
+These are all rotations by a factor of $120^\circ=\frac{2\pi}{3}$.
+
+$$\begin{array}{c|c|c|c|}
+\cdot & I & M & M^2 \\
+I & I & M & M^2 \\
+M & M & M^2 & I \\
+M^2 & M^2 & I & M \\
+\end{array}$$
+
 \begin{iinner_problem}
 \item Decide which symmetry group your matrix is isomorphic to.
 \end{iinner_problem}
+
+This is the cyclic group $C_3$, which is (up to isomorphism) the rotation group of the triangle.
 
 \begin{outer_problem}
 \item The matrices $\left[\begin{array}{cc} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2}\end{array}\right]$ and $\left[\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right]$ generate a group of order $6$, of which the group in problem 2 is a subgroup. Enumerate the elements of the group and analyze per the example.
@@ -53,21 +87,52 @@ $$I=\left[\begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right], A=\left[\begin{ar
 \item Specify the elements of the matrix group, unless they are all given.
 \end{iinner_problem}
 
+We know that the first matrix is a rotation by $120^\circ = \frac{2\pi}{3}$, and the second matrix is a reflection about the $x$-axis, since it flips the $y$ coordinate. Thus, let the first matrix be $r$ and the second matrix be $f$. Note how understanding transformations helps us find the other matrices without much work.
+
+The six elements are shown below.
+
+\begin{align*}
+r &= \begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{bmatrix} \\
+f &= \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} \\
+r^2 &= \begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} \\ -\frac{\sqrt{3}}{2} & -\frac{1}{2} \end{bmatrix} \\
+fr &= \begin{bmatrix} -\frac{1}{2} & \frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & \frac{1}{2} \end{bmatrix} \\
+fr^2 &= \begin{bmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ -\frac{\sqrt{3}}{2} & \frac{1}{2} \end{bmatrix} \\
+I &= f^2 = r^3 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \\
+\end{align*}
+
 \begin{iinner_problem}
 \item Describe what each matrix does to the plane.
 \end{iinner_problem}
+
+$r$ is a rotation by $120^\circ = \frac{2\pi}{3}$ counterclockwise. $f$ is a reflection about the $x$-axis. $r^2$ is a rotation by $240^\circ = \frac{4\pi}{3}$ counterclockwise, or $120^\circ = \frac{2\pi}{3}$ clockwise. $fr$ is a reflection about the line $\theta = 120^\circ = \frac{2\pi}{3}$. $fr^2$ is a reflection about the line $\theta=240^\circ=\frac{4\pi}{3}$. $I$ does nothing.
 
 \begin{iinner_problem}
 \item Construct a group table; you can use a calculator.
 \end{iinner_problem}
 
+Here you go.
+
+$$\begin{array}{c|c|c|c|c|c|c|}
+\cdot & I & r & r^2 & f & fr & fr^2 \\
+I & I & r & r^2 & f & fr & fr^2 \\
+r & r & r^2 & I & fr^2 & f & fr \\
+r^2 & r^2 & I & r & fr & fr^2 & f \\
+f & f & fr & fr^2 & I & r & r^2 \\
+fr & fr^2 & f & fr & r^2 & I & r \\
+fr^2 & fr & fr^2 & f & r & r^2 & I \\
+\end{array}$$
+
 \begin{iinner_problem}
 \item Decide which symmetry group your matrix is isomorphic to.
 \end{iinner_problem}
 
+This is the dihedral group of order $6$, or the symmetry group of the triangle.
+
 \begin{iinner_problem}
-\item What other two sets of two matrices could have generated this group?
+\item What other sets of two matrices could have generated this group?
 \end{iinner_problem}
+
+The sets $\{r, fr\}$, $\{r, fr^2\}$, $\{r^2, f\}$, $\{r^2, fr\}$, $\{r^2, fr^2\}$, $\{f,fr\}$, $\{fr,fr^2\}$, and $\{f,fr^2\}$. In fact, any two non-identity elements can together generate the group, except for $\{r, r^2\}$.
 
 \begin{outer_problem}
 \item The matrix $\left[\begin{array}{cc} \frac{\sqrt{5}-1}{4} & -\frac{\sqrt{10+2\sqrt{5}}}{4} \\ \frac{\sqrt{10+2\sqrt{5}}}{4} & \frac{\sqrt{5}-1}{4} \end{array}\right]$ generates a group of order $5$! Enumerate the elements of the group and analyze per the example; you can use a calculator.
