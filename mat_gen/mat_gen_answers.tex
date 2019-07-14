@@ -113,13 +113,13 @@ $r$ is a rotation by $120^\circ = \frac{2\pi}{3}$ counterclockwise. $f$ is a ref
 Here you go.
 
 $$\begin{array}{c|c|c|c|c|c|c|}
-\cdot & I & r & r^2 & f & fr & fr^2 \\
-I & I & r & r^2 & f & fr & fr^2 \\
-r & r & r^2 & I & fr^2 & f & fr \\
-r^2 & r^2 & I & r & fr & fr^2 & f \\
-f & f & fr & fr^2 & I & r & r^2 \\
-fr & fr^2 & f & fr & r^2 & I & r \\
-fr^2 & fr & fr^2 & f & r & r^2 & I \\
+\cdot & I & r & r^2 & f & fr & fr^2 \\ \hline
+I & I & r & r^2 & f & fr & fr^2 \\ \hline
+r & r & r^2 & I & fr^2 & f & fr \\ \hline
+r^2 & r^2 & I & r & fr & fr^2 & f \\ \hline
+f & f & fr & fr^2 & I & r & r^2 \\ \hline
+fr & fr^2 & f & fr & r^2 & I & r \\ \hline
+fr^2 & fr & fr^2 & f & r & r^2 & I \\ \hline
 \end{array}$$
 
 \begin{iinner_problem}
@@ -129,7 +129,7 @@ fr^2 & fr & fr^2 & f & r & r^2 & I \\
 This is the dihedral group of order $6$, or the symmetry group of the triangle.
 
 \begin{iinner_problem}
-\item What other sets of two matrices could have generated this group?
+\item What other sets of        matrices could have generated this group?
 \end{iinner_problem}
 
 The sets $\{r, fr\}$, $\{r, fr^2\}$, $\{r^2, f\}$, $\{r^2, fr\}$, $\{r^2, fr^2\}$, $\{f,fr\}$, $\{fr,fr^2\}$, and $\{f,fr^2\}$. In fact, any two non-identity elements can together generate the group, except for $\{r, r^2\}$.
@@ -137,6 +137,87 @@ The sets $\{r, fr\}$, $\{r, fr^2\}$, $\{r^2, f\}$, $\{r^2, fr\}$, $\{r^2, fr^2\}
 \begin{outer_problem}
 \item The matrix $\left[\begin{array}{cc} \frac{\sqrt{5}-1}{4} & -\frac{\sqrt{10+2\sqrt{5}}}{4} \\ \frac{\sqrt{10+2\sqrt{5}}}{4} & \frac{\sqrt{5}-1}{4} \end{array}\right]$ generates a group of order $5$! Enumerate the elements of the group and analyze per the example; you can use a calculator.
 \end{outer_problem}
+
+\begin{iinner_problem}[start=1]
+\item Specify the elements of the matrix group, unless they are all given.
+\end{iinner_problem}
+
+We'd expect this to be a rotation matrix of some multiple of $72^\circ$. Thus, let's call it $r$ for now. It isn't immediately clear, however, how to compute $\cos 72^\circ$. All available sum and difference expressions seem useless. We'll defer this computation to part (b). Here are the elements of the matrix group:
+
+\begin{align*}
+r &= \begin{bmatrix} \frac{\sqrt{5}-1}{4} & -\frac{\sqrt{10+2\sqrt{5}}}{4} \\ \frac{\sqrt{10+2\sqrt{5}}}{4} & \frac{\sqrt{5}-1}{4} \end{bmatrix} \\
+r^2 &= \begin{bmatrix} -\frac{1+\sqrt{5}}{4} & -\frac{\sqrt{10-2\sqrt{5}}}{4} \\ \frac{\sqrt{10-2\sqrt{5}}}{4} & -\frac{1+\sqrt{5}}{4} \end{bmatrix} \\
+r^3 &= \begin{bmatrix} -\frac{1+\sqrt{5}}{4} & \frac{\sqrt{10-2\sqrt{5}}}{4} \\ -\frac{\sqrt{10-2\sqrt{5}}}{4} & -\frac{1+\sqrt{5}}{4} \end{bmatrix} \\
+r^4 &= \begin{bmatrix} \frac{\sqrt{5}-1}{4} & \frac{\sqrt{10+2\sqrt{5}}}{4} \\ -\frac{\sqrt{10+2\sqrt{5}}}{4} & \frac{\sqrt{5}-1}{4} \end{bmatrix} \\
+I &= r^5 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \\
+\end{align*}
+
+Note that there are many equivalent ways to write the entries of these matrices. For example, $$-\frac{\sqrt{10-2\sqrt{5}}}{4} = -\sqrt{2\left(5+\sqrt{5}\right)}+\sqrt{10\left(5+\sqrt{5}\right)}.$$
+
+The latter is what WolframAlpha gives; I prefer the former form.
+
+\begin{iinner_problem}
+\item Describe what each matrix does to the plane.
+\end{iinner_problem}
+
+We'd guess that $r$ is a rotation of $\frac{360^\circ}{5} = 72^\circ$, but to prove this we need to find $\cos 72^\circ$ and $\sin 72^\circ$.
+
+Consider $\cos 72^\circ$. Because of symmetry around $2.5\cdot 72^\circ=180^\circ$, we have $\cos (2\cdot 72^\circ) = \cos (3\cdot 72^\circ)$. By the double-angle and triple-angle (which we found in the complex numbers section) formulae,
+
+$$\cos 2x = 2\cos^2 x - 1;$$
+$$\cos 3x = 4\cos^3 x - 3\cos x.$$
+
+Let $c = \cos 72^\circ$. Then we have
+
+\begin{align*}
+2c^2 - 1 &= 4c^3 - 3c \\
+4c^3 - 2c^2 - 3c + 1 &= 0 \\
+(4c^2 + 2c - 1)(c-1) &= 0, \\
+\end{align*}
+
+We know $\cos 72^\circ \neq \cos 0^\circ = 1$, so
+
+\begin{align*}
+4c^2 + 2c - 1 &= 0 \\
+c &= \frac{-1\pm \sqrt{5}}{4}.
+\end{align*}
+
+Since $0 < 72^\circ < 90^\circ$, we have $c > 0$, so $c=\frac{\sqrt{5}-1}{4}$. To find $\sin 72^\circ$ we use the Pythagorean identity and choose the positive root:
+
+$$\sin 72^\circ = \sqrt{1 - c^2} = \sqrt{1 - \frac{5 - 2\sqrt{5} + 1}{16}}$$
+$$=\sqrt{\frac{16 - 6 + 2\sqrt{5}}{16}}$$
+$$=\frac{\sqrt{10+2\sqrt{5}}}{4}.$$
+
+Indeed, we have
+
+$$\begin{bmatrix} \cos 72^\circ & -\sin 72^\circ \\ \sin 72^\circ & \cos 72^\circ \end{bmatrix} = \begin{bmatrix} c & -s \\ s & c \end{bmatrix} = \begin{bmatrix} \frac{\sqrt{5}-1}{4} & -\frac{\sqrt{10+2\sqrt{5}}}{4} \\ \frac{\sqrt{10+2\sqrt{5}}}{4} & \frac{\sqrt{5}-1}{4} \end{bmatrix} = r.$$
+
+\begin{iinner_problem}
+\item Construct a group table; you can use a calculator.
+\end{iinner_problem}
+
+Here it is:
+
+$$\begin{array}{c|c|c|c|c|c|}
+\cdot & I & r & r^2 & r^3 & r^4 \\ \hline
+I & I & r & r^2 & r^3 & r^4 \\ \hline
+r & r & r^2 & r^3 & r^4 & I \\ \hline
+r^2 & r^2 & r^3 & r^4 & I & r^2 \\ \hline
+r^3 & r^3 & r^4 & I & r & r^2 \\ \hline
+r^4 & r^4 & I & r & r^2 & r^3 \\ \hline
+\end{array}$$
+
+\begin{iinner_problem}
+\item Decide which symmetry group your matrix is isomorphic to.
+\end{iinner_problem}
+
+This the cyclic group of order $5$, or the rotation group of the regular pentagon.
+
+\begin{iinner_problem}
+\item What other sets of matrices could have generated this group?
+\end{iinner_problem}
+
+Any matrix in this group, except the identity matrix, would generate the whole group, since $5$ is a prime number.
 
 \begin{outer_problem}
 \item Let $A=\twomat{\cos\frac{2\pi}{n}}{-\sin\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{\cos\frac{2\pi}{n}}$, $B=\twomat{\cos\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{-\cos\frac{2\pi}{n}}$, $C=\twomat{1}{0}{0}{-1}$, and $n$ be an integer. What group is generated by the following sets of generators? Describe them geometrically.
@@ -146,37 +227,50 @@ The sets $\{r, fr\}$, $\{r, fr^2\}$, $\{r^2, f\}$, $\{r^2, fr\}$, $\{r^2, fr^2\}
 \item $\{A\}$
 \end{inner_problem}
 
+$A$ is a rotation matrix rotating by $\frac{2\pi}{n}$ radians, which is the angle subtended by one of the sides of an $n$-gon:
+
+\begin{center}
+\begin{asy}[width=0.3\textwidth]
+int n = 11;
+
+for (int i = 0; i < n; ++i) {
+	draw(expi(2 * pi * i / n)--expi(2 * pi * (i + 1) / n));
+	draw(expi(2 * pi * i / n)--(0,0));
+}
+
+real r = 0.45;
+
+path subtend_arc = (0.3,0)..(expi(pi / n) * 0.3)..(expi(2 * pi / n) * 0.3);
+draw(subtend_arc);
+label("$\frac{2\pi}{11}$", subtend_arc, expi(pi / n));
+\end{asy}
+\captionof{figure}{A rotation of $\frac{2\pi}{n}$ radians is a symmetry of the $n$-gon. Here, $n=11$.}
+\end{center}
+
 \begin{inner_problem}
 \item $\{B\}$
 \end{inner_problem}
+
+$B=\twomat{\cos\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{-\cos\frac{2\pi}{n}}$ initially appears to be a rotation matrix, but the right column is negated. What could this mean?!
+
+Well, notice that $BC = A$. Since $C$ is just a reflection over the $x$-axis, $C^2=I$, so we have $BCC=AC$ and thus $B=AC$. In geometric terms, $B$ is a reflection over the $x$-axis, followed by a rotation of $2\pi/n$ radians counterclockwise; recall that our matrices transform right-to-left. But a non-zero rotation followed by a reflection is just a reflection about a different axis! So $\{B\}$ generates the cyclic group of order $2$, which is the rotation group of the rectangle or the symmetry group of the line segment.
+
+To confirm this, we can show that $B^2 = I$:
+
+$$B^2 = \twomat{\cos\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{-\cos\frac{2\pi}{n}}\twomat{\cos\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{\sin\frac{2\pi}{n}}{-\cos\frac{2\pi}{n}} = \twomat{\cos^2\frac{2\pi}{n}+\sin^2\frac{2\pi}{n}}{\cos\frac{2\pi}{n}\sin\frac{2\pi}{n}-\sin\frac{2\pi}{n}\cos\frac{2\pi}{n}}{\sin\frac{2\pi}{n}\cos\frac{2\pi}{n}-\cos\frac{2\pi}{n}\sin\frac{2\pi}{n}}{\sin^2\frac{2\pi}{n}+\cos^2\frac{2\pi}{n}}$$
+$$ = \twomat{1}{0}{0}{1} = I.$$
 
 \begin{inner_problem}
 \item $\{A,B\}$
 \end{inner_problem}
 
-\begin{inner_problem}
-\item $\{B,C\}$
-\end{inner_problem}
-
-\begin{outer_problem}
-\item Do the previous problem, but replacing $\frac{2\pi}{n}$ with $k$, where $k$ is an integer number of radians.
-\end{outer_problem}
-
-\begin{inner_problem}[start=1]
-\item $\{A\}$
-\end{inner_problem}
-
-\begin{inner_problem}
-\item $\{B\}$
-\end{inner_problem}
-
-\begin{inner_problem}
-\item $\{A,B\}$
-\end{inner_problem}
+Thinking of these as transformations, we see that $B$ is a reflection across the line $\theta=\pi/n$ (not $2\pi/n$!), which is a symmetry of the $n$-gon\footnote{To be pedantic, the $n$-gon centered on the origin and with a vertex on the $x$-axis.}. Combined with the rotation of $2\pi/n$, this generates the dihedral group of order $2n$: the symmetry group of the $n$-gon.
 
 \begin{inner_problem}
 \item $\{B,C\}$
 \end{inner_problem}
+
+Since $A=BC$ and $A^{n-1}B=C$, this problem's set can generate $A$ and the previous problem's set can generate $C$. Thus, they are the same; $\{B,C\}$ generates the dihedral group of order $2n$: the symmetry group of the $n$-gon.
 
 \begin{outer_problem}
 \item Given $C=\twomat{1}{0}{0}{-1}$ and $D=\twomat{1}{1}{0}{-1}$, what is the order of the group generated by the following sets of generators?
@@ -186,17 +280,38 @@ The sets $\{r, fr\}$, $\{r, fr^2\}$, $\{r^2, f\}$, $\{r^2, fr\}$, $\{r^2, fr^2\}
 \item $\{C\}$
 \end{inner_problem}
 
+This has order $2$, since $C$ is just a reflection over the $x$-axis. In algebraic terms, $C^2=I$.
+
 \begin{inner_problem}
 \item $\{D\}$
 \end{inner_problem}
+
+Interestingly, $D^2=I$, so this again has order $2$. Truly succulent!
 
 \begin{inner_problem}
 \item $\{C,D\}$
 \end{inner_problem}
 
+What new do we get from a set of two matrices? Well, consider $CD=J$ (how fun) and $DC=K$ (less fun) which are just $J=\twomat{1}{1}{0}{1}$ and $K=\twomat{1}{-1}{0}{1}$, respectively. Let's analyze products of $J$ and $K$.
+
+Well, $JK = KJ = I$. More interesting stuff happens when we multiply them repeatedly.
+
+\begin{align*}
+J^2 &= \twomat{1}{2}{0}{1} \\
+J^3 &= \twomat{1}{3}{0}{1} \\
+K^2 &= \twomat{1}{-2}{0}{1} \\
+K^3 &= \twomat{1}{-3}{0}{1} \\
+J^3K^2 &= \twomat{1}{1}{0}{1} = J \\
+K^3J^2 &= \twomat{1]{-1}{0}{1} = K. \\
+\end{align*}
+
+Interesting! It seems a product of $J$'s and $K$'s leads to a matrix of the form $\twomat{1}{n}{0}{1}$, where $n$ is an integer. We can also multiply this by $C$, which gives us the matrices $\twomat{1}{m}{0}{-1}$, where $m$ is an integer. The order of this group is countably infinite, since we can enumerate all of the elements in a list.
+
 \begin{outer_problem}
 \item What matrix could generate the cyclic group of order $n$, $C_n$?
 \end{outer_problem}
+
+The matrix $\twomat{\cos \frac{2\pi}{n}}{-\sin \frac{2\pi}{n}}{\sin \frac{2\pi}{n}}{\cos \frac{2\pi}{n}}$ could do so.
 
 \begin{outer_problem}
 \item What two matrices could generate the dihedral group of order $2n$, $D_n$?\end{outer_problem}
@@ -209,44 +324,100 @@ The sets $\{r, fr\}$, $\{r, fr^2\}$, $\{r^2, f\}$, $\{r^2, fr\}$, $\{r^2, fr^2\}
 \item Given $P=\threemat{0}{-1}{0}{1}{0}{0}{0}{0}{1}$, $Q=\threemat{0}{1}{0}{0}{0}{1}{1}{0}{0}$, and $R=\threemat{-1}{0}{0}{0}{1}{0}{0}{0}{1}$, try understanding the groups generated by:
 \end{outer_problem}
 
+Fair warning: these problems are challenging. With more advanced tools of abstract algebra, however, they are much easier. Nonetheless, I will present ``elementary'' solutions.
+
 \begin{inner_problem}[start=1]
-\item ${P}$
+\item $\{P\}$
+\end{inner_problem}
+
+We have $P^2 = \threemat{-1}{0}{0}{0}{-1}{0}{0}{0}{1}$, $P^3 = \threemat{0}{1}{0}{-1}{0}{0}{0}{0}{1}$, $P^4 = \threemat{1}{0}{0}{0}{1}{0}{0}{0}{1} = I$. Thus, $\{P\}$ generates the cyclic group of order $4$; the rotation group of the square.
+
+\begin{inner_problem}
+\item $\{Q\}$
+\end{inner_problem}
+
+We have $Q^2 = \threemat{0}{0}{1}{1}{0}{0}{0}{1}{0}$ and $Q^3 = \threemat{1}{0}{0}{0}{1}{0}{0}{0}{1}=I$. Thus, $\{Q\}$ generates the cyclic group of order $3$; the rotation group of the equilateral triangle.
+
+\begin{inner_problem}
+\item $\{R\}$
+\end{inner_problem}
+
+Clearly, $R^2 = I$, so $R$ generates the cyclic group of order $2$; the rotation group of the rectangle.
+
+\begin{inner_problem}
+\item $\{P,Q\}$
+\end{inner_problem}
+
+This is where the complexity begins.
+
+Approach 1: Purely in Matrices
+
+To wrap our heads around this group, we consider what left-multiplying by $P$ and $Q$ does to a matrix's entries. Multiplying $P$ by some matrix $M$, we get
+
+$$\threemat{0}{-1}{0}{1}{0}{0}{0}{0}{1}\threemat{a}[b}{c}{d}{e}{f}{g}{h}{i} = \threemat{-d}{-e}{-f}{a}{b}{c}{g}{h}{i}.$$
+
+Thus, $P$ swaps the top two rows and negates the topmost row, in that order. Multiplying $Q$ by $M$, we get
+
+$$\threemat{0}{1}{0}{0}{0}{1}{1}{0}{0}\threemat{a}[b}{c}{d}{e}{f}{g}{h}{i} = \threemat{d}{e}{f}{g}{h}{i}{a}{b}{c}.$$
+
+Thus, $Q$ cycles the rows ``upward,'' where row 1 goes to row 3, row 2 goes to row 1, and row 3 goes to row 2. So $P$ and $Q$ are just operations on rows; columns don't matter.
+
+Consider the sequence of multiplications
+
+$$\underbrace{PQQQPQP\cdots PPP}_{\text{some sequence}} Q^3 = \underbrace{PQQQPQP\cdots PPP}_{\text{some sequence}} I.$$
+
+On one hand, every matrix that can be generated by $P$ and $Q$ can be written in this form. On the other hand, we can treat the sequence of $P$ and $Q$ as (left-to-right) sequential row operations on the identity matrix $I$.
+
+Think of the identity matrix as the ordered triple $(R_1,R_2,R_3)$, where $R_i$ is row vector $i$. Then $P$ is the function $f(R_1,R_2,R_3) = (-R_2,R_1,R_3)$ and $Q$ is the function $f(R_1,R_2,R_3) = (R_2,R_3,R_1)$.
+
+The order of this group is clearly finite; a quick upper bound is the number of permutations of $(R_1,R_2,R_3)$, along with any combination of negations of elements. This is
+
+$$3!\cdot 2^3 = 48.$$
+
+We can reduce this upper bound by constructing an invariant: something that neither of these operations change. This invariant is rather simple:
+
+$$K = \begin{cases}1 & \text{cyclic order preserved} \\ 0 & \text{cyclic order not preserved\end{cases} + \begin{cases}-1 & \text{even number of negated rows} \\ 0 & \text{odd number of negated rows} \end{cases}.$$
+
+``Cyclic order'' is what I'm calling the property that you can start at $R_1$ and continue reading right, looping back if necessary, to read $R_1,R_2,R_3$. Cyclic order is not preserved if you read $R_1,R_3,R_2$.
+
+The invariant for the identity is $K=0$. For all attainable row triples, the invariant is $K=0$. That's because $Q$ just cycles the elements, changing nothing about the invariant, while $P$ changes the parity of negated rows \textit{and} either restores or removes ``cyclic order.'' This will produce canceling effects in the two terms of $K$.\footnote{Verify this yourself if you don't believe me, I'm getting tired.}
+
+Half of row triples have $K=0$. A simple way to see this is that cyclic orderedness and negation of rows can be chosen independently (among all possible triples), and since there are two possibilities for each, there is a $1/4$ chance of any particular state. Since $2$ states are zero, we have $2/4=1/2$ of row triples that have $K=0$ and can be attained. That's $1/2\cdot 48 = 24$ total row triples for a new upper bound.
+
+Let's see if we can construct all $24$ of these triples using $P$ and $Q$. There are two cases: cyclic order preserved and even number of negated rows, and non-cyclic order preserved and odd number of negated rows.
+
+If we can construct $\pm R_1, \pm R_2, \pm R_3$ (where the number of -s is even) and $\pm R_1, \pm R_3, \pm R_2$ (where the number of -s is odd) 
+
+Approach 2: Geometric Visualization
+
+\begin{inner_problem}
+\item $\{P,R\}$
 \end{inner_problem}
 
 \begin{inner_problem}
-\item ${Q}$
+\item $\{Q,R\}$
 \end{inner_problem}
 
 \begin{inner_problem}
-\item ${R}$
-\end{inner_problem}
-
-\begin{inner_problem}
-\item ${P,Q}$
-\end{inner_problem}
-
-\begin{inner_problem}
-\item ${P,R}$
-\end{inner_problem}
-
-\begin{inner_problem}
-\item ${Q,R}$
-\end{inner_problem}
-
-\begin{inner_problem}
-\item ${P,Q,R}.$
+\item $\{P,Q,R\}.$
 \end{inner_problem}
 
 \begin{outer_problem}
 \item The matrix $\twomat{1}{1}{0}{1}$ produces a shear. What is its inverse---what undoes the shear?
 \end{outer_problem}
 
+The matrix $\twomat{1}{-1}{0}{1}$ undoes the shear, since the product of these two matrices is the identity matrix.
+
 \begin{outer_problem}
 \item The complex numbers, excluding zero, form a group under multiplication. What set of matrices is isomorphic to the same group under multiplication?
 \end{outer_problem}
 
+As we found previously, the set of matrices of the form $\twomat{a}{-b}{b}{a}$ where $a,b\in\mathbb{R}$ under multiplication is isomorphic, since we have the one-to-one correspondence $\twomat{a}{-b}{b}{a}\leftrightarrow a+bi$.
+
 \begin{outer_problem}
 \item Does the set of all $2\times 2$ matrices form a group under multiplication? Why or why not?
 \end{outer_problem}
+
+No, because there is no matrix $M$ such that $M\twomat{0}{0}{0}{0} = \twomat{1}{0}{0}{1}$; it cannot satisfy invertibility.
 
 \end{document}
