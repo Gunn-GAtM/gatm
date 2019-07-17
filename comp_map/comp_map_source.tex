@@ -7,24 +7,26 @@
 
 So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
 
+\newcommand{\blanktwomat}{\twomat{\phantom{0}}{\phantom{0}}{}{}}
+
 \begin{enumerate}
 \item For Problems~\ref{prob:cm_fill_in_blank_start} through~\ref{prob:cm_fill_in_blank_end}, fill in the blank.
 \begin{enumerate}
 \item We start by finding the images of our points under the $-90^\circ$ rotation. \label{prob:cm_fill_in_blank_start}
 \begin{enumerate}
 \item Find the matrix $R$ which results in a $-90^\circ$ rotation.
-\item  \label{prob:intermediate_result_matrix} Multiply $R$ by our unit vectors and point $(u,v)$: $$\twomat{}{}{}{}\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right] = \left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right].$$
+\item  \label{prob:intermediate_result_matrix} Multiply $R$ by our unit vectors and point $(u,v)$: $$\blanktwomat\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right] = \left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right].$$
 \end{enumerate}
 \item Next, we reflect those intermediate points over the line $y=0$.
 \begin{enumerate}
 \item Find the matrix $S$ which does this.
 \item Multiply $S$ by the result of Problem~\ref{prob:intermediate_result_matrix}.
 \end{enumerate}
-\item You should notice that the net result of the two transformations taken together is a reflection over the line $y=x$. Which matrix represents this transformation? 
+\item You should notice that the net result of the two transformations taken together is a reflection over the line $y=x$. Which matrix represents this transformation?
 \item Notice that what we did to achieve this mapping was $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right]=\left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right],$$
-where we multiplied the two rightmost matrices first but didn't use the associative property to multiply the two leftmost matrices first. See what happens when you multiply the two left hand matrices together: $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\twomat{}{}{}{}.$$ Look familiar?
+where we multiplied the two rightmost matrices first but didn't use the associative property to multiply the two leftmost matrices first. See what happens when you multiply the two left hand matrices together: $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat.$$ Look familiar?
 \item See what happens when you reverse the order of multiplication: \label{prob:cm_fill_in_blank_end}
-$$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\twomat{}{}{}{}$$
+$$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat$$
 \item \begin{enumerate}
 \item What transformation does this new matrix result in?
 \item How is a reflection followed by a rotation different from a rotation followed by a reflection? Visualize this by following what happens to a point under both sets of transformations.
@@ -40,7 +42,7 @@ $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\twomat{}{}{}{}$$
 \item There are two, infinite classes of matrix which, taken together under multiplication, form a group isomorphic to the isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
 \begin{enumerate}
 \item What is the result of a rotation by an angle $\theta$ followed by one of $\phi$?
-\item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\twomat{}{}{}{}.$
+\item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\blanktwomat.$
 \item Use the angle addition formulae to simplify your answer.
 \item Should the result be the same if you reverse the order of rotation?
 \item What happens to the points $(1,0)$, $(0,1)$, and $(x,y)$ when you operate on them with the rotation matrix? $$\twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}\left[\begin{array}{ccc} 1 & 0 & x \\ 0 & 1 & y \end{array}\right].$$
@@ -132,7 +134,6 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \end{enumerate}
 \end{multicols}
 \item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
-\item There are two isometries of the plane we have neglected; what are they?
 \item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the results.
 \begin{enumerate}
 \item Rotation by $-135^\circ$ followed by a shear by a factor of $\frac{1}{2}$ perpendicular to the $y$-axis \label{prob:matrix_prod_start}
@@ -350,18 +351,18 @@ void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real c
 	d *= s_y;
 	bp *= s_y;
 	dp *= s_y;
-	
+
 	real max_x = 1.2*max(a,c,ap,cp,a+c,ap+cp);
 	real min_x = 1.2*min(a,c,ap,cp,a+c,ap+cp,0);
 	real max_y = 1.2*max(b,d,bp,dp,b+d,bp+dp,1.5);
 	real min_y = 1.2*min(b,d,bp,dp,0,b+d,bp+dp);
-	
+
 	draw((min_x,0)--(max_x,0), Arrow);
 	draw((0,min_y)--(0,max_y), Arrow);
-	
+
 	draw((0,0)--(a,b)--(a+c,b+d)--(c,d)--cycle, dashed);
 	draw((0,0)--(ap,bp)--(ap+cp,bp+dp)--(cp,dp)--cycle);
-	
+
 	if (s_x != 1 || s_y != 1) {
 		label("Not to scale", (0,max_y), NE);
 	}
@@ -445,28 +446,28 @@ Our ultimate goal is to build up the matrix from basic operations, not to just u
 \setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item How do you undo a shear in the $x$ direction?
-$\twomat{}{}{}{}\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$
+$\blanktwomat\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a stretch along the $x$ axis?
-$\twomat{}{}{}{}\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$
+$\blanktwomat\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a shear in the $y$ direction?
-$\twomat{}{}{}{}\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$
+$\blanktwomat\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a stretch along the $y$ axis?
-$\twomat{}{}{}{}\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$
+$\blanktwomat\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$
 \end{enumerate}
 
 \item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ is composed. Order is important!
 
 \vspace{1.5cm}
-$$\mathop{\twomat{}{}{}{}}^{\tikzmark{a1}}
-\mathop{\twomat{}{}{}{}}^{\tikzmark{b1}}
-\mathop{\twomat{}{}{}{}}^{\tikzmark{c1}}
-\mathop{\twomat{}{}{}{}}^{\tikzmark{d1}}
+$$\mathop{\blanktwomat}^{\tikzmark{a1}}
+\mathop{\blanktwomat}^{\tikzmark{b1}}
+\mathop{\blanktwomat}^{\tikzmark{c1}}
+\mathop{\blanktwomat}^{\tikzmark{d1}}
 \mathop{\twomat{1}{-\frac{c}{a}}{0}{1}}^{\tikzmark{d2}}
 \mathop{\twomat{1}{0}{0}{\frac{a}{ad-bc}}}^{\tikzmark{c2}}
 \mathop{\twomat{1}{0}{-b}{1}}^{\tikzmark{b2}}
 \mathop{\twomat{\frac{1}{a}}{0}{0}{1}}^{\tikzmark{a2}}
 \twomat{a}{c}{b}{d}$$
-$$\Longrightarrow \twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{}{}{}{}\twomat{1}{0}{0}{1} = \twomat{a}{c}{b}{d}$$
+$$\Longrightarrow \blanktwomat\blanktwomat\blanktwomat\blanktwomat\twomat{1}{0}{0}{1} = \twomat{a}{c}{b}{d}$$
 
 \tikz[remember picture,auto]{
 \path[overlay, ->] (pic cs:a1) edge [bend left] node {undoes} (pic cs:a2);
@@ -517,6 +518,7 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \mathop{\twomat{1}{0}{0}{\frac{23}{13}}}^{\text{v}}
 \twomat{1}{0}{0}{1}=\twomat{3}{4}{2}{-5}.$$
 \begin{enumerate}
+\setcounter{enumii}{2}
 \item Explain what happens at each matrix, i through v.
 \end{enumerate}
 \item Find a set of basic transformations which is equivalent to each of the following matrices.\label{prob:basic_transformations}
