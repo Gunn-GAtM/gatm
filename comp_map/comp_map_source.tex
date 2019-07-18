@@ -26,7 +26,7 @@ So far, we have identified matrices that result in some specific mappings of the
 \item Notice that what we did to achieve this mapping was $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right]=\left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right],$$
 where we multiplied the two rightmost matrices first but didn't use the associative property to multiply the two leftmost matrices first. See what happens when you multiply the two left hand matrices together: $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat.$$ Look familiar?
 \item See what happens when you reverse the order of multiplication: \label{prob:cm_fill_in_blank_end}
-$$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat$$
+$$\twomat{0}{1}{-1}{0}\twomat{1}{0}{0}{-1}=\blanktwomat$$
 \item \begin{enumerate}
 \item What transformation does this new matrix result in?
 \item How is a reflection followed by a rotation different from a rotation followed by a reflection? Visualize this by following what happens to a point under both sets of transformations.
@@ -39,7 +39,7 @@ $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat$$
 \item ... to the ``from \underline{\phantom{0}} to \underline{\phantom{0}}'' convention for transportation matrices?
 \end{enumerate}
 \end{enumerate}
-\item There are two, infinite classes of matrix which, taken together under multiplication, form a group isomorphic to the isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
+\item There are two, infinite classes of matrix which comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
 \begin{enumerate}
 \item What is the result of a rotation by an angle $\theta$ followed by one of $\phi$?
 \item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\blanktwomat.$
@@ -82,13 +82,13 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item $\twomat{\cos 2\theta}{\sin 2\theta}{\sin 2\theta}{-\cos 2\theta}$ \label{prob:list_transformations_part_end}
 \end{enumerate}
 \end{multicols}
-\item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix~\ref{prob:highlighted_example_list_transformations1} is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is matrix~\ref{prob:highlighted_example_list_transformations2}.
-\item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage and image, and identify the transformations and their order. Note the effect of order on the outcome!
+\item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix x is a rotation of $\theta$. It is undone by a rotation of $-\theta$.
+\item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{smallmatrix}1 & 0 \\ 0 & 1\end{smallmatrix}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
 
 \begin{minipage}{0.7\textwidth}
 But first, an example:
 $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
-This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
 \end{minipage}\hfill
 \begin{minipage}{0.25\textwidth}
 \begin{asy}[width=\textwidth]
@@ -134,9 +134,9 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \end{enumerate}
 \end{multicols}
 \item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
-\item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the results.
+\item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the preimage and image when applied to $(1,0)$ and $(0,1)$.
 \begin{enumerate}
-\item Rotation by $-135^\circ$ followed by a shear by a factor of $\frac{1}{2}$ perpendicular to the $y$-axis \label{prob:matrix_prod_start}
+\item Rotation by $135^\circ$ followed by a shear by a factor of $\frac{1}{2}$ \textit{perpendicular} to the $y$-axis \label{prob:matrix_prod_start}
 \item Same transformations as in (a), but reversed
 \item Stretch in the $y$ direction by a factor of $3$ followed by a rotation of $60^\circ$
 \item Same transformations as in (c), but reversed
@@ -195,7 +195,7 @@ D = rotate(20.0)*D;
 draw(A--B--C--D--cycle);
 draw(B--rotate(20.0)*(4,0));
 
-draw(angle_mark);
+draw(angle_mark,Arrow);
 draw(angle_mark2);
 label("$h$", rotate(20.0)*(4,2),NE);
 label("$b$", rotate(20.0)*A--B, NW);
@@ -268,8 +268,8 @@ dot(C);
 \begin{enumerate}
 \item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
 \item Find the $x$ and $y$ coordinates of $P,Q,R,S$ in terms of $a$, $b$, $\phi$, $\theta$.
-\item These coordinates form two column vectors which, taken together as a matrix, map the plane. Write the matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$.
-\item Your matrix has two diagonals, $\overline{PR}$ and $\overline{QS}$. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
+\item Write a matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$. This matrix maps the plane.
+\item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
 \item Use angle addition formulas to simplify your answer.
 \item You should find some relationship between your answers to problems 11a and 11d. What is it?
 \item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=ad-bc$. What does it measure?
@@ -278,20 +278,20 @@ dot(C);
 \begin{enumerate}
 \item What is the absolute value of its determinant?
 \item How does its determinant differ from that of a rotation matrix?
-\item What property is not conserved under rotation?
+\item What property is not conserved under reflection?
 \item What does the size of a determinant indicate?
 \end{enumerate}
 \end{enumerate}
-\item Here is another way to think about the area of the image of the unit square under a linear transformation. First, we use the matrix $\twomat{a}{c}{b}{d}$ to transform the unit square into a parallelogram. Then, we graph the image: \label{prob:unit_square_into_parallelogram}
+\item Here is another way to think about the area of the image of the unit square under a linear transformation. First, we use the matrix $\twomat{a}{c}{b}{d}$ to transform the unit square into a parallelogram. Then, we graph the image. \label{prob:unit_square_into_parallelogram}
 \begin{enumerate}
 \item There are three rectangles and four triangles in Figure~\ref{fig:para_scenario}. Find the dimensions and the area of each one. You can use this information to figure out the area of the parallelogram in terms of $a$, $b$, $c$, and $d$. Write a sentence or equation explaining how you can use the seven areas to find the area of the parallelogram.
 \item Carry out the algebra to find the area.
 \item Calculate the determinant of the matrix.
 \item What is the relationship between the determinant of the matrix and the area of its associated parallelogram?
-\item \begin{enumerate}
-\item How would the area you calculated be different if $(a,b)$ and $(c,d)$ had switched places in the graph?
-\item What property would no longer be preserved by the transformation?
-\item What isometry would have been included in any composition yielding the mapping?
+\item Consider what happens if $(a,b)$ and $(c,d)$ switch places in the graph.
+\begin{enumerate}
+\item How would the area you calculated be different?
+\item What property would now be preserved by the transformation?
 \item What would be true of the determinant?
 \end{enumerate}
 \item \begin{enumerate}
@@ -300,7 +300,7 @@ dot(C);
 \item What isometry reverses orientation?
 \end{enumerate}
 \item \begin{enumerate}
-\item What would have happened to the parallelogram if $\left[\begin{smallmatrix}c \\ d \end{smallmatrix}\right]=k\left[\begin{smallmatrix}c \\ d \end{smallmatrix}\right]$?
+\item What would have happened to the parallelogram if we reassigned point $(c,d)$ to $(kc,kd)$, so that the transformation matrix is $\left[\begin{smallmatrix} a & kc \\ b & kd \end{smallmatrix}\right]$?
 \item What would its area be?
 \item What would the determinant of the matrix be?
 \item What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$?
