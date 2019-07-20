@@ -1297,7 +1297,7 @@ $$\Longrightarrow \blanktwomat\blanktwomat\blanktwomat\blanktwomat\twomat{1}{0}{
 
 These are the matrices all filled in:
 
-$$\twomat{a}{0}{0}{1}\twomat{1}{0}{b}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{1} = \twomat{a}{c}{b}{d}$$
+$$\twomat{a}{0}{0}{1}\twomat{1}{0}{b}{1}\twomat{1}{0}{0}{\frac{ad-bc}{a}}\twomat{1}{\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{1} = \twomat{a}{c}{b}{d}$$
 
 \begin{outer_problem}
 \item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
@@ -1318,8 +1318,10 @@ $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}
 Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$ What does each matrix do?
 \end{outer_problem}
 
+Going from right to left, the first matrix shears by $\frac{4}{3}$ in the $x$ direction (perpendicular to the $y$ axis). The second matrix stretches by $-\frac{23}{3}$ in the $y$ direction. The third matrix shears by $2$ in the $y$ direction (perpendicular to the $x$ axis). The fourth and final matrix stretches by $3$ in the $x$ direction.
+
 \begin{outer_problem}
-\setcounter{store_outer_problem}{\value{enumi}}
+\setcounter{problem_i}{\value{outer_problemi}}
 \item\label{prob:needed_for_matrix_undo2}Here is another way that you could have decomposed the above matrix.
 \vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
@@ -1334,8 +1336,10 @@ $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \item Identify what matrices i through v each do.
 \end{inner_problem}
 
+i scales by $\frac{13}{23}$ along the $y$-axis. ii shears by $-\frac{2}{23}$. iii scales by $\frac{1}{\sqrt{13}}$. iv rotates by $\tan^{-1} \frac{2}{3}$. $v$ reflects over the $x$-axis (since the $y$ coordinate is being flipped).
+
 \begin{outer_problem}
-\setcounter{enumi}{\value{store_outer_problem}}
+\setcounter{outer_problemi}{\value{problem_i}}
 \item (cont.) Next, we undo this sequence of operations by working backwards.
 \end{outer_problem}
 
@@ -1351,6 +1355,8 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item Explain what happens at each matrix, i through v.
 \end{inner_problem}
 
+i reflects over the $x$-axis, since the $y$ coordinate is being flipped. ii rotates by $-\tan^{-1} \frac{2}{3}$. iii scales by $\sqrt{13}$. iv shears by $\frac{2}{23}$ along the $x$-axis. Finally, v scales by $\frac{23}{13}$.
+
 \begin{outer_problem}
 \item Find a set of basic transformations which is equivalent to each of the following matrices.\label{prob:basic_transformations}
 \end{outer_problem}
@@ -1359,13 +1365,120 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item $\twomat{12}{8}{5}{15}$
 \end{inner_problem}
 
+(Answers may vary.)
+
+Using the method we described, we first stretch along the $x$-axis by $\frac{1}{12}$:
+
+$$\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{3}{4}}{5}{15}.$$
+
+We then shear along the $y$-axis by $-5$:
+
+$$\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{3}{4}}{0}{\frac{45}{4}}.$$
+
+We then stretch along the $y$-axis by $\frac{4}{45}$:
+
+$$\twomat{1}{0}{0}{\frac{4}{45}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{3}{4}}{0}{1}.$$
+
+Finally, we shear by $-\frac{3}{4}$ along the $x$-axis:
+
+$$\twomat{1}{-\frac{3}{4}}{0}{1}\twomat{1}{0}{0}{\frac{4}{45}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{0}{0}{1}.$$
+
+Now we undo the operations in turn:
+
+$$\underbrace{\twomat{12}{0}{0}{1}\twomat{1}{0}{5}{1}\twomat{1}{0}{0}{\frac{45}{4}}\twomat{1}{\frac{3}{4}}{0}{1}}\twomat{1}{-\frac{3}{4}}{0}{1}\twomat{1}{0}{0}{\frac{4}{45}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{0}{0}{1}.$$
+$$\Longrightarrow \twomat{12}{0}{0}{1}\twomat{1}{0}{5}{1}\twomat{1}{0}{0}{\frac{45}{4}}\twomat{1}{\frac{3}{4}}{0}{1} = \twomat{12}{8}{5}{15}.$$
+
 \begin{inner_problem}
 \item $\twomat{3}{24}{4}{7}$
 \end{inner_problem}
 
+(Answers may vary.)
+
+Using the method we described, we first stretch along the $x$-axis by $\frac{1}{3}$:
+
+$$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{24}{4}{7} = \twomat{1}{8}{4}{7}.$$
+
+We then shear along the $y$-axis by $-4$:
+
+$$\twomat{1}{0}{-4}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{24}{4}{7} = \twomat{1}{8}{0}{-25}.$$
+
+We then stretch along the $y$-axis by $-\frac{1}{25}$:
+
+$$\twomat{1}{0}{0}{-\frac{1}{25}}\twomat{1}{0}{-4}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{24}{4}{7} = \twomat{1}{8}{0}{1}.$$
+
+Finally, we shear by $-8$ along the $x$-axis:
+
+$$\twomat{1}{-8}{0}{1}\twomat{1}{0}{0}{-\frac{1}{25}}\twomat{1}{0}{-4}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{24}{4}{7} = \twomat{1}{0}{0}{1}.$$
+
+We undo the operations in turn:
+
+$$\underbrace{\twomat{3}{0}{0}{1}\twomat{1}{0}{4}{1}\twomat{1}{0}{0}{-25}\twomat{1}{8}{0}{1}}\twomat{1}{-8}{0}{1}\twomat{1}{0}{0}{-\frac{1}{25}}\twomat{1}{0}{-4}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{24}{4}{7}$$
+$$\Longrightarrow \twomat{3}{0}{0}{1}\twomat{1}{0}{4}{1}\twomat{1}{0}{0}{-25}\twomat{1}{8}{0}{1} = \twomat{3}{24}{4}{7}.$$
+
 \begin{inner_problem}
 \item $\twomat{2}{3}{4}{6}$
 \end{inner_problem}
+
+This matrix can't be decomposed with our usual method! That's because it lacks an inverse transformation, since it's projecting to a line (namely, the line $y=2x$).
+
+Let's think a bit more laterally here. What of our operations take the whole plane to a line? Shears don't, rotations and reflections don't, but stretches with a factor of $0$ can. For example, we can take everything to the $x$-axis with the matrix
+
+$$\twomat{1}{0}{0}{0}.$$
+
+Thus, we should be able to decompose our matrix as
+
+$$A\twomat{1}{0}{0}{0}B=\twomat{2}{3}{4}{6}$$
+
+for some matrices $A,B$. If we want to take the $x$-axis to the line $y=2x$, which is the job of matrix $A$ (remember, right to left!), we'll need $A$ to be a shear by a factor of $2$ along the $y$-axis. (See Figure~\ref{fig:shearing_A}.) Thus,
+
+$$A=\twomat{1}{0}{2}{1}.$$
+
+\begin{center}
+	\begin{asy}[width=0.3\textwidth]
+		import graph;
+
+		draw((-1,-2)--(2,4),linewidth(2),Arrows);
+		draw((-1,0)--(2,0),linewidth(2),Arrows);
+
+		draw((1.2,0.3)--(1.2,2.1),Arrow);
+		label("$A$",(1.2,1.2),E);
+
+		xaxis("$x$");
+		yaxis("$y$");
+	\end{asy}
+\end{center}
+
+To find $B$, we solve the matrix equation. We have $$\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{0}B=\twomat{2}{3}{4}{6}$$
+$$\twomat{1}{2}{0}{0}B=\twomat{2}{3}{4}{6}.$$
+
+Let $B=\twomat{a}{b}{c}{d}$.
+
+$$\twomat{1}{2}{0}{0}\twomat{a}{b}{c}{d}=\twomat{2}{3}{4}{6}.$$
+$$\twomat{a}{b}{2a}{2b}=\twomat{2}{3}{4}{6}.$$
+
+Interesting! $c,d$ can be any real numbers, because their effect is nullified by the mapping to a line. But $a=2$ and $b=3$. Let's just choose $c=0$ and $d=1$ for simplicity of decomposition. We have
+
+$$\twomat{2}{3}{0}{1}=B$$
+$$\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{0}{1}=\twomat{1}{\frac{3}{2}}{0}{1}$$
+$$\twomat{1}{-\frac{3}{2}}{0}{1}\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{0}{1}=\twomat{1}{0}{0}{1}.$$
+
+We undo the new matrices:
+
+$$\twomat{2}{0}{0}{1}\twomat{1}{\frac{3}{2}}{0}{1}\twomat{1}{-\frac{3}{2}}{0}{1}\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{0}{1}=\twomat{1}{0}{0}{1}$$
+$$\Longrightarrow \twomat{2}{0}{0}{1}\twomat{1}{\frac{3}{2}}{0}{1} = B.$$
+
+Thus, our full decomposition is
+
+$$\underbrace{\twomat{1}{0}{2}{1}}_{A}\twomat{1}{0}{0}{0}\underbrace{\twomat{2}{0}{0}{1}\twomat{1}{\frac{3}{2}}{0}{1}}_{B}=\twomat{2}{3}{4}{6}.$$
+
+In words, this is a shear of $\frac{3}{2}$ along the $x$-axis, followed by a stretch of a factor of $2$ along the $x$-axis, a stretch of a factor of $0$ along the $y$-axis, and a shear of $2$ along the $y$-axis.
+
+As an aside, here's what happens if you try using the usual method. We first stretch along the $x$-axis by $\frac{1}{2}$, then shear along the $y$-axis by $-2$:
+
+$$\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{4}{6} = \twomat{1}{\frac{3}{2}}{2}{3}.$$
+$$\twomat{1}{0}{-2}{1}\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{4}{6} = \twomat{1}{\frac{3}{2}}{0}{0}.$$
+
+Here, our problem arises. We cannot make the bottom-right corner $1$.
 
 \begin{outer_problem}
 \item One of the matrices in Problem~\ref{prob:basic_transformations} is a projection onto a line.
@@ -1375,25 +1488,65 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item Which matrix is it?
 \end{inner_problem}
 
+Problem (c): $\twomat{2}{3}{4}{6}$ is the matrix.
+
 \begin{inner_problem}
 \item What line does it project onto?
 \end{inner_problem}
+
+It projects onto the line $y=2x$.
 
 \begin{inner_problem}
 \item If you try to decompose this matrix to the identity matrix, what happens? Why?
 \end{inner_problem}
 
+You get stuck, because it lacks an inverse! The details are given as an aside at the end of that problem.
+
 \begin{outer_problem}
-\item Onto what line does $\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$ project the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
+\item Onto what line does $\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
 \end{outer_problem}
+
+This matrix projects points onto the line $y=2x$. To project perpendicular on the line, we do as the problem suggests. Consider the point $(1,2)$, which is on the line. If the transformation is a true projection, then the point should not move under the transformation. Thus,
+
+$$\twomat{a}{b}{2a}{2b}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.$$
+
+The left side expands out to $\begin{bmatrix} a+2b \\ 2a+4b \end{bmatrix}$. Thus, as long as $a+2b=1$, the matrix will be a projection onto $y=2x$. A simple example is $a=b=\frac{1}{3}$, so a possible matrix is
+
+$$\begin{bmatrix}
+\frac{1}{3} & \frac{1}{3} \\
+\frac{2}{3} & \frac{2}{3}
+\end{bmatrix}.$$
 
 \begin{outer_problem}
 \item Use Problem~\ref{prob:project_the_plane} to decompose $\left[\begin{smallmatrix} 2 & 3 \\ 4 & 6 \end{smallmatrix}\right]$ into a projection to a line followed by a size change.
 \end{outer_problem}
 
+We know $\begin{bmatrix}
+\frac{1}{3} & \frac{1}{3} \\
+\frac{2}{3} & \frac{2}{3}
+\end{bmatrix}$ projects to the line $y=2x$. The desired matrix is just this matrix scaled by $6$. Thus, the decomposition is
+
+$$\begin{bmatrix}6 & 0 \\ 0 & 6 \end{bmatrix} \begin{bmatrix}
+\frac{1}{3} & \frac{1}{3} \\
+\frac{2}{3} & \frac{2}{3}
+\end{bmatrix}.$$
+
 \begin{outer_problem}
 \item Decompose $\left[\begin{smallmatrix} 1 & 2 \\ 3 & 6\end{smallmatrix}\right]$ into a projection perpendicular to a line followed by a size change.
 \end{outer_problem}
+
+This matrix maps onto the line $y=3x$, since it's of the form $\twomat{a}{b}{3a}{3b}$. We try a similar method as the last problem to find the matrix of a true projection, choosing the point $(1,3)$:
+
+$$\twomat{a}{b}{3a}{3b}\begin{bmatrix} 1 \\ 3 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$$
+$$\begin{bmatrix} a + 3b \\ 3a + 9b \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}.$$
+
+So $a+3b = 1$. We just choose $a=b=\frac{1}{4}$ for simplicity, giving the projection matrix
+
+$$\twomat{\frac{1}{4}}{\frac{1}{4}}{\frac{3}{4}}{\frac{3}{4}}.$$
+
+Scaling this by $4$ gives the desired matrix, so the decomposition is
+
+$$\twomat{4}{0}{0}{4}\twomat{\frac{1}{4}}{\frac{1}{4}}{\frac{3}{4}}{\frac{3}{4}}.$$
 
 \begin{outer_problem}
 \item Write matrices which project onto the following lines:
@@ -1403,11 +1556,33 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item $y=x$
 \end{inner_problem}
 
+The matrix will be of the form $\twomat{a}{b}{a}{b}$. We choose the fixed point $(1,1)$:
+
+$$\twomat{a}{b}{a}{b}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$$
+$$\begin{bmatrix} a + b \\ a + b \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}.$$
+
+So $a+b=1$. For simplicity, we choose $a=b=\frac{1}{2}$, giving the matrix $$\twomat{\frac{1}{2}}{\frac{1}{2}}{\frac{1}{2}}{\frac{1}{2}}.$$
+
 \begin{inner_problem}
 \item $y=5x$
 \end{inner_problem}
 
+The matrix will be of the form $\twomat{a}{b}{5a}{5b}$. We choose the fixed point $(1,5)$:
+
+$$\twomat{a}{b}{5a}{5b}\begin{bmatrix} 1 \\ 5 \end{bmatrix} = \begin{bmatrix} 1 \\ 5 \end{bmatrix}$$
+$$\begin{bmatrix} a + 5b \\ 5a + 25b \end{bmatrix} = \begin{bmatrix} 1 \\ 5 \end{bmatrix}.$$
+
+So $a+5b=1$. For simplicity, we choose $a=b=\frac{1}{6}$, giving the matrix $$\twomat{\frac{1}{6}}{\frac{1}{6}}{\frac{5}{6}}{\frac{5}{6}}.$$
+
 \begin{inner_problem}
 \item $y=mx$
 \end{inner_problem}
+
+This is pretty easy to generalize. The matrix will be of the form $\twomat{a}{b}{ma}{mb}$. We choose the fixed point $(1,m)$:
+
+$$\twomat{a}{b}{ma}{mb}\begin{bmatrix} 1 \\ m \end{bmatrix} = \begin{bmatrix} 1 \\ m \end{bmatrix}$$
+$$\begin{bmatrix} a + mb \\ ma + m^2b \end{bmatrix} = \begin{bmatrix} 1 \\ m \end{bmatrix}.$$
+
+So $a+mb=1$. For simplicity, we choose $a=b=\frac{1}{m+1}$, giving the matrix $$\twomat{\frac{1}{m+1}}{\frac{1}{m+1}}{\frac{m}{m+1}}{\frac{m}{m+1}}.$$
+
 \end{document}
