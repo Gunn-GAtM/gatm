@@ -4,53 +4,136 @@
 
 \section{Multiplication Modulo $m$ Meets Groups}
 
-\begin{enumerate}
+\begin{outer_problem}[start=1]
 \item Clearly some of these numbers cannot be elements of a group. For instance, in both cases, $0$ cannot be used, since it prevents the existence of an inverse. In the case of mod $4$, $2$ cannot be used either. Why not?
-\item How could we have known that these numbers would not work in advance?
-\item \textbf{Euler's totient function} $\varphi(m)$ tells us how many numbers are relatively prime to a given number $m$. That is, $\varphi(m)$ is the count of numbers $n$ such that $\gcd(m,n)=1$. What does the maximum size of a group under multiplication mod $m$ have to do with this function?
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{outer_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+$2$ can't be used because it lacks an inverse. After all, there is no integer $x$ such that $2x\equiv 1 (\mod 4)$.
+
+\begin{outer_problem}
+\item How could we have known that these numbers would not work in advance?
+\end{outer_problem}
+
+They share a common factor with the modulus $m$; we must have $\gcd(x,m)=1$ where $x$ is the element of the group.
+
+\begin{outer_problem}
+\item \textbf{Euler's totient function} $\varphi(m)$ tells us how many numbers are relatively prime to a given number $m$. That is, $\varphi(m)$ is the count of numbers $n$ such that $\gcd(m,n)=1$. What does the maximum size of a group under multiplication mod $m$ have to do with this function?
+\end{outer_problem}
+
+The size of the largest group under multiplication modulo $m$ is $\varphi(m)$, since that's the group of numbers which have inverses modulo $m$. The other group properties are satisfied; associativity because multiplication is associative, closure because the product of two numbers coprime to $m$ is also coprime to $m$, and identity, since $1$ is always (considered) coprime to $m$.
+
+\begin{outer_problem}
 \item We will write tables for the largest possible groups under multiplication mod $5$ and mod $8$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Make a prediction as to how many elements will be in each group.
+\end{inner_problem}
+
+(Answers may vary.)
+
+Since $5$ is prime, there should be $4$ elements in its group since $\varphi(p)$ with $p$ prime is $p-1$. For $8$, the elements should be $1,3,5,7$: the odd numbers, or $4$ elements.
+
+\begin{inner_problem}
 \item Which numbers can you eliminate from consideration?
+\end{inner_problem}
+
+We can eliminate numbers that are coprime to the modulus. For $5$, this is $\{0\}$. For $8$, this is $\{0,2,4,6\}$.
+
+\begin{inner_problem}
 \item Do you think that the groups will be isomorphic to those of multiplication mod $3$ and mod $4$, or to each other?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Find the period of each element in the group and write its \textbf{orbit}: the list of its powers until it reaches the identity.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Make the tables, and analyze them to confirm/correct your predictions.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Are there any subgroups?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Now use a program to find the largest possible group under multiplication mod $14$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What are its elements?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Write the orbit for each element and make a table for the group.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item It might be good to order the numbers at the top of the table so that they start with a $1$ and go by successive powers of $3$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What group is it isomorphic to?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Does it have any subgroups; if so, what are they?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Now, a surprise: find the powers of $10$, mod $14$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item How long is the period of this orbit?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What number appears to be the identity element?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Make a table in which the identity element comes first.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Find a number besides $10$ whose group of powers mod $14$ is isomorphic to this group.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Are these groups isomorphic to a multiplication group of a smaller modulus?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item To really tell if two groups are isomorphic, you can write their tables in such an order that they would be identical if you substituted them in place. Why is it helpful to first note the periods and orbits of each element?
+\end{outer_problem}
+
+\begin{outer_problem}
 \item What properties do the following types of groups have?
-\begin{multicols}{2}
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item multiplication mod $p$, a prime
+\end{inner_problem}
+
+\begin{inner_problem}
 \item multiplication mod $3^n$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item multiplication mod $p^n$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item multiplication mod $2^n$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item multiplication mod $5^n$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item multiplication mod a composite
-\end{enumerate}
-\end{multicols}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
 \end{document}
