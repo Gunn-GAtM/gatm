@@ -34,13 +34,19 @@ Since $a=a^1$, we have $a^{-1}a^1=a^{1-1}=a^0=1$.
 \item For fixed $a,b$, you might think that the equation $ax=b$ has only one solution, but sometimes it can have zero or infinitely many. Give an example of both cases.
 \end{inner_problem}
 
+There are zero solutions if $a=0$ and $b\neq 0$, for example $(a,b)=(0,1)$. There are infinite solutions if $a=0$ and $b=0$.
+
 \begin{inner_problem}
 \item How does the existence of a unique solution relate to the idea of multiplicative invertibility?
 \end{inner_problem}
 
+The unique solution can be found by multiplying both sides by $a^{-1}$... if it exists. If it doesn't exist, then there isn't a unique solution. In this case, $0$ does not have a multiplicative inverse\footnote{Unless you're Brandon and trying to be annoying in Bio}, so it causes either no solution or multiple solutions to exist.
+
 \begin{inner_problem}
 \item Are there any other possible numbers of solutions?
 \end{inner_problem}
+
+In this case, no. The easiest way is to simply construct all solutions for various values of $a,b$. We have $x=\frac{b}{a}$ for $a\neq 0$, which is only one solution, and the other two cases we've already described; they have either an infinite number of solutions or no solutions.
 
 \begin{outer_problem}
 \item
@@ -50,53 +56,81 @@ Since $a=a^1$, we have $a^{-1}a^1=a^{1-1}=a^0=1$.
 \item Define ``one-to-one'' function.
 \end{inner_problem}
 
+A one-to-one function, also known as a bijection, is a function between two sets which maps each element of each set to exactly one element of the other set, and vice versa.
+
 \begin{inner_problem}
 \item Is $f(x)=ax$ a one-to-one function for all real $a$? (Hint: Look for the silly exception(s)!)
 \end{inner_problem}
+
+It is one-to-one for $a\neq 0$, but $f(x)=0x=0$ maps every real number to $0$, which is certainly not a bijection; the mapping is not unique.
 
 \begin{outer_problem}
 \item Would your answers to the previous numbers change if you were talking about complex numbers instead of just real numbers? Why or why not?
 \end{outer_problem}
 
+They would not change. $f(x)=cx$ is still one-to-one for complex $c,x$, except for $c=0$. After all, the inverse function is $f^{-1}(x)=\frac{1}{c}\cdot x$, and $\frac{1}{c}$ is defined for all $c\neq 0$.
+
 \begin{outer_problem}
-\item
+\item In the following problems, $x$ can be any integer from $0$ to $11$.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
 \item Find all solutions of $5x\equiv 7$ in clock arithmetic.
 \end{inner_problem}
 
+We see that we must solve $5x = 7+12a$ for integer solutions. While we could check $a$ values manually, a simpler method is to notice that we just need to find $a$ so that $x=\frac{7+12a}{5}$ is an integer. We have
+
+$$\frac{7+12a}{5} = 1+\frac{2+(10+2)a}{5} = 1+2a+\frac{2+2a}{5}.$$
+
+This is only an integer when $2+2a$ is divisible by $5$, which first happens when $a=4$. This yields the solution $11$. Thus, $x=11$ is the only solution.
+
 \begin{inner_problem}
 \item Find all solutions of $2x\equiv 6$ in clock arithmetic.
 \end{inner_problem}
+
+We want to solve $2x=6+12a$ for integer solutions. Since $x$ is an integer for all integers $a$, we just need $x=3+6a$. This gives $x=3,9$.
 
 \begin{inner_problem}
 \item Find all solutions of $6x\equiv 6$ in clock arithmetic.
 \end{inner_problem}
 
+We want to solve $6x=6+12a$ for integer solutions. Again, $x$ is an integer for all integers $a$, so we just need $x=1+2a$. This yields $x=1,3,5,7,9,11$.
+
 \begin{inner_problem}
 \item Find all solutions of $2x\equiv 7$ in clock arithmetic.
 \end{inner_problem}
 
-\begin{inner_problem}
-\item What are all possible numbers of solutions that $ax\equiv b$ can have in clock arithmetic?
-\end{inner_problem}
-
-\begin{outer_problem}
-\item How does the number of solutions to $ax\equiv b$ relate to the idea of multiplicative inverse? (Hint: You can try solving for $a=5,2,6,3$ and $b=1$. What numbers would be $5^{-1}$, $2^{-1}$, $6^{-1}$, and $3^{-1}$ in clock arithmetic?)
-\end{outer_problem}
-
-\begin{outer_problem}
-\item
-\end{outer_problem}
-
-\begin{inner_problem}[start=1]
-\item In clock arithmetic, for what values of $a$ is $f(x)\equiv ax$ a one-to-one function?
-\end{inner_problem}
+This has no solutions, since $7+12a$ is never even for $a\in\mathbb{Z}$.
 
 \begin{inner_problem}
-\item How does this relate to whether $ax=1$ has exactly one solution?
+\item For integers $a,b$, what are all possible numbers of solutions that $ax\equiv b$ can have in clock arithmetic?
 \end{inner_problem}
+
+We could try every pair $(a,b)$, but that's $144$ combinations; no thanks.
+
+We have $ax=b+12k$ for some integer $k$. Solving for $k$ in terms of $a,b,x$, we find that $k=\frac{ax-b}{12}$. Thus, for $x$ taking on values $0$ through $11$, we must find how many such values have $ax-b$ divisible by $12$.
+
+We know that $0$ values are possible; $(a,b)=(2,7)$ is an example. Suppose, however, that we have \textit{a} solution, say $x_1$, so that $ax_1-b=12k_1$ for some value of $k_1$. Let the other solutions be $x_1+m$ for some integer $m$, so $a(x_1+m)-b=12k_2$. But the left side is $ax_1-b+am$, so $am$ must be divisible by $12$. The values of $m$ which make this true depend on $\gcd (a,12)$; we have $$m=\frac{12}{\gcd(a,12)}n$$ for integers $n$. Thus, the solutions are
+
+$$x=x_1+\frac{12}{\gcd(a,12)}n.$$
+
+Note that $n$ can be any integer, not just among the positive integers. Since $0\leq x \leq 11$, the number of solutions is bounded. Substituting $x$ and subtracting $x_1$ from all sides, we find that
+
+$$-x_1\leq \frac{12}{\gcd(a,12)}n\leq 11-x_1$$
+
+In the twelve consecutive integers between $-x_1$ and $11-x_1$ inclusive, there are always going to be $\gcd (a,12)$ integers divisible by $\frac{12}{\gcd(a,12)}$. The possible values of $\gcd (a,12)$ are $1,2,3,4,6,$ and $12$; the divisors of $12$.
+
+To recap: we know that $0$ values are possible. If a solution for some pair $(a,b)$ exists, then there are $\gcd(a,12)$ solutions for that pair in total. The possible numbers of solutions for $x$ are $0,1,2,3,4,6,$ and $12$.
+
+\begin{outer_problem}
+\item How does the number of solutions to $ax\equiv b$ relate to the idea of multiplicative inverse? (Hint: You can try solving for $a=5,7,11$ and $b=1$. What numbers would be $5^{-1}$, $7^{-1}$, $11^{-1}$ in clock arithmetic?)
+\end{outer_problem}
+
+If we multiply both sides by the ``inverse'' of $a$, then we get $x\equiv ba^-1$. This would give us a quick way to solve for $x$. The question is whether such an ``inverse'' exists.
+
+Well, this equation $x\equiv ba^-1$ is only valid if there is a single solution for $x$; otherwise, since $0\leq x \leq 11$, this wouldn't encapsulate all the possible values of $x$. Thus, $\gcd(a,12)=1$. This is true for all the $a$ values in the hint.
+
+We can find $5^{-1}$, $7^{-1}$, and $11^{-1}$ by just trying numbers.\footnote{There is a better way to do this, called the Extended Euclidean Algorithm. Check it out if you're bored!} For example, $5^{-1}$ is just the solution to the equation $5a\equiv 1$, which is clearly $5$, since $25=2\cdot 12 + 1$. $7^{-1}$ is $7$, since $7\cdot 7 \equiv 1$. Finally, $11^{-1}$ is $11$, since $11\cdot 11\equiv 1$. Interesting!
 
 \begin{outer_problem}
 \item How does this all relate to groups?
@@ -106,21 +140,41 @@ Since $a=a^1$, we have $a^{-1}a^1=a^{1-1}=a^0=1$.
 \item The clock numbers are a group under clock addition. Name that group!
 \end{inner_problem}
 
-\begin{inner_problem}
-\item They are not a group under multiplication. Why?
-\end{inner_problem}
+The group is the cyclic group of order $12$.
 
 \begin{inner_problem}
-\item A subset of four of the clock numbers form a group under the operation of multiplication. Find them, and write a group table.
+\item They are not a group under clock multiplication. Why?
 \end{inner_problem}
+
+$1$ can't be the identity element, because there's no element $x$ such that $0\cdot x = 1$. Without an identity element, it can't be a group.
+
+\begin{inner_problem}
+\item A subset of four of the clock numbers form a group under the operation of clock multiplication. Find them, and write a group table.
+\end{inner_problem}
+
+It's not immediately obvious how we'd find this subset besides trying various pairs of elements and seeing what they generate. If we remember the invertibility property, however, we realize that all elements of this group must be coprime (i.e. not share any factors besides $1$ with) $12$. The only four elements which satisfy this requirement are $1$, $5$, $7$, and $11$; notice how we've already seen three of these elements.
+
+We can now write a group table to expose the structure of the group:
+
+$$\begin{array}{c|c|c|c|c|}
+\cdot & 1 & 5 & 7 & 11 \\ \hline
+1 & 1 & 5 & 7 & 11 \\ \hline
+5 & 5 & 1 & 11 & 7 \\ \hline
+7 & 7 & 11 & 1 & 5 \\ \hline
+11 & 11 & 7 & 5 & 1 \\ \hline
+\end{array}$$
 
 \begin{inner_problem}
 \item Describe this group. What is the inverse of each element?
 \end{inner_problem}
 
+Every element's inverse is itself. The group is commutative (abelian); however it is not the cyclic group of order $4$.
+
 \begin{inner_problem}
 \item What symmetry group is it isomorphic to?
 \end{inner_problem}
+
+It is isomorphic to the symmetry group of the rectangle: the dihedral group of order $4$, or $D_2$.\footnote{This group is also sometimes known as the Klein four-group, denoted $V$ or $K_4$.}
 
 \begin{outer_problem}
 \item If the numbers on an advanced Mars clock went from $0$ to $4$,
@@ -130,21 +184,46 @@ Since $a=a^1$, we have $a^{-1}a^1=a^{1-1}=a^0=1$.
 \item They would form a group under addition. Make a group table!
 \end{inner_problem}
 
+$$\begin{array}{c|c|c|c|c|c|}
+\cdot & 0 & 1 & 2 & 3 & 4 \\ \hline
+0 & 0 & 1 & 2 & 3 & 4 \\ \hline
+1 & 1 & 2 & 3 & 4 & 0 \\ \hline
+2 & 2 & 3 & 4 & 0 & 1 \\ \hline
+3 & 3 & 4 & 0 & 1 & 2 \\ \hline
+4 & 4 & 0 & 1 & 2 & 3 \\ \hline
+\end{array}$$
+
 \begin{inner_problem}
 \item What group is this isomorphic to?
 \end{inner_problem}
+
+This is isomorphic to the cyclic group of order $5$.
 
 \begin{inner_problem}
 \item A subset of four of these numbers forms a group under multiplication. Find them and write a group table.
 \end{inner_problem}
 
+Analogous to the original clock, which was modulo $12$, the numbers which form the group under multiplication must be coprime to $5$. But since $5$ is a prime, this is just $\{1,2,3,4\}$.
+
+$$\begin{array}{c|c|c|c|c|}
+\cdot & 1 & 2 & 3 & 4 \\ \hline
+1 & 1 & 2 & 3 & 4 \\ \hline
+2 & 2 & 4 & 1 & 3 \\ \hline
+3 & 3 & 1 & 4 & 2 \\ \hline
+4 & 4 & 3 & 2 & 1 \\ \hline
+\end{array}$$
+
 \begin{inner_problem}
 \item Describe this multiplication group.
 \end{inner_problem}
 
+The group has order $4$. It is commutative, and cyclic, with each element generated by a single element.
+
 \begin{inner_problem}
 \item What symmetry group is it isomorphic to?
 \end{inner_problem}
+
+Based on the above properties, this is isomorphic to the rotation group of the square: the cyclic group of order $4$, $C_4$.
 
 \begin{outer_problem}
 \item
@@ -154,37 +233,103 @@ Since $a=a^1$, we have $a^{-1}a^1=a^{1-1}=a^0=1$.
 \item \label{prob:needed_for_matrix_undo3}Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of equations.
 \end{inner_problem}
 
+The left side multiplied out is $\begin{bmatrix} x+2y \\ 3x+4y \end{bmatrix}$. Thus, we have the system of equations
+
+$$\begin{cases}x+2y=5 \\ 3x+4y=6 \end{cases}.$$
+
+There are a couple ways to solve this. Perhaps the easiest way is to double the first equation and subtract it from the second equation:
+
+$$\arraycolsep=1.4pt\begin{array}{rcccl}
+3x & + & 4y & = & 6 \\ \hline
+-2\cdot ( x & + & 2y & = & 5) \\
+x & & & = & -4 \\
+\end{array}$$
+
+If $x=-4$, then $-4+2y=5$, so $y=\frac{9}{2}$. We can verify our solution by multiplying out the original matrix form with the substitution $(x,y)=\left(4,\frac{9}{2}\right)$.
+
 \begin{inner_problem}
 \item \label{prob:needed_for_matrix_undo4}Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$
 \end{inner_problem}
+
+Multiplying out the left side and comparing corresponding parts, we get the following system of equations:
+
+$$\begin{cases} x + 2y = 5 \\ 2x + 4y = 6 \end{cases}.$$
+
+Multiplying the top equation by $2$ and subtracting it from the bottom equation, we get the following system of equations:
+
+$$\arraycolsep=1.4pt\begin{array}{rcccl}
+2x & + & 4y & = & 6 \\ \hline
+-2\cdot ( x & + & 2y & = & 5) \\
+& & 0 & = & -4 \\
+\end{array}$$
+
+This is a contradiction, so there are no solutions $(x,y)$ to this equation.
 
 \begin{inner_problem}
 \item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 10 \end{array}\right]$
 \end{inner_problem}
 
+Multiplying out the left side and comparing corresponding parts, we get the following system of equations:
+
+$$\begin{cases} x + 2y = 5 \\ 2x + 4y = 10 \end{cases}.$$
+
+Multiplying the top equation by $2$ and subtracting it from the bottom equation, we get the following system of equations:
+
+$$\arraycolsep=1.4pt\begin{array}{rcccl}
+2x & + & 4y & = & 10 \\ \hline
+-2\cdot ( x & + & 2y & = & 5) \\
+& & 0 & = & 0 \\
+\end{array}$$
+
+This is always true. This seems to imply that the original equation is true for all $(x,y)$, but this is not the case. Solving for $x$ in terms of $y$ for each of the equations, we get $x=5-2y$ for each. Also, if $x=5-2y$, then both equations are true. Thus, $x=5-2y$ is both a necessary and sufficient condition for the equation to be true.
+
+In any case, this yields an infinite number of solutions.
+
 \begin{inner_problem}
-\item What are all possible numbers of solutions that $AX=B$ can have in matrices? Use your knowledge of the properties of systems of equations.
+\item What are all possible numbers of solutions that $AX=B$ can have, where $A,B$ are $2\times 2$ and $2\times 1$ matrices respectively and $X=\left[\begin{smallmatrix} x \\ y \end{smallmatrix}\right]$? Use your knowledge of the properties of systems of equations.
 \end{inner_problem}
 
+Letting $A=\twomat{a}{b}{c}{d}$ and $B=\begin{bmatrix} f \\ g \end{bmatrix}$, we get the system of equations
+
+$$\begin{cases} ax + by = f \\ cx+dy = g \end{cases}.$$
+
+With our knowledge of system of equations, we know that this can have $0$, $1$, or infinite solutions, depending on $a,b,c,d,f,g$.
+
 \begin{outer_problem}
-\item Now, let's relate the two matrices from the previous problem to the transformations we know.
+\item Now, let's relate the two $2\times 2$ matrices from the previous problem to the transformations we know.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
 \item Contrast the mapping properties of $\twomat{1}{2}{3}{4}$ and $\twomat{1}{2}{2}{4}$.
 \end{inner_problem}
 
+$\twomat{1}{2}{2}{4}$ projects to a line, and is thus not invertible, while $\twomat{1}{2}{3}{4}$ does not project to a line and is thus invertible.
+
 \begin{inner_problem}
 \item Find the determinants of these matrices. What do you notice?
 \end{inner_problem}
+
+We have $\det \twomat{1}{2}{3}{4} = -1$ and $\det \twomat{1}{2}{2}{4}=0$. The matrix which maps to a line has $0$ determinant, which is hardly a coincidence; since the (absolute value of the) determinant is the area of the unit square after the mapping, this makes sense. The unit square is mapped to a line segment, which has $0$ area.
 
 \begin{inner_problem}
 \item When is $f(X)=AX$ a one-to-one function? That is, in mapping the plane, when does each point in the image have exactly one preimage?
 \end{inner_problem}
 
+$f(X)=AX$ is a one-to-one function when $A$ has nonzero determinant. We'll see how to prove this shortly, but it makes sense that a matrix with zero determinant, being a mapping to a line, is not one-to-one.
+
 \begin{inner_problem}
 \item Compare how you find the number of solutions of the real number equation $ax=b$ with how you find the number of solutions of the matrix equation $AX=B$.
 \end{inner_problem}
+
+For $ax=b$, we have three cases:
+
+$$\text{\# solutions} = \begin{cases} \infty & (a,b)=(0,0) \\ 0 & a=0, b\neq 0 \\ 1 & \text{otherwise} \end{cases}.$$
+
+For $AX=B$, we have three cases\footnote{There is technically a ``fourth case,'' when $A$ is the matrix of all $0$s, where there are infinite solutions if and only if $B=\left[\begin{smallmatrix} 0 \\ 0 \end{smallmatrix}\right]$, but I have kept it out of the main solution for simplicity. This is a ``fourth case'' because $A$ no longer projects to a line.}:
+
+$$\text{\# solutions} = \begin{cases} \infty & \det A = 0, B\text{ is on the line }A\text{ maps to} \\ 1 & \det A = 0, B\text{ is not on the line }A\text{ maps to} \\ 1 & \text{otherwise} \end{cases}.$$
+
+Thus, the condition that $\det A = 0$ is analogous to $a=0$, and the condition that $B$ is on the line $A$ projects to is analogous to $b=0$.
 
 \begin{outer_problem}
 \item Let $K=\twomat{5}{7}{8}{-3}$.
@@ -194,6 +339,25 @@ Since $a=a^1$, we have $a^{-1}a^1=a^{1-1}=a^0=1$.
 \item Find all solutions to $K\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 10 \\ 2 \end{array}\right]$.
 \end{inner_problem}
 
+Expanding out the left side and comparing corresponding entries, we get the system of equations
+
+$$\begin{cases} 5x+7y = 10 \\ 8x-3y =2 \end{cases}.$$
+
+This is a bit unpleasant to solve, but we can multiply the first equation by $\frac{8}{5}$ and subtract the second equation:
+
+$$\arraycolsep=1.4pt\begin{array}{rcccl}
+\frac{8}{5}\cdot (5x & + & 7y & = & 10) \\ \hline
+8x & - & 3y & = & 2 \\
+& & \frac{71}{5}y & = & 14 \\
+\end{array}$$
+
+Thus, $y=\frac{5}{71}\cdot 14 = \frac{70}{71}$. We can get $x$ by substituting $y$ back into either equation. Choosing the second equation, we get
+
+$$8x-3\left(\frac{70}{71}\right)=10$$
+$$x = \frac{10 + \frac{210}{71}}{8} = \frac{44}{71}.$$
+
+Thus, $(x,y)=\left(\frac{44}{71},\frac{70}{71}\right)$.
+
 \begin{inner_problem}
 \item If we knew a matrix which was the inverse of $K$, written $K^{-1}$, we could write the following equation:
 
@@ -202,10 +366,12 @@ $$K^{-1}K\left[\begin{array}{c} x \\ y \end{array}\right]=K^{-1}\left[\begin{arr
 What would the left side reduce to?
 \end{inner_problem}
 
+The left side would reduce to $I\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$, since by definition $K^{-1}K=I$.
+
 \begin{outer_problem}
 \item Consider the following matrix inverses:
 
-$$\twomat{3}{4}{2}{-5}^{-1}=\twomat{\frac{3}{23}}{\frac{4}{23}}{\frac{2}{23}}{-\frac{5}{23}}$$
+$$\twomat{3}{4}{2}{-5}^{-1}=\twomat{\frac{5}{23}}{-\frac{4}{23}}{\frac{2}{23}}{\frac{3}{23}}$$
 $$\twomat{1}{0}{0}{-1}^{-1}=\twomat{1}{0}{0}{-1}$$
 $$\twomat{3}{1}{2}{4}^{-1}=\frac{1}{10}\twomat{4}{-1}{-2}{3}$$
 $$\twomat{1}{2}{3}{4} = \twomat{-2}{1}{3}{-1}$$
@@ -215,13 +381,23 @@ $$\twomat{1}{2}{3}{4} = \twomat{-2}{1}{3}{-1}$$
 \item Look for a pattern in these inverses.
 \end{inner_problem}
 
+It appears that they are some fraction of a matrix with the top-left and bottom-right entries swapped, and the bottom-left and top-right entries negated. With some closer inspection, the fraction appears to be $\frac{1}{\det M}$.
+
 \begin{inner_problem}
 \item Describe the inverse of an arbitrary matrix: $\twomat{a}{c}{b}{d}^{-1}=\frac{1}{\phantom{000000}}\twomat{}{}{}{}.$ Use the word determinant in your answer.
 \end{inner_problem}
 
+The inverse of an arbitrary matrix $\twomat{a}{c}{b}{d}$ is
+
+$$\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}.$$
+
+In words, we swap the top-left and bottom-right entries, then negate the other two entries, and divide by the determinant of the matrix.
+
 \begin{inner_problem}
 \item We've been writing the inverse of matrix $A$ as $A^{-1}$. Why does this notation make sense?
 \end{inner_problem}
+
+This makes sense because $AA^{-1}=I$, and $I$ is analogous to $1$ in $aa^{-1}=1$ in that multiplying by it does nothing.
 
 \begin{outer_problem}
 \item Now, see what happens when you multiply the following matrices:
@@ -231,23 +407,68 @@ $$\twomat{1}{2}{3}{4} = \twomat{-2}{1}{3}{-1}$$
 \item $-\frac{1}{2}\twomat{2}{3}{4}{5}\twomat{5}{-3}{-4}{2}$
 \end{inner_problem}
 
+$$-\frac{1}{2}\twomat{2\cdot 5 + 3\cdot -4}{2\cdot -3 + 3\cdot 2}{4\cdot 5 + 5\cdot -4}{4\cdot -3 + 5\cdot 2} = -\frac{1}{2}\twomat{-2}{0}{0}{-2} = \twomat{1}{0}{0}{1}.$$
+
 \begin{inner_problem}
 \item $\frac{1}{71}\twomat{5}{7}{8}{-3}\twomat{3}{7}{8}{-5}$
 \end{inner_problem}
+
+$$\frac{1}{71}\twomat{5 \cdot 3 + 7\cdot 8}{5\cdot 7 + 7\cdot -5}{8\cdot 3 - 3\cdot 8}{8\cdot 7 + -3\cdot -5} = \frac{1}{71}\twomat{71}{0}{0}{71} = \twomat{1}{0}{0}{1}.$$
 
 \begin{inner_problem}
 \item $\twomat{a}{c}{b}{d}\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}$
 \end{inner_problem}
 
+$$\frac{1}{ad-bc}\twomat{ad-cb}{-ac+ca}{bd-db}{-cb+ad}=\twomat{1}{0}{0}{1}.$$
+
 \begin{inner_problem}
 \item $\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}\twomat{a}{c}{b}{d}$
 \end{inner_problem}
+
+$$\frac{1}{ad-bc}\twomat{da-cb}{dc-cd}{-ba+ab}{-bc+ad}=\twomat{1}{0}{0}{1}.$$
 
 \begin{outer_problem}
 \item For another approach to finding the inverse of a matrix, solve the following for $w,x,y,z$ in terms of $a,b,c,d$ by converting the matrix equations into a set of four linear equations:
 
 $$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 \end{outer_problem}
+
+The left side is $\twomat{wa+yb}{wc+yd}{xa+zb}{xc+zd}$. This yields the system of equations
+
+$$\begin{cases} wa+yb = 1 \\ wc+yd = 0 \\ xa+zb = 0 \\ xc+zd = 1 \end{cases}.$$
+
+This does not look pleasant. No factors are shared at all.
+
+From the second equation, we see that $w=-\frac{yd}{c}$. Substituting into the first equation, we get
+
+\begin{align*}
+\left(-\frac{yd}{c}\right)a + yb &= 1 \\
+y\left(\frac{-ad+bc}{c}\right) & =1 \\
+y &= \frac{c}{-ad+bc} \\
+y &= -\frac{c}{ad-bc}.
+\end{align*}
+
+Progress! We substitute this into our expression for $w$:
+
+$$w=-\frac{yd}{c}=-\frac{-\frac{c}{ad-bc}\cdot d}{c} = \frac{d}{ad-bc}.$$
+
+We can apply the same logic to the latter two equations. From the third equation, we see that $x = -\frac{zb}{a}$. Substituting this into the fourth equation, we get
+
+\begin{align*}
+  \left(-\frac{zb}{a}\right)c+zd &= 1 \\
+  z\left(\frac{ad-bc}{a}\right) &= 1 \\
+  z &= \frac{a}{ad-bc}. \\
+\end{align*}
+
+We substituting this back into our expression for $x$:
+
+$$x = -\frac{\frac{a}{ad-bc}\cdot b}{a} = -\frac{b}{ad-bc}.$$
+
+Overall we get the following answer for the inverse matrix:
+
+$$\twomat{w}{y}{x}{z} = \twomat{\frac{d}{ad-bc}}{-\frac{c}{ad-bc}}{-\frac{b}{ad-bc}}{\frac{a}{ad-bc}} = \frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}.$$
+
+This agrees with our previous observations.
 
 \begin{outer_problem}
 \item Rewrite each system of equations in matrix form. Use your calculator to calculate a matrix inverse, solve the system, and finally, check your answer. Remember to make clear in your work when you have used a calculator.
@@ -257,52 +478,245 @@ $$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 \item $\begin{cases} 2x+3y &= 5 \\ 4x+5y &= 7 \end{cases}$
 \end{inner_problem}
 
+In matrix form:
+
+$$\twomat{2}{3}{4}{5}\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 5 \\ 7 \end{bmatrix}.$$
+
+We left-multiply both sides by the inverse of $\twomat{2}{3}{4}{5}$, which WolframAlpha informs us is
+
+$$\begin{bmatrix} x \\ y \end{bmatrix} = \twomat{2}{3}{4}{5}^{-1}\begin{bmatrix} 5 \\ 7 \end{bmatrix} = \begin{bmatrix} -2 \\ 3 \end{bmatrix}.$$
+
+Thus, $(x,y) = (-2,3)$.
+
 \begin{inner_problem}
 \item $\begin{cases} 37x+12y &= 65 \\ 93x+40y &= 156\end{cases}$
 \end{inner_problem}
+
+$$\twomat{37}{12}{93}{40}\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 65 \\ 156 \end{bmatrix}.$$
+
+We left-multiply both sides by the inverse of $\twomat{37}{12}{93}{40}$, which WolframAlpha informs us is
+
+$$\twomat{37}{12}{93}{40}^{-1} \begin{bmatrix} 65 \\ 156 \end{bmatrix}=\begin{bmatrix} 2 \\ -\frac{3}{4} \end{bmatrix}.$$
+
+Thus, $(x,y) = \left(2, -\frac{3}{4} \right)$.
 
 \begin{inner_problem}
 \item $\begin{cases} 2x+5y+3z &= 5 \\ 3x+2y+4z &= 7 \\ 13x+16y+18z &= 4\end{cases}$
 \end{inner_problem}
 
+$$\begin{bmatrix} 2 & 5 & 3 \\ 3 & 2 & 4 \\ 13 & 16 & 18 \end{bmatrix}\begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 5 \\ 7 \\ 4 \end{bmatrix}.$$
+
+We left-multiply both sides by the inverse of the $3\times 3$ matrix, which WolframAlpha informs us... doesn't exist.
+
+But are there infinite solutions or no solutions for $(x,y,z)$? Well, we can try to derive a contradiction with the equations we have, though that's kind of ugly. Subtracting $8$ times the second equation from the third equation, we get
+
+$$\arraycolsep=0pt\begin{array}{lc}
+13x+16y+18z &= 4 \\
+-8( 3x + 2y + 4z &= 7) \\
+-11x+14z &= -52.\quad (1) \\
+\end{array}$$
+
+We can do this with several combinations:
+
+$$\arraycolsep=0pt\begin{array}{lc}
+2(3x+2y+4z &= 7) \\
+-3(2x+5y+3z &= 5) \\
+-11y-z &= -1;\quad (2) \\
+\end{array}$$
+$$\arraycolsep=0pt\begin{array}{lc}
+6(2x+5y+3z &= 5) \\
+-(13x+16y+18z &= 4) \\
+x+14y &= 26.\quad (3) \\
+\end{array}$$
+
+There seem to be some shared numbers cropping up. We multiply Equation (2) by $14$ and add it to $11$ times Equation (3):
+
+$$\arraycolsep=0pt\begin{array}{lc}
+14(-11y-z &= -1) \\
+11(x+14y &= 26) \\
+-14z+11x &= 272 \\
+-11x+14z &= -272.
+\end{array}$$
+
+Combining this with our first equation, we get $-52 = -272$, a contradiction. Thus, there are no solutions to this system of equations.
+
+As an aside, there's a significantly nicer way to check whether there's no or infinite solutions using \textit{reduced row-echelon form}, which is a function called \textit{rref} on your calculator. Basically, apply \textit{rref} to the matrix
+
+$$M=\begin{bmatrix} 2 & 5 & 3 & 5 \\ 3 & 2 & 4 & 7 \\ 13 & 16 & 18 & 4 \end{bmatrix},$$
+
+and if the last row is $[0\quad 0 \quad 0 \quad x]$ where $x \neq 0$, there is no solution. Otherwise, there are infinite solutions. In this case,
+
+$$\operatorname{rref} (M) = \begin{bmatrix} 1 & 0 & \frac{14}{11} & 0 \\ 0 & 1 & \frac{1}{11} & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix},$$
+
+so $x=1$ and there are no solutions. As for what \textit{rref} really is... Wikipedia is your friend!
+
 \begin{inner_problem}
 \item $\begin{cases} w + 2x + 3y + 4z &= 7 \\ 3w-x-2y-5z&=5 \\ 5w+3x-y-4z&=3 \\ 7w+9x+5y-2z&=2\end{cases}$
 \end{inner_problem}
+
+In matrix form:
+
+$$\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+3 & -1 & -2 & -5 \\
+5 & 3 & -1 & -4 \\
+7 & 9 & 5 & -2 \\
+\end{bmatrix}\begin{bmatrix} w \\ x \\ y \\ z \end{bmatrix} =
+\begin{bmatrix}
+  7 \\ 5 \\ 3 \\ 2
+\end{bmatrix}.$$
+
+Left-multiplying by the inverse of the $4\times 4$ matrix gives, according to WolframAlpha:
+
+$$\begin{bmatrix} w \\ x \\ y \\ z \end{bmatrix} = \begin{bmatrix}
+1 & 2 & 3 & 4 \\
+3 & -1 & -2 & -5 \\
+5 & 3 & -1 & -4 \\
+7 & 9 & 5 & -2 \\
+\end{bmatrix}^{-1}\begin{bmatrix}
+  7 \\ 5 \\ 3 \\ 2
+\end{bmatrix} = \frac{1}{226} \begin{bmatrix} 871 \\ -696 \\ -257 \\ 333 \end{bmatrix}.$$
+
+Disgusting! So the solution is $(w,x,y,z)=\left(\frac{871}{226},\frac{-696}{226},\frac{-257}{226},\frac{333}{226}\right)$.
 
 \begin{inner_problem}
 \item $\begin{cases} 2x+5y+2z &= 1 \\ 3x+2y+4z &= 1 \\ 13x+16y+18z &= 5 \end{cases}$
 \end{inner_problem}
 
+This looks rather similar to two problems ago, but the coefficients are slightly different. Indeed, such a small change can permit an inverse.
+
+In matrix form:
+
+$$\begin{bmatrix}
+2 & 5 & 2 \\
+3 & 2 & 4 \\
+13 & 16 & 18 \\
+\end{bmatrix}\begin{bmatrix}
+x \\ y \\ z \end{bmatrix}
+= \begin{bmatrix} 1 \\ 1 \\ 5 \end{bmatrix}.$$
+
+Left-multiplying by the inverse of the $3\times 3$ matrix with WolframAlpha gives
+
+$$\begin{bmatrix}
+x \\ y \\ z \end{bmatrix} = \begin{bmatrix}
+2 & 5 & 2 \\
+3 & 2 & 4 \\
+13 & 16 & 18 \\
+\end{bmatrix}^{-1}\begin{bmatrix} 1 \\ 1 \\ 5 \end{bmatrix} = \begin{bmatrix} \frac{3}{11} \\ \frac{1}{11} \\ 0 \end{bmatrix}.$$
+
+Thus, $(x,y,z)=\left(\frac{3}{11},\frac{1}{11},0\right)$.
+
 \begin{inner_problem}
 \item When can you use matrix inverses to solve a system of equations?
 \end{inner_problem}
+
+You can use matrix inverses when the system is a system of $n$ \textit{linear} equations in $n$ variables, as such a system always be rearranged to what we have dealt with in the past few problems. Furthermore, they will find the solution if it exists, but if there are zero or infinite solutions, it cannot differentiate between the two cases.
 
 \begin{outer_problem}
 \item You can fit a polynomial to any set of points in the plane, so long as the points pass the Vertical Line Test.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item What is the least degree polynomial through%
+\item What is the least degree polynomial through
 \end{inner_problem}
 
 \begin{iinner_problem}[start=1]
 \item One point?
 \end{iinner_problem}
 
+A polynomial of degree $0$ can pass through a point. After all, if the point is $(a,b)$, then the polynomial $y=b$ passes through the point.
+
 \begin{iinner_problem}
 \item Two points?
 \end{iinner_problem}
+
+A polynomial of degree $1$ (i.e. a line) can pass through two points.
 
 \begin{iinner_problem}
 \item Three points?
 \end{iinner_problem}
 
+A polynomial of degree $2$ (i.e. a quadratic) can pass through three points.
+
 \begin{iinner_problem}
 \item $n$ points?
 \end{iinner_problem}
 
+A polynomial of degree $n-1$ can pass through $n$ points. The easiest way to see this is to suppose we have points $(x_1,y_1), \cdots, (x_n,y_n)$ and a general degree $n-1$ polynomial
+
+$$P(x)=a_{n-1}x^{n-1}+a_{n-2}x^{n-2}+\cdots+a_1x+a_0.$$
+
+Then the polynomial passing through the points $(x_i,y_i)$ is equivalent to the system of equations
+
+$$\left\{\begin{aligned}
+a_{n-1}x_1^{n-1}+a_{n-2}x_1^{n-2}+\cdots+a_1x_1+a_0 &= y_1 \\
+a_{n-1}x_2^{n-1}+a_{n-2}x_2^{n-2}+\cdots+a_1x_2+a_0 &= y_2 \\
+\vdots &\phantom{=} \vdots \\
+a_{n-1}x_n^{n-1}+a_{n-2}x_n^{n-2}+\cdots+a_1x_n+a_0 &= y_n \\
+\end{aligned}\right..$$
+
+We can express this as the matrix equation
+
+$$\begin{bmatrix}
+x_1^{n-1} & x_1^{n-2} & \cdots & x_1 & 1 \\
+x_2^{n-1} & x_2^{n-2} & \cdots & x_2 & 1 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+x_n^{n-1} & x_n^{n-2} & \cdots & x_n & 1 \\
+\end{bmatrix}\begin{bmatrix}
+a_{n-1} \\ a_{n-2} \\ \vdots \\ a_0 \\
+\end{bmatrix} = \begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n \\
+\end{bmatrix}.$$
+
+Note that the matrices here are $n\times n$ and $n\times 1$. We can solve this as usual by left-multiplying by the inverse of the big square matrix, which provides a solution for $(a_{n-1}, a_{n-2}, \cdots, a_0)$, and thus a polynomial satisfying the requirements.
+
+For the interested: we actually have to prove that the big square matrix $M$ is invertible. Thus, we need to show that $\det M \neq 0$. This is the kind of thing that more advanced linear algebra is useful for, but it turns out that the determinant of $M$ is
+
+$$\det M = \prod _ {i=1} ^ {n-1} \prod_{j=i+1} ^ {n} (x_j - x_i).$$
+
+This may look terrifying, but this means we take the product of $(x_j - x_i)$ for indices $1\leq i < j\leq n$. That is, we take the product of that expression for all $(i,j)$ pairs where $j$ is strictly greater than $i$. The proof of this is beyond the scope of this book.
+
+Recalling the zero product property, that expression for $\det M$ is $0$ if and only if one of the products is $0$. Thus, it's $0$ if and only if $x_j = x_i$ for some $i<j$. This makes sense! If there are two (or more) points with the same $x$ coordinate, then the determinant is $0$, and the matrix is not invertible. If all $x$ coordinates are unique, however, then the determinant is nonzero, and the inverse and solution exist.
+
+$M$ is a special type of matrix known as a \textit{Vandermonde matrix}
+
 \begin{outer_problem}
 \item Find a polynomial of least degree that passes through $(0,3)$, $(1,5)$, $(2,-3)$, $(3,4)$, and $(4,7)$.
 \end{outer_problem}
+
+We apply our findings from the previous problem, setting $n=5$, $(x_1,x_2,x_3,x_4,x_5)=(0,1,2,3,4)$ and $(y_1,y_2,y_3,y_4,y_5)=(3,5,-3,4,7)$. The matrix equation is
+
+$$\begin{bmatrix}
+0^4 & 0^3 & 0^2 & 0 & 1 \\
+1^4 & 1^3 & 1^2 & 1 & 1 \\
+2^4 & 2^3 & 2^2 & 2 & 1 \\
+3^4 & 3^3 & 3^2 & 3 & 1 \\
+4^4 & 4^3 & 4^2 & 4 & 1 \\
+\end{bmatrix} \begin{bmatrix}
+a_4 \\ a_3 \\ a_2 \\ a_1 \\ a_0
+\end{bmatrix} = \begin{bmatrix}
+3 \\ 5 \\ -3 \\ 4 \\ 7
+\end{bmatrix}$$
+$$\Longrightarrow \begin{bmatrix}
+a_4 \\ a_3 \\ a_2 \\ a_1 \\ a_0
+\end{bmatrix} = \begin{bmatrix}
+0 & 0 & 0 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+16 & 8 & 4 & 2 & 1 \\
+81 & 27 & 9 & 3 & 1 \\
+256 & 64 & 16 & 4 & 1 \\
+\end{bmatrix}^{-1} \begin{bmatrix}
+3 \\ 5 \\ -3 \\ 4 \\ 7
+\end{bmatrix} \mathop{=}^{\text{WolframAlpha}} =
+\frac{1}{6} \begin{bmatrix}
+-11 \\ 91 \\ -226 \\ 158 \\ 18
+\end{bmatrix}.$$
+
+Terrifeunt! Thus, the polynomial is
+
+\begin{align*}
+y &= -\frac{11}{6}x^4 + \frac{91}{6}x^3 - \frac{226}{6}x^2 + \frac{158}{6}x + \frac{18}{6} \\
+y &= -\frac{11}{6}x^4 + \frac{91}{6}x^3 - \frac{113}{3}x^2 + \frac{79}{3}x + 3.
+\end{align*}
 
 \end{document}
