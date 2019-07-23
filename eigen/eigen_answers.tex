@@ -12,9 +12,50 @@
 \item On graph paper, draw what the matrix $\twomat{0}{1}{6}{1}$ does to the vectors $\twovec{1}{0}$ and $\twovec{0}{1}$.
 \end{inner_problem}
 
+$\twovec{1}{0}$ goes to $\twovec{0}{6}$ (dashed lines) and $\twovec{0}{1}$ goes to $\twovec{1}{1}$ (solid lines):
+
+\begin{center}
+\begin{asy}[width=0.25\textwidth]
+import graph;
+
+draw((0,0)--(1,0),dashed,Arrow);
+draw((0,0)--(0,6),dashed,Arrow);
+
+draw((0,0)--(0,1),Arrow);
+draw((0,0)--(1,1),Arrow);
+
+xaxis("$x$", p=gray(0.7), ticks=Ticks, xmin=-2, xmax = 2);
+yaxis("$y$", p=gray(0.7), ticks=Ticks, axis=XEquals(-2));
+
+\end{asy}
+\captionof{figure}{The mapping of the matrix.}
+\end{center}
+
 \begin{inner_problem}
 \item In your picture, draw a rough line through the origin where you think a family of eigenvectors may be.
 \end{inner_problem}
+
+This is the line where vectors should change direction. Thus, it should be roughly where the diagram is ``flipped,'' though this definitely is not a pure reflection.
+
+\begin{center}
+\begin{asy}[width=0.25\textwidth]
+import graph;
+
+draw((0,0)--(1,0),dashed,Arrow);
+draw((0,0)--(0,6),dashed,Arrow);
+
+draw((0,0)--(0,1),Arrow);
+draw((0,0)--(1,1),Arrow);
+
+xaxis("$x$", p=gray(0.7), ticks=Ticks, xmin=-2, xmax = 2);
+yaxis("$y$", p=gray(0.7), ticks=Ticks, axis=XEquals(-2));
+
+draw((-0.5,-1.5)--(2,6), dotted);
+label("$l$", (2,6), NE);
+
+\end{asy}
+\captionof{figure}{The mapping of the matrix, with the suspected eigenvectors indicated by $l$.}
+\end{center}
 
 \begin{inner_problem}
 \item Try some lattice points, say $\stwovec{1}{1}$, $\stwovec{1}{2}$, $\stwovec{1}{3}$, $\stwovec{1}{4}$, $\stwovec{1}{5}$. What does the matrix transform each vector into?
