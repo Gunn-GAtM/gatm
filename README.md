@@ -7,8 +7,8 @@ GAtM Rough Draft: 100%
 GAtM Final: 4%
 ![](http://progressed.io/bar/4?title=progress)
 
-GAtM Answer Key Rough Draft: 86%
-![](http://progressed.io/bar/86?title=progress)
+GAtM Answer Key Rough Draft: 82%
+![](http://progressed.io/bar/82?title=progress)
 
 GAtM Answer Key Final: 0%
 ![](http://progressed.io/bar/0?title=progress)
