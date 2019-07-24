@@ -114,10 +114,10 @@ An issue still remains: I just \textit{gave} you the eigenvectors. How does one 
 \twovec{0}{0} &= \twomat{-\lambda}{1}{6}{1-\lambda}\twovec{x}{y} \\
 &= \twomat{-3}{1}{6}{-2}\twovec{x}{y} \\
 \Longrightarrow \twovec{0}{0} &= \twovec{-3x+y}{6x-2y} \\
-\Longrightarrow y&=3x \rightarrow \twovec{x}{y}=s\twovec{1}{3}
+\Longrightarrow y&=3x \rightarrow \twovec{x}{y}=s\twovec{1}{3}\quad \text{(for some }s\text{)}
 \end{align*}
 Solve for the other eigenvector using the other eigenvalue from part (b).
-\item Check your work by multiplying the matrix by the eigenvector!
+\item Check your work by multiplying the original matrix by the eigenvector!
 \end{enumerate}
 \item Solve for the eigenvectors and eigenvalues of the following matrices:
 \begin{multicols}{3}
@@ -127,7 +127,7 @@ Solve for the other eigenvector using the other eigenvalue from part (b).
 \item $\twomat{1}{-1}{4}{6}$
 \end{enumerate}
 \end{multicols}
-\item Fill in the blanks: The image of an eigenvector will stay the same \underline{\phantom{00000}} through the \underline{\phantom{00000}} when acted on by any power of the transformation \underline{\phantom{00000}} for which it is an eigenvector. Therefore, the image of the eigenvector is simply the \underline{\phantom{00000}} of the \underline{\phantom{00000}} itself by its corresponding \underline{\phantom{00000}}.
+\item The image of an eigenvector will have the same \underline{direction} when acted on by the transformation \underline{matrix} for which it is an eigenvector. The image of the eigenvector is simply the eigenvector itself multiplied by its corresponding \underline{eigenvalue}.
 \item \begin{enumerate}
 \item If the transformation matrix were a reflection over a line $y=x\tan\theta$, in what directions would the two eigenvectors point? Think geometrically.
 \item What would the angle between them be?
@@ -155,7 +155,13 @@ Solve for the other eigenvector using the other eigenvalue from part (b).
 \item What is different this time?
 \item Can you represent every vector as sums of eigenvectors?
 \end{enumerate}
-\item The matrices $\left[\begin{smallmatrix} 2 & 0 \\ 0 & 5 \end{smallmatrix}\right]$ and $\left[\begin{smallmatrix} 3 & 0 \\ 0 & 3 \end{smallmatrix}\right]$ result in some stretches. Find the eigenvectors and eigenvalues for both.
+\item The matrices below result in some stretches. Find the eigenvectors and eigenvalues for both.
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\left[\begin{smallmatrix} 2 & 0 \\ 0 & 5 \end{smallmatrix}\right]$
+\item $\left[\begin{smallmatrix} 3 & 0 \\ 0 & 3 \end{smallmatrix}\right]$
+\end{enumerate}
+\end{multicols}
 \item Note that most $2\times 2$ matrices have two eigenvectors. How many would you expect to find for an $n\times n$ matrix?
 \item Assuming that $p,q,r,s,t,u,x,y$ are real, what conditions would you impose on them in the matrices (i)~$\twomat{3}{p}{q}{4}$, (ii)~$\twomat{x}{-2}{3}{y}$, and (iii)~$\twomat{r}{s}{t}{u}$ to have...
 \begin{enumerate}
@@ -188,22 +194,21 @@ Try computing the following products.
 \end{enumerate}
 \end{multicols}
 \item \begin{enumerate}
-\item Without matrices, consider a cube with side length $2$ at the origin so its faces are perpendicular to the coordinate axes. Rotate it, first $90^\circ$ about the $y$ axis, then $90^\circ$ about the $x$ axis. The net result should leave two vertices fixed. Which two?
-\item Write a vector for the axis of rotation. How many degrees do you think the net rotation of the cube is? Be careful; the answer is not $180^\circ$.
+\item Without matrices, consider a cube with side length $2$ at the origin so its faces are perpendicular to the coordinate axes. Rotate it, first $90^\circ$ counterclockwise about the $y$ axis, then $90^\circ$ counterclockwise about the $x$ axis. Note that rotations are done facing from the ``positive side'' of the coordinate axis. The net result should leave two vertices fixed. Which two?
+\item Write a vector for the axis of rotation.
+\item How many degrees do you think the net rotation of the cube is? Be careful; the answer is not $180^\circ$.
 \item Let's check our answers using matrices. Write a matrix product that corresponds to a rotation of $90^\circ$ about the $y$ axis, followed by $90^\circ$ about the $x$ axis.
 \item Multiply out the matrix product.
 \item Remember that the real eigenvector in a rotation gives the axis of rotation, and the complex eigenvalues give information about the net rotation. Evaluate these and check your answers for (a) and (b).
 \end{enumerate}
-\item Here are three rotation matrices:
-$$\threemat{\frac{2}{3}}{-\frac{2}{3}}{-\frac{1}{3}}{\frac{1}{3}}{\frac{2}{3}}{-\frac{2}{3}}{\frac{2}{3}}{\frac{1}{3}}{\frac{2}{3}}
-\threemat{\frac{7}{9}}{\frac{4}{9}}{\frac{4}{9}}{-\frac{4}{9}}{-\frac{1}{9}}{\frac{8}{9}}{\frac{4}{9}}{-\frac{8}{9}}{\frac{1}{9}}
-\threemat{\cos\gamma}{-\sin\gamma}{0}{\cos\alpha\sin\gamma}{\cos\alpha\sin\gamma}{-\sin\alpha}{\sin\alpha\sin\gamma}{\sin\alpha\cos\gamma}{\cos\alpha}$$
+\item Here are two rotation matrices:
+
+i. $\threemat{\frac{2}{3}}{-\frac{2}{3}}{-\frac{1}{3}}{\frac{1}{3}}{\frac{2}{3}}{-\frac{2}{3}}{\frac{2}{3}}{\frac{1}{3}}{\frac{2}{3}}$, ii. $\threemat{\frac{7}{9}}{\frac{4}{9}}{\frac{4}{9}}{-\frac{4}{9}}{-\frac{1}{9}}{\frac{8}{9}}{\frac{4}{9}}{-\frac{8}{9}}{\frac{1}{9}}$.
 \begin{enumerate}
 \item What is the determinant of each matrix? (Don't work, think!)
 \item What is true of each row and each column?
 \item Find the axis of rotation associated with each matrix.
 \item Find the angle of rotation associated with each matrix.
-\item Decompose the last matrix into two rotations about coordinate axes.
 \end{enumerate}
 \end{enumerate}
 
