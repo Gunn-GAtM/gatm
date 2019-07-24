@@ -505,7 +505,7 @@ $$\twomat{.6}{-.8}{.8}{.6}\twomat{1}{2}{0}{1}=\twomat{0.6}{0.4}{0.8}{2.2}.$$
 This is a shear along the $x$-axis by a factor of $2$, followed by a rotation of $\tan^{-1} \frac{4}{3} \approx 53.13^\circ$. The order does change the outcome as compared with the previous problem.
 
 \begin{center}
-\begin{asy}[width=0.3\textwidth]
+\begin{asy}[width=0.17\textwidth]
 graphMatrix(0.6,0.4,0.8,2.2);
 \end{asy}
 \end{center}
@@ -534,7 +534,27 @@ This is a stretch along the $x$-axis by a factor of $4$, followed by a rotation 
 
 \begin{center}
 \begin{asy}[width=0.3\textwidth]
-graphMatrix(2 * sqrt(3), 1/2, -2, sqrt(3)/2);
+import graph;
+
+real a = 2 * sqrt(3);
+real b = 1/2;
+real c = -2;
+real d = sqrt(3)/2;
+
+dot((1,0));
+dot((0,1));
+
+label("$A$", (1,0), N);
+label("$B$", (0,1), E);
+
+label("$A'$", (a,c), unit((a-b,c-d)));
+label("$B'$", (b,d), E);
+
+dot((a,c));
+dot((b,d));
+
+xaxis("$x$");
+yaxis("$y$");
 \end{asy}
 \end{center}
 
@@ -640,7 +660,7 @@ $$\twomat{1}{\frac{1}{2}}{0}{1}\twomat{\cos 135^\circ}{-\sin 135^\circ}{\sin 135
 Note that a shear \textit{perpendicular} to the $y$-axis is \textit{parallel} with the $x$-axis. The graph is below.
 
 \begin{center}
-\begin{asy}[width=0.3\textwidth]
+\begin{asy}[width=0.5\textwidth]
 graphMatrix(-sqrt(2)/4,-3*sqrt(2)/2,sqrt(2)/2,-sqrt(2)/2);
 \end{asy}
 \end{center}
@@ -684,7 +704,7 @@ The matrix multiplication is as follows:
 $$\twomat{1}{0}{0}{3}\twomat{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}{\frac{\sqrt{3}}{2}}{\frac{1}{2}} = \twomat{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}{\frac{3\sqrt{3}}{2}}{\frac{3}{2}}.$$
 
 \begin{center}
-\begin{asy}[width=0.3\textwidth]
+\begin{asy}[width=0.17\textwidth]
 graphMatrix(1/2,-sqrt(3)/2,3*sqrt(3)/2,3/2);
 \end{asy}
 \end{center}
@@ -704,8 +724,27 @@ $$\Longrightarrow c = \frac{1}{6}.$$
 Thus, the transformation matrix is $\twomat{\frac{1}{6}}{\frac{1}{6}}{\frac{5}{6}}{\frac{5}{6}}$.
 
 \begin{center}
-\begin{asy}[width=0.3\textwidth]
-graphMatrix(1/6,1/6,5/6,5/6);
+\begin{asy}[width=0.27\textwidth]
+import graph;
+
+real a = 1/6;
+real b = 1/6;
+real c = 5/6;
+real d = 5/6;
+
+dot((1,0));
+dot((0,1));
+
+label("$A$", (1,0), N);
+label("$B$", (0,1), E);
+
+label("$A'=B'$", (a,c), SE);
+
+dot((a,c));
+dot((b,d));
+
+xaxis("$x$");
+yaxis("$y$");
 \end{asy}
 \end{center}
 
@@ -1434,18 +1473,20 @@ for some matrices $A,B$. If we want to take the $x$-axis to the line $y=2x$, whi
 $$A=\twomat{1}{0}{2}{1}.$$
 
 \begin{center}
-	\begin{asy}[width=0.3\textwidth]
+	\begin{asy}[width=0.26\textwidth]
 		import graph;
 
-		draw((-1,-2)--(2,4),linewidth(2),Arrows);
-		draw((-1,0)--(2,0),linewidth(2),Arrows);
+		draw((-1,-2)--(2,4),Arrows);
+		draw((-1,0)--(2,0),Arrows);
 
 		draw((1.2,0.3)--(1.2,2.1),Arrow);
 		label("$A$",(1.2,1.2),E);
 
-		xaxis("$x$");
-		yaxis("$y$");
+		xaxis("$x$",p=gray(0.7));
+		yaxis("$y$",p=gray(0.7));
 	\end{asy}
+	\captionof{figure}{The shearing action of $A$ on the $x$-axis.}
+	\label{fig:shearing_A}
 \end{center}
 
 To find $B$, we solve the matrix equation. We have $$\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{0}B=\twomat{2}{3}{4}{6}$$
