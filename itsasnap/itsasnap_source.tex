@@ -59,8 +59,9 @@
 
 \begin{figure}[h]
 	% Figure: side-by-side juxtaposition of all six elements of the three-post snap group, labeled with letters I through E
+	\centering
 	\begin{center}
-		\begin{asy}
+		\begin{asy}[width=\textwidth]
 			size(250);
 
 			for (int i = 0; i < 6; ++i) { // for every element...
@@ -73,13 +74,10 @@
 		\caption{The six possibilities for connections between two rows of three posts.}
 		\label{fig:all_3_cols}
 	\end{center}
-\end{figure}
-
-\begin{figure}[h]
-	\begin{minipage}{.5\textwidth}
+	\begin{minipage}{.45\textwidth}\centering
 		% Figure: Two, chained snap group elements Y,X (they happen to be C and B) with Y on top of X. Y and X are labeled with arrows, there is a brace showing that the figure is 3 columns wide, and three white-filled dots indicate the middle row which is removed in the snap operation
 		\begin{center}
-			\begin{asy}
+			\begin{asy}[width=\textwidth]
 				size(0, 60);
 
 				int[] elements = {2,5}; // C, then B
@@ -101,11 +99,11 @@
 			\caption{A grid with three strings.}
 			\label{fig:n_rows_3_cols_ex}
 		\end{center}
-	\end{minipage}%
-	\begin{minipage}{.5\textwidth}
+	\end{minipage}\hfill
+	\begin{minipage}{.45\textwidth}\centering
 		% Figure: Two chained snap group elements B,A are labeled with arrows, and are snapped to become E on the right. The arrow is thick and labeled "snap"
 		\begin{center}
-			\begin{asy}
+			\begin{asy}[width=\textwidth]
 				size(0, 60);
 
 				int[] starting_elements = {5, 1};
@@ -167,12 +165,11 @@ The group is, unsurprisingly, the main concept studied in \textbf{group theory},
 Let's study the snap group and characterize its properties.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
-\newcolumntype{C}{>{\centering\arraybackslash}p{1em}}
-\definecolor{light-gray}{gray}{0.95}
 \begin{figure}
+	\centering
 	% Figure: partially-filled table for the 3-post snap group
 	\begin{center}
-		\begin{tabular}{C|C C C C C C}
+		\begin{tabular}{c|cccccc}
 			\hline
 			$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
 			\rowcolor{light-gray}
@@ -185,9 +182,9 @@ Let's study the snap group and characterize its properties.
 			$D$    &   &   &   &   &   &   \\ 
 			$E$    &   &   &   &   &   &   \\ \hline
 		\end{tabular}
+		\caption{Unfilled $3$-post snap group table.}
+		\label{fig:sbstable}
 	\end{center}
-	\caption{Unfilled $3$-post snap group table.}
-	\label{fig:sbstable}
 \end{figure}
 
 \begin{enumerate}
@@ -240,10 +237,10 @@ Let's study the snap group and characterize its properties.
 \end{enumerate}
 
 \begin{figure}
-	\begin{minipage}{.5\textwidth}
+	\begin{minipage}{.45\textwidth}\centering
 		% Figure: E snap E snap E = I, so E has a period of 3. Shows three consecutive E elements, then a "snap" arrow and the I element.
 		\begin{center}
-			\begin{asy}
+			\begin{asy}[width=\textwidth]
 				size(0, 60);
 
 				int[] eggs = {3, 3, 3}; // 3 E elements
@@ -259,11 +256,11 @@ Let's study the snap group and characterize its properties.
 			\caption{$E\snap E\snap E = I$; $E$ has period $3$.}
 			\label{fig:eper3}
 		\end{center}
-	\end{minipage}%
-	\begin{minipage}{.4\textwidth}
+	\end{minipage}\hfill
+	\begin{minipage}{.45\textwidth}\centering
 		% Figure: Draw 8 elements from the 4-post snap group set, and arrange them in a 4 (wide) by 2 (high) rectangle
 		\begin{center}
-			\begin{asy}
+			\begin{asy}[width=\textwidth]
 				size(0, 60);
 
 				for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
