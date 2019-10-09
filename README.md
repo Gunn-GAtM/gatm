@@ -13,7 +13,7 @@ GAtM Answer Key Rough Draft: 100%
 GAtM Answer Key Final: 0%
 ![](http://progressed.io/bar/0?title=progress)
 
-**Contributors**: Timothy Herchen and Brandon Chung
+**Contributors**: Timothy Herchen
 
 **Directions**: Run the build.sh script with bash to output the pdf file into the "build" folder.
 
