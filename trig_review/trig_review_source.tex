@@ -5,9 +5,10 @@
 \section{Trigonometry Review}
 
 \begin{figure}[h]
-	\begin{minipage}{0.45\textwidth}\centering
-		\begin{center}
-			\begin{asy}[width=\textwidth]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
 				draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
 				
 				draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
@@ -30,13 +31,10 @@
 				draw(rotate(180,(7/2,7/2))*iram);
 				draw(rotate(270,(7/2,7/2))*iram);
 			\end{asy}
-			\caption{Scenario in Problem 1.}
-			\label{fig:square_inscribed}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}{0.45\textwidth}\centering
-		\begin{center}
-			\begin{asy}[width=\textwidth]
+		\end{minipage}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
 				pair A = (0,3);
 				pair B = (4,0);
 				pair C = (0,0);
@@ -69,46 +67,63 @@
 				label("$F$", F, NE);
 				
 			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 1.}
+			\label{fig:square_inscribed}
+		\end{minipage}
+		\begin{minipage}[t]{0.45\textwidth}
 			\caption{Scenario in Problem 2.}
 			\label{fig:pythag_sim_tri}
-		\end{center}
-	\end{minipage}
-	\centering
+		\end{minipage}
+	\end{center}
+
 	\begin{center}
-		\begin{asy}[width=\textwidth]
-			import graph;
-			
-			real A = 195 * pi / 180;
-			real B = 125 * pi / 180;
-			
-			draw((-1.4,0)--(1.4,0),Arrow);
-			draw((0,-1.4)--(0,1.4),Arrow);
-			
-			draw(Circle((0,0),1,50));
-			
-			pair Ap = (cos(A), sin(A));
-			pair Bp = (cos(B), sin(B));
-			
-			real AB = A-B;
-			pair ABp = (cos(AB), sin(AB));
-			
-			dot(Ap);
-			dot(Bp);
-			dot(ABp);
-			
-			draw(ABp--(1,0));
-			draw(Ap--Bp);
-			label("$(\cos B, \sin B)$", Bp, NW);
-			label("$(\cos A, \sin A)$", Ap, SW);
-			label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
-			label("$0$", (1,0),SE);
-			
-			label("$D_1$", ABp--(1,0), .2*SW);
-			label("$D_2$", Ap--Bp, .2*SE);
-			
-		\end{asy}
-		\caption{Scenario in Problem 3.}
-		\label{fig:unit_circle}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				import graph;
+				
+				real A = 195 * pi / 180;
+				real B = 125 * pi / 180;
+				
+				draw((-1.4,0)--(1.4,0),Arrow);
+				draw((0,-1.4)--(0,1.4),Arrow);
+				
+				draw(Circle((0,0),1,50));
+				
+				pair Ap = (cos(A), sin(A));
+				pair Bp = (cos(B), sin(B));
+				
+				real AB = A-B;
+				pair ABp = (cos(AB), sin(AB));
+				
+				dot(Ap);
+				dot(Bp);
+				dot(ABp);
+				
+				draw(ABp--(1,0));
+				draw(Ap--Bp);
+				label("$(\cos B, \sin B)$", Bp, NW);
+				label("$(\cos A, \sin A)$", Ap, SW);
+				label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
+				label("$0$", (1,0),SE);
+				
+				label("$D_1$", ABp--(1,0), .2*SW);
+				label("$D_2$", Ap--Bp, .2*SE);
+				
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Scenario in Problem 3.}
+			\label{fig:unit_circle}
+		\end{minipage}\hfill
 	\end{center}
 \end{figure}
 
