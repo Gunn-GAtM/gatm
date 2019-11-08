@@ -1,13 +1,13 @@
 \documentclass[8pt, twosided, a4paper]{article}
 % 8 point font, A4-sized paper
 
-\usepackage[us,12hr]{datetime}
+\usepackage[us, 12hr]{datetime}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 
-\usepackage[scaled]{helvet}
-\renewcommand\familydefault{\sfdefault}
-\usepackage[T1]{fontenc}
+% \usepackage[scaled]{helvet}
+% \renewcommand\familydefault{\sfdefault}
+% \usepackage[T1]{fontenc}
 
 \usepackage{pdfpages}
 \usepackage{subfiles}
@@ -30,6 +30,9 @@
 \usepackage{caption}
 \usepackage{wrapfig}
 \usepackage{hhline}
+\usepackage[bottom]{footmisc}
+
+% \usepackage[acronym]{glossaries}
 
 \newcommand{\twomat}[4] {\left[\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right]}
 \newcommand{\threemat}[9] {\left[\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right]}
@@ -43,7 +46,7 @@
 \begin{document}
 \pagenumbering{gobble}
 
-% I did this because it was too dense without it
+% too dense without it
 \setlength{\parskip}{1em}
 
 \includepdf[noautoscale=true,pages=-,width=\paperwidth]{./cover/cover_source.pdf} % cover
@@ -53,14 +56,14 @@
 \pagebreak
 \pagenumbering{arabic}
 
-\restoregeometry % Because the credits have a different margin setting
+\restoregeometry % credits have a different margin setting
 
 \setlength{\parskip}{0.5em}
 
 \tableofcontents
 \pagebreak
 
-% Reset to correct value
+% reset to correct value
 \setlength{\parskip}{0em}
 
 \subfile{trig_review/trig_review_source.tex} % trig review
@@ -109,6 +112,9 @@
 \pagebreak
 \setcounter{figure}{0}
 \subfile{comp_func/comp_func_source.tex} % Composition of functions
+\pagebreak
+\setcounter{figure}{0}
+\subfile{glossary/glossary.tex} % Glossary
 \pagebreak
 
 \end{document}
