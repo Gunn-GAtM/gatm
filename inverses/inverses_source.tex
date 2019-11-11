@@ -73,7 +73,7 @@ label("$+7$", motion_arc, NW);
 \vspace{-2cm} % due to the annoying wrap figure adding extra white space at the bottom
 \end{wrapfigure}
 
-Now, consider ``\textbf{clock arithmetic},'' which deals with integers $0$ through $11$ as hours on the clock: $0$ replaces $12$ for mathematical convenience. Numbers ``wrap'' around as the remainder of 12, so $13\to 1$ and $25\to 1$ for instance. We use the congruency sign $\equiv$ to denote clock arithmetic instead of $=$.
+Now, consider ``\textbf{clock arithmetic},'' which deals with integers $0$ through $11$ as hours on the clock: $0$ replaces $12$ for mathematical convenience. Numbers ``wrap'' around as the remainder when they are divided by $12$, so for example $13\to 1$ and $25\to 1$. We use the congruency sign $\equiv$ to denote clock arithmetic, instead of $=$.
 
 As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
 

@@ -44,12 +44,12 @@ for (int i = 0; i < 3; ++i) {
 	pair vertex = vertices[i];
 	string axisname = axisnames[i];
 	pair sum = 0;
-	
+
 	for (int j = 0; j < 3; ++j) {
 		if (j == i) continue;
 		sum += vertices[j];
 	}
-	
+
 	sum /= 2;
 	drawExtLine(vertex, sum, labelaxes ? axisname : "");
 }
@@ -235,7 +235,7 @@ For each of the following groups, find the following:
 \begin{enumerate}[label=(\alph*)]
 \item Number of elements; this is known as the \textbf{order}. More formally known as \textbf{cardinality}.
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
-\item A smallest possible \textbf{generating set}; in other words, the list of elements which generate a group\footnote{Find the generators of the group. There may be multiple generating sets of the same size.}
+\item A smallest possible \textbf{generating set}; in other words, the list of elements which generate a group\footnote{There may be multiple generating sets of the same size.}
 \item Whether the group is \textbf{commutative}; in other words, whether its operation $X\cdot Y$ doesn't care about the order of its operands ($X$ and $Y$)
 \end{enumerate}
 

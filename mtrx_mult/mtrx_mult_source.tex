@@ -114,7 +114,7 @@ draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
 \end{minipage}
 \end{figure}
 
-Let us consider the \textbf{transportation matrix}, also known as an \textbf{adjacency matrix}, in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$. This last fact is reflected in the matrix: $a_{42}=a_{24}=0$.
+Let us consider the \textbf{transportation matrix} in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$. This last fact is reflected in the matrix: $a_{42}=a_{24}=0$.
 % huge thanks to https://tex.stackexchange.com/questions/331691/how-can-i-get-a-matrix-with-row-and-column-labels-that-can-also-be-aligned-with
 %print(' \\\\\n'.join(" & ".join("a_{%s%s}" % (i,j) for j in range(1, 5)) for i in range(1,5)) + " \\\\" )
 
@@ -415,7 +415,7 @@ Sourdough & Flour & Starter & Yeast & Water & Salt & Soda & Sugar & Butter \\ \c
 \begin{block}{l[cccccccc]c}
 Bread     & $5$     & $1$       & $0$     & $\frac{4}{3}$   & $1$    & $1$    & $0$     & $0$     & \multirow{2}{*}{$=S$} \\
 Biscuits  & $5$     & $1$       & $1$     & $\frac{5}{4}$   & $\frac{3}{4}$  & $0$    & $\frac{1}{3}$   & $2$ & \\
-\end{block} 
+\end{block}
 \\ \cline{1-9}
 \end{blockarray}
 \end{center}
@@ -428,7 +428,7 @@ The bakery wants to know how much the ingredients cost for one batch of bread, a
 \\
 \begin{block}{l[cccccccc]c}
 \$ per unit    & $5$     & $20$       & $10$     & $0$   & $1$    & $2$    & $5$     & $12$  & $= C$    \\
-\end{block} 
+\end{block}
 \\ \cline{1-9}
 \end{blockarray}
 \end{center}

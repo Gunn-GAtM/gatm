@@ -74,15 +74,15 @@ We can represent any vector in the plane by adding combinations of the eigenvect
 
 $$\twovec{4}{7} = 5\twovec{2}{1} - 2\twovec{3}{-1}.$$
 
-The right hand side is known as the \textbf{eigenspace} representation. Along with the eigenvalues, this is helpful in matrix multiplication:
+Along with the eigenvalues, this is helpful in matrix multiplication:
 
 \begin{align*}
-\twomat{3}{24}{4}{7}\twovec{4}{7}&=\twomat{3}{24}{4}{7}\left(5\twovec{2}{1}-2\twovec{3}{-1}\right) & \text{Substituting eigenspace representation} \\
+\twomat{3}{24}{4}{7}\twovec{4}{7}&=\twomat{3}{24}{4}{7}\left(5\twovec{2}{1}-2\twovec{3}{-1}\right) & \text{Substituting representation with eigenvectors} \\
 &= 15\cdot 5 \twovec{2}{1} - (-5)\cdot 2 \twovec{3}{-1} & \text{Distributive property} \\
 &= \twovec{180}{65}. \\
 \end{align*}
 
-In generic terms: if a matrix $M$ has linearly independent eigenvectors $v_1$ and $v_2$ with corresponding eigenvalues $\lambda_1\quad$\footnote{This is the Greek letter lambda. It is traditionally used for eigenvalues.} and $\lambda_2$, then for any vector $v$ with an eigenspace representation $v=av_1+bv_2$,
+In generic terms: if a matrix $M$ has linearly independent eigenvectors $v_1$ and $v_2$ with corresponding eigenvalues $\lambda_1\quad$\footnote{This is the Greek letter lambda. It is traditionally used for eigenvalues.} and $\lambda_2$, then for any vector $v$ with an representation with eigenvectors $v=av_1+bv_2$,
 
 $$Mv=\lambda_1av_1 + \lambda_2bv_2.$$
 
