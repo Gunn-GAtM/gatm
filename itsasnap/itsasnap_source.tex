@@ -142,27 +142,23 @@
 % Vocabulary: SNAP, GROUP, ELEMENT, SNAP GROUP, IDENTITY ELEMENT
 
 \noindent We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory.
-You likely studied geometry in 9\textsuperscript{th} grade and complex numbers in 10\textsuperscript{th} grade, so you should have a basis to start this investigation.
-The other three topics may be a bit unfamiliar at this point.
+You have studied geometry and complex numbers before so you should have a basis to start this investigation, but the other three topics may be a bit unfamiliar at this point.
 
-Consider a grid of posts with $3$ rows and $3$ columns.
-An elastic string is anchored to one post in the top row and one post in the bottom row.
-As the string descends from top to bottom, it loops around a post in the middle row.
+Figure~\ref{fig:all_3_cols} shows the six ways the points in two rows, each with three points (later referred to as ``posts"), can be paired up. Convince yourself that these are the only six; they are labeled as $I$, $A$, $B$, $C$, $D$, and $E$.
+Then, consider a grid of posts with $3$ rows and $3$ columns.
+An elastic string is anchored to one post in the top row, looping around a post in the middle row, finally descending to a post in the bottom row.
 Two other strings are anchored and looped in the same way, with the condition that each post has exactly one string touching it.
 An example is depicted in Figure~\ref{fig:n_rows_3_cols_ex}.
 
-Figure~\ref{fig:all_3_cols} shows the six ways two rows can be connected with these rules -- convince yourself that these are the only six.
-I have labeled them as $I$, $A$, $B$, $C$, $D$, and $E$.
-
 Now, look at a $3\times 3$ grid of posts, like the one in Figure~\ref{fig:n_rows_3_cols_ex}.
-You should have two stacked configurations $X$ and $Y$, with $Y$ is on top of $X$.
+You should have two stacked configurations $X$ and $Y$, with $Y$ on top of $X$.
 When you remove the middle posts (the posts indicated by $\circ$), the elastic string will \textbf{snap} to one of the six configurations we drew initially.
 Let's call this operation ``snap'', or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.''
 Keep in mind that when writing it this way, the bottom configuration $X$ goes first, and the top configuration $Y$ goes last.
-As an example, $A\snap B = E$, as shown in Figure~\ref{fig:snap_ex}.
+As an example, $A\snap B = E$, as shown in Figure~\ref{fig:snap_ex}. Simply, think of it as a function composition $f \circ g = f(g(x))$ with $f=A$ and $g=B$, where $g(x)$ is applied first and its output acting as an input to $f(x)$.
 
 These six configurations form a mathematical \textbf{group} under the $\snap$ operation, and we say that each configuration is an \textbf{element} of our group.
-More specifically, we will call this the \textbf{snap group} of size $3$, or $S_3$; there are many other groups to name and we must be precise about which we are talking about.
+More specifically, we will call this group under the $\snap$ operation the \textbf{snap group} of size $6$, or $S_3$; there are countless other mathematical groups, so we must be precise about which we are talking about. Note that the snap group is denoted because $S_3$, not $S_6$, because 3 denotes the number of posts in each row, not size of the group.
 The group is, unsurprisingly, the main concept studied in \textbf{group theory}, a topic mentioned at the beginning of this chapter.
 Let's study the snap group and characterize its properties.
 
@@ -187,7 +183,7 @@ Let's study the snap group and characterize its properties.
 \end{figure}
 
 \begin{enumerate}
-	\item Fill out a $6\times 6$ table like the one in Figure~\ref{fig:sbstable}, showing the results of each of the $36$ possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column.
+	\item Fill out a $6\times 6$ table like the one in Figure 4, showing the results of each of the $36$ possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column. % replaced ~\ref{fig:sbstable} temporarily with 4 because it points to Figure 5 not 4
 	      $A\snap B=E$ is done for you.
 	\item Would this table look different if you wrote the elements $A$ through $E$ in a different order? \label{prob:group_definition_start}
 	\item Which of the elements is the \textbf{identity element} $K$, such that $X\snap K = K\snap X = X$ for all $X$?
@@ -201,13 +197,13 @@ Let's study the snap group and characterize its properties.
 		      \item For (a), is $Z$ always unique?
 	      \end{enumerate}
 	\item If you constructed a $5\times 5$ table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table not in those $5$.
-	      Therefore, a group must be \textbf{closed} under its operation; if $X,Y\in G$ ($\in$ means ``is/are in''), then $X\snap Y\in G$ for all $X,Y$.
+	      Therefore, a group must be \textbf{closed} under its operation; if $X,Y\in G$ ($\in$ means ``is in / elements of''), then $X\snap Y\in G$ for all $X,Y$.
 	      Some subsets, however, do happen to be closed.
 
 	      Write valid group tables using exactly $1$, $2$, and $3$ elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
 	\item What do you guess is the complete definition of a mathematical group?
 	      (Hint: consider your answers to Problems \ref{prob:group_definition_start}--\ref{prob:group_definition_end}.)
-	\item Notice that $E\snap E\snap E=I$. (See Figure~\ref{fig:eper3}.)
+	\item Notice that $E\snap E\snap E=I$ (See Figure~\ref{fig:eper3}).
 	      This means that $E$ has a \textbf{period} of $3$ when acting upon itself.
 	      Which elements have a period of
 	      \begin{multicols}{3}
@@ -229,7 +225,7 @@ Let's study the snap group and characterize its properties.
 		      \item How many elements would there be in the $5$-post snap group? \label{prob:five_post_snap_list_start}
 		      \item How many entries would its table have?
 		      \item What possible periods would its elements have? \label{prob:five_post_snap_list_end}
-		      \item Extend your answers for \ref{prob:five_post_snap_list_start}--\ref{prob:five_post_snap_list_end} to $M$ posts per row.
+		      \item Extend your answers for \ref{prob:five_post_snap_list_start} -- \ref{prob:five_post_snap_list_end} to $M$ posts per row.
 	      \end{enumerate}
 	\item As we learned, a \textbf{permutation} of some things is an order in which they can be arranged.
 	      What is the relationship between the set of permutations of $m$ things and the $m$-post snap group?

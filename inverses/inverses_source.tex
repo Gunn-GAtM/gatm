@@ -10,7 +10,7 @@ Now that we've talked about matrix multiplication quite a bit, it's time to star
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
-\item With real numbers, one of the important purposes of division is that it lets you solve equations like $ax=b$ for $x$. Solve this by division (difficult!).
+\item With real numbers, one of the important purposes of division is that it lets you solve equations like $ax=b$ for $x$. Solve this by division.
 \item If division didn't exist, you could still solve this equation by multiplication. The number you'd multiply by is called the ``\textbf{multiplicative inverse}'' of $a$. What is the property that defines this special number?
 \item The multiplicative inverse of $a$ is often written $a^{-1}$. Why does this notation make sense?
 \end{enumerate}
@@ -73,7 +73,7 @@ label("$+7$", motion_arc, NW);
 \vspace{-2cm} % due to the annoying wrap figure adding extra white space at the bottom
 \end{wrapfigure}
 
-Now, let's consider ``\textbf{clock arithmetic},'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.
+Now, consider ``\textbf{clock arithmetic},'' which deals with integers $0$ through $11$ as hours on the clock: $0$ replaces $12$ for mathematical convenience. Numbers ``wrap'' around as the remainder of 12, so $13\to 1$ and $25\to 1$ for instance. We use the congruency sign $\equiv$ to denote clock arithmetic instead of $=$.
 
 As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
 
@@ -138,7 +138,6 @@ What would the left side reduce to?
 Note that evaluating the right side would only entail simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's computer problems!
 
 Our problem simplifies as follows: how do we find the inverse of a $2\times 2$ matrix? We've actually already done this. On page~\pageref{prob:list_of_matrices}, you read the following string of matrices:
-
 $$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 
 The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitute $\twomat{a}{b}{c}{d}^{-1}$.

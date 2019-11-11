@@ -160,11 +160,11 @@ for (int i = 0; i < 6; ++i) {
 % Brandon to Timothy: stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes.
 % VOCAB: DIHEDRAL GROUP, ISOMETRY, ISOMORPHIC (probs gonna change?), GENERATOR
 
-\noindent You can use a paper/cardboard triangle to help visualize the next concept: cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to move this triangle. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
+\noindent You can use a paper or cardboard triangle to help visualize the next concept: cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
 Notice that each position corresponds to a different operation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by multiplying them, which is simply sequencing them. Unlike most cases, however, we evaluate them right-to-left (RTL) rather than left-to-right (LTR). For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
-These six positions, along with the operation of multiplication, form another group: the \textbf{dihedral group} of order $3$, or $D_3$. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; these are the two faces of our paper triangle. Dihedral groups exist for any geometric shape. Let's study the properties of this group.
+These six positions, along with the operation of multiplication, form another group: the \textbf{dihedral group} of order $6$, or $D_3$. Again, like a snap group, it is denoted $D_3$ because it is a dihedral group of a triangle, not the group size. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; these are the two faces of our paper triangle. Dihedral groups exist for any geometric shape; mathematically speaking, dihedral groups are the groups of symmetries of a $n$-sided polygon. Let's study the properties of this group.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
 \newcolumntype{C}{>{\centering\arraybackslash}p{1em}}
@@ -206,11 +206,11 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 \item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
 \item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
 \end{enumerate}
-\item What shape's dihedral group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
+\item Which shape's dihedral group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
 \item Find a combination of $A$ and $D$ that yields $C$.
 \item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
 \item What other pairs of elements could you have used to generate the table?
-\item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
+\item Notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \item Explain why each element of the flip group $D_3$ has the period it has.
 \item Some pairs of elements of the flip group are two-element subgroups. Which pairs are they?
 \item One of the elements forms a one-element subgroup. Which is it?
