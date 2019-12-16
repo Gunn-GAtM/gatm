@@ -93,7 +93,7 @@ c^2 &= a^2+b^2. & \text{Q.E.D.}
 
 Let $h=CF$, the length of the altitude to the hypotenuse. $\triangle ACF\sim \triangle ABC$ by AA Similarity because they share an angle and both have a right angle. Therefore, $\frac{AF}{AC}=\frac{AC}{AB}$. Substituting named variables for these lengths, we get $$\frac{AF}{b}=\frac{b}{c}\Longrightarrow AF = \frac{b^2}{c}.$$ Applying the same logic to $\triangle CFB$,
  we get $\triangle CFB\sim \triangle ABC$, so $\frac{BF}{BC}=\frac{BC}{AB}.$ Substituting, we get $$\frac{BF}{a}=\frac{a}{c} \Longrightarrow BF=\frac{a^2}{c}.$$ Since $F$ is between $A$ and $B$, we have $AB=AF+FB$; substituting our found values for $AF$ and $FB$, we get
- 
+
 \begin{align*}
 c=AB &= AF+FB \\
 c &= \frac{b^2}{c}+\frac{a^2}{c} \\
@@ -287,7 +287,7 @@ You should probably memorize these for convenience.
 \begin{inner_problem}[start=1]
 \item Recall that you can write a complex number both in Cartesian and polar forms. Let
 
-$$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
+$$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta=r\cis\theta.$$
 
 What is $r$ in terms of $a$ and $b$?
 \end{inner_problem}
@@ -320,7 +320,7 @@ dot(Z);
 \end{figure}
 
 \begin{inner_problem}
-\item Multiply $(a+bi)(c+di)$ out using FOIL.
+\item Expand $(a+bi)(c+di)$ the usual way.
 \end{inner_problem}
 
 \begin{align*}
@@ -330,13 +330,7 @@ dot(Z);
 \end{align*}
 
 \begin{inner_problem}
-\item Convert the two multiplicands\footnote{This is the word for parts of a multiplication! So for example, if $a\cdot b=c$, then $a$ and $b$ are the multiplicands.} to polar form, noting that the two lengths and angles are different numbers. Call them $r_1(\cos\theta + i\sin\theta)$ and $r_2(\cos\phi + i\sin\phi)$.
-\end{inner_problem}
-
-We have $r_1=\sqrt{a^2+b^2}$ and $\theta=\tan^{-1}\left(\frac{b}{a}\right)\quad$\footnote{You can get this from drawing a right triangle.}; similarly, $r_2=\sqrt{c^2+d^2}$ and $\phi=\tan^{-1}\left(\frac{d}{c}\right)$.
-
-\begin{inner_problem}
-\item Multiply them, and use your results from Problems 3c and 3d to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
+\item Let $a+bi=r_1(\cos\theta + i\sin\theta)$ and $c+di=r_2(\cos\phi + i\sin\phi)$. Multiply them, and use your results from Problems 3c and 3d to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
 \end{inner_problem}
 
 \begin{align*}
@@ -371,7 +365,7 @@ We have $\sqrt{3}+i=r(\cos\theta + i\sin\theta) = 2\left(\cos\frac{\pi}{6} + i\s
 We have $$|z|=\sqrt{\cos^2\theta + \sin^2\theta}=\sqrt{1}=1.$$
 
 \begin{inner_problem}
-\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ counterclockwise by the angle $\theta$ around the origin. What if we wanted to rotate clockwise by $\theta$ instead?
+\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ around the origin by the angle $\theta$. What if we wanted to rotate clockwise by $\theta$ instead?
 \end{inner_problem}
 
 We can multiply by the conjugate of $z$, since

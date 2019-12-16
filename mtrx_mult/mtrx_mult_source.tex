@@ -114,7 +114,7 @@ draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
 \end{minipage}
 \end{figure}
 
-Let us consider the \textbf{transportation matrix} in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$. This last fact is reflected in the matrix: $a_{42}=a_{24}=0$.
+Let us consider the \textbf{transportation matrix} in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$.
 % huge thanks to https://tex.stackexchange.com/questions/331691/how-can-i-get-a-matrix-with-row-and-column-labels-that-can-also-be-aligned-with
 %print(' \\\\\n'.join(" & ".join("a_{%s%s}" % (i,j) for j in range(1, 5)) for i in range(1,5)) + " \\\\" )
 
@@ -217,9 +217,9 @@ draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
 \end{minipage}
 \end{figure}
 
-Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix would therefore be ``directed''; it would have arrows indicating the direction of each street. This is shown in Figure~\ref{fig:directed}.
+Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix is therefore ``directed''; it has arrows indicating the direction of each street. This is shown in Figure~\ref{fig:directed}.
 
-Now, suppose you wanted to know the total number of ways to go from town to town in one step, by path or by bus. To find the total, you add the matrices in the obvious way: term by term, or $(a+b)_{ij}=a_{ij}+b_{ij}$. This is shown in Figure~\ref{fig:mtrx_add}.
+Now, suppose you wanted to know the total number of ways to go from town to town in one step, by path or by bus. To find the total, you add the matrices in the obvious way: term by term, or $(a+b)_{ij}=a_{ij}+b_{ij}$. We can go directly $C\toD$, but not directly $D\toB$. This is shown in Figure~\ref{fig:mtrx_add}.
 
 \begin{figure}[h]
 \begin{minipage}{0.57\textwidth}
