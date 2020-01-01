@@ -270,7 +270,7 @@ $$(XY)_{ij}=x_{i1}y_{1j}+x_{i2}y_{2j}+\cdots + x_{in}y_{nj} = \sum_{k=1}^n x_{ik
 
 where $X$ has $n$ columns and $Y$ has $n$ rows. This is all fine and dandy if you're say, programming a computer to do matrix multiplication, but we should find a more intuitive way to interpret this definition.
 
-Suppose we're multiplying two matrices $X$ and $Y$. For convenience, let's make them $3\times 2\quad$\footnote{Note that the first dimension is rows and the second is columns, as is the usual order.} and $2\times 3$:
+Suppose we're multiplying two matrices $X$ and $Y$. For convenience, let's make them $2\times 3\quad$\footnote{Note that the first dimension is rows and the second is columns, as is the usual order.} and $3\times 2$:
 
 \begin{center}
 $$\underbrace{\left[\,\begin{array}{ccc}
@@ -295,7 +295,7 @@ Observe the boxed numbers. To get $139$, we multiplied the boxed rows and column
 
 $$\langle 4, 5, 6\rangle \cdot \langle 7, 9, 11\rangle = 139.$$
 
-In our example, to find the top left number $a_{11}$, we'd do $\langle 1,2,3\rangle \bullet \langle 7,9,11\rangle$. In general, to find $(XY)_{ij}$, we find the dot product of the $i$th \textbf{row vector} of $X$ and $j$th \textbf{column vector} of $Y$.
+In our example, to find the top left number $a_{11}$, we'd do $\langle 1,2,3\rangle \cdot \langle 7,9,11\rangle$. In general, to find $(XY)_{ij}$, we find the dot product of the $i$th \textbf{row vector} of $X$ and $j$th \textbf{column vector} of $Y$.
 
 With the ability to multiply matrices more easily, let's try some problems.
 

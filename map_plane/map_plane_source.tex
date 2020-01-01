@@ -8,7 +8,7 @@ By this time, you should be comfortable with the idea and process of matrix mult
 
 Now we are going to consider $2\times 2$ matrices as operators, which map each point in the plane to another point in the plane. This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
 
-Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
+Figure~\ref{fig:random_matrix} is an example of what happens when an arbitrary matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
 \begin{figure}
 \begin{minipage}{0.3\textwidth}
@@ -278,7 +278,7 @@ For the curious, the translation matrix $\left[\begin{array}{ccc} 1 & 0 & \alpha
 
 \begin{figure}[h]
 \begin{center}
-\begin{asy}[width=\textwidth]
+\begin{asy}[width=0.8\textwidth]
 import three;
 
 currentprojection=perspective(14,17,11);
