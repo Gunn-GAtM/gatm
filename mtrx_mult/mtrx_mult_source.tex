@@ -143,7 +143,7 @@ a_{41} & a_{42} & a_{43} & a_{44} \\
   }
 $$
 
-This matrix is \textbf{symmetric}, meaning there are no one-way paths. In mathematical terms, we have $a_{ij}=a_{ji}$ for all valid $i,j$. In visual terms, the matrix is symmetric about the \textbf{main diagonal}, going from top left to bottom right. Furthermore, the main diagonal is all $1$s, because we allow staying in the town you start in.
+This matrix is \textbf{symmetric}, meaning there are no one-way paths. In mathematical terms, we have $a_{ij}=a_{ji}$ for all valid $i,j$. In visual terms, the matrix is symmetric about the \textbf{main diagonal}, going from top-left to bottom-right. Furthermore, the main diagonal is all $1$s, because we allow staying in the town you start in.
 
 Suppose there's a shuttle bus that only goes one way, from town $A$ to $B$ to $C$ to $D$ and then back to $A$ again. The transportation matrix for this scenario---again, allowing staying still---is shown in Figure~\ref{fig:adjacency_b}.
 
@@ -219,7 +219,7 @@ draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
 
 Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix is therefore ``directed''; it has arrows indicating the direction of each path. This is shown in Figure~\ref{fig:directed}.
 
-Now, suppose you wanted to know the total number of ways to go from town to town in one step, by path or by bus. To find the total, you add the matrices in the obvious way: term by term, or $(a+b)_{ij}=a_{ij}+b_{ij}$. We can go directly $C\toD$, but not directly $D\toB$. This is shown in Figure~\ref{fig:mtrx_add}.
+Now, suppose you wanted to know the total number of ways to go from town to town in one step, by path or by bus. To find the total, you add the matrices in the obvious way: term by term, or $(a+b)_{ij}=a_{ij}+b_{ij}$. We can go directly $C\to D$, but not directly $D\to B$. This is shown in Figure~\ref{fig:mtrx_add}.
 
 \begin{figure}[h]
 \begin{minipage}{0.57\textwidth}
@@ -451,7 +451,7 @@ The bakery wants to know how much the ingredients cost for one batch of bread, a
 \item For a party, Cook's provides $10$ Captain's orders and $5$ Regular orders. Write this as a matrix and use matrix multiplication to find how many pieces of fish and orders of chips are provided.
 \item Now use matrix multiplication to find out the cost of the party.
 \end{enumerate}
-\item We will find \textbf{coefficient matrices} to be particularly useful for solving systems of linear equations. For instance, $$\begin{cases}3x+4y&=5 \\ 6x+4y &= 8\end{cases}\quad\longleftrightarrow\quad\left[\begin{array}{cc} 3 & 4 \\ 6 & 7 \\ \end{array}\right]\left[\begin{array}{c} x \\ y \\ \end{array}\right]=\left[\begin{array}{c} 5 \\ 8 \\ \end{array}\right].$$ Rewrite $$\begin{cases}2x+3y+4z&=5 \\ 5x-4y+2z &= 2 \\ x+2y &= 7\end{cases}$$ as a matrix equation in this way.
+\item We will find coefficient matrices to be particularly useful for solving systems of linear equations. For instance, $$\begin{cases}3x+4y&=5 \\ 6x+4y &= 8\end{cases}\quad\longleftrightarrow\quad\left[\begin{array}{cc} 3 & 4 \\ 6 & 7 \\ \end{array}\right]\left[\begin{array}{c} x \\ y \\ \end{array}\right]=\left[\begin{array}{c} 5 \\ 8 \\ \end{array}\right].$$ Rewrite $$\begin{cases}2x+3y+4z&=5 \\ 5x-4y+2z &= 2 \\ x+2y &= 7\end{cases}$$ as a matrix equation in this way.
 \item \begin{enumerate}
 \item What is the transpose of the $3\times 3$ matrix $M$ from the previous problem?
 \item Use $M^T$ to rewrite the system in the previous problem.

@@ -4,14 +4,14 @@ A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM
 GAtM Rough Draft: 100%
 ![](http://progressed.io/bar/100?title=progress)
 
-GAtM Final: 4%
-![](http://progressed.io/bar/4?title=progress)
+GAtM Final: 80%
+![](http://progressed.io/bar/80?title=progress)
 
 GAtM Answer Key Rough Draft: 100%
 ![](http://progressed.io/bar/100?title=progress)
 
-GAtM Answer Key Final: 0%
-![](http://progressed.io/bar/0?title=progress)
+GAtM Answer Key Final: 39%
+![](http://progressed.io/bar/39?title=progress)
 
 **Contributors**: Timothy Herchen
 

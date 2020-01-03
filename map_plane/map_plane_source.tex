@@ -8,7 +8,7 @@ By this time, you should be comfortable with the idea and process of matrix mult
 
 Now we are going to consider $2\times 2$ matrices as operators, which map points on the plane to points on the plane. That is, a $2\times 2$ matrix maps the plane onto itself, or onto some figure (subset of the plane). This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
 
-Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
+Figure~\ref{fig:random_matrix} is an example of what happens when an arbitrary matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
 \begin{figure}
 \begin{minipage}{0.3\textwidth}
@@ -90,13 +90,13 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
 \begin{enumerate}
 \item Solve the above matrix equation for $x$ and $y$ to find the point.
-\item There is a point $Q=\left[\begin{smallmatrix}x \\ y\end{smallmatrix}\right]$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
+\item There is a point $Q=\begin{bsmallmatrix}e \\ f \end{bsmallmatrix}$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
 \item Prove your conjecture by plugging your point $Q$ into $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]Q=Q$.
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate the different kinds of what kinds of matrix mappings. Recall the transformations from geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
+Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate the different kinds of what kinds of matrix mappings. Recall the transformations from geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in a preimage are mapped to the same point in the image.
 
 \newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
 
@@ -211,7 +211,7 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item When is the ratio of distances between points in the image the same as in the preimage?
 \item What is the image of the origin under any matrix mapping?
 \item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
-\item Knowing the images of $(1,0)$ and $(0,1)$, how do you find the image of $(1,1)$ algebraically and geometrically?
+\item Knowing the images of $(1,0)$ and $(0,1)$, how do we find the image of $(1,1)$ algebraically and geometrically?
 \end{enumerate}
 \item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
 \begin{multicols}{4}
@@ -241,7 +241,7 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
-\item Carry out the following multiplications and convince yourself that their mappings of the $x$ and $y$ coordinates are equivalent.\begin{multicols}{2}
+\item Carry out the following multiplications and convince yourself they are equivalent mappings of the $x$ and $y$ coordinates.\begin{multicols}{2}
 \begin{enumerate}
 \item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
@@ -279,7 +279,7 @@ For the curious, the translation matrix $\left[\begin{array}{ccc} 1 & 0 & \alpha
 
 \begin{figure}[h]
 \begin{center}
-\begin{asy}[width=\textwidth]
+\begin{asy}[width=0.8\textwidth]
 import three;
 
 currentprojection=perspective(14,17,11);
