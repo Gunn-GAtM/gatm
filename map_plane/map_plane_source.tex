@@ -6,7 +6,7 @@
 
 By this time, you should be comfortable with the idea and process of matrix multiplication. You should know what dimensional relationship needs to be true of two matrices in order to be allowed to multiply them together.
 
-Now we are going to consider $2\times 2$ matrices as operators, which map each point in the plane to another point in the plane. This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
+Now we are going to consider $2\times 2$ matrices as operators, which map points on the plane to points on the plane. That is, a $2\times 2$ matrix maps the plane onto itself, or onto some figure (subset of the plane). This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
 
 Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
@@ -90,7 +90,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
 \begin{enumerate}
 \item Solve the above matrix equation for $x$ and $y$ to find the point.
-\item There is a point $Q$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
+\item There is a point $Q=\left[\begin{smallmatrix}x \\ y\end{smallmatrix}\right]$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
 \item Prove your conjecture by plugging your point $Q$ into $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]Q=Q$.
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
@@ -105,7 +105,7 @@ Matrix multiplication is a \textbf{linear transformation}. One way to think of a
 \setcounter{enumi}{\value{mp_problem_i}}
 \item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right.
 \begin{enumerate}
-\item Map it with the following matrices.
+\item Map the vertices with the following matrices.
 \begin{multicols}{3}
 \begin{enumerate}
 \item $\left[\begin{array}{cc}1 & 0 \\ 0 & 1 \end{array}\right]$
@@ -113,7 +113,8 @@ Matrix multiplication is a \textbf{linear transformation}. One way to think of a
 \item $\left[\begin{array}{cc}.6 & .8 \\ .8 & -.6 \end{array}\right]$
 \end{enumerate}
 \end{multicols}
-\item Graph the preimage, then the image for each matrix on three separate sets of axes.
+\item Why will the new triangle defined by these vertices be the image of the starting triangle?
+\item Accurately graph the preimage, then the image for each matrix on three separate sets of axes.
 \item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
@@ -207,10 +208,10 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
 \end{enumerate}
 \item \begin{enumerate}
-\item When is the ratio of distances between points in the image the same as the preimage?
+\item When is the ratio of distances between points in the image the same as in the preimage?
 \item What is the image of the origin under any matrix mapping?
 \item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
-\item Knowing the images of $(1,0)$ and $(0,1)$, where is $(1,1)$ algebraically and geometrically?
+\item Knowing the images of $(1,0)$ and $(0,1)$, how do you find the image of $(1,1)$ algebraically and geometrically?
 \end{enumerate}
 \item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
 \begin{multicols}{4}
@@ -240,7 +241,7 @@ One limitation with $2\times 2$ matrix transformations is that they all involve 
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
-\item Carry out the following multiplications and convince yourself that the mappings are equivalent.\begin{multicols}{2}
+\item Carry out the following multiplications and convince yourself that their mappings of the $x$ and $y$ coordinates are equivalent.\begin{multicols}{2}
 \begin{enumerate}
 \item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
