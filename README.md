@@ -2,16 +2,12 @@
 A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM") by Peter Herreshoff.
 
 GAtM Rough Draft: 100%
-![](http://progressed.io/bar/100?title=progress)
 
-GAtM Final: 80%
-![](http://progressed.io/bar/80?title=progress)
+GAtM Final: 98%
 
 GAtM Answer Key Rough Draft: 100%
-![](http://progressed.io/bar/100?title=progress)
 
-GAtM Answer Key Final: 39%
-![](http://progressed.io/bar/39?title=progress)
+GAtM Answer Key Final: 98%
 
 **Contributors**: Timothy Herchen
 
