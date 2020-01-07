@@ -32,7 +32,7 @@ $$\twomat{0}{1}{-1}{0}\twomat{1}{0}{0}{-1}=\blanktwomat$$
 \item How is a reflection followed by a rotation different from a rotation followed by a reflection? Visualize this by following what happens to a point under both sets of transformations.
 \end{enumerate}
 \item Notice that we apply the transformations from right to left. If you wanted to read from left to right, what would you have to change about the way you wrote the mapping matrices, the vectors representing points, and the order of the matrices?
-\item How does our convention for ordering transformation matrices compare…
+\item How does our convention for ordering transformation matrices compare...
 \begin{enumerate}
 \item ... to the convention for writing composite functions, like $f(g(x))$?
 \item ... to the ``followed by'' convention we used for ``From Snaps to Flips?''
@@ -57,14 +57,16 @@ $$\twomat{\cos\theta}{\sin\theta}{\sin\theta}{-\cos\theta}\twomat{\cos\phi}{\sin
 \item Does it make a difference which reflection comes first? Do the matrix multiplication to confirm your answer.
 \end{enumerate}
 \item We've found specific matrices which map the plane in the following ways:
+\setcounter{problem_i}{\value{enumi}}
 \begin{itemize}
-\item identity;
-\item rotation about the origin by $\theta$;
-\item reflection over a line $y=x \tan\frac{\theta}{2}$;
-\item size change by some factor centered at the origin;
-\item stretching along a specific line through the origin by some factor;
-\item shearing perpendicular to a specific line through the origin by some factor.
+\item identity; %compare-books-disable
+\item rotation about the origin by $\theta$; %compare-books-disable
+\item reflection over a line $y=x \tan\frac{\theta}{2}$; %compare-books-disable
+\item size change by some factor centered at the origin; %compare-books-disable
+\item stretching along a specific line through the origin by some factor; %compare-books-disable
+\item shearing perpendicular to a specific line through the origin by some factor. %compare-books-disable
 \end{itemize}
+\setcounter{enumi}{\value{problem_i}}
 We want to generalize those ideas. What does each of the following matrices do? Be quantitative by specifying angle, equation of line, and/or factor:\label{prob:list_transformations}
 \begin{multicols}{3}
 \begin{enumerate}
@@ -283,7 +285,7 @@ dot(C);
 \item Find a matrix which produces a dilation.
 \begin{enumerate}
 \item What is its determinant?
-\item What does the size its determinant indicate?
+\item What does the size of its determinant indicate?
 \end{enumerate}
 \end{enumerate}
 \item Here is another way to think about the area of the image of the unit square under a linear transformation. First, we use the matrix $\twomat{a}{c}{b}{d}$ to transform the unit square into a parallelogram. Then, we graph the image. \label{prob:unit_square_into_parallelogram}
@@ -296,7 +298,7 @@ dot(C);
 \begin{enumerate}
 \item How would the area you calculated be different?
 \item What property would now be preserved by the transformation?
-\item What isometry would have been included in any composition yielding the mapping?
+\item What isometry would have been included in any composition of simple transformations yielding the mapping?
 \item What would be true of the determinant?
 \end{enumerate}
 \item \begin{enumerate}
@@ -308,7 +310,7 @@ dot(C);
 \item What would have happened to the parallelogram if we replaced $c,d$ in the matrix with $kc,kd$ for some $k>0$, so that the transformation matrix is $\left[\begin{smallmatrix} a & kc \\ b & kd \end{smallmatrix}\right]$?
 \item What would its area be?
 \item What would the determinant of the matrix be?
-\item What if we $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$? That is, what if the second row of the matrix was a linear multiple of the first row?
+\item What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$? That is, what if the second row of the matrix was a linear multiple of the first row?
 \end{enumerate}
 \end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
@@ -490,13 +492,13 @@ This process is known as \textbf{matrix decomposition}, because you are decompos
 \item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
 \begin{multicols}{2}
 \begin{enumerate}[label=(\roman*)]
-\item Stretch along the $x$ axis by factor of $\frac{1}{3}$.
+\item Stretch along the $x$ axis by factor of $\frac{1}{3}$. %compare-books-disable
 $$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}=\twomat{1}{\frac{4}{3}}{2}{-5}$$
-\item Shear perpendicular to the $x$ axis by $-2$
+\item Shear perpendicular to the $x$ axis by $-2$ %compare-books-disable
 $$\twomat{1}{0}{-2}{1}\twomat{1}{\frac{4}{3}}{2}{-5}=\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}$$
-\item Stretch along $y$ axis by $-\frac{3}{23}$
+\item Stretch along $y$ axis by $-\frac{3}{23}$ %compare-books-disable
 $$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twomat{1}{\frac{4}{3}}{0}{1}$$
-\item Shear perpendicular to the $y$ axis by $-\frac{4}{3}$
+\item Shear perpendicular to the $y$ axis by $-\frac{4}{3}$ %compare-books-disable
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
 \end{enumerate}
 \end{multicols}
@@ -523,7 +525,7 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \mathop{\twomat{1}{0}{0}{\frac{23}{13}}}^{\text{v}}
 \twomat{1}{0}{0}{1}=\twomat{3}{4}{2}{-5}.$$
 \begin{enumerate}
-\setcounter{enumii}{2}
+\setcounter{enumii}{1}
 \item Explain what happens at each matrix, i through v.
 \end{enumerate}
 \item Find a set of basic transformations which is equivalent to each of the following matrices.\label{prob:basic_transformations}

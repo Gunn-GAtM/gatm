@@ -67,22 +67,22 @@ Again, let $z=a+bi$. $\overline{z}=a-bi$ is flipped over the $x$-axis, since the
 real markscalefactor=0.03;
 
 picture pathticks(path g, int n=1, real r=.5, real spacing=6, real s=8, pen p=currentpen)
-{ 
-	picture pict; 
-	pair A,B,C,direct; 
-	real t,l=arclength(g), space=spacing*markscalefactor, halftick=s*markscalefactor/2, startpt; 
-	if (n>0) 
-	{  
-		direct=unit(dir(g,arctime(g,r*l)));  
-		startpt=r*l-(n-1)/2*space;  
-		for (int i=0; i<n; ++i)  
-		{  
-			t=startpt+i*space;  
-			B=point(g,arctime(g,t))+(0,1)*halftick*direct;  
-			C=B+2*(0,-1)*halftick*direct;  
-			draw(pict,B--C,p);  
-		} 
-	} 
+{
+	picture pict;
+	pair A,B,C,direct;
+	real t,l=arclength(g), space=spacing*markscalefactor, halftick=s*markscalefactor/2, startpt;
+	if (n>0)
+	{
+		direct=unit(dir(g,arctime(g,r*l)));
+		startpt=r*l-(n-1)/2*space;
+		for (int i=0; i<n; ++i)
+		{
+			t=startpt+i*space;
+			B=point(g,arctime(g,t))+(0,1)*halftick*direct;
+			C=B+2*(0,-1)*halftick*direct;
+			draw(pict,B--C,p);
+		}
+	}
 	return pict;
 }
 \end{asydef}
@@ -170,7 +170,7 @@ draw(arc1);
 \end{center}
 
 \begin{outer_problem}
-\item Divide $\frac{a+bi}{c+di}$ by rationalizing the denominator.
+\item Divide $\frac{a+bi}{c+di}$ by rationalizing the denominator.~\label{prob:div_1}
 \end{outer_problem}
 
 \begin{align*}
@@ -179,7 +179,8 @@ draw(arc1);
 \end{align*}
 
 \begin{outer_problem}
-\item Divide $\frac{r_1\cis \theta}{r_2\cis \phi}$ using DeMoivre's theorem.\end{outer_problem}
+\item Divide $\frac{r_1\cis \theta}{r_2\cis \phi}$ using DeMoivre's theorem.~\label{prob:div_2}
+\end{outer_problem}
 
 We don't have a rule yet for applying DeMoivre's theorem for division, but we can quickly derive it. We have
 
@@ -190,7 +191,7 @@ We don't have a rule yet for applying DeMoivre's theorem for division, but we ca
 \end{align*}
 
 \begin{outer_problem}
-\item Compare and contrast the methods of division in problems 5 and 6. Which is more convenient? Or does it depend on the circumstance?
+\item Compare and contrast the methods of division in Problems~\ref{prob:div_1} and \ref{prob:div_2}. Which is more convenient? Or does it depend on the circumstance?
 \end{outer_problem}
 
 Opinions may vary, but 6 is definitely faster to do if the dividend and divisor are already in $\cis$ form. 5 is likely convenient than converting from rectangular to $\cis$, then back to rectangular.
@@ -337,7 +338,7 @@ r^2 & r^2 & I & r \\ \hline
 \end{array}$$
 
 \begin{outer_problem}
-\item 
+\item
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -472,33 +473,6 @@ This is a group under (i) addition with identity element $0$. The inverse of an 
 \end{inner_problem}
 
 This is no longer a group under (i) addition, since the identity element needs to be $0$. It is now, however, a group under (ii) multiplication, because all numbers have their inverses. Multiplication is associative, the inverse of $z$ is $\frac{1}{z}$, and the product of two complex numbers is another complex number.
-
-\begin{outer_problem}
-\item For what values $a$ and $b$ does $\{a + b\sqrt{2}\}$ generate a group under (a) addition and (b) multiplication? Look for several answers.
-\end{outer_problem}
-
-\begin{inner_problem}[start=1]
-\item addition
-\end{inner_problem}
-
-Let $x=a+b\sqrt{2}$. At some point, we must generate the additive inverse of $x$, which is $-x$. This would also generate the identity, since $x+(-x)=0$, and all group criteria would be satisfied. As we add $x$ to itself, all we can do is scale it by some positive integer factor. Thus,
-
-$$-x=nx$$
-
-for $n\in \mathbb{Z}^+$. But this is not true for any $x\in \mathbb{C}$ except $0$. Thus, the only solution is $a=b=0\to x=0$, which generates the trivial group $\{0\}$ under addition.
-
-\begin{inner_problem}[start=1]
-\item multiplication
-\end{inner_problem}
-
-Again, let $x=a+b\sqrt{2}$. We can only generate elements of the form $x^n$, where $n\in \mathbb{Z}^+$. We must eventually generate the identity $1$, so we have $x^n=1$. For real $x$, the only solution is $x=0$. For complex $x$, we need to have $x^n=1$. Thus, let $x=r\cis \theta$, and proceed:
-
-$$x^n = r^n \cis n\theta = 1$$
-$$\Longrightarrow r = 1$$
-$$n\theta = 2\pi k$$
-$$\theta = \frac{2\pi k}{n}.$$
-
-for $k\in\mathbb{Z}$. Thus, the general complex solutions are $x=\cis \frac{2\pi k}{n}$ for $k,n\in\mathbb{Z}$, $\gcd (k,n) = 1$ and $n\neq 0$.
 
 \begin{outer_problem}
 \item Prove that $(r_1\cis \theta)(r_2\cis \phi) = r_1r_2 \cis(\theta + \phi)$ using brute force and the angle-sum trig identities for $\cos$ and $\sin$. Do you prefer this method or the one on the previous page? Which method gives you a better understanding of why DeMoivre's works?
@@ -812,7 +786,7 @@ pair R = C + c + ic * sqrt(3) / 3;
 path triangleOn(pair A, pair B) {
 	pair v = (B-A)/2;
 	pair V = A + v + rotate(90)* v* sqrt(3);
-	
+
 	return (A -- V -- B -- cycle);
 }
 
@@ -1014,7 +988,7 @@ But since $z$ makes an angle of $\theta$ with the $x$ axis, we can express it as
 
 $$\frac{\Imag(z^3)}{\Real(z^3)} = \frac{\Imag(r^3 \cis 3\theta)}{\Real(r^3\cis 3\theta)} =\frac{\Imag(\cis 3\theta)}{\Real(\cis 3\theta)},$$
 
-which matches the expression for $\tan 3\theta$. 
+which matches the expression for $\tan 3\theta$.
 
 \begin{inner_problem}
 \item Use (b) to find an identity for $\tan 3\theta$.
@@ -1039,7 +1013,7 @@ Then we use our expression for $\tan 3\theta$ in terms of $z^3$:
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item regular octagon
+\item regular octagon.
 \end{inner_problem}
 
 We choose complex numbers corresponding to rotations of $0,45^\circ, \cdots, 315^\circ$:
@@ -1131,7 +1105,7 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 This table is a group; in fact, it is a commutative group. The quickest way to see this is noting that it is (up to isomorphism) the cyclic group of order $5$, where $A=r$, $B=r^2$, $C=r^3$, and $D=r^4$.
 
 \begin{outer_problem}
-\item Which subsets of the complex numbers are groups under multiplication? After you list a few of each type, generalize.
+\item Name some subsets of the complex numbers that are groups under multiplication. I can name an infinite number of both finite and infinite groups with this property, so after you list a few of each type, try to generalize.
 \end{outer_problem}
 
 Some simple examples: $\{1\}$, $\{\pm 1\}$, $\{\pm 1, \pm i\}$.
@@ -1260,7 +1234,7 @@ The diagram of all this is shown in Figure~\ref{fig:one_minus_z}.
 
 \begin{center}
 \begin{asy}[width=0.5\textwidth]
-real ang = 54; 
+real ang = 54;
 pair z = dir(ang);
 pair omz = (1,0) - z;
 
@@ -1326,7 +1300,7 @@ We wish to show that the two lengths indicated in braces are equal. There's a co
 \begin{center}
 \begin{asy}[width=0.5\textwidth]
 
-real ang = 54; 
+real ang = 54;
 pair z = dir(ang);
 pair omz = (1,0) - z;
 
@@ -1425,7 +1399,7 @@ This matches our expression using half-angle for $\left|2\sin\left(\frac{\Arg z}
 Personally, I strongly prefer the algebraic solution because it is quick, easy to understand, and truly complete. Nonetheless, the geometric solution gives a better idea of \textit{why} the equation is true.
 
 \begin{outer_problem}
-\item 
+\item
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -1486,7 +1460,7 @@ draw(arc(O, (0,arc_r),z1), Arrow);
 
 real ang = atan2(z.y,z.x);
 
-label("$\frac{\pi}{2}-\phi$", 1.9 * arc_r*expi(ang / 2)); 
+label("$\frac{\pi}{2}-\phi$", 1.9 * arc_r*expi(ang / 2));
 label("$\phi$", 1.4 * arc_r*expi((pi/2 - ang)/2 + ang));
 label("$\phi$", 1.4 * arc_r*expi((pi/2 - ang)/2 + pi/2));
 \end{asy}
@@ -1549,11 +1523,11 @@ $$e^{-it} = \cos (-t) + i\sin(-t) = \cos t - i\sin t.$$
 &= \sin\theta.
 \end{align*}
 
-\begin{outer_problem}[start=\value{store_outer_problem}]
-\item (cont.) Use your new, complex definitions for $\cos$ and $\sin$ to find:%
+\begin{outer_problem}
+\item Use your new, complex definitions for $\cos$ and $\sin$ to find:%
 \end{outer_problem}
 
-\begin{inner_problem}
+\begin{inner_problem}[start=1]
 \item $\cos^2\theta + \sin^2\theta$
 \end{inner_problem}
 
@@ -1597,7 +1571,7 @@ If $\theta=0$, then the group is the trivial group of order $1$. If $\theta$ is 
 
 $$e^{ik_1\theta}\cdot e^{ik_2\theta} = e^{i(k_1+k_2)\theta} \leftrightarrow k_1+k_2.$$
 
-If $\theta$ is a rational multiple of $\pi$, say $\frac{p}{q}\cdot 2\pi$ where $\gcd(p,q)=1$, then we get (up to isomorphism) cyclic group of order $q$. 
+If $\theta$ is a rational multiple of $\pi$, say $\frac{p}{q}\cdot 2\pi$ where $\gcd(p,q)=1$, then we get (up to isomorphism) cyclic group of order $q$.
 
 \begin{outer_problem}
 \item You've used the quadratic equation throughout high school, but there's also a cubic equation that finds the roots of any cubic. Let's derive it, starting with the cubic $x^3+bx^2+cx+d=0$.
@@ -1689,7 +1663,7 @@ where $k\in \{0,1,2\}$ and the cube root is taking its principal value. We multi
 
 Thus, we have $$y=s+t=\sqrt[3]{q \pm \sqrt{q^2 - p^3}} \cdot \cis \frac{2\pi k}{3} + \sqrt[3]{q \mp \sqrt{q^2 - p^3}} \cdot \cis \left(2\pi - \frac{2\pi k}{3}\right).$$
 
-To get $x$, we substitute $x=y-\frac{b}{3}$ to get 
+To get $x$, we substitute $x=y-\frac{b}{3}$ to get
 
 $$x= \sqrt[3]{q \pm \sqrt{q^2 - p^3}} \cdot \cis \frac{2\pi k}{3} + \sqrt[3]{q \mp \sqrt{q^2 - p^3}} \cdot \cis \left(2\pi - \frac{2\pi k}{3}\right) - \frac{b}{3}.$$
 
@@ -1725,16 +1699,16 @@ y^3 &= 3py+2q \\
 \end{align*}
 
 \begin{inner_problem}
-\item Provided that $q^2\leq p^3$, show that $y=2\sqrt{p}\cos\left(\theta + \frac{2\pi n}{3})\right)$, where $n$ is an integer. Why does this yield all three solutions?
+\item Provided that $q^2\leq p^3$, show that $y=2\sqrt{p}\cos\left(\frac{1}{3}(\theta+2\pi n)\right)$, where $n$ is an integer. Why does this yield all three solutions?
 \end{inner_problem}
 
-This isn't actually hard. We know that $\cos 3\theta = 4c^3-3c = \frac{q}{p^{3/2}}$, so there are three possible values for $\cos\theta = c$. Namely, if $\theta_0 = \cos^{-1} \frac{q}{p^{3/2}}$ is the principal value, then we also have unique solutions
+This isn't actually hard. We know that $\cos 3\theta = 4c^3-3c = \frac{q}{p^{3/2}}$, so there are three possible values for $\cos\theta = c$. Namely, if $\theta_0 = \frac{1}{3}\cos^{-1} \frac{q}{p^{3/2}}$ is the principal value, then we also have unique solutions
 
 $$\theta_1 = \frac{2\pi}{3} + \theta_0, \, \theta_2 = \frac{4\pi}{3} + \theta_0,$$
 
-because multiplying these by $3$ to get $\theta$ just adds a multiple of $2\pi$. Indeed, we have $$c = \cos\left(\theta + \frac{2\pi n}{3}\right)$$ as a solution for any integer $n$. Substituting into the expression for $y$, we get
+because multiplying these by $3$ to get $3\theta$ just adds a multiple of $2\pi$. Indeed, we have $$c = \cos\frac{1}{3}\left(\theta + 2\pi n\right)$$ as a solution for any integer $n$. Substituting into the expression for $y$, we get
 
-$$y=2c\sqrt{p}=2\cos\left(\theta + \frac{2\pi n}{3}\right)\sqrt{p},$$
+$$y=2c\sqrt{p}=2\cos\left(\frac{1}{3}(\theta + 2\pi n)\right)\sqrt{p},$$
 
 as desired. This yields all three solutions because, as we observed, the only unique values this makes are for $n\in \{0,1,2\}$.
 

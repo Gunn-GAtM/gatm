@@ -175,7 +175,7 @@ Dihedral groups exist for any polygonal figure; mathematically speaking, the dih
 \begin{minipage}{0.6\textwidth}
 \begin{enumerate}
 \item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
-\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
+\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
 \newcounter{enumLast}
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
@@ -197,7 +197,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 %
 \begin{enumerate}
 \setcounter{enumi}{\theenumLast}
-\item What is the relationship between the tables for the snap group $S_3$ and the flip group $D_3$?
+\item What is the relationship between the tables for the snap group $S_3$ and the dihedral group $D_3$?
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
 $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\bullet$ and $B$ with operation $\star$ are isomorphic if you can find a one-to-one correspondence between the two groups' elements, where the results of each group's operation on corresponding elements also correspond. This means we can find some pairing of elements between the two groups $A_1\leftrightarrow B_1, A_2\leftrightarrow B_2, \cdots, A_n \leftrightarrow B_n$ such that $A_j \bullet A_k = A_l \leftrightarrow B_j \star B_k = B_l$, for all $j,k$.
@@ -208,9 +208,9 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 \item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
 \item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
 \end{enumerate}
-\item What shape's symmetry group is isomorphic to (a) the two-post snap group $S_2$, (b) one-post group $S_1$, (c) four-post group $S_4$ (Hint: it's not a square), and (d) five-post group $S_5$?
+\item What shape's symmetry group is isomorphic to (a) the two-post snap group $S_2$, (b) one-post group $S_1$, (c) four-post group $S_4$ (Hint: it's not a square), and (d) five-post group $S_5$? %compare-books-disable
 \item Find a combination of $A$ and $D$ that yields $C$.
-\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$-axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2} on the next page). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable} (see next page). \textit{Note that the element order is different!}
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$-axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2} on the next page). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable} (see next page). \textit{Note that the element order is different!} %compare-books-disable
 \item What other pairs of elements could you have used to generate the table?
 \item Notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \item Explain why each element of the dihedral group $D_3$ has the period it has.
@@ -228,7 +228,7 @@ Definition of \textbf{group}: A group $G$ is a set of elements together with a \
 \begin{enumerate}
 \setcounter{enumi}{\theenumLast}
 \item The addition of two numbers is a binary operation, while the addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
-\item In your original flip group table, what is...
+\item In your original dihedral group table, what is
 \begin{enumerate}
 \item the identity element?
 \item the inverse of $A$?

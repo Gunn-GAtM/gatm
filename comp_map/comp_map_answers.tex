@@ -27,7 +27,7 @@ That's just $R=\twomat{\cos -90^\circ}{-\sin -90^\circ}{\sin -90^\circ}{\cos -90
 $$\twomat{0}{1}{-1}{0}\begin{bmatrix} 1 & 0 & u \\ 0 & 1 & v \end{bmatrix} = \begin{bmatrix}0 & 1 & v \\ -1 & 0 & -u \\ \end{bmatrix}.$$
 
 \begin{inner_problem}
-\item Next, we reflect those intermediate points over the line $y=0$.
+\item Next, we reflect those intermediate image points over the line $y=0$.
 \end{inner_problem}
 
 \begin{iinner_problem}[start=1]
@@ -146,7 +146,7 @@ We evaluated the flip elements from right to left, so it is like our transformat
 We wrote transportation matrices with the destinations between on top (as columns), and the origins on the left side (as rows). Thus, they are evaluated from left to right, and our unlike our transformation matrices.
 
 \begin{outer_problem}
-\item There are two, infinite classes of matrix which comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
+\item There are two, infinite classes of matrices which comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -922,7 +922,7 @@ label("$S$", D, ESE);
 \end{figure}
 
 \begin{outer_problem}
-\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
+\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -981,23 +981,41 @@ $\twomat{0}{-1}{1}{0}$ is such a matrix. It has a determinant of $(0)(0)-(-1)(1)
 
 $\twomat{-1}{0}{0}{1}$ is such a matrix. It has a determinant of $(-1)(1)-(0)(0)=-1$.
 
-\begin{inner_problem}
+\begin{iinner_problem}
 \item What is the absolute value of its determinant?
 \end{inner_problem}
 
 The absolute value of its determinant is $|-1|=1$.
 
-\begin{inner_problem}
+\begin{iinner_problem}
 \item How does its determinant differ from that of a rotation matrix?
 \end{inner_problem}
 
 It is negative, while a rotation matrix's determinant is positive.
 
-\begin{inner_problem}
+\begin{iinner_problem}
 \item What property is not conserved under reflection?
 \end{inner_problem}
 
 Orientation (or ``handedness,'' ``chirality,'' whatever you want to call it) is not preserved.
+
+\begin{inner_problem}
+\item Find a matrix which produces a dilation.
+\end{inner_problem}
+
+$\twomat{a}{0}{0}{a}$ is such a matrix; it dilates by a factor of $a$.
+
+\begin{iinner_problem}[start=1]
+\item What is its determinant?
+\end{iinner_problem}
+
+Its determinant is $a(a) - 0(0)=a^2$.
+
+\begin{iinner_problem}
+\item What does the size of its determinant indicate?
+\end{iinner_problem}
+
+It indicates the factor by which the area of the unit square is scaled up in the transformation.
 
 \begin{inner_problem}
 \item What does the size of a determinant indicate?
@@ -1099,6 +1117,12 @@ The new area would be $ad-bc$, and thus the negative of what it was before!
 Orientation (or chirality or handedness whatever) would now be preserved.
 
 \begin{iinner_problem}
+\item What isometry would have been included in any composition of simple transformations yielding the mapping?
+\end{iinner_problem}
+
+Any such composition would require a reflection, because all the other simple transformations do not flip.
+
+\begin{iinner_problem}
 \item What would be true of the determinant?
 \end{iinner_problem}
 
@@ -1186,7 +1210,7 @@ Its area would be scaled by a factor of $k$; it would be $k(bc-ad)$.
 The determinant of the matrix would be $k(ad-bc)$.
 
 \begin{iinner_problem}
-\item What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$? That is, what if our transformation matrix is of the form $\left[\begin{smallmatrix}ra & rc \\ a & c \end{smallmatrix}\right]$?
+\item What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$? That is, what if the second row of the matrix was a linear multiple of the first row?
 \end{iinner_problem}
 
 In this case, the the two vectors constructing the parallelogram are collinear. Thus, the transformation collapses to a line.
@@ -1377,10 +1401,10 @@ $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 
 i scales by $\frac{13}{23}$ along the $y$-axis. ii shears by $-\frac{2}{23}$. iii scales by $\frac{1}{\sqrt{13}}$. iv rotates by $\tan^{-1} \frac{2}{3}$. $v$ reflects over the $x$-axis (since the $y$ coordinate is being flipped).
 
-\begin{outer_problem}
+\begin{outer_problem } % space is used to confuse compare_books
 \setcounter{outer_problemi}{\value{problem_i}}
 \item (cont.) Next, we undo this sequence of operations by working backwards.
-\end{outer_problem}
+\end{outer_problem }
 
 \vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}

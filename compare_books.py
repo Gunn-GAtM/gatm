@@ -2,7 +2,7 @@ import re
 
 # This program compares the gatm textbook and the answer key to make sure that all questions correspond correctly.
 
-chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen comp_map inverses mod_m eigen comp_func".split(" ")
+chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen comp_map inverses mod_m eigen".split(" ")
 
 counters = { "enumi": 0, "enumii": 0, "enumiii": 0 }
 
@@ -62,7 +62,7 @@ class Problem:
         return self.number == problem.number and self.letter == problem.letter and self.part == problem.part
 
     def equals(self, problem):
-        return self.same_problem_encoding(problem) and self.contents == problem.contents
+        return self.same_problem_encoding(problem) and self.contents.lower() == problem.contents.lower()
 
     def __str__(self):
         return self.nice_representation()
@@ -145,10 +145,14 @@ def problem_generator(file_string, is_answer_key=False):
     global counters
 
     enum_depth = 0
+    record_problem_n = 0
 
     set_counter_by_value("outer", 0)
     set_counter_by_value("inner", 0)
     set_counter_by_value("iinner", 0)
+
+    for x in xrange(1, 4):
+        set_counter_by_value("enum" + "i" * x, 0)
 
     for token in problem_tokenizer(file_string):
         if token.type == "begin_enumerate":
@@ -203,12 +207,16 @@ def problem_generator(file_string, is_answer_key=False):
             if not is_answer_key:
                 increment_counter("enum" + "i" * enum_depth)
 
-            yield Problem(get_counter("enumi"), get_counter("enumii"), get_counter("enumiii"), token.contents)
+            top_problem_n = get_counter("enumi")
+
+            if top_problem_n >= record_problem_n:
+                yield Problem(top_problem_n, get_counter("enumii"), get_counter("enumiii"), token.contents)
+                record_problem_n = top_problem_n
 
 for chapter in chapter_names:
     enum_depth = 0 # 0 means not in an enumerate, 1 means in a top level enumerate, 2 means in a a,b,c enumerate, 3 means in a i, ii, iii enumerate
 
-    with open("%s/%s_answers.tex" % (chapter, chapter), 'r') as problem_file:
+    with open("%s/%s_source.tex" % (chapter, chapter), 'r') as problem_file:
         with open("%s/%s_answers.tex" % (chapter, chapter), 'r') as answer_file:
             file_string = problem_file.read()
             answer_file_string = answer_file.read()
@@ -217,7 +225,12 @@ for chapter in chapter_names:
             key_problems = list(problem_generator(answer_file_string, True))
 
             for tb_problem in textbook_problems:
-                print(tb_problem)
-                # if not any(tb_problem.equals(key_problem) for key_problem in key_problems):
+                if "%compare-books-disable" in tb_problem.contents:
+                    continue
+                if not any(tb_problem.equals(key_problem) for key_problem in key_problems):
                     # Potential desync
-                    # print("Chapter %s, Problem %s" % (chapter, tb_problem))
+                    print("Chapter %s, Problem %s" % (chapter, tb_problem))
+
+                    for key_problem in key_problems:
+                        if tb_problem.same_problem_encoding(key_problem):
+                            print("ANSWER KEY: Problem %s" % (key_problem))
