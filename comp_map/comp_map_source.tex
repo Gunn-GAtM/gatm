@@ -5,7 +5,7 @@
 \section{Composite Mappings of the Plane}
 \setcounter{problem_i}{0}
 
-So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
+So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$-axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
 
 \newcommand{\blanktwomat}{\twomat{\phantom{0}}{\phantom{0}}{}{}}
 
@@ -266,7 +266,7 @@ dot(C);
 \end{figure}
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
-\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
+\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$-axis and $b$ makes an angle of $\phi$ with the $x$-axis. Thus, $\varphi=\phi-\theta$.
 \begin{enumerate}
 \item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
 \item Find the $x$ and $y$ coordinates of $P,Q,R,S$ in terms of $a$, $b$, $\phi$, $\theta$.
@@ -326,11 +326,11 @@ We will look at the image of the unit square under an arbitrary transformation a
 \item Start by checking the determinant. If it is nonzero, continue to step b. Otherwise, you are done, because the inverse does not exist.\footnote{Why doesn't the inverse exist? Describe the mapping.}
 \setcounter{first_para}{\value{enumi}}
 \item If $a=0$, rotate the whole matrix $90^\circ$ so that $a$ becomes nonzero.
-\item Stretch or shrink your matrix along the $x$ axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero.
+\item Stretch or shrink your matrix along the $x$-axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero.
 
 $$\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d} = \twomat{1}{\frac{c}{a}}{b}{d}.$$
 
-\item Shear the vector $\twovec{1}{b}$ to $\twovec{1}{0}$ so that it is parallel to the $x$ axis.
+\item Shear the vector $\twovec{1}{b}$ to $\twovec{1}{0}$ so that it is parallel to the $x$-axis.
 
 \begin{align*}
 \twomat{1}{0}{-b}{1}\twomat{1}{\frac{c}{a}}{b}{d} &= \twomat{1}{\frac{c}{a}}{0}{-\frac{bc}{a}+d} \\
@@ -447,24 +447,23 @@ $$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-
 Don't forget to multiply from right to left.
 
 Our ultimate goal is to build up the matrix from basic operations, not to just undo it. Fortunately, we can easily figure out how to undo each of these basic operations. Remember that matrix multiplication is associative, but not commutative.
-\vspace{10ex}
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item How do you undo a shear in the $x$ direction?
 $\blanktwomat\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$
-\item How do you undo a stretch along the $x$ axis?
+\item How do you undo a stretch along the $x$-axis?
 $\blanktwomat\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a shear in the $y$ direction?
 $\blanktwomat\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$
-\item How do you undo a stretch along the $y$ axis?
+\item How do you undo a stretch along the $y$-axis?
 $\blanktwomat\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$
 \end{enumerate}
 
 \item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ is composed. Order is important!
 
-\vspace{1.5cm}
+\vspace{10ex}
 $$\mathop{\blanktwomat}^{\tikzmark{a1}}
 \mathop{\blanktwomat}^{\tikzmark{b1}}
 \mathop{\blanktwomat}^{\tikzmark{c1}}
@@ -492,13 +491,13 @@ This process is known as \textbf{matrix decomposition}, because you are decompos
 \item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
 \begin{multicols}{2}
 \begin{enumerate}[label=(\roman*)]
-\item Stretch along the $x$ axis by factor of $\frac{1}{3}$. %compare-books-disable
+\item Stretch along the $x$-axis by factor of $\frac{1}{3}$. %compare-books-disable
 $$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}=\twomat{1}{\frac{4}{3}}{2}{-5}$$
-\item Shear perpendicular to the $x$ axis by $-2$ %compare-books-disable
+\item Shear perpendicular to the $x$-axis by $-2$ %compare-books-disable
 $$\twomat{1}{0}{-2}{1}\twomat{1}{\frac{4}{3}}{2}{-5}=\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}$$
-\item Stretch along $y$ axis by $-\frac{3}{23}$ %compare-books-disable
+\item Stretch along $y$-axis by $-\frac{3}{23}$ %compare-books-disable
 $$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twomat{1}{\frac{4}{3}}{0}{1}$$
-\item Shear perpendicular to the $y$ axis by $-\frac{4}{3}$ %compare-books-disable
+\item Shear perpendicular to the $y$-axis by $-\frac{4}{3}$ %compare-books-disable
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
 \end{enumerate}
 \end{multicols}

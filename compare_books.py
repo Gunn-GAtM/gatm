@@ -76,8 +76,8 @@ class Problem:
 
         return "%s: %s" % (code, self.contents)
 
-begin_enumerate_regex = re.compile(r"\\begin\s*\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}")
-end_enumerate_regex = re.compile(r"\\end\s*\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}")
+begin_enumerate_regex = re.compile(r"\\begin\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}")
+end_enumerate_regex = re.compile(r"\\end\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}")
 setcounter_regex = re.compile(r"\\setcounter\s*\{[^{}]+\}\{(?:\\value\{)?[^{}]+\}?\}")
 item_regex = re.compile(r"\\item")
 
@@ -213,6 +213,8 @@ def problem_generator(file_string, is_answer_key=False):
                 yield Problem(top_problem_n, get_counter("enumii"), get_counter("enumiii"), token.contents)
                 record_problem_n = top_problem_n
 
+problem_count = 0
+
 for chapter in chapter_names:
     enum_depth = 0 # 0 means not in an enumerate, 1 means in a top level enumerate, 2 means in a a,b,c enumerate, 3 means in a i, ii, iii enumerate
 
@@ -224,6 +226,8 @@ for chapter in chapter_names:
             textbook_problems = list(problem_generator(file_string, False))
             key_problems = list(problem_generator(answer_file_string, True))
 
+            problem_count += len(textbook_problems)
+
             for tb_problem in textbook_problems:
                 if "%compare-books-disable" in tb_problem.contents:
                     continue
@@ -234,3 +238,5 @@ for chapter in chapter_names:
                     for key_problem in key_problems:
                         if tb_problem.same_problem_encoding(key_problem):
                             print("ANSWER KEY: Problem %s" % (key_problem))
+
+print("Checked %s problems." % problem_count)
