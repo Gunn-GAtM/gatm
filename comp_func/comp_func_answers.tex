@@ -1,20 +1,28 @@
+
 \documentclass[../gatm_answers.tex]{subfiles}
 
 \begin{document}
 
 \section{Composition of Functions}
 
-I'm not going to write an answer key for this section at this time, as I see it as a waste of paper, since it is not used by students.
+\begin{outer_problem}
+\item Try a few other values of $x$ to see if and how the periodicity of $f$ depends on $x$.
+\end{outer_problem}
 
-I will eventually write it for a purely online version, for the sake of completeness. My alarm is set for June 2020, when I will hopefully be bored enough to do it.
+Let's try $x$ values $2$, $3$, $4$, and $-1$.
 
-\iffalse
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
-\item Try a few other values for $x$ to see if and how the periodicity of $f$ depends on $x$.
-\item Look at your results of iterating the following functions, and make a table of your results. If the initial value has a problem, try a different value and record it.
-\begin{center}
-\renewcommand*{\arraystretch}{1.4}
+$$f^0 (2.0) = 2.0; f^1 (2.0) = -1.0; f^2 (2.0) = 0.5; f^3 (2.0) = 2.0 \Longrightarrow \text{period} = 3$$
+$$f^0 (3.0) = 3.0; f^1 (3.0) = -0.5; f^2 (3.0) = 0.666666666667; f^3 (3.0) = 3.0; \Longrightarrow \text{period} = 3$$
+$$f^0 (4.0) = 4.0; f^1 (4.0) = -0.333333333333; f^2 (4.0) = 0.75; f^3 (4.0) = 4.0; \Longrightarrow \text{period} = 3$$
+$$f^0 (-1.0) = -1.0; f^1 (-1.0) = 0.5; f^2 (-1.0) = 2.0; f^3 (-1.0) = -1.0; \Longrightarrow \text{period} = 3$$
+
+It appears the period is always $3$, unless $x=1$, in which case the function is undefined.
+
+\begin{outer_problem}
+\item Look at your results of iterating the following functions and make a table of your results. If the initial value has a problem, record that.
+\end{outer_problem}
+
+
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
          & $\frac{1}{1-x}$ & $\frac{2}{2-x}$ & $\frac{3}{3-x}$ & $\frac{4}{4-x}$ & $\frac{5}{5-x}$ & $\frac{7}{7-x}$ & $\frac{6}{1-x}$ & $\frac{6}{2-x}$ & $\frac{6}{3-x}$ & $\frac{9}{3-x}$ \\ \hline
@@ -28,271 +36,550 @@ $f^6(x)$ &       &       &   &   &   &   &   &   &   &   \\ \hline
 $f^7(x)$ &       &       &   &   &   &   &   &   &   &   \\ \hline
 $f^8(x)$ &       &       &   &   &   &   &   &   &   &   \\ \hline
 \end{tabular}
-\end{center}
-\item \begin{enumerate}
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item At this point, you should have noticed some fundamentally different types of behavior of $f(x)=\frac{B}{D-x}$ under iteration, depending on the values of $B$ and $D$. What are they?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Do you have any theories yet as to when to expect each type of behavior for given values of $B$ and $D$?
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{multicols}{3}
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
+\item produce a group table;
+\end{outer_problem}
+
+\begin{outer_problem}
+\item identify a symmetry group to which each group is isomorphic.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item \label{prob:compose_start}$f(x)=\frac{2}{2-x}$
+\end{outer_problem}
+
+\begin{outer_problem}
 \item $f(x)=\frac{3}{3-x}$
+\end{outer_problem}
+
+\begin{outer_problem}
 \item \label{prob:compose_end}$f(x)=\frac{9}{3-x}$
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
-\end{multicols}
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\end{outer_problem}
+
+\begin{outer_problem}
 \item The function $f(x)=\frac{1}{2-x}$ behaves differently under composition.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Make a record of the first few compositions of $f(x)$ with itself.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Write a formula for $f^n(x)$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Write a formula for its inverse function, $f^{-1}(x)$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Why is $f^{-1}\circ f^{-1}=f^{-2}$?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What is $f^{-2}\circ f^2$?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Taken together, $f(x)$ and $f^{-1}(x)$ generate a group under composition. How big is it?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Substitute a value for $x$ and iterate. What happens?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item The function $f(x)=\frac{2}{1-x}$ illustrates another behavior under composition.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Plug in a value for $x$ and use your calculator to see what happens.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Find the inverse of this function.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item The original function and its inverse once again generate a group under composition. How big is this group?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Is it isomorphic to the group in problem 7?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item If you have time, write out a few of the elements of the group. Do you see any pattern?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Looking back at your results to problems 4 through 7, you will notice that the elements of each group are not all in the original form $f(x)=\frac{B}{D-x}$. All, however, are in the form $f(x)=\frac{Ax+B}{Cx+D}$. If $f(x)=\frac{Ax+B}{Cx+D}$ for some $A,B,C,D$, can you always write $f^n$ in the form $f^n(x)=\frac{Px+Q}{Rx+S}$ for some $P,Q,R,S$?
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{outer_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
-\item \begin{enumerate}
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Let $f(x)=\frac{Ax+B}{Cx+D}$, $g(x)=\frac{Px+Q}{Rx+S}$, and $h(x)=\frac{Tx+U}{Vx+W}$. Show that if $f\circ g = h$, then
-$$\twomat{A}{B}{C}{D}\twomat{P}{Q}{R}{S}=\twomat{T}{U}{V}{W}.$$
-Do this by computing $f(g(x))$ and the matrix product, then comparing.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item This is not a true one-to-one correspondence. Why not? (Hint: think about when division is undefined, as compared to matrix multiplication.)
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
 \item Find $f^4(x)$, $f^5(x)$, and $f^6(x)$ using matrices.
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{outer_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
 \item Use algebra or a computer algebra system---if you're lazy---to solve the following equations for $D$. Use $f^2$ from my writing above; use $f^4$ and $f^6$ from your answers to Problem 11.
-\begin{multicols}{3}
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item $f^2(x)=x$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item $f^4(x)=x$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item $f^6(x)=x$
-\end{enumerate}
-\end{multicols}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item For each period, choose one of your solutions for $D$, then use your calculator to iterate $f(x)=\frac{1}{D-x}$.
-\begin{multicols}{3}
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Period 2: $$D=\underline{\phantom{00000}}$$ $$f(x)=\underline{\phantom{00000}}$$ $$\text{Found period}=\underline{\phantom{00000}}$$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Period 4: $$D=\underline{\phantom{00000}}$$ $$f(x)=\underline{\phantom{00000}}$$ $$\text{Found period}=\underline{\phantom{00000}}$$
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Period 6: $$D=\underline{\phantom{00000}}$$ $$f(x)=\underline{\phantom{00000}}$$ $$\text{Found period}=\underline{\phantom{00000}}$$
-\end{enumerate}
-\end{multicols}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
-\item \begin{enumerate}
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item For what values of $D$ is $x$ real?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item For what values does $x$ have a nonzero imaginary component?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What is true of the fixed points for all of the cases where $f(x)$ is periodic?
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
+\begin{outer_problem}
+\item
+\end{outer_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
-\item \begin{enumerate}
+\begin{inner_problem}[start=1]
 \item Plot a graph in the complex plane of all the fixed points as $D$ ranges over the real numbers. Your graph should be a circle and two rays.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Plot and label the fixed points associated with $D$ values for periods $2,3,4,5$. What do you notice?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Make a prediction about the values of the fixed points associated with functions of period $7$ and $8$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Then predict what values of $D$ will produce periods of $7$ and $8$ for $f(z)=\frac{1}{D-z}$ under iteration.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Use your calculator to iterate your functions for $7,8$ and confirm your hypothesis.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Use your calculator to show that the fixed points for $7,8$ remains fixed.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Where do you suppose you would locate the fixed point so that you had an ``infinite'' period?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Construct an example of $f(z)=\frac{1}{D-z}$ with $|D|<2$ and an infinite period.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Once again, check using your calculator.
-\end{enumerate}
-\item \begin{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Find the fixed points for \begin{multicols}{3}
-\begin{enumerate}
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
 \item $f(z)=\frac{1}{2-z}.$
+\end{iinner_problem}
+
+\begin{iinner_problem}
 \item $f(z)=\frac{1}{3-z}.$
+\end{iinner_problem}
+
+\begin{iinner_problem}
 \item $f(z)=\frac{1}{4-z}.$
-\end{enumerate}
-\end{multicols}
+\end{iinner_problem}
+
+\begin{inner_problem}
 \item Use your calculator to iterate these functions using a variety of initial values.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What do you notice about these functions?
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
 \item Let's look at the geometry of $g$ and $h$ by completing the table in Figure~\ref{fig:z_values}. After doing this, you should be able to characterize how $g(z)$ and $h(z)$ transform the complex plane.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item Find the set of points which remain fixed under $h(z)$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What is an equation for it?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Give it a geometric name. It will help to complete the table first.
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Find the set of points which remain fixed under $g(z)$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What is an equation for it?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Give it a geometric name.
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
 \item There are two points which remain fixed under both $g(z)$ and $h(z)$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What are they?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Would they remain fixed under $g(h(z))$? Why or why not?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item What transformation of the plane does $h(z)$ produce?
+\end{outer_problem}
+
+\begin{outer_problem}
 \item What transformation of the plane does $g(z)$ produce?
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{outer_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
 \item Recall that successive reflections over two intersecting lines produce a rotation around the point of intersection, by twice the angle between the two lines.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What is the angle between the unit circle and the line $x=.5$ at the point of intersection?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item If you chose your initial value of $x$ to be ``close to'' one of the fixed points, what would you expect to happen if you transform it with $g(h(z))$...
-\begin{multicols}{3}
-\begin{enumerate}
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
 \item ... once?
+\end{iinner_problem}
+
+\begin{iinner_problem}
 \item ... twice?
+\end{iinner_problem}
+
+\begin{iinner_problem}
 \item ... thrice?
-\end{enumerate}
-\end{multicols}
-\end{enumerate}
-\item \begin{enumerate}
+\end{iinner_problem}
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item Use your calculator to test your hypothesis by picking a point close to $.5(1+\sqrt{3})$, like $.5+.85i$, as an initial value. Then, iterate $f(x)=\frac{1}{1-z}$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What happens as you move your initial value farther from the fixed point?
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item It appears that this composition of functions produces a rotation-like transformation, but there are two ``competing'' centers with the nearer center to a point ``exerting more influence.'' The ``rotation'' is distorted more and more the farther you are from the fixed points. What happens when the initial value is on the real axis?
+\end{outer_problem}
+
+\begin{outer_problem}
 \item What is the period of...
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item ... $g(z)=\frac{1}{\overline{z}}$?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item ... $h(z)=\overline{1-z}$?
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{inner_problem}
 
-We will now return to our original idea for decomposing $f(z)=\frac{1}{1-z}$ as $g(z)=\frac{1}{z}$ and $h(z)=1-z$. We will take an algebraic point of view, so it makes it easier to not use conjugation.
-
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{outer_problem}
 \item We will compose $g(z)=\frac{1}{z}$ and $h(z)=1-z$. Feel free to use a computer algebra system to do these problems.
-\begin{multicols}{3}
-\begin{enumerate}
-\item $g\circ g$
-\item $h\circ h$
-\item $g\circ h$
-\item $g\circ g\circ h$
-\item $g\circ h\circ h$
-\item $g\circ g\circ h$
-\item $g\circ h\circ g$
-\item $g\circ h\circ g\circ h$
-\item $g\circ h\circ g\circ h\circ g$
-\item $g\circ h\circ g\circ h\circ g\circ h$
-\item $h\circ g$
-\item $h\circ g\circ h$
-\item $h\circ g\circ h\circ g$
-\item $h\circ g\circ h\circ g\circ h$
-\item $h\circ g\circ h\circ g\circ h\circ g$
-\end{enumerate}
-\end{multicols}
-\item Let $j(z)=g\circ h\circ g(z)$ and let $k(z)=g\circ h\circ g\circ h(z)=f^2(z)$. Also, let $I(z)=z$ be the identity function. In the group table, let the function on the top be in the inner function, and the function on the left be the outer function, so for example $g\circ h(z)=f(z)$ as shown.
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-$\circ$ & $I$ & $f$ & $k$ & $g$ & $j$ & $h$ \\ \hline
-$I$ & & & & & & \\ \hline
-$f$ & & & & & & \\ \hline
-$k$ & & & & & & \\ \hline
-$g$ & & & & & & $f$\\ \hline
-$j$ & & & & & & \\ \hline
-$h$ & & & & & & \\ \hline
-\end{tabular}
-\end{center}
-\begin{enumerate}
-\item Complete the group table above,
-\item Is this group commutative?
-\item What group(s) is it isomorphic to?
-\item What subgroup(s) does it have?
-\end{enumerate}
-\item Repeat the above analysis on the function (i) $f(z)=-\frac{1}{z}$, (ii) $f(z)=\frac{1}{\sqrt{2}-z}$, and (iii) $f(z)=\frac{1}{\sqrt{3}-z}$.
-\begin{enumerate}
-\item Decompose it into two functions involving complex conjugates and graph the fixed points of each function.
-\item Find the intersection of the two sets of fixed points.
-\item Describe what each of the functions does.
-\item Decompose the function into two functions that do not involve conjugates and recompose them.
-\item Make a group table.
-\item What groups is this group isomorphic to?
-\end{enumerate}
-\item Now, consider the function $f(z)=\frac{1}{2-z}$.
-\begin{enumerate}
-\item Decompose it into two functions involving complex conjugates and graph the fixed points of each function.
-\item Where do they intersect?
-\item Use your graph to visualize what happens when you take a point, reflect it over the line, and invert it about the circle.
-\item Iterate this process---don't use your calculator for now. Where do you end up?
-\item Use your calculator to confirm your prediction, keeping track of where you end up on the graph after each iteration.
-\item Use a variety of initial points, and don't only use real ones.
-\end{enumerate}
-\item Repeat the process of the previous problem for the functions $f(z)=\frac{1}{3-z}$ and $f(z)=\frac{1}{4-z}$.
-\begin{enumerate}
-\item Decompose them using conjugates, and graph the set of fixed points.
-\item Note that although the circle of inversion and reflection line do not intersect, $f(x)$ still has two fixed points. Find them algebraically.
-\item Note that the two fixed points play a fundamentally different role. one is called an attractive fixed point, while the other is a repelling fixed point. Why?
-\item Was this the case for $D$ values which produced non-real fixed points?
-\item How does iterating functions like $f(z)=\frac{1}{3-z}$ compare to repeated, sequential reflection over two parallel lines?
-\end{enumerate}
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
+\end{outer_problem}
 
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
+\begin{inner_problem}[start=1]
+\item $g\circ g$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $h\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ h\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ h\circ g$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ h\circ g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ h\circ g\circ h\circ g$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $g\circ h\circ g\circ h\circ g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $h\circ g$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $h\circ g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $h\circ g\circ h\circ g$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $h\circ g\circ h\circ g\circ h$
+\end{inner_problem}
+
+\begin{inner_problem}
+\item $h\circ g\circ h\circ g\circ h\circ g$
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Let $j(z)=g\circ h\circ g(z)$ and let $k(z)=g\circ h\circ g\circ h(z)=f^2(z)$. Also, let $I(z)=z$ be the identity function. In the group table, let the function on the top be in the inner function, and the function on the left be the outer function, so for example $g\circ h(z)=f(z)$ as shown.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Complete the group table above,
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Is this group commutative?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item What group(s) is it isomorphic to?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item What subgroup(s) does it have?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Repeat the above analysis on the function (i) $f(z)=-\frac{1}{z}$, (ii) $f(z)=\frac{1}{\sqrt{2}-z}$, and (iii) $f(z)=\frac{1}{\sqrt{3}-z}$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Decompose it into two functions involving complex conjugates and graph the fixed points of each function.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Find the intersection of the two sets of fixed points.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Describe what each of the functions does.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Decompose the function into two functions that do not involve conjugates and recompose them.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Make a group table.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item What groups is this group isomorphic to?
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Now, consider the function $f(z)=\frac{1}{2-z}$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Decompose it into two functions involving complex conjugates and graph the fixed points of each function.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Where do they intersect?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Use your graph to visualize what happens when you take a point, reflect it over the line, and invert it about the circle.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Iterate this process---don't use your calculator for now. Where do you end up?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Use your calculator to confirm your prediction, keeping track of where you end up on the graph after each iteration.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Use a variety of initial points, and don't only use real ones.
+\end{inner_problem}
+
+\begin{outer_problem}
+\item Repeat the process of the previous problem for the functions $f(z)=\frac{1}{3-z}$ and $f(z)=\frac{1}{4-z}$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Decompose them using conjugates, and graph the set of fixed points.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Note that although the circle of inversion and reflection line do not intersect, $f(x)$ still has two fixed points. Find them algebraically.
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Note that the two fixed points play a fundamentally different role. one is called an attractive fixed point, while the other is a repelling fixed point. Why?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item Was this the case for $D$ values which produced non-real fixed points?
+\end{inner_problem}
+
+\begin{inner_problem}
+\item How does iterating functions like $f(z)=\frac{1}{3-z}$ compare to repeated, sequential reflection over two parallel lines?
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Solve the eigenvalues $\lambda_1$ and $\lambda_2$ of $\twomat{0}{1}{-1}{D}$. In the course of doing so, you should come across an equation which reminds you of the formula for fixed points.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item For what values of $D$ do the eigenvalues have magnitudes of $1$? For what values of $D$ are they $n$\textsuperscript{th} roots of unity? Express your answer as a trig function of $n$.
+\end{outer_problem}
+
+\begin{outer_problem}
 \item Let $D=1$, so $F=\twomat{0}{1}{-1}{1}$.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What are the eigenvalues of $F$? Express them in terms of $\operatorname{cis} \theta$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What is the period of this matrix under multiplication with itself?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Explain the apparent discrepancy between the period of this matrix under multiplication with itself and that of $f(z)=\frac{1}{1-z}$ under iteration.
-\end{enumerate}
+\end{inner_problem}
+
+\begin{outer_problem}
 \item Look at your answers to $f(z)=\frac{2}{2-z}$ and $f(z)=\frac{3}{3-z}$ from the first table in this chapter.
-\begin{enumerate}
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
 \item What were their periods?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item What is the circle of inversion for each one?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Write the matrices which correspond to $f(z)=\frac{2}{2-z}$ and $f(z)=\frac{3}{3-z}$.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Are the determinants of these matrices $1$?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Will these matrices ever repeat themselves under successive multiplication?
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Find the eigenvalues of these matrices.
+\end{inner_problem}
+
+\begin{inner_problem}
 \item Are the eigenvalues' magnitudes $1$?
-\end{enumerate}
-\end{enumerate}
-\fi
+\end{inner_problem}
+
 
 \end{document}
