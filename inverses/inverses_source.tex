@@ -5,7 +5,7 @@
 \section{Inverses}
 \setcounter{problem_i}{0}
 
-Now that we've talked about matrix multiplication quite a bit, it's time to start talking about matrix ``division.'' We've seen how matrix multiplication transforms the plane; since division is the opposite of multiplication, division will ``untransform'' the plane, putting all the points back where they started. But first, we'll review division in a few more familiar contexts.
+\noindent Now that we've talked about matrix multiplication quite a bit, it's time to start talking about matrix ``division.'' We've seen how matrix multiplication transforms the plane; since division is the opposite of multiplication, division will ``untransform'' the plane, putting all the points back where they started. But first, we'll review division in a few more familiar contexts.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -27,55 +27,69 @@ Now that we've talked about matrix multiplication quite a bit, it's time to star
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-\begin{wrapfigure}{hr}{0.3\textwidth}
-\centering
-\begin{asy}[width=0.25\textwidth]
-real clock_r = 5;
-real hour_text_r = 3.8;
-real hour_hand_r = 3;
-
-// st = small tick, lt = large tick
-real st_inner_r = 4.8;
-real lt_inner_r = 4.4;
-
-draw((clock_r,0)..(0,clock_r)..(-clock_r,0)..(0,-clock_r)..cycle); // draw an approximate circle
-
-for (int i = 0; i < 12; ++i) {
-	real angle = - 2 * pi / 12 * i + pi / 2;
-	pair tick_direction_unit = (cos(angle), sin(angle));
-	
-	label(string(i), hour_text_r * tick_direction_unit);
-}
-
-
-for (int i = 0; i < 60; ++i) {
-	real angle = 2 * pi / 60 * i + pi / 2;
-	pair tick_direction_unit = (cos(angle), sin(angle));
-	
-	draw((tick_direction_unit * ((i % 5 == 0) ? lt_inner_r : st_inner_r)) -- (tick_direction_unit * clock_r));
-}
-
-pair start_hour_unit = (cos(4*pi/3),sin(4*pi/3));
-pair end_hour_unit = (cos(pi/6),sin(pi/6));
-pair mid_hour_unit = -(cos(10.5*pi/6),sin(10.5*pi/6));
-
-draw((0,0)--hour_hand_r*start_hour_unit,gray,ArcArrow);
-draw((0,0)--hour_hand_r*end_hour_unit,ArcArrow);
-
-real motion_depiction_r = 1.33;
-path motion_arc = motion_depiction_r*start_hour_unit .. motion_depiction_r * mid_hour_unit .. motion_depiction_r*end_hour_unit;
-draw(motion_arc, Arrow);
-label("$+7$", motion_arc, NW);
-
-\end{asy}
-\captionof{figure}{$7+7\equiv 2$ on the clock.}
-\label{fig:clock_arithm}
-\vspace{-2cm} % due to the annoying wrap figure adding extra white space at the bottom
-\end{wrapfigure}
-
-Now, let's consider ``\textbf{clock arithmetic},'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.
-
-As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[c]{0.55\textwidth}
+			\setlength{\parindent}{15pt}
+			\noindent Now, let's consider ``\textbf{clock arithmetic},'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.%parskip failure? idk.
+				
+			As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						real clock_r = 5;
+						real hour_text_r = 3.8;
+						real hour_hand_r = 3;
+						
+						// st = small tick, lt = large tick
+						real st_inner_r = 4.8;
+						real lt_inner_r = 4.4;
+						
+						draw((clock_r,0)..(0,clock_r)..(-clock_r,0)..(0,-clock_r)..cycle); // draw an approximate circle
+						
+						for (int i = 0; i < 12; ++i) {
+						real angle = - 2 * pi / 12 * i + pi / 2;
+						pair tick_direction_unit = (cos(angle), sin(angle));
+						
+						label(string(i), hour_text_r * tick_direction_unit);
+						}
+						
+						
+						for (int i = 0; i < 60; ++i) {
+						real angle = 2 * pi / 60 * i + pi / 2;
+						pair tick_direction_unit = (cos(angle), sin(angle));
+						
+						draw((tick_direction_unit * ((i % 5 == 0) ? lt_inner_r : st_inner_r)) -- (tick_direction_unit * clock_r));
+						}
+						
+						pair start_hour_unit = (cos(4*pi/3),sin(4*pi/3));
+						pair end_hour_unit = (cos(pi/6),sin(pi/6));
+						pair mid_hour_unit = -(cos(10.5*pi/6),sin(10.5*pi/6));
+						
+						draw((0,0)--hour_hand_r*start_hour_unit,gray,ArcArrow);
+						draw((0,0)--hour_hand_r*end_hour_unit,ArcArrow);
+						
+						real motion_depiction_r = 1.33;
+						path motion_arc = motion_depiction_r*start_hour_unit .. motion_depiction_r * mid_hour_unit .. motion_depiction_r*end_hour_unit;
+						draw(motion_arc, Arrow);
+						label("$+7$", motion_arc, NW);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\captionof{figure}{$7+7\equiv 2$ on the clock.}
+					\label{fig:clock_arithm}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+	\end{center}
+\end{figure}
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -110,7 +124,7 @@ As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is 
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-Now we've seen how ``division'' (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices! In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
+\noindent Now we've seen how ``division'' (multiplicative inversion, or just inversion for short) works in a few more familiar situations, as well as the weird world of clock arithmetic. Let's see what happens with matrices! In the situation $AX=B$ we've been studying, $X$ is a column vector representing a point in the plane, $A$ is a $2\times 2$ matrix describing a transformation, and $B$ is the image of point $X$. Just like in the previous cases, we'll treat $A$ and $B$ as known and $X$ as the unknown.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -138,13 +152,13 @@ What would the left side reduce to?
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-Note that evaluating the right side would only entail simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's computer problems!
+\noindent Note that evaluating the right side would only entail simple matrix multiplication. This would save you a bit of work. If you were dealing with a system of three equations and three unknowns, however, it would save a lot work. You wouldn't even want to touch a system with $6$, let alone the systems of hundreds or thousands that appear in today's computer problems!
 
 Our problem simplifies as follows: how do we find the inverse of a $2\times 2$ matrix? We've actually already done this. On page~\pageref{prob:list_of_matrices}, you read the following string of matrices:
 
 $$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 
-The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitute $\twomat{a}{b}{c}{d}^{-1}$.
+\noindent The indicated matrices, to the left of $\twomat{a}{b}{c}{d}$, together constitute $\twomat{a}{b}{c}{d}^{-1}$.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -173,15 +187,15 @@ $$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-\textbf{Gauss-Jordan elimination} is an effective method we use to find inverses. If a matrix $A$ is invertible, then as we've seen with matrix decomposition, there is a set of steps to reduce it to the identity matrix. Therefore, we have some set of elementary matrices $E_i$ such that
+\noindent\textbf{Gauss-Jordan elimination} is an effective method we use to find inverses. If a matrix $A$ is invertible, then as we've seen with matrix decomposition, there is a set of steps to reduce it to the identity matrix. Therefore, we have some set of elementary matrices $E_i$ such that
 
 $$E_nE_{n-1}\cdots E_2E_1A=I.$$
 
-Multiplying by $A^{-1}$ on the right, we get
+\noindent Multiplying by $A^{-1}$ on the right, we get
 
 $$E_nE_{n-1}\cdots E_2E_1I=A^{-1}.$$
 
-Before, these elementary matrices were stretches, shears and the like. We will restrict ourselves to matrices like $\twomat{a}{0}{0}{1}$, which multiply a row by $a$, or matrices like $\twomat{1}{0}{2}{1}$, which adds a multiple of the first row to the second. That's because instead of thinking of a matrix, we simply have to think ``multiply this row by $a$'' or ``add these rows together,'' content that they are valid matrix multiplications. Some valid row operations are as follows:
+\noindent Before, these elementary matrices were stretches, shears and the like. We will restrict ourselves to matrices like $\twomat{a}{0}{0}{1}$, which multiply a row by $a$, or matrices like $\twomat{1}{0}{2}{1}$, which adds a multiple of the first row to the second. That's because instead of thinking of a matrix, we simply have to think ``multiply this row by $a$'' or ``add these rows together,'' content that they are valid matrix multiplications. Some valid row operations are as follows:
 
 \begin{itemize}
 \item Swapping rows $i$ and $j$
@@ -192,7 +206,7 @@ Before, these elementary matrices were stretches, shears and the like. We will r
 \item Taking multiple rows, multiplying them by any nonzero coefficients, and adding them to another
 \end{itemize}
 
-This last operation is the most powerful and encompasses most of the previous ones. To apply our multiplications easily, we \textbf{augment} a matrix $A$ by juxtaposing it with the identity matrix. Also, we write what row operation we actually did on the left after each step. As shown in the first equation, we have multiplied all the elementary matrices once $A$ has become $I$. But in that process, $I$ will have become $A^{-1}$!
+\noindent This last operation is the most powerful and encompasses most of the previous ones. To apply our multiplications easily, we \textbf{augment} a matrix $A$ by juxtaposing it with the identity matrix. Also, we write what row operation we actually did on the left after each step. As shown in the first equation, we have multiplied all the elementary matrices once $A$ has become $I$. But in that process, $I$ will have become $A^{-1}$!
 
 Choosing the steps is a bit of an art, which takes practice. Let's see Gauss-Jordan elimination in action on the matrix $A=\left[\begin{smallmatrix}3 & -4 \\ -2 & 3\end{smallmatrix}\right]$.
 
@@ -200,7 +214,7 @@ We first augment the matrix like so:
 
 $$\left[\begin{array}{c|c}A & I \end{array}\right] = \left[\begin{array}{cc|cc} 3 & -4 & 1 & 0 \\ -2 & 3 & 0 & 1 \end{array}\right].$$
 
-The line is there just so we remember this is no ordinary matrix, but two matrices joined together for convenience. Again, we want to turn the left side into the identity matrix.
+\noindent The line is there just so we remember this is no ordinary matrix, but two matrices joined together for convenience. Again, we want to turn the left side into the identity matrix.
 
 We need a $1$ in the bottom right corner, so we can add the top row to the bottom row to get $-1$:
 
@@ -210,7 +224,7 @@ $$\left[\begin{array}{cc|cc} 3 & -4 & 1 & 0 \\ -2 & 3 & 0 & 1 \end{array}\right]
 R_2=R_1+R_2 & 1 & -1 & 1 & 1
 \end{blockarray}.$$
 
-We can then get $1$ by multiplying the bottom row by $-1$. The rest of the steps are shown/justified as well:
+\noindent We can then get $1$ by multiplying the bottom row by $-1$. The rest of the steps are shown/justified as well:
 \begin{align*}
 &\Longrightarrow
 \begin{blockarray}{c[cc|cc]}
@@ -233,7 +247,8 @@ R_1=-R_1 & 1 & 0 & 3 & 4 \\
 R_2=R_1+R_2 & 0 & 1 & 2 & 3
 \end{blockarray}. \\
 \end{align*}
-Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end{smallmatrix}\right]$. Let's try this new technique out on some systems of equations.
+
+\noindent Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end{smallmatrix}\right]$. Let's try this new technique out on some systems of equations.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
