@@ -1,3 +1,5 @@
+***Note: GAtM main text finalizaed by me and Andrew for printing in 2020. Sorry if we missed anything -Brandon***
+
 # GAtM
 A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM") by Peter Herreshoff.
 
@@ -8,8 +10,6 @@ GAtM Final: 98%
 GAtM Answer Key Rough Draft: 100%
 
 GAtM Answer Key Final: 98%
-
-*Note: GAtM main text finalizaed by me and Andrew for printing in 2020. Sorry if we missed anything -Brandon*
 
 **Contributors**: Timothy Herchen
 
