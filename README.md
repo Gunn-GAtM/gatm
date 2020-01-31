@@ -9,6 +9,8 @@ GAtM Answer Key Rough Draft: 100%
 
 GAtM Answer Key Final: 98%
 
+*Note: GAtM main text finalizaed by me and Andrew for printing in 2020. Sorry if we missed anything -Brandon*
+
 **Contributors**: Timothy Herchen
 
 **Directions**: Run the build.sh script with bash to output the pdf file into the "build" folder.
