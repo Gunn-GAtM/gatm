@@ -80,40 +80,57 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix~\ref{prob:highlighted_example_list_transformations1} is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is matrix~\ref{prob:highlighted_example_list_transformations2}.
 \item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage and image, and identify the transformations and their order. Note the effect of order on the outcome!
 
-\begin{minipage}{0.7\textwidth}
-But first, an example:
-$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
-This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
-\end{minipage}\hfill
-\begin{minipage}{0.25\textwidth}
-\begin{asy}[width=\textwidth]
-draw((-2,0)--(9.5,0),Arrow);
-draw((0,-5)--(0,6.5),Arrow);
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[c]{0.55\textwidth}
+			But first, an example:
+			$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
+			This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						draw((-2,0)--(9.5,0),Arrow);
+						draw((0,-5)--(0,6.5),Arrow);
+						
+						for (int i = -1; i < 9; ++i) {
+							for (int j = -4; j < 6; ++j) {
+								dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
+							}
+						}
+						filltype fillc =FillDraw(fillpen=black,drawpen=black);
+						pen size = 1+currentpen;
+						
+						dot((0,0), size, fillc);
+						dot((1,0), size, fillc);
+						dot((0,1), size, fillc);
+						
+						dot((3,4), size, fillc);
+						dot((4,-3), size, fillc);
+						
+						path rot1=(0,1)..(3,4);
+						path rot2=(1,0)..(4,-3);
+						
+						draw(subpath(rot1,0.1,0.9),Arrow);
+						draw(subpath(rot2,0.1,0.9),Arrow);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\captionof{figure}{The preimage and image.}
+					\label{fig:preimage_image_mat}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+	\end{center}
+\end{figure}
 
-for (int i = -1; i < 9; ++i) {
-	for (int j = -4; j < 6; ++j) {
-		dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
-	}
-}
-filltype fillc =FillDraw(fillpen=black,drawpen=black);
-pen size = 1+currentpen;
-
-dot((0,0), size, fillc);
-dot((1,0), size, fillc);
-dot((0,1), size, fillc);
-
-dot((3,4), size, fillc);
-dot((4,-3), size, fillc);
-
-path rot1=(0,1)..(3,4);
-path rot2=(1,0)..(4,-3);
-
-draw(subpath(rot1,0.1,0.9),Arrow);
-draw(subpath(rot2,0.1,0.9),Arrow);
-\end{asy}
-\captionof{figure}{The preimage and image.}
-\label{fig:preimage_image_mat}
-\end{minipage}
+\vspace*{-2\baselineskip}
 
 \begin{multicols}{3}
 \begin{enumerate}
@@ -148,116 +165,135 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 \begin{figure}[h]
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,0);
-pair B = (4,4);
-pair D = (8,0);
-pair C = B+D;
-draw(A--B--C--D--cycle);
-draw(B--(4,0));
-
-label("$\varphi$", A, 2.8*ENE);
-draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
-label("$h$", (4,2),W);
-label("$b$", A--B, NW);
-
-path a_brace = shift(0,-0.2)*brace(D,A);
-draw(a_brace);
-
-draw((4,0.6)--(3.4,0.6)--(3.4,0));
-
-label("$a$", a_brace, S);
-\end{asy}
-\caption{A parallelogram.}
-\label{fig:parallelogram_generic}
-\end{minipage}\hfill
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,0);
-pair B = (4,4);
-pair D = (8,0);
-pair C = B+D;
-
-path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
-path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
-path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
-
-A = rotate(20.0)*A;
-B = rotate(20.0)*B;
-C = rotate(20.0)*C;
-D = rotate(20.0)*D;
-
-draw(A--B--C--D--cycle);
-draw(B--rotate(20.0)*(4,0));
-
-draw(angle_mark);
-draw(angle_mark2);
-label("$h$", rotate(20.0)*(4,2),NE);
-label("$b$", rotate(20.0)*A--B, NW);
-
-draw(a_brace);
-draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
-
-label("$a$", a_brace, rotate(20.0)*S);
-label("$\theta$", angle_mark2, ENE);
-label("$\phi$", angle_mark, ENE);
-
-draw((-2,0)--(10,0),Arrow);
-draw((0,-2)--(0,8),Arrow);
-
-label("$P$", A, SW);
-label("$Q$", B, NW);
-label("$R$", C, NE);
-label("$S$", D, ESE);
-\end{asy}
-\caption{The parallelogram in the $xy$ plane.}
-\label{fig:para_in_xy}
-\end{minipage}
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-import patterns;
-
-add("brick",brick());
-
-draw((0,0)--(7,0),Arrow);
-draw((0,0)--(0,6),Arrow);
-
-pair A = (0,0);
-pair B = (1,3);
-pair C = (6,5);
-pair D = (5,2);
-
-draw(A--B--C--D--cycle);
-pair K1 = (0,3);
-pair K2=(5,3);
-pair K3 = (5,0);
-pair L0 = (1,2);
-pair L1 = (1,5);
-pair L3 = (6,2);
-
-draw(A--K1--K2--K3--cycle);
-draw(L0--L1--C--L3--cycle);
-
-filldraw(A--K1--B--cycle, pattern("brick"));
-filldraw(A--K3--D--cycle, pattern("brick"));
-filldraw(L0--B--K2--D--cycle, pattern("brick"));
-filldraw(B--L1--C--cycle, pattern("brick"));
-filldraw(D--C--L3--cycle, pattern("brick"));
-
-label("$(a,b)$", B, NW);
-label("$(c,d)$", D, SE);
-label("$(a+c,b+d)$", C, N);
-
-dot(B);
-dot(D);
-dot(C);
-
-\end{asy}
-\caption{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
-\label{fig:para_scenario}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				pair A = (0,0);
+				pair B = (4,4);
+				pair D = (8,0);
+				pair C = B+D;
+				draw(A--B--C--D--cycle);
+				draw(B--(4,0));
+				
+				label("$\varphi$", A, 2.8*ENE);
+				draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
+				label("$h$", (4,2),W);
+				label("$b$", A--B, NW);
+				
+				path a_brace = shift(0,-0.2)*brace(D,A);
+				draw(a_brace);
+				
+				draw((4,0.6)--(3.4,0.6)--(3.4,0));
+				
+				label("$a$", a_brace, S);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				pair A = (0,0);
+				pair B = (4,4);
+				pair D = (8,0);
+				pair C = B+D;
+				
+				path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
+				path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
+				path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
+				
+				A = rotate(20.0)*A;
+				B = rotate(20.0)*B;
+				C = rotate(20.0)*C;
+				D = rotate(20.0)*D;
+				
+				draw(A--B--C--D--cycle);
+				draw(B--rotate(20.0)*(4,0));
+				
+				draw(angle_mark);
+				draw(angle_mark2);
+				label("$h$", rotate(20.0)*(4,2),NE);
+				label("$b$", rotate(20.0)*A--B, NW);
+				
+				draw(a_brace);
+				draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
+				
+				label("$a$", a_brace, rotate(20.0)*S);
+				label("$\theta$", angle_mark2, ENE);
+				label("$\phi$", angle_mark, ENE);
+				
+				draw((-2,0)--(10,0),Arrow);
+				draw((0,-2)--(0,8),Arrow);
+				
+				label("$P$", A, SW);
+				label("$Q$", B, NW);
+				label("$R$", C, NE);
+				label("$S$", D, ESE);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				import patterns;
+				
+				add("brick",brick());
+				
+				draw((0,0)--(7,0),Arrow);
+				draw((0,0)--(0,6),Arrow);
+				
+				pair A = (0,0);
+				pair B = (1,3);
+				pair C = (6,5);
+				pair D = (5,2);
+				
+				draw(A--B--C--D--cycle);
+				pair K1 = (0,3);
+				pair K2=(5,3);
+				pair K3 = (5,0);
+				pair L0 = (1,2);
+				pair L1 = (1,5);
+				pair L3 = (6,2);
+				
+				draw(A--K1--K2--K3--cycle);
+				draw(L0--L1--C--L3--cycle);
+				
+				filldraw(A--K1--B--cycle, pattern("brick"));
+				filldraw(A--K3--D--cycle, pattern("brick"));
+				filldraw(L0--B--K2--D--cycle, pattern("brick"));
+				filldraw(B--L1--C--cycle, pattern("brick"));
+				filldraw(D--C--L3--cycle, pattern("brick"));
+				
+				label("$(a,b)$", B, NW);
+				label("$(c,d)$", D, SE);
+				label("$(a+c,b+d)$", C, N);
+				
+				dot(B);
+				dot(D);
+				dot(C);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{A parallelogram.}
+			\label{fig:parallelogram_generic}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{The parallelogram in the $xy$ plane.}
+			\label{fig:para_in_xy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
+			\label{fig:para_scenario}
+		\end{minipage}
+	\end{center}
 \end{figure}
+
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
