@@ -163,13 +163,13 @@ As the string descends from top to bottom, it loops around a post in the middle 
 Two other strings are anchored and looped in the same way, with the condition that each post has exactly one string touching it.
 An example is depicted in Figure~\ref{fig:n_rows_3_cols_ex}.
 
-Figure~\ref{fig:all_3_cols} shows the six ways two rows can be connected with these rules -- convince yourself that these are the only six.
+Figure~\ref{fig:all_3_cols} shows the six ways two rows can be connected with these rules---convince yourself that these are the only six.
 I have labeled them as $I$, $A$, $B$, $C$, $D$, and $E$.
 
 Now, look at a $3\times 3$ grid of posts, like the one in Figure~\ref{fig:n_rows_3_cols_ex}.
 You should have two stacked configurations $X$ and $Y$, with $Y$ is on top of $X$.
 When you remove the middle posts (the posts indicated by $\circ$), the elastic string will \textbf{snap} to one of the six configurations we drew initially.
-Let's call this operation ``snap'', or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.''
+Let's call this operation ``snap,'' or $\snap$, so that $X\snap Y$ reads ``$X$ snap $Y$.''
 Keep in mind that when writing it this way, the bottom configuration $X$ goes first, and the top configuration $Y$ goes last.
 As an example, $A\snap B = E$, as shown in Figure~\ref{fig:snap_ex}.
 
@@ -183,25 +183,30 @@ Let's study the snap group and characterize its properties.
 	% Figure: partially-filled table for the 3-post snap group
 	\begin{center}
 		\centering
-		\begin{tabular}{c|cccccc}
-			\hline
-			$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
-			\rowcolor{light-gray}
-			$I$    &   &   &   &   &   &   \\ 
-			$A$    &   &   & $E$ &   &   &   \\ 
-			\rowcolor{light-gray}
-			$B$    &   &   &   &   &   &   \\ 
-			$C$    &   &   &   &   &   &   \\ 
-			\rowcolor{light-gray}
-			$D$    &   &   &   &   &   &   \\ 
-			$E$    &   &   &   &   &   &   \\ \hline
-		\end{tabular}
-		\vspace*{0.5\baselineskip}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &   &   \\ 
+				$A$    &   &   & $E$ &   &   &   \\ 
+				\rowcolor{light-gray}
+				$B$    &   &   &   &   &   &   \\ 
+				$C$    &   &   &   &   &   &   \\ 
+				\rowcolor{light-gray}
+				$D$    &   &   &   &   &   &   \\ 
+				$E$    &   &   &   &   &   &   \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
 	\end{center}
 	\vspace*{-2\baselineskip}
 	\begin{center}
-		\caption{Unfilled $3$-post snap group table.}
-		\label{fig:sbstable}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Unfilled $3$-post snap group table.}
+			\label{fig:sbstable}
+		\end{minipage}
 	\end{center}
 \end{figure}
 

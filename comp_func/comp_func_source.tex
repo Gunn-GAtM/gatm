@@ -59,7 +59,7 @@ To begin with, let's look at the function $f(x)=\frac{1}{1-x}$. We will want to 
 
 \noindent We'll try a slightly more algebraic approach to the problem. Composing $f(x)=\frac{1}{1-x}$ with itself yields:
 \begin{align*}
-f^2(x)&=\frac{1}{1-\frac{1}{1-x}}=\frac{1-x}{1-x-1}=\frac{x-1}{x}; \\
+f^2(x)&=\frac{1}{1-\frac{1}{1-x}}=\frac{1-x}{1-x-1}=\frac{x-1}{x} \\
 f^3(x)&=\frac{1}{1-\frac{x-1}{x}}=\frac{x}{x-(x-1)}=x.
 \end{align*}
 
@@ -91,7 +91,7 @@ f^3(x)&=\frac{1}{1-\frac{x-1}{x}}=\frac{x}{x-(x-1)}=x.
 	\end{center}
 \end{figure}
 
-For Problems~\ref{prob:compose_start} through~\ref{prob:compose_end},
+For Problems~\ref{prob:compose_start}--~\ref{prob:compose_end},
 \begin{enumerate}[label=\roman*.]
 \item compose each until $x$ is reached;
 \item record each of the functions generated;
@@ -125,10 +125,10 @@ For Problems~\ref{prob:compose_start} through~\ref{prob:compose_end},
 \item Plug in a value for $x$ and use your calculator to see what happens.
 \item Find the inverse of this function.
 \item The original function and its inverse once again generate a group under composition. How big is this group?
-\item Is it isomorphic to the group in problem 7?
+\item Is it isomorphic to the group in Problem 7?
 \item If you have time, write out a few of the elements of the group. Do you see any pattern?
 \end{enumerate}
-\item Looking back at your results to problems 4 through 7, you will notice that the elements of each group are not all in the original form $f(x)=\frac{B}{D-x}$. All, however, are in the form $f(x)=\frac{Ax+B}{Cx+D}$. If $f(x)=\frac{Ax+B}{Cx+D}$ for some $A,B,C,D$, can you always write $f^n$ in the form $f^n(x)=\frac{Px+Q}{Rx+S}$ for some $P,Q,R,S$?
+\item Looking back at your results to Problems 4--7, you will notice that the elements of each group are not all in the original form $f(x)=\frac{B}{D-x}$. All, however, are in the form $f(x)=\frac{Ax+B}{Cx+D}$. If $f(x)=\frac{Ax+B}{Cx+D}$ for some $A,B,C,D$, can you always write $f^n$ in the form $f^n(x)=\frac{Px+Q}{Rx+S}$ for some $P,Q,R,S$?
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
@@ -137,7 +137,7 @@ For Problems~\ref{prob:compose_start} through~\ref{prob:compose_end},
 First, we solve for $D$ when $f$ has period $1$:
 \begin{align*}
 f(x)=\frac{1}{D-x}&=x \\
-D&=\frac{x^2+1}{x}
+D&=\frac{x^2+1}{x}.
 \end{align*}
 
 \noindent So there is no constant value of $D$ which gives $f$ a period of $1$. We'll try out periods $2$ and $4$ later, but let's see $3$ and $5$ first. We set $f^3(x)=x$ and proceed:
@@ -150,7 +150,7 @@ f^3(x)=f(f(f(x)))&=f\left(f\left(\frac{1}{D-x}\right)\right) \\
 &= \frac{1}{D-\frac{D-x}{D^2-Dx-1}} = x \\
 \Longrightarrow D^2-Dx-1&=D^3x-D^2x^2-2Dx+x^2 \\
 \Longrightarrow D^3x-D^2(x^2+1)-Dx+(x^2+1)&=0 \\
-\Longrightarrow (D^2-1)(Dx-(x^2+1))&=0 \\
+\Longrightarrow (D^2-1)(Dx-(x^2+1))&=0. \\
 \end{align*}
 
 \noindent Setting $D^2-1=0\rightarrow D=\pm 1$ produces a function with period $3$. That is, $f(x)=\frac{1}{1-x}$ and $f(x)=\frac{1}{-1-x}$ have period $3$ under composition. You should recognize one of these already.
@@ -253,11 +253,11 @@ F^3 = FF^2 &= \twomat{0}{1}{-1}{D}\twomat{-1}{D}{-D}{D^2-1} \\
 \item Once again, check using your calculator.
 \end{enumerate}
 \item \begin{enumerate}
-\item Find the fixed points for \begin{multicols}{3}
+\item Find the fixed points for: \begin{multicols}{3}
 \begin{enumerate}
-\item $f(z)=\frac{1}{2-z}.$
-\item $f(z)=\frac{1}{3-z}.$
-\item $f(z)=\frac{1}{4-z}.$
+\item $f(z)=\frac{1}{2-z}$
+\item $f(z)=\frac{1}{3-z}$
+\item $f(z)=\frac{1}{4-z}$
 \end{enumerate}
 \end{multicols}
 \item Use your calculator to iterate these functions using a variety of initial values.
@@ -465,10 +465,12 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \end{enumerate}
 \item It appears that this composition of functions produces a rotation-like transformation, but there are two ``competing'' centers with the nearer center to a point ``exerting more influence.'' The ``rotation'' is distorted more and more the farther you are from the fixed points. What happens when the initial value is on the real axis?
 \item What is the period of...
+\begin{multicols}{2}
 \begin{enumerate}
 \item ... $g(z)=\frac{1}{\overline{z}}$?
 \item ... $h(z)=\overline{1-z}$?
 \end{enumerate}
+\end{multicols}
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
@@ -497,20 +499,28 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \end{enumerate}
 \end{multicols}
 \item Let $j(z)=g\circ h\circ g(z)$ and let $k(z)=g\circ h\circ g\circ h(z)=f^2(z)$. Also, let $I(z)=z$ be the identity function. In the group table, let the function on the top be in the inner function, and the function on the left be the outer function, so for example $g\circ h(z)=f(z)$ as shown.
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-$\circ$ & $I$ & $f$ & $k$ & $g$ & $j$ & $h$ \\ \hline
-$I$ & & & & & & \\ \hline
-$f$ & & & & & & \\ \hline
-$k$ & & & & & & \\ \hline
-$g$ & & & & & & $f$\\ \hline
-$j$ & & & & & & \\ \hline
-$h$ & & & & & & \\ \hline
-\end{tabular}
-\end{center}
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\circ$ & $I$ & $f$ & $k$ & $g$ & $j$ & $h$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & & & & & & \\
+				$f$ & & & & & & \\
+				\rowcolor{light-gray}
+				$k$ & & & & & & \\
+				$g$ & & & & & & $f$\\
+				\rowcolor{light-gray}
+				$j$ & & & & & & \\
+				$h$ & & & & & & \\ \hline
+			\end{tabular}
+		\end{minipage}
+	\end{center}
+\end{figure}
 \begin{enumerate}
-\item Complete the group table above,
+\item Complete the group table above.
 \item Is this group commutative?
 \item What group(s) is it isomorphic to?
 \item What subgroup(s) does it have?

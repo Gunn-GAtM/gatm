@@ -47,9 +47,9 @@
 	\end{center}
 \end{figure}
 
-By this time, you should be comfortable with the idea and process of matrix multiplication. You should know what dimensional relationship needs to be true of two matrices in order to be allowed to multiply them together.
+\noindent By this time, you should be comfortable with the idea and process of matrix multiplication. You should know what dimensional relationship needs to be true of two matrices in order to be allowed to multiply them together.
 
-Now we are going to consider $2\times 2$ matrices as operators, which map each point in the plane to another point in the plane. This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
+Now we are going to consider $2\times 2$ matrices as operators, which map each point in the plane to another point in the plane. This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{array}a \\ b \end{array}\right]$. For consistency, we will use the second format, the column vector.
 
 Figure~\ref{fig:random_matrix} is an example of what happens when a randomly chosen matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
@@ -106,7 +106,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
+\noindent Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate what kinds of mappings we can do with matrices. You may remember transformations from 9\textsuperscript{th} grade geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in preimage are mapped to the same point in the image.
 
 \newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
 
@@ -117,7 +117,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 				\setcounter{enumi}{\value{mp_problem_i}}
 				\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right.
 				\begin{enumerate}
-					\item Map it with the following matrices.
+					\item Map it with the following matrices:
 					\begin{multicols}{3}
 						\begin{enumerate}
 							\item $\left[\begin{array}{cc}1 & 0 \\ 0 & 1 \end{array}\right]$
@@ -225,7 +225,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
 \item \begin{enumerate}
-\item Take the matrix $\left[\begin{smallmatrix}1 & 2 \\ 0 & 1\end{smallmatrix}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
+\item Take the matrix $\left[\begin{array}1 & 2 \\ 0 & 1\end{array}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
 
 $$\begin{blockarray}{cccccc}
 & & A & B & C & D \\
@@ -240,7 +240,7 @@ A' & B' & C' & D' \\
 0 & 1 & 3 & 2 \\
 0 & 0 & 1 & 1 \\
 \end{block}
-\end{blockarray}.$$
+\end{blockarray}$$
 
 This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height.  In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without increasing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
 \item What happens to the area of the image versus the preimage?
@@ -288,7 +288,7 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \end{multicols}
 \item \begin{enumerate}
 \item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
-\item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
+\item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{egg}}$ in the $x$ direction, $\underline{\phantom{egg}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{egg}}$.
 \end{enumerate}
 \item \begin{enumerate}
 \item Write a matrix which translates a point $(x,y,1)$ $4$ units in the $x$ direction and $7$ units in the $y$ direction, leaving $z$ fixed at $1$.

@@ -31,6 +31,7 @@
 	\begin{center}
 		\begin{minipage}[c]{0.55\textwidth}
 			\setlength{\parindent}{15pt}
+			\setlength{\parskip}{0.25em}
 			\noindent Now, let's consider ``\textbf{clock arithmetic},'' in which we deal with integers $0$ through $11$ as hours on the clock---$0$ replaces $12$ for mathematical convenience. In this world, numbers above or equal to $12$ wrap around as the remainder, so $13\to 1$ and $25\to 1$. Instead of $=$ as in normal arithmetic, we use $\equiv$ to denote clock arithmetic.%parskip failure? idk.
 				
 			As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
@@ -130,8 +131,8 @@
 \setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item \label{prob:needed_for_matrix_undo3}Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of equations.
-\item \label{prob:needed_for_matrix_undo4}Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$
-\item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 10 \end{array}\right]$
+\item \label{prob:needed_for_matrix_undo4}Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$.
+\item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 10 \end{array}\right]$.
 \item What are all possible numbers of solutions that $AX=B$ can have in matrices? Use your knowledge of the properties of systems of equations.
 \end{enumerate}
 \item Now, let's relate the two matrices from the previous problem to the transformations we know.
@@ -168,7 +169,7 @@ $$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\two
 \item You should have found a problem in inverting the matrix in~\ref{prob:needed_for_matrix_undo4}. What is it? Answer geometrically, making reference to the matrix's mapping.
 \end{enumerate}
 \item \begin{enumerate}
-\item Look for a pattern in the answers to Problems \label{prob:why_did_herreshoff_do_this1} and \label{prob:why_did_herreshoff_do_this2}.
+\item Look for a pattern in the previous answers.
 \item Describe the inverse of an arbitrary matrix: $\twomat{a}{c}{b}{d}^{-1}=\frac{1}{\phantom{000000}}\twomat{}{}{}{}.$ Use the word determinant in your answer.
 \item We've been writing the inverse of matrix $A$ as $A^{-1}$. Why does this notation make sense?
 \end{enumerate}
