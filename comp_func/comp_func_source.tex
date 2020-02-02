@@ -217,9 +217,9 @@ F^3 = FF^2 &= \twomat{0}{1}{-1}{D}\twomat{-1}{D}{-D}{D^2-1} \\
 \item For each period, choose one of your solutions for $D$, then use your calculator to iterate $f(x)=\frac{1}{D-x}$.
 \begin{multicols}{3}
 \begin{enumerate}
-\item Period 2: $$D=\underline{\phantom{00000}}$$ $$f(x)=\underline{\phantom{00000}}$$ $$\text{Found period}=\underline{\phantom{00000}}$$
-\item Period 4: $$D=\underline{\phantom{00000}}$$ $$f(x)=\underline{\phantom{00000}}$$ $$\text{Found period}=\underline{\phantom{00000}}$$
-\item Period 6: $$D=\underline{\phantom{00000}}$$ $$f(x)=\underline{\phantom{00000}}$$ $$\text{Found period}=\underline{\phantom{00000}}$$
+\item Period 2: $$D=\underline{\phantom{egg}}$$ $$f(x)=\underline{\phantom{egg}}$$ $$\text{Found period}=\underline{\phantom{egg}}$$
+\item Period 4: $$D=\underline{\phantom{egg}}$$ $$f(x)=\underline{\phantom{egg}}$$ $$\text{Found period}=\underline{\phantom{egg}}$$
+\item Period 6: $$D=\underline{\phantom{egg}}$$ $$f(x)=\underline{\phantom{egg}}$$ $$\text{Found period}=\underline{\phantom{egg}}$$
 \end{enumerate}
 \end{multicols}
 \setcounter{problem_i}{\value{enumi}}
@@ -287,6 +287,36 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \begin{enumerate}
 \item What is an equation for it?
 \item Give it a geometric name.
+\end{enumerate}
+\item There are two points which remain fixed under both $g(z)$ and $h(z)$.
+\begin{enumerate}
+\item What are they?
+\item Would they remain fixed under $g(h(z))$? Why or why not?
+\end{enumerate}
+\item What transformation of the plane does $h(z)$ produce?
+\item What transformation of the plane does $g(z)$ produce?
+\setcounter{problem_i}{\value{enumi}}
+\end{enumerate}
+
+\noindent The transformation produced by $h(z)$ is a reflection over the line $x=.5$. The transformation produced by $g(z)$ is called an \textbf{inversion} over the unit circle. It is similar to a reflection, and if the preimage is very close to the unit circle the image is almost identical to the reflection of the preimage over the circle's circumference. The two transformations are depicted for various points in Figures~\ref{fig:function_h} and \ref{fig:function_g}.
+
+\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+\item Recall that successive reflections over two intersecting lines produce a rotation around the point of intersection, by twice the angle between the two lines.
+\begin{enumerate}
+\item What is the angle between the unit circle and the line $x=.5$ at the point of intersection?
+\item If you chose your initial value of $x$ to be ``close to'' one of the fixed points, what would you expect to happen if you transform it with $g(h(z))$...
+\begin{multicols}{3}
+	\begin{enumerate}
+		\item ... once?
+		\item ... twice?
+		\item ... thrice?
+	\end{enumerate}
+\end{multicols}
+\end{enumerate}
+\item \begin{enumerate}
+\item Use your calculator to test your hypothesis by picking a point close to $.5(1+\sqrt{3})$, like $.5+.85i$, as an initial value. Then, iterate $f(x)=\frac{1}{1-z}$.
+\item What happens as you move your initial value farther from the fixed point?
 \end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
@@ -431,44 +461,17 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 		\end{minipage}
 	\end{center}
 \end{figure}
-\begin{enumerate}
-\setcounter{enumi}{\value{problem_i}}
-\item There are two points which remain fixed under both $g(z)$ and $h(z)$.
-\begin{enumerate}
-\item What are they?
-\item Would they remain fixed under $g(h(z))$? Why or why not?
-\end{enumerate}
-\item What transformation of the plane does $h(z)$ produce?
-\item What transformation of the plane does $g(z)$ produce?
-\setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
-
-\noindent The transformation produced by $h(z)$ is a reflection over the line $x=.5$. The transformation produced by $g(z)$ is called an \textbf{inversion} over the unit circle. It is similar to a reflection, and if the preimage is very close to the unit circle the image is almost identical to the reflection of the preimage over the circle's circumference. The two transformations are depicted for various points in Figures~\ref{fig:function_h} and \ref{fig:function_g}.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
-\item Recall that successive reflections over two intersecting lines produce a rotation around the point of intersection, by twice the angle between the two lines.
-\begin{enumerate}
-\item What is the angle between the unit circle and the line $x=.5$ at the point of intersection?
-\item If you chose your initial value of $x$ to be ``close to'' one of the fixed points, what would you expect to happen if you transform it with $g(h(z))$...
-\begin{multicols}{3}
-\begin{enumerate}
-\item ... once?
-\item ... twice?
-\item ... thrice?
-\end{enumerate}
-\end{multicols}
-\end{enumerate}
-\item \begin{enumerate}
-\item Use your calculator to test your hypothesis by picking a point close to $.5(1+\sqrt{3})$, like $.5+.85i$, as an initial value. Then, iterate $f(x)=\frac{1}{1-z}$.
-\item What happens as you move your initial value farther from the fixed point?
-\end{enumerate}
+
+
 \item It appears that this composition of functions produces a rotation-like transformation, but there are two ``competing'' centers with the nearer center to a point ``exerting more influence.'' The ``rotation'' is distorted more and more the farther you are from the fixed points. What happens when the initial value is on the real axis?
-\item What is the period of...
+\item What is the period of
 \begin{multicols}{2}
 \begin{enumerate}
-\item ... $g(z)=\frac{1}{\overline{z}}$?
-\item ... $h(z)=\overline{1-z}$?
+\item $g(z)=\frac{1}{\overline{z}}$?
+\item $h(z)=\overline{1-z}$?
 \end{enumerate}
 \end{multicols}
 \setcounter{problem_i}{\value{enumi}}
@@ -589,3 +592,5 @@ $$\twomat{0}{1}{-1}{D}^n=\twomat{1}{0}{0}{1}.$$
 \end{enumerate}
 \end{enumerate}
 \end{document}
+
+% well, that's the end of this massive text. I would have thought there would be something of a more poetic ending than just a problem set that unceremoniously closes off this book. I guess we can't have everything though.

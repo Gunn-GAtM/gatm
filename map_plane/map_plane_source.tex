@@ -41,7 +41,7 @@
 		\end{minipage}
 		\hfill
 		\begin{minipage}[t]{0.45\textwidth}
-			\caption{The transformation in the $xy$-plane.}
+			\caption{The transformation in the $xy$ plane.}
 			\label{fig:geo_interp}
 		\end{minipage}
 	\end{center}
@@ -49,7 +49,7 @@
 
 \noindent By this time, you should be comfortable with the idea and process of matrix multiplication. You should know what dimensional relationship needs to be true of two matrices in order to be allowed to multiply them together.
 
-Now we are going to consider $2\times 2$ matrices as operators, which map points on the plane to points on the plane. That is, a $2\times 2$ matrix maps the plane onto itself, or onto some figure (subset of the plane). This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{smallmatrix}a \\ b \end{smallmatrix}\right]$. For consistency, we will use the second format, the column vector.
+Now we are going to consider $2\times 2$ matrices as operators, which map points on the plane to points on the plane. That is, a $2\times 2$ matrix maps the plane onto itself, or onto some figure (subset of the plane). This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{array}{c}a \\ b \end{array}\right]$. For consistency, we will use the second format, the column vector.
 
 Figure~\ref{fig:random_matrix} is an example of what happens when an arbitrary matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
@@ -100,7 +100,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
 \begin{enumerate}
 \item Solve the above matrix equation for $x$ and $y$ to find the point.
-\item There is a point $Q=\begin{bsmallmatrix}e \\ f \end{bsmallmatrix}$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
+\item There is a point $Q=\begin{array}{c}e \\ f \end{array}$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
 \item Prove your conjecture by plugging your point $Q$ into $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]Q=Q$.
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
@@ -226,7 +226,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
 \item \begin{enumerate}
-\item Take the matrix $\left[\begin{array}1 & 2 \\ 0 & 1\end{array}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
+\item Take the matrix $\left[\begin{array}{cc}1 & 2 \\ 0 & 1\end{array}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
 
 $$\begin{blockarray}{cccccc}
 & & A & B & C & D \\
@@ -243,7 +243,7 @@ A' & B' & C' & D' \\
 \end{block}
 \end{blockarray}$$
 
-This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$-axis, perpendicular to the $y$-axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height. In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$-axis without changing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
+This mapping is called a \textbf{shear}\footnote{You may have heard of wind shear, which is the change of velocity of the wind with altitude. Scissors exert a shearing action on paper to cut it.} in the direction of the $x$ axis, perpendicular to the $y$ axis. Quantitatively, the preimage is sheared horizontally by a factor of $2$ of its height. In this case, the square is distorted into a parallelogram by ``shoving'' it along the $x$ axis without changing $y$. The $2$ in the matrix could have been replaced by any other, nonzero\footnote{If it were $0$, it would become the identity transformation, which we'll talk about later.} number and the matrix would still represent a shear in the $x$ direction, just with a different magnitude.
 \item What happens to the area of the image versus the preimage?
 \item We have $AB=BC$, but is $A'B'$ equal to $B'C'$? Should it?
 \end{enumerate}

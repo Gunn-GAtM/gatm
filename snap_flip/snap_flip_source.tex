@@ -188,57 +188,102 @@ Dihedral groups exist for any polygonal figure; mathematically speaking, the dih
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
 % \newcolumntype{C}{>{\centering\arraybackslash}p{1em}} %i dont think we need this? idk
 
+% there used to be this fancy thing where figure 5 was to the right of questions 1 and 2 but there ended up not being enough space for that, sorry -b
+
 \begin{figure}[h]
 	\begin{center}
-		\begin{minipage}[c]{0.55\textwidth}
-			\begin{enumerate}
-				\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
-				\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
-				\newcounter{enumLast}
-				\setcounter{enumLast}{\theenumi}
-			
-			\end{enumerate}
+		\begin{minipage}[b]{0.35\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &   &   \\ 
+				$A$    &   &   & $E$ &   &   &   \\ 
+				\rowcolor{light-gray}
+				$B$    &   &   &   &   &   &   \\ 
+				$C$    &   &   &   &   &   &   \\ 
+				\rowcolor{light-gray}
+				$D$    &   &   &   &   &   &   \\ 
+				$E$    &   &   &   &   &   &   \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
 		\end{minipage}
-		\hfill% makes the subsequent minipage right justified
-		\begin{minipage}[c]{0.35\textwidth}
-			\begin{center}
-				\begin{minipage}[b]{\textwidth}
-					\centering
-					\begin{tabular}{c|cccccc}
-						\hline
-						$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
-						\rowcolor{light-gray}
-						$I$    &   &   &   &   &   &   \\ 
-						$A$    &   &   & $E$ &   &   &   \\ 
-						\rowcolor{light-gray}
-						$B$    &   &   &   &   &   &   \\ 
-						$C$    &   &   &   &   &   &   \\ 
-						\rowcolor{light-gray}
-						$D$    &   &   &   &   &   &   \\ 
-						$E$    &   &   &   &   &   &   \\ \hline
-					\end{tabular}
-					\vspace*{0.5\baselineskip}
-				\end{minipage}
-			\end{center}
-			\vspace*{-2\baselineskip}
-			\begin{center}
-				\begin{minipage}[t]{\textwidth}
-					\caption{Unfilled $D_3$ group table.}
-					\label{fig:sbstable}
-				\end{minipage}
-			\end{center}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Unfilled $D_3$ group table.}
+			\label{fig:sbstable}
 		\end{minipage}
 	\end{center}
 \end{figure}
 
-\vspace*{-2\baselineskip}
+%\vspace*{-2\baselineskip}
 %
 \begin{enumerate}
-\setcounter{enumi}{\theenumLast}
+\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
+\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
 \item What is the relationship between the tables for the snap group $S_3$ and the dihedral group $D_3$?
+\newcounter{enumLast}
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
 $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\bullet$ and $B$ with operation $\star$ are isomorphic if you can find a one-to-one correspondence between the two groups' elements, where the results of each group's operation on corresponding elements also correspond. This means we can find some pairing of elements between the two groups $A_1\leftrightarrow B_1, A_2\leftrightarrow B_2, \cdots, A_n \leftrightarrow B_n$ such that $A_j \bullet A_k = A_l \leftrightarrow B_j \star B_k = B_l$, for all $j,k,l$.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.35\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &   &   \\ 
+				$r$    &   &   & $fr^2$ &   &   &   \\ 
+				\rowcolor{light-gray}
+				$r^2$    &   &   &   &   &   &   \\ 
+				$f$    &   &   &   &   &   &   \\ 
+				\rowcolor{light-gray}
+				$fr$    &   &   &   &   &   &   \\ 
+				$fr^2$    &   &   &   &   &   &   \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.55\textwidth}
+			\centering
+			\begin{asy}[width=\textwidth]
+			size(0,60);
+			
+			drawTriangle((0, 0), 2, orders[0], false);
+			label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
+			drawTriangle((3, 0), 2, orders[4], false);
+			label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
+			drawTriangle((6, 0), 2, orders[5], false);
+			label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
+			drawTriangle((9, 0), 2, orders[2], false);
+			label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
+			
+			label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
+			label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
+			label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.35\textwidth}
+			\caption{Unfilled alternate $D_3$ table.}
+			\label{fig:alttable}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.55\textwidth}
+			\caption{$fr^2=C$. Again, notice the RTL evaluation.}
+			\label{fig:fr2}
+		\end{minipage}
+	\end{center}
+\end{figure}
+
 \begin{enumerate}
 \setcounter{enumi}{\theenumLast}
 \item Check your understanding by defining isomorphic in your own words.
@@ -275,59 +320,5 @@ Definition of \textbf{group}: A group $G$ is a set of elements together with a \
 \end{enumerate}
 \end{multicols}
 \end{enumerate}
-
-\begin{figure}
-	\begin{center}
-		\begin{minipage}[b]{0.35\textwidth}
-			\centering
-			\begin{tabular}{c|cccccc}
-				\hline
-				$\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
-				\rowcolor{light-gray}
-				$I$    &   &   &   &   &   &   \\ 
-				$r$    &   &   & $fr^2$ &   &   &   \\ 
-				\rowcolor{light-gray}
-				$r^2$    &   &   &   &   &   &   \\ 
-				$f$    &   &   &   &   &   &   \\ 
-				\rowcolor{light-gray}
-				$fr$    &   &   &   &   &   &   \\ 
-				$fr^2$    &   &   &   &   &   &   \\ \hline
-			\end{tabular}
-			\vspace*{0.5\baselineskip}
-		\end{minipage}
-		\hfill
-		\begin{minipage}[b]{0.55\textwidth}
-			\centering
-			\begin{asy}[width=\textwidth]
-				size(0,60);
-				
-				drawTriangle((0, 0), 2, orders[0], false);
-				label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
-				drawTriangle((3, 0), 2, orders[4], false);
-				label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				drawTriangle((6, 0), 2, orders[5], false);
-				label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				drawTriangle((9, 0), 2, orders[2], false);
-				label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				
-				label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
-				label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
-				label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
-			\end{asy}
-		\end{minipage}
-	\end{center}
-	\vspace*{-2\baselineskip}
-	\begin{center}
-		\begin{minipage}[t]{0.35\textwidth}
-			\caption{Unfilled alternate $D_3$ table.}
-			\label{fig:alttable}
-		\end{minipage}
-		\hfill
-		\begin{minipage}[t]{0.55\textwidth}
-			\caption{$fr^2=C$. Again, notice the RTL evaluation.}
-			\label{fig:fr2}
-		\end{minipage}
-	\end{center}
-\end{figure}
 
 \end{document}

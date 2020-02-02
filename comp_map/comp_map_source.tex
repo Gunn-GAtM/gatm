@@ -4,8 +4,9 @@
 
 \section{Composite Mappings of the Plane}
 \setcounter{problem_i}{0}
+\newcounter{bruh_count}
 
-So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$-axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
+So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
 
 \newcommand{\blanktwomat}{\twomat{\phantom{0}}{\phantom{0}}{}{}}
 
@@ -85,60 +86,62 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \end{enumerate}
 \end{multicols}
 \item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix 4c is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is matrix 4d.
-\item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{smallmatrix}1 & 0 \\ 0 & 1\end{smallmatrix}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
+\item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{array}{cc}1 & 0 \\ 0 & 1\end{array}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
+\setcounter{bruh_count}{\value{enumi}}
+\end{enumerate}
+
+\noindent But first, an example:
+$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
+
+\noindent This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+
+%same as before, no space, had to split up
 
 \begin{figure}[h]
 	\begin{center}
-		\begin{minipage}[c]{0.55\textwidth}
-			But first, an example:
-			$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
-			This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				draw((-2,0)--(9.5,0),Arrow);
+				draw((0,-5)--(0,6.5),Arrow);
+				
+				for (int i = -1; i < 9; ++i) {
+					for (int j = -4; j < 6; ++j) {
+						dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
+					}
+				}
+				filltype fillc =FillDraw(fillpen=black,drawpen=black);
+				pen size = 1+currentpen;
+				
+				dot((0,0), size, fillc);
+				dot((1,0), size, fillc);
+				dot((0,1), size, fillc);
+				
+				dot((3,4), size, fillc);
+				dot((4,-3), size, fillc);
+				
+				path rot1=(0,1)..(3,4);
+				path rot2=(1,0)..(4,-3);
+				
+				draw(subpath(rot1,0.1,0.9),Arrow);
+				draw(subpath(rot2,0.1,0.9),Arrow);
+			\end{asy}
 		\end{minipage}
-		\hfill
-		\begin{minipage}[c]{0.35\textwidth}
-			\begin{center}
-				\begin{minipage}[b]{\textwidth}
-					\centering
-					\begin{asy}[width=0.7\textwidth]
-						draw((-2,0)--(9.5,0),Arrow);
-						draw((0,-5)--(0,6.5),Arrow);
-						
-						for (int i = -1; i < 9; ++i) {
-							for (int j = -4; j < 6; ++j) {
-								dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
-							}
-						}
-						filltype fillc =FillDraw(fillpen=black,drawpen=black);
-						pen size = 1+currentpen;
-						
-						dot((0,0), size, fillc);
-						dot((1,0), size, fillc);
-						dot((0,1), size, fillc);
-						
-						dot((3,4), size, fillc);
-						dot((4,-3), size, fillc);
-						
-						path rot1=(0,1)..(3,4);
-						path rot2=(1,0)..(4,-3);
-						
-						draw(subpath(rot1,0.1,0.9),Arrow);
-						draw(subpath(rot2,0.1,0.9),Arrow);
-					\end{asy}
-				\end{minipage}
-			\end{center}
-			\vspace*{-2\baselineskip}
-			\begin{center}
-				\begin{minipage}[t]{\textwidth}
-					\captionof{figure}{The preimage and image.}
-					\label{fig:preimage_image_mat}
-				\end{minipage}
-			\end{center}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\captionof{figure}{The preimage and image.}
+			\label{fig:preimage_image_mat}
 		\end{minipage}
 	\end{center}
 \end{figure}
 
 %\vspace*{-2\baselineskip}
 
+\begin{enumerate}
+\setcounter{enumi}{\value{bruh_count}}
+\item[]
 \begin{multicols}{3}
 \begin{enumerate}
 \item $\twomat{1}{2}{0}{1}\twomat{.6}{-.8}{.8}{.6}$
@@ -152,10 +155,10 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item $\twomat{.6}{.8}{.8}{-.6}\twomat{.8}{.6}{.6}{-.8}$
 \end{enumerate}
 \end{multicols}
-\item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
+\item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{array}{c}x \\ y \end{array}\right]\right)=xf\left(\left[\begin{array}{c}1 \\ 0 \end{array}\right]\right)+yf\left(\left[\begin{array}{c}0 \\ 1 \end{array}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
 \item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the preimage and image when applied to $(1,0)$ and $(0,1)$.
 \begin{enumerate}
-\item Rotation by $135^\circ$ followed by a shear by a factor of $\frac{1}{2}$ \textit{perpendicular} to the $y$-axis \label{prob:matrix_prod_start}
+\item Rotation by $135^\circ$ followed by a shear by a factor of $\frac{1}{2}$ \textit{perpendicular} to the $y$ axis \label{prob:matrix_prod_start}
 \item Same transformations as in (a), but order reversed
 \item Stretch in the $y$ direction by a factor of $3$ followed by a rotation of $60^\circ$
 \item Same transformations as in (c), but order reversed
@@ -303,7 +306,7 @@ We want to generalize those ideas. What does each of the following matrices do? 
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
-\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$-axis and $b$ makes an angle of $\phi$ with the $x$-axis. Thus, $\varphi=\phi-\theta$.
+\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
 \begin{enumerate}
 \item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
 \item Find the $x$ and $y$ coordinates of $P,Q,R,S$ in terms of $a$, $b$, $\phi$, $\theta$.
@@ -311,7 +314,7 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
 \item Use angle addition formulas to simplify your answer.
 \item You should find some relationship between your answers to Problems 11a and 11d. What is it?
-\item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{array}a & c \\ b & d \end{array}\right]=ad-bc$. What does it measure?
+\item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{array}{cc}a & c \\ b & d \end{array}\right]=ad-bc$. What does it measure?
 \item Find a matrix which produces a rotation. What is its determinant?
 \item Find a matrix that produces a reflection.
 \begin{enumerate}
@@ -344,10 +347,10 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item What isometry reverses orientation?
 \end{enumerate}
 \item \begin{enumerate}
-\item What would have happened to the parallelogram if we replaced $c,d$ in the matrix with $kc,kd$ for some $k>0$, so that the transformation matrix is $\left[\begin{smallmatrix} a & kc \\ b & kd \end{smallmatrix}\right]$?
+\item What would have happened to the parallelogram if we replaced $c,d$ in the matrix with $kc,kd$ for some $k>0$, so that the transformation matrix is $\left[\begin{array}{cc} a & kc \\ b & kd \end{array}\right]$?
 \item What would its area be?
 \item What would the determinant of the matrix be?
-\item What if $\left[\begin{smallmatrix}b & d \end{smallmatrix}\right]=r\left[\begin{smallmatrix}a & c \end{smallmatrix}\right]$? That is, what if the second row of the matrix was a linear multiple of the first row?
+\item What if $\left[\begin{array}{cc}b & d \end{array}\right]=r\left[\begin{array}{cc}a & c \end{array}\right]$? That is, what if the second row of the matrix was a linear multiple of the first row?
 \end{enumerate}
 \end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
@@ -363,15 +366,15 @@ We will look at the image of the unit square under an arbitrary transformation a
 \item Start by checking the determinant. If it is nonzero, continue to step (ii). Otherwise, you are done, because the inverse does not exist.\footnote{Why doesn't the inverse exist? Describe the mapping.}
 \setcounter{first_para}{\value{enumi}}
 \item If $a=0$, rotate the whole matrix $90^\circ$ so that $a$ becomes nonzero.
-\item Stretch or shrink your matrix along the $x$-axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero.
+\item Stretch or shrink your matrix along the $x$ axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero:
 
 $$\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d} = \twomat{1}{\frac{c}{a}}{b}{d}.$$
 
-\item Shear the vector $\twovec{1}{b}$ to $\twovec{1}{0}$ so that it is parallel to the $x$-axis.
+\item Shear the vector $\twovec{1}{b}$ to $\twovec{1}{0}$ so that it is parallel to the $x$ axis:
 
 \begin{align*}
 \twomat{1}{0}{-b}{1}\twomat{1}{\frac{c}{a}}{b}{d} &= \twomat{1}{\frac{c}{a}}{0}{-\frac{bc}{a}+d} \\
-&= \twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a}}
+&= \twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a}}.
 \end{align*}
 
 \item Stretch in the $y$ direction to make the bottom right entry $1$:
@@ -383,7 +386,7 @@ $$\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a}}=\
 $$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{\frac{c}{a}}{0}{1}=\twomat{1}{0}{0}{1}.$$
 \end{enumerate}
 
-\noindent This process applied to the matrix $\left[\begin{array}a & c \\ b & d \end{array}\right]=\left[\begin{array}2 & 3 \\ 4 & 1 \end{array}\right]$, is shown in Figure~\ref{fig:undo_matrix} (some not to scale).
+\noindent This process applied to the matrix $\left[\begin{array}{cc}a & c \\ b & d \end{array}\right]=\left[\begin{array}{cc}2 & 3 \\ 4 & 1 \end{array}\right]$, is shown in Figure~\ref{fig:undo_matrix} (some not to scale).
 
 \begin{asydef}
 void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real cp, real bp, real dp) {
@@ -505,17 +508,17 @@ Our ultimate goal is to build up the matrix from basic operations, not to just u
 \item \begin{enumerate}
 \item How do you undo a shear in the $x$ direction?
 $\blanktwomat\twomat{1}{s}{0}{1}=\twomat{1}{0}{0}{1}$
-\item How do you undo a stretch along the $x$-axis?
+\item How do you undo a stretch along the $x$ axis?
 $\blanktwomat\twomat{x}{0}{0}{1}=\twomat{1}{0}{0}{1}$
 \item How do you undo a shear in the $y$ direction?
 $\blanktwomat\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$
-\item How do you undo a stretch along the $y$-axis?
+\item How do you undo a stretch along the $y$ axis?
 $\blanktwomat\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$
 \end{enumerate}
 
-\item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{array}a & c \\ b & d \end{array}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{array}a & c \\ b & d \end{array}\right]$ is composed. Order is important!
+\item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{array}{cc}a & c \\ b & d \end{array}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{array}{cc}a & c \\ b & d \end{array}\right]$ is composed. Order is important!
 
-\vspace{10ex}
+\vspace{5em}
 $$\mathop{\blanktwomat}^{\tikzmark{a1}}
 \mathop{\blanktwomat}^{\tikzmark{b1}}
 \mathop{\blanktwomat}^{\tikzmark{c1}}
@@ -543,13 +546,13 @@ $$\Longrightarrow \blanktwomat\blanktwomat\blanktwomat\blanktwomat\twomat{1}{0}{
 \item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
 \begin{multicols}{2}
 \begin{enumerate}[label=(\roman*)]
-\item Stretch along the $x$-axis by factor of $\frac{1}{3}$. %compare-books-disable
+\item Stretch along the $x$ axis by factor of $\frac{1}{3}$. %compare-books-disable
 $$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}=\twomat{1}{\frac{4}{3}}{2}{-5}$$
-\item Shear perpendicular to the $x$-axis by $-2$. %compare-books-disable
+\item Shear perpendicular to the $x$ axis by $-2$. %compare-books-disable
 $$\twomat{1}{0}{-2}{1}\twomat{1}{\frac{4}{3}}{2}{-5}=\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}$$
-\item Stretch along $y$-axis by $-\frac{3}{23}$. %compare-books-disable
+\item Stretch along $y$ axis by $-\frac{3}{23}$. %compare-books-disable
 $$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twomat{1}{\frac{4}{3}}{0}{1}$$
-\item Shear perpendicular to the $y$-axis by $-\frac{4}{3}$. %compare-books-disable
+\item Shear perpendicular to the $y$ axis by $-\frac{4}{3}$. %compare-books-disable
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
 \end{enumerate}
 \end{multicols}
@@ -558,7 +561,7 @@ $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}
 Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$
 What does each matrix do?
 \item\label{prob:needed_for_matrix_undo2}Here is another way that you could have decomposed the above matrix:
-%\vspace{-2ex}
+\vspace{-1em}
 $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \mathop{\twomat{1}{-\frac{2}{23}}{0}{1}}^{\text{ii}}
 \mathop{\twomat{\frac{1}{\sqrt{13}}}{0}{0}{\frac{1}{\sqrt{13}}}}^{\text{iii}}
@@ -569,7 +572,7 @@ $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \item Identify what matrices i through v each do.
 \end{enumerate}
 Next, we undo this sequence of operations by working backwards:
-%\vspace{-2ex}
+\vspace{-1em}
 $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \mathop{\twomat{\frac{3}{\sqrt{13}}}{\frac{2}{\sqrt{13}}}{-\frac{2}{\sqrt{13}}}{\frac{3}{\sqrt{13}}}}^{\text{ii}}
 \mathop{\twomat{\sqrt{13}}{0}{0}{\sqrt{13}}}^{\text{iii}}
@@ -596,9 +599,10 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item If you try to decompose this matrix to the identity matrix, what happens? Why?
 \end{enumerate}
 \end{multicols}
-\item Onto what line does $\left[\begin{array} a & b \\ 2a & 2b\end{array}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
-\item Use Problem~\ref{prob:project_the_plane} to decompose $\left[\begin{array} 2 & 3 \\ 4 & 6 \end{array}\right]$ into a projection to a line followed by a size change.
-\item Decompose $\left[\begin{array} 1 & 2 \\ 3 & 6\end{array}\right]$ into a projection perpendicular to a line followed by a size change.
+\item Onto what line does $\left[\begin{array}{cc} a & b \\ 2a & 2b\end{array}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
+% slight edit for space keeping, sorry
+\item Use Problem~\ref{prob:project_the_plane} to decompose Problem 18c into a projection to a line followed by a size change.
+\item Decompose $\left[\begin{array}{cc} 1 & 2 \\ 3 & 6\end{array}\right]$ into a projection perpendicular to a line followed by a size change.
 \item Write matrices which project onto the following lines:
 \begin{multicols}{3}
 \begin{enumerate}

@@ -27,14 +27,29 @@
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
+\noindent Now, consider ``\textbf{clock arithmetic},'' which deals with integers $0$ through $11$ as hours on the clock: $0$ replaces $12$ for mathematical convenience. Numbers ``wrap'' around as the remainder when they are divided by $12$, so for example $13\to 1$ and $25\to 1$. We use the congruency sign $\equiv$ to denote clock arithmetic, instead of $=$.
+
+As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
+
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[c]{0.55\textwidth}
 			\setlength{\parindent}{15pt}
 			\setlength{\parskip}{0.25em}
-			\noindent Now, consider ``\textbf{clock arithmetic},'' which deals with integers $0$ through $11$ as hours on the clock: $0$ replaces $12$ for mathematical convenience. Numbers ``wrap'' around as the remainder when they are divided by $12$, so for example $13\to 1$ and $25\to 1$. We use the congruency sign $\equiv$ to denote clock arithmetic, instead of $=$.
-				
-			As some basic examples, $7+7\equiv 2$, because ``$7$ hours after $7$ o'clock is $2$ o'clock.'' This is shown in Figure~\ref{fig:clock_arithm}. In addition, $7\times 7\equiv 1$, because $49$ has remainder $1$ when divided by $12$. In more formal language, this clock arithmetic is actually called ``arithmetic \textbf{modulo} $12$.''
+			
+			
+			\begin{enumerate}
+			\setcounter{enumi}{\value{problem_i}}
+			\item In the following problems, $x$ can be any integer from $0$ to $11$.
+			\begin{enumerate}
+			\item Find all solutions of $5x\equiv 7$ in clock arithmetic.
+			\item Find all solutions of $2x\equiv 6$ in clock arithmetic.
+			\item Find all solutions of $6x\equiv 6$ in clock arithmetic.
+			\item Find all solutions of $2x\equiv 7$ in clock arithmetic.
+			\item For integers $a,b$, what are all possible numbers of solutions that $ax\equiv b$ can have in clock arithmetic?
+			\end{enumerate}
+			\setcounter{problem_i}{\value{enumi}}
+			\end{enumerate}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[c]{0.35\textwidth}
@@ -94,14 +109,6 @@
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
-\item In the following problems, $x$ can be any integer from $0$ to $11$.
-\begin{enumerate}
-\item Find all solutions of $5x\equiv 7$ in clock arithmetic.
-\item Find all solutions of $2x\equiv 6$ in clock arithmetic.
-\item Find all solutions of $6x\equiv 6$ in clock arithmetic.
-\item Find all solutions of $2x\equiv 7$ in clock arithmetic.
-\item For integers $a,b$, what are all possible numbers of solutions that $ax\equiv b$ can have in clock arithmetic?
-\end{enumerate}
 \item How does the number of solutions to $ax\equiv b$ relate to the idea of multiplicative inverse? (Hint: You can try solving for $a=5,7,11$ and $b=1$. What numbers would be $5^{-1}$, $7^{-1}$, $11^{-1}$ in clock arithmetic?)
 \item How does this all relate to groups?
 \begin{enumerate}
@@ -130,7 +137,7 @@
 \item \label{prob:needed_for_matrix_undo3}Find all solutions $(x,y)$ of $\twomat{1}{2}{3}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$, by multiplying out the left side and rewriting this as a system of equations.
 \item \label{prob:needed_for_matrix_undo4}Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 6 \end{array}\right]$.
 \item Find all solutions $(x,y)$ of $\twomat{1}{2}{2}{4}\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} 5 \\ 10 \end{array}\right]$.
-\item What are all possible numbers of solutions that $AX=B$ can have, where $A,B$ are $2\times 2$ and $2\times 1$ matrices respectively and $X=\left[\begin{smallmatrix} x \\ y \end{smallmatrix}\right]$? Use your knowledge of the properties of systems of equations.
+\item What are all possible numbers of solutions that $AX=B$ can have, where $A,B$ are $2\times 2$ and $2\times 1$ matrices respectively and $X=\left[\begin{array}{c} x \\ y \end{array}\right]$? Use your knowledge of the properties of systems of equations.
 \end{enumerate}
 \item Now, let's relate the two $2\times 2$ matrices from the previous problem to the transformations we know.
 \begin{enumerate}
@@ -164,7 +171,7 @@ $$\overbrace{\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\two
 $$\twomat{3}{4}{2}{-5}^{-1}=\twomat{\frac{3}{23}}{\frac{4}{23}}{\frac{2}{23}}{-\frac{5}{23}}$$
 $$\twomat{1}{0}{0}{-1}^{-1}=\twomat{1}{0}{0}{-1}$$
 $$\twomat{3}{1}{2}{4}^{-1}=\frac{1}{10}\twomat{4}{-1}{-2}{3}$$
-$$\twomat{1}{2}{3}{4}^{-1} = \twomat{-2}{1}{3}{-1}$$
+$$\twomat{1}{2}{3}{4}^{-1} = \twomat{-2}{1}{3}{-1}.$$
 
 \begin{enumerate}
 \item Look for a pattern in these inverses.
@@ -207,7 +214,7 @@ $$E_nE_{n-1}\cdots E_2E_1I=A^{-1}.$$
 
 \noindent This last operation is the most powerful and encompasses most of the previous ones. To apply our multiplications easily, we \textbf{augment} a matrix $A$ by juxtaposing it with the identity matrix. Also, we write what row operation we actually did on the left after each step. As shown in the first equation, we have multiplied all the elementary matrices once $A$ has become $I$. But in that process, $I$ will have become $A^{-1}$!
 
-Choosing the steps is a bit of an art, which takes practice. Let's see Gauss-Jordan elimination in action on the matrix $A=\left[\begin{smallmatrix}3 & -4 \\ -2 & 3\end{smallmatrix}\right]$.
+Choosing the steps is a bit of an art, which takes practice. Let's see Gauss-Jordan elimination in action on the matrix $A=\left[\begin{array}{cc}3 & -4 \\ -2 & 3\end{array}\right]$.
 
 We first augment the matrix like so:
 
@@ -247,7 +254,8 @@ R_2=R_1+R_2 & 0 & 1 & 2 & 3
 \end{blockarray}. \\
 \end{align*}
 
-\noindent Observe! We have found that $A^{-1}=\left[\begin{smallmatrix}3 & 4 \\ 2 & 3 \end{smallmatrix}\right]$. Let's try this new technique out on some systems of equations.
+%feel bad about this one but im running out of timmee
+\noindent Observe! We have found $A^{-1}$. Let's try this new technique out on some systems of equations.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
