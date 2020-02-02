@@ -33,7 +33,10 @@
 \usepackage{hhline}
 \usepackage{stix}
 
-\newcommand{\twomat}[4] {\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+\usepackage{color, colortbl}
+\definecolor{light-gray}{gray}{0.95}
+
+\newcommand{\twomat}[4] {\begin{pmatrix} #1 & #2 \\ #3 & #4 \end{pmatrix}}
 \newcommand{\stwomat}[4] {\left[\begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix}\right]}
 \newcommand{\threemat}[9] {\begin{bmatrix} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}
 
@@ -50,11 +53,11 @@
 \newcounter{problem_ii}
 
 \newlist{outer_problem}{enumerate}{1}
-\setlist*[outer_problem]{resume=outer,label=\arabic*.,ref=\arabic*}
+\setlist*[outer_problem]{resume=outer,label=\arabic*.,ref=\arabic*,font=\bfseries,before=\bfseries}
 \newlist{inner_problem}{enumerate}{1}
-\setlist*[inner_problem]{resume=inner,label=(\alph*),ref=\alph*}
+\setlist*[inner_problem]{resume=inner,label=(\alph*),ref=\alph*,font=\bfseries,before=\bfseries,leftmargin=50pt}
 \newlist{iinner_problem}{enumerate}{1}
-\setlist*[iinner_problem]{resume=iinner,label=\roman*.,ref=\roman*}
+\setlist*[iinner_problem]{resume=iinner,label=\roman*.,ref=\roman*,font=\bfseries,before=\bfseries,leftmargin=75pt}
 \newcounter{store_outer_problem}
 
 \begin{document}

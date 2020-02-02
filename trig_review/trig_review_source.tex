@@ -4,111 +4,132 @@
 
 \section{Trigonometry Review}
 
-This is a review of material you learned last year which you will need as background knowledge for our upcoming study of linear algebra. If you don't know this material already, make sure to learn it.
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
+				
+				draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
+				
+				label("$a$", (2,0), S);
+				label("$b$", (0,1.5), W);
+				label("$c$", (0,3)--(4,0), NE);
+				
+				real ras = 0.4;
+				path ram = (0,ras)--(ras,ras)--(ras,0);
+				
+				draw(ram);
+				draw(rotate(90,(7/2,7/2))*ram);
+				draw(rotate(180,(7/2,7/2))*ram);
+				draw(rotate(270,(7/2,7/2))*ram);
+				
+				path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
+				draw(iram);
+				draw(rotate(90,(7/2,7/2))*iram);
+				draw(rotate(180,(7/2,7/2))*iram);
+				draw(rotate(270,(7/2,7/2))*iram);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				pair A = (0,3);
+				pair B = (4,0);
+				pair C = (0,0);
+				draw(A--B--C--cycle);
+				
+				label("$A$", A, NW);
+				label("$B$", B, E);
+				label("$C$", C, SW);
+				label("$a$", B--C, S);
+				label("$b$", A--C, W);
+				
+				path c_brace = shift(0.04*(3,4))*brace(A,B);
+				
+				draw(c_brace);
+				label("$c$", c_brace, NE);
+				
+				dot(A);
+				dot(B);
+				dot(C);
+				
+				real ras = 0.3;
+				path ram = (0,ras)--(ras,ras)--(ras,0);
+				
+				pair F = point(A--B,9/25);
+				
+				draw(ram);
+				draw(C--F);
+				draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
+				
+				label("$F$", F, NE);
+				
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 1.}
+			\label{fig:square_inscribed}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 2.}
+			\label{fig:pythag_sim_tri}
+		\end{minipage}
+	\end{center}
 
-\begin{figure}
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=\textwidth]
-draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
-
-draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
-
-label("$a$", (2,0), S);
-label("$b$", (0,1.5), W);
-label("$c$", (0,3)--(4,0), NE);
-
-real ras = 0.4;
-path ram = (0,ras)--(ras,ras)--(ras,0);
-
-draw(ram);
-draw(rotate(90,(7/2,7/2))*ram);
-draw(rotate(180,(7/2,7/2))*ram);
-draw(rotate(270,(7/2,7/2))*ram);
-
-path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
-draw(iram);
-draw(rotate(90,(7/2,7/2))*iram);
-draw(rotate(180,(7/2,7/2))*iram);
-draw(rotate(270,(7/2,7/2))*iram);
-\end{asy}
-\caption{Scenario in Problem 1.}
-\label{fig:square_inscribed}
-\end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,3);
-pair B = (4,0);
-pair C = (0,0);
-draw(A--B--C--cycle);
-
-label("$A$", A, NW);
-label("$B$", B, E);
-label("$C$", C, SW);
-label("$a$", B--C, S);
-label("$b$", A--C, W);
-
-path c_brace = shift(0.04*(3,4))*brace(A,B);
-
-draw(c_brace);
-label("$c$", c_brace, NE);
-
-dot(A);
-dot(B);
-dot(C);
-
-real ras = 0.3;
-path ram = (0,ras)--(ras,ras)--(ras,0);
-
-pair F = point(A--B,9/25);
-
-draw(ram);
-draw(C--F);
-draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
-
-label("$F$", F, NE);
-
-\end{asy}
-\caption{Scenario in Problem 2.}
-\label{fig:pythag_sim_tri}
-\end{minipage}
-\centering
-\begin{minipage}{0.6\textwidth}
-\begin{asy}[width=\textwidth]
-import graph;
-
-real A = 195 * pi / 180;
-real B = 125 * pi / 180;
-
-draw((-1.4,0)--(1.4,0),Arrow);
-draw((0,-1.4)--(0,1.4),Arrow);
-
-draw(Circle((0,0),1,50));
-
-pair Ap = (cos(A), sin(A));
-pair Bp = (cos(B), sin(B));
-
-real AB = A-B;
-pair ABp = (cos(AB), sin(AB));
-
-dot(Ap);
-dot(Bp);
-dot(ABp);
-
-draw(ABp--(1,0));
-draw(Ap--Bp);
-label("$(\cos B, \sin B)$", Bp, NW);
-label("$(\cos A, \sin A)$", Ap, SW);
-label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
-label("$0$", (1,0),SE);
-
-label("$D_1$", ABp--(1,0), .2*SW);
-label("$D_2$", Ap--Bp, .2*SE);
-
-\end{asy}
-\caption{Scenario in Problem 3.}
-\label{fig:unit_circle}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				import graph;
+				
+				real A = 195 * pi / 180;
+				real B = 125 * pi / 180;
+				
+				draw((-1.4,0)--(1.4,0),Arrow);
+				draw((0,-1.4)--(0,1.4),Arrow);
+				
+				draw(Circle((0,0),1,50));
+				
+				pair Ap = (cos(A), sin(A));
+				pair Bp = (cos(B), sin(B));
+				
+				real AB = A-B;
+				pair ABp = (cos(AB), sin(AB));
+				
+				dot(Ap);
+				dot(Bp);
+				dot(ABp);
+				
+				draw(ABp--(1,0));
+				draw(Ap--Bp);
+				label("$(\cos B, \sin B)$", Bp, NW);
+				label("$(\cos A, \sin A)$", Ap, SW);
+				label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
+				label("$0$", (1,0),SE);
+				
+				label("$D_1$", ABp--(1,0), .2*SW);
+				label("$D_2$", Ap--Bp, .2*SE);
+				
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Scenario in Problem 3.}
+			\label{fig:unit_circle}
+		\end{minipage}\hfill
+	\end{center}
 \end{figure}
+
+\noindent This is a review of material you learned last year which you will need as background knowledge for our upcoming study of linear algebra. If you don't know this material already, make sure to learn it.
 
 \begin{enumerate}
 \item Prove the Pythagorean theorem using ``conservation of area.'' Start with Figure~\ref{fig:square_inscribed}.
@@ -153,6 +174,6 @@ What is $r$ in terms of $a$ and $b$?
 \end{multicols}
 \end{enumerate}
 
-You should have mastery of this material so that we can immediately investigate novel and interesting ideas. These often have surprising connections to the trigonometry and transformational geometry you learned last year. For example, we will soon find another convenient way to do a rotation of coordinates.
+\noindent You should have mastery of this material so that we can immediately investigate novel and interesting ideas. These often have surprising connections to the trigonometry and transformational geometry you learned last year. For example, we will soon find another convenient way to do a rotation of coordinates.
 
 \end{document}

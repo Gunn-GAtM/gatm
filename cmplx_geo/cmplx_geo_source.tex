@@ -4,14 +4,181 @@
 
 \newcounter{cg_problem_i} % for keeping track of which problem we're on
 
+\begin{asydef}
+	
+	
+	real distance(pair p1, pair p2) {
+		return sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+	}
+	
+	path mark_angle_label_precise(pair p1, pair p2, pair p3, string labelc = "", pair direction=(0,0), real r=-1) {
+		if (r <= 0) {
+			r = min(distance(p1, p2), distance(p2, p3)) / 10;
+		}
+		
+		path arc_a = arc(p2, point(p2--p1, r), point(p2--p3, r));
+		label(labelc, midpoint(arc_a) + direction);
+		
+		return arc_a;
+	}
+	
+	pair unitify(pair c) {
+		real dis = sqrt(c.x * c.x + c.y * c.y);
+		return (c.x / dis, c.y / dis);
+	}
+	
+	path angle_marking(pair p1, pair p2, pair p3, string labelc = "", real label_dis, real r=-1) {
+		return mark_angle_label_precise(p1, p2, p3, labelc, unitify((p1 + p3) / 2 - p2) * label_dis, r);
+	}
+	
+	path right_angle(pair p1, pair p2, pair p3, real r = -1) {
+		if (r <= 0) {
+			r = min(distance(p1, p2), distance(p2, p3)) / 10;
+		}
+		pair p1c = point(p2--p1, r);
+		pair p3c = point(p2--p3, r);
+		
+		path r_angle = p3c -- (p1c + p3c - p2) -- p1c;
+		return r_angle;
+	}
+	
+\end{asydef}
+
 \section{Geometry of Complex Numbers}
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.25\textwidth}
+			\centering
+			\begin{asy}[width=\textwidth]
+				size(0,100);
+				
+				real a = 3;
+				real b = 1;
+				pair z = (a,b);
+				
+				draw((0,0)--(a,0)--z, dashed);
+				draw((0,0)--z);
+				dot(z);
+				dot((0,0));
+				
+				label("$a$", (a/2, 0), S);
+				label("$b$", (a, b/2), E);
+				
+				pair iz = (-b, a);
+				
+				label("$a$", (-b, a/2), W);
+				label("$b$", (-b/2, 0), S);
+				draw((0,0)--(-b,0)--iz, dashed);
+				draw((0,0)--iz);
+				
+				dot(iz);
+				
+				draw((-2, 0) -- (4,0), Arrow);
+				draw((0, -2) -- (0,4), Arrow);
+				
+				label("$z$", z, NE);
+				label("$iz$", iz, NW);
+				draw(angle_marking((a,0), (0,0), z, "$\theta$", 0.5));
+				draw(right_angle(z, (0,0), iz, 0.1));
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.25\textwidth}
+			\centering
+			\begin{asy}[width=\textwidth]
+				size(0,100);
+				
+				real a = 4;
+				real b = 3;
+				pair z = (a,b);
+				
+				draw((0,0)--(a,0)--z, dashed);
+				draw((0,0)--z);
+				dot(z);
+				dot((0,0));
+				
+				draw(angle_marking((a,0), (0,0), z, "$\phi$", 0.3, 0.25));
+				
+				label("$4$", (a/2, 0), S);
+				label("$3$", (a, b/2), E);
+				
+				label("$A$", z, NE);
+				
+				draw((-1, 0) -- (5,0), Arrow);
+				draw((0, -2) -- (0, 4), Arrow);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.4\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				size(0,100);
+				
+				draw((-2, 0) -- (15,0), Arrow);
+				draw((0, -2) -- (0, 12), Arrow);
+				
+				pair z = (3,1);
+				pair iz = (-1, 3);
+				pair A = (4,3);
+				pair O = (0,0);
+				pair z4 = 4 * z;
+				pair Az = z4 + 3 * iz;
+				
+				for (int i = 0; i <= 4; ++i) {
+				dot(i * z);
+				if (i > 0) label("$z$", i * z - z / 2, (i == 1 || i == 2) ? (-.3, .9) / 2 : SE);
+				}
+				
+				for (int i = 0; i <= 3; ++i) {
+				dot(z4 + i * iz);
+				if (i > 0) label("$iz$", z4 + i * iz - iz / 2, NE);
+				}
+				
+				draw(O -- z4 -- Az, dashed);
+				draw(O -- Az);
+				label("$4z + 3iz = Az$", Az, NW);
+				
+				draw(angle_marking(z4, O, Az, "$\phi$", 0.7, 0.9 / sqrt(10)));
+				draw(angle_marking((6,0), O, z4, "$\theta$", 0.7));
+				
+				path z4brace = brace(z4 + (.3, -.9), O + (.3, -.9));
+				path iz4brace = brace(Az + (.9, .3), z4 + (.9, .3));
+				
+				pen bracestyle = black+1.4bp;
+				
+				draw(z4brace, bracestyle);
+				draw(iz4brace, bracestyle);
+				
+				label("$4z$", midpoint(z4brace), SE);
+				label("$3iz$", midpoint(iz4brace), NE);
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.25\textwidth}
+			\caption{$iz$ is perpendicular to $z$.}
+			\label{fig:izzperp}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.25\textwidth}
+			\caption{The complex number $A=4+3i$.}
+			\label{fig:lol}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.4\textwidth}
+			\caption{Breaking up $Az$ into its components, we can observe the geometry of complex multiplication.}
+		\end{minipage}
+	\end{center}
+\end{figure}
 
 \newcommand{\Arg} {\operatorname{Arg}}
 \newcommand{\cis} {\operatorname{cis}}
 \newcommand{\Real} {\operatorname{Re}}
 \newcommand{\Imag} {\operatorname{Im}}
 
-\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
+\noindent\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
 
 Last year, you became masters of the art of manipulating complex numbers. In this section, we will build on that background. Throughout the rest of the book, you can reinforce your skills with a dose of Vitamin $i$.
 
@@ -24,157 +191,6 @@ Recall that $\cis \theta = \cos \theta + i \sin \theta$. $z=r\cis \theta$ is a c
 Notice that the magnitudes are multiplied and the angles are added.\footnote{What else is added when you multiply? Exponents! In fact, $\cis \theta = e^{i\theta}$, but that’s another story.} By repeatedly applying DeMoivre's theorem, we know that $(r \cis \theta) ^ n = r^n \cis n\theta$. If $x = r \cis \theta$, then $x^3 = r^3 \cis 3\theta$. Going back to our original $x^3 = 1$, since $1 = \cis(2\pi k)$ for any integer $k$, we find that $r = 1$ and $3\theta = 2\pi k$. This yields three solutions: $1 \cis 0$, $1 \cis \frac{2\pi}{3}$, $1 \cis \frac{4\pi}{3}$. Any other value of $\theta=\frac{2k\pi}{3}$ reduces to one of these values because of the periodicity of $\cis$. These correspond to $k = 0, 1, 2$; other values of $k$ produce coterminal angles and are therefore duplicates. You can confirm that these three solutions are the same solutions that you obtain from factoring.
 
 You can prove DeMoivre’s theorem using the angle addition formulae for $\cos$ and $\sin$. But you can also understand it through pure geometry. Consider a complex number $z = a + bi$, being multiplied by $A = 4 + 3i$. $z$ forms an angle of $\theta$ with the real axis, and $A$ forms an angle of $\phi$. In Figure 1, observe that $iz$ is perpendicular to $z$ for any $z$. Figure 2 depicts the complex number $A$. Finally, in Figure 3, you see the multiplication carried out: $Az = (4+3i)z = 4z + 3iz$. These two components, $4z$ and $3iz$, are indicated.
-
-\begin{asydef}
-
-real distance(pair p1, pair p2) {
-	return sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
-}
-
-path mark_angle_label_precise(pair p1, pair p2, pair p3, string labelc = "", pair direction=(0,0), real r=-1) {
-    if (r <= 0) {
-    	r = min(distance(p1, p2), distance(p2, p3)) / 10;
-	}
-
-	path arc_a = arc(p2, point(p2--p1, r), point(p2--p3, r));
-	label(labelc, midpoint(arc_a) + direction);
-
-	return arc_a;
-}
-
-pair unitify(pair c) {
-	real dis = sqrt(c.x * c.x + c.y * c.y);
-	return (c.x / dis, c.y / dis);
-}
-
-path angle_marking(pair p1, pair p2, pair p3, string labelc = "", real label_dis, real r=-1) {
-    return mark_angle_label_precise(p1, p2, p3, labelc, unitify((p1 + p3) / 2 - p2) * label_dis, r);
-}
-
-path right_angle(pair p1, pair p2, pair p3, real r = -1) {
-	if (r <= 0) {
-    	r = min(distance(p1, p2), distance(p2, p3)) / 10;
-	}
-	pair p1c = point(p2--p1, r);
-	pair p3c = point(p2--p3, r);
-
-	path r_angle = p3c -- (p1c + p3c - p2) -- p1c;
-	return r_angle;
-}
-
-\end{asydef}
-
-\begin{figure}
-\begin{minipage}[b]{0.3\textwidth}
-\begin{asy}[width=\textwidth]
-real a = 3;
-real b = 1;
-pair z = (a,b);
-
-draw((0,0)--(a,0)--z, dashed);
-draw((0,0)--z);
-dot(z);
-dot((0,0));
-
-label("$a$", (a/2, 0), S);
-label("$b$", (a, b/2), E);
-
-pair iz = (-b, a);
-
-label("$a$", (-b, a/2), W);
-label("$b$", (-b/2, 0), S);
-draw((0,0)--(-b,0)--iz, dashed);
-draw((0,0)--iz);
-
-dot(iz);
-
-draw((-2, 0) -- (4,0), Arrow);
-draw((0, -2) -- (0,4), Arrow);
-
-label("$z$", z, NE);
-label("$iz$", iz, NW);
-draw(angle_marking((a,0), (0,0), z, "$\theta$", 0.5));
-draw(right_angle(z, (0,0), iz, 0.1));
-\end{asy}
-\end{minipage}
-\begin{minipage}[b]{0.3\textwidth}
-\begin{asy}[width=\textwidth]
-real a = 4;
-real b = 3;
-pair z = (a,b);
-
-draw((0,0)--(a,0)--z, dashed);
-draw((0,0)--z);
-dot(z);
-dot((0,0));
-
-draw(angle_marking((a,0), (0,0), z, "$\phi$", 0.3, 0.25));
-
-label("$4$", (a/2, 0), S);
-label("$3$", (a, b/2), E);
-
-label("$A$", z, NE);
-
-draw((-1, 0) -- (5,0), Arrow);
-draw((0, -2) -- (0, 4), Arrow);
-\end{asy}
-\end{minipage}
-\begin{minipage}[b]{0.4\textwidth}
-\begin{asy}[width=\textwidth]
-draw((-2, 0) -- (15,0), Arrow);
-draw((0, -2) -- (0, 12), Arrow);
-
-pair z = (3,1);
-pair iz = (-1, 3);
-pair A = (4,3);
-pair O = (0,0);
-pair z4 = 4 * z;
-pair Az = z4 + 3 * iz;
-
-for (int i = 0; i <= 4; ++i) {
-	dot(i * z);
-	if (i > 0) label("$z$", i * z - z / 2, (i == 1 || i == 2) ? (-.3, .9) / 2 : SE);
-}
-
-for (int i = 0; i <= 3; ++i) {
-	dot(z4 + i * iz);
-	if (i > 0) label("$iz$", z4 + i * iz - iz / 2, NE);
-}
-
-draw(O -- z4 -- Az, dashed);
-draw(O -- Az);
-label("$4z + 3iz = Az$", Az, NW);
-
-draw(angle_marking(z4, O, Az, "$\phi$", 0.7, 0.9 / sqrt(10)));
-draw(angle_marking((6,0), O, z4, "$\theta$", 0.7));
-
-path z4brace = brace(z4 + (.3, -.9), O + (.3, -.9));
-path iz4brace = brace(Az + (.9, .3), z4 + (.9, .3));
-
-pen bracestyle = black+1.4bp;
-
-draw(z4brace, bracestyle);
-draw(iz4brace, bracestyle);
-
-label("$4z$", midpoint(z4brace), SE);
-label("$3iz$", midpoint(iz4brace), NE);
-\end{asy}
-\end{minipage}
-
-\begin{minipage}[t]{0.2\textwidth}
-\caption{$iz$ is perpendicular to $z$.}
-\label{fig:izzperp}
-\end{minipage}
-\hspace{0.05\textwidth}
-\begin{minipage}[t]{0.3\textwidth}
-\caption{The complex number $A=4+3i$.}
-\label{fig:lol}
-\end{minipage}
-\hspace{0.05\textwidth}
-\begin{minipage}[t]{0.4\textwidth}
-\caption{Breaking up $Az$ into its components, we can observe the geometry of complex multiplication.}
-\end{minipage}
-\end{figure}
 
 Combining the observation in Figure 1 and knowledge from geometry, we know the triangles in Figure 2 and 3 are similar. Since the scaling is by a factor of $|z|$, multiplying $A$ by $z$ has the effect rotating $z$ by the angle of $A$, and multiplying it by the length of $A$. This method of proving DeMoivre's theorem for $A=4+3i$ will work for all complex numbers $A=a+bi$.
 
@@ -190,7 +206,7 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \item Compare and contrast the methods of division in Problems~\ref{prob:div_1} and \ref{prob:div_2}. Which is more convenient? Or does it depend on the circumstance?
 \item \begin{enumerate}
 \item If $z = r\cis \theta$, what is $\frac{1}{z}$?
-\item Explain how this shows $\frac{1}{a+bi}=\frac{a-bi}{a^2+b^2}$, without having to rationalize the denominator. (Hint: use problems 3, 4, and 7.)
+\item Explain how this shows $\frac{1}{a+bi}=\frac{a-bi}{a^2+b^2}$, without having to rationalize the denominator. (Hint: use Problems 3, 4, and 7.)
 \end{enumerate}
 \item Compute $(1+i)^{13}$; pencil, paper, and brains only. No calculators!
 \item Compute $\frac{(1+i\sqrt{3})^3}{(1-i)^2}$ without a calculator.
@@ -227,16 +243,16 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \setcounter{cg_problem_i}{\value{enumi}}
 \end{enumerate}
 
-DeMoivre's theorem is the ``universal'' trig identity, in the sense that it can be used to calculate every other trig identity. For example, suppose you want an identity for $\cos 3\theta$. For convenience, let $c=\cos\theta$ and $s=\sin\theta$. Then we have
+\noindent DeMoivre's theorem is the ``universal'' trig identity, in the sense that it can be used to calculate every other trig identity. For example, suppose you want an identity for $\cos 3\theta$. For convenience, let $c=\cos\theta$ and $s=\sin\theta$. Then we have:
 
 \begin{align*}
 \cis 3\theta &= (\cis \theta)^3  & \qquad \text{[DeMoivre's Theorem]} \\
 &= (c+is)^3 & \qquad \text{[Definition of } \cis \text{]} \\
 &= c^3 + 3c^2s i - 3cs^2 - s^3 i & \qquad \text{[Binomial expansion]} \\
-\cos 3\theta + i\sin 3\theta &= (c^3 - 3c^2) + i (3c^2 s - s^3) \qquad & \text{[Combining like terms]}\\
+\cos 3\theta + i\sin 3\theta &= (c^3 - 3c^2) + i (3c^2 s - s^3). \qquad & \text{[Combining like terms]}\\
 \end{align*}
 
-Equating real parts on both sides, $\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta$.
+\noindent Equating real parts on both sides, $\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta$.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{cg_problem_i}}
@@ -247,7 +263,7 @@ Equating real parts on both sides, $\cos 3\theta = \cos^3\theta - 3\cos\theta\si
 \setcounter{cg_problem_i}{\value{enumi}}
 \end{enumerate}
 
-Let’s apply complex numbers to a geometry problem. We want to prove that if we construct squares with centers $P$, $Q$, $R$, $S$ on the sides of any quadrilateral $ABCD$, as shown in Figure~\ref{fig:quad_square}, then (i) $\overline{PR} \perp \overline{QS}$ and (ii) $\overline{PR} \cong \overline{QS}$. In other words, segments joining centers of opposite squares are perpendicular and the same length.
+\noindent Let’s apply complex numbers to a geometry problem. We want to prove that if we construct squares with centers $P$, $Q$, $R$, $S$ on the sides of any quadrilateral $ABCD$, as shown in Figure~\ref{fig:quad_square}, then (i) $\overline{PR} \perp \overline{QS}$ and (ii) $\overline{PR} \cong \overline{QS}$. In other words, segments joining centers of opposite squares are perpendicular and the same length.
 
 \begin{asydef}
 pair rotate(pair p, real degrees=0) {
@@ -270,143 +286,158 @@ pair D = (4,0);
 \end{asydef}
 
 \begin{figure}
-\begin{minipage}{0.5\textwidth}
-\begin{center}
-\begin{asy}[width=\textwidth]
-draw(A--B--C--D--cycle);
-
-label("$0=A$", A, SW);
-label("$B$", B, NNW);
-label("$C$", C, NE+0.7*E);
-label("$D$", D, 1.3 * SE + 0.6 * S);
-
-draw(squareOn(A,B));
-draw(squareOn(B,C));
-draw(squareOn(C,D));
-draw(squareOn(D,A));
-
-draw((-6,0)--(9.5,0), Arrow);
-draw((0,-5)--(0,11), Arrow);
-
-pair a = (B-A)/2;
-pair b = (C-B)/2;
-pair c = (D-C)/2;
-pair d = (A-D)/2;
-
-pair P = a + rotate(a,90);
-pair Q = B + b + rotate(b,90);
-pair R = C + c + rotate(c,90);
-pair SS = D + d + rotate(d,90);
-
-dot(A);
-dot(B);
-dot(C);
-dot(D);
-dot(P);
-dot(Q);
-dot(R);
-dot(SS);
-
-draw(P--R);
-draw(Q--SS);
-
-label("$P$", P, W);
-label("$R$", R, E);
-label("$Q$", Q, N);
-label("$S$", SS, S);
-
-label("$m$", (1.5*P + R) / 2.5, S);
-label("$n$", (1.5*Q + SS) / 2.5, W);
-
-\end{asy}
-\end{center}
-\end{minipage}
-\hfill
-\begin{minipage}{0.28\textwidth}
-\begin{center}
-\begin{asy}[width=\textwidth]
-label("$A$", A, SW);
-label("$B$", B, NNW);
-label("$C$", C, NE+0.7*E);
-label("$D$", D, 1.3 * SE + 0.6 * S);
-
-dot(A);
-dot(B);
-dot(C);
-dot(D);
-
-pair a = (B-A)/2;
-pair b = (C-B)/2;
-pair c = (D-C)/2;
-pair d = (A-D)/2;
-
-pair Aa = A+a;
-pair Bb = B+b;
-pair Cc = C+c;
-pair Dd = D+d;
-
-draw(A--Aa,Arrow);
-draw(Aa--B,Arrow);
-draw(B--Bb,Arrow);
-draw(Bb--C,Arrow);
-draw(C--Cc,Arrow);
-draw(Cc--D,Arrow);
-draw(D--Dd,Arrow);
-draw(Dd--A,Arrow);
-
-label("$a$",A+a/2,NW);
-label("$a$",A+3*a/2,NW);
-label("$b$",B+b/2,NE);
-label("$b$",B+3*b/2,NE);
-label("$c$",C+c/2,SE);
-label("$c$",C+3*c/2,SE);
-label("$d$",D+d/2,S);
-label("$d$",D+3*d/2,S);
-
-\end{asy}
-\end{center}
-\caption{$2(a+b+c+d)=0$.}
-\label{fig:add_to_0}
-\begin{center}
-\begin{asy}[width=0.5\textwidth]
-
-pair a = (B-A)/2;
-draw(squareOn(A,B));
-
-pair P = a + rotate(a,90);
-dot(P);
-label("$P$", P, W);
-
-draw(A--a,Arrow);
-draw(a--P,Arrow);
-label("$a$",A+a/2,E);
-label("$ia$",a+rotate(a,90)/2,N);
-
-label("$A$", A, SW);
-\end{asy}
-\end{center}
-\end{minipage}
-\hfill
-\begin{minipage}{0.5\textwidth}
-\caption{The quadrilateral with four squares.}
-\label{fig:quad_square}
-\end{minipage}
-\hfill
-\begin{minipage}{0.28\textwidth}
-\caption{$P=a+ia$.}
-\label{fig:p_def_on_a}
-\end{minipage}
-\hfill
+	\begin{center}
+		\begin{minipage}[b]{0.55\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				draw(A--B--C--D--cycle);
+				
+				label("$0=A$", A, SW);
+				label("$B$", B, NNW);
+				label("$C$", C, NE+0.7*E);
+				label("$D$", D, 1.3 * SE + 0.6 * S);
+				
+				draw(squareOn(A,B));
+				draw(squareOn(B,C));
+				draw(squareOn(C,D));
+				draw(squareOn(D,A));
+				
+				draw((-6,0)--(9.5,0), Arrow);
+				draw((0,-5)--(0,11), Arrow);
+				
+				pair a = (B-A)/2;
+				pair b = (C-B)/2;
+				pair c = (D-C)/2;
+				pair d = (A-D)/2;
+				
+				pair P = a + rotate(a,90);
+				pair Q = B + b + rotate(b,90);
+				pair R = C + c + rotate(c,90);
+				pair SS = D + d + rotate(d,90);
+				
+				dot(A);
+				dot(B);
+				dot(C);
+				dot(D);
+				dot(P);
+				dot(Q);
+				dot(R);
+				dot(SS);
+				
+				draw(P--R);
+				draw(Q--SS);
+				
+				label("$P$", P, W);
+				label("$R$", R, E);
+				label("$Q$", Q, N);
+				label("$S$", SS, S);
+				
+				label("$m$", (1.5*P + R) / 2.5, S);
+				label("$n$", (1.5*Q + SS) / 2.5, W);
+				
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{asy}[width=0.6\textwidth]
+						label("$A$", A, SW);
+						label("$B$", B, NNW);
+						label("$C$", C, NE+0.7*E);
+						label("$D$", D, 1.3 * SE + 0.6 * S);
+						
+						dot(A);
+						dot(B);
+						dot(C);
+						dot(D);
+						
+						pair a = (B-A)/2;
+						pair b = (C-B)/2;
+						pair c = (D-C)/2;
+						pair d = (A-D)/2;
+						
+						pair Aa = A+a;
+						pair Bb = B+b;
+						pair Cc = C+c;
+						pair Dd = D+d;
+						
+						draw(A--Aa,Arrow);
+						draw(Aa--B,Arrow);
+						draw(B--Bb,Arrow);
+						draw(Bb--C,Arrow);
+						draw(C--Cc,Arrow);
+						draw(Cc--D,Arrow);
+						draw(D--Dd,Arrow);
+						draw(Dd--A,Arrow);
+						
+						label("$a$",A+a/2,NW);
+						label("$a$",A+3*a/2,NW);
+						label("$b$",B+b/2,NE);
+						label("$b$",B+3*b/2,NE);
+						label("$c$",C+c/2,SE);
+						label("$c$",C+3*c/2,SE);
+						label("$d$",D+d/2,S);
+						label("$d$",D+3*d/2,S);
+						
+					\end{asy}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\caption{The quadrilateral with four squares.}
+					\label{fig:quad_square}
+				\end{minipage}
+			\end{center}
+		
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{asy}[width=0.6\textwidth]
+					
+						pair a = (B-A)/2;
+						draw(squareOn(A,B));
+						
+						pair P = a + rotate(a,90);
+						dot(P);
+						label("$P$", P, W);
+						
+						draw(A--a,Arrow);
+						draw(a--P,Arrow);
+						label("$a$",A+a/2,E);
+						label("$ia$",a+rotate(a,90)/2,N);
+						
+						label("$A$", A, SW);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.55\textwidth}
+			\caption{$2(a+b+c+d)=0$.}
+			\label{fig:add_to_0}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.35\textwidth}
+			\caption{$P=a+ia$.}
+			\label{fig:p_def_on_a}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
 We represent all points in the figure as complex numbers. For convenience, let $A=0$ be the origin. The edges of the quadrilateral can be thought of as vectors in the form of complex numbers, and are found using subtraction; for example, the edge from $A$ to $B$ is $B-A$. Similarly, the edge from $B$ to $C$ is $C-B$. Now, define complex numbers
 
 $$a=\frac{B-A}{2},\, b=\frac{C-B}{2},\, c = \frac{D-C}{2},\, d = \frac{A-D}{2}.$$
 
-$a$ is the vector halfway along $\overrightarrow{AB}$, $b$ is halfway along $\overrightarrow{BC}$, etc.; this is shown in Figure~\ref{fig:add_to_0}. We also have
+\noindent$a$ is the vector halfway along $\overrightarrow{AB}$, $b$ is halfway along $\overrightarrow{BC}$, etc.; this is shown in Figure~\ref{fig:add_to_0}. We also have
 
 $$a+b+c+d=\frac{B-A+C-B+D-C+A-D}{2}=\frac{0}{2}=0.$$
-More geometrically, this is because $2(a+b+c+d)=2a+2b+2c+2d$ is the sum of the vectors $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{DA}$, which is just $\overrightarrow{AA}=\overrightarrow{\mathbf{0}}$. This is shown in Figure~\ref{fig:add_to_0}.
+
+\noindent More geometrically, this is because $2(a+b+c+d)=2a+2b+2c+2d$ is the sum of the vectors $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{DA}$, which is just $\overrightarrow{AA}=\overrightarrow{\mathbf{0}}$. This is shown in Figure~\ref{fig:add_to_0}.
 
 $P,Q,R,S$ are also complex numbers. Let $m=R-P$ and $n = Q-S$, be our two segments $\overline{PR}$ and $\overline{QS}$. To prove that they are perpendicular, recall that $z$ is perpendicular to $iz$ for any complex $z\neq 0$, so we just need to prove that $n=\pm im$.
 
@@ -442,31 +473,39 @@ We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a
 \end{enumerate}
 \item Make tables for
 \begin{enumerate}
-\begin{multicols}{2}
-\item the rotation group of the regular octagon.
+\item the rotation group of the regular octagon, and
 \item the dihedral group of the square.
-\end{multicols}
 \end{enumerate}
 Is the difference between them fundamental?
 
 \item Which of the following tables defines a group? Why or why not?
 \begin{multicols}{2}
 \begin{enumerate}
-\item \begin{tabular}{c|c|c|c|c|c|}
-\$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
-$I$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
-$A$ & $A$ & $C$ & $D$ & $B$ & $I$ \\ \hline
-$B$ & $B$ & $I$ & $C$ & $D$ & $A$ \\ \hline
-$C$ & $C$ & $D$ & $A$ & $I$ & $B$ \\ \hline
-$D$ & $D$ & $B$ & $I$ & $A$ & $C$ \\ \hline
+\item 
+\begin{tabular}{c|ccccc}
+	\hline
+	\$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
+	\rowcolor{light-gray}
+	$I$ & $I$ & $A$ & $B$ & $C$ & $D$ \\
+	$A$ & $A$ & $C$ & $D$ & $B$ & $I$ \\
+	\rowcolor{light-gray}
+	$B$ & $B$ & $I$ & $C$ & $D$ & $A$ \\
+	$C$ & $C$ & $D$ & $A$ & $I$ & $B$ \\
+	\rowcolor{light-gray}
+	$D$ & $D$ & $B$ & $I$ & $A$ & $C$ \\ \hline
 \end{tabular}
-\item \begin{tabular}{c|c|c|c|c|c|}
-\# & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
-$I$ & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
-$A$ & $A$ & $B$ & $C$ & $D$ & $I$ \\ \hline
-$B$ & $B$ & $C$ & $D$ & $I$ & $A$ \\ \hline
-$C$ & $C$ & $D$ & $I$ & $A$ & $B$ \\ \hline
-$D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
+\item 
+\begin{tabular}{c|ccccc}
+	\hline
+	\# & $I$ & $A$ & $B$ & $C$ & $D$ \\ \hline
+	\rowcolor{light-gray}
+	$I$ & $I$ & $A$ & $B$ & $C$ & $D$ \\
+	$A$ & $A$ & $B$ & $C$ & $D$ & $I$ \\
+	\rowcolor{light-gray}
+	$B$ & $B$ & $C$ & $D$ & $I$ & $A$ \\
+	$C$ & $C$ & $D$ & $I$ & $A$ & $B$ \\
+	\rowcolor{light-gray}
+	$D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 \end{tabular}
 \end{enumerate}
 \end{multicols}
@@ -507,7 +546,7 @@ $D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 \item Find a formula for $y$ in terms of $p$ and $q$. What about a formula for $x$?
 \item What if we started with $ax^3+bx^2+cx+d=0$, with a coefficient in front of the $x^3$ term as well? Can you come up with a formula for $x$?
 \end{enumerate}
-\item Starting with the same cubic as in problem 31b.
+\item Starting with the same cubic as in Problem 31b.
 \begin{enumerate}
 \item Let $c=\cos\theta$. Remember that $\cos 3\theta=4c^3-3c$, as we proved. Substitute $y=2c\sqrt{p}$ into $y^3=3py+2q$ to obtain $4c^3-3c=\frac{q}{p^{3/2}}$.
 \item Provided that $q^2\leq p^3$, show that $y=2\sqrt{p}\cos\left(\frac{1}{3}(\theta+2\pi n)\right)$, where $n$ is an integer. Why does this yield all three solutions?

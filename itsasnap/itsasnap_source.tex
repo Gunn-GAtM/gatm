@@ -58,88 +58,100 @@
 \newcommand\snap{\bullet} % Custom command for the "snap" operation
 
 \begin{figure}[h]
-	% Figure: side-by-side juxtaposition of all six elements of the three-post snap group, labeled with letters I through E
 	\begin{center}
-		\begin{asy}
-			size(250);
-
-			for (int i = 0; i < 6; ++i) { // for every element...
-				int[] to_draw = {standard_indices[i]};
-				drawSnapElements((4 * i, 0), to_draw); // draw the snap element
-				label("$" + standard_labels[i] + "$", (4 * i + 1, -2.5)); // label it with its letter
-			}
-		\end{asy}
-
-		\caption{The six possibilities for connections between two rows of three posts.}
-		\label{fig:all_3_cols}
+		% Figure: side-by-side juxtaposition of all six elements of the three-post snap group, labeled with letters I through E
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				size(250);
+	
+				for (int i = 0; i < 6; ++i) { // for every element...
+					int[] to_draw = {standard_indices[i]};
+					drawSnapElements((4 * i, 0), to_draw); // draw the snap element
+					label("$" + standard_labels[i] + "$", (4 * i + 1, -2.5)); // label it with its letter
+				}
+			\end{asy}
+		\end{minipage}
 	\end{center}
-\end{figure}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{The six possibilities for connections between two rows of three posts.}
+			\label{fig:all_3_cols}
+		\end{minipage}
+	\end{center}
 
-\begin{figure}[h]
-	\begin{minipage}{.5\textwidth}
-		% Figure: Two, chained snap group elements Y,X (they happen to be C and B) with Y on top of X. Y and X are labeled with arrows, there is a brace showing that the figure is 3 columns wide, and three white-filled dots indicate the middle row which is removed in the snap operation
-		\begin{center}
-			\begin{asy}
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			% Figure: Two, chained snap group elements Y,X (they happen to be C and B) with Y on top of X. Y and X are labeled with arrows, there is a brace showing that the figure is 3 columns wide, and three white-filled dots indicate the middle row which is removed in the snap operation
+			\begin{asy}[width=0.3\textwidth]
 				size(0, 60);
-
+	
 				int[] elements = {2,5}; // C, then B
-
+	
 				drawSnapElements((0, 0), elements); // Draw them
-
+	
 				path top_brace = brace((-0.2, 0.6), (2.2, 0.6), .3);
-
+	
 				draw(top_brace, black+1bp); // Draw brace
 				label("$3$", top_brace, N); // Label the brace "3"
-
+	
 				label("$\rightarrow Y$", (2.5, -0.75), E); // Top element is Y
 				label("$\rightarrow X$", (2.5, -2.25), E); // Bottom element is X
-
+	
 				for (int i = 0; i < 3; ++i) // Color the middle dots white
 					dot((i, -1.5), filltype=FillDraw(fillpen=white, drawpen=black));
 			\end{asy}
-
-			\caption{A grid with three strings.}
-			\label{fig:n_rows_3_cols_ex}
-		\end{center}
-	\end{minipage}%
-	\begin{minipage}{.5\textwidth}
-		% Figure: Two chained snap group elements B,A are labeled with arrows, and are snapped to become E on the right. The arrow is thick and labeled "snap"
-		\begin{center}
-			\begin{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			% Figure: Two chained snap group elements B,A are labeled with arrows, and are snapped to become E on the right. The arrow is thick and labeled "snap"
+			\centering
+			\begin{asy}[width=0.7\textwidth]
 				size(0, 60);
-
+	
 				int[] starting_elements = {5, 1};
-
+	
 				drawSnapElements((0, 0), starting_elements); // Draw B, then A
-
+	
 				int[] new_elem = {3};
-
+	
 				drawSnapElements((5, 0), new_elem, 3, 1, 3); // Draw E, the result; note that yd is doubled
 				label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -1.5));
 				/* Looks like:
 				snap!
 				===>  */
-
+	
 				label("$B \leftarrow$", (-0.5, -0.75), W); // Label the elements as A and B
 				label("$A \leftarrow$", (-0.5, -2.25), W);
-
+	
 				label("$E$", (7.5, -1.5), E); // Label the result as E on the right
-
+	
 				/* Phantom stuff to make it the same size as the figure on left */
-
+	
 				path top_brace = brace((-0.2, 0.6), (2.2, 0.6), .3);
-
+	
 				draw(top_brace, white+1bp);
 				label("$3$", top_brace, N, white);
 			\end{asy}
-
-			\caption{$A\snap B = E$.}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{A grid with three strings.}
+			\label{fig:n_rows_3_cols_ex}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{A grid with three strings.}
 			\label{fig:snap_ex}
-		\end{center}
-	\end{minipage}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
-% Vocabulary: SNAP, GROUP, ELEMENT, SNAP GROUP, IDENTITY ELEMENT
+% Vocabulary: SNAP, GROUP, ELEMENT, SNAP GROUP, IDENTITY ELEMENT $A\snap B = E$.
 
 \noindent We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory.
 You have studied geometry, complex numbers, and combinatorics before, so you should have a basis to start this investigation, but the other two topics may be a bit unfamiliar at this point.
@@ -166,23 +178,35 @@ Groups are, unsurprisingly, the main objects studied in \textbf{group theory}.
 Let's study this snap group and characterize its properties.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
-\newcolumntype{C}{>{\centering\arraybackslash}p{1em}}
-
 \begin{figure}
 	% Figure: partially-filled table for the 3-post snap group
 	\begin{center}
-		\begin{tabular}{C|C|C|C|C|C|C|}
-			$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
-			$I$     &     &     &     &     &     &     \\ \hline
-			$A$     &     &     & $E$ &     &     &     \\ \hline
-			$B$     &     &     &     &     &     &     \\ \hline
-			$C$     &     &     &     &     &     &     \\ \hline
-			$D$     &     &     &     &     &     &     \\ \hline
-			$E$     &     &     &     &     &     &     \\ \hline
-		\end{tabular}
+		\centering
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &   &   \\ 
+				$A$    &   &   & $E$ &   &   &   \\ 
+				\rowcolor{light-gray}
+				$B$    &   &   &   &   &   &   \\ 
+				$C$    &   &   &   &   &   &   \\ 
+				\rowcolor{light-gray}
+				$D$    &   &   &   &   &   &   \\ 
+				$E$    &   &   &   &   &   &   \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
 	\end{center}
-	\caption{Unfilled $3$-post snap group table.}
-	\label{fig:sbstable_CHANG}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Unfilled $3$-post snap group table.}
+			\label{fig:sbstable}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
 \begin{enumerate}
@@ -224,10 +248,11 @@ Let's study this snap group and characterize its properties.
 \end{enumerate}
 
 \begin{figure}
-	\begin{minipage}{.5\textwidth}
-		% Figure: E snap E snap E = I, so E has a period of 3. Shows three consecutive E elements, then a "snap" arrow and the I element.
-		\begin{center}
-			\begin{asy}
+	\begin{center}
+		\begin{minipage}[b]{.45\textwidth}
+			% Figure: E snap E snap E = I, so E has a period of 3. Shows three consecutive E elements, then a "snap" arrow and the I element.
+			\centering
+			\begin{asy}[width=0.4\textwidth]
 				size(0, 60);
 
 				int[] eggs = {3, 3, 3}; // 3 E elements
@@ -239,15 +264,11 @@ Let's study this snap group and characterize its properties.
 				drawSnapElements((5, 0), new_elem, 3, 1, 4.5); // draw the identity element
 				label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -2.25));
 			\end{asy}
-
-			\caption{$E\snap E\snap E = I$; $E$ has period $3$.}
-			\label{fig:eper3}
-		\end{center}
-	\end{minipage}%
-	\begin{minipage}{.4\textwidth}
-		% Figure: Draw 8 elements from the 4-post snap group set, and arrange them in a 4 (wide) by 2 (high) rectangle
-		\begin{center}
-			\begin{asy}
+		\end{minipage}
+		\begin{minipage}[b]{.45\textwidth}
+			% Figure: Draw 8 elements from the 4-post snap group set, and arrange them in a 4 (wide) by 2 (high) rectangle
+			\centering
+			\begin{asy}[width=0.7\textwidth]
 				size(0, 60);
 
 				for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
@@ -255,10 +276,18 @@ Let's study this snap group and characterize its properties.
 					drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // TERNARY OPERATOR used to make them into a grid
 				}
 			\end{asy}
-
-			\caption{Some four-post group elements.}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{.45\textwidth}
+			\caption{$E\snap E\snap E = I$; $E$ has period $3$.}
+			\label{fig:eper3}
+		\end{minipage}
+		\begin{minipage}[t]{.45\textwidth}
+			\caption{Some $4$-post group elements.}
 			\label{fig:fpge}
-		\end{center}
-	\end{minipage}
+		\end{minipage}
+	\end{center}
 \end{figure}
 \end{document}

@@ -36,7 +36,7 @@ $$\twomat{0}{1}{-1}{0}\twomat{1}{0}{0}{-1}=\blanktwomat$$
 \begin{enumerate}
 \item ... to the convention for writing composite functions, like $f(g(x))$?
 \item ... to the ``followed by'' convention we used for ``From Snaps to Flips?''
-\item ... to the ``from \underline{\phantom{0}} to \underline{\phantom{0}}'' convention for transportation matrices?
+\item ... to the ``from \underline{\phantom{egg}} to \underline{\phantom{egg}}'' convention for transportation matrices?
 \end{enumerate}
 \end{enumerate}
 \item There are two, infinite classes of matrices which comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
@@ -87,40 +87,57 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix 4c is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is matrix 4d.
 \item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{smallmatrix}1 & 0 \\ 0 & 1\end{smallmatrix}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
 
-\begin{minipage}{0.7\textwidth}
-But first, an example:
-$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
-This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
-\end{minipage}\hfill
-\begin{minipage}{0.25\textwidth}
-\begin{asy}[width=\textwidth]
-draw((-2,0)--(9.5,0),Arrow);
-draw((0,-5)--(0,6.5),Arrow);
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[c]{0.55\textwidth}
+			But first, an example:
+			$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
+			This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						draw((-2,0)--(9.5,0),Arrow);
+						draw((0,-5)--(0,6.5),Arrow);
+						
+						for (int i = -1; i < 9; ++i) {
+							for (int j = -4; j < 6; ++j) {
+								dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
+							}
+						}
+						filltype fillc =FillDraw(fillpen=black,drawpen=black);
+						pen size = 1+currentpen;
+						
+						dot((0,0), size, fillc);
+						dot((1,0), size, fillc);
+						dot((0,1), size, fillc);
+						
+						dot((3,4), size, fillc);
+						dot((4,-3), size, fillc);
+						
+						path rot1=(0,1)..(3,4);
+						path rot2=(1,0)..(4,-3);
+						
+						draw(subpath(rot1,0.1,0.9),Arrow);
+						draw(subpath(rot2,0.1,0.9),Arrow);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\captionof{figure}{The preimage and image.}
+					\label{fig:preimage_image_mat}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+	\end{center}
+\end{figure}
 
-for (int i = -1; i < 9; ++i) {
-	for (int j = -4; j < 6; ++j) {
-		dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
-	}
-}
-filltype fillc =FillDraw(fillpen=black,drawpen=black);
-pen size = 1+currentpen;
-
-dot((0,0), size, fillc);
-dot((1,0), size, fillc);
-dot((0,1), size, fillc);
-
-dot((3,4), size, fillc);
-dot((4,-3), size, fillc);
-
-path rot1=(0,1)..(3,4);
-path rot2=(1,0)..(4,-3);
-
-draw(subpath(rot1,0.1,0.9),Arrow);
-draw(subpath(rot2,0.1,0.9),Arrow);
-\end{asy}
-\captionof{figure}{The preimage and image.}
-\label{fig:preimage_image_mat}
-\end{minipage}
+%\vspace*{-2\baselineskip}
 
 \begin{multicols}{3}
 \begin{enumerate}
@@ -153,117 +170,137 @@ draw(subpath(rot2,0.1,0.9),Arrow);
 \end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
+
 \begin{figure}[h]
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,0);
-pair B = (4,4);
-pair D = (8,0);
-pair C = B+D;
-draw(A--B--C--D--cycle);
-draw(B--(4,0));
-
-label("$\varphi$", A, 2.8*ENE);
-draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
-label("$h$", (4,2),W);
-label("$b$", A--B, NW);
-
-path a_brace = shift(0,-0.2)*brace(D,A);
-draw(a_brace);
-
-draw((4,0.6)--(3.4,0.6)--(3.4,0));
-
-label("$a$", a_brace, S);
-\end{asy}
-\caption{A parallelogram.}
-\label{fig:parallelogram_generic}
-\end{minipage}\hfill
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,0);
-pair B = (4,4);
-pair D = (8,0);
-pair C = B+D;
-
-path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
-path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
-path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
-
-A = rotate(20.0)*A;
-B = rotate(20.0)*B;
-C = rotate(20.0)*C;
-D = rotate(20.0)*D;
-
-draw(A--B--C--D--cycle);
-draw(B--rotate(20.0)*(4,0));
-
-draw(angle_mark,Arrow);
-draw(angle_mark2);
-label("$h$", rotate(20.0)*(4,2),NE);
-label("$b$", rotate(20.0)*A--B, NW);
-
-draw(a_brace);
-draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
-
-label("$a$", a_brace, rotate(20.0)*S);
-label("$\theta$", angle_mark2, ENE);
-label("$\phi$", angle_mark, ENE);
-
-draw((-2,0)--(10,0),Arrow);
-draw((0,-2)--(0,8),Arrow);
-
-label("$P$", A, SW);
-label("$Q$", B, NW);
-label("$R$", C, NE);
-label("$S$", D, ESE);
-\end{asy}
-\caption{The parallelogram in the $xy$ plane.}
-\label{fig:para_in_xy}
-\end{minipage}
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-import patterns;
-
-add("brick",brick());
-
-draw((0,0)--(7,0),Arrow);
-draw((0,0)--(0,6),Arrow);
-
-pair A = (0,0);
-pair B = (1,3);
-pair C = (6,5);
-pair D = (5,2);
-
-draw(A--B--C--D--cycle);
-pair K1 = (0,3);
-pair K2=(5,3);
-pair K3 = (5,0);
-pair L0 = (1,2);
-pair L1 = (1,5);
-pair L3 = (6,2);
-
-draw(A--K1--K2--K3--cycle);
-draw(L0--L1--C--L3--cycle);
-
-filldraw(A--K1--B--cycle, pattern("brick"));
-filldraw(A--K3--D--cycle, pattern("brick"));
-filldraw(L0--B--K2--D--cycle, pattern("brick"));
-filldraw(B--L1--C--cycle, pattern("brick"));
-filldraw(D--C--L3--cycle, pattern("brick"));
-
-label("$(a,b)$", B, NW);
-label("$(c,d)$", D, SE);
-label("$(a+c,b+d)$", C, N);
-
-dot(B);
-dot(D);
-dot(C);
-
-\end{asy}
-\caption{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
-\label{fig:para_scenario}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				pair A = (0,0);
+				pair B = (4,4);
+				pair D = (8,0);
+				pair C = B+D;
+				draw(A--B--C--D--cycle);
+				draw(B--(4,0));
+				
+				label("$\varphi$", A, 2.8*ENE);
+				draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
+				label("$h$", (4,2),W);
+				label("$b$", A--B, NW);
+				
+				path a_brace = shift(0,-0.2)*brace(D,A);
+				draw(a_brace);
+				
+				draw((4,0.6)--(3.4,0.6)--(3.4,0));
+				
+				label("$a$", a_brace, S);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				pair A = (0,0);
+				pair B = (4,4);
+				pair D = (8,0);
+				pair C = B+D;
+				
+				path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
+				path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
+				path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
+				
+				A = rotate(20.0)*A;
+				B = rotate(20.0)*B;
+				C = rotate(20.0)*C;
+				D = rotate(20.0)*D;
+				
+				draw(A--B--C--D--cycle);
+				draw(B--rotate(20.0)*(4,0));
+				
+				draw(angle_mark);
+				draw(angle_mark2);
+				label("$h$", rotate(20.0)*(4,2),NE);
+				label("$b$", rotate(20.0)*A--B, NW);
+				
+				draw(a_brace);
+				draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
+				
+				label("$a$", a_brace, rotate(20.0)*S);
+				label("$\theta$", angle_mark2, ENE);
+				label("$\phi$", angle_mark, ENE);
+				
+				draw((-2,0)--(10,0),Arrow);
+				draw((0,-2)--(0,8),Arrow);
+				
+				label("$P$", A, SW);
+				label("$Q$", B, NW);
+				label("$R$", C, NE);
+				label("$S$", D, ESE);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				import patterns;
+				
+				add("brick",brick());
+				
+				draw((0,0)--(7,0),Arrow);
+				draw((0,0)--(0,6),Arrow);
+				
+				pair A = (0,0);
+				pair B = (1,3);
+				pair C = (6,5);
+				pair D = (5,2);
+				
+				draw(A--B--C--D--cycle);
+				pair K1 = (0,3);
+				pair K2=(5,3);
+				pair K3 = (5,0);
+				pair L0 = (1,2);
+				pair L1 = (1,5);
+				pair L3 = (6,2);
+				
+				draw(A--K1--K2--K3--cycle);
+				draw(L0--L1--C--L3--cycle);
+				
+				filldraw(A--K1--B--cycle, pattern("brick"));
+				filldraw(A--K3--D--cycle, pattern("brick"));
+				filldraw(L0--B--K2--D--cycle, pattern("brick"));
+				filldraw(B--L1--C--cycle, pattern("brick"));
+				filldraw(D--C--L3--cycle, pattern("brick"));
+				
+				label("$(a,b)$", B, NW);
+				label("$(c,d)$", D, SE);
+				label("$(a+c,b+d)$", C, N);
+				
+				dot(B);
+				dot(D);
+				dot(C);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{A parallelogram.}
+			\label{fig:parallelogram_generic}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{The parallelogram in the $xy$ plane.}
+			\label{fig:para_in_xy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
+			\label{fig:para_scenario}
+		\end{minipage}
+	\end{center}
 \end{figure}
+
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$-axis and $b$ makes an angle of $\phi$ with the $x$-axis. Thus, $\varphi=\phi-\theta$.
@@ -273,8 +310,8 @@ dot(C);
 \item Write a matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$. This matrix maps the plane.
 \item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
 \item Use angle addition formulas to simplify your answer.
-\item You should find some relationship between your answers to problems 11a and 11d. What is it?
-\item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=ad-bc$. What does it measure?
+\item You should find some relationship between your answers to Problems 11a and 11d. What is it?
+\item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{array}a & c \\ b & d \end{array}\right]=ad-bc$. What does it measure?
 \item Find a matrix which produces a rotation. What is its determinant?
 \item Find a matrix that produces a reflection.
 \begin{enumerate}
@@ -316,14 +353,14 @@ dot(C);
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-Now that we are aware that the determinant of a matrix is a measure of size change and orientation change, we can decompose any linear mapping into a set of operations that we can visualize. Technically speaking, we can reduce all two dimensional transformational matrices into a combination of reflections and stretches along an axis. It is more intuitive, however, to include rotations, dilations, and shears along an axis in our repertoire of basic operations.
+\noindent Now that we are aware that the determinant of a matrix is a measure of size change and orientation change, we can decompose any linear mapping into a set of operations that we can visualize. Technically speaking, we can reduce all two dimensional transformational matrices into a combination of reflections and stretches along an axis. It is more intuitive, however, to include rotations, dilations, and shears along an axis in our repertoire of basic operations.
 
 We will look at the image of the unit square under an arbitrary transformation and see how we can undo the transformation in steps until we are left with a unit square. Then we will retrace our steps, undoing each step until we have arrived at our original transformation through a set of mappings, each of which is easily visualized. We are looking for a recipe. Perhaps you can improve on the one that we will outline here! %Start with $$.
 
 \newcounter{first_para}
 
 \begin{enumerate}[label=\roman*.]
-\item Start by checking the determinant. If it is nonzero, continue to step b. Otherwise, you are done, because the inverse does not exist.\footnote{Why doesn't the inverse exist? Describe the mapping.}
+\item Start by checking the determinant. If it is nonzero, continue to step (ii). Otherwise, you are done, because the inverse does not exist.\footnote{Why doesn't the inverse exist? Describe the mapping.}
 \setcounter{first_para}{\value{enumi}}
 \item If $a=0$, rotate the whole matrix $90^\circ$ so that $a$ becomes nonzero.
 \item Stretch or shrink your matrix along the $x$-axis so that the top-left entry becomes $1$; this is why we wanted $a$ to be nonzero.
@@ -346,7 +383,7 @@ $$\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{\frac{c}{a}}{0}{\frac{ad-bc}{a}}=\
 $$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{\frac{c}{a}}{0}{1}=\twomat{1}{0}{0}{1}.$$
 \end{enumerate}
 
-This process applied to the matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=\left[\begin{smallmatrix}2 & 3 \\ 4 & 1 \end{smallmatrix}\right]$, is shown in Figure~\ref{fig:undo_matrix}.
+\noindent This process applied to the matrix $\left[\begin{array}a & c \\ b & d \end{array}\right]=\left[\begin{array}2 & 3 \\ 4 & 1 \end{array}\right]$, is shown in Figure~\ref{fig:undo_matrix} (some not to scale).
 
 \begin{asydef}
 void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real cp, real bp, real dp) {
@@ -371,62 +408,77 @@ void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real c
 	draw((0,0)--(ap,bp)--(ap+cp,bp+dp)--(cp,dp)--cycle);
 
 	if (s_x != 1 || s_y != 1) {
-		label("Not to scale", (0,max_y), NE);
+		//label("Not to scale", (0,max_y), NE);
 	}
 }
 \end{asydef}
 
 \begin{figure}[h]
-\begin{minipage}{0.5\textwidth}
-
-\begin{minipage}{0.45\textwidth}
-i.
-\begin{asy}[width=\textwidth]
-drawFor(1,1,2,3,4,1,2,3,4,1);
-\end{asy}
-\end{minipage}\hfill
-\begin{minipage}{0.45\textwidth}
-iii.
-\begin{asy}[width=\textwidth]
-drawFor(1,1,2,3,4,1,1,3/2,4,1);
-\end{asy}
-\end{minipage}
-
-\begin{minipage}{0.45\textwidth}
-iv.
-\begin{asy}[width=\textwidth]
-drawFor(3,1,1,3/2,4,1,1,3/2,0,-5);
-\end{asy}
-\end{minipage}\hfill
-\begin{minipage}{0.45\textwidth}
-v.
-\begin{asy}[width=\textwidth]
-drawFor(3,1,1,3/2,0,-5,1,3/2,0,1);
-\end{asy}
-\end{minipage}
-
-\begin{minipage}{0.5\textwidth}
-vi.
-\begin{asy}[width=\textwidth]
-drawFor(1,1,1,3/2,0,1,1,0,0,1);
-\end{asy}
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-\caption{The undoing steps, visualized.}
-\label{fig:undo_matrix}
-\end{minipage}
-
-\end{minipage}\hfill
-\begin{minipage}{0.5\textwidth}
-\begin{enumerate}[label=\roman*.]
-\item The determinant is not $0$, so we continue.
-\item $a\neq 0$, so we continue.
-\item $\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{4}{1}=\twomat{1}{\frac{3}{2}}{4}{1}.$
-\item $\twomat{1}{0}{-4}{1}\twomat{1}{\frac{3}{2}}{4}{2}=\twomat{1}{\frac{3}{2}}{0}{-5}.$
-\item $\twomat{1}{0}{0}{-\frac{1}{5}}\twomat{1}{\frac{3}{2}}{0}{5}=\twomat{1}{\frac{3}{2}}{0}{1}.$
-\item $\twomat{1}{-\frac{3}{2}}{0}{1}\twomat{1}{\frac{3}{2}}{0}{1}=\twomat{1}{0}{0}{1}.$
-\end{enumerate}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[c]{0.45\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{0.45\textwidth}
+					i.
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						drawFor(1,1,2,3,4,1,2,3,4,1);
+					\end{asy}
+				\end{minipage}
+				\hfill
+				\begin{minipage}[b]{0.45\textwidth}
+					iii.
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						drawFor(1,1,2,3,4,1,1,3/2,4,1);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+		
+			\begin{center}
+				\begin{minipage}[b]{0.45\textwidth}
+					iv.
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						drawFor(3,1,1,3/2,4,1,1,3/2,0,-5);
+					\end{asy}
+				\end{minipage}
+				\hfill
+				\begin{minipage}[b]{0.45\textwidth}
+					v.
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						drawFor(3,1,1,3/2,0,-5,1,3/2,0,1);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+		
+			\begin{center}
+				\begin{minipage}[b]{0.45\textwidth}
+					vi.
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						drawFor(1,1,1,3/2,0,1,1,0,0,1);
+					\end{asy}
+				\end{minipage}
+				\hfill
+				\begin{minipage}[b]{0.45\textwidth}
+					\caption{The undoing steps, visualized.}
+					\label{fig:undo_matrix}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.45\textwidth}
+			\begin{enumerate}[label=\roman*.]
+				\item The determinant is not $0$, so we continue.
+				\item $a\neq 0$, so we continue.
+				\item $\twomat{\frac{1}{2}}{0}{0}{1}\twomat{2}{3}{4}{1}=\twomat{1}{\frac{3}{2}}{4}{1}.$
+				\item $\twomat{1}{0}{-4}{1}\twomat{1}{\frac{3}{2}}{4}{2}=\twomat{1}{\frac{3}{2}}{0}{-5}.$
+				\item $\twomat{1}{0}{0}{-\frac{1}{5}}\twomat{1}{\frac{3}{2}}{0}{5}=\twomat{1}{\frac{3}{2}}{0}{1}.$
+				\item $\twomat{1}{-\frac{3}{2}}{0}{1}\twomat{1}{\frac{3}{2}}{0}{1}=\twomat{1}{0}{0}{1}.$
+			\end{enumerate}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
 \begin{enumerate}
@@ -435,7 +487,7 @@ drawFor(1,1,1,3/2,0,1,1,0,0,1);
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-To reiterate, our process for undoing a matrix $M=\twomat{a}{c}{b}{d}$ with $a>0$ and $\det M\neq 0$ is:
+\noindent To reiterate, our process for undoing a matrix $M=\twomat{a}{c}{b}{d}$ with $a>0$ and $\det M\neq 0$ is:
 $$\left[\begin{array}{c}\text{shear} \\ \text{in x}\end{array}\right]
 \left[\begin{array}{c}\text{stretch} \\ \text{in y}\end{array}\right]
 \left[\begin{array}{c}\text{shear} \\ \text{in y}\end{array}\right]
@@ -444,7 +496,7 @@ $$\left[\begin{array}{c}\text{shear} \\ \text{in x}\end{array}\right]
 Filling it in with numbers, we get
 $$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$ \label{prob:list_of_matrices}
 
-Don't forget to multiply from right to left.
+\noindent Don't forget to multiply from right to left.
 
 Our ultimate goal is to build up the matrix from basic operations, not to just undo it. Fortunately, we can easily figure out how to undo each of these basic operations. Remember that matrix multiplication is associative, but not commutative.
 
@@ -461,7 +513,7 @@ $\blanktwomat\twomat{1}{0}{s}{1}=\twomat{1}{0}{0}{1}$
 $\blanktwomat\twomat{1}{0}{0}{y}=\twomat{1}{0}{0}{1}$
 \end{enumerate}
 
-\item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]$ is composed. Order is important!
+\item Now let's put this all together. Undo each of the operations in turn, until only matrix $\left[\begin{array}a & c \\ b & d \end{array}\right]$ remains on the left side. Remember that what you do on the left side of the expression must also be done to the right side, so on the right side you will see the basic operations from which $\left[\begin{array}a & c \\ b & d \end{array}\right]$ is composed. Order is important!
 
 \vspace{10ex}
 $$\mathop{\blanktwomat}^{\tikzmark{a1}}
@@ -484,7 +536,7 @@ $$\Longrightarrow \blanktwomat\blanktwomat\blanktwomat\blanktwomat\twomat{1}{0}{
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-This process is known as \textbf{matrix decomposition}, because you are decomposing the matrix into simpler pieces. Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
+\noindent This process is known as \textbf{matrix decomposition}, because you are decomposing the matrix into simpler pieces. Now, let's see if you can apply this idea to find a set of basic transformations that is equivalent to some sample matrices.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -493,19 +545,20 @@ This process is known as \textbf{matrix decomposition}, because you are decompos
 \begin{enumerate}[label=(\roman*)]
 \item Stretch along the $x$-axis by factor of $\frac{1}{3}$. %compare-books-disable
 $$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}=\twomat{1}{\frac{4}{3}}{2}{-5}$$
-\item Shear perpendicular to the $x$-axis by $-2$ %compare-books-disable
+\item Shear perpendicular to the $x$-axis by $-2$. %compare-books-disable
 $$\twomat{1}{0}{-2}{1}\twomat{1}{\frac{4}{3}}{2}{-5}=\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}$$
-\item Stretch along $y$-axis by $-\frac{3}{23}$ %compare-books-disable
+\item Stretch along $y$-axis by $-\frac{3}{23}$. %compare-books-disable
 $$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twomat{1}{\frac{4}{3}}{0}{1}$$
-\item Shear perpendicular to the $y$-axis by $-\frac{4}{3}$ %compare-books-disable
+\item Shear perpendicular to the $y$-axis by $-\frac{4}{3}$. %compare-books-disable
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
 \end{enumerate}
 \end{multicols}
 Taken all together, the decomposition is:
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}.$$
-Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$ What does each matrix do?
-\item\label{prob:needed_for_matrix_undo2}Here is another way that you could have decomposed the above matrix.
-\vspace{-2ex}
+Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$
+What does each matrix do?
+\item\label{prob:needed_for_matrix_undo2}Here is another way that you could have decomposed the above matrix:
+%\vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \mathop{\twomat{1}{-\frac{2}{23}}{0}{1}}^{\text{ii}}
 \mathop{\twomat{\frac{1}{\sqrt{13}}}{0}{0}{\frac{1}{\sqrt{13}}}}^{\text{iii}}
@@ -515,8 +568,8 @@ $$\mathop{\twomat{1}{0}{0}{\frac{13}{23}}}^{\text{i}}
 \begin{enumerate}
 \item Identify what matrices i through v each do.
 \end{enumerate}
-Next, we undo this sequence of operations by working backwards.
-\vspace{-2ex}
+Next, we undo this sequence of operations by working backwards:
+%\vspace{-2ex}
 $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \mathop{\twomat{\frac{3}{\sqrt{13}}}{\frac{2}{\sqrt{13}}}{-\frac{2}{\sqrt{13}}}{\frac{3}{\sqrt{13}}}}^{\text{ii}}
 \mathop{\twomat{\sqrt{13}}{0}{0}{\sqrt{13}}}^{\text{iii}}
@@ -527,7 +580,7 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \setcounter{enumii}{1}
 \item Explain what happens at each matrix, i through v.
 \end{enumerate}
-\item Find a set of basic transformations which is equivalent to each of the following matrices.\label{prob:basic_transformations}
+\item Find a set of basic transformations which is equivalent to each of the following matrices:\label{prob:basic_transformations}
 \begin{multicols}{3}
 \begin{enumerate}
 \item $\twomat{12}{8}{5}{15}$
@@ -543,15 +596,16 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item If you try to decompose this matrix to the identity matrix, what happens? Why?
 \end{enumerate}
 \end{multicols}
-\item Onto what line does $\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
-\item Use Problem~\ref{prob:project_the_plane} to decompose $\left[\begin{smallmatrix} 2 & 3 \\ 4 & 6 \end{smallmatrix}\right]$ into a projection to a line followed by a size change.
-\item Decompose $\left[\begin{smallmatrix} 1 & 2 \\ 3 & 6\end{smallmatrix}\right]$ into a projection perpendicular to a line followed by a size change.
+\item Onto what line does $\left[\begin{array} a & b \\ 2a & 2b\end{array}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
+\item Use Problem~\ref{prob:project_the_plane} to decompose $\left[\begin{array} 2 & 3 \\ 4 & 6 \end{array}\right]$ into a projection to a line followed by a size change.
+\item Decompose $\left[\begin{array} 1 & 2 \\ 3 & 6\end{array}\right]$ into a projection perpendicular to a line followed by a size change.
 \item Write matrices which project onto the following lines:
+\begin{multicols}{3}
 \begin{enumerate}
 \item $y=x$
 \item $y=5x$
 \item $y=mx$
 \end{enumerate}
-\vspace{-10ex}
+\end{multicols}
 \end{enumerate}
 \end{document}

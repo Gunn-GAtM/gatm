@@ -75,89 +75,106 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 \end{asydef}
 %
 \begin{figure}[h]
-\begin{minipage}{0.3\textwidth}
-\begin{center}
-\begin{asy}
-size(0,60);
+	\begin{center}
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.4\textwidth]
+				size(0,60);
+				
+				pair offset = (0,0);
+				string[] order = {"1", "2", "3"};
+				
+				drawTriangle(offset, 2, order);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				size(0,60);
+				
+				pair offset = (0,0);
+				string[] order = {"", "", ""};
+				
+				drawTriangle(offset, 2, order, true);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				size(0,60);
+				
+				drawTriangle((0, 0), 2, orders[4], false);
+				label(names[4], (sqrt(3) / 2, -1.4));
+				drawTriangle((3, 0), 2, orders[2], false);
+				label(names[2], (3 + sqrt(3) / 2, -1.4));
+				
+				label("$\stackrel{A}{\Longrightarrow}$", (2.4, 0.2));
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{The paper triangle.}
+			\label{fig:paper_triangle_sf}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{Its axes of reflection.}
+			\label{fig:triangle_reflections_sf}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{$AD = B$; Notice the RTL evaluation.}
+			\label{fig:aid_is_b}
+		\end{minipage}
+	\end{center}
 
-pair offset = (0,0);
-string[] order = {"1", "2", "3"};
-
-drawTriangle(offset, 2, order);
-\end{asy}
-\end{center}
-\caption{The paper triangle.}
-\label{fig:paper_triangle_sf}
-\end{minipage}
-%
-\begin{minipage}{0.3\textwidth}
-\begin{center}
-\begin{asy}
-size(0,60);
-
-pair offset = (0,0);
-string[] order = {"", "", ""};
-
-drawTriangle(offset, 2, order, true);
-\end{asy}
-\end{center}
-\caption{Its axes of reflection.}
-\label{fig:triangle_reflections_sf}
-\end{minipage}
-%
-\begin{minipage}{0.3\textwidth}
-\begin{center}
-\begin{asy}
-size(0,60);
-
-drawTriangle((0, 0), 2, orders[4], false);
-label(names[4], (sqrt(3) / 2, -1.4));
-drawTriangle((3, 0), 2, orders[2], false);
-label(names[2], (3 + sqrt(3) / 2, -1.4));
-
-label("$\stackrel{A}{\Longrightarrow}$", (2.4, 0.2));
-\end{asy}
-\end{center}
-\caption{$AD = B$; Notice the RTL evaluation.}
-\label{fig:aid_is_b}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				unitsize(0.7cm);
+				
+				drawTriangle((-4, 0), 2, orders[0], false);
+				label("$\stackrel{\mbox{\small flip!}}{\Longrightarrow}$", (-1, 0));
+				
+				for (int i = 0; i < 6; ++i) {
+					bool[] shownaxes = {false, false, false};
+					
+					if (1 <= i && i <= 3) {
+						shownaxes[i - 1] = true;
+					}
+					
+					if (i == 4 || i == 5) {
+						real angle = (i == 4) ? 2 * pi / 3 : 4 * pi / 3;
+						real radius = 0.8;
+						pair center = (2.4 * i + sqrt(3) / 2, 1.7);
+						pair end = (center + radius * cis(angle));
+						
+						draw((center + radius * cis(0)) .. (center + radius * cis(angle / 2)) .. end -- end, EndArrow);
+						label((i == 4) ? "$\phantom{\degree}120\degree$" : "$\phantom{\degree}240\degree$", center);
+					}
+					
+					drawTriangle((2.4 * i, 0), 2, orders[i], true, shownaxes, false);
+					label(names[i], (2.4 * i + sqrt(3) / 2, -1.4));
+				}
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{The six ending positions.}
+			\label{fig:triangle_isos_sf}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
-\begin{figure}[h]
-\begin{center}
-\begin{asy}
-unitsize(0.7cm);
+% Brandon to Timothy: stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes. LOVE U BULBY (I love you too, Tim <3)
 
-drawTriangle((-4, 0), 2, orders[0], false);
-label("$\Longrightarrow$", (-1, 0));
-
-for (int i = 0; i < 6; ++i) {
-	bool[] shownaxes = {false, false, false};
-
-	if (1 <= i && i <= 3) {
-		shownaxes[i - 1] = true;
-	}
-
-	if (i == 4 || i == 5) {
-		real angle = (i == 4) ? 2 * pi / 3 : 4 * pi / 3;
-		real radius = 0.8;
-		pair center = (2.4 * i + sqrt(3) / 2, 1.7);
-		pair end = (center + radius * cis(angle));
-
-		draw((center + radius * cis(0)) .. (center + radius * cis(angle / 2)) .. end -- end, EndArrow);
-		label((i == 4) ? "$\phantom{\degree}120\degree$" : "$\phantom{\degree}240\degree$", center);
-	}
-
-	drawTriangle((2.4 * i, 0), 2, orders[i], true, shownaxes, false);
-	label(names[i], (2.4 * i + sqrt(3) / 2, -1.4));
-}
-\end{asy}
-\end{center}
-\caption{The six ending positions.}
-\label{fig:triangle_isos_sf}
-\end{figure}
-
-% Brandon to Timothy: stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes. LOVE U BULBY
 % VOCAB: DIHEDRAL GROUP, ISOMETRY, ISOMORPHIC (probs gonna change?), GENERATOR
 
 \noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
@@ -169,31 +186,52 @@ These six positions, along with the operation $\cdot$ of transformation composit
 Dihedral groups exist for any polygonal figure; mathematically speaking, the dihedral group $D_n$ is the group of symmetries, or \textbf{symmetry group}, of a $n$-sided regular polygon. A \textbf{symmetry group} is the set of all isometries of an object, including the identity, which map an object to itself. Note that the symmetry groups of plane figures are specifically called dihedral groups, while shapes in any number of dimensions have symmetry groups. For example, a pentagon's symmetry group is a dihedral group, while a cube's symmetry group is not. Let's study the properties of the dihedral group of the equilateral triangle.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
-\newcolumntype{C}{>{\centering\arraybackslash}p{1em}}
+% \newcolumntype{C}{>{\centering\arraybackslash}p{1em}} %i dont think we need this? idk
 
-\begin{figure}[H]
-\begin{minipage}{0.6\textwidth}
-\begin{enumerate}
-\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
-\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
-\newcounter{enumLast}
-\setcounter{enumLast}{\theenumi}
-\end{enumerate}
-\end{minipage}\hfill% makes the subsequent minipage right justified
-\begin{minipage}{0.35\textwidth}\centering
-\begin{tabular}{C|C|C|C|C|C|C|}
-$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
-$I$    &   &   &   &   &   &   \\ \hline
-$A$    &   &   &   &   & $B$  &   \\ \hline
-$B$    &   &   &   &   &   &   \\ \hline
-$C$    &   &   &   &   &   &   \\ \hline
-$D$    &   &   &   &   &   &   \\ \hline
-$E$    &   &   &   &   &   &   \\ \hline
-\end{tabular}
-\caption{Unfilled $D_3$ group table.}
-\label{fig:sbstable}
-\end{minipage}
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[c]{0.55\textwidth}
+			\begin{enumerate}
+				\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
+				\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
+				\newcounter{enumLast}
+				\setcounter{enumLast}{\theenumi}
+			
+			\end{enumerate}
+		\end{minipage}
+		\hfill% makes the subsequent minipage right justified
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{tabular}{c|cccccc}
+						\hline
+						$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+						\rowcolor{light-gray}
+						$I$    &   &   &   &   &   &   \\ 
+						$A$    &   &   & $E$ &   &   &   \\ 
+						\rowcolor{light-gray}
+						$B$    &   &   &   &   &   &   \\ 
+						$C$    &   &   &   &   &   &   \\ 
+						\rowcolor{light-gray}
+						$D$    &   &   &   &   &   &   \\ 
+						$E$    &   &   &   &   &   &   \\ \hline
+					\end{tabular}
+					\vspace*{0.5\baselineskip}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\caption{Unfilled $D_3$ group table.}
+					\label{fig:sbstable}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+	\end{center}
 \end{figure}
+
+\vspace*{-2\baselineskip}
 %
 \begin{enumerate}
 \setcounter{enumi}{\theenumLast}
@@ -229,51 +267,67 @@ Definition of \textbf{group}: A group $G$ is a set of elements together with a \
 \setcounter{enumi}{\theenumLast}
 \item The addition of two numbers is a binary operation, while the addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
 \item In your original dihedral group table, what is
+\begin{multicols}{3}
 \begin{enumerate}
 \item the identity element?
 \item the inverse of $A$?
 \item the inverse of $E$?
 \end{enumerate}
+\end{multicols}
 \end{enumerate}
 
 \begin{figure}
-\begin{minipage}{0.4\textwidth}
-\begin{center}
-\begin{tabular}{C|C|C|C|C|C|C|}
-$\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
-$I$    &   &   &   &   &   &   \\ \hline
-$r$    &   &   &   & $fr^2$  &   &   \\ \hline
-$r^2$    &   &   &   &   &   &   \\ \hline
-$f$    &   &   &   &   &   &   \\ \hline
-$fr$    &   &   &   &   &   &   \\ \hline
-$fr^2$    &   &   &   &   &   &   \\ \hline
-\end{tabular}
-\end{center}
-\caption{Unfilled alternate $D_3$ table.}
-\label{fig:alttable}
-\end{minipage}%
-\begin{minipage}{0.6\textwidth}
-\begin{center}
-\begin{asy}
-size(0,60);
-
-drawTriangle((0, 0), 2, orders[0], false);
-label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
-drawTriangle((3, 0), 2, orders[4], false);
-label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
-drawTriangle((6, 0), 2, orders[5], false);
-label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
-drawTriangle((9, 0), 2, orders[2], false);
-label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
-
-label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
-label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
-label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
-\end{asy}
-\end{center}
-\caption{$fr^2=C$. Again, notice the RTL evaluation.}
-\label{fig:fr2}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{0.35\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &   &   \\ 
+				$r$    &   &   & $fr^2$ &   &   &   \\ 
+				\rowcolor{light-gray}
+				$r^2$    &   &   &   &   &   &   \\ 
+				$f$    &   &   &   &   &   &   \\ 
+				\rowcolor{light-gray}
+				$fr$    &   &   &   &   &   &   \\ 
+				$fr^2$    &   &   &   &   &   &   \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.55\textwidth}
+			\centering
+			\begin{asy}[width=\textwidth]
+				size(0,60);
+				
+				drawTriangle((0, 0), 2, orders[0], false);
+				label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
+				drawTriangle((3, 0), 2, orders[4], false);
+				label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
+				drawTriangle((6, 0), 2, orders[5], false);
+				label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
+				drawTriangle((9, 0), 2, orders[2], false);
+				label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
+				
+				label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
+				label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
+				label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.35\textwidth}
+			\caption{Unfilled alternate $D_3$ table.}
+			\label{fig:alttable}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.55\textwidth}
+			\caption{$fr^2=C$. Again, notice the RTL evaluation.}
+			\label{fig:fr2}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
 \end{document}
