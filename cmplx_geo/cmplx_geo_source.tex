@@ -46,6 +46,8 @@
 
 \section{Geometry of Complex Numbers}
 
+\noindent\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
+
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{0.25\textwidth}
@@ -171,6 +173,7 @@
 			\caption{Breaking up $Az$ into its components, we can observe the geometry of complex multiplication.}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \newcommand{\Arg} {\operatorname{Arg}}
@@ -178,36 +181,30 @@
 \newcommand{\Real} {\operatorname{Re}}
 \newcommand{\Imag} {\operatorname{Im}}
 
-\noindent\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
+\noindent Last year, you became masters of the art of manipulating complex numbers. In this section, we will build on that background. Throughout the rest of the book, you can reinforce your skills with a dose of Vitamin $i$.
 
-Last year, you became masters of the art of manipulating complex numbers. In this section, we will build on that background. Throughout the rest of the book, you can reinforce your skills with a dose of Vitamin $i$.
+There are at least two ways to think about the equation $x^3 = 1$. One way is to factor the equation into $(x-1)(x^2+x+1)$ and find the solutions using the quadratic formula. The other way is to use \textbf{DeMoivre’s theorem}:
+\[(r_1 (\cos \theta + i \sin \theta)) (r_2 (\cos \phi + i \sin \phi)) = (r_1r_2) (\cos(\theta + \phi) + i \sin(\theta + \phi)).\]
 
-You should know at least two ways to think about the equation $x^3 = 1$. One way is to see that $x = 1$ is a solution, so $x - 1$ is a factor of $x^3-1$, and then proceed with synthetic or long division. The other way is to use \textbf{DeMoivre’s} beautiful theorem:
+Recall that $\cis \theta = \cos \theta + i \sin \theta$. $z=r\cis \theta$ is a complex number $r$ units away from the origin and making an angle $\theta$ with the $x$ axis, taken counterclockwise. Let’s rewrite DeMoivre’s theorem using $\cis$:
+\[(r_1 \cis \theta)(r_2 \cis \theta) = (r_1r_2)(\cis(\theta + \phi)).\]
 
-$$(r_1 (\cos \theta + i \sin \theta)) (r_2 (\cos \phi + i \sin \phi)) = (r_1r_2) (\cos(\theta + \phi) + i \sin(\theta + \phi)).$$
+\noindent Notice that the magnitudes are multiplied and the angles are added.\footnote{What else is added when you multiply? Exponents! In fact, $\cis \theta = e^{i\theta}$, but that’s another story.} By repeatedly applying DeMoivre's theorem, we know that $(r \cis \theta) ^ n = r^n \cis n\theta$. If $x = r \cis \theta$, then $x^3 = r^3 \cis 3\theta$. Going back to our original $x^3 = 1$, since $1 = \cis(2\pi k)$ for any integer $k$, we find that $r = 1$ and $3\theta = 2\pi k$. This yields three solutions: $1 \cis 0$, $1 \cis \frac{2\pi}{3}$, $1 \cis \frac{4\pi}{3}$. Any other value of $\theta=\frac{2k\pi}{3}$ reduces to one of these values because of the periodicity of $\cis$. These correspond to $k = 0, 1, 2$; other values of $k$ produce coterminal angles and are therefore duplicates. You can confirm that these three solutions are the same solutions that you obtain from factoring.
 
-\noindent Like last year, we will often write $\cis \theta = \cos \theta + i \sin \theta$. Recall that $z=r\cis \theta$ is a complex number $r$ units away from the origin and making an angle of $\theta$ with the $x$ axis, taken counterclockwise. Let’s rewrite DeMoivre’s theorem using $\cis$:
+You can prove DeMoivre’s theorem using the angle addition formulae for $\cos$ and $\sin$. But you can also understand it through pure geometry. Consider a complex number $z = a + bi$, being multiplied by $A = 4 + 3i$. $z$ forms an angle of $\theta$ with the real axis, and $A$ forms an angle of $\phi$. In Figure 1, observe that $iz$ is perpendicular to $z$ for any $z$. Figure 2 depicts the complex number $A$. Finally, in Figure 3, you see the multiplication carried out: $Az = (4+3i)z = 4z + 3iz$. These two components, $4z$ and $3iz$, are indicated.
 
-$$(r_1 \cis \theta)(r_2 \cis \theta) = (r_1r_2)(\cis(\theta + \phi)).$$
+Combining the observation in Figure 1 and knowledge from geometry, we know the triangles in Figure 2 and 3 are similar. Since the scaling is by a factor of $|z|$, multiplying $A$ by $z$ has the effect rotating $z$ by the angle of $A$, and multiplying it by the length of $A$. This method of proving DeMoivre's theorem for $A=4+3i$ will work for all complex numbers $A=a+bi$.
 
-\noindent In words: when you multiply complex numbers, the magnitudes are multiplied and the angles are added.\footnote{What else is added when you multiply? Exponents! In fact, $\cis \theta = e^{i\theta}$, but that’s another story.}
-
-Through repeated application of this theorem, we know that $(r \cis \theta) ^ n = r^n \cis n*\theta$. If $x = r \cis \theta$, then $x^3 = r^3 \cis 3\theta$. Going back to our original $x^3 = 1$, since $1 = 1 \cis(2\pi k)$ for any integer $k$, we find that $r = 1$ and $3\theta = 2\pi k$. This yields three solutions: $1 \cis 0$, $1 \cis \frac{2\pi}{3}$, $1 \cis \frac{3\pi}{3}$. These correspond to $k = 0, 1, 2$; other values of $k$ produce coterminal angles, and are therefore duplicates.
-
-You can bashfully prove DeMoivre’s theorem using the angle addition formulae for $\cos$ and $\sin$. But you can also understand it through pure geometry. Consider a complex number $z = a + bi$, being multiplied by $A = 4 + 3i$. $z$ forms an angle of $\theta$ with the x-axis, and $A$ forms an angle of $\phi$. In Figure 1, observe that $iz$ is perpendicular to $z$ for any $z$. In Figure 2 depicts the complex number $A$. Finally, in Figure 3, you see the multiplication carried out: $Az = (4+3i)z = 4z + 3iz$. These two components, $4z$ and $3iz$, are indicated.
-
-Combining the observation in Figure 1 and knowledge from geometry, we know the triangles in Figure 2 and 3 are similar. Since the scaling is by a factor of $|z|$, multiplying $A$ by $z$ has the effect rotating $z$ by the angle of $A$, and multiplying it by the length of $A$.
-
-Some notation: The angle $\theta$ of a complex number $z = a+bi$ is often called the argument, written as $\Arg z$. The real part of $z$ is written $\Real (z) = a$, and the imaginary part of $z$ is written $\Imag (z) = b$. Note that $\Imag (z)$ is a \textit{real} number, \textit{not} an  imaginary number. In particular, $\Imag (z) \neq bi$. Finally, the \textbf{complex conjugate} of $z$, where the imaginary part is negated, is written with a bar on top: $\overline{z} = a-bi$.
+Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called the argument, written as $\Arg z$. The real part of $z$ is written $\Real (z) = a$, and the imaginary part of $z$ is written $\Imag (z) = b$. Note that $\Imag (z)$ is a \textit{real} number $b$, \textit{not} an imaginary number $bi$. Finally, the \textbf{complex conjugate} of $z$, where the imaginary part is negated, is written with a bar on top: $\overline{z} = a-bi$.
 
 \begin{enumerate}
 \item Explain why $iz$ is perpendicular to $z$, without using DeMoivre's theorem.
 \item How does $\Arg \overline{z}$ relate to $\Arg z$? (Hint: symmetry!)
 \item Compute $z\overline{z}$ and relate it to the $\cis$ form of $z$.
 \item Explain, using a picture, why $\tan (\Arg z) = \frac{\Imag(z)}{\Real(z)}$.
-\item Divide $\frac{a+bi}{c+di}$ by rationalizing the denominator.
-\item Divide $\frac{r_1\cis \theta}{r_2\cis \phi}$ using DeMoivre's theorem.
-\item Compare and contrast the methods of division in Problems 5 and 6. Which is more convenient? Or does it depend on the circumstance?
+\item Divide $\frac{a+bi}{c+di}$ by rationalizing the denominator.~\label{prob:div_1}
+\item Divide $\frac{r_1\cis \theta}{r_2\cis \phi}$ using DeMoivre's theorem.~\label{prob:div_2}
+\item Compare and contrast the methods of division in Problems~\ref{prob:div_1} and \ref{prob:div_2}. Which is more convenient? Or does it depend on the circumstance?
 \item \begin{enumerate}
 \item If $z = r\cis \theta$, what is $\frac{1}{z}$?
 \item Explain how this shows $\frac{1}{a+bi}=\frac{a-bi}{a^2+b^2}$, without having to rationalize the denominator. (Hint: use Problems 3, 4, and 7.)
@@ -218,18 +215,18 @@ Some notation: The angle $\theta$ of a complex number $z = a+bi$ is often called
 \item Solve $z^3 = 1$, and show that its solutions under the operation of multiplication form a group, isomorphic to the rotation group of the equilateral triangle. Write a group table!
 \item \begin{enumerate}
 \item Find multiplication groups of complex numbers which are isomorphic to the rotation groups for
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item a non-square rectangle, and
 \item a regular hexagon.
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item Make a table for each group.
 \item Compare the regular hexagon's group to the dihedral group of the equilateral triangle, $D_3$. Consider: how are they the same? How are they different? Is the difference fundamental?
 \end{enumerate}
 \item Which of the following sets is a group under (i) addition and (ii) multiplication?
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}\raggedcolumns
 \item $\{0\}$
 \item $\{1\}$
 \item $\{0,1\}$
@@ -241,9 +238,8 @@ Some notation: The angle $\theta$ of a complex number $z = a+bi$ is often called
 \item $\{\mathbb{Q}\text{ without zero}\}$
 \item $\{\text{complex numbers}\}, \mathbb{C}$
 \item $\{\mathbb{C}\text{ without zero}\}$
-\end{enumerate}
 \end{multicols}
-\item For what values $a$ and $b$ does $\{a + b\sqrt{2}\}$ generate a group under (a) addition and (b) multiplication? Look for several answers.
+\end{enumerate}
 
 \setcounter{cg_problem_i}{\value{enumi}}
 \end{enumerate}
@@ -254,7 +250,7 @@ Some notation: The angle $\theta$ of a complex number $z = a+bi$ is often called
 \cis 3\theta &= (\cis \theta)^3  & \qquad \text{[DeMoivre's Theorem]} \\
 &= (c+is)^3 & \qquad \text{[Definition of } \cis \text{]} \\
 &= c^3 + 3c^2s i - 3cs^2 - s^3 i & \qquad \text{[Binomial expansion]} \\
-\cos 3\theta + i\sin 3\theta &= (c^3 - 3c^2) + i (3c^2 s - s^3). \qquad & \text{[Combining like terms]}\\
+\cos 3\theta + i\sin 3\theta &= (c^3 - 3c^2) + i (3c^2 s - s^3). \qquad & \text{[Combining like terms]}
 \end{align*}
 
 \noindent Equating real parts on both sides, $\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta$.
@@ -268,14 +264,12 @@ Some notation: The angle $\theta$ of a complex number $z = a+bi$ is often called
 \setcounter{cg_problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent Let’s apply complex numbers to a geometry problem: Prove that if we construct squares with centers $P$, $Q$, $R$, $S$ on the sides of any quadrilateral $ABCD$, as shown in Figure~\ref{fig:quad_square}, then (i) $\overline{PR} \perp \overline{QS}$ and (ii) $\overline{PR} \cong \overline{QS}$. In other words, segments joining centers of opposite squares are perpendicular and the same length.
-
 \begin{asydef}
 pair rotate(pair p, real degrees=0) {
 	real rads = degrees * pi / 180;
 	real c = cos(rads);
 	real s = sin(rads);
-	
+
 	return (p.x*c-p.y*s,p.y*c+p.x*s);
 }
 
@@ -290,7 +284,7 @@ pair D = (4,0);
 
 \end{asydef}
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{0.55\textwidth}
 			\centering
@@ -432,7 +426,11 @@ pair D = (4,0);
 			\label{fig:p_def_on_a}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+
+\noindent Let’s apply complex numbers to a geometry problem. We want to prove that if we construct squares with centers $P$, $Q$, $R$, $S$ on the sides of any quadrilateral $ABCD$, as shown in Figure~\ref{fig:quad_square}, then (i) $\overline{PR} \perp \overline{QS}$ and (ii) $\overline{PR} \cong \overline{QS}$. In other words, segments joining centers of opposite squares are perpendicular and the same length.
 
 We represent all points in the figure as complex numbers. For convenience, let $A=0$ be the origin. The edges of the quadrilateral can be thought of as vectors in the form of complex numbers, and are found using subtraction; for example, the edge from $A$ to $B$ is $B-A$. Similarly, the edge from $B$ to $C$ is $C-B$. Now, define complex numbers
 
@@ -442,9 +440,9 @@ $$a=\frac{B-A}{2},\, b=\frac{C-B}{2},\, c = \frac{D-C}{2},\, d = \frac{A-D}{2}.$
 
 $$a+b+c+d=\frac{B-A+C-B+D-C+A-D}{2}=\frac{0}{2}=0.$$
 
-\noindent More geometrically, this is because $2(a+b+c+d)=2a+2b+2c+2d$ is the sum of the vectors $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{DA}$, which is just $\overrightarrow{AA}=\mathbf{0}$. This is shown in Figure~\ref{fig:add_to_0}.
+\noindent More geometrically, this is because $2(a+b+c+d)=2a+2b+2c+2d$ is the sum of the vectors $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{DA}$, which is just $\overrightarrow{AA}=\overrightarrow{\mathbf{0}}$. This is shown in Figure~\ref{fig:add_to_0}.
 
-$P,Q,R,S$ are also complex numbers. Let $m=R-P$ and $n = Q-S$, as the lengths of our two segments $\overline{PR}$ and $\overline{QS}$. To prove that they are perpendicular, recall that $z$ is perpendicular to $iz$ for any complex $z\neq 0$, so we just need to prove that $n=\pm im$.
+$P,Q,R,S$ are also complex numbers. Let $m=R-P$ and $n = Q-S$, be our two segments $\overline{PR}$ and $\overline{QS}$. To prove that they are perpendicular, recall that $z$ is perpendicular to $iz$ for any complex $z\neq 0$, so we just need to prove that $n=\pm im$.
 
 We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a+ia$, remembering that $a$ is the vector halfway along $\overrightarrow{AB}$. $a$ takes you from the origin $A$ to the midpoint of $\overline{AB}$, then $ia$ takes you to $P$. This shown in Figure~\ref{fig:p_def_on_a}. We can extend this logic to the other points, of course.
 
@@ -469,11 +467,11 @@ We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a
 \item Why is $\tan 3\theta = \frac{\Imag(z^3)}{\Real(z^3)}$?
 \item Use (b) to find an identity for $\tan 3\theta$.
 \end{enumerate}
-\item Find multiplication groups of complex numbers isomorphic to rotation groups for the
+\item Find multiplication groups of complex numbers isomorphic to rotation groups for
 \begin{enumerate}
 \begin{multicols}{2}
-\item regular octagon, and
-\item regular pentagon.
+\item the regular octagon, and
+\item the regular pentagon.
 \end{multicols}
 \end{enumerate}
 \item Make tables for
@@ -484,8 +482,8 @@ We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a
 Is the difference between them fundamental?
 
 \item Which of the following tables defines a group? Why or why not?
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item 
 \begin{tabular}{c|ccccc}
 	\hline
@@ -512,9 +510,9 @@ Is the difference between them fundamental?
 	\rowcolor{light-gray}
 	$D$ & $D$ & $I$ & $A$ & $B$ & $C$ \\ \hline
 \end{tabular}
-\end{enumerate}
 \end{multicols}
-\item Which subsets of the complex numbers are groups under multiplication? After you list a few of each type, generalize.
+\end{enumerate}
+\item Name some subsets of the complex numbers that are groups under multiplication. I can name an infinite number of both finite and infinite groups with this property, so after you list a few of each type, try to generalize.
 \item Prove with a diagram that if $|z|=1$, then $\Imag\left(\frac{z}{(z+1)^2}\right)=0$.
 \item Prove geometrically that if $|z|=1$, then $|1-z|=\left|2\sin\left(\frac{\Arg z}{2}\right)\right|$.
 \item \begin{enumerate}
@@ -523,25 +521,24 @@ Is the difference between them fundamental?
 \end{enumerate}
 \item I claim that $e^{i\theta}=\cos\theta + i\sin\theta = \cis\theta$, for $\theta$ in radians.
 
-\begin{multicols}{3}
 \begin{enumerate}
-\item Find $e^{-it}$. 
+\begin{multicols}{3}
+\item Find $e^{-it}$.
 \item Find $\frac{e^{i\theta} + e^{-i\theta}}{2}$.
 \item Find $\frac{e^{i\theta} - e^{-i\theta}}{2i}$.
 \setcounter{cg_problem_ii}{\value{enumii}}
-\end{enumerate}
 \end{multicols}
-Use your new, complex definitions for $\cos$ and $\sin$ to find:%
-\begin{multicols}{2}
+\end{enumerate}
+\item Use your new, complex definitions for $\cos$ and $\sin$ to find:%
 \begin{enumerate}
-\setcounter{enumii}{\value{cg_problem_ii}}
+\begin{multicols}{2}
 \item $\cos^2\theta + \sin^2\theta$
 \item $\tan\theta$
 \item $\cos 2\theta$
 \item $\sin 2\theta$
-\item What kind of group is generated by $\{ e^{i\theta}, e^{-i\theta}\}$ under the operation of multiplication if $\theta$ is an integer? A rational multiple of $\pi$?
-\end{enumerate}
+\item What kind of group is generated by $\left\{e^{i\theta}, e^{-i\theta}\right\}$ under the operation of multiplication if $\theta$ is an integer? A rational multiple of $\pi$?
 \end{multicols}
+\end{enumerate}
 \item You've used the quadratic equation throughout high school, but there's also a cubic equation that finds the roots of any cubic. Let's derive it, starting with the cubic $x^3+bx^2+cx+d=0$.
 \begin{enumerate}
 \item Make the substitution $x=y-\frac{b}{3}$. Combine like terms to create an equation of the form $y^3-3py-2q=0$, with $p,q$ in terms of $b,c$, and $d$.

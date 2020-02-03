@@ -44,12 +44,12 @@ for (int i = 0; i < 3; ++i) {
 	pair vertex = vertices[i];
 	string axisname = axisnames[i];
 	pair sum = 0;
-	
+
 	for (int j = 0; j < 3; ++j) {
 		if (j == i) continue;
 		sum += vertices[j];
 	}
-	
+
 	sum /= 2;
 	drawExtLine(vertex, sum, labelaxes ? axisname : "");
 }
@@ -171,31 +171,35 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 			\label{fig:triangle_isos_sf}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+% Brandon to Timothy: stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes. LOVE U BULBY (I love you too, Tim <3)
 
 % VOCAB: DIHEDRAL GROUP, ISOMETRY, ISOMORPHIC (probs gonna change?), GENERATOR
 
-\noindent You can use a paper/cardboard triangle to help visualize the next concept: cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to move this triangle. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
+\noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
-Notice that each position corresponds to a different operation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by multiplying them, which is simply sequencing them. Unlike most cases, however, we evaluate them right-to-left (RTL) rather than left-to-right (LTR). For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
+Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by multiplying them, which is simply sequencing them. We evaluate them right-to-left (RTL) as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
-These six positions, along with the operation of multiplication, form another group: the \textbf{dihedral group} of order $3$, or $D_3$. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; these are the two faces of our paper triangle. Dihedral groups exist for any geometric shape. Let's study the properties of this group.
+These six positions, along with the operation $\cdot$ of transformation composition, form another group: the \textbf{dihedral group} of the equilateral triangle, or $D_3$. It is denoted $D_3$ because it is a dihedral group of a $3$-sided regular polygon. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; this etymology refers to the two faces of our paper triangle.
+
+Dihedral groups exist for any polygonal figure; mathematically speaking, the dihedral group $D_n$ is the group of symmetries, or \textbf{symmetry group}, of a $n$-sided regular polygon. A \textbf{symmetry group} is the set of all isometries of an object, including the identity, which map an object to itself. Note that the symmetry groups of plane figures are specifically called dihedral groups, while shapes in any number of dimensions have symmetry groups. For example, a pentagon's symmetry group is a dihedral group, while a cube's symmetry group is not. Let's study the properties of the dihedral group of the equilateral triangle.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
 % \newcolumntype{C}{>{\centering\arraybackslash}p{1em}} %i dont think we need this? idk
+
+% there used to be this fancy thing where figure 5 was to the right of questions 1 and 2 but there ended up not being enough space for that, sorry -b
 
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[c]{0.55\textwidth}
 			\begin{enumerate}
-				\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving shape and location. Are there any others for this triangle?
-				\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $Y$\textsuperscript{th} column. $AD=B$ is done for you.
-				\newcounter{enumLast}
-				\setcounter{enumLast}{\theenumi}
-			
+				\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
+				\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
 			\end{enumerate}
 		\end{minipage}
-		\hfill% makes the subsequent minipage right justified
+		\hfill
 		\begin{minipage}[c]{0.35\textwidth}
 			\begin{center}
 				\begin{minipage}[b]{\textwidth}
@@ -225,54 +229,18 @@ These six positions, along with the operation of multiplication, form another gr
 			\end{center}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
-\vspace*{-2\baselineskip}
-%
 \begin{enumerate}
-\setcounter{enumi}{\theenumLast}
-\item What is the relationship between the tables for the snap group $S_3$ and the flip group $D_3$?
+\setcounter{enumi}{2}%yeah, i should use a variable but ehh
+\item What is the relationship between the tables for the snap group $S_3$ and the dihedral group $D_3$?
+\newcounter{enumLast}
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
-$S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\bullet$ and $B$ with operation $\star$ are isomorphic if you can find a one-to-one correspondence between the two groups' elements. This means we can find some pairing of elements between the two groups $A_1\leftrightarrow B_1, A_2\leftrightarrow B_2, \cdots, A_n \leftrightarrow B_n$ such that $A_j \bullet A_k = A_l \leftrightarrow B_j \star B_k = B_l$, for all $j,k$.
-\begin{enumerate}
-\setcounter{enumi}{\theenumLast}
-\item Check your understanding by defining isomorphic in your own words.
-\item \begin{enumerate}
-\item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
-\item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
-\end{enumerate}
-\item What shape's dihedral group is isomorphic to (a) the two post snap group $S_2$, (b) one post $S_1$, (c) four posts $S_4$ (hint: it's not a square), and (d) five posts $S_5$?
-\item Find a combination of $A$ and $D$ that yields $C$.
-\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
-\item What other pairs of elements could you have used to generate the table?
-\item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
-\item Explain why each element of the flip group $D_3$ has the period it has.
-\item Some pairs of elements of the flip group are two-element subgroups. Which pairs are they?
-\item One of the elements forms a one-element subgroup. Which is it?
-\setcounter{enumLast}{\theenumi}
-\end{enumerate}
-Definition of \textbf{group}: A group $G$ is a set of elements together with a \textbf{binary operation} that meets the following criteria:
-\begin{enumerate}[label=(\alph*)]
-\item Identity: There is an element $I\in G$ such that for all $X\in G$, $X\bullet I = I\bullet X = X$.
-\item Closure: If $X$, $Y$ are elements of the group, then $X\bullet Y$ is also an element of the group.
-\item Invertibility: Each element $X$ has an inverse $X^{-1}$ such that $X\bullet X^{-1} = X^{-1}\bullet X = I$.
-\item Associativity: For all elements $X$, $Y$, and $Z$, $X\bullet (Y\bullet Z) = (X\bullet Y) \bullet Z$.
-\end{enumerate}
-\begin{enumerate}
-\setcounter{enumi}{\theenumLast}
-\item Addition of two numbers is a binary operation, while addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
-\item In your original flip group table, what is
-\begin{multicols}{3}
-\begin{enumerate}
-\item The identity element?
-\item The inverse of $A$?
-\item The inverse of $E$?
-\end{enumerate}
-\end{multicols}
-\end{enumerate}
+$S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\bullet$ and $B$ with operation $\star$ are isomorphic if you can find a one-to-one correspondence between the two groups' elements, where the results of each group's operation on corresponding elements also correspond. This means we can find some pairing of elements between the two groups $A_1\leftrightarrow B_1, A_2\leftrightarrow B_2, \cdots, A_n \leftrightarrow B_n$ such that $A_j \bullet A_k = A_l \leftrightarrow B_j \star B_k = B_l$, for all $j,k,l$.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{0.35\textwidth}
 			\centering
@@ -295,20 +263,20 @@ Definition of \textbf{group}: A group $G$ is a set of elements together with a \
 		\begin{minipage}[b]{0.55\textwidth}
 			\centering
 			\begin{asy}[width=\textwidth]
-				size(0,60);
-				
-				drawTriangle((0, 0), 2, orders[0], false);
-				label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
-				drawTriangle((3, 0), 2, orders[4], false);
-				label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				drawTriangle((6, 0), 2, orders[5], false);
-				label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				drawTriangle((9, 0), 2, orders[2], false);
-				label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				
-				label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
-				label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
-				label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
+			size(0,60);
+			
+			drawTriangle((0, 0), 2, orders[0], false);
+			label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
+			drawTriangle((3, 0), 2, orders[4], false);
+			label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
+			drawTriangle((6, 0), 2, orders[5], false);
+			label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
+			drawTriangle((9, 0), 2, orders[2], false);
+			label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
+			
+			label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
+			label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
+			label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));
 			\end{asy}
 		\end{minipage}
 	\end{center}
@@ -324,6 +292,45 @@ Definition of \textbf{group}: A group $G$ is a set of elements together with a \
 			\label{fig:fr2}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+\begin{enumerate}
+\setcounter{enumi}{\theenumLast}
+\item Check your understanding by defining isomorphic in your own words.
+\item \begin{enumerate}
+\item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
+\item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
+\end{enumerate}
+\item What shape's symmetry group is isomorphic to (a) the two-post snap group $S_2$, (b) one-post group $S_1$, (c) four-post group $S_4$ (Hint: it's not a square), and (d) five-post group $S_5$? %compare-books-disable
+\item Find a combination of $A$ and $D$ that yields $C$.
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2}). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!} %compare-books-disable
+\item What other pairs of elements could you have used to generate the table?
+\item Notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
+\item Explain why each element of the dihedral group $D_3$ has the period it has.
+\item Some pairs of elements of the dihedral group are two-element subgroups. Which pairs are they?
+\item One of the elements forms a one-element subgroup. Which is it?
+\setcounter{enumLast}{\theenumi}
+\end{enumerate}
+%tiny change to save space
+A \textbf{group} $G$ is a set of elements together with a \textbf{binary operation} that meets the following criteria:
+\begin{enumerate}[label=(\alph*)]
+\item Identity: There is an element $I\in G$ such that for all $X\in G$, $X\bullet I = I\bullet X = X$.
+\item Closure: If $X$, $Y$ are elements of the group, then $X\bullet Y$ is also an element of the group.
+\item Invertibility: Each element $X$ has an inverse $X^{-1}$ such that $X\bullet X^{-1} = X^{-1}\bullet X = I$.
+\item Associativity: For all elements $X$, $Y$, and $Z$, $X\bullet (Y\bullet Z) = (X\bullet Y) \bullet Z$.
+\end{enumerate}
+\begin{enumerate}
+\setcounter{enumi}{\theenumLast}
+\item The addition of two numbers is a binary operation, while the addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
+\item In your original dihedral group table, what is
+\begin{enumerate}
+\begin{multicols}{3}
+\item the identity element?
+\item the inverse of $A$?
+\item the inverse of $E$?
+\end{multicols}
+\end{enumerate}
+\end{enumerate}
 
 \end{document}

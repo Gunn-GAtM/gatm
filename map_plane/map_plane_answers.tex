@@ -234,7 +234,7 @@ The points in the preimage are equidistant, taken as consecutive pairs. This is 
 It seems (i) collinearity and (ii) equally spaced points have their characteristics preserved. Note that not all equidistant points will have this property conserved. Think back to the first problem, for example, where the pairs of points $((0,0),(1,0))$ and $((0,0),(0,1))$ started off equidistant, but ended up not equidistant. Indeed, they have to be collinear for this to be preserved.
 
 \begin{outer_problem}
-\item 
+\item
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -394,7 +394,7 @@ $$\begin{cases} x = 2x + 3y \\ y = 4x + 5y \end{cases}.$$
 Solving this system gives $(x,y)=(0,0)$. How mundane....
 
 \begin{inner_problem}
-\item There is a point $Q$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
+\item There is a point $Q=\begin{bsmallmatrix}e \\ f \end{bsmallmatrix}$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
 \end{inner_problem}
 
 Looks like the point is $Q=\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, given the answer to the previous subproblem.
@@ -413,9 +413,8 @@ Indeed, $Q$ always remains fixed.
 \item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$.
 \end{outer_problem}
 
-
 \begin{inner_problem}[start=1]
-\item Map it with the following matrices.
+\item Map the vertices with the following matrices.
 \end{inner_problem}
 
 \begin{iinner_problem}[start=1]
@@ -439,7 +438,13 @@ $$\begin{bmatrix} .6 & -.8 \\ .8 & .6 \end{bmatrix} \begin{bmatrix} 5 & 10 & 5 \
 $$\begin{bmatrix} .6 & .8 \\ .8 & -.6 \end{bmatrix} \begin{bmatrix} 5 & 10 & 5 \\ 0 & 0 & 10 \end{bmatrix} = \begin{bmatrix} 3 & 6 & 11 \\ 4 & 8 & -2 \end{bmatrix}.$$
 
 \begin{inner_problem}
-\item Graph the preimage, then the image for each matrix on three separate sets of axes.
+\item Why will the new triangle defined by these vertices be the image of the starting triangle?
+\end{inner_problem}
+
+We only transformed the vertices, but because matrix multiplication is a linear transformation, lines are mapped to lines. Thus, the new triangle defined by these vertices is the image of the old triangle, in the sense that the sides of the original are mapped onto this new triangle as well.
+
+\begin{inner_problem}
+\item Accurately graph the preimage, then the image for each matrix on three separate sets of axes.
 \end{inner_problem}
 
 (i) is shown in Figure~\ref{fig:preimage_and_image_i}; (ii) is shown in Figure~\ref{fig:preimage_and_image_ii}; (iii) is shown in Figure~\ref{fig:preimage_and_image_iii}.
@@ -608,75 +613,75 @@ void drawUnitSquareTransform(real a, real b, real c, real d, pair dirA, pair dir
 	pair B = (1,0);
 	pair C = (1,1);
 	pair D = (0,1);
-	
+
 	pair Ap = (0,0);
 	pair Bp = (a,c);
 	pair Dp = (b,d);
 	pair Cp = Bp+Dp;
-	
+
 	draw(A--B--C--D--A,dashed);
 	draw(Ap--Bp--Cp--Dp--Ap);
-	
+
 	dot(Ap);
 	dot(Bp);
 	dot(Cp);
 	dot(Dp);
-	
+
 	pair[] original = {A,B,C,D};
 	pair[] image = {Ap,Bp,Cp,Dp};
-	
+
 	pair[] original_dirs = {SW, SE, NE, NW};
 	pair[] image_dirs = {unit(unit(Ap-Dp)+unit(Ap-Bp)),
 	unit(unit(Bp-Cp)+unit(Bp-Ap)),
 	unit(unit(Cp-Dp)+unit(Cp-Bp)),
 	unit(unit(Dp-Cp)+unit(Dp-Ap))};
-	
+
 	string[] original_names = {"A","B","C","D"};
 	int[] images_labeled_already = {0,0,0,0};
-	
+
 	for (int i = 0; i < 4; ++i) {
 		pair original_p = original[i];
 		pair original_d = original_dirs[i];
 		string original_n = original_names[i];
-		
+
 		string[] extra_names = {};
-		
+
 		for (int j = 0; j < 4; ++j) {
 			if (length(image[j]-original[i]) < 0.001) { // Good enough
 				extra_names.push(original_names[j] + "'");
-				
+
 				images_labeled_already[j] = 1;
 			}
 		}
-		
+
 		string label_str = "$" + original_n;
-		
+
 		for (int j = 0; j < extra_names.length; ++j) {
 			label_str += "=" + extra_names[j];
 		}
-		
+
 		label_str += "$";
-		
+
 		label(label_str, original_p, original_d);
 	}
-	
+
 	for (int i = 0; i < 4; ++i) {
 		if (images_labeled_already[i] == 1) continue;
-		
+
 		string extra = "";
-		
+
 		for (int j = i+1; j < 4; ++j) {
 			if (images_labeled_already[j] == 1) continue;
-			
+
 			if (length(image[j]-image[i]) < 0.001) {
 				extra += "= " + original_names[j] + "'";
 				images_labeled_already[j] = 1;
 			}
 		}
-		
+
 		label("$" + original_names[i] + "'" + extra + "$", image[i], image_dirs[i]);
 	}
-	
+
 	xaxis();
 	yaxis();
 }
@@ -705,7 +710,7 @@ No, $A'B' \neq B'C'$. It doesn't have to, because though the points are equidist
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item When is the ratio of distances between points in the image the same as the preimage?
+\item When is the ratio of distances between points in the image the same as in the preimage?
 \end{inner_problem}
 
 This is true when the image is a dilation, reflection, or rotation: or combination of the three.
@@ -723,7 +728,7 @@ The image of $(0,0)$ is always $(0,0)$.
 The image of $(1,0)$ is just $(a,c)$. The image of $(0,1)$ is $(b,d)$.
 
 \begin{inner_problem}
-\item Knowing the images of $(1,0)$ and $(0,1)$, where is $(1,1)$ algebraically and geometrically?
+\item Knowing the images of $(1,0)$ and $(0,1)$, how do we find the image of $(1,1)$ algebraically and geometrically?
 \end{inner_problem}
 
 The image of $(1,1)$, as we found earlier, is the sum of the images of $(1,0)$ and $(0,1)$. Thus, it is $(a+c,b+d)$. Geometrically, it forms a parallelogram with the images of $(1,0)$ and $(0,1)$.
@@ -994,7 +999,7 @@ drawUnitSquareTransform(sqrt(3)/2, 1/2, -1/2, sqrt(3)/2,N,N,N,N);
 This is rotation of $30^\circ = \frac{\pi}{6}$ \textit{clockwise} about the origin, or $330^\circ = \frac{11\pi}{6}$ counterclockwise about the origin.
 
 \begin{outer_problem}
-\item Carry out the following multiplications and convince yourself that the mappings are equivalent.
+\item Carry out the following multiplications and convince yourself they are equivalent mappings of the $x$ and $y$ coordinates.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -1014,11 +1019,11 @@ $$\begin{bmatrix} a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatr
 They are equivalent because the $x,y$ components of each are the same, and $z$ is unchanged in the second equation.
 
 \begin{outer_problem}
-\item 
+\item
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ 
+\item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
 \end{inner_problem}
 
 $$\begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix}u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} u + \alpha \\ v + \beta \\ 1 \end{bmatrix}.$$
@@ -1030,7 +1035,7 @@ $$\begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} \be
 The result of the above multiplication is that the point $(u,v,1)$ has been translated by \underline{$u$} in the $x$ direction, \underline{$v$} in the $y$ direction, and is still anchored to the plane $z=$\underline{$1$}.
 
 \begin{outer_problem}
-\item 
+\item
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -1093,11 +1098,11 @@ This is the result to Problem~14b, so it's a 2D matrix transformation by $\begin
 We recognize the 2D matrix transformation here as a rotation by $\theta$ radians counterclockwise. Thus, this is a rotation by $\theta$ radians counterclockwise, followed by a translation by $\langle \alpha, \beta, 0\rangle$.
 
 \begin{outer_problem}
-\item 
+\item
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item Rewrite your translation matrix and your preimage vector from Problem~12a so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
+\item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
 \end{inner_problem}
 
 We do as the problem hints, and construct a $4\times 4$ matrix which translates by $\langle \alpha, \beta, \gamma, 0\rangle$ in four dimensions.

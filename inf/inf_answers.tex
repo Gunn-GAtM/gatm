@@ -21,14 +21,14 @@ Note: an \textbf{injection} $f$ is a function taking $A$ into $B$ such that for 
 No. Suppose we have groups $A$ and $B$ such that $|A|>|B|$ ($A$ is bigger than $B$). Then we can't have a one-to-one correspondence between the elements of $A$ and $B$, because there will always be elements in $A$ without a ``partner'' in $B$. Thus, they cannot be isomorphic.
 
 \begin{outer_problem}
-\item The rotation group for the hexagon $H$ has six elements: the identity, and rotations of $\frac{\pi}{3}$, $\frac{2\pi}{3}$, $\pi$, $\frac{4\pi}{3}$, $\frac{5\pi}{3}$ radians. A rotation of $\frac{\pi}{3}$ generates the group.
+\item The rotation group of the regular hexagon, also known as the cyclic group of order $6$, $C_6$, has six elements: the identity, and rotations of $\frac{\pi}{3}$, $\frac{2\pi}{3}$, $\pi$, $\frac{4\pi}{3}$, $\frac{5\pi}{3}$ radians. A rotation of $\frac{\pi}{3}$ generates the group.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item Which other rotation generates the group?
+\item Which other rotation can generate the group?
 \end{inner_problem}
 
-The other rotation which generates the group is $\frac{5\pi}{3}$, because $5$ is coprime with $6$. This is necessary because otherwise a subgroup of the full $C_6$ is formed. For example, $\frac{2\pi}{3}$ generates 
+The other rotation which generates the group is $\frac{5\pi}{3}$, because $5$ is coprime with $6$. This is necessary because otherwise a subgroup of the full $C_6$ is formed. For example, $\frac{2\pi}{3}$ generates
 
 $$\left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\},$$
 
@@ -48,7 +48,7 @@ which is merely $C_3$. Lame!
 \end{align*}
 
 \begin{outer_problem}
-\item $H$ has the same number of elements as the dihedral group $D_3$. 
+\item $C_6$ has the same number of elements as the dihedral group $D_3$.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -83,7 +83,7 @@ If the periods of each group can't be paired up, then the elements cannot be pai
 One is $C_2$, which is $\{0,\pi\}$ in $C_6$ and $\{I,\text{any reflection}\}$ in $D_3$. The other non-trivial one is $C_3$, which is $\left\{0,\frac{(3\pm 1)\pi}{3}\right\}$ in $C_6$ and $\{I,\text{any rotation}\}$ in $D_3$. Both also have the trivial subgroup $\{I\}$ of just the identity element.
 
 \begin{outer_problem}
-\item Could an infinite group be isomorphic to a finite group?
+\item Could an infinite group and a finite group be isomorphic?
 \end{outer_problem}
 
 No, because their sizes are not the same; a one-to-one correspondence cannot be constructed.
@@ -95,7 +95,7 @@ No, because their sizes are not the same; a one-to-one correspondence cannot be 
 Not all infinite groups are isomorphic. For example, the set of rotations about the origin has only one element of period $2$, namely $r_{180^\circ}$. But the set of reflections about the origin has infinitely many elements of period $2$. Both, however, are infinite in size.
 
 \begin{outer_problem}
-\item Make guesses to the relative sizes of the following pairs of sets. You may use shorthand like $|a| < |b|$, $|a| > |b|$, $|a| = |b|$. After you have made your guesses, we will analyze some of the cases and you can find out how good your intuition was.
+\item Make guesses to the relative sizes of the following pairs of sets. You may use shorthand like $|a| < |b|$, $|a| > |b|$, $|a| = |b|$. After you have made your guesses, we will analyze some of the cases and you can find out how good your intuition was.~\label{prob:infinity_guesses}
 \end{outer_problem}
 
 (Answers may vary, but the ``correct'' answers are shown.)
@@ -120,7 +120,7 @@ $$|Q|<|\mathcal{C}|$$
 \end{inner_problem}
 
 \begin{outer_problem}
-\item Now, please return to problem 7 and revise your answers. Justify each answer by producing a one-to-one correspondence, or showing the impossibility of doing so. Part (h) is an optional challenge.
+\item Now, please return to Problem~\ref{prob:infinity_guesses} and revise your answers. Justify each answer by producing a one-to-one correspondence, or showing the impossibility of doing so. Part (h) is an optional challenge.
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -155,7 +155,7 @@ More details of this construction are given later in the textbook chapter. In an
 \item natural numbers, $\mathbb{N}$ vs. real numbers between zero and one, $[0,1)$
 \end{inner_problem}
 
-A one-to-one correspondence cannot exist between these two sets, so $\left|\mathbb{N}\right| < \left|[0,1)\right|$. The classic proof of this is Cantor's diagonal argument, which is given in the textbook. 
+A one-to-one correspondence cannot exist between these two sets, so $\left|\mathbb{N}\right| < \left|[0,1)\right|$. The classic proof of this is Cantor's diagonal argument, which is given in the textbook.
 
 \begin{inner_problem}
 \item real numbers, $\mathbb{R}$ vs. complex numbers, $\mathbb{C}$
@@ -168,7 +168,7 @@ Here is the route we will take:
 \begin{enumerate}
 \item Construct a one-to-one correspondence between the interval $[0,1)$ and $\mathbb{R}$.
 \item Use (1) to construct a similar correspondence between $[0,1)^2$ and $\mathbb{R}^2$. That is, we will construct a correspondence between ordered pairs of reals in $[0,1)$ and ordered pairs of any reals.
-\item We find an injection from $[0,1)$ into $[0,1)^2$. 
+\item We find an injection from $[0,1)$ into $[0,1)^2$.
 \item We find an injection from $[0,1)^2$ into $[0,1)$. This shows there is a one-to-one correspondence between $[0,1)$ and $[0,1)^2$.
 \item We ``chain'' the correspondences together:
 
@@ -268,38 +268,38 @@ label("$\frac{2}{3}$", (2/3,-0.09), N);
 
 for (int i = 0; i < 5; ++i) {
 	real y = -0.09 * i;
-	
+
 	label("$C_" + (string) (i+1) + "$", (-0.05, y));
-	
+
 	for (int j = 0; j < segments.length; j += 2) {
 		pair s1 = (segments[j], y);
 		pair s2 = (segments[j+1], y);
-		
+
 		dot(s1);
 		dot(s2);
-		
+
 		draw(s1--s2);
 	}
-	
+
 	for (int j = 0; j < segments.length; j += 2) {
 		real s1 = segments[j];
 		real s2 = segments[j+1];
-		
+
 		inter.push(s1);
 		inter.push(2/3 * s1 + 1/3 * s2);
 		inter.push(1/3 * s1 + 2/3 * s2);
 		inter.push(s2);
 	}
-	
+
 	for (int j = 0; j < inter.length; ++j) {
 		segments[j] = inter[j];
 	}
-	
+
 	inter.delete(0,inter.length-1);
 }
 
 label("$\vdots$", (0.5, 5 * -0.09));
-label("$\stackrel{\downarrow}{\mathcal{C}}$", (-0.05, 5*-0.09)); 
+label("$\stackrel{\downarrow}{\mathcal{C}}$", (-0.05, 5*-0.09));
 
 label("$L$", (1/6, -0.09), N);
 label("$R$", (5/6, -0.09), N);
@@ -324,7 +324,7 @@ Thus, we have a one-to-one correspondence between the elements of $\mathcal{C}$ 
 $$|\mathbb{Q}| < |[0,1]| = |\mathcal{C}| \Longrightarrow |\mathbb{Q}| < |\mathcal{C}|.$$
 
 \begin{outer_problem}
-\item Here’s a list of infinite sets, each with an operation. For each pair, answer: i.~Does it form a group? ii.~Which previous group(s) is it isomorphic to?
+\item Here’s a list of infinite sets, each with an operation. For each pair, answer: (i)~Does it form a group? (ii)~Which previous group(s) is it isomorphic to?
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -557,7 +557,7 @@ Yes! The rational numbers excluding $0$, written $\mathbb{Q} \setminus {0}$, for
 
 Identity: $x\cdot 1=1\cdot x=x$.
 
-Closure: If $x,y\in \mathbb{Q} \setminus {0}$, then $x+y\in \mathbb{Q} \setminus {0}$; the product of two nonzero rational numbers is rational and nonzero.
+Closure: If $x,y\in \mathbb{Q} \setminus {0}$, then $x\cdot y\in \mathbb{Q} \setminus {0}$; the product of two nonzero rational numbers is rational and nonzero.
 
 Associativity: We have $x(yz)=(xy)z$ for all $x,y,z \in \mathbb{Q} \setminus {0}$.
 
@@ -570,6 +570,30 @@ Inverse: The inverse of $x\in \mathbb{Q} \setminus {0}$ is $\frac{1}{x}$, since 
 It is not isomorphic to any. The only candidates are other groups with countably infinite order, aka addition of rational numbers and addition of integers.
 
 It cannot be addition of rational numbers, because for every element $k=\frac{p}{q}$ there exists an element $r=\frac{p}{2q}$ such that $k=2r$. This property is not true for rational numbers under multiplication, because the corresponding $r$ would be $\sqrt{\frac{p}{q}}$, which is only valid for perfect (rational) squares $\frac{p}{q}$. For the same reason, it cannot be addition of integers, since odd integers also cannot have this property.
+
+\begin{inner_problem}
+\item real numbers excluding $0$, multiplication
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item Does it form a group?
+\end{iinner_problem}
+
+Yes! The real numbers excluding $0$, written $\mathbb{R} \setminus {0}$, form a group under multiplication with identity element $1$. The group properties are satisfied:
+
+Identity: $x\cdot 1=1\cdot x=x$.
+
+Closure: If $x,y\in \mathbb{R} \setminus {0}$, then $x+y\in \mathbb{R} \setminus {0}$; the product of two nonzero rational numbers is rational and nonzero.
+
+Associativity: We have $x(yz)=(xy)z$ for all $x,y,z \in \mathbb{R} \setminus {0}$.
+
+Inverse: The inverse of $x\in \mathbb{R} \setminus {0}$ is $\frac{1}{x}$, since $x\left(\frac{1}{x}\right)=\left(\frac{1}{x}\right)x=1$ and $x\neq 0$.
+
+\begin{iinner_problem}
+\item Which previous group(s) is it isomorphic to?
+\end{iinner_problem}
+
+It is not isomorphic to any of the previous groups.
 
 \begin{inner_problem}
 \item complex numbers, multiplication
@@ -599,7 +623,7 @@ Yes! The identity is $0$ and it can simply by thought of adding rationals modulo
 
 Identity: $x\cdot 1=1\cdot x=x$.
 
-Closure: If $x,y\in\mathbb{Q}$ then $x+y\in \mathbb{Q}$ and it 
+Closure: If $x,y\in\mathbb{Q}$ then $x+y\in \mathbb{Q}$ and it
 
 Associativity: We have $x(yz)=(xy)z$ for all $x,y,z \in \mathbb{Q} \setminus {0}$.
 

@@ -127,21 +127,21 @@
 			\label{fig:unit_circle}
 		\end{minipage}\hfill
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent This is a review of material for which you have learned last year and which you will need as background knowledge for our upcoming study of linear algebra. If you don't know this material already, make sure to learn it.
+\noindent This is a review of material you learned last year which you will need as background knowledge for our upcoming study of linear algebra. If you don't know this material already, make sure to learn it.
 
 \begin{enumerate}
 \item Prove the Pythagorean theorem using ``conservation of area.'' Start with Figure~\ref{fig:square_inscribed}.
-\item Prove the Pythagorean theorem using a right triangle with an altitude drawn to its hypotenuse, making use of similar right triangles. This is shown in Figure~\ref{fig:pythag_sim_tri}.
-\item Now you will prove the trig identities.
+\item Prove the Pythagorean theorem using a right triangle with an altitude drawn to its hypotenuse, as shown in Figure~\ref{fig:pythag_sim_tri}, making use of similar right triangles.
+\item We now prove the trigonometric identities.
 \begin{enumerate}
 \item Draw and label a right triangle and a unit circle, then write trig definitions for $\cos$, $\sin$, $\tan$, and $\sec$ in terms of your drawing.
 \item Use a right triangle and the definitions of $\sin$ and $\cos$ to find and prove a value for $\sin^2 \theta + \cos^2 \theta$.
 \item Use the picture of the unit circle in Figure~\ref{fig:unit_circle} to find and prove a value for $\cos(A-B)$. Note that $D_1$ and $D_2$ are the same length because they subtend the same size arc of the circle. Set them equal and work through the algebra, using the distance formula and part (b) of this problem.
 \end{enumerate}
-\item Write down as many trig identities as you can. There's no need to prove all of these right now.
-
+\item Write down as many trig identities as you can---no need to prove these.
 \renewcommand{\arraystretch}{1.1}
 $$\arraycolsep=1pt\begin{array}{rlrlrl}
 \sin(A+B)&=\qquad\qquad\phantom{.}&\sin(A-B) &=\qquad\qquad\phantom{.}&\cos(A+B) &= \\
@@ -153,30 +153,28 @@ $$\arraycolsep=1pt\begin{array}{rlrlrl}
 \item Let's review complex numbers and DeMoivre's theorem.
 \begin{enumerate}
 \item Recall that you can write a complex number both in Cartesian and polar forms. Let
-
-$$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
+\[a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.\]
 
 What is $r$ in terms of $a$ and $b$?
-\item Multiply $(a+bi)(c+di)$ out using FOIL.
-\item Convert the two multiplicands\footnote{This is the word for parts of a multiplication! So for example, if $a\cdot b=c$, then $a$ and $b$ are the multiplicands.} to polar form, noting that the two lengths and angles are different numbers. Call them $r_1(\cos\theta + i\sin\theta)$ and $r_2(\cos\phi + i\sin\phi)$.
-\item Multiply them, and use your results from Problems 3c and 3d to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
-\item Use part (d) to simplify $(\sqrt{3}+i)^{18}$.
+\item Expand $(a+bi)(c+di)$ the usual way.
+\item Let $a+bi=r_1(\cos\theta + i\sin\theta)$ and $c+di=r_2(\cos\phi + i\sin\phi)$. Multiply them, and use the angle addition formulas to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
+\item Use part (c) to simplify $(\sqrt{3}+i)^{18}$.
 \end{enumerate}
 \item Here is a review of 2D rotation.
 \begin{enumerate}
-\item Remember that we can graph complex numbers as 2D ordered pairs in the complex plane. Now, consider the complex number $z=\cos \theta + i\sin\theta$, where $\theta$ is fixed. What is the magnitude of $z$?
-\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ counterclockwise by the angle $\theta$ around the origin. What if we wanted to rotate clockwise by $\theta$ instead?
+\item Recall that we can graph complex numbers as ordered pairs in the complex plane. Now, consider the complex number $z=\cos \theta + i\sin\theta$, where $\theta$ is fixed. What is the magnitude of $z$?
+\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ counterclockwise around the origin by the angle $\theta$. Notice that rotating the graph counterclockwise around the origin has the same effect as rotating the coordinate axes clockwise around the origin by the same angle $\theta$. What if we wanted to rotate clockwise by $\theta$ instead?
 \end{enumerate}
 \item Rotate the following conics by (i) $30^\circ$, (ii) $45^\circ$, and (iii) $\theta$:
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $x^2-y^2=1$
 \item $\frac{x^2}{16}-\frac{y^2}{9}=1$
 \item $y^2=4Cx$
-\end{enumerate}
 \end{multicols}
 \end{enumerate}
+\end{enumerate}
 
-\noindent You should have mastery of this material (parts 1, 2, and 3), so that we can immediately investigate novel and interesting ideas. These often have surprising connections to the trigonometry and transformational geometry you learned last year. For example, we will soon find another convenient way to do rotation of coordinates.
+\noindent You should have mastery of this material so that we can immediately investigate novel and interesting ideas. These often have surprising connections to the trigonometry and transformational geometry you learned last year. For example, we will soon find another convenient way to do a rotation of coordinates.
 
 \end{document}

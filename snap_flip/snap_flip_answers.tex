@@ -5,7 +5,7 @@
 \section{From Snaps to Flips}
 
 \begin{outer_problem}[start=1]
-\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving shape and location. Are there any others for this triangle?
+\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
 \end{outer_problem}
 
 There are no other isometries for this triangle; our list of operations is complete. To see why, note that the vertices must exchange places. At most there is $3!=6$ ways to do this, so we have already achieved the maximum possible number of isometries.
@@ -26,7 +26,7 @@ $E$    &   &   &   &   &   &   \\ \hline
 \end{figure}
 
 \begin{outer_problem}
-\item As with the snap group, we can make a group table for the flip group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second, so that $XY$ is in the $X$\textsuperscript{th} row and $Y$\textsuperscript{th} column. $AD=B$ is done for you.
+\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
 \end{outer_problem}
 
 The completed table is shown in Figure~\ref{fig:complete_sbs_table}.
@@ -63,7 +63,7 @@ E & E & C & A & B & I & D \\ \hline
 \end{figure}
 
 \begin{outer_problem}
-\item What is the relationship between the tables for the snap group $S_3$ and the flip group $D_3$?
+\item What is the relationship between the tables for the snap group $S_3$ and the dihedral group $D_3$?
 \end{outer_problem}
 
 $D_3$'s table is $S_3$'s table flipped over the top left--bottom right diagonal, and vice versa. Contrast $D_3$ from Figure~\ref{fig:complete_sbs_table} to $S_3$ in Figure~\ref{fig:complete_sts_table}. If these were matrices, one would be the transpose of the other: we'll get to that later.
@@ -164,20 +164,20 @@ import three;
 
 triple[] generate_tetrahedron() {
 	triple[] ret = {};
-	
+
 	triple A = (0,0,0);
 	triple B = (1,0,0); // 1 unit in the x direction
 	triple C = (1/2, sqrt(3)/2, 0); // mid way between A--B, then jutting out sqrt(3)/2 in y
-	
+
 	// the height of this tetrahedron is sqrt(2/3)
 	// the peak vertex is above the centroid of the base
 	triple D = (A+B+C)/3 + (0,0,sqrt(2/3));
-	
+
 	ret[0] = A;
 	ret[1] = B;
 	ret[2] = C;
 	ret[3] = D;
-	
+
 	return ret;
 }
 
@@ -299,7 +299,7 @@ dot(E);
 \end{outer_problem}
 
 \begin{outer_problem}
-\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120^\circ$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120^\circ = 240^\circ$, followed by a flip across the $A$ axis, equivalent to our original $C$. Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$-axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2}). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!}
 \end{outer_problem}
 
 \begin{center}
@@ -340,19 +340,19 @@ Note that $I=I$, $A=f$, $B=fr$, $C=fr^2$, $D=r$, and $E=r^2$.
 You could also use any of the following pairs: $\{A,E\}$, $\{B,D\}$, $\{B,E\}$, $\{C,D\}$, $\{C,E\}$, $\{A,B\}$, $\{B,C\}$, $\{A,C\}$. In essence, you can generate it with any rotation element and any reflection element, or with any two reflection elements.
 
 \begin{outer_problem}
-\item You should notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
+\item Notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \end{outer_problem}
 
 This is the cyclic group of order $3$, $C_3$, also known as the rotation group of the equilateral triangle. The two possible generators are $r$ and $r^2$.
 
 \begin{outer_problem}
-\item Explain why each element of the flip group $D_3$ has the period it has.
+\item Explain why each element of the dihedral group $D_3$ has the period it has.
 \end{outer_problem}
 
 $I$ has a period of $1$ because it is the identity. $A,B,C$ have periods of $2$ because they are reflections, so they are their own inverse transformation. $D$ and $E$ are rotations of a multiple of $1/3$ of a turn. Since $3$ is a prime, they take $3$ iterations to resolve, and thus have period $3$.
 
 \begin{outer_problem}
-\item Some pairs of elements of the flip group are two-element subgroups. Which pairs are they?
+\item Some pairs of elements of the dihedral group are two-element subgroups. Which pairs are they?
 \end{outer_problem}
 
 These would be the pairs ${I,A}$, ${I,B}$, and ${I,C}$, since $A\cdot A=B\cdot B=C\cdot C = I$ so the subgroup is closed. These are shown in Figure~\ref{fig:two_elem_subgroups}.
@@ -401,7 +401,7 @@ I & I \\ \hline
 \end{center}
 
 \begin{outer_problem}
-\item Addition of two numbers is a binary operation, while addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
+\item The addition of two numbers is a binary operation, while the addition of three numbers is not. In logic, $\land$ (and) and $\lor$ (or) are binary operations, but $\lnot$ (not) is not. Define binary operation in your own words, and name some other binary operations.
 \end{outer_problem}
 
 (Answers may vary.)
@@ -425,7 +425,7 @@ Some binary operations:
 \end{multicols}
 
 \begin{outer_problem}
-\item In your original flip group table, what is
+\item In your original dihedral group table, what is
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]

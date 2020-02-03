@@ -1,19 +1,17 @@
+***Note: GAtM main text finalizaed by me and Andrew for printing in 2020. Sorry if we missed anything -Brandon***
+
 # GAtM
 A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM") by Peter Herreshoff.
 
-GAtM Rough Draft:
-![](http://progressed.io/bar/100?title=progress)
+GAtM Rough Draft: 100%
 
-GAtM Final:
-![](http://progressed.io/bar/3?title=progress)
+GAtM Final: 98%
 
-GAtM Answer Key Rough Draft:
-![](http://progressed.io/bar/63?title=progress)
+GAtM Answer Key Rough Draft: 100%
 
-GAtM Answer Key Final:
-![](http://progressed.io/bar/0?title=progress)
+GAtM Answer Key Final: 98%
 
-**Contributors**: Timothy Herchen and Brandon Chung
+**Contributors**: Timothy Herchen
 
 **Directions**: Run the build.sh script with bash to output the pdf file into the "build" folder.
 
@@ -27,10 +25,12 @@ To build a chapter, navigate to the top level directory gatm/ and type in `./bf.
 
 Note: This requires a bash-like client. On Windows, you will need MinGW and something like Git Bash.
 
-When working on a chapter, it is probably best to have three windows: the compilation terminal, the .tex file, and the output .pdf file. You can enter the command `./bf.sh [chapter]; open [chapter]/[chapter]_source.pdf` which will build and then open the output PDF in the default viewer. If you're fancy, you can probably hook up the compilation step to a key command using AutoHotKey or the like.
+When working on a chapter, it is probably best to have three windows: the compilation terminal, the .tex file, and the output .pdf file. You can enter the command `./bf.sh [chapter]; [open/nautilus/whatever] [chapter]/[chapter]_source.pdf` which will build and then open the output PDF in the default viewer. If you're fancy, you can probably hook up the compilation step to a key command using AutoHotKey or the like.
 
 Building a chapter alone has several differences from building it as part of the whole, most of which are cosmetic. Page and problem references to other sections will not work and result in **??** appearing in place; do not worry if this happens for a chapter build. The page number will start at 1, rather than whatever page that chapter starts on. The section number will also start at 1. Everything in the preamble of gatm.tex, however, is processed, so commands defined there work in chapter builds.
 
-When building GAtM as a whole, run the command `./b.sh`. This will build gatm in the "/build" folder, so the output will be `build/gatm.pdf`. Note that this can take a few minutes, as there are about 60 diagrams to render.
+When building GAtM as a whole, run the command `./b.sh`. This will build gatm in the "/build" folder, so the output will be `build/gatm.pdf`. Note that this can take a few minutes, as there are about 60 diagrams to render. Don't worry about the spewage of errors in the command line, this is normal (unless it occurs in Stage 3 of compilation).
+
+To build the answer key, the commands are the same, except it's `./bfa.sh` to build a chapter and `./ba.sh` to build the whole answer key. The answer key sections are `[chapter]/[chapter]_answers.tex`. Note that the whole answer key may take up to 20 minutes to render, depending on your computer's uh... clock speed?
 
 Enjoy!

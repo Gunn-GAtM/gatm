@@ -13,7 +13,7 @@
 There are a couple ways to think about this, but an intuitive way is to consider a ``mirror world'' of reflection and the ``normal world'' where the orientation in normal. Here, orientation is not absolute orientation, but the difference between clockwise and counterclockwise. For chemistry nerds, it is like chirality. Rotation preserves orientation, but reflection does not. Instead, it takes us between these two ``worlds.'' Thus, it allows twice the number of elements.
 
 \begin{outer_problem}
-\item Make and justify a conjecture extending this observation to the dihedral groups of other shapes like rectangles, squares, hexagons, cubes, etc.
+\item Make and justify a conjecture extending this observation to the dihedral groups of other shapes like rectangles, squares, and hexagons, as well as the symmetry group of the cube.
 \end{outer_problem}
 
 (Answers may vary.)
@@ -23,7 +23,7 @@ Conjecture: The dihedral groups of a shape has twice the order of its rotation g
 Informal Justification: A shape can be flipped or not, and it can have whatever rotational isometries applied to it whether it's flipped or not. Thus, the dihedral group allows for twice the number of elements as the rotation group.
 
 \begin{outer_problem}
-\item Let $r$ be a $180^{\circ}$ rotation, $x$ be a reflection over the $x$-axis, and $y$ be a reflection over the $y$-axis. Write a table for the dihedral group of the rectangle, recalling that the allowed isometries are reflections and rotations. How does this table differ from the dihedral group of the equilateral triangle?
+\item Let $r$ be a $180^{\circ}$ rotation, $x$ be a reflection over the $x$-axis, and $y$ be a reflection over the $y$-axis. Write a table for the dihedral group of the rectangle, recalling that the allowed isometries are reflections and rotations. How does this table differ from the dihedral group of the equilateral triangle? \label{prob:rectangle_group}
 \end{outer_problem}
 
 \begin{center}
@@ -83,7 +83,7 @@ label("$r$", shift(3,-2.5)*lp);
 This differs from the dihedral group of the equilateral triangle, $D_3$, in several ways. The most obvious is that there are only $4$ elements. Also, all elements besides $I$ in this group have a period of $2$, while $D_3$ has two elements with a period of $3$.
 
 \begin{outer_problem}
-\item Write a table for the rotation group of the square, with $4$ elements and $16$ entries. Compare this table to problem 3.
+\item Write a table for the rotation group of the square, with $4$ elements and $16$ entries. Compare this table to Problem~\ref{prob:rectangle_group}.
 \end{outer_problem}
 
 The elements are $I=r_0$, $r=r_{90}$, $r^2=r_{180}$, and $r^3=r_{270}$. The table is shown below.
@@ -291,18 +291,18 @@ path sq = A--B--C--D--cycle;
 for (int i = 0; i < 8; ++i) {
 	string[] element = elements[i];
 	pair tl = getTL(i);
-	transform tlshf = shift(tl);	
-	
+	transform tlshf = shift(tl);
+
 	draw(tlshf*sq);
 	label(d+element[1]+d, tlshf*A, SW);
 	label(d+element[2]+d, tlshf*B, SE);
 	label(d+element[3]+d, tlshf*C, NE);
 	label(d+element[4]+d, tlshf*D, NW);
 	label(d+element[0]+d, tlshf*labl);
-	
+
 	if (i >= 4) {
 		// flip element; let's draw a flip line!
-		
+
 		if (i % 2 == 0) { // across x or y axis
 			draw(tlshf*rotate(i%4 * 45, (0.5,0.5))*((-0.3,0.5)--(1.3,0.5)),dashed);
 		} else {
@@ -357,14 +357,14 @@ void draw_rect_prism(string[] labels, triple loc=(0,0,0), bool midplane_oof) {
 	triple B = (0,1,0);
 	triple C = (-1,1,0);
 	triple D = (-1,0,0);
-	
+
 	transform3 sd = shift(0,0,-2);
-	
+
 	triple Ap = sd*A;
 	triple Bp = sd*B;
 	triple Cp = sd*C;
 	triple Dp = sd*D;
-	
+
 	if (!midplane_oof) {
 		draw(A--B--C--D--A);
 		draw(A--Ap--Bp--B);
@@ -373,7 +373,7 @@ void draw_rect_prism(string[] labels, triple loc=(0,0,0), bool midplane_oof) {
 		draw(Dp--Cp, dashed);
 	} else {
 		real rat = 0.9;
-	
+
 		draw(A--(A+D)/2);
 		draw(A--B--(B+C)/2);
 		draw(D--C);
@@ -383,7 +383,7 @@ void draw_rect_prism(string[] labels, triple loc=(0,0,0), bool midplane_oof) {
 		draw(Bp--(Bp+Cp)/2);
 		draw(D--Dp,dashed);
 		draw(Ap--Dp--Cp,dashed);
-		
+
 		draw((Bp+Cp)/2--point(Bp--Cp,rat),dashed);
 		draw(point(Bp--Cp,rat)--Cp);
 		draw((B+C)/2--point(B--C,rat),dashed);
@@ -391,12 +391,12 @@ void draw_rect_prism(string[] labels, triple loc=(0,0,0), bool midplane_oof) {
 		draw((A+D)/2--point(A--D,rat),dashed);
 		draw(point(A--D,rat)--D);
 	}
-	
+
 	label(d + labels[0] + d, A, NW);
 	label(d + labels[1] + d, B, N);
 	label(d + labels[2] + d, C, NE);
 	label(d + labels[3] + d, D, N);
-	
+
 	label(d + labels[4] + d, Ap, SW);
 	label(d + labels[5] + d, Bp, SE);
 	label(d + labels[6] + d, Cp, SE);
@@ -408,10 +408,10 @@ void draw_rect_prism_c(string elem, string[] labels, bool midplane_oof) {
 	if (substr(elem,0,1) == "a") { // Vertical rotation
 		int deg = length(elem) == 1 ? 1 : (int) substr(elem,2,1);
 		real ang = deg*pi/2;
-		
+
 		dot((-0.5,0.5,0));
 		dot((-0.5,0.5,-2));
-		
+
 		draw((-0.5,0.5,0.2) -- (-0.5,0.5,-2.2), dotted);
 		draw(((-0.3,0.5,0)..(-0.5,0.5,0) + 0.2 * (cos(ang/2), sin(ang/2), 0)..(-0.5,0.5,0) + 0.2 * (cos(ang), sin(ang), 0)), Arrow3);
 	}
@@ -422,9 +422,9 @@ void draw_rect_prism_c(string elem, string[] labels, bool midplane_oof) {
 	if (substr(elem,0,1) == "b") { // Horizontal rotation
 		int deg = length(elem) == 1 ? 0 : (length(elem) == 2 ? 1 : (int) substr(elem,3,1));
 		triple a1,a2;
-	
+
 		path3 rotate180 = shift(0,0.5,-1) * ((0,-0.2,0)..(0,0,0.2)..(0,0.2,0));
-	
+
 		if (deg % 2 == 0) { // Center rotation
 			a1 = cntr_axes[deg # 2];
 			a2 = cntr_axes[2+deg # 2];
@@ -432,13 +432,13 @@ void draw_rect_prism_c(string elem, string[] labels, bool midplane_oof) {
 			a1 = diag_axes[(deg - 1)#2];
 			a2 = diag_axes[2+(deg-1)#2];
 		}
-		
+
 		dot(a1);
 		dot(a2);
-		
+
 		draw((1.4*a1-0.4*a2)--(1.4*a2-0.4*a1),dotted);
 		draw(rotate((45 * (deg-2*(deg%2))), (-0.5,0.5,0), (-0.5,0.5,1)) * shift((deg%2) * (sqrt(2)/2 - 0.5), 0, 0) * rotate180, Arrow3);
-	
+
 	}
 }
 
@@ -456,7 +456,7 @@ string[][] labels_list = {
 
 void draw_elem(int indx, bool midplane_oof = false) {
 	draw_rect_prism_c(elems[indx],labels_list[indx],midplane_oof);
-	label(d + elems[indx] + d, (-0.5,0.5,-2.8)); 
+	label(d + elems[indx] + d, (-0.5,0.5,-2.8));
 }
 \end{asydef}
 
@@ -592,7 +592,7 @@ string[] vertices = {"D","C","B","A","D'","C'","B'","A'"};
 
 currentprojection = orthographic(5,4,4);
 draw_rect_prism_c("oof", vertices, false);
-label(d + "$c$" + d, (-0.5,0.5,-2.8)); 
+label(d + "$c$" + d, (-0.5,0.5,-2.8));
 \end{asy}
 }}
 $$
@@ -634,7 +634,7 @@ string[] vertices = {"A'","B'","C'","D'","A","B","C","D"};
 
 currentprojection = orthographic(5,4,4);
 draw_rect_prism_c("oof", vertices, false);
-label(d + "$d$" + d, (-0.5,0.5,-2.8)); 
+label(d + "$d$" + d, (-0.5,0.5,-2.8));
 \end{asy}
 }}
 $$
@@ -680,7 +680,7 @@ Therefore, $$D_4/N \cong Z_2 \times Z_2,$$ so $$Z_2 \times Z_2 \times Z_2 \trian
 As we found in the previous problem, the rotation group of the square prism is not commutative, and since that's a subgroup of this group, this group certainly isn't commutative.
 
 \begin{outer_problem}
-\item Pentagon under rotation
+\item Regular pentagon under rotation
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -703,12 +703,12 @@ void draw_pentagon(string[] labels, pair pos=(0,0)) {
 		real ang = pi/2 + i * 2 * pi / 5;
 		pair cist = (cos(ang),sin(ang));
 		pair vertex = pos + (cos(ang),sin(ang));
-		
+
 		if (i != 0) {
 			draw(vertex--prev_pt);
 			label("$" + labels[i % 5] + "$", vertex, cist);
 		}
-		
+
 		prev_pt = vertex;
 	}
 }
@@ -721,11 +721,11 @@ real r = 0.5;
 for (int i = 0; i < 5; ++i) {
 	draw_pentagon(vertices, (3*i,0));
 	label("$"+labels[i]+"$", (3*i,-1), S);
-	
+
 	real ang = i * 2 * pi / 5;
-	
+
 	if (i != 0) draw(shift(3*i,0)*((r,0)..r*(cos(ang/2),sin(ang/2))..r*(cos(ang),sin(ang))), Arrow);
-	
+
 	vertices.insert(0, vertices[4]);
 	vertices.delete(5);
 }
@@ -747,7 +747,7 @@ Any rotation by itself $\{r^n\}$ works, since $5$ is a prime.
 The group is indeed commutative, since all operations are rotations.
 
 \begin{outer_problem}
-\item Pentagon under reflection
+\item Regular pentagon under reflection
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
@@ -775,13 +775,13 @@ We can either do a rotation and a reflection or two reflections. Since $5$ is pr
 The group is not commutative. For example, $fr=fr$, but $rf=fr^4$.
 
 \begin{outer_problem}
-\item Pentagonal prism under rotation
+\item Regular pentagonal prism under rotation
 \end{outer_problem}
 
 This is isomorphic to the dihedral group of the pentagon, which is Problem 12. The reason is the same as for Problem 9's dependence on 8, thus I will not explain it.
 
 \begin{outer_problem}
-\item Pentagonal prism under reflection
+\item Regular pentagonal prism under reflection
 \end{outer_problem}
 
 This is akin to Problem 10.
@@ -828,19 +828,19 @@ This is a hard problem. Don't worry if you didn't get it.
 The dihedral group of the pentagon is a subgroup of this group, and is not commutative, so this group is not commutative.
 
 \begin{outer_problem}
-\item Pentagonal pyramid under rotation
+\item Regular pentagonal pyramid under rotation
 \end{outer_problem}
 
 This is just isomorphic to the rotation group of the pentagon, or Problem 11.
 
 \begin{outer_problem}
-\item Pentagonal pyramid under reflection
+\item Regular pentagonal pyramid under reflection
 \end{outer_problem}
 
 This is just isomorphic to the reflection group of the pentagon, or Problem 12.
 
 \begin{outer_problem}
-\item Tetrahedron (triangular pyramid) under rotation
+\item Regular tetrahedron (triangular pyramid) under rotation
 \end{outer_problem}
 
 This is isomorphic to a subgroup of $S_4$, the snap group of order $24$.
@@ -869,7 +869,7 @@ Let's figure out where the rotation axes actually are. There are $4$ axes going 
 void draw_axis(string name, pair dir, triple a, triple b, real stretch=0.3) {
 	triple start = (1+stretch)*a-stretch*b;
 	triple end = (1+stretch)*b-stretch*a;
-	
+
 	draw(start--end,dotted);
 	label("$" + name + "$", start, dir);
 }
@@ -999,7 +999,7 @@ For the curious, this group is known as the alternating group $A_4$.
 The group is clearly not commutative, since $ab\neq ba$.
 
 \begin{outer_problem}
-\item Tetrahedron under reflection
+\item Regular tetrahedron under reflection
 \end{outer_problem}
 
 This is just the snap group of order $4$, $S_4$.
@@ -1256,7 +1256,7 @@ for (int i = 0; i < 6; ++i) {
 	real x = i%3;
 	real y = -(i # 3);
 	draw_sq((x,y), type_list[4*i],type_list[4*i+1],type_list[4*i+2],type_list[4*i+3]);
-	label(name_list[i], (2*x+0.5,2*y-0.5)); 
+	label(name_list[i], (2*x+0.5,2*y-0.5));
 }
 \end{asy}
 \captionof{figure}{The six different labelings of a square.}
