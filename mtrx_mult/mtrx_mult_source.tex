@@ -8,12 +8,6 @@
 \newcommand{\colind}[2]{\displaystyle\smash{\mathop{#1}^{\raisebox{.5\normalbaselineskip}{$#2$}}}}
 \newcommand{\rowind}[1]{\mbox{$#1$}}
 
-You've all seen a bunch of numbers organized in a table. Sometimes a table is just a table, but sometimes we will call it a \textbf{matrix}.
-
-What makes a matrix different from a table? Although they encapsulate the same information, we can meaningfully \textit{multiply} matrices. The purpose of this lesson is to explain why the matrix multiplication rule makes sense and when it is useful.
-
-Consider a region with four towns, creatively named $A,B,C,D$. There are modes of transport between these towns; a path can go from a town to any town, including the same town. These paths are shown in Figure~\ref{fig:four_town_scenario}. At each ``step,'' you can take any path from one town to the next. For example, you might start on $A$, then take either of the two paths to $D$. But you cannot start on $D$ and go directly to $B$. When there is more than one path between towns, we could also just draw a line and label it with a number: this is shown in Figure~\ref{fig:scenario_with_nums}. Note how each town has a ``path'' going to itself. Taking this means you don't go anywhere.
-
 \begin{asydef}
 pair A = (0,1);
 pair C = (0,-1);
@@ -21,98 +15,116 @@ pair B = (2,0);
 pair D = (-2,0);
 \end{asydef}
 
-\begin{figure}
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=\textwidth]
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
 
-label("$A$", A);
-label("$B$", B);
-label("$C$", C);
-label("$D$", D);
-
-// A<->B
-draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrows);
-
-// A<->C
-draw((0.10000,0.70000)--(0.10000,-0.70000), ArcArrows);
-draw((-0.10000,0.70000)--(-0.10000,-0.70000), ArcArrows);
-
-// A<->D
-draw((-0.25528,0.76056)--(-1.65528,0.06056), ArcArrows);
-draw((-0.34472,0.93944)--(-1.74472,0.23944), ArcArrows);
-
-// C<->D
-draw((-1.70000,-0.15000)--(-0.30000,-0.85000), ArcArrows);
-
-// C<->B
-draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
-
-/*
-def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
-	return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
-
-connect_self((0,1), -1, 1, 0, 1);
-connect_self((2,0), 1, 1, 1, 0);
-connect_self((0,-1), 1, -1, 0, -1);
-connect_self((-2,0), -1, -1, -1, 0);
-*/
-
-// A<->A, B<->B ...
-draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
-draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
-draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
-draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
-\end{asy}
-
-\caption{Four town transportation scenario.}
-\label{fig:four_town_scenario}
-\end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=\textwidth]
-
-label("$A$", A);
-label("$B$", B);
-label("$C$", C);
-label("$D$", D);
-
-// A<->B
-draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrows);
-
-// A<->C
-draw((0,0.70000)--(0,-0.70000), ArcArrows);
-label("$2$", (0,0), E);
-
-// A<->D
-draw((-0.30000,0.85000)--(-1.70000,0.15000), ArcArrows);
-label("$2$", ((-0.30000,0.85000)+(-1.70000,0.15000))/2, NW);
-
-// C<->D
-draw((-1.70000,-0.15000)--(-0.30000,-0.85000), ArcArrows);
-
-// C<->B
-draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
-
-/*
-def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
-	return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
-
-connect_self((0,1), -1, 1, 0, 1);
-connect_self((2,0), 1, 1, 1, 0);
-connect_self((0,-1), 1, -1, 0, -1);
-connect_self((-2,0), -1, -1, -1, 0);
-*/
-
-// A<->A, B<->B ...
-draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
-draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
-draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
-draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
-\end{asy}
-
-\caption{The scenario, with numbers instead of duplicate lines.}
-\label{fig:scenario_with_nums}
-\end{minipage}
+				label("$A$", A);
+				label("$B$", B);
+				label("$C$", C);
+				label("$D$", D);
+				
+				// A<->B
+				draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrows);
+				
+				// A<->C
+				draw((0.10000,0.70000)--(0.10000,-0.70000), ArcArrows);
+				draw((-0.10000,0.70000)--(-0.10000,-0.70000), ArcArrows);
+				
+				// A<->D
+				draw((-0.25528,0.76056)--(-1.65528,0.06056), ArcArrows);
+				draw((-0.34472,0.93944)--(-1.74472,0.23944), ArcArrows);
+				
+				// C<->D
+				draw((-1.70000,-0.15000)--(-0.30000,-0.85000), ArcArrows);
+				
+				// C<->B
+				draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
+				
+				/*
+				def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
+					return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
+				
+				connect_self((0,1), -1, 1, 0, 1);
+				connect_self((2,0), 1, 1, 1, 0);
+				connect_self((0,-1), 1, -1, 0, -1);
+				connect_self((-2,0), -1, -1, -1, 0);
+				*/
+				
+				// A<->A, B<->B ...
+				draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
+				draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
+				draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
+				draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+			
+				label("$A$", A);
+				label("$B$", B);
+				label("$C$", C);
+				label("$D$", D);
+				
+				// A<->B
+				draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrows);
+				
+				// A<->C
+				draw((0,0.70000)--(0,-0.70000), ArcArrows);
+				label("$2$", (0,0), E);
+				
+				// A<->D
+				draw((-0.30000,0.85000)--(-1.70000,0.15000), ArcArrows);
+				label("$2$", ((-0.30000,0.85000)+(-1.70000,0.15000))/2, NW);
+				
+				// C<->D
+				draw((-1.70000,-0.15000)--(-0.30000,-0.85000), ArcArrows);
+				
+				// C<->B
+				draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
+				
+				/*
+				def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
+					return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
+				
+				connect_self((0,1), -1, 1, 0, 1);
+				connect_self((2,0), 1, 1, 1, 0);
+				connect_self((0,-1), 1, -1, 0, -1);
+				connect_self((-2,0), -1, -1, -1, 0);
+				*/
+				
+				// A<->A, B<->B ...
+				draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
+				draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
+				draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
+				draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Four town transportation scenario.}
+			\label{fig:four_town_scenario}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{The scenario, with numbers instead of duplicate lines.}
+			\label{fig:scenario_with_nums}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+\noindent You've all seen a bunch of numbers organized in a table. Sometimes a table is just a table, but sometimes we will call it a \textbf{matrix}.
+
+What makes a matrix different from a table? Although they encapsulate the same information, we can meaningfully \textit{multiply} matrices. The purpose of this lesson is to explain why the matrix multiplication rule makes sense and when it is useful.
+
+Consider a region with four towns, creatively named $A,B,C,D$. There are modes of transport between these towns; a path can go from a town to any town, including the same town. These paths are shown in Figure~\ref{fig:four_town_scenario}. At each ``step,'' you can take any path from one town to the next. For example, you might start on $A$, then take either of the two paths to $D$. But you cannot start on $D$ and go directly to $B$. When there is more than one path between towns, we could also just draw a line and label it with a number: this is shown in Figure~\ref{fig:scenario_with_nums}. Note how each town has a ``path'' going to itself. Taking this means you don't go anywhere.
 
 Let us consider a \textbf{transportation matrix} in this scenario. The number in the $i$\textsuperscript{th} row and $j$\textsuperscript{th} column of the matrix $A$, which we'll call $a_{ij}$, gives the number of ways to walk directly from town $i$ to town $j$. For example, $a_{42} = a_{24} = 0$, because there are no ways to get from $B$ to $D$ or $D$ to $B$.
 % huge thanks to https://tex.stackexchange.com/questions/331691/how-can-i-get-a-matrix-with-row-and-column-labels-that-can-also-be-aligned-with
@@ -143,118 +155,142 @@ a_{41} & a_{42} & a_{43} & a_{44} \\
   }
 $$
 
-This matrix is \textbf{symmetric}, meaning there are no one-way paths. In mathematical terms, we have $a_{ij}=a_{ji}$ for all valid $i,j$. In visual terms, the matrix is symmetric about the \textbf{main diagonal}, going from top-left to bottom-right. Furthermore, the main diagonal is all $1$s, because we allow staying in the town you start in.
+\noindent This matrix is \textbf{symmetric}, meaning there are no one-way paths. In mathematical terms, we have $a_{ij}=a_{ji}$ for all valid $i,j$. In visual terms, the matrix is symmetric about the \textbf{main diagonal}, going from top-left to bottom-right. Furthermore, the main diagonal is all $1$s, because we allow staying in the town you start in.
 
 Suppose there's a shuttle bus that only goes one way, from town $A$ to $B$ to $C$ to $D$ and then back to $A$ again. The transportation matrix for this scenario---again, allowing staying still---is shown in Figure~\ref{fig:adjacency_b}.
 
 \begin{figure}[h]
-\begin{minipage}{0.4\textwidth}
-\begin{center}
-$$B=\rotatebox[origin=c]{90}{from}\;\,
-  \begin{array}{@{}c@{}}
-    \rowind{A} \\ \rowind{B} \\ \rowind{C} \\ \rowind{D}
-  \end{array}
-  \mathop{\left[
-  \begin{array}{cccc}
-     \colind{1}{A}  &  \colind{1}{B}  &  \colind{0}{C}  & \colind{0}{D} \\
-0 & 1 & 1 & 0 \\
-0 & 0 & 1 & 1 \\
-1 & 0 & 0 & 1 \\
-  \end{array}
-  \right]}^{
-  \begin{array}{@{}c@{}}
-    \rowind{\text{to}} \\ \mathstrut
-  \end{array}
-  }$$
-\end{center}
-\end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
-\begin{center}
-\begin{asy}[width=\textwidth]
-
-label("$A$", A);
-label("$B$", B);
-label("$C$", C);
-label("$D$", D);
-
-// A->B
-draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrow);
-
-// D->A
-draw((-1.70000,0.15000)--(-0.30000,0.85000), ArcArrow);
-
-// C->D
-draw((-0.30000,-0.85000)--(-1.70000,-0.15000), ArcArrow);
-
-// C<->B
-draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
-
-/*
-def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
-	return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
-
-connect_self((0,1), -1, 1, 0, 1);
-connect_self((2,0), 1, 1, 1, 0);
-connect_self((0,-1), 1, -1, 0, -1);
-connect_self((-2,0), -1, -1, -1, 0);
-*/
-
-// A<->A, B<->B ...
-draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
-draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
-draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
-draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
-\end{asy}
-\end{center}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\caption{Transportation matrix $B$.}
-\label{fig:adjacency_b}
-\end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
-\caption{Graph of matrix $B$.}
-\label{fig:directed}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			$$B=\rotatebox[origin=c]{90}{from}\;\,
+			  \begin{array}{@{}c@{}}
+			    \rowind{A} \\ \rowind{B} \\ \rowind{C} \\ \rowind{D}
+			  \end{array}
+			  \mathop{\left[
+			  \begin{array}{cccc}
+			     \colind{1}{A}  &  \colind{1}{B}  &  \colind{0}{C}  & \colind{0}{D} \\
+			0 & 1 & 1 & 0 \\
+			0 & 0 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			  \end{array}
+			  \right]}^{
+			  \begin{array}{@{}c@{}}
+			    \rowind{\text{to}} \\ \mathstrut
+			  \end{array}
+			  }$$
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+			
+				label("$A$", A);
+				label("$B$", B);
+				label("$C$", C);
+				label("$D$", D);
+				
+				// A->B
+				draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrow);
+				
+				// D->A
+				draw((-1.70000,0.15000)--(-0.30000,0.85000), ArcArrow);
+				
+				// C->D
+				draw((-0.30000,-0.85000)--(-1.70000,-0.15000), ArcArrow);
+				
+				// C<->B
+				draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
+				
+				/*
+				def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
+					return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
+				
+				connect_self((0,1), -1, 1, 0, 1);
+				connect_self((2,0), 1, 1, 1, 0);
+				connect_self((0,-1), 1, -1, 0, -1);
+				connect_self((-2,0), -1, -1, -1, 0);
+				*/
+				
+				// A<->A, B<->B ...
+				draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
+				draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
+				draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
+				draw((-2.20000, -0.20000)..(-2.70000, 0.00000)..(-2.20000, 0.20000),ArcArrow);
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Transportation matrix $B$.}
+			\label{fig:adjacency_b}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Graph of matrix $B$.}
+			\label{fig:directed}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
-Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix is therefore ``directed''; it has arrows indicating the direction of each path. This is shown in Figure~\ref{fig:directed}.
+\noindent Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix is therefore ``directed''; it has arrows indicating the direction of each path. This is shown in Figure~\ref{fig:directed}.
 
 Now, suppose you wanted to know the total number of ways to go from town to town in one step, by path or by bus. To find the total, you add the matrices in the obvious way: term by term, or $(a+b)_{ij}=a_{ij}+b_{ij}$. We can go directly $C\to D$, but not directly $D\to B$. This is shown in Figure~\ref{fig:mtrx_add}.
 
 \begin{figure}[h]
-\begin{minipage}{0.57\textwidth}
-$$A+B=\left[\begin{array}{cccc}
-1 & 1 & 2 & 2 \\
-1 & 1 & 1 & 0 \\
-2 & 1 & 1 & 1 \\
-2 & 0 & 1 & 1 \\
-\end{array}\right] + \left[\begin{array}{cccc}
-1 & 1 & 0 & 0 \\
-0 & 1 & 1 & 0 \\
-0 & 0 & 1 & 1 \\
-1 & 0 & 0 & 1 \\
-\end{array}\right] = \left[\begin{array}{cccc}
-2 & 2 & 2 & 2 \\
-1 & 2 & 2 & 0 \\
-2 & 1 & 2 & 2 \\
-3 & 0 & 1 & 2 \\
-\end{array}\right]$$
-\caption{Matrix addition of $A$ and $B$.}
-\label{fig:mtrx_add}
-\end{minipage}\hfill
-\begin{minipage}{0.3\textwidth}
-$$A+B=\left[\begin{array}{cccc}
-1 & 2 & 2 & 2 \\
-1 & 1 & 2 & 0 \\
-2 & 1 & 1 & 2 \\
-3 & 0 & 1 & 1 \\
-\end{array}\right]$$
-\caption{$A+B$, with $1$s on the diagonal.}
-\label{fig:mtrx_replace}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{0.55\textwidth}
+			\centering
+			$$A+B=\left[\begin{array}{cccc}
+			1 & 1 & 2 & 2 \\
+			1 & 1 & 1 & 0 \\
+			2 & 1 & 1 & 1 \\
+			2 & 0 & 1 & 1 \\
+			\end{array}\right] + \left[\begin{array}{cccc}
+			1 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 0 \\
+			0 & 0 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			\end{array}\right] = \left[\begin{array}{cccc}
+			2 & 2 & 2 & 2 \\
+			1 & 2 & 2 & 0 \\
+			2 & 1 & 2 & 2 \\
+			3 & 0 & 1 & 2 \\
+			\end{array}\right]$$
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.35\textwidth}
+			$$A+B=\left[\begin{array}{cccc}
+			1 & 2 & 2 & 2 \\
+			1 & 1 & 2 & 0 \\
+			2 & 1 & 1 & 2 \\
+			3 & 0 & 1 & 1 \\
+			\end{array}\right]$$
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.55\textwidth}
+			\caption{Matrix addition of $A$ and $B$.}
+			\label{fig:mtrx_add}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.35\textwidth}
+			\caption{$A+B$, with $1$s on the diagonal.}
+			\label{fig:mtrx_replace}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
-Okay, so that's a little silly: we've counted two different ways to stay still, namely ``not taking a path'' and ``not going anywhere on the bus.'' We should rewrite the matrix, putting ones on the diagonal, as in Figure~\ref{fig:mtrx_replace}. Despite this minor issue, it's still true in general that this most naïve way of adding matrices is also the most convenient and useful. Just don't blindly follow a math recipe without considering its meaning!
+\noindent Okay, so that's a little silly: we've counted two different ways to stay still, namely ``not taking a path'' and ``not going anywhere on the bus.'' We should rewrite the matrix, putting ones on the diagonal, as in Figure~\ref{fig:mtrx_replace}. Despite this minor issue, it's still true in general that this most naïve way of adding matrices is also the most convenient and useful. Just don't blindly follow a math recipe without considering its meaning!
+
+%ok, u really gotta flex on us with that double dot i huh
 
 But now comes a surprise: the most useful way to multiply matrices is not the obvious way. Why not? You'll see several different examples in the coming weeks. For now, think: what would it mean in terms of transportation if we just multiplied corresponding numbers like $a_{13}b_{13}$?\footnote{This ``obvious'' product is actually known as the Hadamard product.} It would be meaningless, as far as I can tell.
 
@@ -264,11 +300,11 @@ So, what rule of matrix multiplication will make that happen? To get from town $
 
 $$\underbrace{a_{11}}_{A\to A}\cdot \underbrace{a_{13}}_{A\to C}+\underbrace{a_{12}}_{A\to B}\cdot \underbrace{a_{23}}_{B\to C}+\underbrace{a_{13}}_{A\to C}\cdot \underbrace{a_{33}}_{C\to C}+\underbrace{a_{14}}_{A\to D}\cdot \underbrace{a_{43}}_{D\to C}=\sum_{j=1}^{4}a_{1j}a_{j3}.$$
 
-And that's how we'll eventually define matrix multiplication. More formally, we can say that to determine the $ij$ entry of the product $XY$ of matrices $X$ and $Y$, use the following formula:
+\noindent And that's how we'll eventually define matrix multiplication. More formally, we can say that to determine the $ij$ entry of the product $XY$ of matrices $X$ and $Y$, use the following formula:
 
 $$(XY)_{ij}=x_{i1}y_{1j}+x_{i2}y_{2j}+\cdots + x_{in}y_{nj} = \sum_{k=1}^n x_{ik} y_{kj},$$
 
-where $X$ has $n$ columns and $Y$ has $n$ rows. This is all fine and dandy if you're say, programming a computer to do matrix multiplication, but we should find a more intuitive way to interpret this definition.
+\noindent where $X$ has $n$ columns and $Y$ has $n$ rows. This is all fine and dandy if you're say, programming a computer to do matrix multiplication, but we should find a more intuitive way to interpret this definition.
 
 Suppose we're multiplying two matrices $X$ and $Y$. For convenience, let's make them $2\times 3\quad$\footnote{Note that the first dimension is rows and the second is columns, as is the usual order.} and $3\times 2$:
 
@@ -291,16 +327,16 @@ $$\underbrace{\left[\,\begin{array}{ccc}
 \end{array}\right].$$
 \end{center}
 
-Observe the boxed numbers. To get $139$, we multiplied the boxed rows and columns term by term. That is, we did $4\cdot 7 + 5\cdot 9 + 6\cdot 11$. We can think of this as the dot product of two vectors:
+\noindent Observe the boxed numbers. To get $139$, we multiplied the boxed rows and columns term by term. That is, we did $4\cdot 7 + 5\cdot 9 + 6\cdot 11$. We can think of this as the dot product of two vectors:
 
 $$\langle 4, 5, 6\rangle \cdot \langle 7, 9, 11\rangle = 139.$$
 
-In our example, to find the top left number $a_{11}$, we'd do $\langle 1,2,3\rangle \cdot \langle 7,9,11\rangle$. In general, to find $(XY)_{ij}$, we find the dot product of the $i$th \textbf{row vector} of $X$ and $j$th \textbf{column vector} of $Y$. More intuitively, to compute the entry in the $i$th row and $j$th column of $XY$, run your left hand across the $i$th row of matrix $X$ and your right hand down the $j$th column of matrix $Y$, multiplying the elements and adding the products as you go along.
+\noindent In our example, to find the top left number $a_{11}$, we'd do $\langle 1,2,3\rangle \cdot \langle 7,9,11\rangle$. In general, to find $(XY)_{ij}$, we find the dot product of the $i$th \textbf{row vector} of $X$ and $j$th \textbf{column vector} of $Y$. More intuitively, to compute the entry in the $i$th row and $j$th column of $XY$, run your left hand across the $i$th row of matrix $X$ and your right hand down the $j$th column of matrix $Y$, multiplying the elements and adding the products as you go along.
 
 With the ability to multiply matrices more easily, let's try some problems.
 
 \begin{enumerate}
-\item The three-post snap group can be represented by a set of graphs, each with three towns. The posts are the towns and the elastic bands are the roads. For example, \label{prob:adjacency_matrices_map_subgroup}
+\item The $3$-post snap group can be represented by a set of graphs, each with three towns. The posts are the towns and the elastic bands are the roads. For example, \label{prob:adjacency_matrices_map_subgroup}
 
 $$A=\rotatebox[origin=c]{90}{from}\;\,
   \begin{array}{@{}c@{}}
@@ -329,7 +365,7 @@ label("$2$", n2);
 label("$3$", n3);
 draw((-0.6,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.6,-2.1)--cycle);
 \end{asy}
-}}
+}}.
 $$
 \newcounter{mtrx_mult_problem_i}
 \newcounter{mtrx_mult_problem_ii}
@@ -338,16 +374,16 @@ $$
 \item Draw the graphs and transportation matrices for this group.
 \item Try a few multiplications and notice the isomorphism to the snap group.
 \end{enumerate}
-\item Using $3\times 3$ matrices $A$ and $B$ from this section, compute
-\begin{multicols}{4}
+\item Using $3\times 3$ matrices $A$ and $B$ from this section, compute:
 \begin{enumerate}
+\begin{multicols}{4}
 \item $AA=A^2$
 \item $AB$
 \item $BA$
 \item $B^2$
 \setcounter{mtrx_mult_problem_ii}{\value{enumii}}
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \begin{enumerate}
 \setcounter{enumii}{\value{mtrx_mult_problem_ii}}
 \item Which one ($AB$ and $BA$) represents taking a step by walking, then by bus?
@@ -361,23 +397,23 @@ $$
 \setcounter{mtrx_mult_problem_i}{\value{enumi}}
 \end{enumerate}
 
-It's time for a review of \textbf{sigma notation}! Sigma notation represents a sum. It is defined as
+\noindent It's time for a review of \textbf{sigma notation}! Sigma notation represents a sum. It is defined as
 $$S=\sum_{k=m}^{n} f(k)=f(m)+f(m+1)+\cdots + f(n),$$
 for function $f$ and integers $m,n$. $k$ is the index over which the summation is taking place. It takes on all integer values between $m$ and $n$, inclusive. You might read the sum portion like so: ``The summation of $f$ of $k$ from $k$ equals $m$ to $n$ equals $S$.''
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mtrx_mult_problem_i}}
 \item Evaluate the following:
-\begin{multicols}{6}
 \begin{enumerate}
+\begin{multicols}{6}
 \item $\displaystyle\sum_{k=1}^4 k$
 \item $\displaystyle\sum_{k=0}^5 k^2$
 \item $\displaystyle\sum_{k=1}^{10} 3$
 \item $\displaystyle\sum_{k=1}^n k$
 \item $\displaystyle\sum_{k=1}^n n$
 \item $\displaystyle\sum_{k=1}^n 1$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 
 \item The matrix $C^T$ whose rows are the same as the respective columns of matrix $C$ is called the \textbf{transpose} of $C$. For example,
 
@@ -390,7 +426,7 @@ $$C=\left[\begin{array}{cc}
 \end{array}\right].$$
 
 \begin{enumerate}
-\item Let the elements of $C$ be $c_{ij}$ and the elements of $C^T$ be $c'_{ij}$. Write a formula for $C^T$ in terms of these elements. That is, $c'_{ij} = $?
+\item Let the elements of $C$ be $c_{ij}$ and the elements of $C^T$ be $c'_{ij}$. Write a formula for $C^T$ in terms of these elements. That is, $c'_{ij} = \underline{\phantom{egg}}$?
 \item Write $\left[\begin{array}{ccc}
 2 & 1 & 5 \\
 4 & -2 & 0 \\
@@ -398,6 +434,8 @@ $$C=\left[\begin{array}{cc}
 \end{enumerate}
 \item Fill in the blanks: Multiplying an $m\times n$ matrix by a(n) $\underline{\phantom{egg}} \times k$ matrix gives a(n) $\underline{\phantom{egg}}\times\underline{\phantom{egg}}$ matrix.
 \item Dogs can eat cats, rats, or mice; cats can eat rats or mice; rats can eat mice.
+% Tim, wtf is this lmao
+% "Dogs can eat cats"??? Whoever wrote this does not know what a dog is
 \begin{enumerate}
 \item Make a matrix $E$ showing what can eat what.
 \item Draw a directed graph.
@@ -406,7 +444,7 @@ $$C=\left[\begin{array}{cc}
 \setcounter{mtrx_mult_problem_i}{\value{enumi}}
 \end{enumerate}
 
-The following table shows the amount of each ingredient a bakery uses in making one batch of sourdough bread and biscuits. Of course, the units vary depending on the ingredient. Let's call this matrix $S$ for sourdough.
+\noindent The following table shows the amount of each ingredient a bakery uses in making one batch of sourdough bread and biscuits. Of course, the units vary depending on the ingredient. Let's call this matrix $S$ for sourdough.
 
 \begin{center}
 \begin{blockarray}{lccccccccc}
@@ -420,7 +458,7 @@ Biscuits  & $5$     & $1$       & $1$     & $\frac{5}{4}$   & $\frac{3}{4}$  & $
 \end{blockarray}
 \end{center}
 
-The bakery wants to know how much the ingredients cost for one batch of bread, and how much for one batch of biscuits. The unit cost of the ingredients is given in the following table. Let's call this matrix $C$ for cost.
+\noindent The bakery wants to know how much the ingredients cost for one batch of bread, and how much for one batch of biscuits. The unit cost of the ingredients is given in the following table. Let's call this matrix $C$ for cost.
 
 \begin{center}
 \begin{blockarray}{lccccccccc}

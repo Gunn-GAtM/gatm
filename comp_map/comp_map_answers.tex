@@ -425,54 +425,58 @@ We found that this matrix is a reflection over the line $y=x\tan\theta$. Since i
 \begin{outer_problem}
 \item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{smallmatrix}1 & 0 \\ 0 & 1\end{smallmatrix}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
 
-\begin{minipage}{0.7\textwidth}
-But first, an example:
-$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
-This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
-\end{minipage}\hfill
-\begin{minipage}{0.25\textwidth}
-\begin{asy}[width=\textwidth]
-draw((-2,0)--(9.5,0),Arrow);
-draw((0,-5)--(0,6.5),Arrow);
+%another idk moment u should check
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[c]{0.55\textwidth}
+			But first, an example:
+			$$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
+			This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-37^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{asy}[width=0.7\textwidth]
+						draw((-2,0)--(9.5,0),Arrow);
+						draw((0,-5)--(0,6.5),Arrow);
+						
+						for (int i = -1; i < 9; ++i) {
+							for (int j = -4; j < 6; ++j) {
+								dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
+							}
+						}
+						filltype fillc =FillDraw(fillpen=black,drawpen=black);
+						pen size = 1+currentpen;
+						
+						dot((0,0), size, fillc);
+						dot((1,0), size, fillc);
+						dot((0,1), size, fillc);
+						
+						dot((3,4), size, fillc);
+						dot((4,-3), size, fillc);
+						
+						path rot1=(0,1)..(3,4);
+						path rot2=(1,0)..(4,-3);
+						
+						draw(subpath(rot1,0.1,0.9),Arrow);
+						draw(subpath(rot2,0.1,0.9),Arrow);
+					\end{asy}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\captionof{figure}{The preimage and image.}
+					\label{fig:preimage_image_mat}
+				\end{minipage}
+			\end{center}
+		\end{minipage}
+	\end{center}
+\end{figure}
 
-for (int i = -1; i < 9; ++i) {
-	for (int j = -4; j < 6; ++j) {
-		dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
-	}
-}
-filltype fillc =FillDraw(fillpen=black,drawpen=black);
-pen size = 1+currentpen;
-
-dot((0,0), size, fillc);
-dot((1,0), size, fillc);
-dot((0,1), size, fillc);
-
-dot((3,4), size, fillc);
-dot((4,-3), size, fillc);
-
-path rot1=(0,1)..(3,4);
-path rot2=(1,0)..(4,-3);
-
-draw(subpath(rot1,0.1,0.9),Arrow);
-draw(subpath(rot2,0.1,0.9),Arrow);
-\end{asy}
-\captionof{figure}{The preimage and image.}
-\label{fig:preimage_image_mat}
-\end{minipage}
-\end{outer_problem}
-
-\begin{asydef}
-import graph;
-
-void graphMatrix(real a, real b, real c, real d) {
-	dot((1,0));
-	dot((0,1));
-
-	label("$A$", (1,0), N);
-	label("$B$", (0,1), E);
-
-	label("$A'$", (a,c), unit((a-b,c-d)));
-	label("$B'$", (b,d), unit((b-a,d-c)));
+\vspace*{-2\baselineskip}
 
 	dot((a,c));
 	dot((b,d));
@@ -852,228 +856,159 @@ We see that $\sin\varphi = h/b$, so $h = b\sin\varphi$.
 
 Let $A$ be the area of the parallelogram. We have $A=ah$, and using information from the previous problem, we know that $A = ab\sin\varphi$.
 
+%what if latex had a google doc thingy that would be sooo nice
 \begin{figure}[h]
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,0);
-pair B = (4,4);
-pair D = (8,0);
-pair C = B+D;
-draw(A--B--C--D--cycle);
-draw(B--(4,0));
-
-label("$\varphi$", A, 2.8*ENE);
-draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
-label("$h$", (4,2),W);
-label("$b$", A--B, NW);
-
-path a_brace = shift(0,-0.2)*brace(D,A);
-draw(a_brace);
-
-draw((4,0.6)--(3.4,0.6)--(3.4,0));
-
-label("$a$", a_brace, S);
-\end{asy}
-\caption{A parallelogram.}
-\label{fig:parallelogram_generic}
-\end{minipage}\hfill
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,0);
-pair B = (4,4);
-pair D = (8,0);
-pair C = B+D;
-
-path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
-path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
-path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
-
-A = rotate(20.0)*A;
-B = rotate(20.0)*B;
-C = rotate(20.0)*C;
-D = rotate(20.0)*D;
-
-draw(A--B--C--D--cycle);
-draw(B--rotate(20.0)*(4,0));
-
-draw(angle_mark,Arrow);
-draw(angle_mark2);
-label("$h$", rotate(20.0)*(4,2),NE);
-label("$b$", rotate(20.0)*A--B, NW);
-
-draw(a_brace);
-draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
-
-label("$a$", a_brace, rotate(20.0)*S);
-label("$\theta$", angle_mark2, ENE);
-label("$\phi$", angle_mark, ENE);
-
-draw((-2,0)--(10,0),Arrow);
-draw((0,-2)--(0,8),Arrow);
-
-label("$P$", A, SW);
-label("$Q$", B, NW);
-label("$R$", C, NE);
-label("$S$", D, ESE);
-\end{asy}
-\caption{The parallelogram in the $xy$ plane.}
-\label{fig:para_in_xy}
-\end{minipage}
+	\begin{center}
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				pair A = (0,0);
+				pair B = (4,4);
+				pair D = (8,0);
+				pair C = B+D;
+				draw(A--B--C--D--cycle);
+				draw(B--(4,0));
+				
+				label("$\varphi$", A, 2.8*ENE);
+				draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
+				label("$h$", (4,2),W);
+				label("$b$", A--B, NW);
+				
+				path a_brace = shift(0,-0.2)*brace(D,A);
+				draw(a_brace);
+				
+				draw((4,0.6)--(3.4,0.6)--(3.4,0));
+				
+				label("$a$", a_brace, S);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				pair A = (0,0);
+				pair B = (4,4);
+				pair D = (8,0);
+				pair C = B+D;
+				
+				path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
+				path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
+				path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
+				
+				A = rotate(20.0)*A;
+				B = rotate(20.0)*B;
+				C = rotate(20.0)*C;
+				D = rotate(20.0)*D;
+				
+				draw(A--B--C--D--cycle);
+				draw(B--rotate(20.0)*(4,0));
+				
+				draw(angle_mark);
+				draw(angle_mark2);
+				label("$h$", rotate(20.0)*(4,2),NE);
+				label("$b$", rotate(20.0)*A--B, NW);
+				
+				draw(a_brace);
+				draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
+				
+				label("$a$", a_brace, rotate(20.0)*S);
+				label("$\theta$", angle_mark2, ENE);
+				label("$\phi$", angle_mark, ENE);
+				
+				draw((-2,0)--(10,0),Arrow);
+				draw((0,-2)--(0,8),Arrow);
+				
+				label("$P$", A, SW);
+				label("$Q$", B, NW);
+				label("$R$", C, NE);
+				label("$S$", D, ESE);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}[width=0.9\textwidth]
+				import patterns;
+				
+				add("brick",brick());
+				
+				draw((0,0)--(7,0),Arrow);
+				draw((0,0)--(0,6),Arrow);
+				
+				pair A = (0,0);
+				pair B = (1,3);
+				pair C = (6,5);
+				pair D = (5,2);
+				
+				draw(A--B--C--D--cycle);
+				pair K1 = (0,3);
+				pair K2=(5,3);
+				pair K3 = (5,0);
+				pair L0 = (1,2);
+				pair L1 = (1,5);
+				pair L3 = (6,2);
+				
+				draw(A--K1--K2--K3--cycle);
+				draw(L0--L1--C--L3--cycle);
+				
+				filldraw(A--K1--B--cycle, pattern("brick"));
+				filldraw(A--K3--D--cycle, pattern("brick"));
+				filldraw(L0--B--K2--D--cycle, pattern("brick"));
+				filldraw(B--L1--C--cycle, pattern("brick"));
+				filldraw(D--C--L3--cycle, pattern("brick"));
+				
+				label("$(a,b)$", B, NW);
+				label("$(c,d)$", D, SE);
+				label("$(a+c,b+d)$", C, N);
+				
+				dot(B);
+				dot(D);
+				dot(C);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{A parallelogram.}
+			\label{fig:parallelogram_generic}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{The parallelogram in the $xy$ plane.}
+			\label{fig:para_in_xy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\caption{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
+			\label{fig:para_scenario}
+		\end{minipage}
+	\end{center}
 \end{figure}
 
-\begin{outer_problem}
-\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that the side of length $a$ makes an angle of $\theta$ with the $x$-axis and $b$ makes an angle of $\phi$ with the $x$-axis. Thus, $\varphi=\phi-\theta$.
-\end{outer_problem}
-
-\begin{inner_problem}[start=1]
+\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+\item In Figure~\ref{fig:para_in_xy}, we have put our parallelogram onto the $xy$ plane so that $a$ makes an angle of $\theta$ with the $x$ axis and $b$ makes an angle of $\phi$ with the $x$ axis. Thus, $\varphi=\phi-\theta$.
+\begin{enumerate}
 \item Rewrite the equation for the area of the parallelogram in terms of $\theta$ and $\phi$.
-\end{inner_problem}
-
-We substitute $\varphi = \phi - \theta$ to find that $A = ab\sin(\phi - \theta)$.
-
-\begin{inner_problem}
 \item Find the $x$ and $y$ coordinates of $P,Q,R,S$ in terms of $a$, $b$, $\phi$, $\theta$.
-\end{inner_problem}
-
-The vector $\overrightarrow{PS}$ is just $\langle a\cos \theta, a\sin\theta \rangle$, and the vector $\overrightarrow{PQ}$ is just $\langle b\cos\phi, b\sin\phi \rangle$. Thus, we have the following coordinates for $P,Q,R,S$:
-
-$$P = (0,0);\quad Q = P+\overrightarrow{PQ} = (b\cos\phi, b\sin\phi);\quad R = P+\overrightarrow{PQ}+\overrightarrow{PS} = (a\cos\theta + b\cos\phi, a\sin\theta + b\sin\phi);\quad S = P+\overrightarrow{PS} = (a\cos\theta, a\sin\theta).$$
-
-\begin{inner_problem}
-\item Write a matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$. This matrix maps the plane.
-\end{inner_problem}
-
-The matrix is $M=\twomat{b\cos\phi}{a\cos\theta}{b\sin\phi}{a\sin\theta}$.
-
-\begin{inner_problem}
-\item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
-\end{inner_problem}
-
-This is $ab\cos\phi\sin\theta - ab\cos\theta\sin\phi$.
-
-\begin{inner_problem}
+\item These coordinates form two column vectors which, taken together as a matrix, map the plane. Write the matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$.
+\item Your matrix has two diagonals, $\overline{PR}$ and $\overline{QS}$. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
 \item Use angle addition formulas to simplify your answer.
-\end{inner_problem}
-
-$$ab\cos\phi\sin\theta - ab\cos\theta\sin\phi = ab(\cos\phi\sin\theta - \cos\theta\sin\phi) = ab\sin(\theta-\phi).$$
-
-\begin{inner_problem}
 \item You should find some relationship between your answers to problems 11a and 11d. What is it?
-\end{inner_problem}
-
-The answers have the same magnitude, but opposite sign. Indeed, $-ab\sin(\theta-\phi) = ab\sin(\phi-\theta)$.
-
-\begin{inner_problem}
 \item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=ad-bc$. What does it measure?
-\end{inner_problem}
-
-It measures the area (in terms of magnitude) of the parallelogram formed by the two vectors $\langle a,b\rangle$ and $\langle c,d\rangle$.
-
-\begin{inner_problem}
 \item Find a matrix which produces a rotation. What is its determinant?
-\end{inner_problem}
-
-$\twomat{0}{-1}{1}{0}$ is such a matrix. It has a determinant of $(0)(0)-(-1)(1)=1$.
-
-\begin{inner_problem}
 \item Find a matrix that produces a reflection.
-\end{inner_problem}
-
-$\twomat{-1}{0}{0}{1}$ is such a matrix. It has a determinant of $(-1)(1)-(0)(0)=-1$.
-
-\begin{iinner_problem}
+\begin{enumerate}
 \item What is the absolute value of its determinant?
-\end{inner_problem}
-
-The absolute value of its determinant is $|-1|=1$.
-
-\begin{iinner_problem}
 \item How does its determinant differ from that of a rotation matrix?
-\end{inner_problem}
-
-It is negative, while a rotation matrix's determinant is positive.
-
-\begin{iinner_problem}
-\item What property is not conserved under reflection?
-\end{inner_problem}
-
-Orientation (or ``handedness,'' ``chirality,'' whatever you want to call it) is not preserved.
-
-\begin{inner_problem}
-\item Find a matrix which produces a dilation.
-\end{inner_problem}
-
-$\twomat{a}{0}{0}{a}$ is such a matrix; it dilates by a factor of $a$.
-
-\begin{iinner_problem}[start=1]
-\item What is its determinant?
-\end{iinner_problem}
-
-Its determinant is $a(a) - 0(0)=a^2$.
-
-\begin{iinner_problem}
-\item What does the size of its determinant indicate?
-\end{iinner_problem}
-
-It indicates the factor by which the area of the unit square is scaled up in the transformation.
-
-\begin{inner_problem}
+\item What property is not conserved under rotation?
 \item What does the size of a determinant indicate?
-\end{inner_problem}
-
-This size of a determinant indicates the amount by which areas will be scaled by. If it is negative, than the orientation is changed. If it is zero, then the transformation is degenerate; it's a mapping to a line or the origin.
-
-\begin{center}
-\begin{minipage}{0.33\textwidth}
-\begin{asy}[width=\textwidth]
-import patterns;
-
-add("brick",brick());
-
-draw((0,0)--(7,0),Arrow);
-draw((0,0)--(0,6),Arrow);
-
-pair A = (0,0);
-pair B = (1,3);
-pair C = (6,5);
-pair D = (5,2);
-
-draw(A--B--C--D--cycle);
-pair K1 = (0,3);
-pair K2=(5,3);
-pair K3 = (5,0);
-pair L0 = (1,2);
-pair L1 = (1,5);
-pair L3 = (6,2);
-
-draw(A--K1--K2--K3--cycle);
-draw(L0--L1--C--L3--cycle);
-
-filldraw(A--K1--B--cycle, pattern("brick"));
-filldraw(A--K3--D--cycle, pattern("brick"));
-filldraw(L0--B--K2--D--cycle, pattern("brick"));
-filldraw(B--L1--C--cycle, pattern("brick"));
-filldraw(D--C--L3--cycle, pattern("brick"));
-
-label("$(a,b)$", B, NW);
-label("$(c,d)$", D, SE);
-label("$(a+c,b+d)$", C, N);
-
-dot(B);
-dot(D);
-dot(C);
-
-\end{asy}
-\captionof{figure}{Scenario for Problem~\ref{prob:unit_square_into_parallelogram}.}
-\label{fig:para_scenario}
-\end{minipage}
-\end{center}
-
-\begin{outer_problem}
-\item Here is another way to think about the area of the image of the unit square under a linear transformation. First, we use the matrix $\twomat{a}{c}{b}{d}$ to transform the unit square into a parallelogram. Then, we graph the image. \label{prob:unit_square_into_parallelogram}
-\end{outer_problem}
-
-\begin{inner_problem}[start=1]
+\end{enumerate}
+\end{enumerate}
+\item Here is another way to think about the area of the image of the unit square under a linear transformation. First, we use the matrix $\twomat{a}{c}{b}{d}$ to transform the unit square into a parallelogram. Then, we graph the image: \label{prob:unit_square_into_parallelogram}
+\begin{enumerate}
 \item There are three rectangles and four triangles in Figure~\ref{fig:para_scenario}. Find the dimensions and the area of each one. You can use this information to figure out the area of the parallelogram in terms of $a$, $b$, $c$, and $d$. Write a sentence or equation explaining how you can use the seven areas to find the area of the parallelogram.
 \end{inner_problem}
 
