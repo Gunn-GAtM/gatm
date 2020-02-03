@@ -46,8 +46,10 @@ To begin with, let's look at the function $f(x)=\frac{1}{1-x}$. We will want to 
 				\rowcolor{light-gray}
 				$f^8(x)$ &       &       &   &   &   &   &   &   &   &   \\ \hline
 			\end{tabular}
+			\vspace*{0.5\baselineskip}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \item \begin{enumerate}
@@ -89,9 +91,10 @@ f^3(x)&=\frac{1}{1-\frac{x-1}{x}}=\frac{x}{x-(x-1)}=x.
 			\label{fig:vs_cyclic_3}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
-For Problems~\ref{prob:compose_start}--~\ref{prob:compose_end},
+For Problems~\ref{prob:compose_start}--\ref{prob:compose_end},
 \begin{enumerate}[label=\roman*.]
 \item compose each until $x$ is reached;
 \item record each of the functions generated;
@@ -180,7 +183,7 @@ Do this by computing $f(g(x))$ and the matrix product, then comparing.
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent We will now use this ``isomorphism'' to make the job of composing functions easier. If $f(x)=\frac{1}{D-x}$, then $F=\left[\begin{smallmatrix} 0 & 1 \\ -1 & D \end{smallmatrix}\right]$ corresponds to $f$.
+\noindent We will now use this ``isomorphism'' to make the job of composing functions easier. If $f(x)=\frac{1}{D-x}$, then $F=\left[\begin{array}{cc} 0 & 1 \\ -1 & D \end{array}\right]$ corresponds to $f$.
 
 \begin{align*}
 F^2 &= \twomat{0}{1}{-1}{D}\twomat{0}{1}{-1}{D} \\
@@ -460,6 +463,7 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 			\label{fig:function_g}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{enumerate}
@@ -504,30 +508,38 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \item Let $j(z)=g\circ h\circ g(z)$ and let $k(z)=g\circ h\circ g\circ h(z)=f^2(z)$. Also, let $I(z)=z$ be the identity function. In the group table, let the function on the top be in the inner function, and the function on the left be the outer function, so for example $g\circ h(z)=f(z)$ as shown.
 \begin{figure}[h]
 	\begin{center}
-		\begin{minipage}[b]{\textwidth}
-			\centering
-			\begin{tabular}{c|cccccc}
-				\hline
-				$\circ$ & $I$ & $f$ & $k$ & $g$ & $j$ & $h$ \\ \hline
-				\rowcolor{light-gray}
-				$I$ & & & & & & \\
-				$f$ & & & & & & \\
-				\rowcolor{light-gray}
-				$k$ & & & & & & \\
-				$g$ & & & & & & $f$\\
-				\rowcolor{light-gray}
-				$j$ & & & & & & \\
-				$h$ & & & & & & \\ \hline
-			\end{tabular}
+		\begin{minipage}[c]{0.55\textwidth}
+			\begin{enumerate}
+				\item Complete the group table.
+				\item Is this group commutative?
+				\item What group(s) is it isomorphic to?
+				\item What subgroup(s) does it have?
+			\end{enumerate}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{tabular}{c|cccccc}
+						\hline
+						$\circ$ & $I$ & $f$ & $k$ & $g$ & $j$ & $h$ \\ \hline
+						\rowcolor{light-gray}
+						$I$ & & & & & & \\
+						$f$ & & & & & & \\
+						\rowcolor{light-gray}
+						$k$ & & & & & & \\
+						$g$ & & & & & & $f$\\
+						\rowcolor{light-gray}
+						$j$ & & & & & & \\
+						$h$ & & & & & & \\ \hline
+					\end{tabular}
+				\end{minipage}
+			\end{center}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
-\begin{enumerate}
-\item Complete the group table above.
-\item Is this group commutative?
-\item What group(s) is it isomorphic to?
-\item What subgroup(s) does it have?
-\end{enumerate}
 \item Repeat the above analysis on the function (i) $f(z)=-\frac{1}{z}$, (ii) $f(z)=\frac{1}{\sqrt{2}-z}$, and (iii) $f(z)=\frac{1}{\sqrt{3}-z}$.
 \begin{enumerate}
 \item Decompose it into two functions involving complex conjugates and graph the fixed points of each function.

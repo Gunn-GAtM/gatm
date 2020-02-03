@@ -52,6 +52,7 @@
 			\label{fig:average_joe}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \noindent We've spent a good deal of time mapping the plane with matrices. We discovered that we could decompose any invertible $2\times 2$ matrix into a list of matrices which, under multiplication, are a sequence of transformations of the plane. That is, we can interpret any such matrix as a sequence of reflections, rotations, shears, stretches, and dilations. We can even reduce the list to stretches and reflections. Unfortunately, doing this tends to be rather clumsy in practice. In any case, this decomposition method does not produce a unique result.
@@ -122,7 +123,7 @@ $$Mv=\lambda_1av_1 + \lambda_2bv_2.$$
 \twovec{0}{0} &= \twomat{-\lambda}{1}{6}{1-\lambda}\twovec{x}{y} \\
 &= \twomat{-3}{1}{6}{-2}\twovec{x}{y} \\
 \Longrightarrow \twovec{0}{0} &= \twovec{-3x+y}{6x-2y} \\
-\Longrightarrow y&=3x \rightarrow \twovec{x}{y}=s\twovec{1}{3}\quad \text{(for some }s\text{)}
+\Longrightarrow y&=3x \rightarrow \twovec{x}{y}=s\twovec{1}{3}.\quad \text{(for some }s\text{)}
 \end{align*}
 Solve for the other eigenvector using the other eigenvalue from part (b).
 \item Check your work by multiplying the original matrix by the eigenvector!

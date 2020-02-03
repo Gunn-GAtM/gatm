@@ -16,7 +16,7 @@ So far, we have identified matrices that result in some specific mappings of the
 \item We start by finding the images of our points under the $-90^\circ$ rotation. \label{prob:cm_fill_in_blank_start}
 \begin{enumerate}
 \item Find the matrix $R$ which results in a $-90^\circ$ rotation.
-\item  \label{prob:intermediate_result_matrix} Multiply $R$ by our unit vectors and point $(u,v)$: $$\blanktwomat\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right] = \left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right].$$
+\item  \label{prob:intermediate_result_matrix} Multiply $R$ by our unit vectors and point $(u,v)$: $$\blanktwomat\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right] = \left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right]$$
 \end{enumerate}
 \item Next, we reflect those intermediate image points over the line $y=0$.
 \begin{enumerate}
@@ -43,10 +43,10 @@ $$\twomat{0}{1}{-1}{0}\twomat{1}{0}{0}{-1}=\blanktwomat$$
 \item There are two, infinite classes of matrices which comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
 \begin{enumerate}
 \item What is the result of a rotation by an angle $\theta$ followed by one of $\phi$?
-\item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\blanktwomat.$
+\item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\blanktwomat$
 \item Use the angle addition formulae to simplify your answer.
 \item Should the result be the same if you reverse the order of rotation?
-\item What happens to the points $(1,0)$, $(0,1)$, and $(x,y)$ when you operate on them with the rotation matrix? $$\twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}\left[\begin{array}{ccc} 1 & 0 & x \\ 0 & 1 & y \end{array}\right].$$
+\item What happens to the points $(1,0)$, $(0,1)$, and $(x,y)$ when you operate on them with the rotation matrix? $$\twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}\left[\begin{array}{ccc} 1 & 0 & x \\ 0 & 1 & y \end{array}\right]$$
 \end{enumerate}
 \item Now let's check for the generalized reflection matrix.
 \begin{enumerate}
@@ -95,13 +95,13 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 
 \noindent This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
 
-%same as before, no space, had to split up
+% no space, had to split up the fance side by side thing
 
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{\textwidth}
 			\centering
-			\begin{asy}[width=0.7\textwidth]
+			\begin{asy}[width=0.3\textwidth]
 				draw((-2,0)--(9.5,0),Arrow);
 				draw((0,-5)--(0,6.5),Arrow);
 				
@@ -135,9 +135,8 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 			\label{fig:preimage_image_mat}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
-
-%\vspace*{-2\baselineskip}
 
 \begin{enumerate}
 \setcounter{enumi}{\value{bruh_count}}
@@ -166,7 +165,7 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 \item Reflection over $\theta=\frac{\pi}{12}$ followed by a stretch in the $x$ direction by a factor of $2$
 \item Same transformations as in (f), but order reversed \label{prob:matrix_prod_end}
 \end{enumerate}
-\item Write a set of matrices which undoes Problems~\ref{prob:matrix_prod_start} to~\ref{prob:matrix_prod_end}. You will find one of them impossible to undo; explain why.
+\item Write a set of matrices which undoes Problems~\ref{prob:matrix_prod_start} through~\ref{prob:matrix_prod_end}. You will find one of them impossible to undo; explain why.
 \item \begin{enumerate}
 \item Find the height of the parallelogram in Figure~\ref{fig:parallelogram_generic} in terms of $b$ and a trig function in terms of $\varphi$.
 \item Find the area of the parallelogram in terms of $a$, $b$, and $\varphi$.
@@ -302,6 +301,7 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 			\label{fig:para_scenario}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{enumerate}
@@ -482,6 +482,7 @@ void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real c
 			\end{enumerate}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{enumerate}
@@ -496,7 +497,7 @@ $$\left[\begin{array}{c}\text{shear} \\ \text{in x}\end{array}\right]
 \left[\begin{array}{c}\text{shear} \\ \text{in y}\end{array}\right]
 \left[\begin{array}{c}\text{stretch} \\ \text{in x}\end{array}\right]
 \twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
-Filling it in with numbers, we get
+Filling it in with numbers, we get:
 $$\twomat{1}{-\frac{c}{a}}{0}{1}\twomat{1}{0}{0}{\frac{a}{ad-bc}}\twomat{1}{0}{-b}{1}\twomat{\frac{1}{a}}{0}{0}{1}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$ \label{prob:list_of_matrices}
 
 \noindent Don't forget to multiply from right to left.
@@ -600,8 +601,7 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \end{enumerate}
 \end{multicols}
 \item Onto what line does $\left[\begin{array}{cc} a & b \\ 2a & 2b\end{array}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
-% slight edit for space keeping, sorry
-\item Use Problem~\ref{prob:project_the_plane} to decompose Problem 18c into a projection to a line followed by a size change.
+\item Use Problem~\ref{prob:project_the_plane} to decompose $\twomat{2}{3}{4}{6}$ into a projection to a line followed by a size change.
 \item Decompose $\left[\begin{array}{cc} 1 & 2 \\ 3 & 6\end{array}\right]$ into a projection perpendicular to a line followed by a size change.
 \item Write matrices which project onto the following lines:
 \begin{multicols}{3}

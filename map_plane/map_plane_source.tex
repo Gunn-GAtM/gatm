@@ -45,6 +45,7 @@
 			\label{fig:geo_interp}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \noindent By this time, you should be comfortable with the idea and process of matrix multiplication. You should know what dimensional relationship needs to be true of two matrices in order to be allowed to multiply them together.
@@ -67,7 +68,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \left[\begin{array}{cccc}2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2\end{array}\right]
 =\left[\begin{array}{cccc}\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} \\ \phantom{0}\end{array}\right].$$
 \item Graph and label the preimage and the image of each point onto the same set of axes.
-\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: What is $y$ in terms of $x$?)
+\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: what is $y$ in terms of $x$?)
 \item Write an equation for the image of that set.
 \item What other characteristic of the preimage points also applies to the image?
 \item Name two things that seem to be conserved when mapping points with a matrix.
@@ -100,7 +101,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item There is a point which remains \textbf{fixed}---its image is the same as its preimage---when multiplied by the matrix $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]$. That is, $\left[\begin{array}{cc}2 & 3 \\ 4 & 5 \end{array}\right]\left[\begin{array}{c} x \\ y \end{array}\right]=\left[\begin{array}{c} x \\ y \end{array}\right]$.
 \begin{enumerate}
 \item Solve the above matrix equation for $x$ and $y$ to find the point.
-\item There is a point $Q=\begin{array}{c}e \\ f \end{array}$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
+\item There is a point $Q=\left[\begin{array}{c}e \\ f \end{array}\right]$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
 \item Prove your conjecture by plugging your point $Q$ into $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]Q=Q$.
 \end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
@@ -118,16 +119,17 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 				\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right. %compare-books-disable
 				\begin{enumerate}
 					\item Map the vertices with the following matrices:
-					\begin{multicols}{3}
-						\begin{enumerate}
+					\begin{enumerate}
+						\begin{multicols}{2}\raggedcolumns
 							\item $\left[\begin{array}{cc}1 & 0 \\ 0 & 1 \end{array}\right]$
 							\item $\left[\begin{array}{cc}.6 & -.8 \\ .8 & .6 \end{array}\right]$
 							\item $\left[\begin{array}{cc}.6 & .8 \\ .8 & -.6 \end{array}\right]$
-						\end{enumerate}
-					\end{multicols}
+						\end{multicols}
+					\end{enumerate}
 					\item Why will the new triangle defined by these vertices be the image of the starting triangle?
 					\item Accurately graph the preimage, then the image for each matrix on three separate sets of axes.
-					\item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
+					\newcounter{another_name}
+					\setcounter{another_name}{\value{enumii}}
 				\end{enumerate}
 				\setcounter{mp_problem_i}{\value{enumi}}
 			\end{enumerate}
@@ -167,7 +169,16 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 			\end{center}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+\begin{enumerate}
+	\item[]
+	\begin{enumerate}
+		\setcounter{enumii}{\value{another_name}}
+		\item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
+	\end{enumerate}
+\end{enumerate}
 
 \pagebreak
 
@@ -219,9 +230,8 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 			\end{center}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
-
-\vspace*{-2\baselineskip}
 
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
@@ -250,7 +260,7 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item \begin{enumerate}
 \item When is the ratio of distances between points in the image the same as in the preimage?
 \item What is the image of the origin under any matrix mapping?
-\item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\begin{blockarray}{[cc]} a & b \\ c & d \end{blockarray}$?
+\item What are the images of the points $(1,0)$ and $(0,1)$ under the mapping $\left[\begin{array}{cc} a & b \\ c & d \end{array}\right]$?
 \item Knowing the images of $(1,0)$ and $(0,1)$, how do we find the image of $(1,1)$ algebraically and geometrically?
 \end{enumerate}
 \item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}

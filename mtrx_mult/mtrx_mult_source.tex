@@ -117,6 +117,7 @@ pair D = (-2,0);
 			\label{fig:scenario_with_nums}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \noindent You've all seen a bunch of numbers organized in a table. Sometimes a table is just a table, but sometimes we will call it a \textbf{matrix}.
@@ -232,6 +233,7 @@ Suppose there's a shuttle bus that only goes one way, from town $A$ to $B$ to $C
 			\label{fig:directed}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \noindent Because there are one-way connections, $B$ is not symmetric. For example, $b_{12}=1$, but $b_{21}=0$. The graph for this matrix is therefore ``directed''; it has arrows indicating the direction of each path. This is shown in Figure~\ref{fig:directed}.
@@ -283,9 +285,12 @@ Now, suppose you wanted to know the total number of ways to go from town to town
 			\label{fig:mtrx_replace}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \noindent Okay, so that's a little silly: we've counted two different ways to stay still, namely ``not taking a path'' and ``not going anywhere on the bus.'' We should rewrite the matrix, putting ones on the diagonal, as in Figure~\ref{fig:mtrx_replace}. Despite this minor issue, it's still true in general that this most naïve way of adding matrices is also the most convenient and useful. Just don't blindly follow a math recipe without considering its meaning!
+
+%ok, u really gotta flex on us with that double dot i huh
 
 But now comes a surprise: the most useful way to multiply matrices is not the obvious way. Why not? You'll see several different examples in the coming weeks. For now, think: what would it mean in terms of transportation if we just multiplied corresponding numbers like $a_{13}b_{13}$?\footnote{This ``obvious'' product is actually known as the Hadamard product.} It would be meaningless, as far as I can tell.
 
@@ -421,7 +426,7 @@ $$C=\left[\begin{array}{cc}
 \end{array}\right].$$
 
 \begin{enumerate}
-\item Let the elements of $C$ be $c_{ij}$ and the elements of $C^T$ be $c'_{ij}$. Write a formula for $C^T$ in terms of these elements. That is, $c'_{ij} = $?
+\item Let the elements of $C$ be $c_{ij}$ and the elements of $C^T$ be $c'_{ij}$. Write a formula for $C^T$ in terms of these elements. That is, $c'_{ij} = \underline{\phantom{egg}}$?
 \item Write $\left[\begin{array}{ccc}
 2 & 1 & 5 \\
 4 & -2 & 0 \\

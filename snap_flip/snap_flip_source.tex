@@ -171,6 +171,7 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 			\label{fig:triangle_isos_sf}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 % Brandon to Timothy: stop using dashes wrong. NEVER PUT spaces around an em dash. this hurts my eyes. LOVE U BULBY (I love you too, Tim <3)
@@ -179,7 +180,7 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 
 \noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
-Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$-axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by multiplying them, which is simply sequencing them. We evaluate them right-to-left (RTL) as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
+Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by multiplying them, which is simply sequencing them. We evaluate them right-to-left (RTL) as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
 These six positions, along with the operation $\cdot$ of transformation composition, form another group: the \textbf{dihedral group} of the equilateral triangle, or $D_3$. It is denoted $D_3$ because it is a dihedral group of a $3$-sided regular polygon. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; this etymology refers to the two faces of our paper triangle.
 
@@ -192,38 +193,47 @@ Dihedral groups exist for any polygonal figure; mathematically speaking, the dih
 
 \begin{figure}[h]
 	\begin{center}
-		\begin{minipage}[b]{0.35\textwidth}
-			\centering
-			\begin{tabular}{c|cccccc}
-				\hline
-				$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
-				\rowcolor{light-gray}
-				$I$    &   &   &   &   &   &   \\ 
-				$A$    &   &   & $E$ &   &   &   \\ 
-				\rowcolor{light-gray}
-				$B$    &   &   &   &   &   &   \\ 
-				$C$    &   &   &   &   &   &   \\ 
-				\rowcolor{light-gray}
-				$D$    &   &   &   &   &   &   \\ 
-				$E$    &   &   &   &   &   &   \\ \hline
-			\end{tabular}
-			\vspace*{0.5\baselineskip}
+		\begin{minipage}[c]{0.55\textwidth}
+			\begin{enumerate}
+				\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
+				\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
+			\end{enumerate}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{0.35\textwidth}
+			\begin{center}
+				\begin{minipage}[b]{\textwidth}
+					\centering
+					\begin{tabular}{c|cccccc}
+						\hline
+						$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+						\rowcolor{light-gray}
+						$I$    &   &   &   &   &   &   \\ 
+						$A$    &   &   & $E$ &   &   &   \\ 
+						\rowcolor{light-gray}
+						$B$    &   &   &   &   &   &   \\ 
+						$C$    &   &   &   &   &   &   \\ 
+						\rowcolor{light-gray}
+						$D$    &   &   &   &   &   &   \\ 
+						$E$    &   &   &   &   &   &   \\ \hline
+					\end{tabular}
+					\vspace*{0.5\baselineskip}
+				\end{minipage}
+			\end{center}
+			\vspace*{-2\baselineskip}
+			\begin{center}
+				\begin{minipage}[t]{\textwidth}
+					\caption{Unfilled $D_3$ group table.}
+					\label{fig:sbstable}
+				\end{minipage}
+			\end{center}
 		\end{minipage}
 	\end{center}
 	\vspace*{-2\baselineskip}
-	\begin{center}
-		\begin{minipage}[t]{\textwidth}
-			\caption{Unfilled $D_3$ group table.}
-			\label{fig:sbstable}
-		\end{minipage}
-	\end{center}
 \end{figure}
 
-%\vspace*{-2\baselineskip}
-%
 \begin{enumerate}
-\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
-\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
+\setcounter{enumi}{2}%yeah, i should use a variable but ehh
 \item What is the relationship between the tables for the snap group $S_3$ and the dihedral group $D_3$?
 \newcounter{enumLast}
 \setcounter{enumLast}{\theenumi}
@@ -282,6 +292,7 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 			\label{fig:fr2}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{enumerate}
@@ -293,7 +304,7 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 \end{enumerate}
 \item What shape's symmetry group is isomorphic to (a) the two-post snap group $S_2$, (b) one-post group $S_1$, (c) four-post group $S_4$ (Hint: it's not a square), and (d) five-post group $S_5$? %compare-books-disable
 \item Find a combination of $A$ and $D$ that yields $C$.
-\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$-axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2} on the next page). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable} (see next page). \textit{Note that the element order is different!} %compare-books-disable
+\item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2}). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!} %compare-books-disable
 \item What other pairs of elements could you have used to generate the table?
 \item Notice the $3\times 3$ table of a group you've already described in the top-left corner of your table. What is it, and what are the two possible generators of this three-element group?
 \item Explain why each element of the dihedral group $D_3$ has the period it has.
@@ -301,7 +312,8 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 \item One of the elements forms a one-element subgroup. Which is it?
 \setcounter{enumLast}{\theenumi}
 \end{enumerate}
-Definition of \textbf{group}: A group $G$ is a set of elements together with a \textbf{binary operation} that meets the following criteria:
+%tiny change to save space
+A \textbf{group} $G$ is a set of elements together with a \textbf{binary operation} that meets the following criteria:
 \begin{enumerate}[label=(\alph*)]
 \item Identity: There is an element $I\in G$ such that for all $X\in G$, $X\bullet I = I\bullet X = X$.
 \item Closure: If $X$, $Y$ are elements of the group, then $X\bullet Y$ is also an element of the group.

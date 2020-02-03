@@ -46,6 +46,8 @@
 
 \section{Geometry of Complex Numbers}
 
+\noindent\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
+
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{0.25\textwidth}
@@ -171,6 +173,7 @@
 			\caption{Breaking up $Az$ into its components, we can observe the geometry of complex multiplication.}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \newcommand{\Arg} {\operatorname{Arg}}
@@ -178,17 +181,15 @@
 \newcommand{\Real} {\operatorname{Re}}
 \newcommand{\Imag} {\operatorname{Im}}
 
-\noindent\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
-
-Last year, you became masters of the art of manipulating complex numbers. In this section, we will build on that background. Throughout the rest of the book, you can reinforce your skills with a dose of Vitamin $i$.
+\noindent Last year, you became masters of the art of manipulating complex numbers. In this section, we will build on that background. Throughout the rest of the book, you can reinforce your skills with a dose of Vitamin $i$.
 
 There are at least two ways to think about the equation $x^3 = 1$. One way is to factor the equation into $(x-1)(x^2+x+1)$ and find the solutions using the quadratic formula. The other way is to use \textbf{DeMoivre’s theorem}:
 \[(r_1 (\cos \theta + i \sin \theta)) (r_2 (\cos \phi + i \sin \phi)) = (r_1r_2) (\cos(\theta + \phi) + i \sin(\theta + \phi)).\]
 
-Recall that $\cis \theta = \cos \theta + i \sin \theta$. $z=r\cis \theta$ is a complex number $r$ units away from the origin and making an angle $\theta$ with the $x$ -axis, taken counterclockwise. Let’s rewrite DeMoivre’s theorem using $\cis$:
+Recall that $\cis \theta = \cos \theta + i \sin \theta$. $z=r\cis \theta$ is a complex number $r$ units away from the origin and making an angle $\theta$ with the $x$ axis, taken counterclockwise. Let’s rewrite DeMoivre’s theorem using $\cis$:
 \[(r_1 \cis \theta)(r_2 \cis \theta) = (r_1r_2)(\cis(\theta + \phi)).\]
 
-Notice that the magnitudes are multiplied and the angles are added.\footnote{What else is added when you multiply? Exponents! In fact, $\cis \theta = e^{i\theta}$, but that’s another story.} By repeatedly applying DeMoivre's theorem, we know that $(r \cis \theta) ^ n = r^n \cis n\theta$. If $x = r \cis \theta$, then $x^3 = r^3 \cis 3\theta$. Going back to our original $x^3 = 1$, since $1 = \cis(2\pi k)$ for any integer $k$, we find that $r = 1$ and $3\theta = 2\pi k$. This yields three solutions: $1 \cis 0$, $1 \cis \frac{2\pi}{3}$, $1 \cis \frac{4\pi}{3}$. Any other value of $\theta=\frac{2k\pi}{3}$ reduces to one of these values because of the periodicity of $\cis$. These correspond to $k = 0, 1, 2$; other values of $k$ produce coterminal angles and are therefore duplicates. You can confirm that these three solutions are the same solutions that you obtain from factoring.
+\noindent Notice that the magnitudes are multiplied and the angles are added.\footnote{What else is added when you multiply? Exponents! In fact, $\cis \theta = e^{i\theta}$, but that’s another story.} By repeatedly applying DeMoivre's theorem, we know that $(r \cis \theta) ^ n = r^n \cis n\theta$. If $x = r \cis \theta$, then $x^3 = r^3 \cis 3\theta$. Going back to our original $x^3 = 1$, since $1 = \cis(2\pi k)$ for any integer $k$, we find that $r = 1$ and $3\theta = 2\pi k$. This yields three solutions: $1 \cis 0$, $1 \cis \frac{2\pi}{3}$, $1 \cis \frac{4\pi}{3}$. Any other value of $\theta=\frac{2k\pi}{3}$ reduces to one of these values because of the periodicity of $\cis$. These correspond to $k = 0, 1, 2$; other values of $k$ produce coterminal angles and are therefore duplicates. You can confirm that these three solutions are the same solutions that you obtain from factoring.
 
 You can prove DeMoivre’s theorem using the angle addition formulae for $\cos$ and $\sin$. But you can also understand it through pure geometry. Consider a complex number $z = a + bi$, being multiplied by $A = 4 + 3i$. $z$ forms an angle of $\theta$ with the real axis, and $A$ forms an angle of $\phi$. In Figure 1, observe that $iz$ is perpendicular to $z$ for any $z$. Figure 2 depicts the complex number $A$. Finally, in Figure 3, you see the multiplication carried out: $Az = (4+3i)z = 4z + 3iz$. These two components, $4z$ and $3iz$, are indicated.
 
@@ -216,7 +217,7 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \item Find multiplication groups of complex numbers which are isomorphic to the rotation groups for
 \begin{multicols}{2}
 \begin{enumerate}
-\item a non-square rectangle
+\item a non-square rectangle, and
 \item a regular hexagon.
 \end{enumerate}
 \end{multicols}
@@ -224,7 +225,7 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \item Compare the regular hexagon's group to the dihedral group of the equilateral triangle, $D_3$. Consider: how are they the same? How are they different? Is the difference fundamental?
 \end{enumerate}
 \item Which of the following sets is a group under (i) addition and (ii) multiplication?
-\begin{multicols}{3}
+\begin{multicols}{3}\raggedcolumns
 \begin{enumerate}
 \item $\{0\}$
 \item $\{1\}$
@@ -263,8 +264,6 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \setcounter{cg_problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent Let’s apply complex numbers to a geometry problem. We want to prove that if we construct squares with centers $P$, $Q$, $R$, $S$ on the sides of any quadrilateral $ABCD$, as shown in Figure~\ref{fig:quad_square}, then (i) $\overline{PR} \perp \overline{QS}$ and (ii) $\overline{PR} \cong \overline{QS}$. In other words, segments joining centers of opposite squares are perpendicular and the same length.
-
 \begin{asydef}
 pair rotate(pair p, real degrees=0) {
 	real rads = degrees * pi / 180;
@@ -285,7 +284,7 @@ pair D = (4,0);
 
 \end{asydef}
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{0.55\textwidth}
 			\centering
@@ -427,7 +426,11 @@ pair D = (4,0);
 			\label{fig:p_def_on_a}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+
+\noindent Let’s apply complex numbers to a geometry problem. We want to prove that if we construct squares with centers $P$, $Q$, $R$, $S$ on the sides of any quadrilateral $ABCD$, as shown in Figure~\ref{fig:quad_square}, then (i) $\overline{PR} \perp \overline{QS}$ and (ii) $\overline{PR} \cong \overline{QS}$. In other words, segments joining centers of opposite squares are perpendicular and the same length.
 
 We represent all points in the figure as complex numbers. For convenience, let $A=0$ be the origin. The edges of the quadrilateral can be thought of as vectors in the form of complex numbers, and are found using subtraction; for example, the edge from $A$ to $B$ is $B-A$. Similarly, the edge from $B$ to $C$ is $C-B$. Now, define complex numbers
 
@@ -513,7 +516,7 @@ Is the difference between them fundamental?
 \item Prove with a diagram that if $|z|=1$, then $\Imag\left(\frac{z}{(z+1)^2}\right)=0$.
 \item Prove geometrically that if $|z|=1$, then $|1-z|=\left|2\sin\left(\frac{\Arg z}{2}\right)\right|$.
 \item \begin{enumerate}
-\item Prove that if $(z-1)^{10}=z^{10}$, then $\Real (z) = \frac{1}{2}$. (Hint: If two numbers are equal, they have the same magnitude.)
+\item Prove that if $(z-1)^{10}=z^{10}$, then $\Real (z) = \frac{1}{2}$. (Hint: if two numbers are equal, they have the same magnitude.)
 \item How many solutions does this equation have?
 \end{enumerate}
 \item I claim that $e^{i\theta}=\cos\theta + i\sin\theta = \cis\theta$, for $\theta$ in radians.

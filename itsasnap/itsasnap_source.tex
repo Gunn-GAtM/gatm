@@ -145,10 +145,11 @@
 		\end{minipage}
 		\hfill
 		\begin{minipage}[t]{0.45\textwidth}
-			\caption{$A\snap B = E$}
+			\caption{$A\snap B = E$.}
 			\label{fig:snap_ex}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 % Vocabulary: SNAP, GROUP, ELEMENT, SNAP GROUP, IDENTITY ELEMENT $A\snap B = E$.
@@ -177,9 +178,23 @@ More specifically, we will call this group the three-post \textbf{snap group}, o
 Groups are, unsurprisingly, the main objects studied in \textbf{group theory}.
 Let's study this snap group and characterize its properties.
 
-% https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
-\begin{figure}
-	% Figure: partially-filled table for the 3-post snap group
+\begin{enumerate}
+\item Fill out a $6\times 6$ table like the one in Figure~\ref{fig:sbstable}, showing the results of each of the $36$ possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column. $A\snap B=E$ is done for you.
+\item Which of the elements is the \textbf{identity element} $K$, such that $X\snap K = K\snap X = X$ for all $X$? \label{prob:group_definition_start}
+\item Does every element have an inverse? In other words, can you get to the identity element from every element using only one snap?
+\item \begin{enumerate}
+\item Is the snap operation commutative (does $X \snap Y = Y \snap X$ for all $X,Y$)?
+\item Is the snap operation associative (does $(X \snap Y) \snap Z = X \snap (Y\snap Z)$ for all $X,Y,Z$)?
+\end{enumerate}
+\item \begin{enumerate}
+\item For any elements $X, Y$, is there always an element $Z$ so that $X\snap Z=Y$?
+\item For (a), is $Z$ always unique?
+\end{enumerate}
+\newcounter{some_name}
+\setcounter{some_name}{\value{enumi}}
+\end{enumerate}% https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
+	
+\begin{figure}[h]
 	\begin{center}
 		\centering
 		\begin{minipage}[b]{\textwidth}
@@ -207,74 +222,34 @@ Let's study this snap group and characterize its properties.
 			\label{fig:sbstable}
 		\end{minipage}
 	\end{center}
-\end{figure}
 
-\begin{enumerate}
-	\item Fill out a $6\times 6$ table like the one in Figure~\ref{fig:sbstable}, showing the results of each of the $36$ possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column. $A\snap B=E$ is done for you.
-	\item Which of the elements is the \textbf{identity element} $K$, such that $X\snap K = K\snap X = X$ for all $X$? \label{prob:group_definition_start}
-	\item Does every element have an inverse? In other words, can you get to the identity element from every element using only one snap?
-	\item \begin{enumerate}
-		      \item Is the snap operation commutative (does $X \snap Y = Y \snap X$ for all $X,Y$)?
-		      \item Is the snap operation associative (does $(X \snap Y) \snap Z = X \snap (Y\snap Z)$ for all $X,Y,Z$)?
-	      \end{enumerate}
-	\item \begin{enumerate}
-		      \item For any elements $X, Y$, is there always an element $Z$ so that $X\snap Z=Y$?
-		      \item For (a), is $Z$ always unique?
-	      \end{enumerate}
-	\item If you constructed a $5\times 5$ table using only five of the snap elements, the table would not describe a group, because there would be entries in the table outside of those $5$. Therefore, a group must be \textbf{closed} under its operation. \textit{Some} subsets of our six elements, however, do happen to be closed. Write valid group tables using exactly one, two, and three elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
-	\item What do you guess is a good definition of a mathematical group? (Hint: consider your answers to Problems \ref{prob:group_definition_start}--\ref{prob:group_definition_end}.)
-	\item Notice that $E\snap E\snap E=I$ (see Figure~\ref{fig:eper3}). This means that $E$ has a \textbf{period} of $3$ when acting upon itself. Which elements have a period of
-	      \begin{multicols}{3}
-		      \begin{enumerate}
-			      \item $1$?
-			      \item $2$?
-			      \item $3$?
-		      \end{enumerate}
-	      \end{multicols}
-	\item Answer the following with the one, two, and four-post snap groups $S_1$, $S_2$ and $S_4$. These are just the analogous groups for connections between one, two, and four posts. \begin{enumerate}
-		      \item How many elements would there be?
-		      \item Systematically draw and name them.
-		      \item Make a group table of these elements. For four posts, instead of creating the massive table, give the number of elements that the table would have.
-		      \item What is the relationship of your original table to this new table?
-	      \end{enumerate}
-	\item Can you think of a shortcut to generate a snap group table without drawing every possible configuration?
-	\item \begin{enumerate}
-		      \item How many elements would there be in the five-post snap group? \label{prob:five_post_snap_list_start}
-		      \item How many entries would its table have?
-		      \item What possible periods would its elements have? Make sure you include a period of six! \label{prob:five_post_snap_list_end}
-		      \item Extend your answers for \ref{prob:five_post_snap_list_start}--\ref{prob:five_post_snap_list_end} to $M$ posts per row.
-	      \end{enumerate}
-	\item A \textbf{permutation} of a set of things is an order in which they can be arranged. What is the relationship between the set of permutations of $m$ things and the $m$-post snap group?
-\end{enumerate}
-
-\begin{figure}
 	\begin{center}
 		\begin{minipage}[b]{.45\textwidth}
 			% Figure: E snap E snap E = I, so E has a period of 3. Shows three consecutive E elements, then a "snap" arrow and the I element.
 			\centering
 			\begin{asy}[width=0.4\textwidth]
-				size(0, 60);
-
-				int[] eggs = {3, 3, 3}; // 3 E elements
-
-				drawSnapElements((0, 0), eggs); // Draw the Es
-
-				int[] new_elem = {0};
-
-				drawSnapElements((5, 0), new_elem, 3, 1, 4.5); // draw the identity element
-				label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -2.25));
+			size(0, 60);
+			
+			int[] eggs = {3, 3, 3}; // 3 E elements
+			
+			drawSnapElements((0, 0), eggs); // Draw the Es
+			
+			int[] new_elem = {0};
+			
+			drawSnapElements((5, 0), new_elem, 3, 1, 4.5); // draw the identity element
+			label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -2.25));
 			\end{asy}
 		\end{minipage}
 		\begin{minipage}[b]{.45\textwidth}
 			% Figure: Draw 8 elements from the 4-post snap group set, and arrange them in a 4 (wide) by 2 (high) rectangle
 			\centering
 			\begin{asy}[width=0.7\textwidth]
-				size(0, 60);
-
-				for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
-					int[] elem = {i};
-					drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // TERNARY OPERATOR used to make them into a grid
-				}
+			size(0, 60);
+			
+			for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
+			int[] elem = {i};
+			drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // TERNARY OPERATOR used to make them into a grid
+			}
 			\end{asy}
 		\end{minipage}
 	\end{center}
@@ -289,5 +264,34 @@ Let's study this snap group and characterize its properties.
 			\label{fig:fpge}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
+
+\begin{enumerate}
+\setcounter{enumi}{\value{some_name}}
+\item If you constructed a $5\times 5$ table using only five of the snap elements, the table would not describe a group, because there would be entries in the table outside of those $5$. Therefore, a group must be \textbf{closed} under its operation. \textit{Some} subsets of our six elements, however, do happen to be closed. Write valid group tables using exactly one, two, and three elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
+\item What do you guess is a good definition of a mathematical group? (Hint: consider your answers to Problems \ref{prob:group_definition_start}--\ref{prob:group_definition_end}.)
+\item Notice that $E\snap E\snap E=I$ (see Figure~\ref{fig:eper3}). This means that $E$ has a \textbf{period} of $3$ when acting upon itself. Which elements have a period of
+\begin{multicols}{3}
+\begin{enumerate}
+\item $1$?
+\item $2$?
+\item $3$?
+\end{enumerate}
+\end{multicols}
+\item Answer the following with the one, two, and four-post snap groups $S_1$, $S_2$ and $S_4$. These are just the analogous groups for connections between one, two, and four posts. \begin{enumerate}
+\item How many elements would there be?
+\item Systematically draw and name them.
+\item Make a group table of these elements. For four posts, instead of creating the massive table, give the number of elements that the table would have.
+\item What is the relationship of your original table to this new table?
+\end{enumerate}
+\item Can you think of a shortcut to generate a snap group table without drawing every possible configuration?
+\item \begin{enumerate}
+\item How many elements would there be in the five-post snap group? \label{prob:five_post_snap_list_start}
+\item How many entries would its table have?
+\item What possible periods would its elements have? Make sure you include a period of six! \label{prob:five_post_snap_list_end}
+\item Extend your answers for Problems \ref{prob:five_post_snap_list_start} through \ref{prob:five_post_snap_list_end} to $M$ posts per row.
+\end{enumerate}
+\item A \textbf{permutation} of a set of things is an order in which they can be arranged. What is the relationship between the set of permutations of $m$ things and the $m$-post snap group?
+\end{enumerate}
 \end{document}
