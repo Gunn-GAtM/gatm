@@ -180,14 +180,14 @@ $$\twomat{1}{2}{3}{4}^{-1} = \twomat{-2}{1}{3}{-1}.$$
 \item We've been writing the inverse of matrix $A$ as $A^{-1}$. Why does this notation make sense?
 \end{enumerate}
 \item Now, see what happens when you multiply the following matrices:
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item $-\frac{1}{2}\twomat{2}{3}{4}{5}\twomat{5}{-3}{-4}{2}$
 \item $\frac{1}{71}\twomat{5}{7}{8}{-3}\twomat{3}{7}{8}{-5}$
 \item $\twomat{a}{c}{b}{d}\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}$
 \item $\frac{1}{ad-bc}\twomat{d}{-c}{-b}{a}\twomat{a}{c}{b}{d}$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item For another approach to finding the inverse of a matrix, solve the following for $w,x,y,z$ in terms of $a,b,c,d$ by converting the matrix equations into a set of four linear equations:
 
 $$\twomat{w}{y}{x}{z}\twomat{a}{c}{b}{d}=\twomat{1}{0}{0}{1}.$$
@@ -204,16 +204,16 @@ $$E_nE_{n-1}\cdots E_2E_1I=A^{-1}.$$
 
 \noindent Before, these elementary matrices were stretches, shears and the like. We will restrict ourselves to matrices like $\twomat{a}{0}{0}{1}$, which multiply a row by $a$, or matrices like $\twomat{1}{0}{2}{1}$, which adds a multiple of the first row to the second. That's because instead of thinking of a matrix, we simply have to think ``multiply this row by $a$'' or ``add these rows together,'' content that they are valid matrix multiplications. Some valid row operations are as follows:
 
-\begin{multicols}{2}\raggedcolumns
 \begin{itemize}
+\begin{multicols}{2}\raggedcolumns
 \item Swapping rows $i$ and $j$
 \item Adding row $i$ to $j$
 \item Multiplying row $i$ by a constant $a\neq 0$
 \item Adding $a$ times row $i$ to $j$
 \item Adding multiple rows to another
 \item Taking multiple rows, multiplying them by any nonzero coefficients, and adding them to another
-\end{itemize}
 \end{multicols}
+\end{itemize}
 
 \noindent This last operation is the most powerful and encompasses most of the previous ones. To apply our multiplications easily, we \textbf{augment} a matrix $A$ by juxtaposing it with the identity matrix. Also, we write what row operation we actually did on the left after each step. As shown in the first equation, we have multiplied all the elementary matrices once $A$ has become $I$. But in that process, $I$ will have become $A^{-1}$!
 
@@ -254,7 +254,7 @@ R_1=-R_1 & 1 & 0 & 3 & 4 \\
 \begin{blockarray}{c[cc|cc]}
 & 1 & 0 & 3 & 4 \\
 R_2=R_1+R_2 & 0 & 1 & 2 & 3
-\end{blockarray}. \\
+\end{blockarray}.
 \end{align*}
 
 \noindent Observe! We have found that $A^{-1}=\left[\begin{array}{cc}3 & 4 \\ 2 & 3\end{array}\right]$. Let's try this new technique out on some systems of equations.
@@ -262,27 +262,27 @@ R_2=R_1+R_2 & 0 & 1 & 2 & 3
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item Rewrite each system of equations in matrix form. Use your calculator to calculate a matrix inverse, solve the system, and finally, check your answer. Remember to make clear in your work when you have used a calculator.
-\begin{multicols}{3}\raggedcolumns
 \begin{enumerate}
+\begin{multicols}{3}\raggedcolumns
 \item $\begin{cases} 2x+3y &= 5 \\ 4x+5y &= 7 \end{cases}$
 \item $\begin{cases} 37x+12y &= 65 \\ 93x+40y &= 156\end{cases}$
 \item $\begin{cases} 2x+5y+3z &= 5 \\ 3x+2y+4z &= 7 \\ 13x+16y+18z &= 4\end{cases}$
 \item $\begin{cases} w + 2x + 3y + 4z &= 7 \\ 3w-x-2y-5z&=5 \\ 5w+3x-y-4z&=3 \\ 7w+9x+5y-2z&=2\end{cases}$
 \item $\begin{cases} 2x+5y+2z &= 1 \\ 3x+2y+4z &= 1 \\ 13x+16y+18z &= 5 \end{cases}$
 \item When can you use matrix inverses to solve a system of equations?
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item You can fit a polynomial to any set of points in the plane, so long as the points pass the Vertical Line Test.
 \begin{enumerate}
 \item What is the least degree polynomial through
-\begin{multicols}{4}
 \begin{enumerate}
+\begin{multicols}{4}
 \item One point?
 \item Two points?
 \item Three points?
 \item $n$ points?
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item Find a polynomial of least degree that passes through $(0,3)$, $(1,5)$, $(2,-3)$, $(3,4)$, and $(4,7)$.
 \end{enumerate}
 \setcounter{problem_i}{\value{enumi}}

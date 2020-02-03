@@ -102,15 +102,15 @@ For Problems~\ref{prob:compose_start}--\ref{prob:compose_end},
 \item identify a symmetry group to which each group is isomorphic.
 \end{enumerate}
 
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \setcounter{enumi}{\value{problem_i}}
 \item \label{prob:compose_start}$f(x)=\frac{2}{2-x}$
 \item $f(x)=\frac{3}{3-x}$
 \item \label{prob:compose_end}$f(x)=\frac{9}{3-x}$
 \setcounter{problem_i}{\value{enumi}}
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item The function $f(x)=\frac{1}{2-x}$ behaves differently under composition.
@@ -153,7 +153,7 @@ f^3(x)=f(f(f(x)))&=f\left(f\left(\frac{1}{D-x}\right)\right) \\
 &= \frac{1}{D-\frac{D-x}{D^2-Dx-1}} = x \\
 \Longrightarrow D^2-Dx-1&=D^3x-D^2x^2-2Dx+x^2 \\
 \Longrightarrow D^3x-D^2(x^2+1)-Dx+(x^2+1)&=0 \\
-\Longrightarrow (D^2-1)(Dx-(x^2+1))&=0. \\
+\Longrightarrow (D^2-1)(Dx-(x^2+1))&=0.
 \end{align*}
 
 \noindent Setting $D^2-1=0\rightarrow D=\pm 1$ produces a function with period $3$. That is, $f(x)=\frac{1}{1-x}$ and $f(x)=\frac{1}{-1-x}$ have period $3$ under composition. You should recognize one of these already.
@@ -165,7 +165,7 @@ f^5(x)=f(f(f^3(x)))&=f\left(f\left(\frac{1}{D-\frac{D-x}{D^2-Dx-1}}\right)\right
 &=\frac{D^4-D^3x-3D^2+2Dx+1}{D^5-D^4x-4D^3+3D^2x+3D-x}=x \\
 \Longrightarrow (Dx-(x^2+1))(D^4-3D^2+1)&=0 \\
 \Longrightarrow D^2&=\frac{3\pm\sqrt{5}}{2} \\
-\Longrightarrow D &= \pm{\sqrt{\frac{3\pm\sqrt{5}}{2}}} \\
+\Longrightarrow D &= \pm{\sqrt{\frac{3\pm\sqrt{5}}{2}}}
 \end{align*}
 
 \noindent So we have that $f(x)=\frac{1}{\pm\sqrt{\frac{3\pm\sqrt{5}}{2}}-x}$ for period $5$.
@@ -191,7 +191,7 @@ F^2 &= \twomat{0}{1}{-1}{D}\twomat{0}{1}{-1}{D} \\
 \Longrightarrow \Aboxed{f^2(x) &= \frac{D-x}{D^2-Dx-1}} \\
 F^3 = FF^2 &= \twomat{0}{1}{-1}{D}\twomat{-1}{D}{-D}{D^2-1} \\
 &= \twomat{-D}{D^2-1}{1-D^2}{D^3-3D} \\
-\Longrightarrow \Aboxed{f^3(x) &= \frac{(D^2-1)-Dx}{(1-D^2)x+(D^3-2D)}} \\
+\Longrightarrow \Aboxed{f^3(x) &= \frac{(D^2-1)-Dx}{(1-D^2)x+(D^3-2D)}}
 \end{align*}
 
 \begin{enumerate}
@@ -210,21 +210,21 @@ F^3 = FF^2 &= \twomat{0}{1}{-1}{D}\twomat{-1}{D}{-D}{D^2-1} \\
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item Use algebra or a computer algebra system---if you're lazy---to solve the following equations for $D$. Use $f^2$ from my writing above; use $f^4$ and $f^6$ from your answers to Problem 11.
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $f^2(x)=x$
 \item $f^4(x)=x$
 \item $f^6(x)=x$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item For each period, choose one of your solutions for $D$, then use your calculator to iterate $f(x)=\frac{1}{D-x}$.
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item Period 2: $$D=\underline{\phantom{egg}}$$ $$f(x)=\underline{\phantom{egg}}$$ $$\text{Found period}=\underline{\phantom{egg}}$$
 \item Period 4: $$D=\underline{\phantom{egg}}$$ $$f(x)=\underline{\phantom{egg}}$$ $$\text{Found period}=\underline{\phantom{egg}}$$
 \item Period 6: $$D=\underline{\phantom{egg}}$$ $$f(x)=\underline{\phantom{egg}}$$ $$\text{Found period}=\underline{\phantom{egg}}$$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
@@ -256,13 +256,14 @@ F^3 = FF^2 &= \twomat{0}{1}{-1}{D}\twomat{-1}{D}{-D}{D^2-1} \\
 \item Once again, check using your calculator.
 \end{enumerate}
 \item \begin{enumerate}
-\item Find the fixed points for: \begin{multicols}{3}
+\item Find the fixed points for:
 \begin{enumerate}
+\begin{multicols}{3}
 \item $f(z)=\frac{1}{2-z}$
 \item $f(z)=\frac{1}{3-z}$
 \item $f(z)=\frac{1}{4-z}$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item Use your calculator to iterate these functions using a variety of initial values.
 \item What do you notice about these functions?
 \end{enumerate}
@@ -309,13 +310,13 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \begin{enumerate}
 \item What is the angle between the unit circle and the line $x=.5$ at the point of intersection?
 \item If you chose your initial value of $x$ to be ``close to'' one of the fixed points, what would you expect to happen if you transform it with $g(h(z))$...
+\begin{enumerate}
 \begin{multicols}{3}
-	\begin{enumerate}
-		\item ... once?
-		\item ... twice?
-		\item ... thrice?
-	\end{enumerate}
+\item ... once?
+\item ... twice?
+\item ... thrice?
 \end{multicols}
+\end{enumerate}
 \end{enumerate}
 \item \begin{enumerate}
 \item Use your calculator to test your hypothesis by picking a point close to $.5(1+\sqrt{3})$, like $.5+.85i$, as an initial value. Then, iterate $f(x)=\frac{1}{1-z}$.
@@ -472,12 +473,12 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 
 \item It appears that this composition of functions produces a rotation-like transformation, but there are two ``competing'' centers with the nearer center to a point ``exerting more influence.'' The ``rotation'' is distorted more and more the farther you are from the fixed points. What happens when the initial value is on the real axis?
 \item What is the period of
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item $g(z)=\frac{1}{\overline{z}}$?
 \item $h(z)=\overline{1-z}$?
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
@@ -486,8 +487,8 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item We will compose $g(z)=\frac{1}{z}$ and $h(z)=1-z$. Feel free to use a computer algebra system to do these problems.
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $g\circ g$
 \item $h\circ h$
 \item $g\circ h$
@@ -503,8 +504,8 @@ $$g(h(z))=g(\overline{1-z})=\overline{\left(\frac{1}{\overline{1-z}}\right)}=\fr
 \item $h\circ g\circ h\circ g$
 \item $h\circ g\circ h\circ g\circ h$
 \item $h\circ g\circ h\circ g\circ h\circ g$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item Let $j(z)=g\circ h\circ g(z)$ and let $k(z)=g\circ h\circ g\circ h(z)=f^2(z)$. Also, let $I(z)=z$ be the identity function. In the group table, let the function on the top be in the inner function, and the function on the left be the outer function, so for example $g\circ h(z)=f(z)$ as shown.
 \begin{figure}[h]
 	\begin{center}

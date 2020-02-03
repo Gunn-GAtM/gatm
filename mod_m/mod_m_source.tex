@@ -130,27 +130,21 @@ In this section, we will be finding the largest subset of integers that forms a 
 \item Every element of a group has an inverse by the definition of group. If an element is its own inverse, what is its period? If an element has period $p$, what is the period of its inverse?
 \item Will $n-1$ always be in the largest group under multiplication mod $n$? Why?
 \item What properties do the following types of groups have?
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item multiplication mod $p$, a prime
 \item multiplication mod $3^n$
 \item multiplication mod $p^n$
 \item multiplication mod $2^n$
 \item multiplication mod $5^n$
 \item multiplication mod a composite
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \end{itemize}
 
-\noindent For more weirdness, consider the multiplicative group of integers modulo $35$.\footnote{This is usually denoted $(\mathbb{Z}/35\mathbb{Z})^\times$.} The set of integers relatively prime to $35$ is $$\{1,2,3,4,6,8,9,11,12,13,16,17,18,19,22,23,24,26,27,29,31,32,33,34\}.$$ That's $24$ elements, so initial guesses about the associated group would include the rotation group of a cube (periods $1,2,3,4$) and the rotation group of the regular $24$-gon (periods $1$,$2$,$3$,$4$,$6$,$8$,$12$,$24$). None of these guesses turn out to be correct though. Let's create a table with the orbits and periods of each element, as shown in Figure~\ref{fig:orbit_35}.
+% sorry if i messed the flow up here
 
-The periods appear to be factors of $12$, which leads us to consider the rotation group of the regular dodecagon, $C_{12}$. But this has only half as many elements as our group. The dihedral group $D_{12}$, however, does have $24$ elements. Let's try matching up the elements in the two groups.
-
-$$D_{12}:\text{ Rotations of } 0^\circ, 30^\circ, 60^\circ, 90^\circ, 120^\circ, 150^\circ, 180^\circ, 210^\circ, 240^\circ, 270^\circ, 300^\circ, 330^\circ$$
-
-\noindent$0^\circ$ and $1$ are the identities, so they are paired up. Because $2$ has period $12$, we arbitrarily match it up with the $30^\circ$ rotation. The rest of the powers of $2$ mod $35$ are thus mapped, pairing up all the \textit{rotations} of $D_{12}$.
-
-\pagebreak
+\noindent For more weirdness, consider the multiplicative group of integers modulo $35$.\footnote{This is usually denoted $(\mathbb{Z}/35\mathbb{Z})^\times$.} The set of integers relatively prime to $35$ is $$\{1,2,3,4,6,8,9,11,12,13,16,17,18,19,22,23,24,26,27,29,31,32,33,34\}.$$
 
 \begin{figure}[h]
 	\begin{center}
@@ -188,7 +182,18 @@ $$D_{12}:\text{ Rotations of } 0^\circ, 30^\circ, 60^\circ, 90^\circ, 120^\circ,
 			\label{fig:orbit_35}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
 
+\noindent That's $24$ elements, so initial guesses about the associated group would include the rotation group of a cube (periods $1,2,3,4$) and the rotation group of the regular $24$-gon (periods $1$,$2$,$3$,$4$,$6$,$8$,$12$,$24$). None of these guesses turn out to be correct though. Let's create a table with the orbits and periods of each element, as shown in Figure~\ref{fig:orbit_35}.
+
+The periods appear to be factors of $12$, which leads us to consider the rotation group of the regular dodecagon, $C_{12}$. But this has only half as many elements as our group. The dihedral group $D_{12}$, however, does have $24$ elements. Let's try matching up the elements in the two groups.
+
+$$D_{12}:\text{ Rotations of } 0^\circ, 30^\circ, 60^\circ, 90^\circ, 120^\circ, 150^\circ, 180^\circ, 210^\circ, 240^\circ, 270^\circ, 300^\circ, 330^\circ$$
+
+\noindent$0^\circ$ and $1$ are the identities, so they are paired up. Because $2$ has period $12$, we arbitrarily match it up with the $30^\circ$ rotation. The rest of the powers of $2$ mod $35$ are thus mapped, pairing up all the \textit{rotations} of $D_{12}$.
+
+\begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{\textwidth}
 			\centering
@@ -220,7 +225,6 @@ $$D_{12}:\text{ Rotations of } 0^\circ, 30^\circ, 60^\circ, 90^\circ, 120^\circ,
 	%an exception for the sake of style
 	\vspace*{-1\baselineskip}
 \end{figure}
-
 
 \noindent But now we run into a problem. What do we pair up the reflections with? Reflections have period $2$, but only $3$ elements in our group have that property; we need $12$. So $D_{12}$ doesn't work, either!
 

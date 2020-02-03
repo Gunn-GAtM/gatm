@@ -127,7 +127,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 						\end{multicols}
 					\end{enumerate}
 					\item Why will the new triangle defined by these vertices be the image of the starting triangle?
-					\item Accurately graph the preimage, then the image for each matrix on three separate sets of axes.
+					
 					\newcounter{another_name}
 					\setcounter{another_name}{\value{enumii}}
 				\end{enumerate}
@@ -173,61 +173,53 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \end{figure}
 
 \begin{enumerate}
-	\item[]
-	\begin{enumerate}
-		\setcounter{enumii}{\value{another_name}}
-		\item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
-	\end{enumerate}
+\item[]
+\begin{enumerate}
+\setcounter{enumii}{\value{another_name}}
+\item Accurately graph the preimage, then the image for each matrix on three separate sets of axes.
+\item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
+\end{enumerate}
+\setcounter{enumi}{\value{mp_problem_i}}
+\item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square}: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later. %compare-books-disable
+\begin{enumerate}
+\item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
+\item Of $(0,0)$?
+\end{enumerate}
+\setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
-\pagebreak
+% had to ruin a text-wrapping figure here for space concerns.
 
 \begin{figure}[h]
 	\begin{center}
-		\begin{minipage}[c]{0.55\textwidth}
-			\begin{enumerate}
-				\setcounter{enumi}{\value{mp_problem_i}}
-				\item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square} on the right: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later. %compare-books-disable
-				\begin{enumerate}
-					\item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
-					\item Of $(0,0)$?
-				\end{enumerate}
-				\setcounter{mp_problem_i}{\value{enumi}}
-			\end{enumerate}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.3\textwidth]
+			draw((0,0)--(2,0),Arrow);
+			draw((0,0)--(0,1.5),Arrow);
+			pair A = (0,0);
+			pair B = (1,0);
+			pair C = (1,1);
+			pair D = (0,1);
+			
+			draw(A--B--C--D--cycle);
+			
+			dot(A);
+			dot(B);
+			dot(C);
+			dot(D);
+			
+			label("$0$", (0,0), SW);
+			label("$1$", (1,0), S);
+			label("$1$", (0,1), W);
+			\end{asy}
 		\end{minipage}
-		\hfill
-		\begin{minipage}[c]{0.35\textwidth}
-			\begin{center}
-				\begin{minipage}[b]{\textwidth}
-					\centering
-					\begin{asy}[width=0.7\textwidth]
-					draw((0,0)--(2,0),Arrow);
-					draw((0,0)--(0,1.5),Arrow);
-					pair A = (0,0);
-					pair B = (1,0);
-					pair C = (1,1);
-					pair D = (0,1);
-					
-					draw(A--B--C--D--cycle);
-					
-					dot(A);
-					dot(B);
-					dot(C);
-					dot(D);
-					
-					label("$0$", (0,0), SW);
-					label("$1$", (1,0), S);
-					label("$1$", (0,1), W);
-					\end{asy}
-				\end{minipage}
-			\end{center}
-			\vspace*{-2\baselineskip}
-			\begin{center}
-				\begin{minipage}[t]{\textwidth}
-					\captionof{figure}{The unit square.}
-					\label{fig:unit_square}
-				\end{minipage}
-			\end{center}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\captionof{figure}{The unit square.}
+			\label{fig:unit_square}
 		\end{minipage}
 	\end{center}
 	\vspace*{-2\baselineskip}
@@ -264,8 +256,8 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item Knowing the images of $(1,0)$ and $(0,1)$, how do we find the image of $(1,1)$ algebraically and geometrically?
 \end{enumerate}
 \item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
-\begin{multicols}{4}
 \begin{enumerate}
+\begin{multicols}{4}
 \item \mtrxtbt{1}{0}{0}{-1}
 \item \mtrxtbt{-1}{0}{0}{-1}
 \item \mtrxtbt{2}{0}{0}{2}
@@ -282,8 +274,8 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{\frac{1}{2}}{-\frac{\sqrt{3}}{2}}
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{-\frac{1}{2}}{\frac{1}{2}}{\frac{\sqrt{3}}{2}}
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \setcounter{mp_problem_i}{\value{enumi}}
 \end{enumerate}
 
@@ -292,12 +284,12 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \begin{enumerate}
 \setcounter{enumi}{\value{mp_problem_i}}
 \item Carry out the following multiplications and convince yourself they are equivalent mappings of the $x$ and $y$ coordinates.
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\left[\begin{array}{c} u \\ v \end{array}\right]=\left[\begin{array}{c} \phantom{u} \\ \phantom{v} \end{array}\right]$ $\phantom{\begin{array}{c}u \\ v \\ 1 \end{array}}$
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right] = \left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1} \end{array}\right]$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item \begin{enumerate}
 \item Multiply these matrices: $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c}u \\ v \\ 1 \end{array}\right]=\left[\begin{array}{c}\phantom{u} \\ \phantom{v} \\ \phantom{1}\end{array}\right].$ \label{prob:translation_matrix}
 \item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{egg}}$ in the $x$ direction, $\underline{\phantom{egg}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{egg}}$.
@@ -307,19 +299,19 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item Check your work by applying your matrix to the point $(3,5,1)$.
 \end{enumerate}
 \item Do these two multiplications. What does each represent?
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item $\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \item $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item What does each of these matrices represent?
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item \begin{enumerate}
 \item Rewrite your translation matrix and your preimage vector from Problem~\ref{prob:translation_matrix} so that you do not restrict your translations to the plane $z=1$, but can translate in the $x$, $y$, and $z$ directions. (Hint: think four dimensions!)
 \item Write a matrix product that translates the point $(2,3,-5)$ by the vector $(4,-1,2)$.
@@ -429,5 +421,6 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 			\label{fig:translate_3d}
 		\end{minipage}
 	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 \end{document}

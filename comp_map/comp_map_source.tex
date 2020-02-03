@@ -69,8 +69,8 @@ $$\twomat{\cos\theta}{\sin\theta}{\sin\theta}{-\cos\theta}\twomat{\cos\phi}{\sin
 \end{itemize}
 \setcounter{enumi}{\value{problem_i}}
 We want to generalize those ideas. What does each of the following matrices do? Be quantitative by specifying angle, equation of line, and/or factor:\label{prob:list_transformations}
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $\twomat{1}{0}{0}{1}$ \label{prob:list_transformations_part_start}
 \item $\twomat{a}{0}{0}{a}$
 \item $\twomat{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}$
@@ -83,8 +83,8 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \item $\twomat{-1}{0}{0}{1}$ \label{prob:highlighted_example_list_transformations1}
 \item $\twomat{0}{-1}{-1}{0}$ \label{prob:highlighted_example_list_transformations2}
 \item $\twomat{\cos 2\theta}{\sin 2\theta}{\sin 2\theta}{-\cos 2\theta}$ \label{prob:list_transformations_part_end}
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix 4c is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is matrix 4d.
 \item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{array}{cc}1 & 0 \\ 0 & 1\end{array}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
 \setcounter{bruh_count}{\value{enumi}}
@@ -141,8 +141,8 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 \begin{enumerate}
 \setcounter{enumi}{\value{bruh_count}}
 \item[]
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $\twomat{1}{2}{0}{1}\twomat{.6}{-.8}{.8}{.6}$
 \item $\twomat{.6}{-.8}{.8}{.6}\twomat{1}{2}{0}{1}$
 \item $\twomat{4}{0}{0}{1}\twomat{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}$
@@ -152,8 +152,8 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 \item $\twomat{.6}{-.8}{.8}{.6}\twomat{.8}{-.6}{.6}{.8}$
 \item $\twomat{.6}{.8}{.8}{-.6}\twomat{.6}{.8}{.8}{-.6}$
 \item $\twomat{.6}{.8}{.8}{-.6}\twomat{.8}{.6}{.6}{-.8}$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{array}{c}x \\ y \end{array}\right]\right)=xf\left(\left[\begin{array}{c}1 \\ 0 \end{array}\right]\right)+yf\left(\left[\begin{array}{c}0 \\ 1 \end{array}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
 \item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the preimage and image when applied to $(1,0)$ and $(0,1)$.
 \begin{enumerate}
@@ -545,8 +545,8 @@ $$\Longrightarrow \blanktwomat\blanktwomat\blanktwomat\blanktwomat\twomat{1}{0}{
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
 \item \label{prob:needed_for_matrix_undo1}Each step in the decomposition of $\twomat{3}{4}{2}{-5}$ is explained below.
-\begin{multicols}{2}
 \begin{enumerate}[label=(\roman*)]
+\begin{multicols}{2}
 \item Stretch along the $x$ axis by factor of $\frac{1}{3}$. %compare-books-disable
 $$\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}=\twomat{1}{\frac{4}{3}}{2}{-5}$$
 \item Shear perpendicular to the $x$ axis by $-2$. %compare-books-disable
@@ -555,8 +555,8 @@ $$\twomat{1}{0}{-2}{1}\twomat{1}{\frac{4}{3}}{2}{-5}=\twomat{1}{\frac{4}{3}}{0}{
 $$\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{\frac{4}{3}}{0}{-\frac{23}{3}}=\twomat{1}{\frac{4}{3}}{0}{1}$$
 \item Shear perpendicular to the $y$ axis by $-\frac{4}{3}$. %compare-books-disable
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{\frac{4}{3}}{0}{1}=\twomat{1}{0}{0}{1}$$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 Taken all together, the decomposition is:
 $$\twomat{1}{-\frac{4}{3}}{0}{1}\twomat{1}{0}{0}{-\frac{3}{23}}\twomat{1}{0}{-2}{1}\twomat{\frac{1}{3}}{0}{0}{1}\twomat{3}{4}{2}{-5}.$$
 Therefore: $$\twomat{3}{4}{2}{-5}=\twomat{3}{0}{0}{1}\twomat{1}{0}{2}{1}\twomat{1}{0}{0}{-\frac{23}{3}}\twomat{1}{\frac{4}{3}}{0}{1}.$$
@@ -585,31 +585,31 @@ $$\mathop{\twomat{1}{0}{0}{-1}}^{\text{i}}
 \item Explain what happens at each matrix, i through v.
 \end{enumerate}
 \item Find a set of basic transformations which is equivalent to each of the following matrices:\label{prob:basic_transformations}
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $\twomat{12}{8}{5}{15}$
 \item $\twomat{3}{24}{4}{7}$
 \item $\twomat{2}{3}{4}{6}$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item One of the matrices in Problem~\ref{prob:basic_transformations} is a projection onto a line.
-\begin{multicols}{2}
 \begin{enumerate}
+\begin{multicols}{2}
 \item Which matrix is it?
 \item What line does it project onto?
 \item If you try to decompose this matrix to the identity matrix, what happens? Why?
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \item Onto what line does $\left[\begin{array}{cc} a & b \\ 2a & 2b\end{array}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
 \item Use Problem~\ref{prob:project_the_plane} to decompose $\twomat{2}{3}{4}{6}$ into a projection to a line followed by a size change.
 \item Decompose $\left[\begin{array}{cc} 1 & 2 \\ 3 & 6\end{array}\right]$ into a projection perpendicular to a line followed by a size change.
 \item Write matrices which project onto the following lines:
-\begin{multicols}{3}
 \begin{enumerate}
+\begin{multicols}{3}
 \item $y=x$
 \item $y=5x$
 \item $y=mx$
-\end{enumerate}
 \end{multicols}
+\end{enumerate}
 \end{enumerate}
 \end{document}
