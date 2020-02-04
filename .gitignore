@@ -1,6 +1,7 @@
 *.pdf
 *.js
 !build/*.pdf
+!build/chapters/*.pdf
 **/.DS_Store
 
 *answers-*.tex
