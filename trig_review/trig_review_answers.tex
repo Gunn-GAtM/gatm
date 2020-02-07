@@ -6,71 +6,85 @@
 
 \section{Trigonometry Review}
 
-\begin{figure}
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=\textwidth]
-draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
-
-draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
-
-label("$a$", (2,0), S);
-label("$b$", (0,1.5), W);
-label("$c$", (0,3)--(4,0), NE);
-
-real ras = 0.4;
-path ram = (0,ras)--(ras,ras)--(ras,0);
-
-draw(ram);
-draw(rotate(90,(7/2,7/2))*ram);
-draw(rotate(180,(7/2,7/2))*ram);
-draw(rotate(270,(7/2,7/2))*ram);
-
-path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
-draw(iram);
-draw(rotate(90,(7/2,7/2))*iram);
-draw(rotate(180,(7/2,7/2))*iram);
-draw(rotate(270,(7/2,7/2))*iram);
-\end{asy}
-\caption{Scenario in Problem 1.}
-\label{fig:square_inscribed}
-\end{minipage}\hfill
-\begin{minipage}{0.4\textwidth}
-\begin{asy}[width=\textwidth]
-pair A = (0,3);
-pair B = (4,0);
-pair C = (0,0);
-draw(A--B--C--cycle);
-
-label("$A$", A, NW);
-label("$B$", B, E);
-label("$C$", C, SW);
-label("$a$", B--C, S);
-label("$b$", A--C, W);
-
-path c_brace = shift(0.04*(3,4))*brace(A,B);
-
-draw(c_brace);
-label("$c$", c_brace, NE);
-
-dot(A);
-dot(B);
-dot(C);
-
-real ras = 0.3;
-path ram = (0,ras)--(ras,ras)--(ras,0);
-
-pair F = point(A--B,9/25);
-
-draw(ram);
-draw(C--F);
-draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
-
-label("$F$", F, NE);
-
-\end{asy}
-\caption{Scenario in Problem 2.}
-\label{fig:pythag_sim_tri}
-\end{minipage}
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+			draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
+			
+			draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
+			
+			label("$a$", (2,0), S);
+			label("$b$", (0,1.5), W);
+			label("$c$", (0,3)--(4,0), NE);
+			
+			real ras = 0.4;
+			path ram = (0,ras)--(ras,ras)--(ras,0);
+			
+			draw(ram);
+			draw(rotate(90,(7/2,7/2))*ram);
+			draw(rotate(180,(7/2,7/2))*ram);
+			draw(rotate(270,(7/2,7/2))*ram);
+			
+			path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
+			draw(iram);
+			draw(rotate(90,(7/2,7/2))*iram);
+			draw(rotate(180,(7/2,7/2))*iram);
+			draw(rotate(270,(7/2,7/2))*iram);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+			pair A = (0,3);
+			pair B = (4,0);
+			pair C = (0,0);
+			draw(A--B--C--cycle);
+			
+			label("$A$", A, NW);
+			label("$B$", B, E);
+			label("$C$", C, SW);
+			label("$a$", B--C, S);
+			label("$b$", A--C, W);
+			
+			path c_brace = shift(0.04*(3,4))*brace(A,B);
+			
+			draw(c_brace);
+			label("$c$", c_brace, NE);
+			
+			dot(A);
+			dot(B);
+			dot(C);
+			
+			real ras = 0.3;
+			path ram = (0,ras)--(ras,ras)--(ras,0);
+			
+			pair F = point(A--B,9/25);
+			
+			draw(ram);
+			draw(C--F);
+			draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
+			
+			label("$F$", F, NE);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 1.}
+			\label{fig:square_inscribed}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 2.}
+			\label{fig:pythag_sim_tri}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{outer_problem}
@@ -111,78 +125,88 @@ c^2 &= b^2 + a^2. & \text{Q.E.D.}
 \noindent The scenario is depicted in Figure~\ref{fig:right_tri_unit_circ}. By the definition of sine and cosine, we have $\sin\theta=AP$ and $\cos\theta=OA$. Since $\triangle OAP \sim \triangle OPT$ by AA Similarity, we have $\frac{TP}{OP}=\frac{AP}{OA}$. Substituting known values, we get $$\frac{TP}{1}=\frac{\sin\theta}{\cos\theta}\Longrightarrow TP=\tan\theta.$$ Also, $\triangle OAP \sim \triangle OKS$ by AA, so $\frac{OS}{OK}=\frac{1}{\cos\theta}$. Similarly, we have $$\frac{OS}{1}=\frac{1}{\cos\theta}\Longrightarrow OS=\sec\theta.$$ Finally, as an alternate interpretation of $\tan$, we have $\frac{KS}{OK}=\frac{AP}{OA}$, so $$\frac{KS}{1}=\frac{\sin\theta}{\cos\theta}\Longrightarrow KS = \tan\theta.$$
 
 \begin{figure}[h]
-\centering
-\begin{asy}[width=0.6\textwidth]
-real angle = 60 * pi / 180;
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\centering
+			\begin{asy}[width=0.6\textwidth]
+				real angle = 60 * pi / 180;
+				
+				pair O = (0,0);
+				pair P = (cos(angle), sin(angle));
+				pair A = (cos(angle), 0);
+				
+				draw(circle((0,0), 1));
+				
+				draw(O--A--P--cycle);
+				
+				dot(O);
+				dot(P);
+				dot(A);
+				
+				label("$O$", O, SW);
+				label("$A$", A, SE);
+				label("$P$", P, E+NE);
+				
+				draw(arc(O, point(O--A,0.25), P));
+				label("$\theta$", O, 3*(cos(angle/2), sin(angle/2)));
+				
+				real protrude = 2.5;
+				
+				draw((-protrude/2,0)--(protrude,0),Arrow);
+				draw((0,-protrude/2)--(0,protrude/1.5),Arrow);
+				
+				label("$x$", (protrude,0), E);
+				label("$y$", (0,protrude/1.5), N);
+				
+				path cos_brace = shift(0,-0.05)*brace(A, O);
+				draw(cos_brace);
+				label("$\sin\theta$", A--P, SE);
+				label("$\cos\theta$", cos_brace, S);
+				
+				label("$1$", O--P, NW);
+				
+				pair T = (2,0);
+				
+				draw(P--T);
+				
+				dot(T);
+				label("$T$", T, S);
+				
+				real ras = 0.1;
+				
+				draw(shift(P)*rotate(-120)*((0,ras)--(ras,ras)--(ras,0)));
+				draw("$\tan\theta$", P--T, ENE);
+				
+				pair S = 2*P;
+				pair K = (1,0);
+				
+				draw(P--S);
+				draw(S--K,dashed);
+				
+				path sec_brace = shift(rotate(90)*(S-O)/10)*brace(O,S);
+				draw(sec_brace);
+				
+				label("$\tan\theta$", S--K, E);
+				label("$\sec\theta$", sec_brace, 2*W+NW);
+				
+				dot(S);
+				label("$S$", S, NE);
+				
+				dot(K);
+				label("$K$", K, SE);
+				
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
 
-pair O = (0,0);
-pair P = (cos(angle), sin(angle));
-pair A = (cos(angle), 0);
-
-draw(circle((0,0), 1));
-
-draw(O--A--P--cycle);
-
-dot(O);
-dot(P);
-dot(A);
-
-label("$O$", O, SW);
-label("$A$", A, SE);
-label("$P$", P, E+NE);
-
-draw(arc(O, point(O--A,0.25), P));
-label("$\theta$", O, 3*(cos(angle/2), sin(angle/2)));
-
-real protrude = 2.5;
-
-draw((-protrude/2,0)--(protrude,0),Arrow);
-draw((0,-protrude/2)--(0,protrude/1.5),Arrow);
-
-label("$x$", (protrude,0), E);
-label("$y$", (0,protrude/1.5), N);
-
-path cos_brace = shift(0,-0.05)*brace(A, O);
-draw(cos_brace);
-label("$\sin\theta$", A--P, SE);
-label("$\cos\theta$", cos_brace, S);
-
-label("$1$", O--P, NW);
-
-pair T = (2,0);
-
-draw(P--T);
-
-dot(T);
-label("$T$", T, S);
-
-real ras = 0.1;
-
-draw(shift(P)*rotate(-120)*((0,ras)--(ras,ras)--(ras,0)));
-draw("$\tan\theta$", P--T, ENE);
-
-pair S = 2*P;
-pair K = (1,0);
-
-draw(P--S);
-draw(S--K,dashed);
-
-path sec_brace = shift(rotate(90)*(S-O)/10)*brace(O,S);
-draw(sec_brace);
-
-label("$\tan\theta$", S--K, E);
-label("$\sec\theta$", sec_brace, 2*W+NW);
-
-dot(S);
-label("$S$", S, NE);
-
-dot(K);
-label("$K$", K, SE);
-
-
-\end{asy}
-\caption{The right triangle and unit circle.}
-\label{fig:right_tri_unit_circ}
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\caption{The right triangle and unit circle.}
+			\label{fig:right_tri_unit_circ}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{inner_problem}
@@ -193,52 +217,12 @@ label("$K$", K, SE);
 \begin{align*}
 OA^2+AP^2&=OP^2 & \text{[Pythagorean theorem]} \\
 \cos^2\theta + \sin^2\theta &= 1^2 & \text{[Substitution]} \\
-\sin^2\theta + \cos^2\theta &= 1 & \text{[Rearrange]} \\
+\sin^2\theta + \cos^2\theta &= 1. & \text{[Rearrange]}
 \end{align*}
 
 \begin{inner_problem}
 \item Use the picture of the unit circle in Figure~\ref{fig:unit_circle} to find and prove a value for $\cos(A-B)$. Note that $D_1$ and $D_2$ are the same length because they subtend the same size arc of the circle. Set them equal and work through the algebra, using the distance formula and part (b) of this problem.
 \end{inner_problem}
-
-\begin{figure}
-\centering
-\begin{minipage}{0.6\textwidth}
-\begin{asy}[width=\textwidth]
-import graph;
-
-real A = 195 * pi / 180;
-real B = 125 * pi / 180;
-
-draw((-1.4,0)--(1.4,0),Arrow);
-draw((0,-1.4)--(0,1.4),Arrow);
-
-draw(Circle((0,0),1,50));
-
-pair Ap = (cos(A), sin(A));
-pair Bp = (cos(B), sin(B));
-
-real AB = A-B;
-pair ABp = (cos(AB), sin(AB));
-
-dot(Ap);
-dot(Bp);
-dot(ABp);
-
-draw(ABp--(1,0));
-draw(Ap--Bp);
-label("$(\cos B, \sin B)$", Bp, NW);
-label("$(\cos A, \sin A)$", Ap, SW);
-label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
-label("$0^\circ$", (1,0),SE);
-
-label("$D_1$", ABp--(1,0), .2*SW);
-label("$D_2$", Ap--Bp, .2*SE);
-
-\end{asy}
-\caption{Scenario in Problem 3.}
-\label{fig:unit_circle}
-\end{minipage}
-\end{figure}
 
 \noindent We have $D_1=D_2$, so
 \begin{align*}
@@ -248,8 +232,56 @@ D_1^2&=D_2^2 \\
 (\cos^2 A + \sin^2 A) + (\cos^2 B + \sin^2 A) - 2\sin A\sin B &= (\cos^2 (A-B) + \sin^2(A-B)) + \\ &\phantom{=} 1 - 2\cos(A-B) \\
 \cancelto{0}{1 + 1} - 2\sin A\sin B - 2\cos A\cos B &= \cancelto{0}{1 + 1} - 2\cos(A-B) \\
 2\sin A\sin B + 2\cos A\cos B &= 2\cos(A-B) \\
-\sin A\sin B + \cos A\cos B &= \cos(A-B). & \text{Q.E.D.} \\
+\sin A\sin B + \cos A\cos B &= \cos(A-B). & \text{Q.E.D.}
 \end{align*}
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				import graph;
+				
+				real A = 195 * pi / 180;
+				real B = 125 * pi / 180;
+				
+				draw((-1.4,0)--(1.4,0),Arrow);
+				draw((0,-1.4)--(0,1.4),Arrow);
+				
+				draw(Circle((0,0),1,50));
+				
+				pair Ap = (cos(A), sin(A));
+				pair Bp = (cos(B), sin(B));
+				
+				real AB = A-B;
+				pair ABp = (cos(AB), sin(AB));
+				
+				dot(Ap);
+				dot(Bp);
+				dot(ABp);
+				
+				draw(ABp--(1,0));
+				draw(Ap--Bp);
+				label("$(\cos B, \sin B)$", Bp, NW);
+				label("$(\cos A, \sin A)$", Ap, SW);
+				label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
+				label("$0^\circ$", (1,0),SE);
+				
+				label("$D_1$", ABp--(1,0), .2*SW);
+				label("$D_2$", Ap--Bp, .2*SE);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\caption{Scenario in Problem 3.}
+			\label{fig:unit_circle}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
 
 \begin{outer_problem}
 \item Write down as many trig identities as you can---no need to prove these.
@@ -287,7 +319,7 @@ $$\arraycolsep=1pt\begin{array}{rlrlrl}
 \begin{inner_problem}[start=1]
 \item Recall that you can write a complex number both in Cartesian and polar forms. Let
 
-$$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta=r\cis\theta.$$
+$$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
 
 What is $r$ in terms of $a$ and $b$?
 \end{inner_problem}
@@ -295,28 +327,38 @@ What is $r$ in terms of $a$ and $b$?
 \noindent $r$ is just the distance to the origin from $a+bi$. Draw a right triangle as shown in Figure~\ref{fig:a_plus_b_i}. By the pythagorean theorem, $r=\sqrt{a^2+b^2}$.
 
 \begin{figure}[h]
-\centering
-\begin{asy}[width=0.5\textwidth]
-pair Z = (4,3);
-pair O = (0,0);
-pair T = (4,0);
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				pair Z = (4,3);
+				pair O = (0,0);
+				pair T = (4,0);
+				
+				draw((-1,0)--(5,0), Arrow);
+				draw((0,-1)--(0,4), Arrow);
+				label("$x$", (5,0), E);
+				label("$y$", (0,4), N);
+				
+				draw(O--Z);
+				draw(O--T--Z, dashed);
+				label("$z=a+bi$", Z, NW);
+				label("$a$", O--T, S);
+				label("$b$", T--Z, E);
+				label(rotate(atan2(3,4) * 180 / pi)*"$\sqrt{a^2+b^2}$", O--Z, NW);
+				
+				dot(Z);
+			\end{asy}
+		\end{minipage}
+	\end{center}
 
-draw((-1,0)--(5,0), Arrow);
-draw((0,-1)--(0,4), Arrow);
-label("$x$", (5,0), E);
-label("$y$", (0,4), N);
-
-draw(O--Z);
-draw(O--T--Z, dashed);
-label("$z=a+bi$", Z, NW);
-label("$a$", O--T, S);
-label("$b$", T--Z, E);
-label(rotate(atan2(3,4) * 180 / pi)*"$\sqrt{a^2+b^2}$", O--Z, NW);
-
-dot(Z);
-\end{asy}
-\caption{$a+bi$ in the complex plane.}
-\label{fig:a_plus_b_i}
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\caption{$a+bi$ in the complex plane.}
+			\label{fig:a_plus_b_i}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
 \end{figure}
 
 \begin{inner_problem}
@@ -341,7 +383,7 @@ r_1(\cos\theta + i\sin\theta)r_2(\cos\phi + i\sin\phi) &= r_1r_2(\cos\theta\cos\
 \end{align*}
 
 \begin{inner_problem}
-\item Use part (d) to simplify $(\sqrt{3}+i)^{18}$.
+\item Use part (c) to simplify $(\sqrt{3}+i)^{18}$.
 \end{inner_problem}
 
 \noindent We have $\sqrt{3}+i=r(\cos\theta + i\sin\theta) = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)$.
@@ -381,7 +423,7 @@ $$\overline{z}=\cos\theta - i\sin\theta = \cos-\theta + i\sin-\theta.$$
 \end{outer_problem}
 
 \begin{inner_problem}[start=1]
-\item $x^2-y^2=1$.
+\item $x^2-y^2=1$
 \end{inner_problem}
 
 \begin{iinner_problem}[start=1]
@@ -459,7 +501,7 @@ x'^2-y'^2&=1 \\
 \end{align*}
 
 \begin{inner_problem}
-\item $y^2=4Cx$.
+\item $y^2=4Cx$
 \end{inner_problem}
 
 \begin{iinner_problem}[start=1]
