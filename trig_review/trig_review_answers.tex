@@ -11,63 +11,63 @@
 		\begin{minipage}[b]{0.45\textwidth}
 			\centering
 			\begin{asy}[width=0.5\textwidth]
-			draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
-			
-			draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
-			
-			label("$a$", (2,0), S);
-			label("$b$", (0,1.5), W);
-			label("$c$", (0,3)--(4,0), NE);
-			
-			real ras = 0.4;
-			path ram = (0,ras)--(ras,ras)--(ras,0);
-			
-			draw(ram);
-			draw(rotate(90,(7/2,7/2))*ram);
-			draw(rotate(180,(7/2,7/2))*ram);
-			draw(rotate(270,(7/2,7/2))*ram);
-			
-			path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
-			draw(iram);
-			draw(rotate(90,(7/2,7/2))*iram);
-			draw(rotate(180,(7/2,7/2))*iram);
-			draw(rotate(270,(7/2,7/2))*iram);
+				draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
+				
+				draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
+				
+				label("$a$", (2,0), S);
+				label("$b$", (0,1.5), W);
+				label("$c$", (0,3)--(4,0), NE);
+				
+				real ras = 0.4;
+				path ram = (0,ras)--(ras,ras)--(ras,0);
+				
+				draw(ram);
+				draw(rotate(90,(7/2,7/2))*ram);
+				draw(rotate(180,(7/2,7/2))*ram);
+				draw(rotate(270,(7/2,7/2))*ram);
+				
+				path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
+				draw(iram);
+				draw(rotate(90,(7/2,7/2))*iram);
+				draw(rotate(180,(7/2,7/2))*iram);
+				draw(rotate(270,(7/2,7/2))*iram);
 			\end{asy}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{0.45\textwidth}
 			\centering
 			\begin{asy}[width=0.7\textwidth]
-			pair A = (0,3);
-			pair B = (4,0);
-			pair C = (0,0);
-			draw(A--B--C--cycle);
-			
-			label("$A$", A, NW);
-			label("$B$", B, E);
-			label("$C$", C, SW);
-			label("$a$", B--C, S);
-			label("$b$", A--C, W);
-			
-			path c_brace = shift(0.04*(3,4))*brace(A,B);
-			
-			draw(c_brace);
-			label("$c$", c_brace, NE);
-			
-			dot(A);
-			dot(B);
-			dot(C);
-			
-			real ras = 0.3;
-			path ram = (0,ras)--(ras,ras)--(ras,0);
-			
-			pair F = point(A--B,9/25);
-			
-			draw(ram);
-			draw(C--F);
-			draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
-			
-			label("$F$", F, NE);
+				pair A = (0,3);
+				pair B = (4,0);
+				pair C = (0,0);
+				draw(A--B--C--cycle);
+				
+				label("$A$", A, NW);
+				label("$B$", B, E);
+				label("$C$", C, SW);
+				label("$a$", B--C, S);
+				label("$b$", A--C, W);
+				
+				path c_brace = shift(0.04*(3,4))*brace(A,B);
+				
+				draw(c_brace);
+				label("$c$", c_brace, NE);
+				
+				dot(A);
+				dot(B);
+				dot(C);
+				
+				real ras = 0.3;
+				path ram = (0,ras)--(ras,ras)--(ras,0);
+				
+				pair F = point(A--B,9/25);
+				
+				draw(ram);
+				draw(C--F);
+				draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
+				
+				label("$F$", F, NE);
 			
 			\end{asy}
 		\end{minipage}
