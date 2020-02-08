@@ -1,4 +1,5 @@
-***Note: GAtM main text finalizaed by me and Andrew for printing in 2020. Sorry if we missed anything -Brandon***
+https://nichodon.github.io/gatm has all the PDFs without all the code so go there if you are here for the text.
+Note to Tim: For printing I merged my fork and made some edits (not content wise); sorry if I messed something up.
 
 # GAtM
 A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM") by Peter Herreshoff.
