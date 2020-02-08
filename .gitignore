@@ -2,6 +2,7 @@
 *.js
 !build/*.pdf
 !build/chapters/*.pdf
+!build/chapters_answers/*.pdf
 **/.DS_Store
 
 *answers-*.tex
