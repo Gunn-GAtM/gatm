@@ -1442,24 +1442,24 @@ i reflects over the $x$-axis, since the $y$ coordinate is being flipped. ii rota
 
 Using the method we described, we first stretch along the $x$-axis by $\frac{1}{12}$:
 
-$$\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{3}{4}}{5}{15}.$$
+$$\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{2}{3}}{5}{15}.$$
 
 We then shear along the $y$-axis by $-5$:
 
-$$\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{3}{4}}{0}{\frac{45}{4}}.$$
+$$\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{2}{3}}{0}{\frac{35}{3}}.$$
 
-We then stretch along the $y$-axis by $\frac{4}{45}$:
+We then stretch along the $y$-axis by $\frac{3}{35}$:
 
-$$\twomat{1}{0}{0}{\frac{4}{45}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{3}{4}}{0}{1}.$$
+$$\twomat{1}{0}{0}{\frac{3}{35}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{\frac{2}{3}}{0}{1}.$$
 
-Finally, we shear by $-\frac{3}{4}$ along the $x$-axis:
+Finally, we shear by $-\frac{2}{3}$ along the $x$-axis:
 
-$$\twomat{1}{-\frac{3}{4}}{0}{1}\twomat{1}{0}{0}{\frac{4}{45}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{0}{0}{1}.$$
+$$\twomat{1}{-\frac{2}{3}}{0}{1}\twomat{1}{0}{0}{\frac{3}{35}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{0}{0}{1}.$$
 
 Now we undo the operations in turn:
 
-$$\underbrace{\twomat{12}{0}{0}{1}\twomat{1}{0}{5}{1}\twomat{1}{0}{0}{\frac{45}{4}}\twomat{1}{\frac{3}{4}}{0}{1}}\twomat{1}{-\frac{3}{4}}{0}{1}\twomat{1}{0}{0}{\frac{4}{45}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{0}{0}{1}.$$
-$$\Longrightarrow \twomat{12}{0}{0}{1}\twomat{1}{0}{5}{1}\twomat{1}{0}{0}{\frac{45}{4}}\twomat{1}{\frac{3}{4}}{0}{1} = \twomat{12}{8}{5}{15}.$$
+$$\underbrace{\twomat{12}{0}{0}{1}\twomat{1}{0}{5}{1}\twomat{1}{0}{0}{\frac{35}{3}}\twomat{1}{\frac{2}{3}}{0}{1}}\twomat{1}{-\frac{2}{3}}{0}{1}\twomat{1}{0}{0}{\frac{3}{35}}\twomat{1}{0}{-5}{1}\twomat{\frac{1}{12}}{0}{0}{1}\twomat{12}{8}{5}{15} = \twomat{1}{0}{0}{1}.$$
+$$\Longrightarrow \twomat{12}{0}{0}{1}\twomat{1}{0}{5}{1}\twomat{1}{0}{0}{\frac{35}{3}}\twomat{1}{\frac{2}{3}}{0}{1} = \twomat{12}{8}{5}{15}.$$
 
 \begin{inner_problem}
 \item $\twomat{3}{24}{4}{7}$
