@@ -120,7 +120,7 @@ Informal Justification: A shape can be flipped or not, and it can have whatever 
 				$r$ & $r$ & $r^2$ & $r^3$ & $I$ \\
 				\rowcolor{light-gray}
 				$r^2$ & $r^2$ & $r^3$ & $I$ & $r$ \\
-				$r^3$ & $I$ & $r$ & $r^2$ & $r^3$ \\ \hline
+				$r^3$ & $r^3$ & $I$ & $r$ & $r^2$ \\ \hline
 			\end{tabular}
 			\vspace*{0.5\baselineskip}
 		\end{minipage}
@@ -572,7 +572,7 @@ void draw_elem(int indx, bool midplane_oof = false) {
 			\centering
 			\begin{asy}[width=0.9\textwidth]
 				import three;
-				currentprojection = orthographic(5,2,4);
+				currentprojection = orthographic(5,3,4);
 				draw_elem(5);
 			\end{asy}
 		\end{minipage}
@@ -596,7 +596,7 @@ void draw_elem(int indx, bool midplane_oof = false) {
 			%after two hours on just this one figure im legit at my wits end
 			%mostly cuz it takes about 30 minutes for this to build
 			\begin{asy}[width=0.7\textwidth]
-				import three
+				import three;
 				currentprojection = orthographic(5,3,4);
 				draw_elem(7);
 			\end{asy}
