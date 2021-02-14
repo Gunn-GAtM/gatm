@@ -41,7 +41,7 @@ def make_progress_bar(percent, width=50):
     if filled < 0: filled = 0
     if filled > parts - 1: filled = parts - 1
     unfilled = parts - 1 - filled
-    return emph('[' + filled * '=' + '>' + ' ' * unfilled + '] (') + str(int(round(percent * 100))) + '%)'
+    return emph('[' + filled * '=' + '>' + ' ' * unfilled + ']') + '(' + str(int(round(percent * 100))) + '%)'
 
 def get_devnull():
     global FNULL

@@ -4,6 +4,9 @@
 \usepackage{subfiles}
 \usepackage{pdfpages} % Include PDF
 
+% Lets us get absolute page numbers for later PDF splitting
+\usepackage{zref-user,zref-abspage}
+
 % We use inline Asymptote throughout this document. We could split them out into their own .asy files, but ehhhhh
 \usepackage[inline]{asymptote}
 
@@ -51,19 +54,29 @@
 \newcounter{problem_i}
 \newcounter{problem_ii}
 
+% Dumb hack to output the page number as an integer into the log file
+\makeatletter
+\newcommand{\getabspage}[1]{\zlabel{#1}\typeout{Page number of chapter #1 \zref@extract{#1}{abspage}}}
+\makeatother
+
+% Include a chapter of a given name, appending its start and end page to the 
+\newcommand{\inclchapter}[1]{\pagebreak\setcounter{figure}{0}\getabspage{start:#1}\subfile{"#1"/chapter.tex}\getabspage{end:#1}}
+
 % END PREAMBLE
 
 
 
 
 \begin{document}
-\pagenumbering{gobble}
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\pagebreak
+
 \tableofcontents
 
-\subfile{"1 Trigonometry Review/chapter.tex"}
-\pagebreak
-\setcounter{figure}{0}
-\subfile{"2 It's a Snap/chapter.tex"}
-\pagebreak
+\inclchapter{1 Trigonometry Review}
+\inclchapter{2 It's a Snap}
+
 
 \end{document}
