@@ -1,12 +1,13 @@
 *.pdf
 *.js
+build/log/*
 !build/*.pdf
 !build/chapters/*.pdf
-!build/chapters_answers/*.pdf
+!build/key_chapters/*.pdf
 **/.DS_Store
 
 *answers-*.tex
-*source-*.tex
+*chapter-*.tex
 *autopp-*.tex
 
 *.prc
