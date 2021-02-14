@@ -34,7 +34,7 @@ The book builds into the build/ folder. (Didn't expect that, huh?) The build fol
     - *gatm.log*
     - ... various debugging files ...
 
-Simple enough. What's not so simple is the actual building process, as we encounter some of LaTeX's most stupefying characteristics.
+Simple enough. What's not so simple is the actual building process, as we encounter some of LaTeX's most stupefying characteristics. 
 
 Building works with `python build.py`. We can either give it command line arguments, or if no arguments are provided, we enter an interactive mode. To build everything in build, run `python build.py all`, which builds the textbook and answer key and then excerpts all chapters. To build the textbook ONLY, run `python build.py textbook`, which will not update textbook_chapters/. To build the textbook and chapters, run `python build.py textbook_chapters`. Similarly, building the answer key is just
 `python build.py key`, and with chapters, `python build.py key_chapters`. In this case, the cover, credits and glossary are considered chapters, though they don't contribute to the chapter index.

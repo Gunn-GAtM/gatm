@@ -29,34 +29,140 @@ chapter_list = os.listdir
 
 # Find errors in the log
 error_regex = re.compile(":[0-9]*:")
+fatal_error_test = "Fatal error occurred, no output PDF file produced!"
 
-def run_pdflatex_on_file(filename, output_dir=log_directory):
-    flags = "-shell-escape -interaction=nonstopmode -file-line-error --output-directory=%s" % log_directory
+FNULL = None
+
+def make_progress_bar(percent, width=50):
+    """Make a silly progress bar of a given width"""
+    parts = width - 2
+    filled = int(round(percent * width))
+    filled -= 1 # for the > character
+    if filled < 0: filled = 0
+    if filled > parts - 1: filled = parts - 1
+    unfilled = parts - 1 - filled
+    return emph('[' + filled * '=' + '>' + ' ' * unfilled + '] (') + str(int(round(percent * 100))) + '%)'
+
+def get_devnull():
+    global FNULL
+    if not FNULL:
+        FNULL = open(os.devnull, 'w')
+
+class LatexError(Exception):
+    """Error in pdflatex"""
+
+def run_pdflatex_on_file(filename,
+                         output_dir=log_directory,
+                         live_output=True,
+                         estimate_progress=True,
+                         estimated_pages=60,
+                         output_errors=True,
+                         throw_on_fatal=True,
+                         throw_on_error=False):
+    """Run pdflatex on a file and dump the result into the log folder, where it shall eventually be UPROOTED from"""
+    if not live_output:
+        estimate_progress = False
+
+    # Env for pdflatex to run in. Set max print line and error line to 1000
+    env = os.environ.copy()
+    env["max_print_line"] = "1000"
+    env["error_line"] = "1000"
+    env["half_error_line"] = "238"
+
+    # Lets pdflatex search for files from book/ as a working directory and intermediate files in the output directory, but logging everything in the output directory
+    env["TEXINPUTS"] = book_directory + ':' + output_dir + ';'
+
+    flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error --output-directory=%s" % log_directory
     flags = flags.split()
+
+    live_output = True
 
     if not os.path.isfile(filename):
         raise RequirementError("File %s does not exist!" + filename)
 
-    print(emph("Running pdflatex on file %s" % filename))
+    print(emph("Running pdflatex on file %s, outputting into directory %s" % (filename, output_dir)))
 
-    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = process.communicate()
+    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env)
 
-    return (out, err)
+    # Handle a line, which can either be done in real time or after the fact
+    def handle_line(line):
+        line = line.strip()
+        if throw_on_fatal:
+            if fatal_error_test in line:
+                raise LatexError(emph(warn("Fatal error, see log for details.")))
+        if output_errors or throw_on_error:
+            # Precedes a thrown error
+            if line.startswith("! LaTeX Error"):
+                if output_errors:
+                    print(warn("! LaTeX Error") + ':' + line[14:])
+            match = error_regex.search(line)
+            if match:
+                # We have a line error
+                location = line[:match.end()-1]
+                error = line[match.end():]
 
-    """for line in (out + '\n' + err).split('\n'):
-        if error_regex.search(line):
-            print(line)"""
+                if throw_on_error:
+                    raise LatexError(emph(warn("Unexpected line error at %s" % location)) +": %s" % error)
+                if output_errors:
+                    print(warn(location) + ':' + error)
+
+    # Fancy thing which allows the pdflatex command to be run and python to listen to it as a stream of lines
+    if live_output:
+        while True:
+            line = process.stdout.readline()
+            if not line:
+                break
+            handle_line(line)
+    else:
+        # Run the entire thing, then look at it after the fact
+        for line in out.split('\n'):
+            handle_line(line)
+
+def run_asy_in_dir(dirname, estimate_progress=True):
+    """Compile all the .asy files in a given directory which were dumped out by the first pdflatex call"""
+    print(emph("Compiling .asy files in " + dirname))
+    file_list = []
+
+    for filename in os.listdir(dirname):
+        if filename.endswith(".asy"):
+            file_list.append(filename)
+
+    asy_count = len(file_list)
+    print("Total Asymptote files to render: " + str(asy_count))
+
+    for i, filename in enumerate(file_list):
+        # Run asymptote on each file
+        process = subprocess.Popen(['asy', filename], cwd=dirname)
+        process.wait()
+
+        if estimate_progress:
+            print(make_progress_bar((i+1) / float(asy_count)))
+
 
 def book_path(join_with):
     return os.path.join(book_directory, *join_with.split('/'))
 
+def log_path(join_with):
+    return os.path.join(log_directory, *join_with.split('/'))
+
+def build_path(join_with):
+    return os.path.join(build_directory, *join_with.split('/'))
+
 def build_textbook():
     clean_logs()
-    run_pdflatex_on_file(book_path("textbook.tex"))
+    textbook_path = book_path("textbook.tex")
 
+    print("Building textbook: Output inline Asymptote files (1/4)")
+    run_pdflatex_on_file(textbook_path)
+    print("Building textbook: Compile Asymptote figures (2/4)")
+    run_asy_in_dir(log_directory)
+    print("Building textbook: Create the PDF and reference/label locations (3/4)")
+    run_pdflatex_on_file(textbook_path)
+    print("Building textbook: Compile one more time, filling in the reference/label locations (4/4)")
+    run_pdflatex_on_file(textbook_path)
 
-    pass
+    print("Moving compiled textbook file to build/gatm.pdf.")
+    os.rename(log_path("textbook.pdf"), build_path("gatm.pdf"))
 
 def build_key():
     pass
@@ -164,7 +270,7 @@ def yay(text):
     return color_text(terminal_colors.OKGREEN, text)
 
 def warn(text):
-    return color_text(terminal_colors.WARNING, text)
+    return color_text(terminal_colors.FAIL, text)
 
 def emph(text):
     return color_text(terminal_colors.BOLD, text)
