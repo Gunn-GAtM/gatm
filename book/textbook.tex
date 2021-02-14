@@ -1,42 +1,45 @@
-\documentclass[8pt, twosided, a4paper]{article}
-% 8 point font, A4-sized paper
+% Due to the usage of the subfiles module, every subfile of the document (sans the cover file) uses this exact preamble.
+\documentclass[8pt, twosided, a4paper]{article} % 8 point font, A4-sized paper
 
-\usepackage[us, 12hr]{datetime}
-\usepackage[margin=2.5cm]{geometry}
-\usepackage[utf8]{inputenc}
-
-\usepackage[scaled]{helvet}
-\renewcommand\familydefault{\sfdefault}
-\usepackage[T1]{fontenc}
-
-\usepackage{pdfpages}
 \usepackage{subfiles}
-\usepackage{setspace}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{mathtools}
+\usepackage{pdfpages} % Include PDF
 
-\usepackage{cancel}
-
+% We use inline Asymptote throughout this document. We could split them out into their own .asy files, but ehhhhh
 \usepackage[inline]{asymptote}
 
-\usepackage{array}
-\usepackage{enumitem}
-\usepackage{float}
-\usepackage{amsfonts}
+% UTF-8 encoding in files
+\usepackage[utf8]{inputenc}
+
+% Document styling information
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[scaled]{helvet} % Helvetica
+\renewcommand\familydefault{\sfdefault} % Use Helvetica for bolded text too
+\usepackage[T1]{fontenc}
+
+% Tikz stuff
 \usepackage{tikz}
-\usetikzlibrary{matrix,fit,tikzmark,calc}
+\usetikzlibrary{matrix, fit, tikzmark, calc}
+
+% Other packages
+\usepackage{amsfonts}
+\usepackage{array}
 \usepackage{blkarray}
 \usepackage{caption}
-\usepackage{wrapfig}
-\usepackage{hhline}
-\usepackage[bottom]{footmisc}
-
-% \usepackage[acronym]{glossaries}
-
+\usepackage{cancel}
 \usepackage{color, colortbl}
-\definecolor{light-gray}{gray}{0.95}
+\usepackage[us, 12hr]{datetime}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[bottom]{footmisc}
+\usepackage{hhline}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{wrapfig}
 
+% Macro definitions
+\definecolor{light-gray}{gray}{0.95}
 \newcommand{\twomat}[4] {\left[\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right]}
 \newcommand{\threemat}[9] {\left[\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9 \end{array}\right]}
 
@@ -44,8 +47,14 @@
 \newcommand{\twovec}[2] {\left[\begin{array}{c} #1 \\ #2 \end{array}\right]}
 \newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
 
+% Counters for problems and subproblems
 \newcounter{problem_i}
 \newcounter{problem_ii}
+
+% END PREAMBLE
+
+
+
 
 \begin{document}
 \pagenumbering{gobble}
