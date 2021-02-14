@@ -6,6 +6,9 @@
 
 import sys
 import os
+import shutil
+import subprocess
+import re
 
 # Fix input from Python 2
 try:
@@ -13,7 +16,45 @@ try:
 except NameError:
     pass
 
+# Should be the folder gatm/
+working_directory = os.path.dirname(os.path.abspath(__file__))
+build_directory = os.path.join(working_directory, "build")
+log_directory = os.path.join(build_directory, "log")
+textbook_chapter_directory = os.path.join(build_directory, "chapters")
+answer_key_chapter_directory = os.path.join(build_directory, "key_chapters")
+
+book_directory = os.path.join(working_directory, "book")
+
+chapter_list = os.listdir
+
+# Find errors in the log
+error_regex = re.compile(":[0-9]*:")
+
+def run_pdflatex_on_file(filename, output_dir=log_directory):
+    flags = "-shell-escape -interaction=nonstopmode -file-line-error --output-directory=%s" % log_directory
+    flags = flags.split()
+
+    if not os.path.isfile(filename):
+        raise RequirementError("File %s does not exist!" + filename)
+
+    print(emph("Running pdflatex on file %s" % filename))
+
+    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = process.communicate()
+
+    return (out, err)
+
+    """for line in (out + '\n' + err).split('\n'):
+        if error_regex.search(line):
+            print(line)"""
+
+def book_path(join_with):
+    return os.path.join(book_directory, *join_with.split('/'))
+
 def build_textbook():
+    clean_logs()
+    run_pdflatex_on_file(book_path("textbook.tex"))
+
 
     pass
 
@@ -27,12 +68,18 @@ def interactive_build_key_chapter():
     pass
 
 def build_textbook_cover():
+    clean_logs()
     pass
 
 def build_key_cover():
     pass
 
 def clean_logs():
+    """Empty the log folder to avoid strange conflicts with past builds"""
+    print(emph("Emptying logs folder."))
+    shutil.rmtree(log_directory)
+    os.mkdir(log_directory)
+
     pass
 
 def clean_chapter_folders():
@@ -72,14 +119,6 @@ task_list = {
     "key_chapter": {
         "description": "Quick build a chapter of the answer key in its corresponding subfolder and open the PDF.",
         "callback": interactive_build_key_chapter
-    },
-    "textbook_cover": {
-        "description": "Build the textbook cover and put it in build/key_chapters.",
-        "callback": build_textbook_cover
-    },
-    "answer_key_cover": {
-        "description": "Build the answer key cover and put it in build/chapters.",
-        "callback": build_key_cover
     },
     "clean": {
         "description": "Empty the logs folder and delete all files in chapter folders besides 'answers.tex' and 'chapter.tex'.",
@@ -130,13 +169,6 @@ def warn(text):
 def emph(text):
     return color_text(terminal_colors.BOLD, text)
 
-# Should be the folder gatm/
-working_directory = os.path.dirname(os.path.abspath(__file__))
-build_directory = os.path.join(working_directory, "build")
-textbook_chapter_directory = os.path.join(build_directory, "chapter_answers")
-
-chapter_list = os.listdir
-
 needed_directories = ["build", "build/log", "build/chapters", "build/key_chapters"]
 requisite_files = ["book/textbook.tex", "book/answer_key.tex"]
 
@@ -153,7 +185,7 @@ interactive_task_list = [
 
 def create_needed_directories():
     for directory in needed_directories:
-        dirname = os.path.join(working_directory, directory.split('/'))
+        dirname = os.path.join(working_directory, *directory.split('/'))
         if not os.path.exists(dirname):
             print("Folder %s does not exist!" % directory)
             os.mkdir(directory)
@@ -172,10 +204,13 @@ def run_operations(ops):
     for opname in ops:
         op = task_list[opname]
         description = op["description"]
-        print("Doing operation %s: %s" % (op, description))
+        print("Doing operation %s: %s" % (opname, description))
 
         if "callback" in op:
             op["callback"]()
+        elif "subtasks" in op:
+            print("Subtasks: " + str(op["subtasks"]))
+            run_operations(op["subtasks"])
 
 def interactive():
     """Interactive mode, where we guide the user to whatever build option."""
@@ -195,6 +230,7 @@ def interactive():
         if operation not in task_list:
             print "Unrecognized operation %s." % warn(operation)
         else:
+            check_things()
             run_operations(operation)
             sys.exit()
 
