@@ -2,6 +2,19 @@
 A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM") by Peter Herreshoff.
 If you are looking for the text, go to https://gunn-gatm.github.io/ for the PDFs without all the code.
 
+## Information for prospective contributors
+This project was first bodged together in summer of 2019. I'd estimate it took a couple hundred hours, but it's not remotely free of errors and is often inconsistent. Today is February 13, 2021, and after some encouragement by a certain Yu-Ting Chang, I (Timothy) have decided to work on it once more, correcting errors and making the build system less terrifying.
+
+### Structure
+There are two main documents: the textbook, and the answer key. The textbook comprises a cover, a credits page, sixteen chapters, and a glossary. The answer key comprises a cover and sixteen chapters. 
+
+If all of the textbook were to be put into one monolithic document, it would be some thousand lines long, and even longer for the answer key. More importantly as someone working on the document, it would take ages to see if your changes worked on a particular chapter, since you'd have to recompile the whole book each time. To combat this problem, we use the *subfiles* package, and put each chapter into its own folder. The chapters are given their order by the number preceding their folder.
+
+The *subfiles* package is relatively intuitive. When compiling the document as a whole, we include a subfile with the command \subfile{./path/to/chapter.tex}, which basically transcludes the contents of that file into the main document. More tricky is when we compile a subfile, each of which is topped with a special documentclass: \documentclass[../textbook.tex]{subfiles} or, in the case of the answer key, \documentclass[../answers.tex]{subfiles}. This causes the entire preamble
+of the main document to be included in the subfile, including document styling information, macros like \twomat, Asymptote definitions, et cetera.
+
+A chapter is included in the main document if it begins with a number 0–9. All the corresponding chapter.tex files are thus included as subfiles of textbook.tex, and answers.tex files as subfiles of answer_key.tex. The cover, which has different styling than the rest of the document, is included in a special way, by first compiling it to a PDF and then including the PDF in the main document.
+
 GAtM Rough Draft: 100%
 
 GAtM Final: 98%
