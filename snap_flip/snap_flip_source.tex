@@ -180,11 +180,11 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 
 \noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
-Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by multiplying them, which is simply sequencing them. We evaluate them right-to-left (RTL) as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
+Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by sequencing them, which we write like multiplication. We evaluate them right-to-left (RTL) as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
 These six positions, along with the operation $\cdot$ of transformation composition, form another group: the \textbf{dihedral group} of the equilateral triangle, or $D_3$. It is denoted $D_3$ because it is a dihedral group of a $3$-sided regular polygon. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; this etymology refers to the two faces of our paper triangle.
 
-Dihedral groups exist for any polygonal figure; mathematically speaking, the dihedral group $D_n$ is the group of symmetries, or \textbf{symmetry group}, of a $n$-sided regular polygon. A \textbf{symmetry group} is the set of all isometries of an object, including the identity, which map an object to itself. Note that the symmetry groups of plane figures are specifically called dihedral groups, while shapes in any number of dimensions have symmetry groups. For example, a pentagon's symmetry group is a dihedral group, while a cube's symmetry group is not. Let's study the properties of the dihedral group of the equilateral triangle.
+Dihedral groups exist for any polygonal figure; mathematically speaking, the dihedral group $D_n$ is the group of symmetries, or \textbf{symmetry group}, of a $n$-sided regular polygon. While shapes in any number of dimensions have symmetry groups, the symmetry groups of plane figures are specifically called dihedral groups. For example, a pentagon's symmetry group is a dihedral group, while a cube's symmetry group is not. Let's study the properties of the dihedral group of the equilateral triangle.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
 % \newcolumntype{C}{>{\centering\arraybackslash}p{1em}} %i dont think we need this? idk
@@ -195,7 +195,7 @@ Dihedral groups exist for any polygonal figure; mathematically speaking, the dih
 	\begin{center}
 		\begin{minipage}[c]{0.55\textwidth}
 			\begin{enumerate}
-				\item The six ``operations'' are considered \textbf{isometries}. Isometries are ways of mapping the triangle to itself, preserving its shape and its center. Are there any other isometries of the equilateral triangle?
+				\item Is the list of six operations complete? (Are there any other isometries of the equilateral triangle that preserve its shape and location?)
 				\item As with the snap group, we can make a group table for the dihedral group. Fill out a table like the one in Figure~\ref{fig:sbstable} in your notebook. Like the snap group table, the top row indicates what operation is done first and the left column indicates what's done second. In other words, $XY$ is in the $X$'s' row and $Y$'s column. $AD=B$ is done for you.
 			\end{enumerate}
 		\end{minipage}
