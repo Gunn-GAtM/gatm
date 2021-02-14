@@ -58,77 +58,12 @@
 
 \begin{document}
 \pagenumbering{gobble}
-
-% too dense without it
-\setlength{\parskip}{1em}
-
-\includepdf[noautoscale=true,pages=-,width=\paperwidth]{./cover/cover_source.pdf} % cover
-
-\subfile{credits/credits_source.tex}
-\setcounter{page}{0}
-\pagebreak
-\pagenumbering{arabic}
-
-\restoregeometry % credits have a different margin setting
-
-\setlength{\parskip}{0.5em}
-
 \tableofcontents
-\pagebreak
 
-% Reset to correct value
-% Heyyyyy so idk what the correct parskip really is (0 or 2.5em so sorry if i messed this up) -B
-\setlength{\parskip}{0em}
-
-\subfile{trig_review/trig_review_source.tex} % trig review
+\subfile{1 Trigonometry Review/chapter.tex}
 \pagebreak
 \setcounter{figure}{0}
-\subfile{itsasnap/itsasnap_source.tex}
-\pagebreak
-\setcounter{figure}{0}
-\subfile{snap_flip/snap_flip_source.tex}
-\pagebreak
-\setcounter{figure}{0}
-\subfile{rrg/rrg_source.tex} % Rotation reflection groups
-\pagebreak
-\setcounter{figure}{0}
-\subfile{inf/inf_source.tex} % Infinite groups
-\pagebreak
-\setcounter{figure}{0}
-\subfile{cmplx_geo/cmplx_geo_source.tex} % Geometry of complex numbers
-\pagebreak
-\setcounter{figure}{0}
-\subfile{vitamin_i/vitamin_i_source.tex} % Vitamin i
-\pagebreak
-\setcounter{figure}{0}
-\subfile{mtrx_mult/mtrx_mult_source.tex} % Matrix multiplication
-\pagebreak
-\setcounter{figure}{0}
-\subfile{map_plane/map_plane_source.tex} % Mapping the Plane
-\pagebreak
-\setcounter{figure}{0}
-\subfile{plane_rot/plane_rot_source.tex} % Plane rotate
-\pagebreak
-\setcounter{figure}{0}
-\subfile{mat_gen/mat_gen_source.tex} % Matrices generate groups
-\pagebreak
-\setcounter{figure}{0}
-\subfile{comp_map/comp_map_source.tex} % Composite mappings (fat one)
-\pagebreak
-\setcounter{figure}{0}
-\subfile{inverses/inverses_source.tex} % Composite mappings (fat one)
-\pagebreak
-\setcounter{figure}{0}
-\subfile{mod_m/mod_m_source.tex} % Modulo m meets groups
-\pagebreak
-\setcounter{figure}{0}
-\subfile{eigen/eigen_source.tex} % eigenvectors and eigenvalues
-\pagebreak
-\setcounter{figure}{0}
-\subfile{comp_func/comp_func_source.tex} % Composition of functions
-\pagebreak
-\setcounter{figure}{0}
-\subfile{glossary/glossary.tex} % Glossary
+\subfile{2 It's a Snap/chapter.tex}
 \pagebreak
 
 \end{document}
