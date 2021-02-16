@@ -9,6 +9,8 @@ import os
 import shutil
 import subprocess
 import re
+import ntpath
+import time
 
 # Fix input from Python 2
 try:
@@ -31,10 +33,19 @@ chapter_list = os.listdir
 error_regex = re.compile(":[0-9]*:")
 fatal_error_test = "Fatal error occurred, no output PDF file produced!"
 
+# First capture group is whether it's the start or end of the chapter. Second group is the number of the chapter (ex: 1 for trig review). Third group is the absolute page number, starting from first page = 0.
+page_number_typeout_regex = re.compile("Page number of chapter (start|end):([0-9]+).*([0-9]+)")
+shipout_page_number_regex = re.compile("\[([0-9]+)")
+
 FNULL = None
 
 def make_progress_bar(percent, width=50):
     """Make a silly progress bar of a given width"""
+    if percent < 0:
+        percent = 0
+    if percent > 1:
+        percent = 1
+
     parts = width - 2
     filled = int(round(percent * width))
     filled -= 1 # for the > character
@@ -51,6 +62,20 @@ def get_devnull():
 class LatexError(Exception):
     """Error in pdflatex"""
 
+class PDFLatexResult:
+    chapter_page_info = None
+    file_name = ""
+    output_file_name = ""
+    page_count = 0
+    time_to_complete = 0
+
+    def __init__(self, a1, a2, a3, a4, a5):
+       self.chapter_page_info = a1
+       self.file_name = a2
+       self.output_file_name = a3
+       self.page_count = a4
+       self.time_to_complete = a5
+
 def run_pdflatex_on_file(filename,
                          output_dir=log_directory,
                          live_output=True,
@@ -58,8 +83,11 @@ def run_pdflatex_on_file(filename,
                          estimated_pages=60,
                          output_errors=True,
                          throw_on_fatal=True,
-                         throw_on_error=False):
+                         throw_on_error=False,
+                         ret_special_information=True):
     """Run pdflatex on a file and dump the result into the log folder, where it shall eventually be UPROOTED from"""
+    time_start = time.time()
+
     if not live_output:
         estimate_progress = False
 
@@ -75,17 +103,19 @@ def run_pdflatex_on_file(filename,
     flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error --output-directory=%s" % log_directory
     flags = flags.split()
 
-    live_output = True
-
     if not os.path.isfile(filename):
         raise RequirementError("File %s does not exist!" + filename)
 
     print(emph("Running pdflatex on file %s, outputting into directory %s" % (filename, output_dir)))
+    page_info = [] # Returned if ret_special_information. Format: array of (chapter_name, start_page, end_page)
+    outputted_chapter_page_info = {}
 
     process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env)
+    page_count = {"val": 0}
 
     # Handle a line, which can either be done in real time or after the fact
     def handle_line(line):
+
         line = line.strip()
         if throw_on_fatal:
             if fatal_error_test in line:
@@ -105,6 +135,28 @@ def run_pdflatex_on_file(filename,
                     raise LatexError(emph(warn("Unexpected line error at %s" % location)) +": %s" % error)
                 if output_errors:
                     print(warn(location) + ':' + error)
+        if ret_special_information: # Keep track of special typeout things and page shipout
+            match = page_number_typeout_regex.match(line)
+            if match: # See above for group meanings
+                groups = match.groups()
+                chapter_name = groups[0]
+                abspage = groups[1]
+
+                try:
+                    p_info = outputted_chapter_page_info[chapter_name]
+                    # start page already found, so this is the end page
+                    outputted_chapter_page_info[chapter_name] = (p_info[0], abspage)
+                except KeyError:
+                    outputted_chapter_page_info[chapter_name] = (abspage, -1)
+        if estimate_progress:
+            # Page number output is of the form [(0-9)+ ... ] so we search for "[(0-9)+"
+            match = shipout_page_number_regex.findall(line)
+            if match:
+                for pagenum in match:
+                    pagenum = int(pagenum)
+                    if pagenum == page_count["val"] + 1: # Catch false positives like [8pt,twosided]
+                        page_count["val"] = pagenum
+                    print(make_progress_bar(page_count["val"] / float(estimated_pages)))
 
     # Fancy thing which allows the pdflatex command to be run and python to listen to it as a stream of lines
     if live_output:
@@ -117,6 +169,9 @@ def run_pdflatex_on_file(filename,
         # Run the entire thing, then look at it after the fact
         for line in out.split('\n'):
             handle_line(line)
+
+    output_filename = os.path.join(log_directory, ntpath.basename(os.path.splitext(filename)[1]) + '.pdf')
+    return PDFLatexResult(outputted_chapter_page_info, filename, output_filename, page_count["val"], time.time() - time_start)
 
 def run_asy_in_dir(dirname, estimate_progress=True):
     """Compile all the .asy files in a given directory which were dumped out by the first pdflatex call"""
@@ -150,6 +205,9 @@ def build_path(join_with):
 
 def build_textbook():
     clean_logs()
+
+    # The textbook cover's being located at log/textbook_cover.pdf is required for the textbook to compile
+    build_textbook_cover()
     textbook_path = book_path("textbook.tex")
 
     print("Building textbook: Output inline Asymptote files (1/4)")
@@ -174,8 +232,8 @@ def interactive_build_key_chapter():
     pass
 
 def build_textbook_cover():
-    clean_logs()
-    pass
+    print("Building cover to log/textbook_cover.pdf")
+    run_pdflatex_on_file(book_path("cover/textbook_cover.tex"), live_output=False)
 
 def build_key_cover():
     pass

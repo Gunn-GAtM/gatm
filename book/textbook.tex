@@ -54,7 +54,7 @@
 \newcounter{problem_i}
 \newcounter{problem_ii}
 
-% Dumb hack to output the page number as an integer into the log file
+% Dumb hack to output the page number as an integer into the log file. To be specific, it extracts the page number of a label on the first page of the chapter, and a label on the last page of the chapter, then types out "Page number chapter start/end:<chapter name> <page num>". In build.py, this is  done in the handle_line function, which checks for this output with a regex
 \makeatletter
 \newcommand{\getabspage}[1]{\zlabel{#1}\typeout{Page number of chapter #1 \zref@extract{#1}{abspage}}}
 \makeatother
@@ -65,18 +65,39 @@
 % END PREAMBLE
 
 
-
-
 \begin{document}
+\pagenumbering{gobble} % Cover and credits don't contribute to incrementing the page number
+
+% Include the cover pdf, which will be built into log/cover.pdf first
+\includepdf[noautoscale=true,pages=-,width=\paperwidth]{textbook_cover.pdf}
+
+\setlength{\parskip}{1em}
+\subfile{credits/credits.tex} % Credits file
 
 \setcounter{page}{0}
 \pagenumbering{arabic}
 \pagebreak
 
+% Table of contents
 \tableofcontents
+\pagebreak
 
 \inclchapter{1 Trigonometry Review}
 \inclchapter{2 It's a Snap}
+\inclchapter{3 From Snaps to Flips}
+\inclchapter{4 Rotation and Reflection Groups}
+\inclchapter{5 Infinite Groups}
+\inclchapter{6 Geometry of Complex Numbers}
+\inclchapter{7 Your Daily Dose of Vitamin i}
+\inclchapter{8 Matrix Multiplication}
+\inclchapter{9 Mapping the Plane with Matrices}
+\inclchapter{10 Rotations of the Plane}
+\inclchapter{11 Matrices Generate Groups}
+\inclchapter{12 Composite Mappings of the Plane}
+\inclchapter{13 Inverses}
+\inclchapter{14 Multiplication Modulo m Meets Groups}
+\inclchapter{15 Eigenvectors and Eigenvalues}
+\inclchapter{16 Composition of Functions}
 
 
 \end{document}
