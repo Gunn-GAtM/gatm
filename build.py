@@ -110,14 +110,13 @@ def run_pdflatex_on_file(filename,
     # Lets pdflatex search for files from book/ as a working directory and intermediate files in the output directory, but logging everything in the output directory
     env["TEXINPUTS"] = book_directory + ':' + output_dir + ';'
 
-    flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error --output-directory=%s" % log_directory
+    flags = f"--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error --output-directory={log_directory}"
     flags = flags.split()
 
     if not os.path.isfile(filename):
-        raise RequirementError("File %s does not exist!" + filename)
+        raise RequirementError(f"File {filename} does not exist!")
 
-    print(emph("Running pdflatex on file %s, outputting into directory %s" % (filename, output_dir)))
-    # Return found chapter numbers
+    print(emph(f"Running pdflatex on file {filename}, outputting into directory {output_dir}"))
     outputted_chapter_page_info = {}
 
     process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env, cwd=output_dir)
@@ -152,7 +151,7 @@ def run_pdflatex_on_file(filename,
                 error = line[match.end():]
 
                 if throw_on_error:
-                    raise LatexError(emph(warn("Unexpected line error at %s" % location)) +": %s" % error)
+                    raise LatexError(emph(warn(f"Unexpected line error at {location}")) + f": {error}")
                 if output_errors:
                     output_error(warn(location) + ':' + error)
         if get_chapter_pages: # Keep track of special typeout things and page shipout
@@ -422,11 +421,11 @@ def create_needed_directories():
     for directory in needed_directories:
         dirname = os.path.join(working_directory, *directory.split('/'))
         if not os.path.exists(dirname):
-            print("Folder %s does not exist!" % directory)
+            print(f"Folder {directory} does not exist!")
             os.mkdir(directory)
-            print("Created directory %s." % dirname)
+            print("Created directory {dirname}.")
         elif not os.path.isdir(dirname):
-            raise RequirementError("%s exists and is not a folder!")
+            raise RequirementError(f"{directory} exists and is not a folder!")
 
 def check_things():
     """Check that things will work alright"""
@@ -439,24 +438,24 @@ def run_operations(ops):
     for opname in ops:
         op = task_list[opname]
         description = op["description"]
-        print("Doing operation %s: %s" % (opname, description))
+        print(f"Doing operation {opname}: {description}")
 
         if "callback" in op:
             op["callback"]()
         elif "subtasks" in op:
-            print("Subtasks: " + str(op["subtasks"]))
+            print(f"Subtasks: {op['subtasks']}")
             run_operations(op["subtasks"])
 
 def interactive():
     """Interactive mode, where we guide the user to whatever build option."""
 
-    print("No arguments given, entering %s." % emph("interactive mode"))
+    print(f"No arguments given, entering {emph('interactive mode')}.")
     print("Enter the desired operation (some will include extra options):")
     for taskname in interactive_task_list:
         details = task_list[taskname]
         print("  %s: %s" % (emph(taskname), details["description"]))
 
-    print("(Enter %s to quit.)" % emph('q'))
+    print(f"(Enter {emph('q')} to quit.)")
     while True:
         operation = input("> ").replace(' ', '')
         if operation in ['q', 'quit']:
@@ -474,4 +473,3 @@ if __name__ == "__main__":
         interactive()
     else:
         pass
-
