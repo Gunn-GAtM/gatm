@@ -11,6 +11,7 @@ import subprocess
 import re
 import ntpath
 import time
+import argparse
 
 # Fix input from Python 2
 try:
@@ -233,8 +234,8 @@ def log_path(join_with):
 def build_path(join_with):
     return os.path.join(build_directory, *join_with.split('/'))
 
-def build_textbook():
-    build_book("textbook")
+def build_textbook(excerpt_chapters=True):
+    build_book("textbook", excerpt_chapters)
 
 def build_book(book="textbook", excerpt_chapters=True):
     # The textbook cover's being located at build/misc/textbook_cover.pdf is required for the textbook to compile
@@ -277,25 +278,14 @@ def build_book(book="textbook", excerpt_chapters=True):
             p[1].wait()
             print("Finished excerpting chapter %s. (%s/%s)" % (p[0], i + 1, chapter_count))
 
-def build_key():
-    build_book("key")
+def build_key(excerpt_chapters=True):
+    build_book("key", excerpt_chapters)
 
 def interactive_build_chapter():
     pass
 
 def interactive_build_key_chapter():
     pass
-
-tasknames = [
-    "Output inline Asymptote files",
-    "Compile Asymptote figures",
-    "Create the PDF and reference/label locations",
-    "Compile one more time, filling in the reference/label locations",
-    "Create the PDF",
-]
-
-def tex_path_to_out_pdf(path):
-    return os.path.join(log_directory, ntpath.basename(os.path.splitext(path)[1]) + '.pdf')
 
 def build_cover(book="textbook"):
     """Build either the textbook cover or key cover and move it to build/misc/<book>_cover.pdf"""
@@ -319,6 +309,8 @@ def clean_logs():
     pass
 
 def clean_chapter_folders():
+    # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
+
     pass
 
 def excerpt_chapter_folders():
@@ -330,23 +322,23 @@ def excerpt_key_folders():
 task_list = {
     "all": {
         "description": "Build the textbook and answer key, and dump all individual chapters into the build folder.",
-        "subtasks": ["textbook_chapters", "key_chapters"]
-    },
-    "key_chapters": {
-        "description": "Build the answer key and excerpt all answer key chapters into the build/key_chapters folder.",
-        "subtasks": ["key", "_excerpt_key_chapters"],
-    },
-    "textbook_chapters": {
-        "description": "Build the textbook and excerpt all textbook chapters into the build/chapters folder.",
-        "subtasks": ["textbook", "_excerpt_textbook_chapters"]
-    },
-    "textbook": {
-        "description": "Build the file gatm.pdf.",
-        "callback": build_textbook
+        "subtasks": ["textbook", "key"]
     },
     "key": {
-        "description": "Build the file gatm_answers.pdf",
-        "callback": build_key
+        "description": "Build the answer key and excerpt all answer key chapters into the build/key_chapters folder.",
+        "callback": lambda: build_key(True)
+    },
+    "textbook": {
+        "description": "Build the textbook and excerpt all textbook chapters into the build/chapters folder.",
+        "callback": lambda: build_textbook(True)
+    },
+    "textbook_no_chapters": {
+        "description": "Build the file gatm.pdf.",
+        "callback": lambda: build_textbook(False)
+    },
+    "key_no_chapters": {
+        "description": "Build the file gatm_key.pdf",
+        "callback": lambda: build_key(False)
     },
     "chapter": {
         "description": "Quick build a chapter in its corresponding subfolder and open the PDF (you will be prompted to select the chapter).",
@@ -367,14 +359,6 @@ task_list = {
     "clean_chapter_folders": {
         "description": "Clean files in chapter folders left over after a chapter build.",
         "callback": clean_chapter_folders
-    },
-    "_excerpt_chapter_folders": {
-        "description": "Take excerpts from the main PDF and put them into the chapters folder",
-        "callback": excerpt_chapter_folders
-    },
-    "_excerpt_key_folders": {
-        "description": "Take excerpts from the main PDF and put them into the answer key chapter folder.",
-        "callback": excerpt_key_folders
     }
 }
 
@@ -405,14 +389,12 @@ def warn(text):
 def emph(text):
     return color_text(terminal_colors.BOLD, text)
 
-needed_directories = ["build/misc", "build", "build/log", "build/chapters", "build/key_chapters"]
+needed_directories = ["build", "build/log", "build/misc", "build/chapters", "build/key_chapters"]
 requisite_files = ["book/textbook.tex", "book/answer_key.tex"]
 
 interactive_task_list = [
     "clean",
     "all",
-    "textbook_chapters",
-    "key_chapters",
     "key",
     "textbook",
     "chapter",
@@ -425,7 +407,7 @@ def create_needed_directories():
         if not os.path.exists(dirname):
             print(f"Folder {directory} does not exist!")
             os.mkdir(directory)
-            print("Created directory {dirname}.")
+            print(f"Created directory {dirname}.")
         elif not os.path.isdir(dirname):
             raise RequirementError(f"{directory} exists and is not a folder!")
 
@@ -474,4 +456,10 @@ if __name__ == "__main__":
     if len(sys.argv) <= 1: # enter interactive
         interactive()
     else:
-        pass
+        parser = argparse.ArgumentParser(description='Build various things for gatm.pdf. Provide a list of tasks to complete.')
+        parser.add_argument('taskname', metavar='task', type=str, nargs='+', help='task to complete, out of: ' + ', '.join(sorted(task_list.keys())))
+
+        args = parser.parse_args()
+        tasks = args.taskname
+
+        run_operations(tasks)
