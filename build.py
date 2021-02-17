@@ -119,7 +119,7 @@ def run_pdflatex_on_file(filename,
     print(emph(f"Running pdflatex on file {filename}, outputting into directory {output_dir}"))
     outputted_chapter_page_info = {}
 
-    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env, cwd=output_dir)
+    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env, cwd=output_dir, text=True)
     page_count = {"val": 0}
 
     commit_progress_bar()
@@ -215,7 +215,7 @@ def run_asy_in_dir(dirname, estimate_progress=True):
 
     for i, filename in enumerate(file_list):
         # Run asymptote on each file
-        process = subprocess.Popen(['asy', filename], cwd=dirname)
+        process = subprocess.Popen(['asy', filename], cwd=dirname, text=True)
         process.wait()
 
         # TODO: print asymptote errors
@@ -268,7 +268,7 @@ def build_book(book="textbook", excerpt_chapters=True):
         procs = []
 
         for chapter, page_range in chapter_page_info.items():
-            process = subprocess.Popen(['pdfjoin', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile), '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = subprocess.Popen(['pdfjoin', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile), '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             procs.append((chapter, process))
 
         for i, p in enumerate(procs):
