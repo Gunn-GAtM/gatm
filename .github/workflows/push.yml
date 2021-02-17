@@ -1,0 +1,65 @@
+name: Rebuild & Deploy GAtM
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+
+jobs:
+
+  rebuild-deploy:
+
+    runs-on: macos-latest
+
+    steps:
+
+      - name: Git Checkout
+        uses: actions/checkout@v2
+          
+      - name: Cache MacTeX
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Caches/Homebrew/mactex--*
+            ~/Library/Caches/Homebrew/downloads/*--mactex-*
+          key: brew-mactex-${{ hashFiles('.github/brew-formulae') }}
+          restore-keys: brew-mactex-
+          
+      - name: Cache Asymptote
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Caches/Homebrew/asymptote--*
+            ~/Library/Caches/Homebrew/downloads/*--asymptote-*
+          key: brew-asymptote-${{ hashFiles('.github/brew-formulae') }}
+          restore-keys: brew-asymptote-
+      
+      - name: Install MacTeX
+        run: |
+          env HOMEBREW_NO_AUTO_UPDATE=1 brew install --cask mactex
+          echo "MacTeX Installed!"
+      
+      - name: Install Asymptote
+        run: |
+          env HOMEBREW_NO_AUTO_UPDATE=1 brew install asymptote
+          echo "Asymptote Installed!"
+      
+      - name: Rebuild GAtM Textbook
+        run: |
+          export PATH=$PATH:/Library/TeX/texbin/
+          python3 build.py all
+          echo "GAtM Rebuilt!"
+          
+      - name: Deploy New Build
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: main
+          folder: "build"
+          target-folder: "textbook"
+          git-config-name: GitHub Action
+          git-config-email: action@github.com
+          repository-name: gunn-gatm/gunn-gatm.github.io
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          commit-message: Deploy New GAtM Build from ${{github.repository}}@${{github.sha}}
