@@ -49,7 +49,7 @@ jobs:
       - name: Rebuild GAtM Textbook
         run: |
           export PATH=$PATH:/Library/TeX/texbin/
-          python3 build.py all
+          python3 build.py all clean_logs
           echo "GAtM Rebuilt!"
           
       - name: Upload Textbook Artifact
