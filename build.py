@@ -28,8 +28,6 @@ answer_key_chapter_directory = os.path.join(build_directory, "key_chapters")
 
 book_directory = os.path.join(working_directory, "book")
 
-chapter_list = os.listdir
-
 # Find errors in the log
 error_regex = re.compile(":[0-9]*:")
 fatal_error_test = "Fatal error occurred, no output PDF file produced!"
@@ -458,8 +456,14 @@ if __name__ == "__main__":
     else:
         parser = argparse.ArgumentParser(description='Build various things for gatm.pdf. Provide a list of tasks to complete.')
         parser.add_argument('taskname', metavar='task', type=str, nargs='+', help='task to complete, out of: ' + ', '.join(sorted(task_list.keys())))
-
+        parser.add_argument('--chapter', type=str, nargs=1, help='chapter to build into its respective folder')
+        parser.add_argument('--key', type=str, nargs=1, help='key to build into its respective folder')
+        parser.add_argument('--open', type=bool, nargs=1, help='open the chapter/key after building in the default viewer')
         args = parser.parse_args()
         tasks = args.taskname
 
+        check_things()
         run_operations(tasks)
+
+        if args.chapter or args.key:
+            pass
