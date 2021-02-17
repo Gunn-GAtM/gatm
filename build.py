@@ -245,13 +245,15 @@ def build_book(book="textbook", excerpt_chapters=True):
 
     est_pages = 60 if book == "textbook" else 170
 
-    print("Building %s: Output inline Asymptote files (1/4)" % book)
+    print("Building %s: Output inline Asymptote files (1/5)" % book)
     run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
-    print("Building %s: Compile Asymptote figures (2/4)" % book)
+    print("Building %s: Compile Asymptote figures (2/5)" % book)
     run_asy_in_dir(log_directory)
-    print("Building %s: Create the PDF and reference/label locations (3/4)" % book)
+    print("Building %s: Create the PDF and reference/label locations (3/5)" % book)
     run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
-    print("Building %s: Compile one more time, filling in the reference/label locations (4/4)" % book)
+    print("Building %s: Fill in the reference/label locations (4/5)" % book)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    print("Building %s: Compile one more time, getting correct zref locations (5/5)" % book)
     chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
 
     destfile = "gatm.pdf" if book == "textbook" else "gatm_key.pdf"

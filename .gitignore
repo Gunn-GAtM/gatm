@@ -1,9 +1,6 @@
 *.pdf
 *.js
-build/log/*
-!build/*.pdf
-!build/chapters/*.pdf
-!build/key_chapters/*.pdf
+build/**
 **/.DS_Store
 
 *answers-*.tex

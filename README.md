@@ -24,12 +24,14 @@ The book builds into the build/ folder. (Didn't expect that, huh?) The build fol
     - *1 Trigonometry Review.pdf*
     - ...
 - key_chapters
-    - *cover.pdf*
     - *1 Trigonometry Review.pdf*
     - ...
 - log
     - *gatm.log*
     - ... various debugging files ...
+- misc
+    - *textbook_cover.pdf*
+    - *key_cover.pdf*
 
 Simple enough. What's not so simple is the actual building process, as we encounter some of LaTeX's most stupefying characteristics. 
 

@@ -83,16 +83,18 @@
 
 % Relatively large parskip is fine for credits, which doesn't have indented paragraphs
 \setlength{\parskip}{1em}
-\subfile{credits/credits.tex} % Credits file
+\subfile{credits/credits.tex}
 
+% Cover shouldn't contribute to page indexing
 \setcounter{page}{0}
 \pagenumbering{arabic}
 \pagebreak
 
-% Moderate parskip nice for TOC
-\setlength{\parskip}{0.5em}
+% Restore geometry because credits subfile had a different margin setting.
+\restoregeometry
 
-% Table of contents
+% Moderate parskip nice for TOC.
+\setlength{\parskip}{0.5em}
 \tableofcontents
 \pagebreak
 
