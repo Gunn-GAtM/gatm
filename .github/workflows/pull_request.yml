@@ -1,0 +1,67 @@
+name: Rebuild GAtM on PR
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+  workflow_dispatch:
+
+
+jobs:
+
+  rebuild:
+
+    runs-on: macos-latest
+
+    steps:
+
+      - name: Git Checkout
+        uses: actions/checkout@v2
+          
+      - name: Cache MacTeX
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Caches/Homebrew/mactex--*
+            ~/Library/Caches/Homebrew/downloads/*--mactex-*
+          key: brew-mactex-${{ hashFiles('.github/brew-formulae') }}
+          restore-keys: brew-mactex-
+          
+      - name: Cache Asymptote
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/Library/Caches/Homebrew/asymptote--*
+            ~/Library/Caches/Homebrew/downloads/*--asymptote-*
+          key: brew-asymptote-${{ hashFiles('.github/brew-formulae') }}
+          restore-keys: brew-asymptote-
+      
+      - name: Install MacTeX
+        run: |
+          env HOMEBREW_NO_AUTO_UPDATE=1 brew install --cask mactex
+          echo "MacTeX Installed!"
+      
+      - name: Install Asymptote
+        run: |
+          env HOMEBREW_NO_AUTO_UPDATE=1 brew install asymptote
+          echo "Asymptote Installed!"
+      
+      - name: Rebuild GAtM Textbook
+        run: |
+          export PATH=$PATH:/Library/TeX/texbin/
+          python3 build.py all
+          echo "GAtM Rebuilt!"
+          
+      - name: Upload Textbook Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gatm-textbook
+          path: ./build
+          
+      - name: Comment on PR
+        uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+            The edits were built successfully! View the gatm-textbook artifact from this workflow [here](https://github.com/${{GITHUB_REPOSITORY}}/actions/runs/${{github.run_id}}).
+          repo-token: ${{ github.token }}
+          repo-token-user-login: 'github-actions[bot]'          
