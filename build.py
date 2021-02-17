@@ -263,13 +263,13 @@ def build_book(book="textbook", excerpt_chapters=True):
     if excerpt_chapters:
         excerpt_folder = build_path("chapters" if book == "textbook" else "key_chapters")
         chapter_count = len(chapter_page_info.keys())
-        print(emph("Excerpting %s chapters using pdfjoin." % chapter_count))
+        print(emph("Excerpting %s chapters using pdfjam." % chapter_count))
 
         # OMG MULTITHREADING LET'S FUCKING GO
         procs = []
 
         for chapter, page_range in chapter_page_info.items():
-            process = subprocess.Popen(['pdfjoin', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile), '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            process = subprocess.Popen(['pdfjam', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile), '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             procs.append((chapter, process))
 
         for i, p in enumerate(procs):
