@@ -49,6 +49,13 @@
 % i ended up using array instead of smallmatrix and stwovec in many cases. usually because it looked better and was easier to read, and was consistent with everything else. the only reason i could see these being used is in cases of space saving but i feel like there could be other solutions to that. sorry though if i misunderstood something and should not have done that. -b
 \newcommand{\twovec}[2] {\left[\begin{array}{c} #1 \\ #2 \end{array}\right]}
 \newcommand{\stwovec}[2] {\left[\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\right]}
+\newcommand{\threevec}[3] {\begin{bmatrix} #1 \\ #2 \\ #3 \end{bmatrix}}
+
+% Convenience
+\newcommand{\Imag} {\operatorname{Im}}
+\newcommand{\Real} {\operatorname{Re}}
+\newcommand{\Arg} {\operatorname{Arg}}
+\newcommand{\cis} {\operatorname{cis}}
 
 % Counters for problems and subproblems
 \newcounter{problem_i}
@@ -62,15 +69,19 @@
 % Include a chapter of a given name, appending its start and end page to the 
 \newcommand{\inclchapter}[1]{\pagebreak\setcounter{figure}{0}\getabspage{start:#1}\subfile{"#1"/chapter.tex}\getabspage{end:#1}}
 
+% Preferable paragraph separation for textbook text
+\setlength{\parskip}{0em}
+
 % END PREAMBLE
 
 
 \begin{document}
 \pagenumbering{gobble} % Cover and credits don't contribute to incrementing the page number
 
-% Include the cover pdf, which will be built into log/cover.pdf first
-\includepdf[noautoscale=true,pages=-,width=\paperwidth]{textbook_cover.pdf}
+% Include the cover pdf, which will be built into build/misc/textbook_cover.pdf 
+\includepdf[noautoscale=true,pages=-,width=\paperwidth]{../misc/textbook_cover.pdf}
 
+% Relatively large parskip is fine for credits, which doesn't have indented paragraphs
 \setlength{\parskip}{1em}
 \subfile{credits/credits.tex} % Credits file
 
@@ -78,9 +89,15 @@
 \pagenumbering{arabic}
 \pagebreak
 
+% Moderate parskip nice for TOC
+\setlength{\parskip}{0.5em}
+
 % Table of contents
 \tableofcontents
 \pagebreak
+
+% Preferable paragraph separation for textbook text
+\setlength{\parskip}{0em}
 
 \inclchapter{1 Trigonometry Review}
 \inclchapter{2 It's a Snap}
@@ -99,5 +116,8 @@
 \inclchapter{15 Eigenvectors and Eigenvalues}
 \inclchapter{16 Composition of Functions}
 
+% Glossary is simple enough that I don't think it needs to have a special compilation stage
+\pagebreak
+\subfile{glossary/glossary.tex}
 
 \end{document}

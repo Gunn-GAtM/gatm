@@ -34,7 +34,7 @@ error_regex = re.compile(":[0-9]*:")
 fatal_error_test = "Fatal error occurred, no output PDF file produced!"
 
 # First capture group is whether it's the start or end of the chapter. Second group is the number of the chapter (ex: 1 for trig review). Third group is the absolute page number, starting from first page = 0.
-page_number_typeout_regex = re.compile("Page number of chapter (start|end):([0-9]+).*([0-9]+)")
+page_number_typeout_regex = re.compile("Page number of chapter (start|end):([0-9]+.*)\s+([0-9]+)")
 shipout_page_number_regex = re.compile("\[([0-9]+)")
 
 FNULL = None
@@ -62,19 +62,29 @@ def get_devnull():
 class LatexError(Exception):
     """Error in pdflatex"""
 
-class PDFLatexResult:
-    chapter_page_info = None
-    file_name = ""
-    output_file_name = ""
-    page_count = 0
-    time_to_complete = 0
+progress_bar_length = 0
 
-    def __init__(self, a1, a2, a3, a4, a5):
-       self.chapter_page_info = a1
-       self.file_name = a2
-       self.output_file_name = a3
-       self.page_count = a4
-       self.time_to_complete = a5
+def print_progress_bar(percent, width=50):
+    """Print a progress bar to the screen. We keep track of its character length so that later we can remove it with repeated backspaces."""
+    global progress_bar_length
+
+    text = make_progress_bar(percent, width) + '\n'
+    progress_bar_length = len(text) - 1
+    sys.stdout.write(text)
+
+def erase_progress_bar():
+    """Erase the previous progress bar with repeated backspace (\b) characters"""
+    global progress_bar_length
+
+    if progress_bar_length != 0:
+        # move up a line and then delete the progress bar
+        sys.stdout.write('\x1B[A' + '\b' * progress_bar_length)
+        progress_bar_length = 0
+
+def commit_progress_bar():
+    """Prevent erasure of the progress bar (when things are complete basically)"""
+    global progress_bar_length
+    progress_bar_length = 0
 
 def run_pdflatex_on_file(filename,
                          output_dir=log_directory,
@@ -84,7 +94,7 @@ def run_pdflatex_on_file(filename,
                          output_errors=True,
                          throw_on_fatal=True,
                          throw_on_error=False,
-                         ret_special_information=True):
+                         get_chapter_pages=True):
     """Run pdflatex on a file and dump the result into the log folder, where it shall eventually be UPROOTED from"""
     time_start = time.time()
 
@@ -107,15 +117,25 @@ def run_pdflatex_on_file(filename,
         raise RequirementError("File %s does not exist!" + filename)
 
     print(emph("Running pdflatex on file %s, outputting into directory %s" % (filename, output_dir)))
-    page_info = [] # Returned if ret_special_information. Format: array of (chapter_name, start_page, end_page)
+    # Return found chapter numbers
     outputted_chapter_page_info = {}
 
-    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env)
+    process = subprocess.Popen(['pdflatex'] + flags + [filename], stdout=subprocess.PIPE, stderr=get_devnull(), env=env, cwd=output_dir)
     page_count = {"val": 0}
+
+    commit_progress_bar()
+
+    # LOL
+    def output_error(err):
+        if estimate_progress:
+            erase_progress_bar()
+            print(err)
+            print_progress_bar(page_count["val"] / float(estimated_pages))
+        else:
+            print(err)
 
     # Handle a line, which can either be done in real time or after the fact
     def handle_line(line):
-
         line = line.strip()
         if throw_on_fatal:
             if fatal_error_test in line:
@@ -124,7 +144,7 @@ def run_pdflatex_on_file(filename,
             # Precedes a thrown error
             if line.startswith("! LaTeX Error"):
                 if output_errors:
-                    print(warn("! LaTeX Error") + ':' + line[14:])
+                    output_error(warn("! LaTeX Error") + ':' + line[14:])
             match = error_regex.search(line)
             if match:
                 # We have a line error
@@ -134,13 +154,13 @@ def run_pdflatex_on_file(filename,
                 if throw_on_error:
                     raise LatexError(emph(warn("Unexpected line error at %s" % location)) +": %s" % error)
                 if output_errors:
-                    print(warn(location) + ':' + error)
-        if ret_special_information: # Keep track of special typeout things and page shipout
+                    output_error(warn(location) + ':' + error)
+        if get_chapter_pages: # Keep track of special typeout things and page shipout
             match = page_number_typeout_regex.match(line)
             if match: # See above for group meanings
                 groups = match.groups()
-                chapter_name = groups[0]
-                abspage = groups[1]
+                chapter_name = groups[1]
+                abspage = int(groups[2])
 
                 try:
                     p_info = outputted_chapter_page_info[chapter_name]
@@ -156,7 +176,9 @@ def run_pdflatex_on_file(filename,
                     pagenum = int(pagenum)
                     if pagenum == page_count["val"] + 1: # Catch false positives like [8pt,twosided]
                         page_count["val"] = pagenum
-                    print(make_progress_bar(page_count["val"] / float(estimated_pages)))
+
+                    erase_progress_bar()
+                    print_progress_bar(page_count["val"] / float(estimated_pages))
 
     # Fancy thing which allows the pdflatex command to be run and python to listen to it as a stream of lines
     if live_output:
@@ -166,12 +188,17 @@ def run_pdflatex_on_file(filename,
                 break
             handle_line(line)
     else:
+        out, _err = process.communicate()
+
         # Run the entire thing, then look at it after the fact
         for line in out.split('\n'):
             handle_line(line)
 
-    output_filename = os.path.join(log_directory, ntpath.basename(os.path.splitext(filename)[1]) + '.pdf')
-    return PDFLatexResult(outputted_chapter_page_info, filename, output_filename, page_count["val"], time.time() - time_start)
+    if estimate_progress:
+        erase_progress_bar()
+        print_progress_bar(1)
+
+    return outputted_chapter_page_info
 
 def run_asy_in_dir(dirname, estimate_progress=True):
     """Compile all the .asy files in a given directory which were dumped out by the first pdflatex call"""
@@ -185,14 +212,18 @@ def run_asy_in_dir(dirname, estimate_progress=True):
     asy_count = len(file_list)
     print("Total Asymptote files to render: " + str(asy_count))
 
+    commit_progress_bar()
+
     for i, filename in enumerate(file_list):
         # Run asymptote on each file
         process = subprocess.Popen(['asy', filename], cwd=dirname)
         process.wait()
 
-        if estimate_progress:
-            print(make_progress_bar((i+1) / float(asy_count)))
+        # TODO: print asymptote errors
 
+        if estimate_progress:
+            erase_progress_bar()
+            print_progress_bar((i+1) / float(asy_count))
 
 def book_path(join_with):
     return os.path.join(book_directory, *join_with.split('/'))
@@ -204,26 +235,49 @@ def build_path(join_with):
     return os.path.join(build_directory, *join_with.split('/'))
 
 def build_textbook():
+    build_book("textbook")
+
+def build_book(book="textbook", excerpt_chapters=True):
+    # The textbook cover's being located at build/misc/textbook_cover.pdf is required for the textbook to compile
+    build_cover(book)
+
     clean_logs()
+    textbook_path = book_path("%s.tex" % book)
 
-    # The textbook cover's being located at log/textbook_cover.pdf is required for the textbook to compile
-    build_textbook_cover()
-    textbook_path = book_path("textbook.tex")
+    est_pages = 60 if book == "textbook" else 170
 
-    print("Building textbook: Output inline Asymptote files (1/4)")
-    run_pdflatex_on_file(textbook_path)
-    print("Building textbook: Compile Asymptote figures (2/4)")
+    print("Building %s: Output inline Asymptote files (1/4)" % book)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    print("Building %s: Compile Asymptote figures (2/4)" % book)
     run_asy_in_dir(log_directory)
-    print("Building textbook: Create the PDF and reference/label locations (3/4)")
-    run_pdflatex_on_file(textbook_path)
-    print("Building textbook: Compile one more time, filling in the reference/label locations (4/4)")
-    run_pdflatex_on_file(textbook_path)
+    print("Building %s: Create the PDF and reference/label locations (3/4)" % book)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    print("Building %s: Compile one more time, filling in the reference/label locations (4/4)" % book)
+    chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
 
-    print("Moving compiled textbook file to build/gatm.pdf.")
-    os.rename(log_path("textbook.pdf"), build_path("gatm.pdf"))
+    destfile = "gatm.pdf" if book == "textbook" else "gatm_key.pdf"
+
+    print("Moving compiled %s file to build/%s." % (book, destfile))
+    os.rename(log_path("%s.pdf" % book), build_path(destfile))
+
+    if excerpt_chapters:
+        excerpt_folder = build_path("chapters" if book == "textbook" else "key_chapters")
+        chapter_count = len(chapter_page_info.keys())
+        print(emph("Excerpting %s chapters using pdfjoin." % chapter_count))
+
+        # OMG MULTITHREADING LET'S FUCKING GO
+        procs = []
+
+        for chapter, page_range in chapter_page_info.items():
+            process = subprocess.Popen(['pdfjoin', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile), '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            procs.append((chapter, process))
+
+        for i, p in enumerate(procs):
+            p[1].wait()
+            print("Finished excerpting chapter %s. (%s/%s)" % (p[0], i + 1, chapter_count))
 
 def build_key():
-    pass
+    build_book("key")
 
 def interactive_build_chapter():
     pass
@@ -231,12 +285,29 @@ def interactive_build_chapter():
 def interactive_build_key_chapter():
     pass
 
-def build_textbook_cover():
-    print("Building cover to log/textbook_cover.pdf")
-    run_pdflatex_on_file(book_path("cover/textbook_cover.tex"), live_output=False)
+tasknames = [
+    "Output inline Asymptote files",
+    "Compile Asymptote figures",
+    "Create the PDF and reference/label locations",
+    "Compile one more time, filling in the reference/label locations",
+    "Create the PDF",
+]
 
-def build_key_cover():
-    pass
+def tex_path_to_out_pdf(path):
+    return os.path.join(log_directory, ntpath.basename(os.path.splitext(path)[1]) + '.pdf')
+
+def build_cover(book="textbook"):
+    """Build either the textbook cover or key cover and move it to build/misc/<book>_cover.pdf"""
+    clean_logs()
+
+    print("Building %s cover: Output inline Asymptote files (1/3)" % book)
+    run_pdflatex_on_file(book_path("cover/%s_cover.tex" % book), live_output=False)
+    print("Building %s cover image (2/3)" % book)
+    run_asy_in_dir(log_directory, False)
+    print("Building %s cover with cover image (3/3)" % book)
+    run_pdflatex_on_file(book_path("cover/%s_cover.tex" % book), live_output=False)
+    print("Moving compiled %s cover file to build/misc/%s_cover.pdf." % (book, book))
+    os.rename(log_path("%s_cover.pdf" % book), build_path("misc/%s_cover.pdf" % book))
 
 def clean_logs():
     """Empty the log folder to avoid strange conflicts with past builds"""
@@ -333,7 +404,7 @@ def warn(text):
 def emph(text):
     return color_text(terminal_colors.BOLD, text)
 
-needed_directories = ["build", "build/log", "build/chapters", "build/key_chapters"]
+needed_directories = ["build/misc", "build", "build/log", "build/chapters", "build/key_chapters"]
 requisite_files = ["book/textbook.tex", "book/answer_key.tex"]
 
 interactive_task_list = [
@@ -383,7 +454,7 @@ def interactive():
     print("Enter the desired operation (some will include extra options):")
     for taskname in interactive_task_list:
         details = task_list[taskname]
-        print ("  %s: %s" % (emph(taskname), details["description"]))
+        print("  %s: %s" % (emph(taskname), details["description"]))
 
     print("(Enter %s to quit.)" % emph('q'))
     while True:
@@ -392,7 +463,7 @@ def interactive():
             sys.exit()
 
         if operation not in task_list:
-            print "Unrecognized operation %s." % warn(operation)
+            print("Unrecognized operation %s." % warn(operation))
         else:
             check_things()
             run_operations(operation)

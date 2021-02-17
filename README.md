@@ -21,11 +21,8 @@ The book builds into the build/ folder. (Didn't expect that, huh?) The build fol
 - *gatm.pdf*
 - *gatm_key.pdf*
 - chapters
-    - *cover.pdf*
-    - *credits.pdf*
     - *1 Trigonometry Review.pdf*
     - ...
-    - *glossary.pdf*
 - key_chapters
     - *cover.pdf*
     - *1 Trigonometry Review.pdf*
@@ -45,9 +42,32 @@ testing, but has the following discrepancies:
 - Differing page numbers
 - Incorrect chapter number
 
-The build is fast, but slightly incorrect, and dumps the PDF into the *chapter folder*, not the build folder, because it's not intended for students to see. It also automatically opens the document (this is configurable) to aid immediate testing. To build the corresponding key similarly, run `python build.py --chapter_key <chapter index or name>`. To build a chapter for *production*, where we put it into the folder "build/chapters/", we first need to build the entire document (either gatm.pdf or gatm_key.pdf) and then *excerpt* the chapter from the full document. Otherwise there will be some small differences from the main document (most notably, cross-references like "see question 6 on page 3" will appear as "see question ?? on page ??").
+The build is fast, but slightly incorrect, and dumps the PDF into the *chapter folder*, not the build folder, because it's not intended for students to see. It also automatically opens the document (this is configurable) to aid immediate testing. To build the corresponding key similarly, run `python build.py --key <chapter index or name>`. To build a chapter for *production*, where we put it into the folder "build/chapters/", we first need to build the entire document (either gatm.pdf or gatm_key.pdf) and then *excerpt* the chapter from the full document. Otherwise there will be some small differences from the main document (most notably, cross-references like "see question 6 on page 3" will appear as "see question ?? on page ??").
 
+#### How does building work?
 
+Good question. The contents of *build.py* will probably elucidate some details, but the gist of it is we use the log/ directory as an intermediate file—an arena of sorts, if you will. We first compile a given file with pdflatex. If the file contains inline Asymptote vector graphics, a bunch of *.asy* files will be dumped into the log/ directory. We then run the *asy* command on those files, which compiles each into a PDF. We then run pdflatex again, which assimilates all the compiled Asymptote
+files into the document. We're not yet done; information about the location of figures and labels has been dumped out, but is not yet used, so things will say "Figure **??**". We thus run pdflatex a final time, which includes this ref information.
+
+The cover is a special case. For reasons I forget, it's compiled into a separate PDF first, placed in build/misc/textbook_cover.pdf (or key_cover.pdf), then included via the module pdfpages into the main document. Sorry for the confusion.
+
+Chapters are excerpted via a rather... hacky method. If you examine the macro \inclchapter, which inserts a chapter by name into the main document, you'll see that it writes some information to the log file via the command \typeout. In particular, it writes things like "Page number of chapter start:<chapter> <page num>", which is pounced upon by a corresponding regex in the *build_book* function. It records the start and end pages of chapters. The page number is the *absolute page*, meaning it doesn't care about page numbers; it's the literal nth page of the document, indexed from 1. We then use pdfjoin to grab the chapter out and write it to chapter/ or key_chapters/. Then we get drunk and party all night, knowing that another embarrassing error will crop up soon. 
+
+Building chapters is a distinct process. We run the same three commands, but inside a *chapter folder* itself—the log file is not involved. The *subfiles* package makes the build relatively consistent, save a few differences, which are detailed above. Because the main point of building a chapter is editing it and seeing the results, the program also automatically opens the chapter, which can be disabled in the terminal by adding the --dont-open flag. For example:
+
+```bash
+python build.py --chapter 1 --dont-open  # Builds 1 Trigonometry Review to book/1 Trigonometry Review/chapter.pdf and doesn't open it
+python build.py --key 2                  # Builds chapter 2 to book/2 It's a Snap/key.pdf and opens it in the default program
+```
+
+This dumps a lot of random shit into the chapter folders, which *is* .gitignored, but can get annoying. It can be swept up with the *clean* option in *build.py*.
+
+#### The f–– is Asymptote?
+
+Asymptote Vector Graphics is a language for creating... mathematical vector graphics. Googling about it can be a bit hard because it's overshadowed by the actual mathematical concept of an asymptote, but there is a nice long PDF detailing most of the language. Its syntax is based on C++ and it's not *too* hard to pick up, but explaining it to you is outside my remit as a bored high school student.
+
+Asymptote files end with the extension *.asy*, and are compiled with the command... asy. While often figures can be placed in their own separate asy files, I personally like the convenience of inline Asymptote, which is done in documents with \begin{asy} ... \end{asy}. Using inline Asymptote does make the building process a bit more complicated; running pdflatex looks for the compiled results of inline Asymptote files, and, seeing none, will output a bunch of intermediate *.asy* files into the
+log directory. (see above)
 
 GAtM Rough Draft: 100%
 
