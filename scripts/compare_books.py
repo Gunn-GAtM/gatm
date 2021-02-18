@@ -2,9 +2,11 @@ import re
 
 # This program compares the gatm textbook and the answer key to make sure that all questions correspond correctly.
 
-chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen comp_map inverses mod_m eigen".split(" ")
+chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen " \
+                "comp_map inverses mod_m eigen".split(" ")
 
-counters = { "enumi": 0, "enumii": 0, "enumiii": 0 }
+counters = {"enumi": 0, "enumii": 0, "enumiii": 0}
+
 
 def set_counter(counter1, counter2):
     if counter2 in counters:
@@ -12,20 +14,25 @@ def set_counter(counter1, counter2):
         return
     counters[counter1] = 0
 
+
 def set_counter_by_value(counter, value):
     counters[counter] = value
+
 
 def increment_counter(counter):
     if counter in counters:
         counters[counter] += 1
 
+
 def get_counter(counter):
     return counters[counter]
 
-get_enumeration_name = re.compile(r"\\(?:begin|end)\s*\{([^{}]+)\}")
-get_setcounters1 = re.compile(r"\\setcounter\s*\{([^{}]+)\}\{\\value\{([^{}]+)\}\}")
-get_setcounters2 = re.compile(r"\\setcounter\s*\{([^{}]+)\}\{([0-9]+)\}")
-get_setcounters3 = re.compile(r"\\setcounter\s*\{([^{}]+)\}\{\\the([^{}]+)\}")
+
+get_enumeration_name = re.compile(r"\\(?:begin|end)\s*{([^{}]+)}")
+get_setcounters1 = re.compile(r"\\setcounter\s*{([^{}]+)}{\\value{([^{}]+)}}")
+get_setcounters2 = re.compile(r"\\setcounter\s*{([^{}]+)}{([0-9]+)}")
+get_setcounters3 = re.compile(r"\\setcounter\s*{([^{}]+)}{\\the([^{}]+)}")
+
 
 # Token types: begin_enumerate, end_enumerate, item, setcounter
 class Token:
@@ -46,10 +53,11 @@ class Token:
         next_match = next(v for v in matches if v is not None)
 
         if next_match:
-            return next_match.group(1,2)
+            return next_match.group(1, 2)
 
     def __str__(self):
         return "Token %s: %s" % (self.type, self.contents)
+
 
 class Problem:
     def __init__(self, number, letter, part, contents):
@@ -72,19 +80,22 @@ class Problem:
         if self.letter > 0:
             code += '.' + chr(self.letter + 96)
         if self.part > 0:
-            code += '.' + str(self.part) # todo: convert to roman
+            code += '.' + str(self.part)  # todo: convert to roman
 
         return "%s: %s" % (code, self.contents)
 
-begin_enumerate_regex = re.compile(r"\\begin\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}")
-end_enumerate_regex = re.compile(r"\\end\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}")
-setcounter_regex = re.compile(r"\\setcounter\s*\{[^{}]+\}\{(?:\\value\{)?[^{}]+\}?\}")
+
+begin_enumerate_regex = re.compile(r"\\begin{(?:enumerate|(?:(?:outer|i?inner)_problem))}")
+end_enumerate_regex = re.compile(r"\\end{(?:enumerate|(?:(?:outer|i?inner)_problem))}")
+setcounter_regex = re.compile(r"\\setcounter\s*{[^{}]+}{(?:\\value{)?[^{}]+}?}")
 item_regex = re.compile(r"\\item")
+
 
 def get_start(match):
     if match:
         return match.start()
     return float("inf")
+
 
 def problem_tokenizer(file_string):
     i = 0
@@ -101,7 +112,7 @@ def problem_tokenizer(file_string):
             # All tokens found
             break
 
-        starts = map(get_start, [be_match, ee_match, sc_match, item_match])
+        starts = list(map(get_start, [be_match, ee_match, sc_match, item_match]))
         min_start = min(starts)
 
         i = min_start + 1
@@ -113,7 +124,7 @@ def problem_tokenizer(file_string):
             if start == -1:
                 start = float("inf")
 
-            yield Token("item", file_string[item_start_index:min(start,min_start)].strip())
+            yield Token("item", file_string[item_start_index:min(start, min_start)].strip())
 
         if starts[3] == min_start:
             is_item_active = True
@@ -140,10 +151,13 @@ def problem_tokenizer(file_string):
         if match_str is not "":
             yield Token(token_type, match_str)
 
-# Must consider: \begin{enumerate}, \end{enumerate}, \item, \setcounter{...}{...}, \begin{outer_problem}, \begin{inner_problem}, \begin{iinner_problem}
+
+# Must consider: \begin{enumerate}, \end{enumerate}, \item, \setcounter{...}{...}, \begin{outer_problem},
+# \begin{inner_problem}, \begin{iinner_problem}
 def problem_generator(file_string, is_answer_key=False):
     global counters
 
+    # no idea what's supposed to be local and what's supposed to shadow, so am just leaving it like this
     enum_depth = 0
     record_problem_n = 0
 
@@ -151,7 +165,7 @@ def problem_generator(file_string, is_answer_key=False):
     set_counter_by_value("inner", 0)
     set_counter_by_value("iinner", 0)
 
-    for x in xrange(1, 4):
+    for x in range(1, 4):
         set_counter_by_value("enum" + "i" * x, 0)
 
     for token in problem_tokenizer(file_string):
@@ -183,14 +197,13 @@ def problem_generator(file_string, is_answer_key=False):
                 set_counter("enumii", "inner")
                 set_counter("enumiii", "iinner")
 
-
         if token.type == "end_enumerate":
             name = token.get_enumeration_name()
 
             if name == "enumerate":
                 enum_depth -= 1
 
-                for x in xrange(enum_depth+1, 4):
+                for x in range(enum_depth + 1, 4):
                     set_counter_by_value("enum" + "i" * x, 0)
         if token.type == "setcounter":
             counter_names = token.get_counter_names()
@@ -213,10 +226,13 @@ def problem_generator(file_string, is_answer_key=False):
                 yield Problem(top_problem_n, get_counter("enumii"), get_counter("enumiii"), token.contents)
                 record_problem_n = top_problem_n
 
+
 problem_count = 0
 
 for chapter in chapter_names:
-    enum_depth = 0 # 0 means not in an enumerate, 1 means in a top level enumerate, 2 means in a a,b,c enumerate, 3 means in a i, ii, iii enumerate
+    # 0 means not in an enumerate, 1 means in a top level enumerate, 2 means in a a,b,c enumerate,
+    # 3 means in a i, ii, iii enumerate
+    enum_depth = 0
 
     with open("%s/%s_source.tex" % (chapter, chapter), 'r') as problem_file:
         with open("%s/%s_answers.tex" % (chapter, chapter), 'r') as answer_file:
@@ -237,6 +253,6 @@ for chapter in chapter_names:
 
                     for key_problem in key_problems:
                         if tb_problem.same_problem_encoding(key_problem):
-                            print("ANSWER KEY: Problem %s" % (key_problem))
+                            print("ANSWER KEY: Problem %s" % key_problem)
 
 print("Checked %s problems." % problem_count)
