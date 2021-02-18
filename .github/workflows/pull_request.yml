@@ -62,6 +62,6 @@ jobs:
         uses: mshick/add-pr-comment@v1
         with:
           message: |
-            The edits were built successfully! View the gatm-textbook artifact from this workflow [here](https://github.com/${{GITHUB_REPOSITORY}}/actions/runs/${{github.run_id}}).
+            The edits were built successfully! View the gatm-textbook artifact from this workflow [here](https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}).
           repo-token: ${{ github.token }}
           repo-token-user-login: 'github-actions[bot]'          
