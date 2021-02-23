@@ -13,6 +13,7 @@ import re
 import ntpath
 import time
 import argparse
+import platform
 
 
 # Should be the folder gatm/
@@ -107,6 +108,8 @@ def run_pdflatex_on_file(filename,
 
     if not live_output:
         estimate_progress = False
+    if estimated_pages == -1:
+        estimate_progress = False
 
     # Env for pdflatex to run in. Set max print line and error line to 1000
     env = os.environ.copy()
@@ -116,10 +119,10 @@ def run_pdflatex_on_file(filename,
 
     # Lets pdflatex search for files from book/ as a working directory and intermediate files in the output
     # directory, but logging everything in the output directory
-    env["TEXINPUTS"] = book_directory + ':' + output_dir + ';'
+    env["TEXINPUTS"] = os.path.dirname(filename) + ':' + output_dir + ';'
 
-    flags = f"--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error --output-directory={log_directory}"
-    flags = flags.split()
+    flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error"
+    flags = flags.split() + [f'--output-directory={output_dir}'] # Tfw directory with spaces, fuck me
 
     if not os.path.isfile(filename):
         raise RequirementError(f"File {filename} does not exist!")
@@ -225,16 +228,24 @@ def run_asy_in_dir(dirname, estimate_progress=True):
 
     for i, filename in enumerate(file_list):
         # Run asymptote on each file
-        process = subprocess.Popen(['asy', filename], cwd=dirname, text=True)
+        process = subprocess.Popen(['asy', filename], cwd=dirname, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         process.wait()
 
-        # TODO: print asymptote errors
+        out, err = process.communicate()
+
+        if err:
+            raise RuntimeError(warn(f"Unexpected Asymptote error in file {filename}") + f":\n{err}")
 
         if estimate_progress:
             erase_progress_bar()
-            print_progress_bar((i + 1) / float(asy_count))
 
+        if out:
+            print(f"Asymptote on file {filename} logged:\n{out}")
 
+        if estimate_progress:
+           print_progress_bar((i+1) / float(asy_count))
+
+            
 def book_path(join_with):
     return os.path.join(book_directory, *join_with.split('/'))
 
@@ -251,60 +262,72 @@ def build_textbook(excerpt_chapters=True):
     build_book("textbook", excerpt_chapters)
 
 
+# Credit to https://stackoverflow.com/a/435669/13458117
+def open_file(filepath):
+    print(emph("Opening file %s." % filepath))
+    if platform.system() == 'Darwin':       # macOS
+        subprocess.call(('open', filepath))
+    elif platform.system() == 'Windows':    # Windows
+        os.startfile(filepath)
+    else:                                   # linux variants
+        subprocess.call(('xdg-open', filepath))
+
+
 def build_book(book="textbook", excerpt_chapters=True):
-    # The textbook cover's being located at build/misc/textbook_cover.pdf is required for the textbook to compile
-    build_cover(book)
+    """Build the thing. If chapter_name is given, then we build in the chapter folder. If not, we build in the log folder and move to build."""
+    filename = book if not chapter_name else ("chapter" if book == "textbook" else "answers")
+    textbook_path = book_path(filename + ".tex") if not chapter_name else os.path.join(chapter_path, filename + ".tex")
+    local_log_directory = log_directory
 
-    clean_logs()
-    textbook_path = book_path("%s.tex" % book)
+    if not os.path.isfile(textbook_path):
+        raise RequirementError(warn(f"File {textbook_path} does not exist!"))
 
-    est_pages = 60 if book == "textbook" else 170
+    if chapter_name:
+        local_log_directory = chapter_path
+        clean_chapter_folders()
+
+    if not chapter_name:
+        # The textbook cover's being located at build/misc/textbook_cover.pdf is required for the textbook to compile
+        build_cover(book)
+        clean_logs()
+
+    est_pages = -1 if chapter_name else (60 if book == "textbook" else 170)
 
     print("Building %s: Output inline Asymptote files (1/5)" % book)
-    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
     print("Building %s: Compile Asymptote figures (2/5)" % book)
-    run_asy_in_dir(log_directory)
+    run_asy_in_dir(local_log_directory)
     print("Building %s: Create the PDF and reference/label locations (3/5)" % book)
-    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
     print("Building %s: Fill in the reference/label locations (4/5)" % book)
-    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
     print("Building %s: Compile one more time, getting correct zref locations (5/5)" % book)
-    chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
 
-    destfile = "gatm.pdf" if book == "textbook" else "gatm_key.pdf"
+    destfile = build_path("gatm.pdf" if book == "textbook" else "gatm_key.pdf") if not chapter_name else os.path.join(chapter_path, filename + '.pdf')
 
-    print("Moving compiled %s file to build/%s." % (book, destfile))
-    os.rename(log_path("%s.pdf" % book), build_path(destfile))
+    if not chapter_name:
+        print("Moving compiled %s file to %s." % (book, destfile))
+        os.rename(log_path("%s.pdf" % book), destfile)
 
-    if excerpt_chapters:
+    if open_output_files:
+        open_file(destfile)
+
+    if not chapter_name and excerpt_chapters:
         excerpt_folder = build_path("chapters" if book == "textbook" else "key_chapters")
         chapter_count = len(chapter_page_info.keys())
         print(emph("Excerpting %s chapters using pdfjam." % chapter_count))
 
-        # OMG MULTITHREADING LET'S FUCKING GO
-        procs = []
+        for i, (chapter, page_range) in enumerate(chapter_page_info.items()):
+            process = subprocess.Popen(['pdfjam', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), destfile, '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process.wait()
+            indx = i + 1
 
-        for chapter, page_range in chapter_page_info.items():
-            process = subprocess.Popen(
-                ['pdfjam', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile),
-                 '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            procs.append((chapter, process))
-
-        for i, p in enumerate(procs):
-            p[1].wait()
-            print("Finished excerpting chapter %s. (%s/%s)" % (p[0], i + 1, chapter_count))
+            print(f"Finished excerpting chapter {chapter}. ({indx}, {chapter_count})")
 
 
 def build_key(excerpt_chapters=True):
     build_book("key", excerpt_chapters)
-
-
-def interactive_build_chapter():
-    pass
-
-
-def interactive_build_key_chapter():
-    pass
 
 
 def build_cover(book="textbook"):
@@ -327,21 +350,27 @@ def clean_logs():
     shutil.rmtree(log_directory)
     os.mkdir(log_directory)
 
-    pass
+permitted_file = re.compile(".*[^0-9]\.tex")
+def clean_chap_folder(path):
+    print("Cleaning chapter folder %s" % path)
+    for f in os.listdir(path):
+        if not os.path.isdir(f) and not permitted_file.match(f):
+            # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+            os.remove(os.path.join(path, f))
 
 
 def clean_chapter_folders():
     # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
+    if chapter_name:
+        clean_chap_folder(chapter_path)
+    else:
+        for ch in chapter_list:
+            clean_chap_folder(book_path(ch))
 
-    pass
 
-
-def excerpt_chapter_folders():
-    pass
-
-
-def excerpt_key_folders():
-    pass
+chapter_name = "" # If empty, builds as normal; if a chapter name, builds that particular chapter.
+chapter_folder = ""
+open_output_files = False # Whether to open output files
 
 
 task_list = {
@@ -364,15 +393,6 @@ task_list = {
     "key_no_chapters": {
         "description": "Build the file gatm_key.pdf",
         "callback": lambda: build_key(False)
-    },
-    "chapter": {
-        "description": "Quick build a chapter in its corresponding subfolder and open the PDF (you will be prompted "
-                       "to select the chapter).",
-        "callback": interactive_build_chapter
-    },
-    "key_chapter": {
-        "description": "Quick build a chapter of the answer key in its corresponding subfolder and open the PDF.",
-        "callback": interactive_build_key_chapter
     },
     "clean": {
         "description": "Empty the logs folder and delete all files in chapter folders besides 'answers.tex' and "
@@ -490,24 +510,39 @@ def interactive():
             run_operations(operation)
             sys.exit()
 
+          
+chapter_list = sorted(filter(lambda p: os.path.isdir(os.path.join(book_directory, p)), os.listdir(book_directory)))
+chapter_list.remove("template")
+
+          
+def get_chapter_name_from_arg(name):
+    """Get the chapter name from a partial name, by matching the chapter which starts with the same character(s), with alphabetical precedence"""
+    for ch in chapter_list:
+        if ch.startswith(name):
+            return ch
+
+    raise ValueError(f"No chapter beginning with '{name}' found")
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:  # enter interactive
         interactive()
     else:
-        parser = argparse.ArgumentParser(
-            description='Build various things for gatm.pdf. Provide a list of tasks to complete.')
-        parser.add_argument('taskname', metavar='task', type=str, nargs='+',
-                            help='task to complete, out of: ' + ', '.join(sorted(task_list.keys())))
-        parser.add_argument('--chapter', type=str, nargs=1, help='chapter to build into its respective folder')
-        parser.add_argument('--key', type=str, nargs=1, help='key to build into its respective folder')
-        parser.add_argument('--open', type=bool, nargs=1,
-                            help='open the chapter/key after building in the default viewer')
+        parser = argparse.ArgumentParser(description='Build various things for gatm.pdf. Provide a list of tasks to complete.')
+        parser.add_argument('taskname', metavar='task', type=str, nargs='+', help='task to complete, out of: ' + ', '.join(sorted(task_list.keys())))
+        parser.add_argument('--chapter', '-c', type=str, nargs='?', default="", help='chapter to select, so that only the given chapter is built')
+        parser.add_argument('--open', '-o', help="flag to open the output file as a PDF", action="store_true")
+
         args = parser.parse_args()
         tasks = args.taskname
+
+        if args.chapter:
+            chapter_name = get_chapter_name_from_arg(args.chapter)
+            chapter_path = os.path.join(book_directory, chapter_name)
+
+        if args.open:
+            open_output_files = True
 
         check_things()
         run_operations(tasks)
 
-        if args.chapter or args.key:
-            pass
+

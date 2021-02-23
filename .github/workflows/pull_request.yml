@@ -2,7 +2,7 @@ name: Rebuild GAtM on PR
 
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, reopened]
 
   workflow_dispatch:
 
@@ -56,12 +56,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: gatm-textbook
-          path: ./build
-          
-      - name: Comment on PR
-        uses: mshick/add-pr-comment@v1
-        with:
-          message: |
-            The edits were built successfully! View the gatm-textbook artifact from this workflow [here](https://github.com/${{GITHUB_REPOSITORY}}/actions/runs/${{github.run_id}}).
-          repo-token: ${{ github.token }}
-          repo-token-user-login: 'github-actions[bot]'          
+          path: ./build  

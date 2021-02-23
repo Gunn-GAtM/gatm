@@ -66,7 +66,7 @@ $$\left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\},$$
 \vspace*{-\baselineskip}
 
 \begin{align*}
-I\text{ or }I &: 1 \\
+I &: 1 \\
 r &: 3 \\
 r^2  &: 3 \\
 f &: 2 \\
@@ -249,19 +249,18 @@ $$a<1,0>+b<0,1>.$$
 
 \noindent Note that the two vectors don't have to be perpendicular. This shows that we can represent points on a plane by $\mathbb{R}^2$. But we've already proved $\left|\mathbb{R}^2\right| = |\mathbb{R}|$! Thus,
 
-$$\left|\text{points on a plane}\right| = |\text{points on a line}|.$$
+$$\left|\text{points on a plane}\right| = \left|\text{points on a line}\right|.$$
 
 \begin{inner_problem}
 \item rational numbers, $\mathbb{Q}$ vs. Cantor set (look this up or ask your teacher)
 \end{inner_problem}
 
-\noindent The Cantor set $\mathcal{C}$ is formed by iteratively deleting the open middle third of segments, starting with the unit segment. Formally, we can construct this like so\footnote{This construction, taken literally, is actually scaling the set down by $\frac{1}{3}$ and copying it at each step. The net result, however, is equivalent.}:
+\noindent The Cantor set $\mathcal{C}$ is formed by iteratively deleting the open middle third of segments, starting with the unit segment. We start with the interval $[0,1]$, then split it into two intervals: $\left[0, \frac{1}{3}\right]$ and $\left[\frac{2}{3}, 1\right]$. This set, let's call it $\mathcal{C}_1$, has total length $\frac{2}{3}$. We split up each of $\mathcal{C}_1$'s intervals again, forming $\mathcal{C}_2=\left[0,
+\frac{1}{9}\right]\cup\left[\frac{2}{9},\frac{1}{3}\right]\cup\left[\frac{2}{3},\frac{7}{9}\right]\left[\frac{8}{9},1\right]$. Note what happened here: the first interval in $\mathcal{C}_1$ had its middle third deleted, splitting it into our first two intervals; and the same with the second interval. $\mathcal{C}_2$ has total length $\frac{4}{9}$. We repeat this process to infinity, so that (informally speaking) $\mathcal{C}_{\infty} = \mathcal{C}$, the Cantor set. The set has total
+length $0$, but it's not empty! $0$, $\frac{1}{3}$, and $\frac{7}{9}$ are all members of $\mathcal{C}$, for example. 
 
-$$C_1=[0,1]$$
-$$C_n=\frac{1}{3} C_{n-1} \cup \left(\frac{1}{3} C_{n-1} + \frac{2}{3}\right) \quad \text{for }n\geq 2$$
-$$\mathcal{C}=\bigcap_{n=1}^{\infty} C_n. \quad \text{(Intersection of all intervals }C_n\text{.)}$$
 
-\noindent More intuitively, the construction is shown in Figure~\ref{fig:construct_cantor}.
+\noindent For a visual, the construction is shown in Figure~\ref{fig:construct_cantor}.
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{\textwidth}
@@ -329,17 +328,20 @@ $$\mathcal{C}=\bigcap_{n=1}^{\infty} C_n. \quad \text{(Intersection of all inter
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent How do we attack this problem? It's not immediately clear how to tell whether a  number $x$ is in $\mathcal{C}$.\footnote{A number $x$ is in $\mathcal{C}$ if and only if it has a ternary (base-$3$) representation consisting of only $0$s and $2$s. For example, $1/27$ is in the Cantor set because $1/27 = 0.001_3 = 0.000\overline{2}_3$.} We should turn it into something we know how to deal with.
+\noindent How do we attack this problem? It's not immediately clear how to tell whether a number $x$ is in $\mathcal{C}$. It's not something as simple as $\frac{p}{3^n}$ for some integers $p,n$, because $\frac{4}{9}$ is in the deleted interval $\left[\frac{1}{3},\frac{2}{3}\right]$, and is not in $\mathcal{C}$. We should represent the set as something we know how to deal with, keeping in mind that answering our question of cardinality only involves making a one-to-one correspondence, not a complete description of the set.
 
-Consider how we would choose a random point in $\mathcal{C}$. Starting at $C_1$, we can either go to the left segment or the right segment (marked as $L$ and $R$ in Figure~\ref{fig:construct_cantor}). If we choose $L$, then we once again have $2$ choices: to go to $L'$ or $R'$. This continues ad infinitum. Thus, we can correspond each element $x\in \mathcal{C}$ with a binary number in the interval $[0,1]$.\footnote{Note it is inclusive because $0.1111..._2=1$ and $0.0000..._2=0$.}
+Consider how we would choose a random point in $\mathcal{C}$. Starting at $C_1$, we can either go to the left segment or the right segment (marked as $L$ and $R$ in Figure~\ref{fig:construct_cantor}). If we choose $L$, which is $\left[0, \frac{1}{3}\right]$, then we once again have $2$ choices: to go to $L'$, which is $\left[0,
+\frac{1}{9}\right]$, or $R'$, which is $\left[\frac{2}{9},\frac{1}{3}\right]$. This continues forever, and every element of $\mathcal{C}$ can be uniquely obtained this way. Thus, we can correspond each element $x\in \mathcal{C}$ with a binary number in the interval $[0,1]$.
 
-As an example, suppose we choose segments in the sequence $LRRLLLRLLLL...$. Then the corresponding binary number is
+As an example, suppose we choose segments in the sequence $LRRLLLRLLLLLLLLL...$ with infinite trailing $L$'s. Then the corresponding binary number is
 
-$$0.0110001\overline{0}_2=\frac{39}{128}\in [0,1].$$
+$$0.0110001\overline{0}_2=\frac{39}{128}\in [0,1].$$ 
 
-\noindent Thus, we have a one-to-one correspondence between the elements of $\mathcal{C}$ and $[0,1]$. The question is asking the relative sizes of $\mathbb{Q}$ and $\mathcal{C}$. We already know (by Cantor's diagonal argument or otherwise) that $|\mathbb{Q}| < |[0,1]|$. Therefore, we have
+\noindent Thus, we have a one-to-one correspondence between the elements of $\mathcal{C}$ and $[0,1]$.\footnote{Note it is inclusive because $0.\overline{1}_2=1$ and $0.\overline{0}_2=0$.} The question is asking the relative sizes of $\mathbb{Q}$ and $\mathcal{C}$. We already know (by Cantor's diagonal argument or otherwise) that $|\mathbb{Q}| < |[0,1]|$. Therefore, we have
 
 $$|\mathbb{Q}| < |[0,1]| = |\mathcal{C}| \Longrightarrow |\mathbb{Q}| < |\mathcal{C}|.$$
+
+\noindent This might be counterintuitive, that a set with "length" $0$ is still bigger than all the rational numbers on the great big number line. Frankly, without some formal language (particularly from topology), it's hard to describe this set with any rigor. The Wikipedia article on the Cantor set may guide you further!
 
 \begin{outer_problem}
 \item Here’s a list of infinite sets, each with an operation. For each pair, answer: (i)~Does it form a group? (ii)~Which previous group(s) is it isomorphic to?
@@ -556,7 +558,7 @@ Inverse: The inverse of $2^x$ is $2^{-x}$, since $2^{x}2^{-x}=2^{-x}2^{x}=2^0=1$
 \item Does it form a group?
 \end{iinner_problem}
 
-\noindent The rational numbers under multiplication do not form a group, because if the identity element is $1$, then $1\cdot 0 = 0\neq 1$, so it cannot satisfy invertibility.
+\noindent The rational numbers under multiplication do not form a group; the identity element must be $1$, but then $0$ would not have an inverse since nothing times $0$ is $1$.
 
 \begin{iinner_problem}
 \item Which previous group(s) is it isomorphic to?
@@ -586,9 +588,10 @@ Inverse: The inverse of $x\in \mathbb{Q} \setminus {0}$ is $\frac{1}{x}$, since 
 \item Which previous group(s) is it isomorphic to?
 \end{iinner_problem}
 
-\noindent It is not isomorphic to any. The only candidates are other groups with countably infinite order, aka addition of rational numbers and addition of integers.
+\noindent It is not isomorphic to any. Let this group be $\mathcal{M}$. The only candidates are other groups with countably infinite order, aka addition of rational numbers ($\mathcal{R}$) and addition of integers ($\mathcal{J}$). $\mathcal{M}$ can't be isomorphic to $\mathcal{R}$, because all elements of $\mathcal{R}$ have a ``half,'' while the elements of $\mathcal{M}$ don't all have an analogous square root. To be more explicit, all elements $k'=\frac{p}{q}$ in $\mathcal{R}$ have a
+corresponding element $j'$ such that $j'+j'=k'$. But not all elements $k$ in $\mathcal{R}$ have a corresponding element $j$ such that $j\cdot j=k$, since, for example, no element $q$ of $\mathcal{M}$ satisfies $q\cdot q = -\frac{1}{2}$.
 
-It cannot be addition of rational numbers, because for every element $k=\frac{p}{q}$ there exists an element $r=\frac{p}{2q}$ such that $k=2r$. This property is not true for rational numbers under multiplication, because the corresponding $r$ would be $\sqrt{\frac{p}{q}}$, which is only valid for perfect (rational) squares $\frac{p}{q}$. For the same reason, it cannot be addition of integers, since odd integers also cannot have this property.
+Thinking about $j'+j'=k'$ and $j\cdot j=k$ also helps us prove that $\mathcal{M}$ can't be isomorphic to $\mathcal{J}$. Take the element $k=4$ in $\mathcal{M}$, for example. Then $j=2$ and $j=-2$ both square to $k$. In contrast, no element $k'$ of $\mathcal{J}$ has the property that there are \emph{two different values of $j'$} which satisfy $j'+j'=k'$, since either is no solution or the unique solution $j'=k'/2$.
 
 \begin{inner_problem}
 \item real numbers excluding $0$, multiplication
@@ -708,10 +711,16 @@ The group properties are straightforward and identical to the integers under add
 
 $$b = a^{\sqrt{2}} = \left(\sqrt{2}^{\sqrt{2}}\right)^{\sqrt{2}} = \sqrt{2} ^ {\sqrt{2}\cdot \sqrt{2}} = \sqrt{2}^2 = 2.$$
 
-\noindent We know $\sqrt{2}$ is irrational. Suppose $a$ is rational. Then we have an example of an irrational number raised to an irrational power which \textit{is} rational! But if $a$ is not rational, then must be irrational, so $b$ is an example of an irrational number ($a$) raised to an irrational power ($\sqrt{2}$) which is rational! Thus, no matter the case, there exists an irrational number raised to an irrational power which is rational. Interestingly, we don't know whether $a$ is rational or irrational, only that one of $a,b$ satisfies the problem.
+\noindent Let's write out the facts we know.
 
-Logically, let $A=$ $a$ is rational and $C=$ there exists an irrational number raised to an irrational power which is rational. Then $A\to C$ and $\lnot A\to C$. Since $A \lor \lnot A$, we know that $C\lor C$, so $C$ is true.
+\begin{enumerate}
+    \item We know that $\sqrt{2}$ is irrational. \\
+    \item By (1), we know that $a$ is the result of an irrational number to an irrational power. \\
+    \item We know that $2$ is the result of $a$ to an irrational power. \\
+\end{enumerate}
 
-As an aside, $a$ is the irrational one (and is in fact transcendental) by the Gelfond-Schneider theorem. Proving this theorem requires some pretty advanced analysis, yet we are able to derive related results with simple logic.
+\noindent Suppose $a$ is rational. Then $a=\sqrt{2}^\sqrt{2}$ is our desired example, by (2)! So, suppose $a$ is irrational. Then by (3), $2$ is the result of an irrational number (namely, $a$) to an irrational power (namely, $\sqrt{2}$). So then $2=a^\sqrt{2}$ is our desired example! $a$ has to be irrational or rational; it can't be something else. But in either case, we can produce a number which satisfies the requirements. Thus, we can answer in the affirmative, but we can't give an explicit example!
+
+In fact, $a$ is the irrational one by the Gelfond-Schneider theorem. Proving this theorem requires some pretty advanced analysis, yet we are able to derive related results with simple logic! Exciting.
 
 \end{document}

@@ -166,7 +166,7 @@ label("$\Arg z$", arc1, expi(atan2(2,4) / 1.3));
 draw(arc1);
 \end{asy}
 \captionof{figure}{$\tan (\Arg z)=\frac{b}{a}=\frac{\Imag(z)}{\Real (z)}$.}
-\label{fig:tan_arg_z}.
+\label{fig:tan_arg_z}
 \end{center}
 
 \begin{outer_problem}
@@ -232,7 +232,7 @@ We have $1+i=\sqrt{2} \cis \frac{\pi}{4}$, since it forms a $45^\circ$ angle wit
 
 \begin{align*}
 (1+i)^{13} &= \left(\sqrt{2} \cis \frac{\pi}{4}\right)^{13} \\
-&= (\sqrt{2})^13 \cis \frac{13\pi}{4} \\
+&= (\sqrt{2})^{13} \cis \frac{13\pi}{4} \\
 &= 64\sqrt{2} \left(\cos \frac{5\pi}{4} + i\sin \frac{5\pi}{4}\right) \\
 &= 64\sqrt{2} \left(-\frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}}i\right) \\
 &= 64 (-1-i) \\
@@ -246,8 +246,8 @@ We have $1+i=\sqrt{2} \cis \frac{\pi}{4}$, since it forms a $45^\circ$ angle wit
 We convert to $\cis$ form and apply DeMoivre's theorem.
 
 \begin{align*}
-\frac{(1+i\sqrt{3})^3}{(1-i)^2} &= \frac{\left(2\cis \frac{\pi}{3}\right)^3}{\left(\sqrt{2}\cis -\frac{\pi}{4}\right)^2} \\
-&= \frac{8\cis(-\pi)}{2\cis -\frac{\pi}{2}} \\
+\frac{(1+i\sqrt{3})^3}{(1-i)^2} &= \frac{\left(2\cis (\frac{\pi}{3})\right)^3}{\left(\sqrt{2}\cis (-\frac{\pi}{4})\right)^2} \\
+&= \frac{8\cis(\pi)}{2\cis (-\frac{\pi}{2})} \\
 &= \frac{8 \cdot -1}{2 \cdot -i} \\
 &= \frac{4}{i}\cdot \frac{-i}{-i} \\
 &= -4i.
@@ -425,12 +425,14 @@ This is not a group under (i) addition, since $1+1=2\not\in \{0,1\}$. It is also
 \item $\{-1,1\}$
 \end{inner_problem}
 
-This is not a group under (i) addition, since $1+(-1)=0\not\in\{\pm 1\}$. It is a group under (ii) multiplication, since it satisfies the group properties.
+This is not a group under (i) addition, since $1+(-1)=0\not\in\{\pm 1\}$. It is a group under (ii) multiplication, since it satisfies the group properties:
 
-Identity: $1$ is the identity
-Associativity: Multiplication is associative anyways
-Invertibility: Each element is their own inverse
-Closure: $(\pm 1)(\pm 1) \in \{ \pm 1 \}$
+\begin{enumerate}
+    \item Identity: $1$ is the identity
+    \item Associativity: Multiplication is associative
+    \item Invertibility: Each element is its own inverse
+    \item Closure: $(\pm 1)(\pm 1) \in \{ \pm 1 \}$
+\end{enumerate}
 
 \begin{inner_problem}
 \item $\{1, -1, i, -i\}$
@@ -812,7 +814,7 @@ draw((B+0.9*b) -- (B+0.9*b+0.1*ib) -- (B+b+0.1*ib));
 
 draw(P--Q--R--cycle, dashed);
 
-label("$Q'$", B + b, SW);
+label("$B'$", B + b, SW);
 
 dot(P);
 dot(Q);
