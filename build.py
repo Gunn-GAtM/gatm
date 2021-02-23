@@ -302,16 +302,12 @@ def build_book(book="textbook", excerpt_chapters=True):
         chapter_count = len(chapter_page_info.keys())
         print(emph("Excerpting %s chapters using pdfjam." % chapter_count))
 
-        # OMG MULTITHREADING LET'S FUCKING GO
-        procs = []
+        for i, (chapter, page_range) in enumerate(chapter_page_info.items()):
+            process = subprocess.Popen(['pdfjam', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), destfile, '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process.wait()
+            indx = i + 1
 
-        for chapter, page_range in chapter_page_info.items():
-            process = subprocess.Popen(['pdfjam', '-o', os.path.join(excerpt_folder, chapter + '.pdf'), build_path(destfile), '%s-%s' % page_range], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            procs.append((chapter, process))
-
-        for i, p in enumerate(procs):
-            p[1].wait()
-            print("Finished excerpting chapter %s. (%s/%s)" % (p[0], i + 1, chapter_count))
+            print(f"Finished excerpting chapter {chapter}. ({indx}, {chapter_count})")
 
 def build_key(excerpt_chapters=True):
     build_book("key", excerpt_chapters)
