@@ -217,14 +217,22 @@ def run_asy_in_dir(dirname, estimate_progress=True):
 
     for i, filename in enumerate(file_list):
         # Run asymptote on each file
-        process = subprocess.Popen(['asy', filename], cwd=dirname, text=True)
+        process = subprocess.Popen(['asy', filename], cwd=dirname, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         process.wait()
 
-        # TODO: print asymptote errors
+        out, err = process.communicate()
+
+        if err:
+            raise RuntimeError(warn(f"Unexpected Asymptote error in file {filename}") + f":\n{err}")
 
         if estimate_progress:
             erase_progress_bar()
-            print_progress_bar((i+1) / float(asy_count))
+
+        if out:
+            print(f"Asymptote on file {filename} logged:\n{out}")
+
+        if estimate_progress:
+           print_progress_bar((i+1) / float(asy_count))
 
 def book_path(join_with):
     return os.path.join(book_directory, *join_with.split('/'))
