@@ -35,16 +35,15 @@ The book builds into the build/ folder. (Didn't expect that, huh?) The build fol
 
 Simple enough. What's not so simple is the actual building process, as we encounter some of LaTeX's most stupefying characteristics. 
 
-Building works with `python build.py`. We can either give it command line arguments, or if no arguments are provided, we enter an interactive mode. To build everything in build, run `python build.py all`, which builds the textbook and answer key and then excerpts all chapters. To build the textbook ONLY, run `python build.py textbook`, which will not update textbook_chapters/. To build the textbook and chapters, run `python build.py textbook_chapters`. Similarly, building the answer key is just
-`python build.py key`, and with chapters, `python build.py key_chapters`. In this case, the cover, credits and glossary are considered chapters, though they don't contribute to the chapter index.
+Building works with `python build.py`. We can either give it command line arguments, or if no arguments are provided, we enter an interactive mode. To build everything in build, run `python build.py all`, which builds the textbook and answer key and then excerpts all chapters. To build the textbook ONLY, run `python build.py textbook_no_chapters`, which will not update textbook_chapters/. To build the textbook and chapters, run `python build.py textbook`. Similarly, building the answer key is just
+`python build.py key`, and without chapters, `python build.py key_no_chapters`.
 
-To build a specific chapter for *testing*, run `python build.py --chapter <chapter index or name>`, like `python build.py --chapter 10`, which will dump "chapter.pdf" into the folder "10 Rotations of the Plane". To see the cover, we can do `python build.py --chapter cover`, et cetera. In this case, building does *not* build the entire textbook. It *only* builds the given chapter, and doesn't do any excerpting. This is mostly the same as the real deal and is optimal for
-testing, but has the following discrepancies:
+To build a specific chapter for *testing*, run `python build.py textbook -c <chapter index or name>`, like `python build.py textbook -c 10`, which will dump "chapter.pdf" into the folder "10 Rotations of the Plane". In this case, the only meaningful operations are "all", which test builds both the chapter and answer key; "chapter"; "key"; "clean_logs". In this case, building does not build the entire textbook; it *only* builds the given chapter, and doesn't do any excerpting. This is mostly the same as the real deal and is optimal for testing, but has the following discrepancies:
 - No cross-references (to figures or questions outside of the current chapter)
 - Differing page numbers
 - Incorrect chapter number
 
-The build is fast, but slightly incorrect, and dumps the PDF into the *chapter folder*, not the build folder, because it's not intended for students to see. It also automatically opens the document (this is configurable) to aid immediate testing. To build the corresponding key similarly, run `python build.py --key <chapter index or name>`. To build a chapter for *production*, where we put it into the folder "build/chapters/", we first need to build the entire document (either gatm.pdf or gatm_key.pdf) and then *excerpt* the chapter from the full document. Otherwise there will be some small differences from the main document (most notably, cross-references like "see question 6 on page 3" will appear as "see question ?? on page ??").
+The build is fast, but slightly incorrect, and dumps the PDF into the *chapter folder*, not the build folder, because it's not intended for students to see. To build a chapter for *production*, where we put it into the folder "build/chapters/", we first need to build the entire document (either gatm.pdf or gatm_key.pdf) and then *excerpt* the chapter from the full document. Otherwise there will be some small differences from the main document (most notably, cross-references like "see question 6 on page 3" will appear as "see question ?? on page ??").
 
 #### How does building work?
 

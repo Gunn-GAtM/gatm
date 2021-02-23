@@ -236,31 +236,40 @@ def build_textbook(excerpt_chapters=True):
     build_book("textbook", excerpt_chapters)
 
 def build_book(book="textbook", excerpt_chapters=True):
-    # The textbook cover's being located at build/misc/textbook_cover.pdf is required for the textbook to compile
-    build_cover(book)
+    local_log_directory = log_directory
+    filename = book if not chapter_name else ("chapter" if book == "textbook" else "answers")
+    textbook_path = book_path(filename + ".tex")
 
-    clean_logs()
-    textbook_path = book_path("%s.tex" % book)
+    if chapter_name:
+        textbook_path = os.path.join(chapter_path, filename + ".tex")
+        local_log_directory = chapter_path
+        clean_chapter_folders()
 
-    est_pages = 60 if book == "textbook" else 170
+    if not chapter_name:
+        # The textbook cover's being located at build/misc/textbook_cover.pdf is required for the textbook to compile
+        build_cover(book)
+        clean_logs()
+
+    est_pages = -1 if chapter_name else (60 if book == "textbook" else 170)
 
     print("Building %s: Output inline Asymptote files (1/5)" % book)
-    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
     print("Building %s: Compile Asymptote figures (2/5)" % book)
-    run_asy_in_dir(log_directory)
+    run_asy_in_dir(local_log_directory)
     print("Building %s: Create the PDF and reference/label locations (3/5)" % book)
-    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
     print("Building %s: Fill in the reference/label locations (4/5)" % book)
-    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
     print("Building %s: Compile one more time, getting correct zref locations (5/5)" % book)
-    chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages)
+    chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
 
-    destfile = "gatm.pdf" if book == "textbook" else "gatm_key.pdf"
+    if not chapter_name:
+        destfile = "gatm.pdf" if book == "textbook" else "gatm_key.pdf"
 
-    print("Moving compiled %s file to build/%s." % (book, destfile))
-    os.rename(log_path("%s.pdf" % book), build_path(destfile))
+        print("Moving compiled %s file to build/%s." % (book, destfile))
+        os.rename(log_path("%s.pdf" % book), build_path(destfile))
 
-    if excerpt_chapters:
+    if not chapter_name and excerpt_chapters:
         excerpt_folder = build_path("chapters" if book == "textbook" else "key_chapters")
         chapter_count = len(chapter_page_info.keys())
         print(emph("Excerpting %s chapters using pdfjam." % chapter_count))
@@ -278,12 +287,6 @@ def build_book(book="textbook", excerpt_chapters=True):
 
 def build_key(excerpt_chapters=True):
     build_book("key", excerpt_chapters)
-
-def interactive_build_chapter():
-    pass
-
-def interactive_build_key_chapter():
-    pass
 
 def build_cover(book="textbook"):
     """Build either the textbook cover or key cover and move it to build/misc/<book>_cover.pdf"""
@@ -304,18 +307,26 @@ def clean_logs():
     shutil.rmtree(log_directory)
     os.mkdir(log_directory)
 
-    pass
+permitted_file = re.compile(".*[^0-9]\.tex")
+def clean_chap_folder(path):
+    print("Cleaning chapter folder %s" % path)
+    for f in os.listdir(path):
+        if os.path.isdir(f) and not permitted_file.match(f):
+            # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+            os.remove(permitted_file)
 
 def clean_chapter_folders():
     # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
+    if chapter_name:
+        clean_chap_folder(chapter_path)
+    else:
+        for ch in chapter_list:
+            clean_chap_folder(ch)
 
-    pass
 
-def excerpt_chapter_folders():
-    pass
-
-def excerpt_key_folders():
-    pass
+chapter_name = "" # If empty, builds as normal; if a chapter name, builds that particular chapter.
+chapter_folder = ""
+open_output_files = False # Whether to open output files
 
 task_list = {
     "all": {
@@ -337,14 +348,6 @@ task_list = {
     "key_no_chapters": {
         "description": "Build the file gatm_key.pdf",
         "callback": lambda: build_key(False)
-    },
-    "chapter": {
-        "description": "Quick build a chapter in its corresponding subfolder and open the PDF (you will be prompted to select the chapter).",
-        "callback": interactive_build_chapter
-    },
-    "key_chapter": {
-        "description": "Quick build a chapter of the answer key in its corresponding subfolder and open the PDF.",
-        "callback": interactive_build_key_chapter
     },
     "clean": {
         "description": "Empty the logs folder and delete all files in chapter folders besides 'answers.tex' and 'chapter.tex'.",
@@ -450,20 +453,32 @@ def interactive():
             run_operations(operation)
             sys.exit()
 
+chapter_list = sorted(filter(lambda p: os.path.isdir(os.path.join(book_directory, p)), os.listdir(book_directory)))
+chapter_list.remove(template)
+
+def get_chapter_name_from_arg(name):
+    """Get the chapter name from a partial name, by matching the chapter which starts with the same character(s), with alphabetical precedence"""
+    for ch in chapter_list:
+        if ch.startswith(name):
+            return ch
+
+    raise ValueError(f"No chapter beginning with '${name}' found")
+
 if __name__ == "__main__":
     if len(sys.argv) <= 1: # enter interactive
         interactive()
     else:
         parser = argparse.ArgumentParser(description='Build various things for gatm.pdf. Provide a list of tasks to complete.')
         parser.add_argument('taskname', metavar='task', type=str, nargs='+', help='task to complete, out of: ' + ', '.join(sorted(task_list.keys())))
-        parser.add_argument('--chapter', type=str, nargs=1, help='chapter to build into its respective folder')
-        parser.add_argument('--key', type=str, nargs=1, help='key to build into its respective folder')
-        parser.add_argument('--open', type=bool, nargs=1, help='open the chapter/key after building in the default viewer')
+        parser.add_argument('-c', '--chapter', type=str, nargs=1, help='chapter to select, so that only the given chapter is built')
         args = parser.parse_args()
         tasks = args.taskname
+
+        if args.chapter:
+            chapter_name = get_chapter_name_from_arg(args.chapter)
+            chapter_path = os.path.join(book_path, chapter_name)
 
         check_things()
         run_operations(tasks)
 
-        if args.chapter or args.key:
-            pass
+
