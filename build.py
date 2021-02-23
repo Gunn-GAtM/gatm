@@ -12,6 +12,7 @@ import re
 import ntpath
 import time
 import argparse
+import platform
 
 # Fix input from Python 2
 try:
@@ -99,6 +100,8 @@ def run_pdflatex_on_file(filename,
 
     if not live_output:
         estimate_progress = False
+    if estimated_pages == -1:
+        estimate_progress = False
 
     # Env for pdflatex to run in. Set max print line and error line to 1000
     env = os.environ.copy()
@@ -106,11 +109,11 @@ def run_pdflatex_on_file(filename,
     env["error_line"] = "1000"
     env["half_error_line"] = "238"
 
-    # Lets pdflatex search for files from book/ as a working directory and intermediate files in the output directory, but logging everything in the output directory
-    env["TEXINPUTS"] = book_directory + ':' + output_dir + ';'
+    # Lets pdflatex search for files from the parent directory as a working directory and intermediate files in the output directory, but logging everything in the output directory
+    env["TEXINPUTS"] = os.path.dirname(filename) + ':' + output_dir + ';'
 
-    flags = f"--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error --output-directory={log_directory}"
-    flags = flags.split()
+    flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error"
+    flags = flags.split() + [f'--output-directory={output_dir}'] # Tfw directory with spaces, fuck me
 
     if not os.path.isfile(filename):
         raise RequirementError(f"File {filename} does not exist!")
@@ -235,13 +238,27 @@ def build_path(join_with):
 def build_textbook(excerpt_chapters=True):
     build_book("textbook", excerpt_chapters)
 
+# Credit to https://stackoverflow.com/a/435669/13458117
+def open_file(filepath):
+    print(emph("Opening file %s." % filepath))
+    if platform.system() == 'Darwin':       # macOS
+        subprocess.call(('open', filepath))
+    elif platform.system() == 'Windows':    # Windows
+        os.startfile(filepath)
+    else:                                   # linux variants
+        subprocess.call(('xdg-open', filepath))
+
+
 def build_book(book="textbook", excerpt_chapters=True):
-    local_log_directory = log_directory
+    """Build the thing. If chapter_name is given, then we build in the chapter folder. If not, we build in the log folder and move to build."""
     filename = book if not chapter_name else ("chapter" if book == "textbook" else "answers")
-    textbook_path = book_path(filename + ".tex")
+    textbook_path = book_path(filename + ".tex") if not chapter_name else os.path.join(chapter_path, filename + ".tex")
+    local_log_directory = log_directory
+
+    if not os.path.isfile(textbook_path):
+        raise RequirementError(warn(f"File {textbook_path} does not exist!"))
 
     if chapter_name:
-        textbook_path = os.path.join(chapter_path, filename + ".tex")
         local_log_directory = chapter_path
         clean_chapter_folders()
 
@@ -263,11 +280,14 @@ def build_book(book="textbook", excerpt_chapters=True):
     print("Building %s: Compile one more time, getting correct zref locations (5/5)" % book)
     chapter_page_info = run_pdflatex_on_file(textbook_path, estimated_pages=est_pages, output_dir=local_log_directory)
 
-    if not chapter_name:
-        destfile = "gatm.pdf" if book == "textbook" else "gatm_key.pdf"
+    destfile = build_path("gatm.pdf" if book == "textbook" else "gatm_key.pdf") if not chapter_name else os.path.join(chapter_path, filename + '.pdf')
 
-        print("Moving compiled %s file to build/%s." % (book, destfile))
-        os.rename(log_path("%s.pdf" % book), build_path(destfile))
+    if not chapter_name:
+        print("Moving compiled %s file to %s." % (book, destfile))
+        os.rename(log_path("%s.pdf" % book), destfile)
+
+    if open_output_files:
+        open_file(destfile)
 
     if not chapter_name and excerpt_chapters:
         excerpt_folder = build_path("chapters" if book == "textbook" else "key_chapters")
@@ -311,9 +331,9 @@ permitted_file = re.compile(".*[^0-9]\.tex")
 def clean_chap_folder(path):
     print("Cleaning chapter folder %s" % path)
     for f in os.listdir(path):
-        if os.path.isdir(f) and not permitted_file.match(f):
+        if not os.path.isdir(f) and not permitted_file.match(f):
             # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-            os.remove(permitted_file)
+            os.remove(os.path.join(path, f))
 
 def clean_chapter_folders():
     # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
@@ -321,7 +341,7 @@ def clean_chapter_folders():
         clean_chap_folder(chapter_path)
     else:
         for ch in chapter_list:
-            clean_chap_folder(ch)
+            clean_chap_folder(book_path(ch))
 
 
 chapter_name = "" # If empty, builds as normal; if a chapter name, builds that particular chapter.
@@ -454,7 +474,7 @@ def interactive():
             sys.exit()
 
 chapter_list = sorted(filter(lambda p: os.path.isdir(os.path.join(book_directory, p)), os.listdir(book_directory)))
-chapter_list.remove(template)
+chapter_list.remove("template")
 
 def get_chapter_name_from_arg(name):
     """Get the chapter name from a partial name, by matching the chapter which starts with the same character(s), with alphabetical precedence"""
@@ -462,7 +482,7 @@ def get_chapter_name_from_arg(name):
         if ch.startswith(name):
             return ch
 
-    raise ValueError(f"No chapter beginning with '${name}' found")
+    raise ValueError(f"No chapter beginning with '{name}' found")
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1: # enter interactive
@@ -470,13 +490,18 @@ if __name__ == "__main__":
     else:
         parser = argparse.ArgumentParser(description='Build various things for gatm.pdf. Provide a list of tasks to complete.')
         parser.add_argument('taskname', metavar='task', type=str, nargs='+', help='task to complete, out of: ' + ', '.join(sorted(task_list.keys())))
-        parser.add_argument('-c', '--chapter', type=str, nargs=1, help='chapter to select, so that only the given chapter is built')
+        parser.add_argument('--chapter', '-c', type=str, nargs='?', default="", help='chapter to select, so that only the given chapter is built')
+        parser.add_argument('--open', '-o', help="flag to open the output file as a PDF", action="store_true")
+
         args = parser.parse_args()
         tasks = args.taskname
 
         if args.chapter:
             chapter_name = get_chapter_name_from_arg(args.chapter)
-            chapter_path = os.path.join(book_path, chapter_name)
+            chapter_path = os.path.join(book_directory, chapter_name)
+
+        if args.open:
+            open_output_files = True
 
         check_things()
         run_operations(tasks)
