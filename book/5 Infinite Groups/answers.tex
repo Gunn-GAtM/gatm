@@ -588,9 +588,10 @@ Inverse: The inverse of $x\in \mathbb{Q} \setminus {0}$ is $\frac{1}{x}$, since 
 \item Which previous group(s) is it isomorphic to?
 \end{iinner_problem}
 
-\noindent It is not isomorphic to any. The only candidates are other groups with countably infinite order, aka addition of rational numbers and addition of integers.
+\noindent It is not isomorphic to any. Let this group be $\mathcal{M}$. The only candidates are other groups with countably infinite order, aka addition of rational numbers ($\mathcal{R}$) and addition of integers ($\mathcal{J}$). $\mathcal{M}$ can't be isomorphic to $\mathcal{R}$, because all elements of $\mathcal{R}$ have a ``half,'' while the elements of $\mathcal{M}$ don't all have an analogous square root. To be more explicit, all elements $k'=\frac{p}{q}$ in $\mathcal{R}$ have a
+corresponding element $j'$ such that $j'+j'=k'$. But not all elements $k$ in $\mathcal{R}$ have a corresponding element $j$ such that $j\cdot j=k$, since, for example, no element $q$ of $\mathcal{M}$ satisfies $q\cdot q = -\frac{1}{2}$.
 
-It cannot be addition of rational numbers, because for every element $k=\frac{p}{q}$ there exists an element $r=\frac{p}{2q}$ such that $k=2r$. This property is not true for rational numbers under multiplication, because the corresponding $r$ would be $\sqrt{\frac{p}{q}}$, which is only valid for perfect (rational) squares $\frac{p}{q}$. For the same reason, it cannot be addition of integers, since odd integers also cannot have this property.
+Thinking about $j'+j'=k'$ and $j\cdot j=k$ also helps us prove that $\mathcal{M}$ can't be isomorphic to $\mathcal{J}$. Take the element $k=4$ in $\mathcal{M}$, for example. Then $j=2$ and $j=-2$ both square to $k$. In contrast, no element $k'$ of $\mathcal{J}$ has the property that there are \emph{two different values of $j'$} which satisfy $j'+j'=k'$, since either is no solution or the unique solution $j'=k'/2$.
 
 \begin{inner_problem}
 \item real numbers excluding $0$, multiplication
