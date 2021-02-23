@@ -711,10 +711,16 @@ The group properties are straightforward and identical to the integers under add
 
 $$b = a^{\sqrt{2}} = \left(\sqrt{2}^{\sqrt{2}}\right)^{\sqrt{2}} = \sqrt{2} ^ {\sqrt{2}\cdot \sqrt{2}} = \sqrt{2}^2 = 2.$$
 
-\noindent We know $\sqrt{2}$ is irrational. Suppose $a$ is rational. Then we have an example of an irrational number raised to an irrational power which \textit{is} rational! But if $a$ is not rational, then must be irrational, so $b$ is an example of an irrational number ($a$) raised to an irrational power ($\sqrt{2}$) which is rational! Thus, no matter the case, there exists an irrational number raised to an irrational power which is rational. Interestingly, we don't know whether $a$ is rational or irrational, only that one of $a,b$ satisfies the problem.
+\noindent Let's write out the facts we know.
 
-Logically, let $A=$ $a$ is rational and $C=$ there exists an irrational number raised to an irrational power which is rational. Then $A\to C$ and $\lnot A\to C$. Since $A \lor \lnot A$, we know that $C\lor C$, so $C$ is true.
+\begin{enumerate}
+    \item We know that $\sqrt{2}$ is irrational. \\
+    \item By (1), we know that $a$ is the result of an irrational number to an irrational power. \\
+    \item We know that $2$ is the result of $a$ to an irrational power. \\
+\end{enumerate}
 
-As an aside, $a$ is the irrational one (and is in fact transcendental) by the Gelfond-Schneider theorem. Proving this theorem requires some pretty advanced analysis, yet we are able to derive related results with simple logic.
+\noindent Suppose $a$ is rational. Then $a=\sqrt{2}^\sqrt{2}$ is our desired example, by (2)! So, suppose $a$ is irrational. Then by (3), $2$ is the result of an irrational number (namely, $a$) to an irrational power (namely, $\sqrt{2}$). So then $2=a^\sqrt{2}$ is our desired example! $a$ has to be irrational or rational; it can't be something else. But in either case, we can produce a number which satisfies the requirements. Thus, we can answer in the affirmative, but we can't give an explicit example!
+
+In fact, $a$ is the irrational one by the Gelfond-Schneider theorem. Proving this theorem requires some pretty advanced analysis, yet we are able to derive related results with simple logic! Exciting.
 
 \end{document}
