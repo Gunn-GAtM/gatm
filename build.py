@@ -307,7 +307,7 @@ def build_book(book="textbook", excerpt_chapters=True):
             process.wait()
             indx = i + 1
 
-            print(f"Finished excerpting chapter {chapter}. ({indx}, {chapter_count})")
+            print(f"Finished excerpting chapter {chapter}. ({indx}/{chapter_count})")
 
 def build_key(excerpt_chapters=True):
     build_book("key", excerpt_chapters)

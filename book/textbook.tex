@@ -67,7 +67,7 @@
 \makeatother
 
 % Include a chapter of a given name, appending its start and end page to the 
-\newcommand{\inclchapter}[1]{\pagebreak\setcounter{figure}{0}\getabspage{start:#1}\subfile{"#1"/chapter.tex}\getabspage{end:#1}}
+\newcommand{\inclchapter}[1]{\clearpage\setcounter{figure}{0}\getabspage{start:#1}\subfile{"#1"/chapter.tex}\getabspage{end:#1}}
 
 % Preferable paragraph separation for textbook text
 \setlength{\parskip}{0em}
