@@ -232,6 +232,9 @@ TSWLatexianTemp*
 *.bak
 *.sav
 
+# Jetbrains
+.idea
+
 # Texpad
 .texpadtmp
 
