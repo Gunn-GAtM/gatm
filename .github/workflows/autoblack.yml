@@ -1,0 +1,33 @@
+name: Auto-Format Python w/ Black
+
+on: 
+  push:
+      branches: [ master ]
+      
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+  workflow_dispatch:
+
+jobs:
+
+  autoblack:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Git Checkout
+        uses: actions/checkout@v2
+          
+      - name: Use Black
+        uses: lgeiger/black-action@v1.0.1
+        with:
+          args: "."
+        
+      - name: Commit Updates
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git commit -am 'Auto-Format Python w/ Black (${{github.sha}})' || echo 'No changes to be committed!'
+          git push
