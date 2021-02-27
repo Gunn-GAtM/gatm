@@ -1,40 +1,167 @@
 % Additional solution for the question of the roots of a certain polynomial P(z) in the complex plane
 \documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage[inline]{asymptote}
+
 \begin{document}
 
-\iffalse
-\begin{asy}
+\begin{figure}[h]
+    \begin{center}
+\begin{asy}[width=0.5\textwidth]
 import graph;
 
-size(400, 200, IgnoreAspect);
+size(400,200,IgnoreAspect);
 
 real P(real x) {
-    return pow(x - 1, 10) - pow(x, 10);
+    return (x-1)^10 - x^10;
 }
 
 draw(graph(P,0,1),red,"$P(z)$");
 
-xaxis("$x$",Ticks);
-yaxis("$y$",Ticks;
+    xaxis("$x$",Ticks(Label(Fill(white))));
+    yaxis("$y$",Ticks(Label(Fill(white))));
 
 \end{asy}
-\fi
+    \end{center}
+    \caption{Graph of $P(z)$ from $0$ to $1$}
+    \label{fig:poly_graph}
+\end{figure}
 
-The roots of the polynomial $P(z)=(z-1)^10-z^10$ have interesting structure, as we've seen. If we didn't have the inspiration (or, let's be honest, the instruction from Mr. Herreshoff) to represent $z$ in its polar form $r\operatorname{cis}\theta$, what could we do instead to find how many roots it has, and where they are? This is a fun exercise in algebra, and more importantly, an exercise in thinking like a mathematician. I make no claim to completeness or efficiency, but hopefully you'll find
+The roots of the polynomial $P(z)=(z-1)^{10}-z^{10}$ have interesting structure, as we've seen. If we didn't have the inspiration (or, let's be honest, the instruction from Mr. Herreshoff) to represent $z$ in its polar form $r\operatorname{cis}\theta$, what could we do instead to find how many roots it has, and where they are? This is a fun exercise in algebra, and more importantly, an exercise in thinking like a mathematician. I make no claim to completeness or efficiency, but hopefully you'll find
 instructive the thought process of a reasonably mathematically inclined high schooler.
 
-First of all, we note that $P(z)$ has degree $9$, since the degree $10$ term of $(z-1)^10$ is canceled out. Thus it has at most $9$ roots, by the Fundamental Theorem of Algebra. We could try expanding out $P(z)$ and analyzing it further. But before that messiness, are there any real roots? There's clearly a real root at $z=0.5$. Are there any others? Well, there are many valid ways to verify that there aren't, one of which is graphing it. That's what I did. Another way is to examine the function in certain
-domains $z>0.5$ and $z<0.5$ and use inequalities to show the function is either positive or negative (and thus nonzero) in those ranges.
+First of all, we note that $P(z)$ has degree $9$, since the degree $10$ term of $(z-1)^{10}$ is canceled out. Thus it has at most $9$ roots, by the Fundamental Theorem of Algebra. We could try expanding out $P(z)$ and analyzing it further. But before that messiness, are there any real roots? There's clearly a real root at $z=0.5$. Are there any others? Well, there are many valid ways to verify that there aren't, one of which is graphing it (see Figure~\ref{fig:poly_graph}). That's what I did. Another way is to examine the function in certain
+domains $z>0.5$ and $z<0.5$ and use inequalities to show the function is either positive or negative---and thus nonzero---in those ranges.
 
 Okay, so $P(0.5)=0$. Nice. But what about the (up to) $8$ other roots just chillin' somewhere in the complex plane? We know little about those. Graphing the polynomial made me notice something: It looks relatively simple, kind of like $x^3$. It's monotonic, meaning it always decreases over time; it has no humps. And it looks to be somewhat symmetric about $x=\frac{1}{2}$. To make it clearer, let's consider $P(z)$ and its reflection about $x=\frac{1}{2}$, which is $P(1-z)$.
 
-\begin{align}
-P(1-z) &= (1-z-1)^10 - (1-z)^10 \qquad & \text{Definition of $P(z)$} \\
-&= (-z)^10 - (1-z)^10 & \text{Simplifying} \\
-&= z^10 - (z-1)^10 & \text{Raising to an even power} \\
+\begin{align*}
+P(1-z) &= (1-z-1)^{10} - (1-z)^{10} \qquad & \text{Definition of $P(z)$} \\
+&= (-z)^{10} - (1-z)^{10} & \text{Simplifying} \\
+&= z^{10} - (z-1)^{10} & \text{Raising to an even power} \\
 &= -P(z) \\
-\end{align}
+\end{align*}
 
-Recall that in the complex plane, roots come in conjugate pairs. In other words, if $P(a+bi)=0$, then $P(\overline{a+bi})=P(a-bi)=0$. The real root(s) conjugate to themselves, so the remaining four pairs of roots come 
+Indeed, the graph is antisymmetric about $(0.5, 0)$, meaning that it flips sign but looks the same. This identity, $P(1-z) = -P(z)$, holds for all $z$.
+
+One of the most immediate consequences is that the roots of $P(z)$ are symmetric about $\frac{1}{2}$. To see this, suppose $z$ is a root of $P(z)$. Then $P(1-z)=-P(z)=0$, so $1-z$ is also a root of $P(z)$, which is $z$'s reflection. See Figure~\ref{fig:reflective_around_one_half} for a visualization.
+
+\begin{figure}
+    \begin{center}
+        \begin{asy}[width=0.5\textwidth]
+import graph;
+
+size(400,200,IgnoreAspect);
+
+            pair[] roots = {(0.5, 0), (0.5, 0.4), (0.5, -0.4), (0.2, 1), (0.8, 1), (0.2, -1), (0.8, -1)};
+            for (int i = 0; i < roots.length; ++i) {
+                pair root = roots[i];
+                pair reflection = (1 - root.x, root.y);
+                draw(root--reflection, dotted);
+                dot(root, red);
+            }
+
+    xaxis("Re",Ticks(Label(Fill(white))));
+    yaxis("Im",Ticks(Label(Fill(white))));
+
+draw((0.5,1)--(0.5,-1), dashed);
+            label("$\operatorname{Re}(z)=\frac{1}{2}$", (0.5,0.8), NE);
+
+        \end{asy}
+    \end{center}
+
+    \caption{Roots of $P(z)$ must be symmetric about $\operatorname{Re}(z)=\frac{1}{2}$.}
+    \label{fig:reflective_about_one_half}
+\end{figure}
+
+A root is either on the line of symmetry or off it. Let's see what happens when we substitute $z=0.5+\xi i$, which is a point on the line of symmetry. I love that Greek letter $\xi$. Yes please.
+
+\begin{align*}
+    P(z)&=P(0.5+\xi i) \\
+    &= (\xi i + 0.5 - 1)^{10} - (\xi i + 0.5)^{10} \qquad & \text{Substitution} \\
+    &= (\xi i - 0.5)^{10} - (\xi i + 0.5)^{10} \\
+\end{align*}
+
+Hm. We have our original solution $\xi=0$ corresponding to $z=0.5$, but are there any other solutions of this form? Well, we can make things a bit easier by multiplying everything through by $2^{10}$ and substituting $\omega = 2\xi$:
+
+\begin{align*}
+    2^{10} \cdot P(z) &= 2^{10} \cdot ((\xi i - 0.5)^{10} - (\xi i + 0.5)^{10}) \qquad & \text{Substitution} \\
+    &= (2\xi i - 1)^{10} - (2\xi i + 1)^{10} \\
+    &= (\omega i - 1) ^ {10} - (\omega i + 1)^{10} = Q(\omega) \\
+\end{align*}
+
+    Glorious. Note that the roots of $Q(\omega)$ correspond with roots of $P(z)$, with $z=\frac{1}{2} + \frac{\omega i}{2}$. How can we find the roots of $Q(\omega)$? Well, we can use the binomial theorem to expand. For the $n$th term in the expansion, each term contributes a certain multiple of $(\omega i)^n$:
+\begin{align*}
+    \sum_{n=0}^{10}\binom{10}{n}\cdot (\omega i)^{n}\cdot (-1)^{10-n} -& \binom{10}{n}\cdot (\omega i)^{n}\cdot (1)^{10-n} \\
+    &= \sum\binom{10}{n}(\omega i)^n((-1)^{10-n} - 1) \\
+    &= \sum_{n=1,\,n\text{odd}}^{9}\binom{10}{n}i^n\omega^n\qquad \text{Because $((-1)^{10-n}-1)$ is $0$ for even $n$} \\
+    &= i\left(\binom{10}{1}\omega-\binom{10}{3}\omega^3+\binom{10}{5}\omega^5-\binom{10}{7}\omega^7+\binom{10}{9}\omega^9\right) \\
+    &= i\cdot R(\omega) \\
+\end{align*}
+
+We only care about the roots, so we ignore $i$ and graph $R(\omega)$ as in Figure~\ref{fig:graph_Rz}.
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{asy}[width=\textwidth]
+import graph;
+
+size(400,150);
+
+real P(real x) {
+    return choose(10,1) * x - choose(10,3) * x^3 + choose(10,5) * x^5 - choose(10,7) * x^7 + choose(10,9)*x^9;
+}
+
+draw(graph(P,-3.5,3.5),red,"$R(\omega)$");
+
+    xaxis("$\omega$",Ticks(Label(Fill(white))));
+    yaxis("$y$",Ticks(Label(Fill(white))));
+
+            real[] roots = {0, -0.162, 0.162, -0.363, 0.363, -0.688, 0.688, -1.539, 1.539};
+
+            for (int i = 0; i < roots.length; ++i) {
+                dot((roots[i] * 2, 0), red);
+            }
+
+            ylimits(-5, 5, true);
+        \end{asy}
+    \end{center}
+
+    \caption{Graph of $R(\omega)$.}
+    \label{fig:graph_Rz}
+\end{figure}
+
+Well, there's nine roots. So using the transformation $z=\frac{1}{2}+\frac{\omega i}{2}$, those correspond to the nine roots of our original equation, graphed in Figure~\ref{fig:orig_roots}. That wasn't too bad.
+
+\begin{figure}
+    \begin{center}
+        \begin{asy}[width=0.4\textwidth]
+import graph;
+
+size(200,200,IgnoreAspect);
+
+            real[] roots = {0, -0.162, 0.162, -0.363, 0.363, -0.688, 0.688, -1.539, 1.539};
+            for (int i = 0; i < roots.length; ++i) {
+                real root = roots[i];
+                pair pt = (0.5, root);
+                dot(pt, red);
+                label(pt, "$(0.5, " + string(root, 3) + ")$", NE);
+            }
+    xaxis("Re",Ticks(Label(Fill(white))));
+    yaxis("Im",Ticks(Label(Fill(white))));
+
+draw((0.5,3)--(0.5,-3), dashed);
+        \end{asy}
+    \end{center}
+
+    \caption{The roots of $P(z)$ in the complex plane.}
+    \label{fig:orig_roots}
+\end{figure}
+
+You'll notice that the roots are symmetric about the real axis. Recall that in the complex plane, roots come in conjugate pairs. In other words, if $P(a+bi)=0$, then $P(\overline{a+bi})=P(a-bi)=0$. The real root(s) conjugate to themselves, and the rest of the roots form four pairs.
+
+But what if we don't have a graphing calculator? And what other information can we find about these roots?
 
 \end{document}

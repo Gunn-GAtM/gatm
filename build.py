@@ -318,9 +318,9 @@ def simple_build_file(path_to_file, path_to_dest):
     print("Running final pdflatex (3/3)")
     run_pdflatex_on_file(path_to_file, estimate_progress=False)
 
-    output_pdf = filename_no_ext(path_to_file) + ".pdf"
+    output_pdf = log_path(filename_no_ext(os.path.basename(path_to_file)) + ".pdf")
     print(f"Moving built file {output_pdf} to destination {path_to_dest}")
-    os.move(output_pdf, path_to_dest)
+    os.rename(output_pdf, path_to_dest)
 
 
 def build_book(book="textbook", excerpt_chapters=True):
@@ -429,19 +429,21 @@ def build_cover(book="textbook"):
 def build_supplementals():
     """The supplemental building process is simple. We build all .tex files in the supplements/ folder to PDFs, and copy all other files to build/misc."""
 
+    clean_logs()
     for f in os.listdir(supplemental_directory):
-        if f.startswith('.'):
+        if f.startswith('.') or f != "proving_nine_roots.tex":
             continue
 
         path_to_f = supplemental_path(f)
         if f.endswith(".tex"):
             simple_build_file(path_to_f, build_path("misc/%s.pdf" % filename_no_ext(f)))
         else:
-            func = shutil.copytree if os.isdir(path_to_f) else shutil.copy
-            dest = build_path("misc/" + f)h
+            pass
+            # func = shutil.copytree if os.path.isdir(path_to_f) else shutil.copy
+            # dest = build_path("misc/" + f)
 
-            print(f"Copying {path_to_f} to {dest}")
-            func(path_to_f, dest)
+            # print(f"Copying {path_to_f} to {dest}")
+            # func(path_to_f, dest)
 
 def clean_logs():
     """Empty the log folder to avoid strange conflicts with past builds"""
