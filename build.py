@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
-# We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire textbook/answer key. It's a bit involved, but you'll understand, dear traveler.
-
-# When given a command line argument, the f
+# We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire textbook/answer key. It's a bit involved, but you'll understand, dear traveler. Check README.md for context.
 
 import sys
 import os
