@@ -290,7 +290,10 @@ def log_path(join_with):
 def build_path(join_with):
     return os.path.join(build_directory, *join_with.split("/"))
 
+
 supplemental_directory = os.path.join(working_directory, "supplementals")
+
+
 def supplemental_path(join_with):
     return os.path.join(supplemental_directory, *join_with.split("/"))
 
@@ -308,6 +311,7 @@ def open_file(filepath):
         os.startfile(filepath)
     else:  # linux variants
         subprocess.call(("xdg-open", filepath))
+
 
 def simple_build_file(path_to_file, path_to_dest):
     """Build a TeX file straightforwardly: latex, asy, latex. Used for supplementals"""
@@ -426,12 +430,13 @@ def build_cover(book="textbook"):
     print("Moving compiled %s cover file to build/misc/%s_cover.pdf." % (book, book))
     os.rename(log_path("%s_cover.pdf" % book), build_path("misc/%s_cover.pdf" % book))
 
+
 def build_supplementals():
     """The supplemental building process is simple. We build all .tex files in the supplements/ folder to PDFs, and copy all other files to build/misc."""
 
     clean_logs()
     for f in os.listdir(supplemental_directory):
-        if f.startswith('.') or f != "proving_nine_roots.tex":
+        if f.startswith(".") or f != "proving_nine_roots.tex":
             continue
 
         path_to_f = supplemental_path(f)
@@ -445,16 +450,20 @@ def build_supplementals():
             # print(f"Copying {path_to_f} to {dest}")
             # func(path_to_f, dest)
 
+
 def clean_logs():
     """Empty the log folder to avoid strange conflicts with past builds"""
     print(emph("Emptying logs folder."))
     shutil.rmtree(log_directory)
     os.mkdir(log_directory)
 
+
 def filename_no_ext(path):
     return os.path.splitext(path)[0]
 
+
 permitted_file = re.compile(".*[^0-9]\.tex")
+
 
 def clean_chap_folder(path):
     print("Cleaning chapter folder %s" % path)
@@ -462,6 +471,7 @@ def clean_chap_folder(path):
         if not os.path.isdir(f) and not permitted_file.match(f):
             # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             os.remove(os.path.join(path, f))
+
 
 def clean_chapter_folders():
     # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
@@ -485,7 +495,7 @@ task_list = {
     },
     "supplementals": {
         "description": "Build all supplementals into the build/misc folder.",
-        "callback": build_supplementals
+        "callback": build_supplementals,
     },
     "key": {
         "description": "Build the answer key and excerpt all answer key chapters into the build/key_chapters folder.",
@@ -635,6 +645,7 @@ def get_chapter_name_from_arg(name):
 
     raise ValueError(f"No chapter beginning with '{name}' found")
 
+
 if __name__ == "__main__":
     if len(sys.argv) <= 1:  # enter interactive
         interactive()
@@ -677,4 +688,11 @@ if __name__ == "__main__":
         check_things()
         run_operations(tasks)
 
-__all__ = ["simple_build_file", "filename_no_ext", "book_path", "log_path", "build_path", "supplemental_path"]
+__all__ = [
+    "simple_build_file",
+    "filename_no_ext",
+    "book_path",
+    "log_path",
+    "build_path",
+    "supplemental_path",
+]
