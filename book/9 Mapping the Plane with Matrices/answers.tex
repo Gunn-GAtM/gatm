@@ -47,7 +47,7 @@ The matrix is $M=\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}$. We multiply thi
 \begin{align*}
 \begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 0 \end{bmatrix} &= \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
 \begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} &= \begin{bmatrix} 2 \\ -1 \end{bmatrix} \\
-\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 0 \end{bmatrix} &= \begin{bmatrix} 3 \\ 1 \end{bmatrix}. \\
+\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} &= \begin{bmatrix} 3 \\ 1 \end{bmatrix}. \\
 \end{align*}
 
 Thus, the right hand sides are the images of the left hand side. I graphed the transformation in Figure~\ref{fig:random_mtrx_transformation}.
@@ -217,7 +217,7 @@ They belong to a line! More precisely, they are all on the line $y=x-1$.
 
 It appears the equation of the image is simply $y=-1$. We can verify this by multiplying $M$ by $\begin{bmatrix} t+1 \\ t \end{bmatrix}$:
 
-$$\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} t+1 \\ t \end{bmatrix} = \begin{bmatrix} 2(t+1) + 3t \\ -(t+1) + t \end{bmatrix} = \begin{bmatrix} 5t + 2 \\ 1 \end{bmatrix}.$$
+$$\begin{bmatrix} 2 & 3 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} t+1 \\ t \end{bmatrix} = \begin{bmatrix} 2(t+1) + 3t \\ -(t+1) + t \end{bmatrix} = \begin{bmatrix} 5t + 2 \\ -1 \end{bmatrix}.$$
 
 Indeed, the $y$ coordinate of the image is $-1$, and the $x$ coordinate can be any real number.
 
@@ -572,7 +572,7 @@ yaxis("$y$", Left, RightTicks, ymin=-4);
 
 We can use the associative property of matrix multiplication to help us! If the image of a point $P$ is $i_P$, then we have
 
-$$i_(1,1) = M\begin{bmatrix} 1 \\ 1 \end{bmatrix} = M\left(\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 1 \\ 0 \end{bmatrix}\right) = M\begin{bmatrix} 1 \\ 0 \end{bmatrix} + M\begin{bmatrix} 0 \\ 1 \end{bmatrix} = i_{(1,0)} + i_{(0,1)}.$$
+$$i_{(1,1)} = M\begin{bmatrix} 1 \\ 1 \end{bmatrix} = M\left(\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right) = M\begin{bmatrix} 1 \\ 0 \end{bmatrix} + M\begin{bmatrix} 0 \\ 1 \end{bmatrix} = i_{(1,0)} + i_{(0,1)}.$$
 
 In words, we sum the images of $(1,0)$ and $(0,1)$ to get the image of $(1,1)$. Neat!
 
@@ -731,7 +731,7 @@ The image of $(1,0)$ is just $(a,c)$. The image of $(0,1)$ is $(b,d)$.
 \item Knowing the images of $(1,0)$ and $(0,1)$, how do we find the image of $(1,1)$ algebraically and geometrically?
 \end{inner_problem}
 
-The image of $(1,1)$, as we found earlier, is the sum of the images of $(1,0)$ and $(0,1)$. Thus, it is $(a+c,b+d)$. Geometrically, it forms a parallelogram with the images of $(1,0)$ and $(0,1)$.
+The image of $(1,1)$, as we found earlier, is the sum of the images of $(1,0)$ and $(0,1)$. Thus, it is $(a+b,c+d)$. Geometrically, it forms a parallelogram with the images of $(1,0)$ and $(0,1)$.
 
 \begin{outer_problem}
 \item How do these matrices map the plane? For each mapping, write a matrix for the images of the four corners of the unit square, then graph the preimage and image. Describe the mapping using words from geometry such as congruent, similar, rotate, reflect, shear, stretch, magnitude, and direction. \label{prob:map_plane_sixteen_matrices}
@@ -1032,7 +1032,7 @@ $$\begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} \be
 \item Fill in the blanks: The result of the above multiplication is that the point $(u,v,1)$ has been translated by $\underline{\phantom{0000}}$ in the $x$ direction, $\underline{\phantom{0000}}$ in the $y$ direction, and is still anchored to the plane $z=\underline{\phantom{000}}$.
 \end{inner_problem}
 
-The result of the above multiplication is that the point $(u,v,1)$ has been translated by \underline{$u$} in the $x$ direction, \underline{$v$} in the $y$ direction, and is still anchored to the plane $z=$\underline{$1$}.
+The result of the above multiplication is that the point $(u,v,1)$ has been translated by \underline{$\alpha$} in the $x$ direction, \underline{$\beta$} in the $y$ direction, and is still anchored to the plane $z=$\underline{$1$}.
 
 \begin{outer_problem}
 \item
@@ -1044,7 +1044,7 @@ The result of the above multiplication is that the point $(u,v,1)$ has been tran
 
 We have $\alpha = 4$ and $\beta = 7$:
 
-$$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} x + 4 \\ y + 7 \\ 1 \end{bmatrix}.$$
+$$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 7 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} x + 4 \\ y + 7 \\ 1 \end{bmatrix}.$$
 
 \begin{inner_problem}
 \item Check your work by applying your matrix to the point $(3,5,1)$.
@@ -1052,7 +1052,7 @@ $$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatr
 
 The expected result is $(3+4,5+7,1)=(7,12,1)$. We multiply:
 
-$$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 3 \\ 5 \\ 1 \end{bmatrix} = \begin{bmatrix} 7 \\ 12 \\ 1 \end{bmatrix}.$$
+$$\begin{bmatrix} 1 & 0 & 4 \\ 0 & 1 & 7 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 3 \\ 5 \\ 1 \end{bmatrix} = \begin{bmatrix} 7 \\ 12 \\ 1 \end{bmatrix}.$$
 
 Looks good.
 

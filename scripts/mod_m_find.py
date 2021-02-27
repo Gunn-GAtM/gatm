@@ -11,11 +11,14 @@ for i in xrange(1, modulus):
     if gcd(i, modulus) == 1:
         group_elements.append(i)
 
+
 def pretty_print_elements():
     print(pp_list(group_elements))
 
+
 def pp_list(arr):
     return ", ".join(map(lambda s: "$%s$" % s, arr))
+
 
 def make_orbit_table(sort_by_orbit=True):
     print("\\begin{tabular}{c|c|c}\nElement & Orbit & Period")
@@ -42,6 +45,7 @@ def make_orbit_table(sort_by_orbit=True):
         print("$%s$ & %s & $%s$ \\\\" % (orbiit[0], pp_list(orbiit), len(orbiit) - 1))
 
     print("\\end{tabular}")
+
 
 def create_group_table(sort_by=None):
     if not sort_by:
