@@ -1,0 +1,40 @@
+% Additional solution for the question of the roots of a certain polynomial P(z) in the complex plane
+\documentclass{article}
+\begin{document}
+
+\iffalse
+\begin{asy}
+import graph;
+
+size(400, 200, IgnoreAspect);
+
+real P(real x) {
+    return pow(x - 1, 10) - pow(x, 10);
+}
+
+draw(graph(P,0,1),red,"$P(z)$");
+
+xaxis("$x$",Ticks);
+yaxis("$y$",Ticks;
+
+\end{asy}
+\fi
+
+The roots of the polynomial $P(z)=(z-1)^10-z^10$ have interesting structure, as we've seen. If we didn't have the inspiration (or, let's be honest, the instruction from Mr. Herreshoff) to represent $z$ in its polar form $r\operatorname{cis}\theta$, what could we do instead to find how many roots it has, and where they are? This is a fun exercise in algebra, and more importantly, an exercise in thinking like a mathematician. I make no claim to completeness or efficiency, but hopefully you'll find
+instructive the thought process of a reasonably mathematically inclined high schooler.
+
+First of all, we note that $P(z)$ has degree $9$, since the degree $10$ term of $(z-1)^10$ is canceled out. Thus it has at most $9$ roots, by the Fundamental Theorem of Algebra. We could try expanding out $P(z)$ and analyzing it further. But before that messiness, are there any real roots? There's clearly a real root at $z=0.5$. Are there any others? Well, there are many valid ways to verify that there aren't, one of which is graphing it. That's what I did. Another way is to examine the function in certain
+domains $z>0.5$ and $z<0.5$ and use inequalities to show the function is either positive or negative (and thus nonzero) in those ranges.
+
+Okay, so $P(0.5)=0$. Nice. But what about the (up to) $8$ other roots just chillin' somewhere in the complex plane? We know little about those. Graphing the polynomial made me notice something: It looks relatively simple, kind of like $x^3$. It's monotonic, meaning it always decreases over time; it has no humps. And it looks to be somewhat symmetric about $x=\frac{1}{2}$. To make it clearer, let's consider $P(z)$ and its reflection about $x=\frac{1}{2}$, which is $P(1-z)$.
+
+\begin{align}
+P(1-z) &= (1-z-1)^10 - (1-z)^10 \qquad & \text{Definition of $P(z)$} \\
+&= (-z)^10 - (1-z)^10 & \text{Simplifying} \\
+&= z^10 - (z-1)^10 & \text{Raising to an even power} \\
+&= -P(z) \\
+\end{align}
+
+Recall that in the complex plane, roots come in conjugate pairs. In other words, if $P(a+bi)=0$, then $P(\overline{a+bi})=P(a-bi)=0$. The real root(s) conjugate to themselves, so the remaining four pairs of roots come 
+
+\end{document}

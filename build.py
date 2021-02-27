@@ -290,6 +290,10 @@ def log_path(join_with):
 def build_path(join_with):
     return os.path.join(build_directory, *join_with.split("/"))
 
+supplemental_directory = os.path.join(working_directory, "supplementals")
+def supplemental_path(join_with):
+    return os.path.join(supplemental_directory, *join_with.split("/"))
+
 
 def build_textbook(excerpt_chapters=True):
     build_book("textbook", excerpt_chapters)
@@ -304,6 +308,19 @@ def open_file(filepath):
         os.startfile(filepath)
     else:  # linux variants
         subprocess.call(("xdg-open", filepath))
+
+def simple_build_file(path_to_file, path_to_dest):
+    """Build a TeX file straightforwardly: latex, asy, latex. Used for supplementals"""
+    print("Running pdflatex (1/3)")
+    run_pdflatex_on_file(path_to_file, estimate_progress=False)
+    print("Running Asymptote (2/3)")
+    run_asy_in_dir(log_directory)
+    print("Running final pdflatex (3/3)")
+    run_pdflatex_on_file(path_to_file, estimate_progress=False)
+
+    output_pdf = filename_no_ext(path_to_file) + ".pdf"
+    print(f"Moving built file {output_pdf} to destination {path_to_dest}")
+    os.move(output_pdf, path_to_dest)
 
 
 def build_book(book="textbook", excerpt_chapters=True):
@@ -409,6 +426,22 @@ def build_cover(book="textbook"):
     print("Moving compiled %s cover file to build/misc/%s_cover.pdf." % (book, book))
     os.rename(log_path("%s_cover.pdf" % book), build_path("misc/%s_cover.pdf" % book))
 
+def build_supplementals():
+    """The supplemental building process is simple. We build all .tex files in the supplements/ folder to PDFs, and copy all other files to build/misc."""
+
+    for f in os.listdir(supplemental_directory):
+        if f.startswith('.'):
+            continue
+
+        path_to_f = supplemental_path(f)
+        if f.endswith(".tex"):
+            simple_build_file(path_to_f, build_path("misc/%s.pdf" % filename_no_ext(f)))
+        else:
+            func = shutil.copytree if os.isdir(path_to_f) else shutil.copy
+            dest = build_path("misc/" + f)h
+
+            print(f"Copying {path_to_f} to {dest}")
+            func(path_to_f, dest)
 
 def clean_logs():
     """Empty the log folder to avoid strange conflicts with past builds"""
@@ -416,9 +449,10 @@ def clean_logs():
     shutil.rmtree(log_directory)
     os.mkdir(log_directory)
 
+def filename_no_ext(path):
+    return os.path.splitext(path)[0]
 
 permitted_file = re.compile(".*[^0-9]\.tex")
-
 
 def clean_chap_folder(path):
     print("Cleaning chapter folder %s" % path)
@@ -426,7 +460,6 @@ def clean_chap_folder(path):
         if not os.path.isdir(f) and not permitted_file.match(f):
             # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             os.remove(os.path.join(path, f))
-
 
 def clean_chapter_folders():
     # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
@@ -445,8 +478,12 @@ open_output_files = False  # Whether to open output files
 
 task_list = {
     "all": {
-        "description": "Build the textbook and answer key, and dump all individual chapters into the build folder.",
-        "subtasks": ["textbook", "key"],
+        "description": "Build the textbook and answer key, and dump all individual chapters into the build folder, and build supplementals.",
+        "subtasks": ["textbook", "key", "supplementals"],
+    },
+    "supplementals": {
+        "description": "Build all supplementals into the build/misc folder.",
+        "callback": build_supplementals
     },
     "key": {
         "description": "Build the answer key and excerpt all answer key chapters into the build/key_chapters folder.",
@@ -596,7 +633,6 @@ def get_chapter_name_from_arg(name):
 
     raise ValueError(f"No chapter beginning with '{name}' found")
 
-
 if __name__ == "__main__":
     if len(sys.argv) <= 1:  # enter interactive
         interactive()
@@ -638,3 +674,5 @@ if __name__ == "__main__":
 
         check_things()
         run_operations(tasks)
+
+__all__ = ["simple_build_file", "filename_no_ext", "book_path", "log_path", "build_path", "supplemental_path"]
