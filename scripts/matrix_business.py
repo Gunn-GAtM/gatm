@@ -23,11 +23,11 @@ def run_products():
     generators = temp
 
 
-for i in xrange(5):
-    print "Calculating to step %s" % i
+for i in range(5):
+    print("Calculating to step %s" % i)
     run_products()
     if len(temp) == len(generators):
         break
 
-print (generators)
-print (len(generators))
+print(generators)
+print(len(generators))

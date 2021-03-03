@@ -228,6 +228,9 @@ pythontex-files-*/
 TSWLatexianTemp*
 
 ## Editors:
+# Jetbrains
+.idea
+
 # WinEdt
 *.bak
 *.sav

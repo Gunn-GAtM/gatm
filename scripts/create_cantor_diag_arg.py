@@ -10,7 +10,7 @@ numbers = [
     ("0", decimal.Decimal("0")),
     ("\\frac{1}{4}", decimal.Decimal("0.25")),
     (
-        "\\frac{\pi}{4}",
+        "\\frac{\\pi}{4}",
         decimal.Decimal("0.7853981633974483096156608458198757210492923498"),
     ),
     ("C_{10}", decimal.Decimal("0.123456789101112131415161718192021222324")),
@@ -62,7 +62,7 @@ for i in range(digits):
     table_index = i + 3
 
     if i >= len(numbers):
-        table[-1].append("\multicolumn{5}{l}{$\cdots{}$}")
+        table[-1].append("\\multicolumn{5}{l}{$\\cdots{}$}")
         break
 
     table[-1].append(
