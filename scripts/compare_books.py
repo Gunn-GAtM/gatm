@@ -2,8 +2,10 @@ import re
 
 # This program compares the gatm textbook and the answer key to make sure that all questions correspond correctly.
 
-chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen " \
-                "comp_map inverses mod_m eigen".split(" ")
+chapter_names = (
+    "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen "
+    "comp_map inverses mod_m eigen".split(" ")
+)
 
 counters = {"enumi": 0, "enumii": 0, "enumiii": 0}
 
@@ -97,9 +99,7 @@ class Problem:
 begin_enumerate_regex = re.compile(
     r"\\begin{(?:enumerate|(?:(?:outer|i?inner)_problem))}"
 )
-end_enumerate_regex = re.compile(
-    r"\\end{(?:enumerate|(?:(?:outer|i?inner)_problem))}"
-)
+end_enumerate_regex = re.compile(r"\\end{(?:enumerate|(?:(?:outer|i?inner)_problem))}")
 setcounter_regex = re.compile(r"\\setcounter\s*{[^{}]+}{(?:\\value{)?[^{}]+}?}")
 item_regex = re.compile(r"\\item")
 
