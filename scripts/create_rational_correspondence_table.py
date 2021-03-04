@@ -18,11 +18,11 @@ def generate_correspondence(max_denom=10):
             rat = num / den  # this is why
 
             if TRACK_DUPLICATES and rat in corresponding:
-                yield (num, den, "(%s)" % corresponding[rat])
+                yield num, den, "(%s)" % corresponding[rat]
             else:
                 corresponding[rat] = curr_index
                 curr_index += 1
-                yield (num, den, corresponding[rat])
+                yield num, den, corresponding[rat]
 
 
 rows = 5
@@ -31,7 +31,7 @@ cols = 6
 header = """\\renewcommand*{{\\arraystretch}}{{2}} % stops fractions from colliding
 \\begin{{tabular}}{{{column_alignments}}}
  & & \\multicolumn{{{mcol_sz}}}{{c}}{{Num. $\\rightarrow$}} & & \\\\
- & & {numerators} & $\cdots{{}}$ \\\\
+ & & {numerators} & $\\cdots{{}}$ \\\\
 \\multirow{{{mrow_sz}}}{{*}}{{\\rotatebox[origin=c]{{-90}}{{Den. $\\rightarrow$}}}}  % "Den. ->" on the left, rotated sideways
 """.format(
     column_alignments="l" * (cols + 3),
@@ -62,7 +62,7 @@ for triplet in generate_correspondence(2 * max(rows, cols) + 1):
 
 for x in range(rows):
     table_array[x][1] = "$%s$" % (x + 1)
-    table_array[x][-1] = "$\cdots{}$"
+    table_array[x][-1] = "$\\cdots{}$"
 
 table_array_joined = "\n".join(
     "%s \\\\" % " & ".join(table_array[i]) for i in range(rows)

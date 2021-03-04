@@ -7,7 +7,7 @@ from fractions import gcd
 modulus = 10
 group_elements = []
 
-for i in xrange(1, modulus):
+for i in range(1, modulus):
     if gcd(i, modulus) == 1:
         group_elements.append(i)
 

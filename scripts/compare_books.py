@@ -2,9 +2,8 @@ import re
 
 # This program compares the gatm textbook and the answer key to make sure that all questions correspond correctly.
 
-chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen comp_map inverses mod_m eigen".split(
-    " "
-)
+chapter_names = "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen " \
+                "comp_map inverses mod_m eigen".split(" ")
 
 counters = {"enumi": 0, "enumii": 0, "enumiii": 0}
 
@@ -29,10 +28,10 @@ def get_counter(counter):
     return counters[counter]
 
 
-get_enumeration_name = re.compile(r"\\(?:begin|end)\s*\{([^{}]+)\}")
-get_setcounters1 = re.compile(r"\\setcounter\s*\{([^{}]+)\}\{\\value\{([^{}]+)\}\}")
-get_setcounters2 = re.compile(r"\\setcounter\s*\{([^{}]+)\}\{([0-9]+)\}")
-get_setcounters3 = re.compile(r"\\setcounter\s*\{([^{}]+)\}\{\\the([^{}]+)\}")
+get_enumeration_name = re.compile(r"\\(?:begin|end)\s*{([^{}]+)}")
+get_setcounters1 = re.compile(r"\\setcounter\s*{([^{}]+)}{\\value{([^{}]+)}}")
+get_setcounters2 = re.compile(r"\\setcounter\s*{([^{}]+)}{([0-9]+)}")
+get_setcounters3 = re.compile(r"\\setcounter\s*{([^{}]+)}{\\the([^{}]+)}")
 
 # Token types: begin_enumerate, end_enumerate, item, setcounter
 class Token:
@@ -96,12 +95,12 @@ class Problem:
 
 
 begin_enumerate_regex = re.compile(
-    r"\\begin\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}"
+    r"\\begin{(?:enumerate|(?:(?:outer|i?inner)_problem))}"
 )
 end_enumerate_regex = re.compile(
-    r"\\end\{(?:enumerate|(?:(?:outer|i?inner)_problem))\}"
+    r"\\end{(?:enumerate|(?:(?:outer|i?inner)_problem))}"
 )
-setcounter_regex = re.compile(r"\\setcounter\s*\{[^{}]+\}\{(?:\\value\{)?[^{}]+\}?\}")
+setcounter_regex = re.compile(r"\\setcounter\s*{[^{}]+}{(?:\\value{)?[^{}]+}?}")
 item_regex = re.compile(r"\\item")
 
 
@@ -147,6 +146,7 @@ def problem_tokenizer(file_string):
                 "item", file_string[item_start_index : min(start, min_start)].strip()
             )
 
+        # The following few [] references are invalid
         if starts[3] == min_start:
             is_item_active = True
             item_start_index = item_match.end()
@@ -173,10 +173,12 @@ def problem_tokenizer(file_string):
             yield Token(token_type, match_str)
 
 
-# Must consider: \begin{enumerate}, \end{enumerate}, \item, \setcounter{...}{...}, \begin{outer_problem}, \begin{inner_problem}, \begin{iinner_problem}
+# Must consider: \begin{enumerate}, \end{enumerate}, \item, \setcounter{...}{...}, \begin{outer_problem},
+# \begin{inner_problem}, \begin{iinner_problem}
 def problem_generator(file_string, is_answer_key=False):
     global counters
 
+    # Shadowed
     enum_depth = 0
     record_problem_n = 0
 
@@ -184,7 +186,7 @@ def problem_generator(file_string, is_answer_key=False):
     set_counter_by_value("inner", 0)
     set_counter_by_value("iinner", 0)
 
-    for x in xrange(1, 4):
+    for x in range(1, 4):
         set_counter_by_value("enum" + "i" * x, 0)
 
     for token in problem_tokenizer(file_string):
@@ -222,7 +224,7 @@ def problem_generator(file_string, is_answer_key=False):
             if name == "enumerate":
                 enum_depth -= 1
 
-                for x in xrange(enum_depth + 1, 4):
+                for x in range(enum_depth + 1, 4):
                     set_counter_by_value("enum" + "i" * x, 0)
         if token.type == "setcounter":
             counter_names = token.get_counter_names()
@@ -254,7 +256,9 @@ def problem_generator(file_string, is_answer_key=False):
 problem_count = 0
 
 for chapter in chapter_names:
-    enum_depth = 0  # 0 means not in an enumerate, 1 means in a top level enumerate, 2 means in a a,b,c enumerate, 3 means in a i, ii, iii enumerate
+    # 0 means not in an enumerate, 1 means in a top level enumerate, 2 means in a a,b,c enumerate, 3 means in a i,
+    # ii, iii enumerate
+    enum_depth = 0
 
     with open("%s/%s_source.tex" % (chapter, chapter), "r") as problem_file:
         with open("%s/%s_answers.tex" % (chapter, chapter), "r") as answer_file:

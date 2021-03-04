@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-# We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire textbook/answer key. It's a bit involved, but you'll understand, dear traveler. Check README.md for context.
+# We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire
+# textbook/answer key. It's a bit involved, but you'll understand, dear traveler. Check README.md for context.
 
 import sys
 import os
@@ -11,12 +12,6 @@ import ntpath
 import time
 import argparse
 import platform
-
-# Fix input from Python 2
-try:
-    input = raw_input
-except NameError:
-    pass
 
 # Should be the folder gatm/
 working_directory = os.path.dirname(os.path.abspath(__file__))
@@ -31,11 +26,12 @@ book_directory = os.path.join(working_directory, "book")
 error_regex = re.compile(":[0-9]*:")
 fatal_error_test = "Fatal error occurred, no output PDF file produced!"
 
-# First capture group is whether it's the start or end of the chapter. Second group is the number of the chapter (ex: 1 for trig review). Third group is the absolute page number, starting from first page = 0.
+# First capture group is whether it's the start or end of the chapter. Second group is the number of the chapter (ex:
+# 1 for trig review). Third group is the absolute page number, starting from first page = 0.
 page_number_typeout_regex = re.compile(
-    "Page number of chapter (start|end):([0-9]+.*)\s+([0-9]+)"
+    "Page number of chapter (start|end):([0-9]+.*)\\s+([0-9]+)"
 )
-shipout_page_number_regex = re.compile("\[([0-9]+)")
+shipout_page_number_regex = re.compile("\\[([0-9]+)")
 
 FNULL = None
 
@@ -56,10 +52,10 @@ def make_progress_bar(percent, width=50):
         filled = parts - 1
     unfilled = parts - 1 - filled
     return (
-        emph("[" + filled * "=" + ">" + " " * unfilled + "]")
-        + "("
-        + str(int(round(percent * 100)))
-        + "%)"
+            emph("[" + filled * "=" + ">" + " " * unfilled + "]")
+            + "("
+            + str(int(round(percent * 100)))
+            + "%)"
     )
 
 
@@ -77,7 +73,8 @@ progress_bar_length = 0
 
 
 def print_progress_bar(percent, width=50):
-    """Print a progress bar to the screen. We keep track of its character length so that later we can remove it with repeated backspaces."""
+    """Print a progress bar to the screen. We keep track of its character length so that later we can remove it with
+    repeated backspaces. """
     global progress_bar_length
 
     text = make_progress_bar(percent, width) + "\n"
@@ -102,15 +99,15 @@ def commit_progress_bar():
 
 
 def run_pdflatex_on_file(
-    filename,
-    output_dir=log_directory,
-    live_output=True,
-    estimate_progress=True,
-    estimated_pages=60,
-    output_errors=True,
-    throw_on_fatal=True,
-    throw_on_error=False,
-    get_chapter_pages=True,
+        filename,
+        output_dir=log_directory,
+        live_output=True,
+        estimate_progress=True,
+        estimated_pages=60,
+        output_errors=True,
+        throw_on_fatal=True,
+        throw_on_error=False,
+        get_chapter_pages=True,
 ):
     """Run pdflatex on a file and dump the result into the log folder, where it shall eventually be UPROOTED from"""
     time_start = time.time()
@@ -126,7 +123,8 @@ def run_pdflatex_on_file(
     env["error_line"] = "1000"
     env["half_error_line"] = "238"
 
-    # Lets pdflatex search for files from the parent directory as a working directory and intermediate files in the output directory, but logging everything in the output directory
+    # Lets pdflatex search for files from the parent directory as a working directory and intermediate files in the
+    # output directory, but logging everything in the output directory
     env["TEXINPUTS"] = os.path.dirname(filename) + ":" + output_dir + ";"
 
     flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error"
@@ -180,7 +178,7 @@ def run_pdflatex_on_file(
             if match:
                 # We have a line error
                 location = line[: match.end() - 1]
-                error = line[match.end() :]
+                error = line[match.end():]
 
                 if throw_on_error:
                     raise LatexError(
@@ -209,7 +207,7 @@ def run_pdflatex_on_file(
                 for pagenum in match:
                     pagenum = int(pagenum)
                     if (
-                        pagenum == page_count["val"] + 1
+                            pagenum == page_count["val"] + 1
                     ):  # Catch false positives like [8pt,twosided]
                         page_count["val"] = pagenum
 
@@ -328,7 +326,8 @@ def simple_build_file(path_to_file, path_to_dest):
 
 
 def build_book(book="textbook", excerpt_chapters=True):
-    """Build the thing. If chapter_name is given, then we build in the chapter folder. If not, we build in the log folder and move to build."""
+    """Build the thing. If chapter_name is given, then we build in the chapter folder. If not, we build in the log
+    folder and move to build. """
     filename = (
         book if not chapter_name else ("chapter" if book == "textbook" else "answers")
     )
@@ -432,7 +431,8 @@ def build_cover(book="textbook"):
 
 
 def build_supplementals():
-    """The supplemental building process is simple. We build all .tex files in the supplements/ folder to PDFs, and copy all other files to build/misc."""
+    """The supplemental building process is simple. We build all .tex files in the supplements/ folder to PDFs,
+    and copy all other files to build/misc. """
 
     clean_logs()
     for f in os.listdir(supplemental_directory):
@@ -462,7 +462,7 @@ def filename_no_ext(path):
     return os.path.splitext(path)[0]
 
 
-permitted_file = re.compile(".*[^0-9]\.tex")
+permitted_file = re.compile(".*[^0-9]\\.tex")
 
 
 def clean_chap_folder(path):
@@ -490,7 +490,8 @@ open_output_files = False  # Whether to open output files
 
 task_list = {
     "all": {
-        "description": "Build the textbook and answer key, and dump all individual chapters into the build folder, and build supplementals.",
+        "description": "Build the textbook and answer key, and dump all individual chapters into the build folder, "
+                       "and build supplementals.",
         "subtasks": ["textbook", "key", "supplementals"],
     },
     "supplementals": {
@@ -514,7 +515,8 @@ task_list = {
         "callback": lambda: build_key(False),
     },
     "clean": {
-        "description": "Empty the logs folder and delete all files in chapter folders besides 'answers.tex' and 'chapter.tex'.",
+        "description": "Empty the logs folder and delete all files in chapter folders besides 'answers.tex' and "
+                       "'chapter.tex'.",
         "subtasks": ["clean_logs", "clean_chapter_folders"],
     },
     "clean_logs": {
@@ -599,6 +601,7 @@ def run_operations(ops):
         print(f"Doing operation {opname}: {description}")
 
         if "callback" in op:
+            # Op is not callable
             op["callback"]()
         elif "subtasks" in op:
             print(f"Subtasks: {op['subtasks']}")
@@ -638,7 +641,8 @@ chapter_list.remove("template")
 
 
 def get_chapter_name_from_arg(name):
-    """Get the chapter name from a partial name, by matching the chapter which starts with the same character(s), with alphabetical precedence"""
+    """Get the chapter name from a partial name, by matching the chapter which starts with the same character(s),
+    with alphabetical precedence """
     for ch in chapter_list:
         if ch.startswith(name):
             return ch
