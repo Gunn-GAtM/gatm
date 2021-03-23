@@ -1,5 +1,8 @@
 \documentclass[../key.tex]{subfiles}
 
+\newcommand{\cosdeg}[1] {\cos #1^\circ}
+\newcommand{\cisdeg}[1] {\cis #1^\circ}
+
 \begin{document}
 
 \section{Your Daily Dose of Vitamin $i$}
@@ -199,9 +202,9 @@ We have
 (1+i)^5 &= 1^5 + 5i - 10 - 10i + 5 + i &= -4-4i. \\
 \end{align*}
 
-We can find the pattern by representing $1+i = \sqrt{2} \cis 45^\circ$. This shows that it has period $8$ and let's us find an expression for $(1+1)^n$:
+We can find the pattern by representing $1+i = \sqrt{2} \cisdeg{45}$. This shows that it has period $8$ and let's us find an expression for $(1+1)^n$:
 
-$$(1+i)^n = \left(\sqrt{2} \cis 45^\circ\right)^n = 2^{n/2} \cis \left(\frac{n\pi}{4}\right).$$
+$$(1+i)^n = \left(\sqrt{2} \cisdeg{45}\right)^n = 2^{n/2} \cis \left(\frac{n\pi}{4}\right).$$
 
 \begin{outer_problem}
 \item Expand and graph $\cis^n \theta$ for $n=2,3,4,\ldots$.
@@ -277,8 +280,6 @@ Here they are. Again, let $\cos\theta = c$ and $\sin\theta = s$:
 \sin 5\theta = \Imag(\cis 5\theta) &= 5c^4s - 10c^2s^3 + s^5. \\
 \end{align*}
 
-\newcommand{\cosdeg}[1] {\cos #1^\circ}
-
 \begin{outer_problem}
 \item Compute $\cosdeg{7} + \cosdeg{79} + \cosdeg{151} + \cosdeg{223} + \cosdeg{295}$ without a calculator. (Hint: what does this have to do with complex numbers?)
 \end{outer_problem}
@@ -288,12 +289,23 @@ These numbers look random, but a closer inspection reveals they are in arithmeti
 We rewrite this as the real component of a sum of $\cis$es, then manipulate and evaluate:
 
 \begin{align*}
-\cosdeg{7} + \cosdeg{79} + \cosdeg{151} + \cosdeg{223} + \cosdeg{295} &= \Real(\cis 7^\circ + \cis 79^\circ +  \cis 151^\circ +  \cis 223^\circ +  \cis 295^\circ) \\
-&= \Real((\cis 7^\circ)(\cis 0^\circ + \cis 72\circ + \cis 144^\circ + \cis 216^\circ + \cis 288^\circ)) \\
-&= \Real((\cis 7^\circ)(0)) \\
+\cosdeg{7} + \cosdeg{79} + \cosdeg{151} + \cosdeg{223} + \cosdeg{295} &= \Real(\cisdeg{7} + \cisdeg{79} +  \cisdeg{151} +  \cisdeg{223} +  \cisdeg{295}) \\
+&= \Real((\cisdeg{7})(\cisdeg{0} + \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288})) \\
+&= \Real((\cisdeg{7})(0)) \\
 &= \Real(0) \\
 &= 0.
 \end{align*}
+
+Note that going from the second to third step, we used the fact that the $\cis$ expressions are the vertices of a regular pentagon, which sum to $0$. If you want to be more formal about it, a fun way to prove that $\cisdeg{0} + \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288}=0$ is to set it to $\Xi$ and calculate:
+
+\begin{align*}
+    \Xi\cdot \cisdeg{72} &= (\cisdeg{0} + \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288}) \cisdeg{72} \\
+    &= \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288} + \cisdeg{360} \\
+    &= \cisdeg{72} + ... + \cisdeg{288} + \cisdeg{0} \\
+    &= \Xi.
+\end{align*}
+
+If $\Xi\cdot (\text{something that's not one})=\Xi$, then $\Xi$ must be $0$.
 
 \begin{outer_problem}
 \item Factor the following:
@@ -368,7 +380,7 @@ Let $y$ be the current year. As I write this, it is $1492$.
 If $y$ is even, then $f^y(z) = (f^2)^{y/2}(z) = z$. If $y$ is odd, then $f^y(z) = f((f^2)^{(y-1)/2}(z)) = f(z) = \frac{z+1}{z-1}$.
 
 \begin{outer_problem}
-\item Find $\Imag\left((\cis 12^\circ + \cis 48^\circ)^6\right)$.
+\item Find $\Imag\left((\cisdeg{12} + \cisdeg{48})^6\right)$.
 \end{outer_problem}
 
 These are some weird looking angles. Thinking back to some older problems, however, the resultant angle of the addition may be tractable. We draw a diagram, shown in Figure~\ref{fig:add_twelve_and_forty_eight}.
@@ -384,8 +396,8 @@ pair res = c1+c2;
 
 draw(O--c2, Arrow);
 draw(c2--res, Arrow);
-label("$\cis 48^\circ$", O--c2, NW);
-label("$\cis 12^\circ$", c2--res, N);
+label("$\cisdeg{48}$", O--c2, NW);
+label("$\cisdeg{12}$", c2--res, N);
 
 path arc1 = arc(O, (0.15, 0), c2);
 draw(arc1, Arrow);
@@ -416,15 +428,15 @@ path arc4 = arc(c2, point(c2--O, 0.15), c2+(0.15,0));
 draw(arc4);
 label("$132^\circ$", midpoint(arc4), SE);
 \end{asy}
-\captionof{figure}{Adding $\cis 12^\circ + \cis 48^\circ$.}
+\captionof{figure}{Adding $\cisdeg{12} + \cisdeg{48}$.}
 \label{fig:add_twelve_and_forty_eight}
 \end{center}
 
-Consider the isosceles triangle. The apex has angle measure $132^\circ + 12^\circ = 144^\circ$, so the base angles are each $x=\frac{180^\circ - 144^\circ}{2} = 18^\circ$. But $\Arg (\cis 12^\circ + \cis 48^\circ) = 48^\circ - x = 30^\circ$!
+Consider the isosceles triangle. The apex has angle measure $132^\circ + 12^\circ = 144^\circ$, so the base angles are each $x=\frac{180^\circ - 144^\circ}{2} = 18^\circ$. But $\Arg (\cisdeg{12} + \cisdeg{48}) = 48^\circ - x = 30^\circ$!
 
-That's a familiar angle. Indeed, we have $z=\cis 12^\circ + \cis 48^\circ=r\cis 30^\circ$ for some $r$. It doesn't really matter which $r$, because
+That's a familiar angle. Indeed, we have $z=\cisdeg{12} + \cisdeg{48}=r\cisdeg{30}$ for some $r$. It doesn't really matter which $r$, because
 
-$$\Imag ((r\cis 30^\circ)^6) = \Imag (r^6 \cis 180^\circ) = \Imag(-r^6) = 0.$$
+$$\Imag ((r\cisdeg{30})^6) = \Imag (r^6 \cisdeg{180}) = \Imag(-r^6) = 0.$$
 
 \begin{outer_problem}
 \item Let $x$ satisfy the equation $x+\frac{1}{x}=2\cos\theta$.
@@ -444,16 +456,58 @@ So $x^2 + \frac{1}{x^2} = (2\cos\theta)^2 - 2 = 4\cos^2\theta - 2 = 2 (2\cos^2\t
 \item Compute $x^n+\frac{1}{x^n}$ in terms of $n$ and $\theta$.
 \end{inner_problem}
 
-We conjecture that this is equal to $2\cos n\theta$. To do this, we let $x=\cis \frac{\theta}{n}$, so $x^n = \cis\theta$, and compute. That should give us some similar looking terms:
+It's unclear how to start, so we might as well try to compute $x^3 + \frac{1}{x^3}$ in the same way.
 
 \begin{align*}
-x^n + \frac{1}{x^n} &= \cis \theta + \frac{1}{\cis \theta} \\
-&= \cis\theta + \cis (-\theta) \\
-&= \cis\theta + \overline{\cis\theta} \\
-&= 2 \Real(\cis \theta) \\
-&= 2 \cos\theta.
+    \left(x + \frac{1}{x}\right)^3 &= \\
+    x^3 + 3x + \frac{3}{x} + \frac{1}{x^3} &= 8\cos^3\theta \\
+    x^3 + 3\underbrace{\left(x + \frac{1}{x}\right)}_{2\cos \theta} + \frac{1}{x^3} &= 8\cos^3\theta \\
+    x^3 + \frac{1}{x^3} &= 8\cos^3\theta - 6\cos\theta.
 \end{align*}
 
-This proves the relationship.
+Now what? The astute among you may recognize that $8\cos^3\theta - 6\cos\theta = 2\cos 3\theta$, at which point you could make a conjecture (and could jump ahead). But suppose we didn't find that.
+
+We know that $x^2 + \frac{1}{x^2} = 2\cos 2\theta$. By analogy, if we make the substitution $y=x^2$ and $\phi = 2\theta$, we get that $y+\frac{1}{y} = 2\cos\phi$, and thus $y^2+\frac{1}{y^2} = 2\cos 2\phi \Longrightarrow x^4 + \frac{1}{x^4} = 2\cos 4\theta$. In general,
+
+$$x^{2^m} + \frac{1}{x^{2^m}} = 2\cos 2^m\theta.$$
+
+The exponent on $x$, in this case $2^m$, is the same as the multiple of $\theta$. Pretty sus. We've solved the problem for $n$ which are powers of two, but we conjecture that the relationship holds for all integers $n$. To be explicit, we want to show that
+
+$$x^n + \frac{1}{x^n} = 2\cos n\theta.$$
+
+There's a couple of ways to do it. But seeing $x^n$ and $\cos n\theta$ in the same place immediately recalls exponentiating $\cis \theta$. So, let's try rewriting the problem a bit by entering into the complex plane. Let $x = r\cis\phi$, which we really should have done earlier. Then we're given that $r\cis\phi + \frac{1}{r\cis\phi} = 2\cos \theta$. Working further,
+
+\begin{align*}
+    2\cos \theta &= r\cis\phi + \frac{1}{r}\cis(-\phi) \\
+    &= r\cos\phi + \frac{1}{r}\cos\phi + i(r\sin\phi - \frac{1}{r}\sin\phi) \\
+    &= \left(r+\frac{1}{r}\right)\cos\phi + i\left(r - \frac{1}{r}\right)\sin\phi \\
+\end{align*}
+
+The imaginary part needs to be zero, since the left hand side is real. So either $r=\frac{1}{r}$ or $\sin\phi = 0$. Let's examine each case. In the first case, $r=1$ (it can't be $-1$ since $r\geq 0$. In the second case, we have $\cos\phi = \pm 1$, and substituting, we get
+
+$$2\cos \theta = \pm \left(r + \frac{1}{r} \right).$$
+
+That's not helpful... except now we know that $r$ is real and $\geq 0$. Considering $r + \frac{1}{r}$, we see that it approaches $\infty$ as $r\to 0$. What range of values does it make? Graphing it shows that it has a range of $[2, \infty)$, reaching its minimum at $r=1$. Another way to prove this is via AM-GM with $x=2r$ and $y=\frac{2}{r}$:
+
+$$\frac{x+y}{2} \geq \sqrt{xy} \Longrightarrow r + \frac{1}{r} \geq \sqrt{2r\left(\frac{2}{r}\right)} = 2.$$
+
+But the range of $2\cos\theta$ is $[-2,2]$, and the only possible value of the equation is the intersection of their ranges, aka $2$. So $r=1$ no matter what. That's damn useful, because then 
+
+\begin{align*}
+    2\cos \theta &= \left(r+\frac{1}{r}\right)\cos\phi + i\left(r - \frac{1}{r}\right)\sin\phi \qquad & \text{From before} \\
+    &= 2\cos\phi. \\
+\end{align*}
+
+So $\cos\phi = \cos\theta$. We wish to find an expression for $x^n+\frac{1}{x^n}$.
+
+\begin{align*}
+    x^n+\frac{1}{x^n} &= r^n\cis^n\phi + \frac{1}{r^n}\cis^n(-\phi) \\
+    &= r^n(\cos n\phi + \sin n\phi) + \frac{1}{r^n}(\cos n\phi - \sin n\phi) \\
+    &= \cos n\phi + \sin n\phi + \cos n\phi - \sin n\phi \\
+    &= 2\cos n\phi \\
+    &= 2\cos n\theta. \\
+\end{align*}
+
+Note that in the last step, we have to be careful, but cosine does have this property. Anyway, that's a gg, QED.
 
 \end{document}
