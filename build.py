@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire
 # textbook/answer key. It's a bit involved, but you'll understand, dear traveler. Check README.md for context.
