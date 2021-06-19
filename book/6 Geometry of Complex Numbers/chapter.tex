@@ -2,8 +2,6 @@
 
 \begin{document}
 
-\newcounter{cg_problem_i} % for keeping track of which problem we're on
-
 \section{Geometry of Complex Numbers}
 
 \noindent\textit{Thanks to Tristan Needham's \emph{Visual Complex Analysis} for many of the problems/examples and to Josh Zucker for most of the text.}
@@ -217,7 +215,7 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \end{multicols}
 \end{enumerate}
 
-\setcounter{cg_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent DeMoivre's theorem is the ``universal'' trig identity, in the sense that it can be used to calculate every other trig identity. For example, suppose you want an identity for $\cos 3\theta$. For convenience, let $c=\cos\theta$ and $s=\sin\theta$. Then we have:
@@ -232,12 +230,12 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \noindent Equating real parts on both sides, $\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta$.
 
 \begin{enumerate}
-\setcounter{enumi}{\value{cg_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Prove that $(r_1\cis \theta)(r_2\cis \phi) = r_1r_2 \cis(\theta + \phi)$ using brute force and the angle-sum trig identities for $\cos$ and $\sin$. Do you prefer this method or the one on the previous page? Which method gives you a better understanding of why DeMoivre's works?
 \item Find an identity for $\sin 3\theta$ as we have done for $\cos$. Most of the work is already done for you!
 \item Your friend's textbook says $\cos 3\theta = 4\cos^3\theta - 3\cos \theta$, different from our identity. Who's right?
 
-\setcounter{cg_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \begin{asydef}
@@ -249,6 +247,7 @@ pair rotate(pair p, real degrees=0) {
 	return (p.x*c-p.y*s,p.y*c+p.x*s);
 }
 
+// Create a square with a side on A--B
 path squareOn(pair A, pair B) {
 	return A--B--(B+rotate(A-B,-90))--(A+rotate(B-A,90))--cycle;
 }
@@ -257,7 +256,6 @@ pair A = (0,0);
 pair B = (1,6);
 pair C = (5.5,3);
 pair D = (4,0);
-
 \end{asydef}
 
 \begin{figure}[h]
@@ -267,6 +265,7 @@ pair D = (4,0);
 			\begin{asy}[width=0.9\textwidth]
 				draw(A--B--C--D--cycle);
 
+				// This file should be *relatively* self-explanatory
 				label("$0=A$", A, SW);
 				label("$B$", B, NNW);
 				label("$C$", C, NE+0.7*E);
@@ -318,6 +317,8 @@ pair D = (4,0);
 				\begin{minipage}[b]{\textwidth}
 					\centering
 					\begin{asy}[width=0.6\textwidth]
+						// This file should be relatively self-explanatory
+
 						label("$A$", A, SW);
 						label("$B$", B, NNW);
 						label("$C$", C, NE+0.7*E);
@@ -371,7 +372,7 @@ pair D = (4,0);
 				\begin{minipage}[b]{\textwidth}
 					\centering
 					\begin{asy}[width=0.6\textwidth]
-
+						// This file should be relatively self-explanatory
 						pair a = (B-A)/2;
 						draw(squareOn(A,B));
 
@@ -422,10 +423,10 @@ $P,Q,R,S$ are also complex numbers. Let $m=R-P$ and $n = Q-S$, be our two segmen
 
 We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a+ia$, remembering that $a$ is the vector halfway along $\overrightarrow{AB}$. $a$ takes you from the origin $A$ to the midpoint of $\overline{AB}$, then $ia$ takes you to $P$. This shown in Figure~\ref{fig:p_def_on_a}. We can extend this logic to the other points, of course.
 
-\newcounter{cg_problem_ii}
+\newcounter{problem_ii}
 
 \begin{enumerate}
-\setcounter{enumi}{\value{cg_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Now you can finish the rest of the proof.
 \begin{enumerate}
 \item Draw $a,b,c,d,m,n$ approximately for the quadrilateral on the previous page.
@@ -502,7 +503,7 @@ Is the difference between them fundamental?
 \item Find $e^{-it}$.
 \item Find $\frac{e^{i\theta} + e^{-i\theta}}{2}$.
 \item Find $\frac{e^{i\theta} - e^{-i\theta}}{2i}$.
-\setcounter{cg_problem_ii}{\value{enumii}}
+\setcounter{problem_ii}{\value{enumii}}
 \end{multicols}
 \end{enumerate}
 \item Use your new, complex definitions for $\cos$ and $\sin$ to find:%
