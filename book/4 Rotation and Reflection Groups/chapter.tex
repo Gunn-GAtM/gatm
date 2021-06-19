@@ -71,6 +71,7 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 			\begin{asy}[width=\textwidth]
 				size(0,60);
 
+				// See chapter 3 files for better descriptions of what's going on here
 				drawTriangle((0, 0), 2, orders[4], false);
 				label("$r$", (sqrt(3) / 2, -1.4), (0,0), basealign);
 				drawTriangle((3, 0), 2, orders[5], false);
@@ -118,14 +119,17 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 		\begin{minipage}[b]{\textwidth}
 			\centering
 			\begin{asy}[width=0.5\textwidth]
+				// Our first 3D graph
 				import graph3;
 
 				size(0,130);
 				currentprojection = perspective(5, 5.8, 3.5);
 
+				// Vertices of a right equilateral triangular prism
 				triple A = (0,0,0), B = (1,0,0), C = (1/2,sqrt(3)/2,0);
 				triple D = (0,0,1), E = (1,0,1), F = (1/2,sqrt(3)/2,1);
 
+				// Draw and label the prism and its vertices
 				draw(A--B--C--cycle);
 				draw(D--E--F--cycle);
 				draw(A--D);
@@ -144,18 +148,21 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 					return p / sqrt(p.x * p.x + p.y * p.y + p.z * p.z);
 				}
 
+				// Used to draw an axis in 3D
 				void draw3DExtLine(triple A, triple B, real extra = 0.2, string labelstr="", triple succ = (0,0,0)) {
 					triple C = (A + extra * (A - B)), D = (B + extra * (B - A));
 					draw(C--D, dashed);
 					if (labelstr != "") label(labelstr, C, unitify3D(A - B) + succ);
 				}
 
+				// Axes
 				draw3DExtLine((C+F)/2, (B+D)/2, 0.45, "$A$");
 				draw3DExtLine((A+D)/2, (C+E)/2, 1.2, "$B$");
 				draw3DExtLine((B+E)/2, (A+F)/2, 0.45, "$C$");
 
 				// Drawing a curved (approximately circular) arrow, splinely interpolating between POINTS on the 3D ARQUE (arc)
 
+				// Arrays (x, y, z) of points on the arrow
 				real[] x = {}; // cosine
 				real[] y = {}; // stays constant
 				real[] z = {}; // sine
@@ -164,14 +171,17 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 				real arrow_radius = 0.3;
 
 				for (int i = 0; i < arrow_pt_count; ++i) {
-					real angle = i / arrow_pt_count * 3.1416; // just pi because we want a 180 degree arrow
+					real angle = i / arrow_pt_count * 3.1416; // just pi, not 2 pi, because we want a 180 degree arrow
 					x.push(arrow_radius * cos(angle) + 1/2);
 					y.push(1.2);
 					z.push(arrow_radius * sin(angle) + 1/2);
 				}
 
+				// Needed for the head of the arrow to display properly
 				currentlight=(1,1,1);
-				draw(graph(x,y,z,operator..),gray,Arrow3, currentlight);
+
+				// The graph command takes in three real arrays, combined with an interpolation operator, in this case .. which is a (cubic?) Bezier interpolation
+				draw(graph(x,y,z,operator..), gray, Arrow3, currentlight);
 			\end{asy}
 		\end{minipage}
 	\end{center}
