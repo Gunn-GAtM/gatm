@@ -7,15 +7,24 @@
 \newcommand{\degree}{\ensuremath{^\circ}}
 
 \begin{asydef}
+// Return the unit vector of a pair
 pair unitify(pair p) {
 return p / (sqrt(p.x * p.x + p.y * p.y));
 }
 
+// Return a unit vector from an angle
 pair cis(real angle) {
 return (cos(angle), sin(angle));
 }
 
+/*
+This function draws a triangle with some labels and other doo-dads. It takes in an offset, which is the position of the centroid of the triangle;
+a v_stretch, which is how far to draw the labels from the centroid. A larger v_stretch indicates drawing the labels "1" "2" "3" closer to the vertices;
+an array of three strings order, which is the three labels to put on the triangle; a boolean showaxes, which is whether to show any axes; a boolean array
+shownaxes, which is whether to show each axis; and a boolean labelaxes, which is whether to label the axes "A", "B", and "C" or leave them unlabeled
+*/
 void drawTriangle(pair offset, real v_stretch, string[] order, bool showaxes = false, bool[] shownaxes = {true, true, true}, bool labelaxes = true) {
+// Draw the triangle
 pair A = offset + (sqrt(3), 0);
 pair B = offset + (0, 1);
 pair C = offset + (0, -1);
@@ -23,12 +32,14 @@ pair O = offset + (sqrt(3) / 3, 0);
 
 draw(A--B--C--cycle);
 
+// Label the triangle, placing the labels according to v_stretch
 real egg = v_stretch - 1;
 
 label(order[0], (O + egg * A) / v_stretch);
 label(order[1], (O + egg * B) / v_stretch);
 label(order[2], (O + egg * C) / v_stretch);
 
+// Used to draw an axis that extends slightly beyond (variable extra) the bounds of the triangle
 void drawExtLine(pair A, pair B, real extra = 0.2, string labelstr = "") {
 	pair C = (A + extra * (A - B)), D = (B + extra * (B - A));
 	draw(C -- D, dashed);
@@ -40,27 +51,35 @@ pair[] vertices = {A, B, C};
 string[] axisnames = {"$A$", "$B$", "$C$"};
 
 for (int i = 0; i < 3; ++i) {
+	// For each shown axis,
 	if (!shownaxes[i]) continue;
+
 	pair vertex = vertices[i];
 	string axisname = axisnames[i];
+
+	// Sum is... the midpoint of the opposite line segment. LOL
 	pair sum = 0;
 
 	for (int j = 0; j < 3; ++j) {
+		// Sum all vertices except this one
 		if (j == i) continue;
 		sum += vertices[j];
 	}
 
+	// Take the average
 	sum /= 2;
+
+	// Draw an axis line, potentially with a label
 	drawExtLine(vertex, sum, labelaxes ? axisname : "");
 }
 }
-
 }
 
 string _1 = "1";
 string _2 = "2";
 string _3 = "3";
 
+// Array of orders for each of the elements (I, A, B, C, D, E)
 string[][] orders = {
 {_1, _2, _3},
 {_1, _3, _2},
@@ -70,8 +89,8 @@ string[][] orders = {
 {_2, _3, _1}
 };
 
+// Names for the elements
 string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
-
 \end{asydef}
 %
 \begin{figure}[h]
@@ -80,11 +99,11 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 			\centering
 			\begin{asy}[width=0.4\textwidth]
 				size(0,60);
-				
-				pair offset = (0,0);
+
 				string[] order = {"1", "2", "3"};
-				
-				drawTriangle(offset, 2, order);
+
+				// Draw a triangle with only vertices labeled
+				drawTriangle((0,0), 2, order);
 			\end{asy}
 		\end{minipage}
 		\hfill
@@ -92,11 +111,11 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 			\centering
 			\begin{asy}[width=0.5\textwidth]
 				size(0,60);
-				
-				pair offset = (0,0);
+
 				string[] order = {"", "", ""};
-				
-				drawTriangle(offset, 2, order, true);
+
+				// Draw a triangle with only axes labeled, since the vertex labels will be empty
+				drawTriangle((0,0), 2, order, true);
 			\end{asy}
 		\end{minipage}
 		\hfill
@@ -104,12 +123,16 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 			\centering
 			\begin{asy}[width=0.9\textwidth]
 				size(0,60);
-				
+
+				// Draw triangle 4 (D) and label it below
 				drawTriangle((0, 0), 2, orders[4], false);
 				label(names[4], (sqrt(3) / 2, -1.4));
+
+				// To the right of D, draw triangle 2 (B) and label it below
 				drawTriangle((3, 0), 2, orders[2], false);
 				label(names[2], (3 + sqrt(3) / 2, -1.4));
-				
+
+				// Draw the process A taking D to B
 				label("$\stackrel{A}{\Longrightarrow}$", (2.4, 0.2));
 			\end{asy}
 		\end{minipage}
@@ -135,29 +158,39 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 	\begin{center}
 		\begin{minipage}[b]{\textwidth}
 			\centering
-			\begin{asy}[width=0.5\textwidth]
+			\begin{asy}
+				// Make the figure reasonably large, since it's quite wide
 				unitsize(0.7cm);
-				
+
+				// Draw the identity element at the left
 				drawTriangle((-4, 0), 2, orders[0], false);
 				label("$\stackrel{\mbox{\small flip!}}{\Longrightarrow}$", (-1, 0));
-				
+
+				// For each triangle, we setup the call to drawTriangle accordingly
 				for (int i = 0; i < 6; ++i) {
 					bool[] shownaxes = {false, false, false};
-					
+
+					// Triangles A through C just have a flip
 					if (1 <= i && i <= 3) {
 						shownaxes[i - 1] = true;
 					}
-					
+
+					// Triangles D and E have a rotation, so we draw a fancy little rotation icon above them
 					if (i == 4 || i == 5) {
+						// Constructing the rotation icon's parameters
 						real angle = (i == 4) ? 2 * pi / 3 : 4 * pi / 3;
 						real radius = 0.8;
 						pair center = (2.4 * i + sqrt(3) / 2, 1.7);
 						pair end = (center + radius * cis(angle));
-						
+
+						// Draw the rotation icon with an arrow
 						draw((center + radius * cis(0)) .. (center + radius * cis(angle / 2)) .. end -- end, EndArrow);
+
+						// The phantom degrees are used to keep the label's number centered
 						label((i == 4) ? "$\phantom{\degree}120\degree$" : "$\phantom{\degree}240\degree$", center);
 					}
-					
+
+					// Draw the triangle, offset by a bit, and label it below
 					drawTriangle((2.4 * i, 0), 2, orders[i], true, shownaxes, false);
 					label(names[i], (2.4 * i + sqrt(3) / 2, -1.4));
 				}
@@ -208,13 +241,13 @@ Dihedral groups exist for any polygonal figure; mathematically speaking, the dih
 						\hline
 						$\cdot$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
 						\rowcolor{light-gray}
-						$I$    &   &   &   &   &   &   \\ 
-						$A$    &   &   &   &   & $B$  &   \\ 
+						$I$    &   &   &   &   &   &   \\
+						$A$    &   &   &   &   & $B$  &   \\
 						\rowcolor{light-gray}
-						$B$    &   &   &   &   &   &   \\ 
-						$C$    &   &   &   &   &   &   \\ 
+						$B$    &   &   &   &   &   &   \\
+						$C$    &   &   &   &   &   &   \\
 						\rowcolor{light-gray}
-						$D$    &   &   &   &   &   &   \\ 
+						$D$    &   &   &   &   &   &   \\
 						$E$    &   &   &   &   &   &   \\ \hline
 					\end{tabular}
 					\vspace*{0.5\baselineskip}
@@ -248,13 +281,13 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 				\hline
 				$\cdot$ & $I$ & $r$ & $r^2$ & $f$ & $fr$ & $fr^2$ \\ \hline
 				\rowcolor{light-gray}
-				$I$    &   &   &   &   &   &   \\ 
-				$r$    &   &   &   & $fr^2$  &   &   \\ 
+				$I$    &   &   &   &   &   &   \\
+				$r$    &   &   &   & $fr^2$  &   &   \\
 				\rowcolor{light-gray}
-				$r^2$    &   &   &   &   &   &   \\ 
-				$f$    &   &   &   &   &   &   \\ 
+				$r^2$    &   &   &   &   &   &   \\
+				$f$    &   &   &   &   &   &   \\
 				\rowcolor{light-gray}
-				$fr$    &   &   &   &   &   &   \\ 
+				$fr$    &   &   &   &   &   &   \\
 				$fr^2$    &   &   &   &   &   &   \\ \hline
 			\end{tabular}
 			\vspace*{0.5\baselineskip}
@@ -264,16 +297,24 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 			\centering
 			\begin{asy}[width=\textwidth]
 			size(0,60);
-			
+
+			// Draw triangle I and label it I
 			drawTriangle((0, 0), 2, orders[0], false);
 			label(names[0], (sqrt(3) / 2, -1.4), (0,0), basealign);
+
+			// Draw triangle D and label it r
 			drawTriangle((3, 0), 2, orders[4], false);
 			label("$r$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
+
+			// Draw triangle E and label it r^2
 			drawTriangle((6, 0), 2, orders[5], false);
 			label("$r^2$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
+
+			// Draw triangle C and label it fr^2 = C
 			drawTriangle((9, 0), 2, orders[3], false);
 			label("$fr^2=C$", (9 + sqrt(3) / 2, -1.4), (0,0), basealign);
-			
+
+			// Add the transformation arrows
 			label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
 			label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
 			label("$\stackrel{f}{\Longrightarrow}$", (8.4, 0.2));

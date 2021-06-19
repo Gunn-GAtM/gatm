@@ -248,7 +248,7 @@ Let's study this snap group and characterize its properties.
 
 			for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
 			int[] elem = {i};
-			drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // Expression used to make them into a 2x4 grid
+			drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // Expression used to make them into a 2x4 grid. Pretty sure I could have just used a modulo operator
 			}
 			\end{asy}
 		\end{minipage}
