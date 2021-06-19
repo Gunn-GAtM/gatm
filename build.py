@@ -572,7 +572,7 @@ needed_directories = [
 ]
 requisite_files = ["book/textbook.tex", "book/answer_key.tex"]
 
-interactive_task_list = ["clean", "all", "key", "textbook" ]
+interactive_task_list = ["clean", "all", "key", "textbook"]
 
 
 def create_needed_directories():
