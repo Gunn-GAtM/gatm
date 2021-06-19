@@ -212,6 +212,40 @@ string[][] orders = {
 string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 \end{asydef}
 
+\begin{asydef}
+	real distance(pair p1, pair p2) {
+		return sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+	}
+
+	path mark_angle_label_precise(pair p1, pair p2, pair p3, string labelc = "", pair direction=(0,0), real r=-1) {
+		if (r <= 0) {
+			r = min(distance(p1, p2), distance(p2, p3)) / 10;
+		}
+
+		path arc_a = arc(p2, point(p2--p1, r), point(p2--p3, r));
+		label(labelc, midpoint(arc_a) + direction);
+
+		return arc_a;
+	}
+
+	/* Label an angle between three points, p1, p2, and p3, potentially with a label and with a given distance of the label from the vertex, and a radius r */
+	path angle_marking(pair p1, pair p2, pair p3, string labelc = "", real label_dis, real r=-1) {
+		return mark_angle_label_precise(p1, p2, p3, labelc, unitify((p1 + p3) / 2 - p2) * label_dis, r);
+	}
+
+	path right_angle(pair p1, pair p2, pair p3, real r = -1) {
+		if (r <= 0) {
+			r = min(distance(p1, p2), distance(p2, p3)) / 10;
+		}
+		pair p1c = point(p2--p1, r);
+		pair p3c = point(p2--p3, r);
+
+		path r_angle = p3c -- (p1c + p3c - p2) -- p1c;
+		return r_angle;
+	}
+
+\end{asydef}
+
 % END PREAMBLE
 
 
