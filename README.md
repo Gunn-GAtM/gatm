@@ -35,7 +35,7 @@ The book builds into the `build/` folder. (Didn't expect that, huh?) The build f
     +-- key_cover.pdf
 ```
 
-Simple enough. What's not so simple is the actual building process, as we encounter some of LaTeX's most stupefying characteristics. 
+Simple enough. What's not so simple is the actual building process, as we encounter some of LaTeX's most stupefying characteristics.
 
 Building works with `python build.py`. We can either give it command line arguments, or if no arguments are provided, we enter an interactive mode. To build everything in build, run `python build.py all`, which builds the textbook and answer key and then excerpts all chapters. To build the textbook ONLY, run `python build.py textbook_no_chapters`, which will not update `textbook_chapters/`. To build the textbook and chapters, run `python build.py textbook`. Similarly, building the answer key is just `python build.py key`, and without chapters, `python build.py key_no_chapters`.
 
@@ -52,7 +52,7 @@ Good question. The contents of *build.py* will probably elucidate some details, 
 
 The cover is a special case. For reasons I forget, it's compiled into a separate PDF first, placed in `build/misc/textbook_cover.pdf` (or `key_cover.pdf`), then included via the module pdfpages into the main document. Sorry for the confusion.
 
-Chapters are excerpted via a rather... hacky method. If you examine the macro `\inclchapter`, which inserts a chapter by name into the main document, you'll see that it writes some information to the log file via the command `\typeout`. In particular, it writes things like "Page number of chapter start:<chapter> <page num>", which is pounced upon by a corresponding regex in the `build_book` function. It records the start and end pages of chapters. The page number is the *absolute page*, meaning it doesn't care about page numbers; it's the literal nth page of the document, indexed from 1. We then use `pdfjam` to grab the chapter out and write it to `chapter/` or `key_chapters/`. Then we get drunk and party all night, knowing that another embarrassing error will crop up soon. 
+Chapters are excerpted via a rather... hacky method. If you examine the macro `\inclchapter`, which inserts a chapter by name into the main document, you'll see that it writes some information to the log file via the command `\typeout`. In particular, it writes things like "Page number of chapter start:<chapter> <page num>", which is pounced upon by a corresponding regex in the `build_book` function. It records the start and end pages of chapters. The page number is the *absolute page*, meaning it doesn't care about page numbers; it's the literal nth page of the document, indexed from 1. We then use `pdfjam` to grab the chapter out and write it to `chapter/` or `key_chapters/`. Then we get drunk and party all night, knowing that another embarrassing error will crop up soon.
 
 Building chapters is a distinct process. We run the same three commands, but inside a *chapter folder* itself—the log file is not involved. The `subfiles` package makes the build relatively consistent, save a few differences, which are detailed above. Because the main point of building a chapter is editing it and seeing the results, the program also automatically opens the chapter, which can be disabled in the terminal by adding the `--dont-open` flag. For example:
 
@@ -69,6 +69,8 @@ Asymptote Vector Graphics is a language for creating... mathematical vector grap
 
 Asymptote files end with the extension `.asy`, and are compiled with the command... `asy`. While often figures can be placed in their own separate asy files, I personally like the convenience of inline Asymptote, which is done in documents with `\begin{asy} ... \end{asy}`. Using inline Asymptote does make the building process a bit more complicated; running `pdflatex` looks for the compiled results of inline Asymptote files, and, seeing none, will output a bunch of intermediate `.asy` files into the log directory. (see above)
 
+It's important to understand how the `.asy` files are generated. Their contents are not only the contents of the code between `\begin{asy}` and `\end{asy}`, but also the contents of all preceding `\begin{asydef}` / `\end{asydef}` code snippets, which are used to define shared functions. These `asydef`s may define functions or variables that later `asy`s will use.
+
 #### Installing dependencies
 Note that you will need `pdflatex` to do this, which you can get from a source like TeXLive: http://www.tug.org/texlive/ (for macOS, it is recommended to get [MacTeX](http://www.tug.org/mactex/)). You will also need Asymptote Vector Graphics, which you can get from http://asymptote.sourceforge.net/. As of February 2021, the build system has only been tested to work on macOS, with plans to possibly expand and test on Windows and Linux later.
 
@@ -78,7 +80,7 @@ The production build of GAtM, currently live at https://gunn-gatm.github.io/ (wi
 Inside `.github/workflows/`, you will see 3 workflow `.yml` files for Github Actions: `push.yml`, `pull_request.yml`, and `autoblack.yml`. On every push to this repository, the `push.yml` workflow is activated (wow, who would've guessed?). After installing the dependencies on a macOS virtual environment using HomeBrew (sped up through some caching), the Action rebuilds everything automatically and auto-deploys to the production site repo. On every pull request (or PR sync, reopen, etc.), the `pull_request.yml` workflow rebuilds the textbook with the proposed changes, adding the `build/` directory as a Workflow Artifact to be downloaded/viewed
 under the Checks tab for that PR (another way to ensure changes are valid). Finally, if a push includes a change to a `.py` file that was not formatted according to `Black` standards (https://github.com/psf/black), the `autoblack` workflow will lint and push the changes to the Python files to this repo.
 
-**Important note to future maintainers**: an ssh key is what allows the `push.yml` Action from this repo to push to the production site repo; in case it no longer functions, just regenerate a new public/private ssh key (similar to setting up git on your computer to work with GitHub), and place the private key, with the name `DEPLOY_KEY`, as a new secret under `Settings > Secrets > Repository Secrets` in this repo, and the public key, also named `DEPLOY_KEY`, as an actual deploy key under `Settings > Deploy Keys` in the production site repo. 
+**Important note to future maintainers**: an ssh key is what allows the `push.yml` Action from this repo to push to the production site repo; in case it no longer functions, just regenerate a new public/private ssh key (similar to setting up git on your computer to work with GitHub), and place the private key, with the name `DEPLOY_KEY`, as a new secret under `Settings > Secrets > Repository Secrets` in this repo, and the public key, also named `DEPLOY_KEY`, as an actual deploy key under `Settings > Deploy Keys` in the production site repo.
 
 
 Enjoy!

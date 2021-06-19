@@ -9,22 +9,26 @@
 		\begin{minipage}[b]{0.45\textwidth}
 			\centering
 			\begin{asy}[width=0.5\textwidth]
+				// Draw the outer and inner square
 				draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
-				
 				draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
-				
+
+				// Label the sides of the inner right triangle
 				label("$a$", (2,0), S);
 				label("$b$", (0,1.5), W);
 				label("$c$", (0,3)--(4,0), NE);
-				
+
+				// Path for a right angle mark, located at (0,0) and facing northeast
 				real ras = 0.4;
 				path ram = (0,ras)--(ras,ras)--(ras,0);
-				
+
+				// Draw the right angle marks on the outer square
 				draw(ram);
 				draw(rotate(90,(7/2,7/2))*ram);
 				draw(rotate(180,(7/2,7/2))*ram);
 				draw(rotate(270,(7/2,7/2))*ram);
-				
+
+				// Draw the right angle marks on the inner square
 				path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
 				draw(iram);
 				draw(rotate(90,(7/2,7/2))*iram);
@@ -39,34 +43,40 @@
 				pair A = (0,3);
 				pair B = (4,0);
 				pair C = (0,0);
+				pair F = point(A--B,9/25); // F is the base of the altitude from C to A--B
+
+				// Draw the triangle
 				draw(A--B--C--cycle);
-				
+				dot(A);
+				dot(B);
+				dot(C);
+
+				// Label the vertices and sides of the triangle
 				label("$A$", A, NW);
 				label("$B$", B, E);
 				label("$C$", C, SW);
 				label("$a$", B--C, S);
 				label("$b$", A--C, W);
-				
+				label("$F$", F, NE);
+
+				// Create a long curly brace to indicate the hypotenuse, shifting it by
+				// 0.04 units in the direction C -> F so that it looks nicer
 				path c_brace = shift(0.04*(3,4))*brace(A,B);
-				
 				draw(c_brace);
+
+				// Label the hypotenuse
 				label("$c$", c_brace, NE);
-				
-				dot(A);
-				dot(B);
-				dot(C);
-				
+
+				// Path for a right angle mark, located at (0,0) and facing northeast
 				real ras = 0.3;
 				path ram = (0,ras)--(ras,ras)--(ras,0);
-				
-				pair F = point(A--B,9/25);
-				
+
+				// Draw right angle marks at C and at F
 				draw(ram);
-				draw(C--F);
 				draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
-				
-				label("$F$", F, NE);
-				
+
+				// Draw the altitude C--F
+				draw(C--F);
 			\end{asy}
 		\end{minipage}
 	\end{center}
@@ -88,35 +98,42 @@
 			\centering
 			\begin{asy}[width=0.5\textwidth]
 				import graph;
-				
+
+				// Two angles
 				real A = 195 * pi / 180;
 				real B = 125 * pi / 180;
-				
+
+				// Two axes
 				draw((-1.4,0)--(1.4,0),Arrow);
 				draw((0,-1.4)--(0,1.4),Arrow);
-				
+
+				// Circle, 50 points accuracy
 				draw(Circle((0,0),1,50));
-				
+
+				// There's probably some function that does this directly but oh well
 				pair Ap = (cos(A), sin(A));
 				pair Bp = (cos(B), sin(B));
-				
+
 				real AB = A-B;
 				pair ABp = (cos(AB), sin(AB));
-				
+
 				dot(Ap);
 				dot(Bp);
 				dot(ABp);
-				
+
+				// Draw lines D1 and D2
 				draw(ABp--(1,0));
 				draw(Ap--Bp);
-				label("$(\cos B, \sin B)$", Bp, NW);
-				label("$(\cos A, \sin A)$", Ap, SW);
-				label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
-				label("$0$", (1,0),SE);
-				
 				label("$D_1$", ABp--(1,0), .2*SW);
-				label("$D_2$", Ap--Bp, .2*SE);
-				
+			  label("$D_2$", Ap--Bp, .2*SE);
+
+				label("$0$", (1,0),SE);
+				label("$(\cos A, \sin A)$", Ap, SW);
+				label("$(\cos B, \sin B)$", Bp, NW);
+
+				// We use an array to stack the latex so it fits better (consider removing)
+				label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
+
 			\end{asy}
 		\end{minipage}
 	\end{center}
