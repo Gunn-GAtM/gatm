@@ -4,7 +4,6 @@
 
 \section{Composite Mappings of the Plane}
 \setcounter{problem_i}{0}
-\newcounter{bruh_count}
 
 So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
 
@@ -87,15 +86,15 @@ We want to generalize those ideas. What does each of the following matrices do? 
 \end{enumerate}
 \item What matrix/transformation undoes each of \ref{prob:list_transformations_part_start} through \ref{prob:list_transformations_part_end}? For instance, matrix 4c is a rotation of $\theta$. It is undone by a rotation of $-\theta$, which is matrix 4d.
 \item In this problem, you will observe the effects of multiplying two or more matrices. Do the following matrix multiplications, graph the preimage $\left[\begin{array}{cc}1 & 0 \\ 0 & 1\end{array}\right]$ and image, then identify the transformations and their order. Note the effect of order on the outcome!
-\setcounter{bruh_count}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent But first, an example:
+\noindent As an example:
 $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 
 \noindent This is a rotation of $\tan^{-1}\left(-\frac{3}{4}\right)\approx-36.87^\circ$, followed by a size change by a factor of $5$. Remember to read from right to left. The preimage and image are shown in Figure~\ref{fig:preimage_image_mat}.
 
-% no space, had to split up the fance side by side thing
+% no space, had to split up the fance side by side thing -B
 
 \begin{figure}[h]
 	\begin{center}
@@ -104,7 +103,7 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 			\begin{asy}[width=0.3\textwidth]
 				draw((-2,0)--(9.5,0),Arrow);
 				draw((0,-5)--(0,6.5),Arrow);
-				
+
 				for (int i = -1; i < 9; ++i) {
 					for (int j = -4; j < 6; ++j) {
 						dot((i, j), filltype=FillDraw(fillpen=white, drawpen=black));
@@ -112,17 +111,17 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 				}
 				filltype fillc =FillDraw(fillpen=black,drawpen=black);
 				pen size = 1+currentpen;
-				
+
 				dot((0,0), size, fillc);
 				dot((1,0), size, fillc);
 				dot((0,1), size, fillc);
-				
+
 				dot((3,4), size, fillc);
 				dot((4,-3), size, fillc);
-				
+
 				path rot1=(0,1)..(3,4);
 				path rot2=(1,0)..(4,-3);
-				
+
 				draw(subpath(rot1,0.1,0.9),Arrow);
 				draw(subpath(rot2,0.1,0.9),Arrow);
 			\end{asy}
@@ -139,9 +138,11 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 \end{figure}
 
 \begin{enumerate}
-\setcounter{enumi}{\value{bruh_count}}
-\begin{enumerate}
+\setcounter{enumi}{\value{problem_i}}
+% Because these 9 subproblems are a continuation of the previous problem, not a new problem, we use item[] to not generate a label nor increment the problem count
+\item[] \begin{enumerate}
 \begin{multicols}{3}
+\item[] % For some reason, this is required to make the (a) and (b) labels not clash with each other. *shrug*
 \item $\twomat{1}{2}{0}{1}\twomat{.6}{-.8}{.8}{.6}$
 \item $\twomat{.6}{-.8}{.8}{.6}\twomat{1}{2}{0}{1}$
 \item $\twomat{4}{0}{0}{1}\twomat{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}$
@@ -183,17 +184,17 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 				pair C = B+D;
 				draw(A--B--C--D--cycle);
 				draw(B--(4,0));
-				
+
 				label("$\varphi$", A, 2.8*ENE);
 				draw(arc((0,0), point(A--D, 0.25), point(A--B,0.25)));
 				label("$h$", (4,2),W);
 				label("$b$", A--B, NW);
-				
+
 				path a_brace = shift(0,-0.2)*brace(D,A);
 				draw(a_brace);
-				
+
 				draw((4,0.6)--(3.4,0.6)--(3.4,0));
-				
+
 				label("$a$", a_brace, S);
 			\end{asy}
 		\end{minipage}
@@ -205,34 +206,34 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 				pair B = (4,4);
 				pair D = (8,0);
 				pair C = B+D;
-				
+
 				path a_brace = rotate(20.0)*shift(0,-0.74)*brace(D,A);
 				path angle_mark = arc((0,0), point(A--D,0.25), rotate(20.0)*point(A--B, 0.25));
 				path angle_mark2 = arc((0,0), point(A--D,0.32), rotate(20.0)*point(A--D, 0.25));
-				
+
 				A = rotate(20.0)*A;
 				B = rotate(20.0)*B;
 				C = rotate(20.0)*C;
 				D = rotate(20.0)*D;
-				
+
 				draw(A--B--C--D--cycle);
 				draw(B--rotate(20.0)*(4,0));
-				
+
 				draw(angle_mark);
 				draw(angle_mark2);
 				label("$h$", rotate(20.0)*(4,2),NE);
 				label("$b$", rotate(20.0)*A--B, NW);
-				
+
 				draw(a_brace);
 				draw(rotate(20.0)*((4,0.6)--(3.4,0.6)--(3.4,0)));
-				
+
 				label("$a$", a_brace, rotate(20.0)*S);
 				label("$\theta$", angle_mark2, ENE);
 				label("$\phi$", angle_mark, ENE);
-				
+
 				draw((-2,0)--(10,0),Arrow);
 				draw((0,-2)--(0,8),Arrow);
-				
+
 				label("$P$", A, SW);
 				label("$Q$", B, NW);
 				label("$R$", C, NE);
@@ -244,17 +245,17 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 			\centering
 			\begin{asy}[width=0.9\textwidth]
 				import patterns;
-				
+
 				add("brick",brick());
-				
+
 				draw((0,0)--(7,0),Arrow);
 				draw((0,0)--(0,6),Arrow);
-				
+
 				pair A = (0,0);
 				pair B = (1,3);
 				pair C = (6,5);
 				pair D = (5,2);
-				
+
 				draw(A--B--C--D--cycle);
 				pair K1 = (0,3);
 				pair K2=(5,3);
@@ -262,24 +263,24 @@ $$\twomat{5}{0}{0}{5}\twomat{.8}{.6}{-.6}{.8}=\twomat{4}{3}{-3}{4}.$$
 				pair L0 = (1,2);
 				pair L1 = (1,5);
 				pair L3 = (6,2);
-				
+
 				draw(A--K1--K2--K3--cycle);
 				draw(L0--L1--C--L3--cycle);
-				
+
 				filldraw(A--K1--B--cycle, pattern("brick"));
 				filldraw(A--K3--D--cycle, pattern("brick"));
 				filldraw(L0--B--K2--D--cycle, pattern("brick"));
 				filldraw(B--L1--C--cycle, pattern("brick"));
 				filldraw(D--C--L3--cycle, pattern("brick"));
-				
+
 				label("$(a,b)$", B, NW);
 				label("$(c,d)$", D, SE);
 				label("$(a+c,b+d)$", C, N);
-				
+
 				dot(B);
 				dot(D);
 				dot(C);
-			
+
 			\end{asy}
 		\end{minipage}
 	\end{center}
@@ -435,7 +436,7 @@ void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real c
 					\end{asy}
 				\end{minipage}
 			\end{center}
-		
+
 			\begin{center}
 				\begin{minipage}[b]{0.45\textwidth}
 					iv.
@@ -453,7 +454,7 @@ void drawFor(real s_x, real s_y, real a, real c, real b, real d, real ap, real c
 					\end{asy}
 				\end{minipage}
 			\end{center}
-		
+
 			\begin{center}
 				\begin{minipage}[b]{0.45\textwidth}
 					vi.

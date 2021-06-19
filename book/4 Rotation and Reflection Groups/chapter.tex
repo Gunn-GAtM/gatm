@@ -6,84 +6,17 @@
 
 \newcounter{rrg_problem_i}
 
-\begin{asydef}
-pair unitify(pair p) {
-return p / (sqrt(p.x * p.x + p.y * p.y));
-}
-
-pair cis(real angle) {
-return (cos(angle), sin(angle));
-}
-
-void drawTriangle(pair offset, real v_stretch, string[] order, bool showaxes = false, bool[] shownaxes = {true, true, true}, bool labelaxes = true) {
-pair A = offset + (sqrt(3), 0);
-pair B = offset + (0, 1);
-pair C = offset + (0, -1);
-pair O = offset + (sqrt(3) / 3, 0);
-
-draw(A--B--C--cycle);
-
-real egg = v_stretch - 1;
-
-label(order[0], (O + egg * A) / v_stretch);
-label(order[1], (O + egg * B) / v_stretch);
-label(order[2], (O + egg * C) / v_stretch);
-
-void drawExtLine(pair A, pair B, real extra = 0.2, string labelstr = "") {
-	pair C = (A + extra * (A - B)), D = (B + extra * (B - A));
-	draw(C -- D, dashed);
-	label(labelstr, C, unitify(A - B));
-}
-
-if (showaxes) {
-pair[] vertices = {A, B, C};
-string[] axisnames = {"$A\,(f)$", "$B\,(f_B)$", "$C\,(f_C)$"};
-
-for (int i = 0; i < 3; ++i) {
-	if (!shownaxes[i]) continue;
-	pair vertex = vertices[i];
-	string axisname = axisnames[i];
-	pair sum = 0;
-
-	for (int j = 0; j < 3; ++j) {
-		if (j == i) continue;
-		sum += vertices[j];
-	}
-
-	sum /= 2;
-	drawExtLine(vertex, sum, labelaxes ? axisname : "");
-}
-}
-
-}
-
-string _1 = "1";
-string _2 = "2";
-string _3 = "3";
-
-string[][] orders = {
-{_1, _2, _3},
-{_1, _3, _2},
-{_3, _2, _1},
-{_2, _1, _3},
-{_3, _1, _2},
-{_2, _3, _1}
-};
-
-string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
-
-\end{asydef}
-
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[b]{0.45\textwidth}
 			\centering
 			\begin{asy}[width=0.5\textwidth]
 				size(0,80);
-				
+
 				pair offset = (0,0);
 				string[] order = {"1", "2", "3"};
-				
+
+				// See main textbook.tex file for definition of drawTriangle
 				drawTriangle(offset, 2, order);
 			\end{asy}
 		\end{minipage}
@@ -92,10 +25,10 @@ string[] names = {"$I$", "$A$", "$B$", "$C$", "$D$", "$E$"};
 			\centering
 			\begin{asy}[width=0.7\textwidth]
 				size(0,80);
-				
+
 				pair offset = (0,0);
 				string[] order = {"", "", ""};
-				
+
 				drawTriangle(offset, 2, order, true);
 			\end{asy}
 		\end{minipage}
@@ -137,14 +70,14 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 			\centering
 			\begin{asy}[width=\textwidth]
 				size(0,60);
-				
+
 				drawTriangle((0, 0), 2, orders[4], false);
 				label("$r$", (sqrt(3) / 2, -1.4), (0,0), basealign);
 				drawTriangle((3, 0), 2, orders[5], false);
 				label("$r^2$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
 				drawTriangle((6, 0), 2, orders[0], false);
 				label("$I$", (6 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				
+
 				label("$\stackrel{r}{\Longrightarrow}$", (2.4, 0.2));
 				label("$\stackrel{r}{\Longrightarrow}$", (5.4, 0.2));
 				label("$\stackrel{r}{\Longrightarrow}r$", (8.7, 0.2));
@@ -155,12 +88,12 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 			\centering
 			\begin{asy}[width=0.7\textwidth]
 				size(0,60);
-				
+
 				drawTriangle((0, 0), 2, orders[1], false);
 				label("$f$", (sqrt(3) / 2, -1.4), (0,0), basealign);
 				drawTriangle((3, 0), 2, orders[0], false);
 				label("$I$", (3 + sqrt(3) / 2, -1.4), (0,0), basealign);
-				
+
 				label("$\stackrel{f}{\Longrightarrow}$", (2.4, 0.2));
 				label("$\stackrel{f}{\Longrightarrow}f$", (5.7, 0.1));
 			\end{asy}
@@ -186,57 +119,57 @@ We can also generate the group using two reflections, say $f$ and $f_B$ (flip ov
 			\centering
 			\begin{asy}[width=0.5\textwidth]
 				import graph3;
-				
+
 				size(0,130);
 				currentprojection = perspective(5, 5.8, 3.5);
-				
+
 				triple A = (0,0,0), B = (1,0,0), C = (1/2,sqrt(3)/2,0);
 				triple D = (0,0,1), E = (1,0,1), F = (1/2,sqrt(3)/2,1);
-				
+
 				draw(A--B--C--cycle);
 				draw(D--E--F--cycle);
 				draw(A--D);
 				draw(B--E);
 				draw(C--F);
-				
+
 				label("$1$", (1/2,1,1));
 				label("$2$", D, N);
 				label("$3$", E, W);
-				
+
 				label("$1'$", (1/2,1,0));
 				label("$2'$", A, S);
 				label("$3'$", B, W);
-				
+
 				triple unitify3D(triple p) {
 					return p / sqrt(p.x * p.x + p.y * p.y + p.z * p.z);
 				}
-				
+
 				void draw3DExtLine(triple A, triple B, real extra = 0.2, string labelstr="", triple succ = (0,0,0)) {
 					triple C = (A + extra * (A - B)), D = (B + extra * (B - A));
 					draw(C--D, dashed);
 					if (labelstr != "") label(labelstr, C, unitify3D(A - B) + succ);
 				}
-				
+
 				draw3DExtLine((C+F)/2, (B+D)/2, 0.45, "$A$");
 				draw3DExtLine((A+D)/2, (C+E)/2, 1.2, "$B$");
 				draw3DExtLine((B+E)/2, (A+F)/2, 0.45, "$C$");
-				
+
 				// Drawing a curved (approximately circular) arrow, splinely interpolating between POINTS on the 3D ARQUE (arc)
-				
+
 				real[] x = {}; // cosine
 				real[] y = {}; // stays constant
 				real[] z = {}; // sine
-				
+
 				int arrow_pt_count = 10;
 				real arrow_radius = 0.3;
-				
+
 				for (int i = 0; i < arrow_pt_count; ++i) {
 					real angle = i / arrow_pt_count * 3.1416; // just pi because we want a 180 degree arrow
 					x.push(arrow_radius * cos(angle) + 1/2);
 					y.push(1.2);
 					z.push(arrow_radius * sin(angle) + 1/2);
 				}
-				
+
 				currentlight=(1,1,1);
 				draw(graph(x,y,z,operator..),gray,Arrow3, currentlight);
 			\end{asy}
