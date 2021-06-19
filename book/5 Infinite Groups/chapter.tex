@@ -4,8 +4,6 @@
 
 \section{Infinite Groups}
 
-\newcounter{inf_problem_i} % for keeping track of which problem we're on
-
 All of the groups we've seen so far are finite in size. We can also construct groups of an infinite size; these are known simply as \textbf{infinite groups}.
 
 A quick review: \textit{iso}- means the same and -\textit{morphic} means form. Two groups are said to be isomorphic if there exists a one-to-one correspondence which takes each element of the first group to an element of the second group---and vice versa---so that the products of the elements map in the same way. Essentially, by renaming the elements of one group as the other, the two groups appear identical. Isomorphic groups have the same structure and size, and the group table's structure is also preserved.
@@ -27,7 +25,7 @@ A quick review: \textit{iso}- means the same and -\textit{morphic} means form. T
 \end{enumerate}
 \item Could an infinite group and a finite group be isomorphic?
 \item Do you think all infinite groups are isomorphic to each other? Find a counterexample if you can.
-\setcounter{inf_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent If an infinite group was somehow ``bigger'' than another, they wouldn't be isomorphic.\footnote{After reading this section, can you think of an example of two infinite groups that aren't isomorphic?} This raises the question: are all infinities equally big?
@@ -35,7 +33,7 @@ A quick review: \textit{iso}- means the same and -\textit{morphic} means form. T
 We can formalize the notion of sizes of infinity. Let's say that two infinite sets are of the same size if their elements can be put into a one-to-one correspondence (formally known as a \textbf{bijection}) with each other. For example, the natural numbers $\{1,2,...\}=\mathbb{N}$ and negative integers $\{-1,-2,...\}=-\mathbb{N}$ are of the same size because we have the one-to-one correspondence $\mathbb{N} \ni n\leftrightarrow -n \in -\mathbb{N}$. $1$ is paired with $-1$, $2$ is paired with $-2$, $3$ is paired with $-3$, and so on. Every element of the positive integers has exactly one ``partner'' in the negative integers, and vice versa.
 
 \begin{enumerate}
-\setcounter{enumi}{\value{inf_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Make guesses to the relative sizes of the following pairs of sets. You may use shorthand like $|a| < |b|$, $|a| > |b|$, $|a| = |b|$. After you have made your guesses, we will analyze some of the cases and you can find out how good your intuition was.~\label{prob:infinity_guesses}
 
 \begin{tabular}{llll} % used instead of enumerate to facilitate alignment of the "versus" symbols. There is probably other ways to do this
@@ -50,14 +48,14 @@ We can formalize the notion of sizes of infinity. Let's say that two infinite se
 \end{tabular}
 \footnotetext{To construct the Cantor set, begin with the unit segment $[0,1]$ and delete the middle third, resulting in $[0,1/3] \cup [2/3, 1]$. Infinitely repeat this process on every subinterval, so that the total length of the set goes to $0$.}
 
-\setcounter{inf_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent It turns out that studying infinity involves some strange mathematics. For instance, even though it seems that there should be half as many positive even numbers as natural numbers (see 7a), we can construct a one-to-one correspondence between the two sets, such that every natural number $n$ is paired with a positive even integer $2n$ and vice versa. The existence of this correspondence means that the two sets are equal in size. In symbols, $$(2\mathbb{N} \ni 2n \leftrightarrow n \in \mathbb{N}) \leftrightarrow |2\mathbb{N}|=|\mathbb{N}|.$$ % "bijection" removed because it was only mentioned once. \ni is the set \in symbol but backwards lol
 
 \noindent More surprisingly, we can establish a one-to-one correspondence between the non-negative rational numbers $\mathbb{Q}_{\geq 0}$ and the natural numbers. Draw the numbers $\mathbb{Q}_{\geq 0}$ in a grid as shown in Figure~\ref{fig:rat_ordering_1}, and pair these numbers up with the numbers $1,2,3,...$ in the pattern shown with the arrows. You can see that you will eventually list all of the non-negative rational numbers, multiple times, into a correspondence with the natural numbers. To make it one-to-one, only pair the rational numbers that are in simplest form. Here, we pair $2$ with $\frac{1}{1}$ instead of $\frac{0}{2}$, since $\frac{0}{1}$ is the same number and is already paired with $1$. This correspondence is depicted in Figure~\ref{fig:rat_ordering_2}. This prevents multiple natural numbers from being paired up with the same rational number: the correspondence is now one-to-one.
 
-The real numbers between $0$ and $1$, however, cannot be put into a one-to-one correspondence with $\mathbb{N}$ (see 7c). We will prove this with contradiction. Suppose I told you that I have paired each real number $0 \leq r_k < 1$ with a unique natural number $k$, and vice versa. Then, you can construct a real number $r_\omega$\footnote{Pronounced ``r omega.''} whose $1$\textsuperscript{st} digit (after the decimal point) differs from $r_1$’s, whose $2$\textsuperscript{nd} digit differs from $r_2$’s, and so on. In other words, it differs from $r_n$ in the $n$\textsuperscript{th} digit. We can make better sense of this construction by writing the numbers out in a table, as shown in Figure~\ref{fig:cantor_diag}. Your new number $r_\omega$ is at the bottom; it differs from all the previous numbers in at least one place, so it is a new real number. Therefore, my original list is incomplete, and such a correspondence doesn’t exist. This is called a \textbf{diagonalization argument} because the differing digits make a diagonal. % mfw CHAMPERNOWNE CONSTANT and R OMEGA
+The real numbers between $0$ and $1$, however, cannot be put into a one-to-one correspondence with $\mathbb{N}$ (see 7c). We will prove this with contradiction. Suppose I told you that I have paired each real number $0 \leq r_k < 1$ with a unique natural number $k$, and vice versa. Then, you can construct a real number $r_\omega$ whose $1$\textsuperscript{st} digit (after the decimal point) differs from $r_1$’s, whose $2$\textsuperscript{nd} digit differs from $r_2$’s, and so on. In other words, it differs from $r_n$ in the $n$\textsuperscript{th} digit. We can make better sense of this construction by writing the numbers out in a table, as shown in Figure~\ref{fig:cantor_diag}. Your new number $r_\omega$ is at the bottom; it differs from all the previous numbers in at least one place, so it is a new real number. Therefore, my original list is incomplete, and such a correspondence doesn’t exist. This is called a \textbf{diagonalization argument} because the differing digits make a diagonal. % mfw CHAMPERNOWNE CONSTANT and R OMEGA
 
 % I did not do these by hand; they were generated by accessories/scripts/create_rational_correspondence_table.py
 % This command makes the cancelling symbol for the rational <-> natural number correspondence
@@ -75,14 +73,14 @@ The real numbers between $0$ and $1$, however, cannot be put into a one-to-one c
 				 & & \multicolumn{5}{c}{Num. $\rightarrow$} & & \\ % "Num. ->" on the top
 				 & & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $\cdots{}$ \\
 				\multirow{5}{*}{\rotatebox[origin=c]{-90}{Den. $\rightarrow$}}  % "Den. ->" on the left, rotated sideways
-				
+
 				 & $1$ & \corr{0}{1}{1} & \corr{1}{1}{3} & \corr{2}{1}{6} & \corr{3}{1}{10} & \corr{4}{1}{15} & \corr{5}{1}{21} & $\cdots{}$ \\
 				 & $2$ & \corr{0}{2}{2} & \corr{1}{2}{5} & \corr{2}{2}{9} & \corr{3}{2}{14} & \corr{4}{2}{20} & \corr{5}{2}{27} & $\cdots{}$ \\
 				 & $3$ & \corr{0}{3}{4} & \corr{1}{3}{8} & \corr{2}{3}{13} & \corr{3}{3}{19} & \corr{4}{3}{26} & \corr{5}{3}{34} & $\cdots{}$ \\
 				 & $4$ & \corr{0}{4}{7} & \corr{1}{4}{12} & \corr{2}{4}{18} & \corr{3}{4}{25} & \corr{4}{4}{33} & \corr{5}{4}{42} & $\cdots{}$ \\
 				 & $5$ & \corr{0}{5}{11} & \corr{1}{5}{17} & \corr{2}{5}{24} & \corr{3}{5}{32} & \corr{4}{5}{41} & \corr{5}{5}{51} & $\cdots{}$ \\
 				& $\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ &$\vdots{}$ & $\ddots{}$ \\
-				
+
 				% cdots = centered 3 dots, vdots = vertical 3 dots, ddots = 3 dots going down-right
 			\end{tabular}
 			\vspace*{0.5\baselineskip}
@@ -95,7 +93,7 @@ The real numbers between $0$ and $1$, however, cannot be put into a one-to-one c
 				 & & \multicolumn{5}{c}{Num. $\rightarrow$} & & \\
 				 & & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $\cdots{}$ \\
 				\multirow{5}{*}{\rotatebox[origin=c]{-90}{Den. $\rightarrow$}}
-				
+
 				 & $1$ & \corr{0}{1}{1} & \corr{1}{1}{2} & \corr{2}{1}{4} & \corr{3}{1}{6} & \corr{4}{1}{10} & \corr{5}{1}{12} & $\cdots{}$ \\
 				 & $2$ & \textcolor{gray}{\corr{0}{2}{\textcolor{black}{(1)}}} & \corr{1}{2}{3} & \textcolor{gray}{\corr{2}{2}{\textcolor{black}{(2)}}} & \corr{3}{2}{9} & \textcolor{gray}{\corr{4}{2}{\textcolor{black}{(4)}}} & \corr{5}{2}{17} & $\cdots{}$ \\
 				 & $3$ & \textcolor{gray}{\corr{0}{3}{\textcolor{black}{(1)}}} & \corr{1}{3}{5} & \corr{2}{3}{8} & \textcolor{gray}{\corr{3}{3}{\textcolor{black}{(2)}}} & \corr{4}{3}{16} & \corr{5}{3}{21} & $\cdots{}$ \\
@@ -149,9 +147,9 @@ The real numbers between $0$ and $1$, however, cannot be put into a one-to-one c
 \end{figure}
 
 \begin{enumerate}
-\setcounter{enumi}{\value{inf_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Now, please return to Problem~\ref{prob:infinity_guesses} and revise your answers. Justify each answer by producing a one-to-one correspondence, or showing the impossibility of doing so. Part (h) is an optional challenge.
-\setcounter{inf_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent The infinities in Problem~\ref{prob:infinity_guesses} come in only two sizes: \textbf{countable} infinity---like the number of natural numbers---and \textbf{uncountable} infinity---like the number of real numbers. There are, in fact, an infinite number of sizes of infinity, but these two main types are the only ones we'll deal with in this class.\footnote{Are there any infinities \textit{between} the two we’ve discussed? This is a very deep mathematical question, known as the continuum hypothesis. It turns out that both the answer ``yes'' and ``no'' are consistent with the rest of our mathematics, so either can be taken as an axiom.}
@@ -159,7 +157,7 @@ The real numbers between $0$ and $1$, however, cannot be put into a one-to-one c
 Two infinite groups can be the same infinite size and still not be isomorphic, in the same way that two finite groups of the same size are sometimes not isomorphic (like $D_3\neq S_6$). For example, the group of all rotations of a rational number of degrees between $0^\circ$ and $360^\circ$ about the origin is countably infinite. So is the group of integers---positive and negative---under addition. But these two groups have completely different structures. For example, the former has two elements which are their own inverse: $0^\circ$ and $180^\circ$. The latter has only one such element: $0$.
 
 \begin{enumerate}
-\setcounter{enumi}{\value{inf_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Here’s a list of infinite sets, each with an operation. For each pair, answer: (i)~Does it form a group? (ii)~Which previous group(s) is it isomorphic to?
 \begin{enumerate}
 \begin{multicols}{2}\raggedcolumns
