@@ -25,35 +25,36 @@ pair D = (-2,0);
 				label("$B$", B);
 				label("$C$", C);
 				label("$D$", D);
-				
+
 				// A<->B
 				draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrows);
-				
+
 				// A<->C
 				draw((0.10000,0.70000)--(0.10000,-0.70000), ArcArrows);
 				draw((-0.10000,0.70000)--(-0.10000,-0.70000), ArcArrows);
-				
+
 				// A<->D
 				draw((-0.25528,0.76056)--(-1.65528,0.06056), ArcArrows);
 				draw((-0.34472,0.93944)--(-1.74472,0.23944), ArcArrows);
-				
+
 				// C<->D
 				draw((-1.70000,-0.15000)--(-0.30000,-0.85000), ArcArrows);
-				
+
 				// C<->B
 				draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
-				
+
 				/*
+				Python code to generate code to connect nodes to themselves
 				def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
 					return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
-				
+
 				connect_self((0,1), -1, 1, 0, 1);
 				connect_self((2,0), 1, 1, 1, 0);
 				connect_self((0,-1), 1, -1, 0, -1);
 				connect_self((-2,0), -1, -1, -1, 0);
 				*/
-				
-				// A<->A, B<->B ...
+
+				// Output of the above code: A<->A, B<->B ...
 				draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
 				draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
 				draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
@@ -64,40 +65,30 @@ pair D = (-2,0);
 		\begin{minipage}[b]{0.45\textwidth}
 			\centering
 			\begin{asy}[width=0.7\textwidth]
-			
+
 				label("$A$", A);
 				label("$B$", B);
 				label("$C$", C);
 				label("$D$", D);
-				
+
 				// A<->B
 				draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrows);
-				
+
 				// A<->C
 				draw((0,0.70000)--(0,-0.70000), ArcArrows);
 				label("$2$", (0,0), E);
-				
+
 				// A<->D
 				draw((-0.30000,0.85000)--(-1.70000,0.15000), ArcArrows);
 				label("$2$", ((-0.30000,0.85000)+(-1.70000,0.15000))/2, NW);
-				
+
 				// C<->D
 				draw((-1.70000,-0.15000)--(-0.30000,-0.85000), ArcArrows);
-				
+
 				// C<->B
 				draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
-				
-				/*
-				def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
-					return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
-				
-				connect_self((0,1), -1, 1, 0, 1);
-				connect_self((2,0), 1, 1, 1, 0);
-				connect_self((0,-1), 1, -1, 0, -1);
-				connect_self((-2,0), -1, -1, -1, 0);
-				*/
-				
-				// A<->A, B<->B ...
+
+				// Generated as above; A<->A, B<->B ...
 				draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
 				draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
 				draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
@@ -185,35 +176,25 @@ Suppose there's a shuttle bus that only goes one way, from town $A$ to $B$ to $C
 		\begin{minipage}[b]{0.45\textwidth}
 			\centering
 			\begin{asy}[width=0.7\textwidth]
-			
+
 				label("$A$", A);
 				label("$B$", B);
 				label("$C$", C);
 				label("$D$", D);
-				
+
 				// A->B
 				draw((0.30000,0.85000)--(1.70000,0.15000), ArcArrow);
-				
+
 				// D->A
 				draw((-1.70000,0.15000)--(-0.30000,0.85000), ArcArrow);
-				
+
 				// C->D
 				draw((-0.30000,-0.85000)--(-1.70000,-0.15000), ArcArrow);
-				
+
 				// C<->B
 				draw((1.70000,-0.15000)--(0.30000,-0.85000), ArcArrows);
-				
-				/*
-				def connect_self(p1, dx1=-1, dy1=1, dx2=0, dy2=1):
-					return "draw((%5.5f, %5.5f)..(%5.5f, %5.5f)..(%5.5f, %5.5f),ArcArrow);" % (p1[0] + dx1 * 0.2, p1[1] + dy1 * 0.2, p1[0] + dx2 * 0.7, p1[1] + dy2 * 0.7, p1[0] + (1 if dy2 == 0 else -1) * dx1 * 0.2, p1[1] + (1 if dx2 == 0 else -1) + dy1 * 0.2)
-				
-				connect_self((0,1), -1, 1, 0, 1);
-				connect_self((2,0), 1, 1, 1, 0);
-				connect_self((0,-1), 1, -1, 0, -1);
-				connect_self((-2,0), -1, -1, -1, 0);
-				*/
-				
-				// A<->A, B<->B ...
+
+				// Generated as above; A<->A, B<->B ...
 				draw((-0.2,1.2)..(0,1.7)..(0.2,1.2),ArcArrow);
 				draw((2.20000, 0.20000)..(2.70000, 0.00000)..(2.20000, -0.20000),ArcArrow);
 				draw((0.20000, -1.20000)..(0.00000, -1.70000)..(-0.20000, -1.20000),ArcArrow);
