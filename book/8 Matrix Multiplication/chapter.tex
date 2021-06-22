@@ -348,8 +348,6 @@ draw((-0.6,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.6,-2.1)--cycle);
 \end{asy}
 }}.
 $$
-\newcounter{mtrx_mult_problem_i}
-\newcounter{mtrx_mult_problem_ii}
 
 \begin{enumerate}
 \item Draw the graphs and transportation matrices for this group.
@@ -362,11 +360,11 @@ $$
 \item $AB$
 \item $BA$
 \item $B^2$
-\setcounter{mtrx_mult_problem_ii}{\value{enumii}}
+\setcounter{problem_ii}{\value{enumii}}
 \end{multicols}
 \end{enumerate}
 \begin{enumerate}
-\setcounter{enumii}{\value{mtrx_mult_problem_ii}}
+\setcounter{enumii}{\value{problem_ii}}
 \item Which one ($AB$ and $BA$) represents taking a step by walking, then by bus?
 \item Use your calculator to check your computations of $A^2$, $AB$, $BA$, and $B^2$.
 \end{enumerate}
@@ -375,7 +373,7 @@ $$
 \item Why can't you add this matrix to matrices $A$ or $B$?
 \item Rewrite matrix $T$ so that it \textit{can} be meaningfully added to matrices $A$ and $B$. What did you do to its dimensions?
 \end{enumerate}
-\setcounter{mtrx_mult_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent It's time for a review of \textbf{sigma notation}! Sigma notation represents a sum. It is defined as
@@ -383,7 +381,7 @@ $$S=\sum_{k=m}^{n} f(k)=f(m)+f(m+1)+\cdots + f(n),$$
 for function $f$ and integers $m,n$. $k$ is the index over which the summation is taking place. It takes on all integer values between $m$ and $n$, inclusive. You might read the sum portion like so: ``The summation of $f$ of $k$ from $k$ equals $m$ to $n$ equals $S$.''
 
 \begin{enumerate}
-\setcounter{enumi}{\value{mtrx_mult_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Evaluate the following:
 \begin{enumerate}
 \begin{multicols}{6}
@@ -422,7 +420,7 @@ $$C=\left[\begin{array}{cc}
 \item Draw a directed graph.
 \item Calculate and interpret $E^2$, $E^3$, $E^4$.
 \end{enumerate}
-\setcounter{mtrx_mult_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent The following table shows the amount of each ingredient a bakery uses in making one batch of sourdough bread and biscuits. Of course, the units vary depending on the ingredient. Let's call this matrix $S$ for sourdough.
@@ -453,7 +451,7 @@ Biscuits  & $5$     & $1$       & $1$     & $\frac{5}{4}$   & $\frac{3}{4}$  & $
 \end{center}
 
 \begin{enumerate}
-\setcounter{enumi}{\value{mtrx_mult_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item Unfortunately, if you try to multiply $S$ and $C$ as given, it won't work. Why not?
 \item What do you need to do to $C$ so they can be multiplied? Explain the dimensions of each matrix.

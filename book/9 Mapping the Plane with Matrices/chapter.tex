@@ -18,16 +18,16 @@
 			\begin{asy}[width=0.7\textwidth]
 				pair A = (2, 1);
 				pair B = (7, -1);
-				
+
 				draw((-2,0)--(8,0), Arrow);
 				draw((0,-2)--(0,3), Arrow);
-				
+
 				dot(A);
 				dot(B);
-				
+
 				label("$P=\left[ \begin{array}{c} 2 \\ 1 \end{array}\right]$", A, NE);
 				label("$P'=\left[ \begin{array}{c} 7 \\ -1 \end{array} \right]$", B, SE);
-				
+
 				path between = A--B;
 				draw(point(between, 0.04) -- point(between, 0.96), Arrow);
 			\end{asy}
@@ -54,8 +54,6 @@ Now we are going to consider $2\times 2$ matrices as operators, which map points
 
 Figure~\ref{fig:random_matrix} is an example of what happens when an arbitrary matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
-\newcounter{mp_problem_i}
-
 \begin{enumerate}
 \item \begin{enumerate}
 \item Use the $2\times 2$ matrix from Figure~\ref{fig:random_matrix} to operate on the points $(0,0)$, $(1,0)$, and $(0,1)$. What are their images? Graph them.
@@ -73,13 +71,13 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \item What other characteristic of the preimage points also applies to the image?
 \item Name two things that seem to be conserved when mapping points with a matrix.
 \end{enumerate}
-\setcounter{mp_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent In Problem~\ref{prob:consolidate_matrix}, you should have noticed that the points of the preimage were \textbf{collinear}, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
 
 \begin{enumerate}
-\setcounter{enumi}{\value{mp_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item Choose a different $2\times 2$ matrix and a different set of three collinear, equally spaced unique points. Perform the appropriate matrix multiplication.
 \item Graph and label the preimage points and the image points.
@@ -104,7 +102,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item There is a point $Q=\left[\begin{array}{c}e \\ f \end{array}\right]$ that remains fixed no matter what matrix you multiply it by. Can you guess what point that is?
 \item Prove your conjecture by plugging your point $Q$ into $\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]Q=Q$.
 \end{enumerate}
-\setcounter{mp_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate the different kinds of what kinds of matrix mappings. Recall the transformations from geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in a preimage are mapped to the same point in the image.
@@ -115,7 +113,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 	\begin{center}
 		\begin{minipage}[c]{0.55\textwidth}
 			\begin{enumerate}
-				\setcounter{enumi}{\value{mp_problem_i}}
+				\setcounter{enumi}{\value{problem_i}}
 				\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right. %compare-books-disable
 				\begin{enumerate}
 					\item Map the vertices with the following matrices:
@@ -127,11 +125,11 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 						\end{multicols}
 					\end{enumerate}
 					\item Why will the new triangle defined by these vertices be the image of the starting triangle?
-					
+
 					\newcounter{another_name}
 					\setcounter{another_name}{\value{enumii}}
 				\end{enumerate}
-				\setcounter{mp_problem_i}{\value{enumi}}
+				\setcounter{problem_i}{\value{enumi}}
 			\end{enumerate}
 		\end{minipage}
 		\hfill
@@ -142,16 +140,16 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 					\begin{asy}[width=0.7\textwidth]
 						draw((0,0)--(12,0),Arrow);
 						draw((0,0)--(0,12),Arrow);
-						
+
 						pair A = (5,0);
 						pair B = (10,0);
 						pair C = (5,10);
-						
+
 						draw(A--B--C--cycle);
 						dot(A);
 						dot(B);
 						dot(C);
-						
+
 						label("$0$", (0,0), SW);
 						label("$5$", (5,0), S);
 						label("$5$", (0,5), W);
@@ -179,13 +177,13 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \item Accurately graph the preimage, then the image for each matrix on three separate sets of axes.
 \item For each, describe the transformation as fully as you can. Try to classify them on the transformations we mentioned earlier, and quantify them if necessary (e.g. to describe the line of reflection or angle of rotation).
 \end{enumerate}
-\setcounter{enumi}{\value{mp_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Soon, we will map the unit square, which is shown in Figure~\ref{fig:unit_square}: it has vertices $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. We could actually get the entire image from the image of the unit vectors $(1,0)$ and $(0,1)$, which will be useful later. %compare-books-disable
 \begin{enumerate}
 \item How can we obtain the image of $(1,1)$ from the images of $(1,0)$ and $(0,1)$?
 \item Of $(0,0)$?
 \end{enumerate}
-\setcounter{mp_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 % had to ruin a text-wrapping figure here for space concerns.
@@ -201,14 +199,14 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 			pair B = (1,0);
 			pair C = (1,1);
 			pair D = (0,1);
-			
+
 			draw(A--B--C--D--cycle);
-			
+
 			dot(A);
 			dot(B);
 			dot(C);
 			dot(D);
-			
+
 			label("$0$", (0,0), SW);
 			label("$1$", (1,0), S);
 			label("$1$", (0,1), W);
@@ -226,7 +224,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \end{figure}
 
 \begin{enumerate}
-\setcounter{enumi}{\value{mp_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item \begin{enumerate}
 \item Take the matrix $\left[\begin{array}{cc}1 & 2 \\ 0 & 1\end{array}\right]$ and see what it does to the unit square. Please graph this, being careful to label each point and its image. The multiplication is done for you below.
 
@@ -276,13 +274,13 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 \item \mtrxtbt{\frac{\sqrt{3}}{2}}{\frac{1}{2}}{-\frac{1}{2}}{\frac{\sqrt{3}}{2}}
 \end{multicols}
 \end{enumerate}
-\setcounter{mp_problem_i}{\value{enumi}}
+\setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
 \noindent One limitation with $2\times 2$ matrix transformations is that they all involve a fixed point at the origin. A translation obviously takes the origin to a different point, so we can't represent it this way. One way around this problem is to do our mapping in three-dimensional space rather than the two-dimensional plane. We still keep the origin fixed, but put our preimages on the plane $z=1$ and make sure that our images map to the same plane.
 
 \begin{enumerate}
-\setcounter{enumi}{\value{mp_problem_i}}
+\setcounter{enumi}{\value{problem_i}}
 \item Carry out the following multiplications and convince yourself they are equivalent mappings of the $x$ and $y$ coordinates.
 \begin{enumerate}
 \begin{multicols}{2}
@@ -326,48 +324,48 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 			\centering
 			\begin{asy}[width=0.7\textwidth]
 				import three;
-				
+
 				currentprojection=perspective(14,17,11);
-				
+
 				draw((-2,0,0)--(5,0,0),Arrow3); // x axis
 				draw((0,0,-2)--(0,0,3),Arrow3); // z axis
 				draw((0,-2,0)--(0,5,0),Arrow3); // y axis
-				
+
 				triple A = (0,0,1);
 				triple B = (0,1,1);
 				triple C = (1,1,1);
 				triple D = (1,0,1);
-				
+
 				label("$x$", (5,0,0), SW);
 				label("$y$", (0,5,0), SE);
 				label("$z$", (0,0,3), N);
-				
+
 				triple T1 = (3,0,0);
-				
+
 				triple T2 = (0,4,0);
-				
+
 				triple Ap = A + T1;
 				triple Bp = B + T1;
 				triple Cp = C + T1;
 				triple Dp = D + T1;
-				
+
 				triple App = Ap + T2;
 				triple Bpp = Bp + T2;
 				triple Cpp = Cp + T2;
 				triple Dpp = Dp + T2;
-				
+
 				path3 S = A--B--C--D--cycle;
 				path3 Sp = Ap--Bp--Cp--Dp--cycle;
 				path3 Spp = App--Bpp--Cpp--Dpp--cycle;
-				
+
 				draw(surface(S), gray);
 				draw(surface(Sp), gray);
 				draw(surface(Spp), gray);
-				
+
 				draw(S);
 				draw(Sp);
 				draw(Spp);
-				
+
 				dot(A);
 				dot(B);
 				dot(C);
@@ -380,36 +378,36 @@ This mapping is called a \textbf{shear}\footnote{You may have heard of wind shea
 				dot(Bpp);
 				dot(Cpp);
 				dot(Dpp);
-				
+
 				triple Tu = (0,0,-1);
-				
+
 				draw((A+Tu)--Ap,dashed);
 				draw((B+Tu)--Bp,dashed);
 				draw((C+Tu)--Cp,dashed);
 				draw((D+Tu)--Dp,dashed);
-				
+
 				draw((Ap+Tu)--App);
 				draw((Bp+Tu)--Bpp);
 				draw((Cp+Tu)--Cpp);
 				draw((Dp+Tu)--Dpp);
-				
+
 				draw((A+Tu)--A,dashed);
 				draw((B+Tu)--B,dashed);
 				draw((C+Tu)--C,dashed);
 				draw((D+Tu)--D,dashed);
-				
+
 				draw((Ap+Tu)--Ap);
 				draw((Bp+Tu)--Bp);
 				draw((Cp+Tu)--Cp);
 				draw((Dp+Tu)--Dp);
-				
+
 				path3 Zplane = (-1.2, -1.2, 1.001) -- (5, -1.2, 1.001) -- (5, 5.7, 1.001) -- (-1.2, 5.7, 1.001) -- cycle;
 				draw(surface(Zplane), opacity(0.2)+gray(0.2));
 				draw(Zplane, opacity(0.2)+dashed);
-				
+
 				draw(XZ() * "\begin{center}Shear by $\alpha$ in $x$ \\ $\longleftarrow$\end{center}", (2,0,1.8));
 				draw(YZ() * "\begin{center}Shear by $\beta$ in $y$ \\ $\longrightarrow$\end{center}", (0,4,1.8));
-				
+
 				label("$z=1$", (-1.2,5.7,1.001),10*W);
 			\end{asy}
 		\end{minipage}

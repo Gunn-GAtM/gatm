@@ -3,7 +3,6 @@
 \begin{document}
 
 \section{Matrices Generate Groups}
-\setcounter{problem_i}{0}
 
 As we have seen, the groups that we examined in the first couple sections of this class have representations with matrices under the operation of matrix multiplication.
 
@@ -22,15 +21,13 @@ For Problems 1--4:
 \noindent Let's see an example analysis on the following set of matrices:
 $$I=\left[\begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right],\, A=\left[\begin{array}{cc} -1 & 0 \\ 0 & -1 \end{array}\right],\,  B=\left[\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right],\, C=\left[\begin{array}{cc} -1 & 0 \\ 0 & 1 \end{array}\right].$$
 
-\newcounter{mg_enumi}
-
 \begin{figure}[h]
 	\begin{center}
 		\begin{minipage}[c]{0.55\textwidth}
 			\begin{enumerate}[label=(\alph*)]
 				\item They are given.
 				\item $I$ is the identity transformation. $A$ rotates $180^\circ$ (alternatively, it reflects through the origin). $B$ reflects over the $x$ axis. $C$ reflects over the $y$ axis.
-				\setcounter{mg_enumi}{\value{enumi}}
+				\setcounter{problem_i}{\value{enumi}}
 				\addtocounter{enumi}{1} % is there a more elegant way to do this?
 				\item This group is isomorphic to the symmetry group for the rectangle, otherwise known as the dihedral group of the rectangle, $D_2$ for short.
 			\end{enumerate}
@@ -38,17 +35,17 @@ $$I=\left[\begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right],\, A=\left[\begin{
 		\hfill
 		\begin{minipage}[c]{0.35\textwidth}
 			\begin{enumerate}[label=(\alph*)]
-				\setcounter{enumi}{\value{mg_enumi}}
-				
+				\setcounter{enumi}{\value{problem_i}}
+
 				\centering
 				\item\begin{tabular}{c|cccc}
 					\hline
 					& $I$ & $A$ & $B$ & $C$ \\ \hline
 					\rowcolor{light-gray}
-					$I$ & $I$ & $A$ & $B$ & $C$ \\ 
-					$A$ & $A$ & $I$ & $C$ & $B$ \\ 
+					$I$ & $I$ & $A$ & $B$ & $C$ \\
+					$A$ & $A$ & $I$ & $C$ & $B$ \\
 					\rowcolor{light-gray}
-					$B$ & $B$ & $C$ & $I$ & $A$ \\ 
+					$B$ & $B$ & $C$ & $I$ & $A$ \\
 					$C$ & $C$ & $B$ & $A$ & $I$ \\ \hline
 				\end{tabular}
 			\end{enumerate}
