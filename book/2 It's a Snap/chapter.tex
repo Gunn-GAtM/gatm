@@ -103,9 +103,9 @@
 % Vocabulary: SNAP, GROUP, ELEMENT, SNAP GROUP, IDENTITY ELEMENT $A\snap B = E$.
 
 \noindent We begin with a problem that ties together ideas from geometry, complex numbers, matrices, combinatorics, and group theory.
-You have studied geometry, complex numbers, and combinatorics before, so you should have a basis to start this investigation, but the other two topics may be a bit unfamiliar at this point.
+You have studied geometry, complex numbers, and combinatorics before, so you should have a basis to start this investigation, but the other two topics may be a bit unfamiliar.
 
-Figure~\ref{fig:all_3_cols} shows the six ways the posts in two rows, each row containing three posts, can be paired up. Convince yourself that these are the only six. Let's label them $I$, $A$, $B$, $C$, $D$, and $E$. For example, $I$ pairs every post in the top row with the post directly below it, while $A$ switches the pairings of the second and third posts.
+Figure~\ref{fig:all_3_cols} depicts the six ways the posts in two rows, each row containing three posts, can be paired up. Convince yourself that these are the only six. We label them $I$, $A$, $B$, $C$, $D$, and $E$. For example, $I$ pairs every post in the top row with the post directly below it, while $A$ switches the pairings of the second and third posts.
 
 Consider a grid of posts with three rows and three columns.
 An elastic string is anchored to one post in the top row, looping around a post in the middle row, and finally descending to a post in the bottom row.
@@ -121,7 +121,7 @@ As another example, $A\snap B = E$, as shown in Figure~\ref{fig:snap_ex}.
 
 Why do we put the bottom configuration first and the top configuration last? This choice is somewhat arbitrary, but there is a reason. Remember that when we compose functions, we write $(f \circ g)(x)=f(g(x))$. The right function, $g$, is evaluated first and used as an input to the left function, $f$. Similarly, when we write $X\snap Y$, the overall configuration (from top to bottom) first goes through $Y$, then through $X$. As we will see, these six elements often behave more like functions, rather than simply elements. Thus, it is natural to order them as if they were functions.
 
-Some important terminology: these six configurations form a mathematical \textbf{group} under the operation $\snap$, and we say that each configuration is an \textbf{element} of our group.
+Some important terminology: These six configurations form a mathematical \textbf{group} under the operation $\snap$, and we say that each configuration is an \textbf{element} of our group.
 More specifically, we will call this group the three-post \textbf{snap group}, or $S_3$. There are countless other mathematical groups, so we must be precise when we talk about a specific group. Note that this snap group is denoted $S_3$, not $S_6$, because the subscript $3$ is the number of posts in each row, \textit{not} the size of the group.
 Groups are, unsurprisingly, the main objects studied in \textbf{group theory}.
 Let's study this snap group and characterize its properties.
@@ -136,7 +136,7 @@ Let's study this snap group and characterize its properties.
 \end{enumerate}
 \item \begin{enumerate}
 \item For any elements $X, Y$, is there always an element $Z$ so that $X\snap Z=Y$?
-\item For (a), is $Z$ always unique?
+\item In (a), is $Z$ always unique?
 \end{enumerate}
 \newcounter{some_name}
 \setcounter{some_name}{\value{enumi}}
@@ -219,7 +219,7 @@ Let's study this snap group and characterize its properties.
 \setcounter{enumi}{\value{some_name}}
 \item If you constructed a $5\times 5$ table using only five of the snap elements, the table would not describe a group, because there would be entries in the table outside of those $5$. Therefore, a group must be \textbf{closed} under its operation. \textit{Some} subsets of our six elements, however, do happen to be closed. Write valid group tables using exactly one, two, and three elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
 \item What do you guess is a good definition of a mathematical group? (Hint: consider your answers to Problems \ref{prob:group_definition_start}--\ref{prob:group_definition_end}.)
-\item Notice that $E\snap E\snap E=I$ (see Figure~\ref{fig:eper3}). This means that $E$ has a \textbf{period} of $3$ when acting upon itself. Which elements have a period of
+\item Notice that $E\snap E\snap E=I$ (see Figure~\ref{fig:eper3}). We saw that $E$ has a \textbf{period} of $3$ when acting upon itself. Which elements have a period of
 \begin{enumerate}
 \begin{multicols}{3}
 \item $1$?
@@ -227,11 +227,11 @@ Let's study this snap group and characterize its properties.
 \item $3$?
 \end{multicols}
 \end{enumerate}
-\item Answer the following with the one, two, and four-post snap groups $S_1$, $S_2$ and $S_4$. These are just the analogous groups for connections between one, two, and four posts. \begin{enumerate}
-\item How many elements would there be?
-\item Systematically draw and name them.
-\item Make a group table of these elements. For four posts, instead of creating the massive table, give the number of elements that the table would have.
-\item What is the relationship of your original table to this new table?
+\item Answer the following with the one-, two-, and four-post snap groups $S_1$, $S_2$ and $S_4$. These are just the analogous groups for connections between rows of one, two, and four posts. \begin{enumerate}
+\item How many elements does the group have?
+\item Systematically draw and name the elements.
+\item Make a group table of these elements. For four posts, instead of creating a table, give the number of entries that the table would have.
+\item What is the relationship of the $S_3$ table to this new table?
 \end{enumerate}
 \item Can you think of a shortcut to generate a snap group table without drawing every possible configuration?
 \item \begin{enumerate}
