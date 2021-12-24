@@ -608,7 +608,7 @@ graphMatrix(0.96,-0.28,0.28,0.96);
 \item A \textbf{linear mapping} $f$ is one in which all lines are mapped to lines and the origin remains a fixed point. Algebraically, $f\left(\left[\begin{smallmatrix}x \\ y \end{smallmatrix}\right]\right)=xf\left(\left[\begin{smallmatrix}1 \\ 0 \end{smallmatrix}\right]\right)+yf\left(\left[\begin{smallmatrix}0 \\ 1 \end{smallmatrix}\right]\right).$ I claim that we can build any linear mapping of the plane by multiplying together some combination of the matrices from Problem~\ref{prob:list_transformations}. Only two classes of matrix, however, are necessary; all other matrices are products or examples of these. Which two classes of matrix do you think comprise the minimum set from which the others can be composed? Be able to justify your choice.
 \end{outer_problem}
 
-(Answers may vary.) Stretches and shears seem like the most general classes of transformations. After all, they can be done in two directions, and unlike reflections and rotations, don't include an ``angle''; they have an infinite range of possibilities. Of course, I have the benefit of foresight.
+(Answers may vary.) Stretches and shears seem like the most general classes of transformations, but they cannot change orientation like reflection. All together, these three classes of transformations can generate all linear transformations. We could extend our definition of "stretch" to include negative scaling factors, which would include reflections as well.
 
 \begin{outer_problem}
 \item Write matrix products that perform the following mappings. Do the indicated multiplication and graph the preimage and image when applied to $(1,0)$ and $(0,1)$.
@@ -1134,7 +1134,7 @@ Reflections reverse orientation; rotations don't.
 \item What would have happened to the parallelogram if we replaced $c,d$ in the matrix with $kc,kd$ for some $k>0$, so that the transformation matrix is $\left[\begin{smallmatrix} a & kc \\ b & kd \end{smallmatrix}\right]$?
 \end{iinner_problem}
 
-The parallelogram would become scaled in the direction of $(c,d)$, by a factor of $k$. See the diagram:
+The parallelogram would become lengthened in the direction of $(c,d)$, by a factor of $k$. See the diagram:
 
 \begin{center}
 	\begin{asy}[width=0.4\textwidth]
