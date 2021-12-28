@@ -63,7 +63,7 @@
 		\end{minipage}
 		\hfill
 		\begin{minipage}[t]{0.3\textwidth}
-			\caption{$AD = B$; Notice the RTL evaluation.}
+			\caption{$AD = B$; notice the right-to-left evaluation.}
 			\label{fig:aid_is_b}
 		\end{minipage}
 	\end{center}
@@ -126,11 +126,11 @@
 
 \noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
-Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by sequencing them, which we write like multiplication. We evaluate them right-to-left (RTL) as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
+Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by sequencing them, which we write like multiplication. We evaluate them right-to-left as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
 These six positions, along with the operation $\cdot$ of transformation composition, form another group: the \textbf{dihedral group} of the equilateral triangle, or $D_3$. It is denoted $D_3$ because it is a dihedral group of a $3$-sided regular polygon. If we split ``dihedral'' into ``di-'' and ``-hedral,'' we see it means ``two faces''; this etymology refers to the two faces of our paper triangle.
 
-Dihedral groups exist for any polygonal figure; mathematically speaking, the dihedral group $D_n$ is the group of symmetries, or \textbf{symmetry group}, of a $n$-sided regular polygon. While shapes in any number of dimensions have symmetry groups, the symmetry groups of plane figures are specifically called dihedral groups. For example, a pentagon's symmetry group is a dihedral group, while a cube's symmetry group is not. Let's study the properties of the dihedral group of the equilateral triangle.
+Dihedral groups exist for any polygonal figure; the dihedral group $D_n$ is the group of symmetries, or \textbf{symmetry group}, of a $n$-sided regular polygon. Shapes in any number of dimensions have symmetry groups; the symmetry groups of plane figures are specifically called dihedral groups. For example, a pentagon's symmetry group is a dihedral group, while a cube's symmetry group is not. Let's study the properties of the dihedral group of the equilateral triangle.
 
 % https://tex.stackexchange.com/questions/209092/how-do-i-make-every-column-the-same-width
 % \newcolumntype{C}{>{\centering\arraybackslash}p{1em}} %i dont think we need this? idk
@@ -242,7 +242,7 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 		\end{minipage}
 		\hfill
 		\begin{minipage}[t]{0.55\textwidth}
-			\caption{$fr^2=C$. Again, notice the RTL evaluation.}
+			\caption{$fr^2=C$. Again, notice the right-to-left evaluation.}
 			\label{fig:fr2}
 		\end{minipage}
 	\end{center}
@@ -256,7 +256,7 @@ $S_3$ and $D_3$ are said to be \textbf{isomorphic}. Groups $A$ with operation $\
 \item Make a table for only the rotations of $D_3$, a subgroup of $D_3$.
 \item Which subgroup of the snap group $S_3$ is isomorphic to the subgroup in (a)?
 \end{enumerate}
-\item What shape's symmetry group is isomorphic to (a) the two-post snap group $S_2$, (b) one-post group $S_1$, (c) four-post group $S_4$ (Hint: it's not a square), and (d) five-post group $S_5$? %compare-books-disable
+\item What shape's symmetry group is isomorphic to the (a) two-post snap group $S_2$, (b) one-post group $S_1$, (c) four-post group $S_4$ (hint: it's not a square), and (d) five-post group $S_5$? %compare-books-disable
 \item Find a combination of $A$ and $D$ that yields $C$.
 \item We call $A$ and $D$ \textbf{generators} of the group because every element of the group is expressible as some combination of $A$s and $D$s. For convenience, let's call $A$ ``$f$'' since it's a flip, and call $D$ ``$r$'' meaning a $120\degree$ rotation counterclockwise. Then, for example, $fr^2$ is a rotation of $2\cdot 120\degree = 240\degree$, followed by a flip across the $A$ axis, equivalent to our original $C$ (see Figure~\ref{fig:fr2}). Make a new table using $I$, $r$, $r^2$, $f$, $fr$, and $fr^2$ as elements, like the one in Figure~\ref{fig:alttable}. \textit{Note that the element order is different!} %compare-books-disable
 \item What other pairs of elements could you have used to generate the table?
