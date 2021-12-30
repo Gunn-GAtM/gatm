@@ -48,9 +48,9 @@
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent By this time, you should be comfortable with the idea and process of matrix multiplication. You should know what dimensional relationship needs to be true of two matrices in order to be allowed to multiply them together.
+\noindent By this time, you should be comfortable with matrix multiplication. You should know what dimensional relationship needs to be true of two matrices to multiply them together.
 
-Now we are going to consider $2\times 2$ matrices as operators, which map points on the plane to points on the plane. That is, a $2\times 2$ matrix maps the plane onto itself, or onto some figure (subset of the plane). This is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{array}{c}a \\ b \end{array}\right]$. For consistency, we will use the second format, the column vector.
+Now we are going to consider $2\times 2$ matrices as operators, which map points on the plane to points on the plane. That is, a $2\times 2$ matrix maps the plane onto itself, or onto some figure (subset of the plane). This mapping is done through matrix multiplication. Because $2$ coordinates determine a point in the Cartesian plane, we have the option of representing each point by a $1\times 2$ matrix---a row vector $\left[\begin{array}{cc}a & b \end{array}\right]$---or a $2\times 1$ matrix---a column vector $\left[\begin{array}{c}a \\ b \end{array}\right]$. For consistency, we will use the second format, the column vector.
 
 Figure~\ref{fig:random_matrix} is an example of what happens when an arbitrary matrix $M$ operates on a point $P$, taking it to the point $P'$. The \textbf{preimage} $(2,1)$ is mapped to the \textbf{image} $(7, -1)$ by the matrix; the geometric interpretation is shown in Figure~\ref{fig:geo_interp}. As in geometry, the preimage is the state before the transformation and the image is after.
 
@@ -66,7 +66,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \left[\begin{array}{cccc}2 & 1 & 0 & -1 \\ 1 & 0 & -1 & -2\end{array}\right]
 =\left[\begin{array}{cccc}\phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} \\ \phantom{0}\end{array}\right].$$
 \item Graph and label the preimage and the image of each point onto the same set of axes.
-\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: what is $y$ in terms of $x$?)
+\item The points in the preimage are discontinuous, but they belong to a particular, infinite set of points. Write the equation of that set. (Hint: What is $y$ in terms of $x$?)
 \item Write an equation for the image of that set.
 \item What other characteristic of the preimage points also applies to the image?
 \item Name two things that seem to be conserved when mapping points with a matrix.
@@ -74,7 +74,7 @@ $$\left[\begin{array}{cc}2 & 3 \\ -1 & 1 \end{array}\right]
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent In Problem~\ref{prob:consolidate_matrix}, you should have noticed that the points of the preimage were \textbf{collinear}, as were the points of the image. You should have also noticed that the points were equally spaced in the preimage and image. Was this a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
+\noindent In Problem~\ref{prob:consolidate_matrix}, the points of the preimage were \textbf{collinear}, as were the points of the image. You also should have noticed that the points were equally spaced in the preimage and image. Is this behavior a coincidence due to the particular matrix/set of points we picked, or is it generally true for all points and $2\times 2$ matrices?
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
@@ -105,7 +105,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 \setcounter{problem_i}{\value{enumi}}
 \end{enumerate}
 
-\noindent Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate the different kinds of what kinds of matrix mappings. Recall the transformations from geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in a preimage are mapped to the same point in the image.
+\noindent Matrix multiplication is a \textbf{linear transformation}. One way to think of a linear transformation is a transformation which takes lines to other lines, and keeps equally spaced points equally spaced. With this in mind, let's investigate the different kinds of matrix mappings. Recall the transformations from geometry: the identity, reflection across a line, rotation about a point, translation, and glide reflection preserve length, while others such as stretches and dilations change size. We will look for matrix representations of these, and if there are any matrix transformations new to us. We will also be investigating the case where multiple points in a preimage are mapped to the same point in the image.
 
 \newcommand{\mtrxtbt}[4] {$\left[\begin{array}{cc}#1 & #2 \\ #3 & #4 \end{array}\right]$}
 
@@ -114,7 +114,7 @@ $$\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]
 		\begin{minipage}[c]{0.55\textwidth}
 			\begin{enumerate}
 				\setcounter{enumi}{\value{problem_i}}
-				\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri} on the right. %compare-books-disable
+				\item Begin with a triangle with vertices $(5,0)$, $(10,0)$, and $(5,10)$, as shown in Figure~\ref{fig:preimage_tri}. %compare-books-disable
 				\begin{enumerate}
 					\item Map the vertices with the following matrices:
 					\begin{enumerate}
