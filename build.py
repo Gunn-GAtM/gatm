@@ -596,6 +596,10 @@ def run_operations(ops):
         ops = ops.split(" ")
 
     for opname in ops:
+        if opname not in task_list:
+            raise NotImplementedError(f"Unrecognized operation {opname}.")
+
+    for opname in ops:
         op = task_list[opname]
         description = op["description"]
         print(f"Doing operation {opname}: {description}")
