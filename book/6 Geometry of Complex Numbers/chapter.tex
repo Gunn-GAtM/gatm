@@ -155,7 +155,7 @@
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent Last year, you became masters of the art of manipulating complex numbers. In this section, we will build on that background. Throughout the rest of the book, you can reinforce your skills with a dose of Vitamin $i$.
+\noindent Last year, you mastered the art of manipulating complex numbers. We will build on that background in this section. Throughout the rest of the book, you can reinforce your skills with a healthy dose of "Vitamin $i$."
 
 There are at least two ways to think about the equation $x^3 = 1$. One way is to factor the equation into $(x-1)(x^2+x+1)$ and find the solutions using the quadratic formula. The other way is to use \textbf{DeMoivre’s theorem}:
 \[(r_1 (\cos \theta + i \sin \theta)) (r_2 (\cos \phi + i \sin \phi)) = (r_1r_2) (\cos(\theta + \phi) + i \sin(\theta + \phi)).\]
@@ -165,14 +165,14 @@ Recall that $\cis \theta = \cos \theta + i \sin \theta$. $z=r\cis \theta$ is a c
 
 \noindent Notice that the magnitudes are multiplied and the angles are added.\footnote{What else is added when you multiply? Exponents! In fact, $\cis \theta = e^{i\theta}$, but that’s another story.} By repeatedly applying DeMoivre's theorem, we know that $(r \cis \theta) ^ n = r^n \cis n\theta$. If $x = r \cis \theta$, then $x^3 = r^3 \cis 3\theta$. Going back to our original $x^3 = 1$, since $1 = \cis(2\pi k)$ for any integer $k$, we find that $r = 1$ and $3\theta = 2\pi k$. This yields three solutions: $1 \cis 0$, $1 \cis \frac{2\pi}{3}$, $1 \cis \frac{4\pi}{3}$. Any other value of $\theta=\frac{2k\pi}{3}$ reduces to one of these values because of the periodicity of $\cis$. These correspond to $k = 0, 1, 2$; other values of $k$ produce coterminal angles and are therefore duplicates. You can confirm that these three solutions are the same solutions that you obtain from factoring.
 
-You can prove DeMoivre’s theorem using the angle addition formulae for $\cos$ and $\sin$. But you can also understand it through pure geometry. Consider a complex number $z = a + bi$, being multiplied by $A = 4 + 3i$. $z$ forms an angle of $\theta$ with the real axis, and $A$ forms an angle of $\phi$. In Figure 1, observe that $iz$ is perpendicular to $z$ for any $z$. Figure 2 depicts the complex number $A$. Finally, in Figure 3, you see the multiplication carried out: $Az = (4+3i)z = 4z + 3iz$. These two components, $4z$ and $3iz$, are indicated.
+You can prove DeMoivre’s theorem using the angle addition formulae for $\cos$ and $\sin$. You can also understand it through pure geometry. Consider a complex number $z = a + bi$, being multiplied by $A = 4 + 3i$. $z$ forms an angle of $\theta$ with the real axis, and $A$ forms an angle of $\phi$. In Figure 1, observe that $iz$ is perpendicular to $z$ for any $z$. Figure 2 depicts the complex number $A$. Finally, in Figure 3, you see the multiplication carried out: $Az = (4+3i)z = 4z + 3iz$. These two components, $4z$ and $3iz$, are indicated.
 
-Combining the observation in Figure 1 and knowledge from geometry, we know the triangles in Figure 2 and 3 are similar. Since the scaling is by a factor of $|z|$, multiplying $A$ by $z$ has the effect rotating $z$ by the angle of $A$, and multiplying it by the length of $A$. This method of proving DeMoivre's theorem for $A=4+3i$ will work for all complex numbers $A=a+bi$.
+Combining the observation in Figure 1 and our knowledge from geometry, we know the triangles in Figure 2 and 3 are similar. Since the scaling is by a factor of $|z|$, multiplying $A$ by $z$ has the effect rotating $z$ by the angle of $A$, and multiplying it by the length of $A$. This method of proving DeMoivre's theorem for $A=4+3i$ works for all complex numbers $A=a+bi$.
 
-Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called the argument, written as $\Arg z$. The real part of $z$ is written $\Real (z) = a$, and the imaginary part of $z$ is written $\Imag (z) = b$. Note that $\Imag (z)$ is a \textit{real} number $b$, \textit{not} an imaginary number $bi$. Finally, the \textbf{complex conjugate} of $z$, where the imaginary part is negated, is written with a bar on top: $\overline{z} = a-bi$.
+Some notation: The angle $\theta$ of a complex number $z = a+bi$ is often called the argument, written as $\Arg z$. The real part of $z$ is written $\Real (z) = a$, and the imaginary part of $z$ is written $\Imag (z) = b$. Note that $\Imag (z)$ is a \textit{real} number $b$, not an imaginary number $bi$. Finally, the \textbf{complex conjugate} of $z$, in which the imaginary part is negated, is written with a bar on top: $\overline{z} = a-bi$.
 
 \begin{enumerate}
-\item Explain why $iz$ is perpendicular to $z$, without using DeMoivre's theorem.
+\item Explain why $iz$ is perpendicular to $z$ without using DeMoivre's theorem.
 \item How does $\Arg \overline{z}$ relate to $\Arg z$? (Hint: symmetry!)
 \item Compute $z\overline{z}$ and relate it to the $\cis$ form of $z$.
 \item Explain, using a picture, why $\tan (\Arg z) = \frac{\Imag(z)}{\Real(z)}$.
@@ -181,11 +181,11 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 \item Compare and contrast the methods of division in Problems~\ref{prob:div_1} and \ref{prob:div_2}. Which is more convenient? Or does it depend on the circumstance?
 \item \begin{enumerate}
 \item If $z = r\cis \theta$, what is $\frac{1}{z}$?
-\item Explain how this shows $\frac{1}{a+bi}=\frac{a-bi}{a^2+b^2}$, without having to rationalize the denominator. (Hint: use Problems 3, 4, and 7.)
+\item Explain how this result shows $\frac{1}{a+bi}=\frac{a-bi}{a^2+b^2}$, without having to rationalize the denominator. (Hint: use Problems 3, 4, and 7.)
 \end{enumerate}
 \item Compute $(1+i)^{13}$; pencil, paper, and brains only. No calculators!
 \item Compute $\frac{(1+i\sqrt{3})^3}{(1-i)^2}$ without a calculator.
-\item Draw $\cis\left(\frac{\pi}{4}\right) + \cis\left(\frac{\pi}{2}\right)$. Use your picture to prove an expression for $\tan\left(\frac{3\pi}{8}\right)$. (Hint: add them as vectors.)
+\item Draw $\cis\left(\frac{\pi}{4}\right) + \cis\left(\frac{\pi}{2}\right)$. Use your picture to prove an expression for $\tan\left(\frac{3\pi}{8}\right)$. (Hint: Add them as vectors.)
 \item Solve $z^3 = 1$, and show that its solutions under the operation of multiplication form a group, isomorphic to the rotation group of the equilateral triangle. Write a group table!
 \item \begin{enumerate}
 \item Find multiplication groups of complex numbers which are isomorphic to the rotation groups for
@@ -231,8 +231,8 @@ Some notation: the angle $\theta$ of a complex number $z = a+bi$ is often called
 
 \begin{enumerate}
 \setcounter{enumi}{\value{problem_i}}
-\item Prove that $(r_1\cis \theta)(r_2\cis \phi) = r_1r_2 \cis(\theta + \phi)$ using brute force and the angle-sum trig identities for $\cos$ and $\sin$. Do you prefer this method or the one on the previous page? Which method gives you a better understanding of why DeMoivre's works?
-\item Find an identity for $\sin 3\theta$ as we have done for $\cos$. Most of the work is already done for you!
+\item Prove that $(r_1\cis \theta)(r_2\cis \phi) = r_1r_2 \cis(\theta + \phi)$ using brute force and the angle-sum trig identities for $\cos$ and $\sin$. Do you prefer this method or the one on the previous page? Which method gives you a better understanding of why the formula works?
+\item Find an analogous identity for $\sin 3\theta$. Most of the work is already done for you!
 \item Your friend's textbook says $\cos 3\theta = 4\cos^3\theta - 3\cos \theta$, different from our identity. Who's right?
 
 \setcounter{problem_i}{\value{enumi}}
@@ -413,13 +413,13 @@ We represent all points in the figure as complex numbers. For convenience, let $
 
 $$a=\frac{B-A}{2},\, b=\frac{C-B}{2},\, c = \frac{D-C}{2},\, d = \frac{A-D}{2}.$$
 
-\noindent$a$ is the vector halfway along $\overrightarrow{AB}$, $b$ is halfway along $\overrightarrow{BC}$, etc.; this is shown in Figure~\ref{fig:quad_square}. We also have
+\noindent$a$ is the vector halfway along $\overrightarrow{AB}$, $b$ is halfway along $\overrightarrow{BC}$, etc.; see Figure~\ref{fig:quad_square}. We also have
 
 $$a+b+c+d=\frac{B-A+C-B+D-C+A-D}{2}=\frac{0}{2}=0.$$
 
-\noindent More geometrically, this is because $2(a+b+c+d)=2a+2b+2c+2d$ is the sum of the vectors $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{DA}$, which is just $\overrightarrow{AA}=\overrightarrow{\mathbf{0}}$. This is shown in Figure~\ref{fig:add_to_0}.
+\noindent More geometrically, this cancellation because $2(a+b+c+d)=2a+2b+2c+2d$ is the sum of the vectors $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{DA}$, which is just $\overrightarrow{AA}=\overrightarrow{\mathbf{0}}$ (see Figure~\ref{fig:add_to_0}).
 
-$P,Q,R,S$ are also complex numbers. Let $m=R-P$ and $n = Q-S$, be our two segments $\overline{PR}$ and $\overline{QS}$. To prove that they are perpendicular, recall that $z$ is perpendicular to $iz$ for any complex $z\neq 0$, so we just need to prove that $n=\pm im$.
+$P,Q,R,S$ are also complex numbers. Let $m=R-P$ and $n = Q-S$ be our two segments $\overline{PR}$ and $\overline{QS}$. To prove that they are perpendicular, recall that $z$ is perpendicular to $iz$ for any complex $z\neq 0$, so we just need to prove that $n=\pm im$.
 
 We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a+ia$, remembering that $a$ is the vector halfway along $\overrightarrow{AB}$. $a$ takes you from the origin $A$ to the midpoint of $\overline{AB}$, then $ia$ takes you to $P$. This shown in Figure~\ref{fig:p_def_on_a}. We can extend this logic to the other points, of course.
 
@@ -427,7 +427,7 @@ We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a
 \setcounter{enumi}{\value{problem_i}}
 \item Now you can finish the rest of the proof.
 \begin{enumerate}
-\item Draw $a,b,c,d,m,n$ approximately for the quadrilateral on the previous page.
+\item Draw $a,b,c,d,m,n$ for the quadrilateral on the previous page.
 \item Why does showing $n=\pm im$ prove the segments are (i) perpendicular and (ii) the same length?
 \item Explain why $Q=2a+b+ib$.
 \item Find formulae for $R$ and $S$ in terms of $c$ and $d$.
@@ -435,8 +435,8 @@ We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a
 \item Check that $n-im=0$, using the fact that $a+b+c+d=0$.
 \end{enumerate}
 \item In the previous problem, we drew squares outside a quadrilateral and connected their centers. Conjecture what happens if we draw equilateral triangles outside a triangle and connect their centers. Prove your conjecture using complex numbers.
-\item The hard way to find an identity for $\tan 3\theta$ is to divide the identity for $\sin$ and $\cos$ that we already found. Try this. Make sure your answer is in terms of $\tan$ only!
-\item The easier way to get an identity for $\tan 3\theta$ starts with setting $z = 1 + i\tan\theta$.
+\item The hard way to find an identity for $\tan 3\theta$ is to divide the identity for $\sin$ and $\cos$ that we already found. Try it. Make sure your answer is in terms of $\tan$ only!
+\item An easier way to get an identity for $\tan 3\theta$ starts with setting $z = 1 + i\tan\theta$.
 \begin{enumerate}
 \item Why is $\Arg z = \theta$?
 \item Why is $\tan 3\theta = \frac{\Imag(z^3)}{\Real(z^3)}$?
@@ -445,13 +445,13 @@ We now need to relate $P,Q,R,S$ back to $a,b,c,d$. It is easy to see that $P = a
 \item Find multiplication groups of complex numbers isomorphic to rotation groups for
 \begin{enumerate}
 \begin{multicols}{2}
-\item the regular octagon, and
+\item the regular octagon;
 \item the regular pentagon.
 \end{multicols}
 \end{enumerate}
 \item Make tables for
 \begin{enumerate}
-\item the rotation group of the regular octagon, and
+\item the rotation group of the regular octagon;
 \item the dihedral group of the square.
 \end{enumerate}
 Is the difference between them fundamental?
@@ -491,7 +491,7 @@ Is the difference between them fundamental?
 \item Prove with a diagram that if $|z|=1$, then $\Imag\left(\frac{z}{(z+1)^2}\right)=0$.
 \item Prove geometrically that if $|z|=1$, then $|1-z|=\left|2\sin\left(\frac{\Arg z}{2}\right)\right|$.
 \item \begin{enumerate}
-\item Prove that if $(z-1)^{10}=z^{10}$, then $\Real (z) = \frac{1}{2}$. (Hint: if two numbers are equal, they have the same magnitude.)
+\item Prove that if $(z-1)^{10}=z^{10}$, then $\Real (z) = \frac{1}{2}$. (Hint: If two numbers are equal, they have the same magnitude.)
 \item How many solutions does this equation have?
 \end{enumerate}
 \item I claim that $e^{i\theta}=\cos\theta + i\sin\theta = \cis\theta$, for $\theta$ in radians.
