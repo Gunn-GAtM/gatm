@@ -4,7 +4,7 @@
 
 \section{Composite Mappings of the Plane}
 
-So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, etc. We have seen how matrices interact with each other in the context of groups. Now, let's see what happens when we combine two mappings of the plane. For example, let's see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, let's extend this to the point $(u,v)$.
+So far, we have identified matrices that result in some specific mappings of the plane, including rotations, reflections, et cetera. We have seen how matrices interact with each other in the context of groups. Now, we see what happens when we combine two mappings of the plane. For example, we see what a rotation of $-90^\circ$ about the origin, followed by a reflection across the $x$ axis, does to our unit vectors $(1,0)$ and $(0,1)$. Then, we extend this to the point $(u,v)$.
 
 \newcommand{\blanktwomat}{\twomat{\phantom{0}}{\phantom{0}}{}{}}
 
@@ -23,7 +23,7 @@ So far, we have identified matrices that result in some specific mappings of the
 \end{enumerate}
 \item You should notice that the net result of the two transformations taken together is a reflection over the line $y=x$. Which matrix represents this transformation?
 \item Notice that what we did to achieve this mapping was $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}\left[\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}\right]=\left[\phantom{\begin{array}{ccc} 1 & 0 & u \\ 0 & 1 & v \end{array}}\right],$$
-where we multiplied the two rightmost matrices first but didn't use the associative property to multiply the two leftmost matrices first. See what happens when you multiply the two left hand matrices together: $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat.$$ Look familiar?
+in which we multiplied the two rightmost matrices first but didn't use the associative property to multiply the two leftmost matrices first. See what happens when you multiply the two left hand matrices together: $$\twomat{1}{0}{0}{-1}\twomat{0}{1}{-1}{0}=\blanktwomat.$$ Look familiar?
 \item See what happens when you reverse the order of multiplication: \label{prob:cm_fill_in_blank_end}
 $$\twomat{0}{1}{-1}{0}\twomat{1}{0}{0}{-1}=\blanktwomat$$
 \item \begin{enumerate}
@@ -38,7 +38,7 @@ $$\twomat{0}{1}{-1}{0}\twomat{1}{0}{0}{-1}=\blanktwomat$$
 \item ... to the ``from \underline{\phantom{egg}} to \underline{\phantom{egg}}'' convention for transportation matrices?
 \end{enumerate}
 \end{enumerate}
-\item There are two, infinite classes of matrices which comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
+\item Two, infinite classes of matrices comprise all isometries of the plane which keep the origin fixed. These are the rotation matrix and reflection matrix. Let's look first at the rotation matrix and make sure that it really always works the way it should.
 \begin{enumerate}
 \item What is the result of a rotation by an angle $\theta$ followed by one of $\phi$?
 \item Multiply their rotation matrices: $\twomat{\cos \phi}{-\sin \phi}{\sin\phi}{\cos\phi} \twomat{\cos \theta}{-\sin \theta}{\sin\theta}{\cos\theta}=\blanktwomat$
