@@ -3,7 +3,7 @@ A rewrite of _A Geometric Approach to Matrices_ (frequently abbreviated to "GAtM
 If you are looking for the text, go to https://gunn-gatm.github.io/ for the PDFs without all the code.
 
 ## Information for Prospective Contributors
-This project was first bodged together in summer of 2019. I'd estimate it took a couple hundred hours, but it's not remotely free of errors and is often inconsistent. Today is February 13, 2021, and after some encouragement by a certain Yu-Ting Chang, I (Timothy) have decided to work on it once more, correcting errors and making the build system less terrifying.
+This project was first thrown together in summer of 2019. I'd estimate it took a couple hundred hours, but it's not remotely free of errors and is often inconsistent. Today is February 13, 2021, and after some encouragement by a certain Yu-Ting Chang, I (Timothy) have decided to work on it once more, correcting errors and making the build system less terrifying.
 
 ### File Structure
 There are two main documents: the textbook, and the answer key. The textbook comprises a cover, a credits page, sixteen chapters, and a glossary. The answer key comprises a cover and sixteen chapters. For simplicity, we treat the cover and credits as pseudo-chapters sometimes, even though they are handled separately. All this is inside the `book/` directory; there is one folder per chapter, with each folder containing a chapter source file, cleverly named `chapter.tex`, and an answer key source file, named `answers.tex`.
