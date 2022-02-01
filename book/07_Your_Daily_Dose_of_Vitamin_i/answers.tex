@@ -1,0 +1,513 @@
+\documentclass[../key.tex]{subfiles}
+
+\newcommand{\cosdeg}[1] {\cos #1^\circ}
+\newcommand{\cisdeg}[1] {\cis #1^\circ}
+
+\begin{document}
+
+\section{Your Daily Dose of Vitamin $i$}
+
+\begin{outer_problem}[start=1]
+\setcounter{store_outer_problem}{\value{outer_problemi}}
+\item We will use complex numbers to find identities for $\cot$. Use Pascal's triangle to expand the following:
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $(a+b)^3$
+\end{inner_problem}
+$$(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3.$$
+\begin{inner_problem}
+\item $(a+b)^4$
+\end{inner_problem}
+$$(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4.$$
+\begin{inner_problem}
+\item $(a+b)^5$
+\end{inner_problem}
+$$(a+b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5.$$
+\begin{outer_problem}
+\setcounter{outer_problemi}{\value{store_outer_problem}}
+\item (cont.) Then substitute $b=i=\sqrt{-1}$ and expand:
+\end{outer_problem}
+
+\begin{inner_problem}
+\item $(a+i)^3$
+\end{inner_problem}
+$$(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3 = a^3 + 3a^2i - 3a - i.$$
+\begin{inner_problem}
+\item $(a+i)^4$
+\end{inner_problem}
+$$(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4 = a^4 + 4a^3i - 6a^2 - 4ai + 1.$$
+\begin{inner_problem}
+\item $(a+i)^5$
+\end{inner_problem}
+$$(a+i)^5=a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5=a^5 + 5a^4i - 10a^3 - 10a^2i + 5a + i.$$
+\begin{outer_problem}
+\setcounter{outer_problemi}{\value{store_outer_problem}}
+\item (cont.) Finally, substitute $a=\cot \theta$ and expand:
+\end{outer_problem}
+
+\begin{inner_problem}
+\item $(\cot \theta +i)^3$
+\end{inner_problem}
+$$(\cot \theta +i)^3 = a^3 + 3a^2i - 3a - i = (\cot^3\theta - 3\cot\theta) + i(3\cot^2\theta - 1).$$
+\begin{inner_problem}
+\item $(\cot \theta +i)^4$
+\end{inner_problem}
+$$(\cot \theta +i)^4 = a^4 + 4a^3i - 6a^2 - 4ai + 1 = (\cot^4\theta - 6\cot^2\theta + 1) + (4\cot^3 \theta - 4\cot\theta).$$
+\begin{inner_problem}
+\item $(\cot \theta +i)^5$
+\end{inner_problem}
+$$(\cot \theta +i)^5 = a^5 + 5a^4i - 10a^3 - 10a^2i + 5a + i = (\cot^5\theta - 10\cot^3\theta + 5\cot\theta) + i(5\cot^4\theta - 10\cot^2\theta + 1).$$
+\begin{outer_problem}
+\setcounter{outer_problemi}{\value{store_outer_problem}}
+\item (cont.) Consider $z=i+\cot\theta$.
+\end{outer_problem}
+
+\begin{inner_problem}
+\item Use the above results to find identities for (i) $\cot 3\theta$, (ii) $\cot 4\theta$, and (iii) $\cot 5\theta$.
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $\cot 3\theta$
+\end{iinner_problem}
+
+Given the right triangle formed by $z=i+\cot\theta$ in Figure~\ref{fig:arg_z_is_theta}, we have $\tan(\Arg z) =\frac{1}{\cot\theta} = \tan\theta$, so $\Arg z = \theta$ and $z=r\cis \theta$.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+real theta = 5 * pi / 16;
+
+pair z = (1 / tan(theta), 1);
+pair O = (0,0);
+pair zf = (z.x, 0);
+
+dot(z);
+
+draw(O--z);
+draw(O--zf--z,dashed);
+
+label("$1$", z--zf, E);
+
+label("$z = i + \cot\theta $", z, NW);
+label("$\cot\theta$", O--zf, S);
+
+draw((-0.2,0)--(1,0),Arrow);
+draw((0,-0.2)--(0,1.4),Arrow);
+
+path arc1 = arc(O, (0.15,0), z);
+
+draw(arc1);
+label("$\theta$", arc1, expi(theta / 2));
+
+real ras = 0.09;
+draw(shift(zf) * ((-ras,0)--(-ras,ras)--(0,ras)));
+
+\end{asy}
+\label{fig:arg_z_is_theta}
+\captionof{figure}{$\Arg (i + \cot\theta)=\theta$.}
+\end{center}
+
+Thus, we have
+
+\begin{align*}
+\cot 3\theta &= \frac{\cos 3\theta}{\sin 3\theta} \\
+&= \frac{\Real(\cis 3\theta)}{\Imag(\cis 3\theta)} \\
+&= \frac{\Real(r^3\cis 3\theta)}{\Imag(r^3\cis 3\theta)} \\
+&= \frac{\Real(z^3)}{\Imag(z^3)}.
+\end{align*}
+
+We substitute in our expression for $z^3$, $(\cot^3\theta - 3\cot\theta) + i(3\cot^2\theta - 1)$:
+
+$$\cot 3\theta = \frac{\cot^3\theta - 3\cot\theta}{3\cot^2\theta - 1}.$$
+
+\begin{iinner_problem}[start=1]
+\item $\cot 4\theta$
+\end{iinner_problem}
+
+We proceed in the same way as the last subproblem.
+
+\begin{align*}
+\cot 4\theta &= \frac{\cos 4\theta}{\sin 4\theta} \\ 
+&= \frac{\Real(\cis 4\theta)}{\Imag(\cis 4\theta)} \\
+&= \frac{\Real(r^4\cis 4\theta)}{\Imag(r^4\cis 4\theta)} \\
+&= \frac{\Real(z^4)}{\Imag(z^4)} \\
+\cot 4\theta &= \frac{\cot^4\theta - 6\cot^2\theta + 1}{4\cot^3 \theta - 4\cot\theta}. \\
+\end{align*}
+
+\begin{iinner_problem}[start=1]
+\item $\cot 5\theta$
+\end{iinner_problem}
+
+We proceed in the same way as the last subproblem.
+
+\begin{align*}
+\cot 5\theta &= \frac{\cos 5\theta}{\sin 5\theta}  \\
+&= \frac{\Real(\cis 5\theta)}{\Imag(\cis 5\theta)} \\
+&= \frac{\Real(r^5\cis 5\theta)}{\Imag(r^5\cis 5\theta)} \\
+&= \frac{\Real(z^5)}{\Imag(z^5)} \\
+&= \frac{\cot^5\theta - 10\cot^3\theta + 5\cot\theta}{5\cot^4\theta - 10\cot^2\theta + 1}.
+\end{align*}
+
+\begin{inner_problem}
+\item Graph $z$, $z^2$, $z^3$, $z^4$, and $z^5$, with $\theta \approx 75^\circ$. What is your solution method?
+\end{inner_problem}
+
+To graph these, I first calculated the approximate magnitude of $z$, which is how many times each subsequent power will be scaled by. We have $|1+\cot 75^\circ| \approx 1.268$, so we only need to scale by about $\frac{5}{4}$ each time. Of course, we rotate by about $75^\circ$ each time.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+import graph;
+
+pair O = (0,0);
+pair z = (1 / tan(75 * pi / 180), 1);
+pair z2 = z * z;
+pair z3 = z2 * z;
+pair z4 = z3 * z;
+pair z5 = z4 * z;
+
+draw(O--z);
+draw(O--z2);
+draw(O--z3);
+draw(O--z4);
+draw(O--z5);
+
+label("$z$", z, N);
+label("$z^2$", z2, W);
+label("$z^3$", z3, SW);
+label("$z^4$", z4, SE);
+label("$z^5$", z5, NE);
+
+dot(z);
+dot(z2);
+dot(z3);
+dot(z4);
+dot(z5);
+
+xaxis("$x$");
+yaxis("$y$");
+\end{asy}
+
+\captionof{figure}{Graphs of $z$, $z^2$, $z^3$, $z^4$, and $z^5$.}
+\end{center}
+
+\begin{outer_problem}
+\item Compute $(1+i)^n$ for $n=3,4,5,\ldots$. Can you find a general pattern?
+\end{outer_problem}
+
+We have
+
+\begin{align*}
+(1+i)^3 &= 1^3 + 3i - 3 - i &= -2-2i \\
+(1+i)^4 &= 1^4 + 4i - 6 - 6i + 1 &= -4-2i \\
+(1+i)^5 &= 1^5 + 5i - 10 - 10i + 5 + i &= -4-4i. \\
+\end{align*}
+
+We can find the pattern by representing $1+i = \sqrt{2} \cisdeg{45}$. This shows that it has period $8$ and let's us find an expression for $(1+1)^n$:
+
+$$(1+i)^n = \left(\sqrt{2} \cisdeg{45}\right)^n = 2^{n/2} \cis \left(\frac{n\pi}{4}\right).$$
+
+\begin{outer_problem}
+\item Expand and graph $\cis^n \theta$ for $n=2,3,4,\ldots$.
+\end{outer_problem}
+
+Let $\cos\theta = c$ and $\sin\theta = s$. We have
+
+\begin{align*}
+(c+is)^2 &= c^2 + 2csi - s^2 = (c^2 - s^2) + i(2cs) \\\
+(c+is)^3 &= c^3 + 3c^2si - 3cs^2 - s^3i = (c^3 - 3cs^2) + i(3c^2s - s^3) \\
+(c+is)^4 &= c^4 + 4c^3si - 6c^2s^2 - 4cs^3i + s^4 = (c^4 - 6c^2s^2 + s^4) + i(4c^3s - 4cs^3) \\
+(c+is)^5 &= c^5 + 5c^4si - 10c^3s^2 - 10c^2s^3i + 5cs^4 + s^5i = (c^5 - 10c^3s^2 + 5cs^4) + i(5c^4s - 10c^2s^3 + s^5). \\
+\end{align*}
+
+The graphs of $\cis^n\theta$ for $\theta \approx 50^\circ$ are shown in Figure~\ref{fig:cis_n_theta_graphs} below.
+
+\begin{center}
+\begin{asy}[width=0.4\textwidth]
+import graph;
+
+pair O = (0,0);
+pair z = dir(49.5); // REEEEEE
+pair z2 = z * z;
+pair z3 = z2 * z;
+pair z4 = z3 * z;
+pair z5 = z4 * z;
+
+draw(O--z);
+draw(O--z2);
+draw(O--z3);
+draw(O--z4);
+draw(O--z5);
+
+label("$\cis \theta$", z, N);
+label("$\cis^2 \theta$", z2, W);
+label("$\cis^3 \theta$", z3, W);
+label("$\cis^4 \theta$", z4, W);
+label("$\cis^5 \theta$", z5, W);
+
+dot(z);
+dot(z2);
+dot(z3);
+dot(z4);
+dot(z5);
+
+xaxis("$x$");
+yaxis("$y$");
+\end{asy}
+\captionof{figure}{Graphs of $\cis^n\theta$ for $\theta\approx 50^\circ$.}
+\label{fig:cis_n_theta_graphs}
+\end{center}
+
+\begin{inner_problem}[start=1]
+\item Why is the real part $\cos n\theta$ and the imaginary part $\sin n\theta$?
+\end{inner_problem}
+
+By DeMoivre's theorem, $\cis^n\theta = \cis n\theta$, which by definition has $\Imag(\cis n\theta) = \cos n\theta$ and $\Real(\cis n\theta) = \sin n\theta$.
+
+\begin{inner_problem}
+\item Use your results to write identities for $\cos n\theta$ and $\sin n\theta$ for $n=2,3,4,5$.
+\end{inner_problem}
+
+Here they are. Again, let $\cos\theta = c$ and $\sin\theta = s$:
+
+\begin{align*}
+\cos 2\theta = \Real(\cis 2\theta) &= c^2 - s^2 \\
+\cos 3\theta = \Real(\cis 3\theta) &= c^3 - 3cs^2 \\
+\cos 4\theta = \Real(\cis 4\theta) &= c^4 - 6c^2s^2 + s^4 \\
+\cos 5\theta = \Real(\cis 5\theta) &= c^5 - 10c^3s^2 + 5cs^4 \\
+\sin 2\theta = \Imag(\cis 2\theta) &= 2cs \\
+\sin 3\theta = \Imag(\cis 3\theta) &= 3c^2s - s^3 \\
+\sin 4\theta = \Imag(\cis 4\theta) &= 4c^3s - 4cs^3 \\
+\sin 5\theta = \Imag(\cis 5\theta) &= 5c^4s - 10c^2s^3 + s^5. \\
+\end{align*}
+
+\begin{outer_problem}
+\item Compute $\cosdeg{7} + \cosdeg{79} + \cosdeg{151} + \cosdeg{223} + \cosdeg{295}$ without a calculator. (Hint: what does this have to do with complex numbers?)
+\end{outer_problem}
+
+These numbers look random, but a closer inspection reveals they are in arithmetic progression, with starting term $7$ and increasing $72^\circ$ each time. That's the rotation of a pentagon!
+
+We rewrite this as the real component of a sum of $\cis$es, then manipulate and evaluate:
+
+\begin{align*}
+\cosdeg{7} + \cosdeg{79} + \cosdeg{151} + \cosdeg{223} + \cosdeg{295} &= \Real(\cisdeg{7} + \cisdeg{79} +  \cisdeg{151} +  \cisdeg{223} +  \cisdeg{295}) \\
+&= \Real((\cisdeg{7})(\cisdeg{0} + \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288})) \\
+&= \Real((\cisdeg{7})(0)) \\
+&= \Real(0) \\
+&= 0.
+\end{align*}
+
+Note that going from the second to third step, we used the fact that the $\cis$ expressions are the vertices of a regular pentagon, which sum to $0$. If you want to be more formal about it, a fun way to prove that $\cisdeg{0} + \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288}=0$ is to set it to $\Xi$ and calculate:
+
+\begin{align*}
+    \Xi\cdot \cisdeg{72} &= (\cisdeg{0} + \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288}) \cisdeg{72} \\
+    &= \cisdeg{72} + \cisdeg{144} + \cisdeg{216} + \cisdeg{288} + \cisdeg{360} \\
+    &= \cisdeg{72} + ... + \cisdeg{288} + \cisdeg{0} \\
+    &= \Xi.
+\end{align*}
+
+If $\Xi\cdot (\text{something that's not one})=\Xi$, then $\Xi$ must be $0$.
+
+\begin{outer_problem}
+\item Factor the following:
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $x^6-1$ as a difference of squares
+\end{inner_problem}
+
+We substitute $y=x^3$, giving $y^2-1=(y+1)(y-1)$. Substituting back in, we get $$(x^3+1)(x^3-1).$$
+
+\begin{inner_problem}
+\item $x^6-1$ as a difference of cubes
+\end{inner_problem}
+
+We now substitute $y=x^2$, giving $y^3-1 = (y-1)(y^2+y+1)$. Substituting back in, we get $$(x^2-1)(x^4+x^2+1)$$.
+
+\begin{inner_problem}
+\item $x^4+x^2+1$ over the real numbers
+\end{inner_problem}
+
+This one isn't as obvious. We substitute $y=x^2$ to get $y^2+y+1$ and find the quadratic's zeroes:
+
+$y=\frac{-1\pm \sqrt{1 - 4}}{2} = \frac{-1\pm i\sqrt{3}}{2}.$
+
+So it is irreducible over the reals.
+
+\begin{inner_problem}
+\item $x^6-1$ completely
+\end{inner_problem}
+
+We already broke it down into $(x^3+1)$ and $(x^3-1)$. Going further, we have $x^3+1 = (x+1)(x^2-x+1)$ and $x^3-1=(x-1)(x^2+x+1)$. To break apart the last two quadratics, we find their zeros:
+
+$$x^2-x+1=0 \Longrightarrow x = \frac{1 \pm i\sqrt{3}}{2} \Longrightarrow \left(x - \frac{1 - i\sqrt{3}}{2}\right) \left(x - \frac{1 + i\sqrt{3}}{2}\right).$$
+
+$$x^2+x+1=0 \Longrightarrow x = \frac{-1 \pm i\sqrt{3}}{2} \Longrightarrow \left(x + \frac{1 - i\sqrt{3}}{2}\right) \left(x + \frac{1 + i\sqrt{3}}{2}\right).$$
+
+Combining all these, we get the complete factorization over the complex numbers:
+
+$$x^6-1 = (x+1)\left(x - \frac{1 - i\sqrt{3}}{2}\right) \left(x - \frac{1 + i\sqrt{3}}{2}\right)(x-1)\left(x + \frac{1 - i\sqrt{3}}{2}\right) \left(x + \frac{1 + i\sqrt{3}}{2}\right).$$
+
+\begin{inner_problem}
+\item $x^4+x^2+1$ completely
+\end{inner_problem}
+
+We could do a lot of work again, or we could observe that $x^4+x^2+1 = \frac{x^6 - 1}{x^2 - 1} = \frac{x^6 - 1}{(x+1)(x-1)}$. Removing the denominator's terms from our factorization of $x^6-1$ we found in the last subproblem, we get
+
+$$x^4+x^2+1 = \left(x - \frac{1 - i\sqrt{3}}{2}\right) \left(x - \frac{1 + i\sqrt{3}}{2}\right)\left(x + \frac{1 - i\sqrt{3}}{2}\right) \left(x + \frac{1 + i\sqrt{3}}{2}\right).$$
+
+\begin{outer_problem}
+\item Let $f(z)=\frac{z+1}{z-1}$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Without a calculator, compute $f^{2014}(z)$.
+\end{inner_problem}
+
+This seems terrifying. Let's try computing $f^2(z)$ and perhaps $f^3(z)$.
+
+$$f^2(z) = \frac{f(z)+1}{f(z)-1} = \frac{\frac{z+1}{z-1}+1}{\frac{z+1}{z-1}-1} = \frac{\frac{2z}{z-1}}{\frac{2}{z-1}} = z.$$
+
+Oh.
+
+Since $2014$ is even, we have $f^{2014}(z) = (f^2)^{1007}(z) = z$.
+
+\begin{inner_problem}
+\item What if you replace $2014$ with the current year?
+\end{inner_problem}
+
+Let $y$ be the current year. As I write this, it is $1492$.
+
+If $y$ is even, then $f^y(z) = (f^2)^{y/2}(z) = z$. If $y$ is odd, then $f^y(z) = f((f^2)^{(y-1)/2}(z)) = f(z) = \frac{z+1}{z-1}$.
+
+\begin{outer_problem}
+\item Find $\Imag\left((\cisdeg{12} + \cisdeg{48})^6\right)$.
+\end{outer_problem}
+
+These are some weird looking angles. Thinking back to some older problems, however, the resultant angle of the addition may be tractable. We draw a diagram, shown in Figure~\ref{fig:add_twelve_and_forty_eight}.
+
+\begin{center}
+\begin{asy}[width=0.6\textwidth]
+import graph;
+
+pair O = (0,0);
+pair c1 = dir(12);
+pair c2 = dir(48);
+pair res = c1+c2;
+
+draw(O--c2, Arrow);
+draw(c2--res, Arrow);
+label("$\cisdeg{48}$", O--c2, NW);
+label("$\cisdeg{12}$", c2--res, N);
+
+path arc1 = arc(O, (0.15, 0), c2);
+draw(arc1, Arrow);
+label("$48^\circ$", midpoint(arc1), dir(24));
+// label("$48^\circ$", 
+
+draw(O--res, dashed);
+
+draw(c2--(c2+(0.8,0)), dotted);
+
+path arc2 = arc(c2, c2 + (0.2,0), res);
+
+draw(arc2);
+label("$12^\circ$", midpoint(arc2), 5*dir(6));
+
+
+xaxis("$x$");
+yaxis("$y$");
+
+path arc3 = arc(O, (0.3,0), c2);
+
+label("$x$", point(arc3, 0.85), dir(36+9));
+draw(arc3);
+label("$48^\circ - x$", point(arc3, 0.4), dir(15));
+
+path arc4 = arc(c2, point(c2--O, 0.15), c2+(0.15,0));
+
+draw(arc4);
+label("$132^\circ$", midpoint(arc4), SE);
+\end{asy}
+\captionof{figure}{Adding $\cisdeg{12} + \cisdeg{48}$.}
+\label{fig:add_twelve_and_forty_eight}
+\end{center}
+
+Consider the isosceles triangle. The apex has angle measure $132^\circ + 12^\circ = 144^\circ$, so the base angles are each $x=\frac{180^\circ - 144^\circ}{2} = 18^\circ$. But $\Arg (\cisdeg{12} + \cisdeg{48}) = 48^\circ - x = 30^\circ$!
+
+That's a familiar angle. Indeed, we have $z=\cisdeg{12} + \cisdeg{48}=r\cisdeg{30}$ for some $r$. It doesn't really matter which $r$, because
+
+$$\Imag ((r\cisdeg{30})^6) = \Imag (r^6 \cisdeg{180}) = \Imag(-r^6) = 0.$$
+
+\begin{outer_problem}
+\item Let $x$ satisfy the equation $x+\frac{1}{x}=2\cos\theta$.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Compute $x^2+\frac{1}{x^2}$ in terms of $\theta$.
+\end{inner_problem}
+
+Squaring the left hand side will get us some terms that look close to what we want.
+
+$$\left(x + \frac{1}{x}\right)^2 = x^2 + 2 + \frac{1}{x^2}.$$
+
+So $x^2 + \frac{1}{x^2} = (2\cos\theta)^2 - 2 = 4\cos^2\theta - 2 = 2 (2\cos^2\theta - 1) = 2\cos 2\theta$. Huh.
+
+\begin{inner_problem}
+\item Compute $x^n+\frac{1}{x^n}$ in terms of $n$ and $\theta$.
+\end{inner_problem}
+
+It's unclear how to start, so we might as well try to compute $x^3 + \frac{1}{x^3}$ in the same way.
+
+\begin{align*}
+    \left(x + \frac{1}{x}\right)^3 &= \\
+    x^3 + 3x + \frac{3}{x} + \frac{1}{x^3} &= 8\cos^3\theta \\
+    x^3 + 3\underbrace{\left(x + \frac{1}{x}\right)}_{2\cos \theta} + \frac{1}{x^3} &= 8\cos^3\theta \\
+    x^3 + \frac{1}{x^3} &= 8\cos^3\theta - 6\cos\theta.
+\end{align*}
+
+Now what? The astute among you may recognize that $8\cos^3\theta - 6\cos\theta = 2\cos 3\theta$, at which point you could make a conjecture (and could jump ahead). But suppose we didn't find that.
+
+We know that $x^2 + \frac{1}{x^2} = 2\cos 2\theta$. By analogy, if we make the substitution $y=x^2$ and $\phi = 2\theta$, we get that $y+\frac{1}{y} = 2\cos\phi$, and thus $y^2+\frac{1}{y^2} = 2\cos 2\phi \Longrightarrow x^4 + \frac{1}{x^4} = 2\cos 4\theta$. In general,
+
+$$x^{2^m} + \frac{1}{x^{2^m}} = 2\cos 2^m\theta.$$
+
+The exponent on $x$, in this case $2^m$, is the same as the multiple of $\theta$. Pretty sus. We've solved the problem for $n$ which are powers of two, but we conjecture that the relationship holds for all integers $n$. To be explicit, we want to show that
+
+$$x^n + \frac{1}{x^n} = 2\cos n\theta.$$
+
+There's a couple of ways to do it. But seeing $x^n$ and $\cos n\theta$ in the same place immediately recalls exponentiating $\cis \theta$. So, let's try rewriting the problem a bit by entering into the complex plane. Let $x = r\cis\phi$, which we really should have done earlier. Then we're given that $r\cis\phi + \frac{1}{r\cis\phi} = 2\cos \theta$. Working further,
+
+\begin{align*}
+    2\cos \theta &= r\cis\phi + \frac{1}{r}\cis(-\phi) \\
+    &= r\cos\phi + \frac{1}{r}\cos\phi + i(r\sin\phi - \frac{1}{r}\sin\phi) \\
+    &= \left(r+\frac{1}{r}\right)\cos\phi + i\left(r - \frac{1}{r}\right)\sin\phi \\
+\end{align*}
+
+The imaginary part needs to be zero, since the left hand side is real. So either $r=\frac{1}{r}$ or $\sin\phi = 0$. Let's examine each case. In the first case, $r=1$ (it can't be $-1$ since $r\geq 0$. In the second case, we have $\cos\phi = \pm 1$, and substituting, we get
+
+$$2\cos \theta = \pm \left(r + \frac{1}{r} \right).$$
+
+That's not helpful... except now we know that $r$ is real and $\geq 0$. Considering $r + \frac{1}{r}$, we see that it approaches $\infty$ as $r\to 0$. What range of values does it make? Graphing it shows that it has a range of $[2, \infty)$, reaching its minimum at $r=1$. Another way to prove this is via AM-GM with $x=2r$ and $y=\frac{2}{r}$:
+
+$$\frac{x+y}{2} \geq \sqrt{xy} \Longrightarrow r + \frac{1}{r} \geq \sqrt{2r\left(\frac{2}{r}\right)} = 2.$$
+
+But the range of $2\cos\theta$ is $[-2,2]$, and the only possible value of the equation is the intersection of their ranges, aka $2$. So $r=1$ no matter what. That's damn useful, because then 
+
+\begin{align*}
+    2\cos \theta &= \left(r+\frac{1}{r}\right)\cos\phi + i\left(r - \frac{1}{r}\right)\sin\phi \qquad & \text{From before} \\
+    &= 2\cos\phi. \\
+\end{align*}
+
+So $\cos\phi = \cos\theta$. We wish to find an expression for $x^n+\frac{1}{x^n}$.
+
+\begin{align*}
+    x^n+\frac{1}{x^n} &= r^n\cis^n\phi + \frac{1}{r^n}\cis^n(-\phi) \\
+    &= r^n(\cos n\phi + \sin n\phi) + \frac{1}{r^n}(\cos n\phi - \sin n\phi) \\
+    &= \cos n\phi + \sin n\phi + \cos n\phi - \sin n\phi \\
+    &= 2\cos n\phi \\
+    &= 2\cos n\theta. \\
+\end{align*}
+
+Note that in the last step, we have to be careful, but cosine does have this property. Anyway, that's a gg, QED.
+
+\end{document}

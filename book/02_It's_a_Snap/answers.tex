@@ -1,0 +1,703 @@
+\documentclass[../key.tex]{subfiles}
+
+\begin{document}
+
+\section{It's a Snap}
+
+\begin{asydef}
+	int factorial(int n) { // Factorial function for convenience
+		if (n == 0 || n == 1)
+			return 1;
+		return n * factorial(n - 1); // Tail recursion... why not?
+	}
+
+	// Explanation of mapping integer: Instead of representing the mappings as integer arrays, I represented them as plain integers. No clue why, but I think it's because I thought Asymptote lacked 2D arrays. Anyway, the integer 0 is the identity, which is {1,2,3} in a mapping (start col) => (end col). The integer 1 is A, which is {1,3,2}. The integer 2 is C, which is {2,1,3}... in other words, the integer is the index in the list of permutations for {1,2,...,c-1,c}, where c is the number of columns (cols)
+
+	/* This function takes in a pair drawing offset "offset" describing the (x,y) of the top left corner of the snap element, an integer array of mapping integers which will be chained, integer number of columns, an x spacing, and a y spacing (for columns and rows respectively) */
+	/* For example, to draw the element A connected with the element B at the location (1,1) with a spacing of 4 between columns and 6 between rows, you would effectively do
+
+	drawSnapElements((1,1), // at (1,1)
+					 {1,5}, // A, then B
+					 3, // 3 columns
+					 4, // 4 units between columns
+					 6); // 6 units between rows.
+	*/
+
+	void drawSnapElements(pair offset, int[] mappings = {0}, int cols = 3, real xd = 1, real yd = 1.5) {
+		int rows = mappings.length + 1;
+
+		for (int x = 0; x < cols; ++x) {
+			for (int y = 0; y < rows; ++y) {
+				if (y < rows - 1) {
+					int map = mappings[y];
+					int[] needs; // Which columns (bottom) need to have a line drawn, used in the loop
+
+					for (int c = 0; c < cols; ++c) needs.push(c); // Push all columns onto the needed list
+
+					for (int i = 0; i < cols; ++i) { // This loop is used to convert an integer into the actual mapping, by figuring out which mapping it actually is
+						int fact = factorial(cols - i - 1);
+
+						int quotient = map # fact; // OCTOTHORPE = integer division lolololol
+						int index = needs[quotient]; // index of column to be drawn
+						needs.delete(quotient);
+
+						map %= fact; // Get remainder
+
+						draw((offset + (i * xd, -y * yd)) -- (offset + (index * xd, -(y + 1) * yd))); // Draw the elastic
+					}
+				}
+				dot(offset + (x * xd, -y * yd)); // add the post dot
+			}
+		}
+	}
+
+	int[] standard_indices = {0,1,5,2,4,3}; // mapping integers corresponding to I through E
+	string[] standard_labels = {"I", "A", "B", "C", "D", "E"}; // for convenience
+\end{asydef}
+
+\newcommand\snap{\bullet}
+
+\begin{figure}[h]
+	% Figure: partially-filled table for the 3-post snap group
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &   &   \\
+				$A$    &   &   & $E$ &   &   &   \\
+				\rowcolor{light-gray}
+				$B$    &   &   &   &   &   &   \\
+				$C$    &   &   &   &   &   &   \\
+				\rowcolor{light-gray}
+				$D$    &   &   &   &   &   &   \\
+				$E$    &   &   &   &   &   &   \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Unfilled $3$-post snap group table.}
+			\label{fig:sbstable_CHANG}
+		\end{minipage}
+	\end{center}
+
+	\begin{center}
+		\begin{minipage}[b]{.45\textwidth}
+			% Figure: E snap E snap E = I, so E has a period of 3. Shows three consecutive E elements, then a "snap" arrow and the I element.
+			\centering
+			\begin{asy}
+				size(0, 60);
+
+				int[] eggs = {3, 3, 3}; // 3 E elements
+
+				drawSnapElements((0, 0), eggs); // Draw the Es. See main textbook.tex for definition of drawSnapElements
+
+				int[] new_elem = {0};
+
+				drawSnapElements((5, 0), new_elem, 3, 1, 4.5); // draw the identity element
+				label("$\stackrel{\mbox{\small snap!}}{\Longrightarrow}$", (3.5, -2.25));
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{.45\textwidth}
+			% Figure: Draw 8 elements from the 4-post snap group set, and arrange them in a 4 (wide) by 2 (high) rectangle
+			\centering
+			\begin{asy}
+				size(0, 60);
+
+				for (int i = 0; i < 24; i += 3) { // Draw elements 0, 3, ..., 24
+					int[] elem = {i};
+					drawSnapElements((5 / 3 * (i >= 12 ? (i - 12) : i), (i >= 12 ? 5 : 0)), elem, 4); // TERNARY OPERATOR used to make them into a grid
+				}
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{$E\snap E\snap E = I$; $E$ has period $3$.}
+			\label{fig:eper3}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Some $4$-post group elements.}
+			\label{fig:fpge}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{outer_problem}[start=1]
+\item Fill out a $6\times 6$ table like the one in Figure~\ref{fig:sbstable_CHANG}, showing the results of each of the $36$ possible snaps, where $X\snap Y$ is in $X$'s row and $Y$'s column. $A\snap B=E$ is done for you.
+\end{outer_problem}
+
+% elements = {"I" : [0,1,2], "A" : [0,2,1], "B": [2,1,0], "C": [1,0,2], "D": [2,0,1], "E": [1,2,0]}
+% def snap(elem1, elem2):
+%      return [elem1[elem2[n]] for n in range(3)]
+% def name_from(elem):
+%      for key in elements:
+%             test_elem = elements[key]
+%             if elem == test_elem:
+%                    return key
+%      return None
+% elemlist = ["I","A","B","C","D","E"]
+% for elem1key in elemlist:
+%      print elem1key + " & " + " & ".join([name_from(snap(elements[elem1key],elements[elem2key])) for elem2key in elemlist]) + " \\\\"
+%
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{tabular}{c|cccccc}
+				\hline
+				$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\
+				$A$ & $A$ & $I$ & $E$ & $D$ & $C$ & $B$ \\
+				\rowcolor{light-gray}
+				$B$ & $B$ & $D$ & $I$ & $E$ & $A$ & $C$ \\
+				$C$ & $C$ & $E$ & $D$ & $I$ & $B$ & $A$ \\
+				\rowcolor{light-gray}
+				$D$ & $D$ & $B$ & $C$ & $A$ & $E$ & $I$ \\
+				$E$ & $E$ & $C$ & $A$ & $B$ & $I$ & $D$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{outer_problem}
+\item Which of the elements is the \textbf{identity element} $K$, such that $X\snap K = K\snap X = X$ for all $X$? \label{prob:group_definition_start}
+\end{outer_problem}
+
+\noindent The identity element is $I$, since $I\snap A = A\snap I = A$, $I\snap B = B\snap I = B$, and so forth.
+
+\begin{outer_problem}
+\item Does every element have an inverse? In other words, can you get to the identity element from every element using only one snap?
+\end{outer_problem}
+
+\noindent Yes you can. The inverses are shown below.
+\begin{multicols}{5}
+\centering
+$I\leftrightarrow I$\\
+$A\leftrightarrow A$\\
+$B\leftrightarrow B$\\
+$C\leftrightarrow C$\\
+$D\leftrightarrow E$
+\end{multicols}
+
+\noindent Note that the inverse of an element $X$ is denoted $X^{-1}$.
+
+\begin{outer_problem}
+\item
+
+\begin{inner_problem}[start=1,leftmargin=25pt]
+\item Is the snap operation commutative (does $X \snap Y = Y \snap X$ for all $X,Y$)?
+\end{inner_problem}
+\end{outer_problem}
+
+\noindent No, the snap operation is not commutative. For example, $A\snap B=E$, but $B\snap A = D$.
+
+\begin{inner_problem}
+\item Is the snap operation associative (does $(X \snap Y) \snap Z = X \snap (Y\snap Z)$ for all $X,Y,Z$)?
+\end{inner_problem}
+
+\noindent Yes, the snap operation is associative. You can rationalize this as the fact that a $4\times 3$ grid of posts is snapped to a single configuration, regardless of which middle row you remove first. This is shown in Figure~\ref{fig:four_by_three}.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.2\textwidth]
+				int[] draw_elems = {1,5,4};
+				drawSnapElements((0,0), draw_elems, 3);
+
+				label("$\stackrel{\text{snap!}}{\Longrightarrow}$", (3, -2.25));
+
+				int[] draw_elems2 = {3};
+
+				drawSnapElements((4,0), draw_elems2, 3, 1, 3 * 1.5);
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{A $4\times 3$ grid of posts has a unique result after the snap operation.}
+			\label{fig:four_by_three}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{outer_problem}
+\item
+
+\begin{inner_problem}[start=1,leftmargin=25pt]
+\item For any elements $X, Y$, is there always an element $Z$ so that $X\snap Z=Y$?
+\end{inner_problem}
+\end{outer_problem}
+
+\noindent Yes, there is always a way to get from one element to another in one snap. You can prove this by construction. If element $X$ connects $n_1$ to $n'_1$, $n_2$ to $n'_2$, and $n_3$ to $n'_3$, and element $Y$ connects $m_1$ to $m'_1$, $m_2$ to $m'_2$, and $m_3$ to $m'_3$, then the solution $Z$ to $X\snap Z=Y$ connects $m_1$ to $n_{m'_1}$, $m_2$ to $n_{m'_2}$, and $m_3$ to $n_{m'_3}$.
+
+That's probably a bit hard to understand, but a more clever solution uses inverses. We multiply $X$ by $X^{-1}$, then by $Y$: $$X\snap X^{-1}\snap Y = Y.$$ But since every element has an inverse, and the snap operation is associative, we have
+
+\begin{align*}
+X\snap (X^{-1} \snap Y) &= Y \\
+\Longrightarrow Z &= X^{-1} \snap Y.
+\end{align*}
+
+\noindent In this way, we have constructed the element $Z$.
+
+\begin{inner_problem}
+	\item For (a), is $Z$ always unique?
+\end{inner_problem}
+
+\noindent Yes. To show this, we use a proof by contradiction. Suppose we have two solutions $Z_1$ and $Z_2$ so that $Z_1\neq Z_2$ and
+
+\begin{align*}
+X\snap Z_1 &= Y \\
+X\snap Z_2 &= Y.
+\end{align*}
+
+\noindent We multiply to the left by $Y^{-1}$. Note that since the snap operation is not commutative, we need to multiply both sides on a specific side:
+
+\begin{align*}
+Y^{-1} \snap X\snap Z_1 &= Y^{-1} \snap Y = I \\
+Y^{-1} \snap X\snap Z_2 &= I.
+\end{align*}
+
+\noindent So $Z_1,Z_2$ are the inverses of $Y^{-1}\snap X$. But the inverse of an element is unique; we've showed this by listing them all out! Thus, $Z_1=Z_2$, contradicting our assumption and proving that $Z$ is unique in $X\snap Z = Y$.
+
+\begin{outer_problem}
+\item If you constructed a $5\times 5$ table using only five of the snap elements, the table would not describe a group, because there would be entries in the table outside of those $5$. Therefore, a group must be \textbf{closed} under its operation. \textit{Some} subsets of our six elements, however, do happen to be closed. Write valid group tables using exactly one, two, and three elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
+\end{outer_problem}
+
+Here are tables with $1$, $2$, and $3$ elements:
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\begin{tabular}{c|c}
+				\hline
+				$\snap$ & $I$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\begin{tabular}{c|cc}
+				\hline
+				$\snap$ & $I$ & $A$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ & $A$ \\
+				$A$ & $A$ & $I$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\begin{tabular}{c|ccc}
+				\hline
+				$\snap$ & $I$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ & $D$ & $E$ \\
+				$D$ & $D$ & $E$ & $I$ \\
+				\rowcolor{light-gray}
+				$E$ & $E$ & $I$ & $D$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{outer_problem}
+\item What do you guess is a good definition of a mathematical group? (Hint: consider your answers to Problems \ref{prob:group_definition_start}--\ref{prob:group_definition_end}.)
+\end{outer_problem}
+
+\noindent (Answers may vary.)
+
+Definition of \textbf{group}: A group $G$ is a set of elements together with a \textbf{binary operation} that meets the following criteria:
+\begin{enumerate}[label=(\alph*)]
+\item Identity: There is an element $I\in G$ such that for all $X\in G$, $X\bullet I = I\bullet X = X$.
+\item Closure: If $X$, $Y$ are elements of the group, then $X\bullet Y$ is also an element of the group.
+\item Invertibility: Each element $X$ has an inverse $X^{-1}$ such that $X\bullet X^{-1} = X^{-1}\bullet X = I$.
+\item Associativity: For all elements $X$, $Y$, and $Z$, $X\bullet (Y\bullet Z) = (X\bullet Y) \bullet Z$.
+\end{enumerate}
+
+\begin{outer_problem}
+\item Notice that $E\snap E\snap E=I$ (See Figure~\ref{fig:eper3}). This means that $E$ has a \textbf{period} of $3$ when acting upon itself. Which elements have a period of
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+	 \item $1$?
+\end{inner_problem}
+
+\noindent $I$ is the only element with a period of $1$, since $I=I$.
+
+\begin{inner_problem}
+	 \item $2$?
+\end{inner_problem}
+
+\noindent $A$, $B$, and $C$ have periods of $2$, since for each $X\in{A,B,C}$ we have $X\snap X = I$.
+
+\begin{inner_problem}
+	 \item $3$?
+\end{inner_problem}
+
+\noindent $D$ and $E$ have periods of $3$, since for each $Y\in {D,E}$ we have $Y\snap Y\neq I$, but $Y\snap Y\snap Y=I$.
+
+\begin{outer_problem}
+\item Answer the following with the one, two, and four-post snap groups $S_1$, $S_2$ and $S_4$. These are just the analogous groups for connections between one, two, and four posts.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+	\item How many elements would there be?
+\end{inner_problem}
+
+\noindent $S_1$ has $1!=1$ elements. $S_2$ has $2!=2$ elements. $S_4$ has $4!=24$ elements.
+
+\begin{inner_problem}
+	\item Systematically draw and name them.
+\end{inner_problem}
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}
+				size(0,30);
+
+				int[] mapping = {0};
+				drawSnapElements((0,0), mapping, 1);
+
+				label("$I$", (0,-2.3));
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\begin{asy}
+				size(0,30);
+
+				string[] labels = {"I", "A"};
+
+				for (int i = 0; i < 2; ++i) {
+				int[] mapping = {i};
+
+				drawSnapElements((3*i,0), mapping, 2);
+				label("$" + labels[i] + "$", (3*i+0.5, -2.3));
+				}
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\captionof{figure}{Elements of $S_1$.}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\captionof{figure}{Elements of $S_2$.}
+		\end{minipage}
+	\end{center}
+
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				string[] labels = {"I", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T","U","V","W","X"};
+
+				pair getTL(int index) {
+					int rem = index % 6;
+					int quot = index # 6; // mfw integer division is #
+
+					return (5*rem, -3.2*quot);
+				}
+
+				for (int i = 0; i < 24; ++i) {
+					int[] mapping = {i};
+
+					pair TL_corner = getTL(i);
+
+					drawSnapElements(TL_corner, mapping, 4);
+					label("$" + labels[i] + "$", TL_corner + (1.5, -2.3));
+				}
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\captionof{figure}{Elements of $S_4$.}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{inner_problem}
+\item Make a group table of these elements. For four posts, instead of creating the massive table, give the number of elements that the table would have.
+\end{inner_problem}
+
+\noindent Here are group tables for $S_1$ and $S_2$.
+
+The table for $S_4$ is given at the end of the section in Figure~\ref{fig:four_post_snap_table} for the curious.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{tabular}{c|c}
+				\hline
+				$\snap$ & $I$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{tabular}{c|cc}
+				\hline
+				$\snap$ & $I$ & $A$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ & $A$ \\
+				$A$ & $A$ & $I$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\captionof{figure}{Group table for $S_1$.}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\captionof{figure}{Group table for $S_2$.}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{inner_problem}
+\item What is the relationship of your original table to this new table?
+\end{inner_problem}
+
+\noindent Both $S_1$'s and $S_2$'s tables are subgroups of the original table for $S_3$. In turn, $S_3$ is a subgroup of $S_4$.
+
+\begin{outer_problem}
+\item Can you think of a shortcut to generate a snap group table without drawing every possible configuration?
+\end{outer_problem}
+
+\noindent (Answers may vary.)
+
+One way to do it is to treat each element as a list of indices. For example, $I$ is the ordered triple $(1,2,3)$ because it takes column $1$ to $1$, $2$ to $2$, and $3$ to $3$. $A$ is $(1,3,2)$, because it takes $1$ to $1$, $2$ to $3$, and $3$ to $2$.
+
+This makes it a bit easier to calculate, because you can simply substitute indices for each configuration rather than make a drawing. It also makes it easy to write a program to calculate; this is actually how all the tables in this answer key were generated.
+
+\begin{outer_problem}
+\item
+
+\begin{inner_problem}[start=1,leftmargin=25pt]
+\item How many elements would there be in the five-post snap group? \label{prob:five_post_snap_list_start}
+\end{inner_problem}
+\end{outer_problem}
+
+\noindent There would be $5!=120$ elements in $S_5$.
+
+\begin{inner_problem}
+	\item How many entries would its table have?
+\end{inner_problem}
+
+\noindent There would be $5!^2=14400$ entries in $S_5$'s table.
+
+\begin{inner_problem}
+\item What possible periods would its elements have? Make sure you include a period of six! \label{prob:five_post_snap_list_end}
+\end{inner_problem}
+
+\noindent This is a more difficult question. We must ask what characteristics of an element determine its period.
+
+If we observe the periodicity of an element with a pretty large period, say one from $S_5$ with a period of $6$, you can see how a large period can arise. This is shown in Figure~\ref{fig:period_6_elem}.
+
+We can split up this element into two components: a component with period $3$ and one with period $2$. Let's call these components $C_3$ and $C_2$. After $2$ steps, the $C_3$ has not completed one period, even though $C_2$. After $3$ steps, $C_3$ has completed one period, but $C_2$ has gone through $\frac{3}{2}$. It takes $\operatorname{lcm}(2,3) = 6$ steps before both components ``line up!''
+
+All elements can be split up into some number of these cyclic components, even if it doesn't look like it at first glance. For example, the element from $S_8$ shown in Figure~\ref{fig:period_8_elem} is actually two size $3$ and size $2$ components. It therefore has a period of $\operatorname{lcm}(2,3,3)=6$. Note that it does \textit{not} have a period of $2\cdot 3\cdot 3 = 18$.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.3\textwidth]
+				int[] mappings = {13416};
+				drawSnapElements((0,0), mappings, 8);
+
+				real ys = -2.5;
+				real ye = -4;
+
+				draw((0,ys)--(2,ye)); // First component (3)
+				draw((2,ys)--(4,ye));
+				draw((4,ys)--(0,ye));
+
+				draw((1,ys)--(5,ye),dashed); // Second component (2)
+				draw((5,ys)--(1,ye),dashed);
+
+				draw((3,ys)--(7,ye),dotted); // Third component (3)
+				draw((6,ys)--(3,ye),dotted);
+				draw((7,ys)--(6,ye),dotted);
+
+				for (int i = 0; i < 8; ++i) {
+					dot((i, ys));
+					dot((i, ye));
+				}
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{This element from $S_8$ has components of size $2,3,3$.}
+			\label{fig:period_8_elem}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\noindent For $S_5$, we can split it up into components of size $1,1,1,1,1$, giving period $1$; components of size $1,1,1,2$, giving period $2$; components of size $1,1,3$, giving period $3$; components of size $1,4$, giving period $4$; a component of size $5$, giving period $5$; and component of size $1,2,3$, giving period $6$. Thus, periods $1,2,3,4,5,6$ are achievable.
+
+\begin{inner_problem}
+\item Extend your answers for Problems \ref{prob:five_post_snap_list_start} through \ref{prob:five_post_snap_list_end} to $M$ posts per row.
+\end{inner_problem}
+
+\noindent This is rather straightforward. There are (a) $M!$ elements in the $M$-post snap group, and thus (b) $M!^2$ elements in the corresponding group table. The possible periods are harder to calculate, but they can be generated like so:
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\begin{asy}[width=0.2\textwidth]
+				int[] mappings = {49, 49, 49, 49, 49, 49};
+				drawSnapElements((0,0), mappings, 5, 1, 0.5);
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{This element from $S_5$ has a period of $6$.}
+			\label{fig:period_6_elem}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\noindent Let integers $x_i>0$ and $\displaystyle \sum_i x_i = M$. In other words, the sum of all $x_i$ is $M$. Then $\operatorname{lcm} (x_1, x_2, \cdots, x_n)$ is a valid period; the least common multiple of all $x_i$ is a possible period.
+
+For fun: in set builder notation, we have the set of possible periods $P_n$ for the $n$-post snap group as
+
+$$P_n=\left\{\operatorname{lcm} (x_1, x_2, \cdots, x_n)\, \left|\,x_i\in\mathbb{Z}^+ \land \sum_i x_i=n\right.\right\}.$$
+
+\noindent The maximum such period (i.e. $\max P_n$) is actually known as Landau's function, $g(n)$.
+
+\begin{outer_problem}
+\item A \textbf{permutation} of a set of things is an order in which they can be arranged. What is the relationship between the set of permutations of $m$ things and the $m$-post snap group?
+\end{outer_problem}
+
+\noindent We can make a pretty simple correspondence between a permutation of $m$ things and an element of the $m$-post snap group. If we think back to the idea of treating each element of the group as a list of indices, the correspondence is obvious. For example, $I$ is the ordered triple $(1,2,3)$ because it takes column $1$ to $1$, $2$ to $2$, and $3$ to $3$. $A$ is $(1,3,2)$, because it takes $1$ to $1$, $2$ to $3$, and $3$ to $2$. But each ordered triple is a permutation of ${1,2,3}$! This extends to any $m$.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{\textwidth}
+			\centering
+			\definecolor{lighter-gray}{gray}{0.975}
+			\newcolumntype{a}{>{\columncolor{lighter-gray}}c}
+			\setlength{\tabcolsep}{2pt}
+			\begin{tabular}{c|acccacccacccacccacccaccc}
+				\hline
+				$\snap$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ & $J$ & $K$ & $L$ & $M$ & $N$ & $O$ & $P$ & $Q$ & $R$ & $S$ & $T$ & $U$ & $V$ & $W$ & $X$ \\ \hline
+				\rowcolor{light-gray}
+				$I$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ & $J$ & $K$ & $L$ & $M$ & $N$ & $O$ & $P$ & $Q$ & $R$ & $S$ & $T$ & $U$ & $V$ & $W$ & $X$ \\
+				$A$ & $A$ & $I$ & $D$ & $E$ & $B$ & $C$ & $G$ & $F$ & $K$ & $L$ & $H$ & $J$ & $S$ & $T$ & $U$ & $V$ & $W$ & $X$ & $M$ & $N$ & $O$ & $P$ & $Q$ & $R$ \\
+				$B$ & $B$ & $C$ & $I$ & $A$ & $E$ & $D$ & $M$ & $N$ & $O$ & $P$ & $Q$ & $R$ & $F$ & $G$ & $H$ & $J$ & $K$ & $L$ & $T$ & $S$ & $W$ & $X$ & $U$ & $V$ \\
+				$C$ & $C$ & $B$ & $E$ & $D$ & $I$ & $A$ & $N$ & $M$ & $Q$ & $R$ & $O$ & $P$ & $T$ & $S$ & $W$ & $X$ & $U$ & $V$ & $F$ & $G$ & $H$ & $J$ & $K$ & $L$ \\
+				\rowcolor{light-gray}
+				$D$ & $D$ & $E$ & $A$ & $I$ & $C$ & $B$ & $S$ & $T$ & $U$ & $V$ & $W$ & $X$ & $G$ & $F$ & $K$ & $L$ & $H$ & $J$ & $N$ & $M$ & $Q$ & $R$ & $O$ & $P$ \\
+				$E$ & $E$ & $D$ & $C$ & $B$ & $A$ & $I$ & $T$ & $S$ & $W$ & $X$ & $U$ & $V$ & $N$ & $M$ & $Q$ & $R$ & $O$ & $P$ & $G$ & $F$ & $K$ & $L$ & $H$ & $J$ \\
+				$F$ & $F$ & $G$ & $H$ & $J$ & $K$ & $L$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ & $O$ & $P$ & $M$ & $N$ & $R$ & $Q$ & $U$ & $V$ & $S$ & $T$ & $X$ & $W$ \\
+				$G$ & $G$ & $F$ & $K$ & $L$ & $H$ & $J$ & $A$ & $I$ & $D$ & $E$ & $B$ & $C$ & $U$ & $V$ & $S$ & $T$ & $X$ & $W$ & $O$ & $P$ & $M$ & $N$ & $R$ & $Q$ \\
+				\rowcolor{light-gray}
+				$H$ & $H$ & $J$ & $F$ & $G$ & $L$ & $K$ & $O$ & $P$ & $M$ & $N$ & $R$ & $Q$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ & $V$ & $U$ & $X$ & $W$ & $S$ & $T$ \\
+				$J$ & $J$ & $H$ & $L$ & $K$ & $F$ & $G$ & $P$ & $O$ & $R$ & $Q$ & $M$ & $N$ & $V$ & $U$ & $X$ & $W$ & $S$ & $T$ & $I$ & $A$ & $B$ & $C$ & $D$ & $E$ \\
+				$K$ & $K$ & $L$ & $G$ & $F$ & $J$ & $H$ & $U$ & $V$ & $S$ & $T$ & $X$ & $W$ & $A$ & $I$ & $D$ & $E$ & $B$ & $C$ & $P$ & $O$ & $R$ & $Q$ & $M$ & $N$ \\
+				$L$ & $L$ & $K$ & $J$ & $H$ & $G$ & $F$ & $V$ & $U$ & $X$ & $W$ & $S$ & $T$ & $P$ & $O$ & $R$ & $Q$ & $M$ & $N$ & $A$ & $I$ & $D$ & $E$ & $B$ & $C$ \\
+				\rowcolor{light-gray}
+				$M$ & $M$ & $N$ & $O$ & $P$ & $Q$ & $R$ & $B$ & $C$ & $I$ & $A$ & $E$ & $D$ & $H$ & $J$ & $F$ & $G$ & $L$ & $K$ & $W$ & $X$ & $T$ & $S$ & $V$ & $U$ \\
+				$N$ & $N$ & $M$ & $Q$ & $R$ & $O$ & $P$ & $C$ & $B$ & $E$ & $D$ & $I$ & $A$ & $W$ & $X$ & $T$ & $S$ & $V$ & $U$ & $H$ & $J$ & $F$ & $G$ & $L$ & $K$ \\
+				$O$ & $O$ & $P$ & $M$ & $N$ & $R$ & $Q$ & $H$ & $J$ & $F$ & $G$ & $L$ & $K$ & $B$ & $C$ & $I$ & $A$ & $E$ & $D$ & $X$ & $W$ & $V$ & $U$ & $T$ & $S$ \\
+				$P$ & $P$ & $O$ & $R$ & $Q$ & $M$ & $N$ & $J$ & $H$ & $L$ & $K$ & $F$ & $G$ & $X$ & $W$ & $V$ & $U$ & $T$ & $S$ & $B$ & $C$ & $I$ & $A$ & $E$ & $D$ \\
+				\rowcolor{light-gray}
+				$Q$ & $Q$ & $R$ & $N$ & $M$ & $P$ & $O$ & $W$ & $X$ & $T$ & $S$ & $V$ & $U$ & $C$ & $B$ & $E$ & $D$ & $I$ & $A$ & $J$ & $H$ & $L$ & $K$ & $F$ & $G$ \\
+				$R$ & $R$ & $Q$ & $P$ & $O$ & $N$ & $M$ & $X$ & $W$ & $V$ & $U$ & $T$ & $S$ & $J$ & $H$ & $L$ & $K$ & $F$ & $G$ & $C$ & $B$ & $E$ & $D$ & $I$ & $A$ \\
+				$S$ & $S$ & $T$ & $U$ & $V$ & $W$ & $X$ & $D$ & $E$ & $A$ & $I$ & $C$ & $B$ & $K$ & $L$ & $G$ & $F$ & $J$ & $H$ & $Q$ & $R$ & $N$ & $M$ & $P$ & $O$ \\
+				$T$ & $T$ & $S$ & $W$ & $X$ & $U$ & $V$ & $E$ & $D$ & $C$ & $B$ & $A$ & $I$ & $Q$ & $R$ & $N$ & $M$ & $P$ & $O$ & $K$ & $L$ & $G$ & $F$ & $J$ & $H$ \\
+				\rowcolor{light-gray}
+				$U$ & $U$ & $V$ & $S$ & $T$ & $X$ & $W$ & $K$ & $L$ & $G$ & $F$ & $J$ & $H$ & $D$ & $E$ & $A$ & $I$ & $C$ & $B$ & $R$ & $Q$ & $P$ & $O$ & $N$ & $M$ \\
+				$V$ & $V$ & $U$ & $X$ & $W$ & $S$ & $T$ & $L$ & $K$ & $J$ & $H$ & $G$ & $F$ & $R$ & $Q$ & $P$ & $O$ & $N$ & $M$ & $D$ & $E$ & $A$ & $I$ & $C$ & $B$ \\
+				$W$ & $W$ & $X$ & $T$ & $S$ & $V$ & $U$ & $Q$ & $R$ & $N$ & $M$ & $P$ & $O$ & $E$ & $D$ & $C$ & $B$ & $A$ & $I$ & $L$ & $K$ & $J$ & $H$ & $G$ & $F$ \\
+				$X$ & $X$ & $W$ & $V$ & $U$ & $T$ & $S$ & $R$ & $Q$ & $P$ & $O$ & $N$ & $M$ & $L$ & $K$ & $J$ & $H$ & $G$ & $F$ & $E$ & $D$ & $C$ & $B$ & $A$ & $I$ \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{\textwidth}
+			\caption{Group table for $S_4$.}
+			\label{fig:four_post_snap_table}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\iffalse
+from itertools import permutations
+perms = permutations([1, 2, 3, 4])
+
+labels = list("IABCDEFGHJKLMNOPQRSTUVWX")
+
+elements = {}
+
+def snap(elem1, elem2):
+	return [elem1[elem2[n]] for n in range(4)]
+def name_from(elem):
+	for key in elements:
+		test_elem = elements[key]
+		if elem == test_elem:
+			return key
+	return None
+
+for i,perm in enumerate(perms):
+	elements[labels[i]] = perm
+
+print ("$\begin{array}{" + "c|" * 25 + "}")
+print ("\cdot & " + " & ".join(labels) + " \\\\ \\hline");
+
+for label in labels:
+	print(label + " & " + " & ".join([name_from(snap(elements[label], elements[label2])) for label2 in labels]) + " \\\\ \\hline")
+print ("\end{array}$")
+
+\fi
+
+\end{document}

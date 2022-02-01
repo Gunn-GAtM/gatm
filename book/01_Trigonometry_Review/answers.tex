@@ -1,0 +1,541 @@
+\documentclass[../key.tex]{subfiles}
+
+\begin{document}
+
+\allowdisplaybreaks
+
+\section{Trigonometry Review}
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				draw((0,0)--(7,0)--(7,7)--(0,7)--cycle);
+				
+				draw((0,3)--(4,0)--(7,4)--(3,7)--cycle);
+				
+				label("$a$", (2,0), S);
+				label("$b$", (0,1.5), W);
+				label("$c$", (0,3)--(4,0), NE);
+				
+				real ras = 0.4;
+				path ram = (0,ras)--(ras,ras)--(ras,0);
+				
+				draw(ram);
+				draw(rotate(90,(7/2,7/2))*ram);
+				draw(rotate(180,(7/2,7/2))*ram);
+				draw(rotate(270,(7/2,7/2))*ram);
+				
+				path iram = rotate(atan2(-3,4)*180/pi, (0,3))*shift(0,3)*ram;
+				draw(iram);
+				draw(rotate(90,(7/2,7/2))*iram);
+				draw(rotate(180,(7/2,7/2))*iram);
+				draw(rotate(270,(7/2,7/2))*iram);
+			\end{asy}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.45\textwidth}
+			\centering
+			\begin{asy}[width=0.7\textwidth]
+				pair A = (0,3);
+				pair B = (4,0);
+				pair C = (0,0);
+				draw(A--B--C--cycle);
+				
+				label("$A$", A, NW);
+				label("$B$", B, E);
+				label("$C$", C, SW);
+				label("$a$", B--C, S);
+				label("$b$", A--C, W);
+				
+				path c_brace = shift(0.04*(3,4))*brace(A,B);
+				
+				draw(c_brace);
+				label("$c$", c_brace, NE);
+				
+				dot(A);
+				dot(B);
+				dot(C);
+				
+				real ras = 0.3;
+				path ram = (0,ras)--(ras,ras)--(ras,0);
+				
+				pair F = point(A--B,9/25);
+				
+				draw(ram);
+				draw(C--F);
+				draw(rotate(atan2(4,3)*180/pi+90,F)*shift(F)*ram);
+				
+				label("$F$", F, NE);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+	\begin{center}
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 1.}
+			\label{fig:square_inscribed}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.45\textwidth}
+			\caption{Scenario in Problem 2.}
+			\label{fig:pythag_sim_tri}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{outer_problem}
+\item Prove the Pythagorean theorem using ``conservation of area.'' Start with Figure~\ref{fig:square_inscribed}.
+\end{outer_problem}
+
+\noindent In Figure~\ref{fig:square_inscribed}, the larger square has side length $a+b$. The smaller, nested square has side length $c$. Four copies of the right triangle with side lengths $a,b,c$ are placed around the square. We have
+
+\begin{align*}
+A_{\text{triangles}} + A_{\text{small sq.}} &= A_{\text{big sq.}} & \text{[Conservation of area]} \\
+4A_{\text{triangle}} + A_{\text{small sq.}} &= A_{\text{big sq.}} \\
+4\left(\frac{1}{2}ab\right) + c^2 &= (a+b)^2 & \text{[Areas of triangle, square]} \\
+2ab + c^2 &= a^2+2ab+b^2 & \text{[Expanding]} \\
+c^2 &= a^2+b^2. & \text{Q.E.D.}
+\end{align*}
+
+\begin{outer_problem}
+\item Prove the Pythagorean theorem using a right triangle with an altitude drawn to its hypotenuse, as shown in Figure~\ref{fig:pythag_sim_tri}, making use of similar right triangles.
+\end{outer_problem}
+
+\noindent Let $h=CF$, the length of the altitude to the hypotenuse. $\triangle ACF\sim \triangle ABC$ by AA Similarity because they share an angle and both have a right angle. Therefore, $\frac{AF}{AC}=\frac{AC}{AB}$. Substituting named variables for these lengths, we get $$\frac{AF}{b}=\frac{b}{c}\Longrightarrow AF = \frac{b^2}{c}.$$ Applying the same logic to $\triangle CFB$,
+ we get $\triangle CFB\sim \triangle ABC$, so $\frac{BF}{BC}=\frac{BC}{AB}.$ Substituting, we get $$\frac{BF}{a}=\frac{a}{c} \Longrightarrow BF=\frac{a^2}{c}.$$ Since $F$ is between $A$ and $B$, we have $AB=AF+FB$; substituting our found values for $AF$ and $FB$, we get
+
+\begin{align*}
+c=AB &= AF+FB \\
+c &= \frac{b^2}{c}+\frac{a^2}{c} \\
+c^2 &= b^2 + a^2. & \text{Q.E.D.}
+\end{align*}
+
+\begin{outer_problem}
+\item We now prove the trigonometric identities.
+\end{outer_problem}
+
+\begin{inner_problem}
+\item Draw and label a right triangle and a unit circle, then write trig definitions for $\cos$, $\sin$, $\tan$, and $\sec$ in terms of your drawing.
+\end{inner_problem}
+
+\noindent The scenario is depicted in Figure~\ref{fig:right_tri_unit_circ}. By the definition of sine and cosine, we have $\sin\theta=AP$ and $\cos\theta=OA$. Since $\triangle OAP \sim \triangle OPT$ by AA Similarity, we have $\frac{TP}{OP}=\frac{AP}{OA}$. Substituting known values, we get $$\frac{TP}{1}=\frac{\sin\theta}{\cos\theta}\Longrightarrow TP=\tan\theta.$$ Also, $\triangle OAP \sim \triangle OKS$ by AA, so $\frac{OS}{OK}=\frac{1}{\cos\theta}$. Similarly, we have $$\frac{OS}{1}=\frac{1}{\cos\theta}\Longrightarrow OS=\sec\theta.$$ Finally, as an alternate interpretation of $\tan$, we have $\frac{KS}{OK}=\frac{AP}{OA}$, so $$\frac{KS}{1}=\frac{\sin\theta}{\cos\theta}\Longrightarrow KS = \tan\theta.$$
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\centering
+			\begin{asy}[width=0.6\textwidth]
+				real angle = 60 * pi / 180;
+				
+				pair O = (0,0);
+				pair P = (cos(angle), sin(angle));
+				pair A = (cos(angle), 0);
+				
+				draw(circle((0,0), 1));
+				
+				draw(O--A--P--cycle);
+				
+				dot(O);
+				dot(P);
+				dot(A);
+				
+				label("$O$", O, SW);
+				label("$A$", A, SE);
+				label("$P$", P, E+NE);
+				
+				draw(arc(O, point(O--A,0.25), P));
+				label("$\theta$", O, 3*(cos(angle/2), sin(angle/2)));
+				
+				real protrude = 2.5;
+				
+				draw((-protrude/2,0)--(protrude,0),Arrow);
+				draw((0,-protrude/2)--(0,protrude/1.5),Arrow);
+				
+				label("$x$", (protrude,0), E);
+				label("$y$", (0,protrude/1.5), N);
+				
+				path cos_brace = shift(0,-0.05)*brace(A, O);
+				draw(cos_brace);
+				label("$\sin\theta$", A--P, SE);
+				label("$\cos\theta$", cos_brace, S);
+				
+				label("$1$", O--P, NW);
+				
+				pair T = (2,0);
+				
+				draw(P--T);
+				
+				dot(T);
+				label("$T$", T, S);
+				
+				real ras = 0.1;
+				
+				draw(shift(P)*rotate(-120)*((0,ras)--(ras,ras)--(ras,0)));
+				draw("$\tan\theta$", P--T, ENE);
+				
+				pair S = 2*P;
+				pair K = (1,0);
+				
+				draw(P--S);
+				draw(S--K,dashed);
+				
+				path sec_brace = shift(rotate(90)*(S-O)/10)*brace(O,S);
+				draw(sec_brace);
+				
+				label("$\tan\theta$", S--K, E);
+				label("$\sec\theta$", sec_brace, 2*W+NW);
+				
+				dot(S);
+				label("$S$", S, NE);
+				
+				dot(K);
+				label("$K$", K, SE);
+				
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\caption{The right triangle and unit circle.}
+			\label{fig:right_tri_unit_circ}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{inner_problem}
+\item Use a right triangle and the definitions of $\sin$ and $\cos$ to find and prove a value for $\sin^2 \theta + \cos^2 \theta$.
+\end{inner_problem}
+
+\noindent Referring back to Figure~\ref{fig:right_tri_unit_circ}, focus on $\triangle OAP$. It is a right triangle with side lengths $a=\cos\theta$, $b=\sin\theta$, and $c=1$. By the Pythagorean theorem, we have
+\begin{align*}
+OA^2+AP^2&=OP^2 & \text{[Pythagorean theorem]} \\
+\cos^2\theta + \sin^2\theta &= 1^2 & \text{[Substitution]} \\
+\sin^2\theta + \cos^2\theta &= 1. & \text{[Rearrange]}
+\end{align*}
+
+\begin{inner_problem}
+\item Use the picture of the unit circle in Figure~\ref{fig:unit_circle} to find and prove a value for $\cos(A-B)$. Note that $D_1$ and $D_2$ are the same length because they subtend the same size arc of the circle. Set them equal and work through the algebra, using the distance formula and part (b) of this problem.
+\end{inner_problem}
+
+\noindent We have $D_1=D_2$, so
+\begin{align*}
+D_1^2&=D_2^2 \\
+(\cos A - \cos B)^2 + (\sin A - \sin B)^2 &= (\cos(A-B)-1)^2+\sin^2 (A-B) \\
+\cos^2 A - 2\cos A\cos B + \cos^2 B + \sin^2 A - 2\sin A\sin B + \sin^2 B &= \cos^2 (A-B) - 2\cos(A-B) + \\ &\phantom{=} 1+\sin^2(A-B) \\
+(\cos^2 A + \sin^2 A) + (\cos^2 B + \sin^2 A) - 2\sin A\sin B &= (\cos^2 (A-B) + \sin^2(A-B)) + \\ &\phantom{=} 1 - 2\cos(A-B) \\
+\cancelto{0}{1 + 1} - 2\sin A\sin B - 2\cos A\cos B &= \cancelto{0}{1 + 1} - 2\cos(A-B) \\
+2\sin A\sin B + 2\cos A\cos B &= 2\cos(A-B) \\
+\sin A\sin B + \cos A\cos B &= \cos(A-B). & \text{Q.E.D.}
+\end{align*}
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				import graph;
+				
+				real A = 195 * pi / 180;
+				real B = 125 * pi / 180;
+				
+				draw((-1.4,0)--(1.4,0),Arrow);
+				draw((0,-1.4)--(0,1.4),Arrow);
+				
+				draw(Circle((0,0),1,50));
+				
+				pair Ap = (cos(A), sin(A));
+				pair Bp = (cos(B), sin(B));
+				
+				real AB = A-B;
+				pair ABp = (cos(AB), sin(AB));
+				
+				dot(Ap);
+				dot(Bp);
+				dot(ABp);
+				
+				draw(ABp--(1,0));
+				draw(Ap--Bp);
+				label("$(\cos B, \sin B)$", Bp, NW);
+				label("$(\cos A, \sin A)$", Ap, SW);
+				label("$\arraycolsep=0pt \begin{array}{rl} (& \cos (A-B), \\ & \sin (A-B)) \end{array}$", ABp, NE);
+				label("$0^\circ$", (1,0),SE);
+				
+				label("$D_1$", ABp--(1,0), .2*SW);
+				label("$D_2$", Ap--Bp, .2*SE);
+			
+			\end{asy}
+		\end{minipage}
+	\end{center}
+	
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\caption{Scenario in Problem 3.}
+			\label{fig:unit_circle}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{outer_problem}
+\item Write down as many trig identities as you can---no need to prove these.
+
+\renewcommand{\arraystretch}{1.1}
+$$\arraycolsep=1pt\begin{array}{rlrlrl}
+\sin(A+B)&=\qquad\qquad\phantom{.}&\sin(A-B) &=\qquad\qquad\phantom{.}&\cos(A+B) &= \\
+\tan(A+B)&= &\tan(A-B) &= &\sin(2A) &= \\
+\cos(2A)&= &\tan(2A) &= &\sin\left(\frac{A}{2}\right) &= \\
+\cos\left(\frac{A}{2}\right)&= &\tan\left(\frac{A}{2}\right) &= & & \\
+\end{array}$$
+\end{outer_problem}
+
+\noindent You should probably memorize these for convenience.
+
+\renewcommand{\arraystretch}{1.1}
+\begin{align*}
+\sin(A+B)&= \sin A \cos B + \cos A \sin A \\
+\sin(A-B) &= \sin A \cos B - \cos A \sin B \\
+\cos(A+B) &= \cos A \cos B - \sin A \sin B \\
+\tan(A+B)&= \frac{\tan A + \tan B}{1-\tan A\tan B}\\
+\tan(A-B) &= \frac{\tan A - \tan B}{1+\tan A\tan B}\\
+\sin(2A) &= 2\sin A\cos A\\
+\cos(2A)&= 2\cos^2 A - 1 = 1 - 2\sin^2 A = \cos^2 A - \sin^2 A \\
+\tan(2A) &= \frac{2\tan A}{1-\tan^2 A}\\
+\sin\left(\frac{A}{2}\right) &= \pm\sqrt{\frac{1-\cos A}{2}}\\
+\cos\left(\frac{A}{2}\right)&= \pm\sqrt{\frac{1+\cos A}{2}}\\
+\tan\left(\frac{A}{2}\right) &= \frac{\sin A}{1+\cos A} = \frac{1-\cos A}{\sin A}
+\end{align*}
+
+\begin{outer_problem}
+\item Let's review complex numbers and DeMoivre's theorem.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Recall that you can write a complex number both in Cartesian and polar forms. Let
+
+$$a+bi=(a,b)=(r\cos\theta,r\sin\theta)=r\cos\theta+ir\sin\theta.$$
+
+What is $r$ in terms of $a$ and $b$?
+\end{inner_problem}
+
+\noindent $r$ is just the distance to the origin from $a+bi$. Draw a right triangle as shown in Figure~\ref{fig:a_plus_b_i}. By the pythagorean theorem, $r=\sqrt{a^2+b^2}$.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\centering
+			\begin{asy}[width=0.5\textwidth]
+				pair Z = (4,3);
+				pair O = (0,0);
+				pair T = (4,0);
+				
+				draw((-1,0)--(5,0), Arrow);
+				draw((0,-1)--(0,4), Arrow);
+				label("$x$", (5,0), E);
+				label("$y$", (0,4), N);
+				
+				draw(O--Z);
+				draw(O--T--Z, dashed);
+				label("$z=a+bi$", Z, NW);
+				label("$a$", O--T, S);
+				label("$b$", T--Z, E);
+				label(rotate(atan2(3,4) * 180 / pi)*"$\sqrt{a^2+b^2}$", O--Z, NW);
+				
+				dot(Z);
+			\end{asy}
+		\end{minipage}
+	\end{center}
+
+	\begin{center}
+		\begin{minipage}{\textwidth}
+			\caption{$a+bi$ in the complex plane.}
+			\label{fig:a_plus_b_i}
+		\end{minipage}
+	\end{center}
+	\vspace*{-2\baselineskip}
+\end{figure}
+
+\begin{inner_problem}
+\item Expand $(a+bi)(c+di)$ the usual way.
+\end{inner_problem}
+
+\begin{align*}
+(a+bi)(c+di)&=ac+adi+bci+(bi)(di) \\
+&= ac + (ad + bc)i - bd \\
+&= ac - bd + (ad + bc)i.
+\end{align*}
+
+\begin{inner_problem}
+\item Let $a+bi=r_1(\cos\theta + i\sin\theta)$ and $c+di=r_2(\cos\phi + i\sin\phi)$. Multiply them, and use your results from Problems 3c and 3d to show that multiplying two complex numbers involves multiplying their lengths and adding their angles. This is DeMoivre's theorem!
+\end{inner_problem}
+
+%Idk moment! There used to be a couple things here, should they be readded?
+
+\begin{align*}
+r_1(\cos\theta + i\sin\theta)r_2(\cos\phi + i\sin\phi) &= r_1r_2(\cos\theta\cos\phi - \sin\theta\sin\phi + i(\sin\theta\cos\phi + \cos\theta\sin\phi)) \\
+&= r_1r_2(\cos(\theta+\phi) + i \sin(\theta+\phi)).
+\end{align*}
+
+\begin{inner_problem}
+\item Use part (c) to simplify $(\sqrt{3}+i)^{18}$.
+\end{inner_problem}
+
+\noindent We have $\sqrt{3}+i=r(\cos\theta + i\sin\theta) = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)$.
+
+\begin{align*}
+(2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right))^{18} &= 2^{18} \cdot \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)^{18} \\
+&= 2^{18}\cdot \underbrace{\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)\cdots \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)}_{18\text{ copies}} \\
+&= 2^{18}\cdot \left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right) \underbrace{\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)\cdots \left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)}_{16\text{ copies}} \\
+&= \vdots \\
+&= 2^{18}\cdot \left(\cos 3\pi + i\sin 3\pi\right) \\
+&= 2^{18}\cdot -1 \\
+&= -2^{18}.
+\end{align*}
+
+\begin{outer_problem}
+\item Here is a review of 2D rotation.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Recall that we can graph complex numbers as ordered pairs in the complex plane. Now, consider the complex number $z=\cos \theta + i\sin\theta$, where $\theta$ is fixed. What is the magnitude of $z$?
+\end{inner_problem}
+
+\noindent We have $$|z|=\sqrt{\cos^2\theta + \sin^2\theta}=\sqrt{1}=1.$$
+
+\begin{inner_problem}
+\item Multiplying $z\cdot(x+yi)$ yields a rotation of the point $(x,y)$ counterclockwise around the origin by the angle $\theta$. Notice that rotating the graph counterclockwise around the origin has the same effect as rotating the coordinate axes clockwise around the origin by the same angle $\theta$. What if we wanted to rotate clockwise by $\theta$ instead?
+\end{inner_problem}
+
+\noindent We can multiply by the conjugate of $z$, since
+
+$$\overline{z}=\cos\theta - i\sin\theta = \cos-\theta + i\sin-\theta.$$
+
+\noindent Thus, the operation is $\overline{z}\cdot (x+yi)$ to rotate clockwise by $\theta$.
+
+\begin{outer_problem}
+\item Rotate the following conics by (i) $30^\circ$, (ii) $45^\circ$, and (iii) $\theta$:
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $x^2-y^2=1$
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $30^\circ$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos 30^\circ - y\sin 30^\circ=\frac{\sqrt{3}}{2}x-\frac{y}{2}$ and $y'=x\sin 30^\circ + y\cos 30^\circ=\frac{x}{2}+\frac{\sqrt{3}}{2}y$:
+
+\begin{align*}
+x'^2-y'^2&=1 \\
+\left(\frac{\sqrt{3}}{2}x-\frac{y}{2}\right)^2 - \left(\frac{x}{2}+\frac{\sqrt{3}}{2}y\right)^2 &= 1 \\
+x^2/2 - \sqrt{3} x y - y^2/2 &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $45^\circ$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos 45^\circ - y\sin 45^\circ=\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y$ and $y'=x\sin 45^\circ + y\cos 45^\circ=\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y$:
+
+\begin{align*}
+x'^2-y'^2 &= 1 \\
+\left(\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y\right)^2 - \left(\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y\right)^2 &= 1 \\
+-2xy &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $\theta$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos \theta - y\sin \theta$ and $y'=x\sin \theta + y\cos \theta$:
+
+\begin{align*}
+x'^2-y'^2&=1 \\
+(x \cos \theta - y\sin \theta)^2 - (x\sin \theta + y\cos \theta)^2 &= 1.
+\end{align*}
+
+\begin{inner_problem}
+\item $\frac{x^2}{16}-\frac{y^2}{9}=1$
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $30^\circ$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos 30^\circ - y\sin 30^\circ=\frac{\sqrt{3}}{2}x-\frac{y}{2}$ and $y'=x\sin 30^\circ + y\cos 30^\circ=\frac{x}{2}+\frac{\sqrt{3}}{2}y$:
+
+\begin{align*}
+\frac{x'^2}{16}-\frac{y'^2}{9} &= 1 \\
+\frac{\left(\frac{\sqrt{3}}{2}x-\frac{y}{2}\right)^2}{16} - \frac{\left(\frac{x}{2}+\frac{\sqrt{3}}{2}y\right)^2}{9} &= 1 \\
+\frac{1}{576} (11 x^2 - 50 \sqrt{3} x y - 39 y^2) &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $45^\circ$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos 45^\circ - y\sin 45^\circ=\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y$ and $y'=x\sin 45^\circ + y\cos 45^\circ=\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y$:
+
+\begin{align*}
+\frac{x'^2}{16}-\frac{y'^2}{9} &= 1 \\
+\frac{\left(\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y\right)^2}{16} - \frac{\left(\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y\right)^2}{9} &= 1 \\
+\frac{1}{288} (-x - 7 y) (7 x + y) &= 1.
+\end{align*}
+
+\begin{iinner_problem}
+\item $\theta$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos \theta - y\sin \theta$ and $y'=x\sin \theta + y\cos \theta$:
+
+\begin{align*}
+\frac{x'^2}{16}-\frac{y'^2}{9} &= 1 \\
+\frac{\left(x \cos \theta - y\sin \theta\right)^2}{16} - \frac{\left(x\sin \theta + y\cos \theta\right)^2}{9} &= 1.
+\end{align*}
+
+\begin{inner_problem}
+\item $y^2=4Cx$
+\end{inner_problem}
+
+\begin{iinner_problem}[start=1]
+\item $30^\circ$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos 30^\circ - y\sin 30^\circ=\frac{\sqrt{3}}{2}x-\frac{y}{2}$ and $y'=x\sin 30^\circ + y\cos 30^\circ=\frac{x}{2}+\frac{\sqrt{3}}{2}y$:
+
+\begin{align*}
+y'^2&=4Cx' \\
+\left(\frac{x}{2}+\frac{\sqrt{3}}{2}y\right)^2 &= 4C\left(\frac{\sqrt{3}}{2}x-\frac{y}{2}\right).
+\end{align*}
+
+\begin{iinner_problem}
+\item $45^\circ$
+\end{iinner_problem}
+
+\noindent We make the substitution $x'=x \cos 45^\circ - y\sin 45^\circ=\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y$ and $y'=x\sin 45^\circ + y\cos 45^\circ=\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y$:
+
+\begin{align*}
+y'^2&=4Cx' \\
+\left(\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y\right)^2 &= 4C\left(\frac{\sqrt{2}}{2}x-\frac{\sqrt{2}}{2}y\right) \\
+\frac{1}{2}(x+y)^2 &= 2C\sqrt{2}(x-y).
+\end{align*}
+
+\begin{iinner_problem}
+\item $\theta$
+\end{iinner_problem}
+
+We make the substitution $x'=x \cos \theta - y\sin \theta$ and $y'=x\sin \theta + y\cos \theta$:
+
+\begin{align*}
+y'^2&=4Cx' \\
+\left(x \cos \theta - y\sin \theta\right)^2 &= 4C\left(x\sin \theta + y\cos \theta\right).
+\end{align*}
+
+\end{document}

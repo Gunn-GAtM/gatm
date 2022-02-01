@@ -1,0 +1,1105 @@
+\documentclass[../key.tex]{subfiles}
+
+\begin{document}
+
+\section{Matrix Multiplication}
+
+\begin{outer_problem}[start=1]
+\item The three-post snap group can be represented by a set of graphs, each with three towns. The posts are the towns and the elastic bands are the roads. For example, \label{prob:adjacency_matrices_map_subgroup}
+
+\newcommand{\indsize}{\scriptsize}
+\newcommand{\colind}[2]{\displaystyle\smash{\mathop{#1}^{\raisebox{.5\normalbaselineskip}{$#2$}}}}
+\newcommand{\rowind}[1]{\mbox{$#1$}}
+
+$$A=\rotatebox[origin=c]{90}{from}\;\,
+  \begin{array}{@{}c@{}}
+    \rowind{1} \\ \rowind{2} \\ \rowind{3}
+  \end{array}
+  \mathop{\left[
+  \begin{array}{ccc}
+     \colind{1}{1}  &  \colind{0}{2}  &  \colind{0}{3} \\
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+  \end{array}
+  \right]}^{
+  \begin{array}{@{}c@{}}
+    \rowind{\text{to}} \\ \mathstrut
+  \end{array}
+  }\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+draw((1.20000,-1.38564)--(1.80000,-0.34641), ArcArrows);
+draw((0.26000, -0.26000)..(0.00000, -0.91000)..(-0.26000, -0.26000),ArcArrow);
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.6,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.6,-2.1)--cycle);
+\end{asy}
+}}
+$$
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Draw the graphs and transportation matrices for this group.
+\end{inner_problem}
+
+Here they are!
+
+$$I=\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+\end{bmatrix}\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+
+path coil = (0.26000, -0.26000)..(0.00000, -0.91000)..(-0.26000, -0.26000);
+
+draw(coil,ArcArrow);
+
+draw(shift(n3)*rotate(-45)*coil, ArcArrow);
+draw(shift(n2)*rotate(180)*coil, ArcArrow);
+
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.6,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.6,-2.1)--cycle);
+\end{asy}
+}}\qquad
+A=\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+\end{bmatrix}\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+draw((1.20000,-1.38564)--(1.80000,-0.34641), ArcArrows);
+draw((0.26000, -0.26000)..(0.00000, -0.91000)..(-0.26000, -0.26000),ArcArrow);
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.6,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.6,-2.1)--cycle);
+\end{asy}
+}}$$
+
+$$B=\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+\end{bmatrix}\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+
+path coil = (0.26000, -0.26000)..(0.00000, -0.91000)..(-0.26000, -0.26000);
+
+draw(shift(n2)*rotate(180)*coil, ArcArrow);
+
+draw(point(n1--n3,0.2)--point(n1--n3,0.8),ArcArrows);
+
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.3,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.3,-2.1)--cycle);
+\end{asy}
+}}\qquad
+C=\begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+\end{bmatrix}\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+draw((0.80000,-1.38564)--(0.20000,-0.34641), ArcArrows);
+path coil = (0.26000, -0.26000)..(0.00000, -0.91000)..(-0.26000, -0.26000);
+
+draw(shift(n3)*rotate(-45)*coil, ArcArrow);
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.3,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.3,-2.1)--cycle);
+\end{asy}
+}}$$
+
+$$D=\begin{bmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{bmatrix}\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+
+draw(point(n1--n3,0.2)--point(n1--n3,0.8),ArcArrow);
+draw(point(n3--n2,0.2)--point(n3--n2,0.8),ArcArrow);
+draw(point(n2--n1,0.2)--point(n2--n1,0.8),ArcArrow);
+
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.3,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.3,-2.1)--cycle);
+\end{asy}
+}}\qquad
+E=\begin{bmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{bmatrix}\quad \longleftrightarrow\vcenter{\hbox{
+\begin{asy}
+size(50);
+pair n1 = (0,0);
+pair n2 = (1,-sqrt(3));
+pair n3 = (2,0);
+
+draw(point(n1--n3,0.8)--point(n1--n3,0.2),ArcArrow);
+draw(point(n3--n2,0.8)--point(n3--n2,0.2),ArcArrow);
+draw(point(n2--n1,0.8)--point(n2--n1,0.2),ArcArrow);
+
+label("$1$", n1);
+label("$2$", n2);
+label("$3$", n3);
+draw((-0.3,0.4)--(2.3,0.4)--(2.3,-2.1)--(-0.3,-2.1)--cycle);
+\end{asy}
+}}$$
+
+\begin{inner_problem}
+\item Try a few multiplications and notice the isomorphism to the snap group.
+\end{inner_problem}
+
+Before, we found that $A\bullet B = E$. But does this work with the matrices? We have
+
+\begin{align*}
+AB &= \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\langle1,0,0\rangle \cdot \langle0,0,1\rangle & \langle1,0,0\rangle \cdot \langle0,1,0\rangle & \langle1,0,0\rangle \cdot \langle1,0,0\rangle \\
+\langle0,0,1\rangle \cdot \langle0,0,1\rangle & \langle0,0,1\rangle \cdot \langle0,1,0\rangle & \langle0,0,1\rangle \cdot \langle1,0,0\rangle \\
+\langle0,1,0\rangle \cdot \langle0,0,1\rangle & \langle0,1,0\rangle \cdot \langle0,1,0\rangle & \langle0,1,0\rangle \cdot \langle1,0,0\rangle \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{bmatrix} = D. \\
+\end{align*}
+
+Huh?
+
+The issue is simple. Matrix multiplication, just like the snap operation, is not commutative, and we need to flip the order of the matrices so it represents taking $B$ first, then $A$. After all, that's what we defined $A\bullet B$ to be.
+
+\begin{align*}
+BA &= \begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\langle0,0,1\rangle\cdot \langle1,0,0\rangle & \langle0,0,1\rangle\cdot \langle0,0,1\rangle & \langle0,0,1\rangle\cdot \langle0,1,0\rangle \\
+\langle0,1,0\rangle\cdot \langle1,0,0\rangle & \langle0,1,0\rangle\cdot \langle0,0,1\rangle & \langle0,1,0\rangle\cdot \langle0,1,0\rangle \\
+\langle1,0,0\rangle\cdot \langle1,0,0\rangle & \langle1,0,0\rangle\cdot \langle0,0,1\rangle & \langle1,0,0\rangle\cdot \langle0,1,0\rangle \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{bmatrix} = E. \\
+\end{align*}
+
+This works for any of the matrices.
+
+\begin{outer_problem}
+\item Using $3\times 3$ matrices $A$ and $B$ from this section, compute
+\end{outer_problem}
+
+For reference, the matrices are
+
+$$A = \begin{bmatrix}
+1 & 1 & 2 & 2 \\
+1 & 1 & 1 & 0 \\
+2 & 1 & 1 & 1 \\
+2 & 0 & 1 & 1 \\
+\end{bmatrix},\qquad B = \begin{bmatrix}
+1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 \\
+\end{bmatrix}.$$
+
+\begin{inner_problem}[start=1]
+\item $AA=A^2$
+\end{inner_problem}
+
+We use the column vector/row vector approach.
+
+\begin{align*}
+AA &= \begin{bmatrix}
+1 & 1 & 2 & 2 \\
+1 & 1 & 1 & 0 \\
+2 & 1 & 1 & 1 \\
+2 & 0 & 1 & 1 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 2 & 2 \\
+1 & 1 & 1 & 0 \\
+2 & 1 & 1 & 1 \\
+2 & 0 & 1 & 1 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\langle1,1,2,2\rangle\cdot \langle1,1,2,2\rangle & \langle1,1,2,2\rangle\cdot \langle1,1,1,0\rangle & \langle1,1,2,2\rangle\cdot \langle2,1,1,1\rangle & \langle1,1,2,2\rangle\cdot \langle2,0,1,1\rangle \\
+\langle1,1,1,0\rangle\cdot \langle1,1,2,2\rangle & \langle1,1,1,0\rangle\cdot \langle1,1,1,0\rangle & \langle1,1,1,0\rangle\cdot \langle2,1,1,1\rangle & \langle1,1,1,0\rangle\cdot \langle2,0,1,1\rangle \\
+\langle2,1,1,1\rangle\cdot \langle1,1,2,2\rangle & \langle2,1,1,1\rangle\cdot \langle1,1,1,0\rangle & \langle2,1,1,1\rangle\cdot \langle2,1,1,1\rangle & \langle2,1,1,1\rangle\cdot \langle2,0,1,1\rangle \\
+\langle2,0,1,1\rangle\cdot \langle1,1,2,2\rangle & \langle2,0,1,1\rangle\cdot \langle1,1,1,0\rangle & \langle2,0,1,1\rangle\cdot \langle2,1,1,1\rangle & \langle2,0,1,1\rangle\cdot \langle2,0,1,1\rangle \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+10 & 4 & 7 & 6 \\
+4 & 3 & 4 & 3 \\
+7 & 4 & 7 & 6 \\
+6 & 3 & 6 & 6 \\
+\end{bmatrix}. \\
+\end{align*}
+
+\begin{inner_problem}
+\item $AB$
+\end{inner_problem}
+
+\begin{align*}
+AB &= \begin{bmatrix}
+1 & 1 & 2 & 2 \\
+1 & 1 & 1 & 0 \\
+2 & 1 & 1 & 1 \\
+2 & 0 & 1 & 1 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\langle1,1,2,2\rangle\cdot \langle1,1,0,0\rangle & \langle1,1,2,2\rangle\cdot \langle1,1,0,0\rangle & \langle1,1,2,2\rangle\cdot \langle1,1,0,0\rangle & \langle1,1,2,2\rangle\cdot \langle1,1,0,0\rangle \\
+\langle1,1,1,0\rangle\cdot \langle0,1,1,0\rangle & \langle1,1,1,0\rangle\cdot \langle0,1,1,0\rangle & \langle1,1,1,0\rangle\cdot \langle0,1,1,0\rangle & \langle1,1,1,0\rangle\cdot \langle0,1,1,0\rangle \\
+\langle2,1,1,1\rangle\cdot \langle0,0,1,1\rangle & \langle2,1,1,1\rangle\cdot \langle0,0,1,1\rangle & \langle2,1,1,1\rangle\cdot \langle0,0,1,1\rangle & \langle2,1,1,1\rangle\cdot \langle0,0,1,1\rangle \\
+\langle2,0,1,1\rangle\cdot \langle1,0,0,1\rangle & \langle2,0,1,1\rangle\cdot \langle1,0,0,1\rangle & \langle2,0,1,1\rangle\cdot \langle1,0,0,1\rangle & \langle2,0,1,1\rangle\cdot \langle1,0,0,1\rangle \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+3 & 2 & 3 & 4 \\
+1 & 2 & 2 & 1 \\
+3 & 3 & 2 & 2 \\
+3 & 2 & 1 & 2 \\
+\end{bmatrix}. \\
+\end{align*}
+
+\begin{inner_problem}
+\item $BA$
+\end{inner_problem}
+
+\begin{align*}
+BA &= \begin{bmatrix}
+1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 2 & 2 \\
+1 & 1 & 1 & 0 \\
+2 & 1 & 1 & 1 \\
+2 & 0 & 1 & 1 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\langle1,1,0,0\rangle\cdot\langle1,1,2,2\rangle & \langle1,1,0,0\rangle\cdot\langle1,1,1,0\rangle & \langle1,1,0,0\rangle\cdot\langle2,1,1,1\rangle & \langle1,1,0,0\rangle\cdot\langle2,0,1,1\rangle \\
+\langle0,1,1,0\rangle\cdot\langle1,1,2,2\rangle & \langle0,1,1,0\rangle\cdot\langle1,1,1,0\rangle & \langle0,1,1,0\rangle\cdot\langle2,1,1,1\rangle & \langle0,1,1,0\rangle\cdot\langle2,0,1,1\rangle \\
+\langle0,0,1,1\rangle\cdot\langle1,1,2,2\rangle & \langle0,0,1,1\rangle\cdot\langle1,1,1,0\rangle & \langle0,0,1,1\rangle\cdot\langle2,1,1,1\rangle & \langle0,0,1,1\rangle\cdot\langle2,0,1,1\rangle \\
+\langle1,0,0,1\rangle\cdot\langle1,1,2,2\rangle & \langle1,0,0,1\rangle\cdot\langle1,1,1,0\rangle & \langle1,0,0,1\rangle\cdot\langle2,1,1,1\rangle & \langle1,0,0,1\rangle\cdot\langle2,0,1,1\rangle \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+2 & 2 & 3 & 2 \\
+3 & 2 & 2 & 1 \\
+4 & 1 & 2 & 2 \\
+3 & 1 & 3 & 3 \\
+\end{bmatrix}. \\
+\end{align*}
+
+\begin{inner_problem}
+\item $B^2$
+\end{inner_problem}
+
+\begin{align*}
+BA &= \begin{bmatrix}
+1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 \\
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\langle1,1,0,0\rangle\cdot \langle 1,0,0,1\rangle & \langle1,1,0,0\rangle\cdot \langle 1,1,0,0\rangle & \langle1,1,0,0\rangle\cdot \langle 0,1,1,0\rangle & \langle1,1,0,0\rangle\cdot \langle 0,0,1,1\rangle \\
+\langle0,1,1,0\rangle\cdot \langle 1,0,0,1\rangle & \langle0,1,1,0\rangle\cdot \langle 1,1,0,0\rangle & \langle0,1,1,0\rangle\cdot \langle 0,1,1,0\rangle & \langle0,1,1,0\rangle\cdot \langle 0,0,1,1\rangle \\
+\langle0,0,1,1\rangle\cdot \langle 1,0,0,1\rangle & \langle0,0,1,1\rangle\cdot \langle 1,1,0,0\rangle & \langle0,0,1,1\rangle\cdot \langle 0,1,1,0\rangle & \langle0,0,1,1\rangle\cdot \langle 0,0,1,1\rangle \\
+\langle1,0,0,1\rangle\cdot \langle 1,0,0,1\rangle & \langle1,0,0,1\rangle\cdot \langle 1,1,0,0\rangle & \langle1,0,0,1\rangle\cdot \langle 0,1,1,0\rangle & \langle1,0,0,1\rangle\cdot \langle 0,0,1,1\rangle \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+1 & 2 & 1 & 0 \\
+0 & 1 & 2 & 1 \\
+1 & 0 & 1 & 2 \\
+2 & 1 & 0 & 1 \\
+\end{bmatrix}. \\
+\end{align*}
+
+\begin{inner_problem}
+\item Which one ($AB$ and $BA$) represents taking a step by walking, then by bus?
+\end{inner_problem}
+
+Since $A$ is walking and $B$ is bus, we know that $AB$ is a step by walking, then by bus. Unlike most of the operations we've been doing, it is not right-to-left!
+
+One way to conceptualize this is to draw an arrow from ``from'' to ``to'' for each matrix, then join the arrows. For example, for the product $AB$, it should look like this:
+
+\newcommand{\indsize}{\scriptsize}
+\newcommand{\colind}[2]{\displaystyle\smash{\mathop{#1}^{\raisebox{.5\normalbaselineskip}{$#2$}}}}
+\newcommand{\rowind}[1]{\mbox{$#1$}}
+
+$$AB=\quad\rotatebox[origin=c]{90}{from}\;\,
+  \begin{array}{@{}c@{}}
+    \rowind{A} \\ \rowind{\tikzmark{p1}B} \\ \rowind{C} \\ \rowind{D}
+  \end{array}
+  \mathop{\left[
+  \begin{array}{cccc}
+     \colind{1}{A}  &  \colind{1}{B}  &  \colind{2}{C}  & \colind{2}{D} \\
+1 & 1 & \tikzmark{p2}1 & 0 \\
+2 & 1 & 1 & 1 \\
+2 & 0 & 1 & 1 \\
+  \end{array}
+  \right]}^{
+  \begin{array}{@{}c@{}}
+    \rowind{\text{to}} \\ \mathstrut
+  \end{array}
+  } \quad
+  \rotatebox[origin=c]{90}{from}\;\,
+  \begin{array}{@{}c@{}}
+    \rowind{A} \\ \rowind{B} \\ \rowind{C} \\ \rowind{D}
+  \end{array}
+  \mathop{\left[
+  \begin{array}{cccc}
+     \colind{1}{A}  &  \colind{1}{B}  &  \colind{0}{C}  & \colind{0}{D} \\
+0 & 1 & 1 & 0 \\
+0 & 0 & \tikzmark{p3}1 & 1 \\
+1 & 0 & 0 & 1 \\
+  \end{array}
+  \right]}^{
+  \begin{array}{@{}c@{}}
+    \rowind{\text{to}} \\ \mathstrut
+  \end{array}
+  }$$
+
+\tikz[overlay,remember picture]{
+\draw[arrows=->]
+($(pic cs:p1) + (-0.6ex,0.6ex)$) -- ($(pic cs:p2) + (0.4ex,0.6ex)$) -- ($(pic cs:p2) + (0.4ex,9ex)$);
+\draw[arrows=->]
+($(pic cs:p2) + (0.4ex,9ex)$) -- ($(pic cs:p2) + (11ex,9ex)$) -- ($({pic cs:p3} -| {pic cs:p2}) + (11ex,0.6ex)$) -- ($(pic cs:p3) + (0.4ex,0.6ex)$) -- ($(pic cs:p3) + (0.4ex, 13ex)$);
+}
+
+This arrow shows the order in which paths are taken.
+
+\begin{inner_problem}
+\item Use your calculator to check your computations of $A^2$, $AB$, $BA$, and $B^2$.
+\end{inner_problem}
+
+Here's some instructions on multiplying matrices on various TI calculators:
+
+TI-83/TI-84: Press ``2nd'' and ``$x^{-1}$,'' or if your calculator has it, the ``MATRIX'' button, to enter the matrix editing page. Navigate to the ``EDIT'' menu, then navigate to the desired name for the first matrix. Press enter to select that matrix, then type in the size and values of the matrix. Repeat this for the second matrix. When you're ready to multiply them, press ``2nd'' and ``$x^{-1}$'' again, but stay in the ``NAMES'' menu. Navigate to the first matrix to multiply, and press enter. Repeat this for the second matrix. Finally, pressing enter to calculate will give us the result of the multiplication (or an error if the dimensions are incorrect).
+
+TI Nspire: Press the button to the bottom left of ``$\stackrel{\text{del}}{\leftarrow}$'' that looks like ``$|\vrectangleblack|\left\{\frac{\vrectangleblack}{\vrectangleblack}\right.$''. Navigate to the button that looks like a blank $3\times 3$ matrix and press enter. Enter in the size of the first matrix, then the values. Repeat this process for the second matrix, then multiply the two matrices by pressing enter.
+
+Assuming I didn't make a large oopsie, those answers are all correct. :P
+
+\begin{outer_problem}
+\item Write a $3\times 3$ matrix $T$ that shows the following scenario: you can go from town $B$ to $C$, $C$ to $D$, and $D$ to $B$ by train, in exactly one way each, and not backwards.
+\end{outer_problem}
+
+$$T = \rotatebox[origin=c]{90}{from}\;\,
+  \begin{array}{@{}c@{}}
+    \rowind{B} \\ \rowind{C} \\ \rowind{D}
+  \end{array}
+  \mathop{\left[
+  \begin{array}{ccc}
+     \colind{1}{B}  &  \colind{1}{C}  &  \colind{0}{D} \\
+     0 & 1 & 1 \\
+     1 & 0 & 1 \\
+  \end{array}
+  \right]}^{
+  \begin{array}{@{}c@{}}
+    \rowind{\text{to}} \\ \mathstrut
+  \end{array}
+  }.$$
+
+\begin{inner_problem}[start=1]
+\item Why can't you add this matrix to matrices $A$ or $B$?
+\end{inner_problem}
+
+They have different dimensions!
+
+\begin{inner_problem}
+\item Rewrite matrix $T$ so that it \textit{can} be meaningfully added to matrices $A$ and $B$. What did you do to its dimensions?
+\end{inner_problem}
+
+We need $T$ to be $4\times 4$, and we want the entries $A,B,C,D$ to line up properly. Thus, we insert $0$s in the $A$ column and $A$ row, as shown:
+
+$$T = \rotatebox[origin=c]{90}{from}\;\,
+  \begin{array}{@{}c@{}}
+    \rowind{A} \\ \rowind{B} \\ \rowind{C} \\ \rowind{D}
+  \end{array}
+  \mathop{\left[
+  \begin{array}{cccc}
+     \colind{0}{A} & \colind{0}{B}  &  \colind{0}{C}  &  \colind{0}{D} \\
+     0 & 1 & 1 & 0 \\
+     0 & 0 & 1 & 1 \\
+     0 & 1 & 0 & 1 \\
+  \end{array}
+  \right]}^{
+  \begin{array}{@{}c@{}}
+    \rowind{\text{to}} \\ \mathstrut
+  \end{array}
+  }.$$
+
+\begin{outer_problem}
+\item Evaluate the following:
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item $\displaystyle\sum_{k=1}^4 k$
+\end{inner_problem}
+
+$$\displaystyle\sum_{k=1}^4 k = 1 + 2 + 3 + 4 = 10.$$
+
+\begin{inner_problem}
+\item $\displaystyle\sum_{k=0}^5 k^2$
+\end{inner_problem}
+
+$$\displaystyle\sum_{k=0}^5 k^2 = 0^2 + 1^2 + 2^2 + 3^2 + 4^2 + 5^2 = 0 + 1 + 4 + 9 + 16 + 25 = 55.$$
+
+\begin{inner_problem}
+\item $\displaystyle\sum_{k=1}^{10} 3$
+\end{inner_problem}
+
+$$\displaystyle\sum_{k=1}^{10} 3 = \underbrace{3 + 3 + \cdots + 3}_{10} = 10\cdot 3 = 30.$$
+
+\begin{inner_problem}
+\item $\displaystyle\sum_{k=1}^n k$
+\end{inner_problem}
+
+\begin{align*}
+\sum_{k=1}^n k &= \underbrace{1 + 2 + \cdots + n}_{n} \\
+&= \underbrace{(n+1) + (n-1+2) + \cdots}{n/2} \\
+&= \frac{n(n+1)}{2}.
+\end{align*}
+
+\begin{inner_problem}
+\item $\displaystyle\sum_{k=1}^n n$
+\end{inner_problem}
+
+$$\displaystyle\sum_{k=1}^n n = \underbrace{n + n + \cdots + n}_{n} = n^2.$$
+
+\begin{inner_problem}
+\item $\displaystyle\sum_{k=1}^n 1$
+\end{inner_problem}
+
+$$\displaystyle\sum_{k=1}^n 1 = \underbrace{1 + 1 + \cdots + 1}_{n} = n.$$
+
+\begin{outer_problem}
+\item The matrix $C^T$ whose rows are the same as the respective columns of matrix $C$ is called the \textbf{transpose} of $C$. For example,
+
+$$C=\left[\begin{array}{cc}
+1 & 2 \\
+3 & 4 \\
+\end{array}\right],\: C^T=\left[\begin{array}{cc}
+1 & 3 \\
+2 & 4 \\
+\end{array}\right].$$
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Let the elements of $C$ be $c_{ij}$ and the elements of $C^T$ be $c'_{ij}$. Write a formula for $C^T$ in terms of these elements. That is, $c'_{ij} = $?
+\end{inner_problem}
+
+We simply have $c'_{ij} = c_{ji}$; the indices are swapped.
+
+\begin{inner_problem}
+\item Write $\left[\begin{array}{ccc}
+2 & 1 & 5 \\
+4 & -2 & 0 \\
+\end{array}\right]^T$.
+\end{inner_problem}
+
+We flip it over the main diagonal; since the matrix is not square, we get a matrix with different dimensions!
+
+$$\left[\begin{array}{ccc}
+2 & 1 & 5 \\
+4 & -2 & 0 \\
+\end{array}\right]^T = \begin{bmatrix}
+2 & 4 \\
+1 & -2 \\
+5 & 0 \\
+\end{bmatrix}$$
+
+\begin{outer_problem}
+\item Fill in the blanks: Multiplying an $m\times n$ matrix by a(n) $\underline{\phantom{egg}} \times k$ matrix gives a(n) $\underline{\phantom{egg}}\times\underline{\phantom{egg}}$ matrix.
+\end{outer_problem}
+
+Multiplying an $m\times n$ matrix by a(n) \underline{$n$}$\phantom{} \times k$ matrix gives a(n) \underline{$m$} $\times$ \underline{$n$} matrix.
+
+\begin{outer_problem}
+\item Dogs can eat cats, rats, or mice; cats can eat rats or mice; rats can eat mice.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Make a matrix $E$ showing what can eat what.
+\end{inner_problem}
+
+Let dogs be $D$, cats be $C$, rats be $R$, and mice be $M$. Then the matrix is straightforward. Note that we put the prey on the left and predator on top because then following the matrices is going through each step in the food chain.
+
+$$T = \rotatebox[origin=c]{90}{prey}\;\,
+  \begin{array}{@{}c@{}}
+    \rowind{D} \\ \rowind{C} \\ \rowind{R} \\ \rowind{M}
+  \end{array}
+  \mathop{\left[
+  \begin{array}{cccc}
+     \colind{0}{D} & \colind{0}{C}  &  \colind{0}{R}  &  \colind{0}{M} \\
+     1 & 0 & 0 & 0 \\
+     1 & 1 & 0 & 0 \\
+     1 & 1 & 1 & 0 \\
+  \end{array}
+  \right]}^{
+  \begin{array}{@{}c@{}}
+    \rowind{\text{predator}} \\ \mathstrut
+  \end{array}
+  }.$$
+
+Note that the diagonal is all $0$s because no animal eats their own species.
+
+\begin{inner_problem}
+\item Draw a directed graph.
+\end{inner_problem}
+
+The graph is shown in Figure~\ref{fig:e_directed_graph}.
+
+\begin{center}
+\begin{asy}[width=0.6\textwidth]
+pair M = (-1,0);
+pair R = (0,0);
+pair C = (1,0);
+pair D = (2,0);
+
+draw(M+0.1*N..((M+D)/2 + 0.6*N)..D+0.1*N,Arrow);
+draw(M+0.1*N..((M+C)/2 + 0.45*N)..C+0.1*N,Arrow);
+draw(M+0.2*E -- R+0.2*W,Arrow);
+draw(R-0.1*N..((R+D)/2 - 0.4*N)..D-0.1*N,Arrow);
+draw(R+0.2*E -- C+0.2*W,Arrow);
+draw(C+0.2*E -- D+0.2*W,Arrow);
+
+label("$M$", M);
+label("$R$", R);
+label("$C$", C);
+label("$D$", D);
+\end{asy}
+\captionof{figure}{The directed graph of $E$.}
+\label{fig:e_directed_graph}
+\end{center}
+
+\begin{inner_problem}
+\item Calculate and interpret $E^2$, $E^3$, $E^4$.
+\end{inner_problem}
+
+We have
+
+\begin{align*}
+E^2 &= \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 0 \\
+\end{bmatrix} \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 0 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+2 & 1 & 0 & 0 \\
+\end{bmatrix}.
+\end{align*}
+
+This means that there are two ways for a mouse's nutrients to find its way to a dog in two steps (namely, through a rat and through a cat). Also, there is only one way for a rat to get to a dog in two steps, and only one way for a mouse to get to a cat in two steps.
+
+We have
+
+\begin{align*}
+E^3 = EE^2 &= \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+2 & 1 & 0 & 0 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+\end{bmatrix}.
+\end{align*}
+
+This means a mouse can get to a dog in three steps in only one way.
+
+We have
+
+\begin{align*}
+E^4 = EE^3 &= \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 0 \\
+\end{bmatrix} \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix}.
+\end{align*}
+
+A matrix of all zeroes! That means there are no paths which take four steps, which makes sense.
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+Note that as given in the problem, we have
+
+\begin{align*}
+S&=\begin{bmatrix}
+5     & 1      & 0     & \frac{4}{3}   & 1    & 1    & 0     & 0 \\
+5     & 1      & 1     & \frac{5}{4}   & \frac{3}{4}  & 0    & \frac{1}{3}   & 2 \\
+\end{bmatrix}; \\
+C&=\begin{bmatrix}
+5     & 20       & 10     & 0   & 1    & 2    & 5     & 12 \\
+\end{bmatrix}.
+\end{align*}
+
+\begin{inner_problem}[start=1]
+\item Unfortunately, if you try to multiply $S$ and $C$ as given, it won't work. Why not?
+\end{inner_problem}
+
+The dimensions aren't right! $S$ is a $2\times 8$ matrix, while $C$ is a $1\times 8$ matrix.
+
+\begin{inner_problem}
+\item What do you need to do to $C$ so they can be multiplied? Explain the dimensions of each matrix.
+\end{inner_problem}
+
+We need to transpose $C$, since $C^T$ is a $8\times 1$ matrix. This lets it be multiplied by $S$.
+
+\begin{inner_problem}
+\item Once you've fixed matrix $C$, do the multiplication. What are the dimensions of your answer?
+\end{inner_problem}
+
+We do the multiplication:
+
+\begin{align*}
+SC^T &= \begin{bmatrix}
+5     & 1      & 0     & \frac{4}{3}   & 1    & 1    & 0     & 0 \\
+5     & 1      & 1     & \frac{5}{4}   & \frac{3}{4}  & 0    & \frac{1}{3}   & 2 \\
+\end{bmatrix}\begin{bmatrix}
+5 \\
+20 \\
+10 \\
+0 \\
+1 \\
+2 \\
+5 \\
+12 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+48 \\
+\frac{977}{12}
+\end{bmatrix}.
+\end{align*}
+
+We end up with a $2\times 1$ matrix. Indeed, $M_{2\times 8}M_{8\times 1} = M_{2\times 1}$; in some sense the inner dimensions VANISH, ANNIHILATE, whatever you like, to leave the outer dimensions behind.
+
+\begin{outer_problem}
+\item Matrix multiplication is not necessarily commutative, even when the dimensions of the matrices suggest it might be. How do we know? Be specific.
+\end{outer_problem}
+
+One way to know is to just multiply two random matrices together (chosen for computational convenience) and check for commutativity:
+
+$$C = \begin{bmatrix}
+0 & 0 \\
+0 & 1 \\
+\end{bmatrix};\quad D = \begin{bmatrix}
+0 & 1 \\
+0 & 0 \\
+\end{bmatrix}$$
+
+We compute $CD$ and $DC$:
+
+\begin{align*}
+CD &= \begin{bmatrix}
+0 & 0 \\
+0 & 1 \\
+\end{bmatrix}\begin{bmatrix}
+0 & 1 \\
+0 & 0 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 0 \\
+0 & 0 \\
+\end{bmatrix}.
+DC &= \begin{bmatrix}
+0 & 1 \\
+0 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+0 & 0 \\
+0 & 1 \\
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0 & 1 \\
+0 & 0 \\
+\end{bmatrix}
+\Longrightarrow CD \neq DC.
+\end{align*}
+
+Oof! Matrix multiplication is not commutative.
+
+\begin{outer_problem}
+\item Matrix multiplication is associative, though. Prove that $(PX)T=P(XT)$ for $$P=\left[\begin{array}{cc} m & n \\ p & q \\ \end{array}\right],\: X=\left[\begin{array}{cc} x & y \\ z & w \\ \end{array}\right],\: Y=\left[\begin{array}{cc} r & s \\ t & u \\ \end{array}\right].$$
+\end{outer_problem}
+
+With great dread, we compute $(PX)T$ and $P(XT)$.
+
+\begin{align*}
+(PX)T &= \left(\begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix} x & y \\ z & w \end{bmatrix}\right)\begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
+&= \begin{bmatrix} mx + nz & my + nw \\ px + qz & py + qw \end{bmatrix} \begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
+&= \begin{bmatrix} r(mx+nz)+t(my+nw) & s(mx+nz) + u(my+nw) \\ r(px+qz) + t(py+qw) & s(px+qz) + u(py+qw)\end{bmatrix} \\
+&= \begin{bmatrix} mrx+mty+nrz+ntw & msx+muy+nsz+nuw \\ prx+pty+qrz+qtw & psx+puy+qsz+quw \end{bmatrix}. \\
+P(XT) &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\left(\begin{bmatrix} x & y \\ z & w \end{bmatrix}\begin{bmatrix} r & s \\ t & u \end{bmatrix}\right) \\
+&= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix}xr + yt & xs + yu \\ zr + wt & zs + wu \end{bmatrix} \\
+&= \begin{bmatrix} m(xr+yt) + n(zr+wt) & m(xs+yu) + n(zs+wu) \\ p(xr+yt) + q(zr+wt) & p(xs+yu) + q(zs+wu) \end{bmatrix} \\
+&= \begin{bmatrix} mrx+mty+nrz+ntw & msx+muy+nsz+nuw \\ prx+pty+qrz+qtw & psx+puy+qsz+quw \end{bmatrix}.
+\end{align*}
+
+They are equal!
+
+Note that this doesn't prove it's associative for all qualifying\footnote{In terms of dimension.} matrices because we've only shown it for $2\times 2$ matrices.
+
+\begin{outer_problem}
+\item Prove that matrix multiplication is distributive: $P(X+T)=PX+PT$.
+\end{outer_problem}
+
+This isn't as bad.
+
+\begin{align*}
+P(X+T) &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\left(\begin{bmatrix} x & y \\ z & w \end{bmatrix} + \begin{bmatrix} r & s \\ t & u \end{bmatrix}\right) \\
+&= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix} x + r & y + s \\ z + t & w + u\end{bmatrix} \\
+&= \begin{bmatrix}m(x+r) + n(z+t) & m(y+s) + n(w+u) \\ p(x+r) + n(z+t) & p(y+s) + q(w+u) \end{bmatrix} \\
+&= \begin{bmatrix}(mx+nz) + (mr+nt) & (my+nw) + (ms+nu) \\ (px+nz) + (pr+nt) & (py+qw) + (ps+qu)\end{bmatrix} \\
+&= \begin{bmatrix}m & n \\ p & q \end{bmatrix} \begin{bmatrix}x & y \\ z & w \end{bmatrix} + \begin{bmatrix}m & n \\ p & q \end{bmatrix} \begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
+&= PX + PT.
+\end{align*}
+
+Indeed, they are equal!
+
+\begin{outer_problem}
+\item When does $PX=XP$? Don't worry if you get some messy equations in your answer.
+\end{outer_problem}
+
+Let's try it.
+\begin{align*}
+PX &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix} x & y \\ z & w \end{bmatrix} \\
+&= \begin{bmatrix} mx+nz & my+nw \\ px + qz & py + qw \end{bmatrix} \\
+XP &= \begin{bmatrix} x & y \\ z & w \end{bmatrix} \begin{bmatrix} m & n \\ p & q \end{bmatrix} \\
+&= \begin{bmatrix} xm + yp & xn + yq \\ zm + wp & zn + wq \end{bmatrix} \\
+\end{align*}
+
+Equating terms, we get
+
+$$\begin{cases}
+mx + nz &= xm + yp \\
+my + nw &= xn + yq \\
+px + qz &= zm + wp \\
+py + qw &= zn + wq \\
+\end{cases}$$
+
+$$\Longrightarrow \begin{cases}
+nz &= yp \\
+my + nw &= xn + yq \\
+px + qz &= zm + wp \\
+py &= zn \\
+\end{cases}.$$
+
+\begin{outer_problem}
+\item Cook's Seafood Restaurant in Menlo Park sells fish and chips. The Captain's order is two pieces of fish and one order of chips, while the Regular order is one piece of fish and one order of chips.
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item Write a matrix representing these facts, with clear labels on your rows and columns.
+\end{inner_problem}
+
+Let Captain $=C$ and Regular $=R$. Then the matrix is:
+
+$$M=\begin{blockarray}{rcc}
+& \text{fish} & \text{chips} \\
+\begin{block}{r[cc]}
+C & 2 & 1 \\
+R & 1 & 1 \\
+\end{block}
+\end{blockarray}.$$
+
+I'm writing it this way rather than the transpose so that the order of the matrices in the next problem is the same as the problems appear. Otherwise, you'd have to flip the order of multiplication (remember, it's not commutative!).
+
+\begin{inner_problem}
+\item The restaurant management estimates their cost at $0.75$ for each piece of fish and $0.50$ for each order of chips. Represent this as a matrix, then use matrix multiplication to calculate the cost of the two possible orders.
+\end{inner_problem}
+
+$$N=\begin{blockarray}{rc}
+& \text{cost (\$)} \\
+\begin{block}{r[c]}
+\text{fish} & 0.75 \\
+\text{chips} & 0.50 \\
+\end{block}
+\end{blockarray}.$$
+
+Now we just multiply the matrices:
+
+\begin{align*}
+MN &= \begin{blockarray}{rcc}
+& \text{fish} & \text{chips} \\
+\begin{block}{r[cc]}
+C & 2 & 1 \\
+R & 1 & 1 \\
+\end{block}
+\end{blockarray}\begin{blockarray}{rc}
+& \text{cost (\$)} \\
+\begin{block}{r[c]}
+\text{fish} & 0.75 \\
+\text{chips} & 0.50 \\
+\end{block}
+\end{blockarray} \\
+&= \begin{blockarray}{rc}
+& \text{cost (\$)} \\
+\begin{block}{r[c]}
+C & 2 \\
+R & 1.25 \\
+\end{block}
+\end{blockarray}.
+\end{align*}
+
+Thus, the cost of a Captain's order is \$2 and the cost of a Regular order is \$1.25 (for the restaurant).
+
+\begin{inner_problem}
+\item For a party, Cook's provides $10$ Captain's orders and $5$ Regular orders. Write this as a matrix and use matrix multiplication to find how many pieces of fish and orders of chips are provided.
+\end{inner_problem}
+
+We want to multiply this matrix by $M$ and get a $2\times 1$ or $1\times 2$ matrix of fish and chips. Thus, we choose the $1\times 2$ matrix
+
+$$P=\begin{blockarray}{cc}
+C & R \\
+\begin{block}{[cc]}
+10 & 5 \\
+\end{block}
+\end{blockarray},$$
+
+so that the product is simply
+
+$$PM = \begin{blockarray}{cc}
+C & R \\
+\begin{block}{[cc]}
+10 & 5 \\
+\end{block}
+\end{blockarray}\begin{blockarray}{rcc}
+& \text{fish} & \text{chips} \\
+\begin{block}{r[cc]}
+C & 2 & 1 \\
+R & 1 & 1 \\
+\end{block}
+\end{blockarray} = \begin{blockarray}{cc}
+\text{fish} & \text{chips} \\
+\begin{block}{[cc]}
+25 & 15 \\
+\end{block}
+\end{blockarray}.$$
+
+Thus, $25$ pieces of fish and $15$ orders of chips are provided.
+
+\begin{inner_problem}
+\item Now use matrix multiplication to find out the cost of the party.
+\end{inner_problem}
+
+We need to multiply $PM$ by $N$ to get a $1\times 1$ matrix:
+
+$$PMN = \begin{blockarray}{cc}
+\text{fish} & \text{chips} \\
+\begin{block}{[cc]}
+25 & 15 \\
+\end{block}
+\end{blockarray}\begin{blockarray}{rc}
+& \text{cost (\$)} \\
+\begin{block}{r[c]}
+\text{fish} & 0.75 \\
+\text{chips} & 0.50 \\
+\end{block}
+\end{blockarray} = \begin{bmatrix}
+26.25 \\
+\end{bmatrix}.$$
+
+Thus, the party costs \$26.25 for the restaurant.
+
+\begin{outer_problem}
+\item We will find coefficient matrices to be particularly useful for solving systems of linear equations. For instance, $$\begin{cases}3x+4y&=5 \\ 6x+4y &= 8\end{cases}\quad\longleftrightarrow\quad\left[\begin{array}{cc} 3 & 4 \\ 6 & 7 \\ \end{array}\right]\left[\begin{array}{c} x \\ y \\ \end{array}\right]=\left[\begin{array}{c} 5 \\ 8 \\ \end{array}\right].$$ Rewrite $$\begin{cases}2x+3y+4z&=5 \\ 5x-4y+2z &= 2 \\ x+2y &= 7\end{cases}$$ as a matrix equation in this way.
+\end{outer_problem}
+
+We rewrite the last equation as $x+2y+0z=7$ and proceed to tabulate the coefficients:
+
+$$\underbrace{\begin{bmatrix}
+2 & 3 & 4 \\
+5 & -4 & 2 \\
+1 & 2 & 0 \\
+\end{bmatrix}}_{M} \begin{bmatrix}
+x \\
+y \\
+z \\
+\end{bmatrix} = \begin{bmatrix}
+5 \\
+2 \\
+7 \\
+\end{bmatrix}.$$
+
+\begin{outer_problem}
+\item
+\end{outer_problem}
+
+\begin{inner_problem}[start=1]
+\item What is the transpose of the $3\times 3$ matrix $M$ from the previous problem?
+\end{inner_problem}
+
+$M$ is shown in the previous problem above. We flip it, obtaining
+
+$$M^T = \begin{bmatrix}
+2 & 5 & 1 \\
+3 & -4 & 2 \\
+4 & 2 & 0 \\
+\end{bmatrix}.$$
+
+\begin{inner_problem}
+\item Use $M^T$ to rewrite the system in the previous problem.
+\end{inner_problem}
+
+At first, one might try flipping the order of the column matrix to say $z,y,x$ (from top to bottom). But this doesn't work.
+
+Thinking in terms of what columns and rows mean, we can label them in the original equation from the previous problem:
+
+$$\begin{blockarray}{rccc}
+& x & y & z \\
+\begin{block}{r[ccc]}
+\text{Eq. 1} & 2 & 3 & 4 \\
+\text{Eq. 2} & 5 & -4 & 2 \\
+\text{Eq. 3} & 1 & 2 & 0 \\
+\end{block}
+\end{blockarray}
+\begin{blockarray}{rc}
+\begin{block}{r[c]}
+x & x \\
+y & y \\
+z & z \\
+\end{block}
+\end{blockarray} =
+\begin{blockarray}{rc}
+\begin{block}{r[c]}
+\text{Eq. 1} & 5 \\
+\text{Eq. 2} & 2 \\
+\text{Eq. 3} & 7 \\
+\end{block}
+\end{blockarray}.$$
+
+Doing the same for $M^T$, we get
+
+$$M^T=\begin{blockarray}{rccc}
+& \text{Eq. 1} & \text{Eq. 2} & \text{Eq. 3} \\
+\begin{block}{r[ccc]}
+x & 2 & 5 & 1 \\
+y & 3 & -4 & 2 \\
+z & 4 & 2 & 0 \\
+\end{block}
+\end{blockarray}.$$
+
+We realize that to get a matrix containing the values of Equations 1-3, we need to left-multiply $M^T$ by a $1\times 3$ matrix $\begin{bmatrix} x & y & z \end{bmatrix}$:
+
+$$\begin{bmatrix} x & y & z \end{bmatrix} \begin{bmatrix}
+2 & 5 & 1 \\
+3 & -4 & 2 \\
+4 & 2 & 0 \\
+\end{bmatrix} = \begin{bmatrix}5 & 2 & 7\end{bmatrix}.$$
+
+This looks quite similar to the previous problem! In symbols, if $A = \begin{bmatrix} x \\ y \\ z \\ \end{bmatrix}$ and $B = \begin{bmatrix} 5 \\ 2 \\ 7 \\ \end{bmatrix}$, we have
+
+$$\underbrace{MA=B}_\text{prev. prob.} \longleftrightarrow A^TM^T=B^T.$$
+
+\begin{inner_problem}
+\item What is the transpose of the transpose matrix, $(M^T)^T$?
+\end{inner_problem}
+
+Since we're just reflecting over the diagonal twice, we have $(M^T)^T=M$.
+
+This brings up an interesting fact, thinking back to the last subproblem. In general for any matrices $P,Q,R$, we have
+
+$$PQ=R \longleftrightarrow Q^TP^T=R^T.$$
+
+Taking the transpose of both sides of the right equation, we get
+
+$$(Q^TP^T)^T=(R^T)^T = R.$$
+
+Equating this with the left equation, we get
+
+$$PQ = (Q^TP^T)^T.$$
+
+Succulent!
+
+\end{document}
