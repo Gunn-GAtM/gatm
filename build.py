@@ -132,7 +132,7 @@ def run_pdflatex_on_file(
         "--shell-escape",
         "--interaction=nonstopmode",
         "--file-line-error",
-        f"--output-directory={output_dir}"
+        f"--output-directory={output_dir}",
     ]
 
     print(
@@ -178,7 +178,7 @@ def run_pdflatex_on_file(
             if match:
                 # We have a line error
                 location = line[: match.end() - 1]
-                error = line[match.end():]
+                error = line[match.end() :]
 
                 if throw_on_error:
                     raise LatexError(
@@ -303,7 +303,7 @@ def open_file(filepath):
     if sys.platform == "darwin":  # macOS
         subprocess.call(("open", filepath))
     elif sys.platform == "win32":  # Windows
-        subprocess.call(['start', filepath], shell=True)
+        subprocess.call(["start", filepath], shell=True)
     else:  # linux variants
         subprocess.call(("xdg-open", filepath))
 
@@ -621,7 +621,9 @@ def interactive():
             sys.exit()
 
 
-chapter_list = sorted([d.stem for d in book_directory.glob("**/") if d.stem not in ("template", "book")])
+chapter_list = sorted(
+    [d.stem for d in book_directory.glob("**/") if d.stem not in ("template", "book")]
+)
 
 
 def get_chapter_name_from_arg(name):
