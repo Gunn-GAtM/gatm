@@ -3,24 +3,20 @@
 # We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire
 # textbook/answer key. It's a bit involved, but you'll understand, dear traveler. Check README.md for context.
 
-import sys
+import argparse
 import os
+import re
 import shutil
 import subprocess
-import re
-import ntpath
-import time
-import argparse
-import platform
+import sys
+from pathlib import Path
+
 
 # Should be the folder gatm/
-working_directory = os.path.dirname(os.path.abspath(__file__))
-build_directory = os.path.join(working_directory, "build")
-log_directory = os.path.join(build_directory, "log")
-textbook_chapter_directory = os.path.join(build_directory, "chapters")
-answer_key_chapter_directory = os.path.join(build_directory, "key_chapters")
-
-book_directory = os.path.join(working_directory, "book")
+working_directory: Path = Path(__file__).parent
+build_directory: Path = working_directory / "build"
+log_directory: Path = build_directory / "log"
+book_directory: Path = working_directory / "book"
 
 # Find errors in the log
 error_regex = re.compile(":[0-9]*:")
@@ -29,7 +25,7 @@ fatal_error_test = "Fatal error occurred, no output PDF file produced!"
 # First capture group is whether it's the start or end of the chapter. Second group is the number of the chapter (ex:
 # 1 for trig review). Third group is the absolute page number, starting from first page = 0.
 page_number_typeout_regex = re.compile(
-    "Page number of chapter (start|end):([0-9]+.*)\\s+([0-9]+)"
+    r"Page number of chapter (start|end):([0-9]+.*)\s+([0-9]+)"
 )
 shipout_page_number_regex = re.compile("\\[([0-9]+)")
 
@@ -38,6 +34,7 @@ FNULL = None
 
 def make_progress_bar(percent, width=50):
     """Make a silly progress bar of a given width"""
+
     if percent < 0:
         percent = 0
     if percent > 1:
@@ -110,7 +107,9 @@ def run_pdflatex_on_file(
     get_chapter_pages=True,
 ):
     """Run pdflatex on a file and dump the result into the log folder, where it shall eventually be UPROOTED from"""
-    time_start = time.time()
+
+    if not filename.is_file():
+        raise RequirementError(f"File {filename} does not exist!")
 
     if not live_output:
         estimate_progress = False
@@ -125,15 +124,16 @@ def run_pdflatex_on_file(
 
     # Lets pdflatex search for files from the parent directory as a working directory and intermediate files in the
     # output directory, but logging everything in the output directory
-    env["TEXINPUTS"] = os.path.dirname(filename) + ":" + output_dir + ";"
+    output_dir = str(output_dir.resolve())
+    env["TEXINPUTS"] = str(filename.parent.resolve()) + f":{output_dir};"
 
-    flags = "--synctex=1 --shell-escape --interaction=nonstopmode --file-line-error"
-    flags = flags.split() + [
-        f"--output-directory={output_dir}"
-    ]  # Tfw directory with spaces, fuck me
-
-    if not os.path.isfile(filename):
-        raise RequirementError(f"File {filename} does not exist!")
+    flags = [
+        "--synctex=1",
+        "--shell-escape",
+        "--interaction=nonstopmode",
+        "--file-line-error",
+        f"--output-directory={output_dir}",
+    ]
 
     print(
         emph(
@@ -143,7 +143,7 @@ def run_pdflatex_on_file(
     outputted_chapter_page_info = {}
 
     process = subprocess.Popen(
-        ["pdflatex"] + flags + [filename],
+        ["pdflatex"] + flags + [str(filename.resolve())],
         stdout=subprocess.PIPE,
         stderr=get_devnull(),
         env=env,
@@ -237,12 +237,9 @@ def run_pdflatex_on_file(
 
 def run_asy_in_dir(dirname, estimate_progress=True):
     """Compile all the .asy files in a given directory which were dumped out by the first pdflatex call"""
-    print(emph("Compiling .asy files in " + dirname))
-    file_list = []
 
-    for filename in os.listdir(dirname):
-        if filename.endswith(".asy"):
-            file_list.append(filename)
+    print(emph("Compiling .asy files in " + dirname.stem))
+    file_list = [str(file.resolve()) for file in Path(dirname).glob("*.asy")]
 
     asy_count = len(file_list)
     print("Total Asymptote files to render: " + str(asy_count))
@@ -253,7 +250,7 @@ def run_asy_in_dir(dirname, estimate_progress=True):
         # Run asymptote on each file
         process = subprocess.Popen(
             ["asy", filename],
-            cwd=dirname,
+            cwd=str(dirname.resolve()),
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -277,36 +274,36 @@ def run_asy_in_dir(dirname, estimate_progress=True):
             print_progress_bar((i + 1) / float(asy_count))
 
 
-def book_path(join_with):
-    return os.path.join(book_directory, *join_with.split("/"))
+def book_path(join_with: str) -> Path:
+    return book_directory / join_with
 
 
-def log_path(join_with):
-    return os.path.join(log_directory, *join_with.split("/"))
+def log_path(join_with: str) -> Path:
+    return log_directory / join_with
 
 
-def build_path(join_with):
-    return os.path.join(build_directory, *join_with.split("/"))
+def build_path(join_with: str) -> Path:
+    return build_directory / join_with
 
 
-supplemental_directory = os.path.join(working_directory, "supplementals")
+supplemental_directory: Path = working_directory / "supplementals"
 
 
-def supplemental_path(join_with):
-    return os.path.join(supplemental_directory, *join_with.split("/"))
+def supplemental_path(join_with: str) -> Path:
+    return supplemental_directory / join_with
 
 
 def build_textbook(excerpt_chapters=True):
     build_book("textbook", excerpt_chapters)
 
 
-# Credit to https://stackoverflow.com/a/435669/13458117
+# Credit to https://stackoverflow.com/questions/1795111
 def open_file(filepath):
     print(emph("Opening file %s." % filepath))
-    if platform.system() == "Darwin":  # macOS
+    if sys.platform == "darwin":  # macOS
         subprocess.call(("open", filepath))
-    elif platform.system() == "Windows":  # Windows
-        os.startfile(filepath)
+    elif sys.platform == "win32":  # Windows
+        subprocess.call(["start", filepath], shell=True)
     else:  # linux variants
         subprocess.call(("xdg-open", filepath))
 
@@ -320,7 +317,7 @@ def simple_build_file(path_to_file, path_to_dest):
     print("Running final pdflatex (3/3)")
     run_pdflatex_on_file(path_to_file, estimate_progress=False)
 
-    output_pdf = log_path(filename_no_ext(os.path.basename(path_to_file)) + ".pdf")
+    output_pdf = log_path(path_to_file.stem + ".pdf")
     print(f"Moving built file {output_pdf} to destination {path_to_dest}")
     os.rename(output_pdf, path_to_dest)
 
@@ -328,17 +325,18 @@ def simple_build_file(path_to_file, path_to_dest):
 def build_book(book="textbook", excerpt_chapters=True):
     """Build the thing. If chapter_name is given, then we build in the chapter folder. If not, we build in the log
     folder and move to build."""
+
     filename = (
         book if not chapter_name else ("chapter" if book == "textbook" else "answers")
     )
     textbook_path = (
         book_path(filename + ".tex")
         if not chapter_name
-        else os.path.join(chapter_path, filename + ".tex")
+        else chapter_path / f"{filename}.tex"
     )
     local_log_directory = log_directory
 
-    if not os.path.isfile(textbook_path):
+    if not textbook_path.exists():
         raise RequirementError(warn(f"File {textbook_path} does not exist!"))
 
     if chapter_name:
@@ -377,7 +375,7 @@ def build_book(book="textbook", excerpt_chapters=True):
     destfile = (
         build_path("gatm.pdf" if book == "textbook" else "gatm_key.pdf")
         if not chapter_name
-        else os.path.join(chapter_path, filename + ".pdf")
+        else chapter_path / f"{filename}.pdf"
     )
 
     if not chapter_name:
@@ -399,7 +397,7 @@ def build_book(book="textbook", excerpt_chapters=True):
                 [
                     "pdfjam",
                     "-o",
-                    os.path.join(excerpt_folder, chapter + ".pdf"),
+                    str((excerpt_folder / f"{chapter}.pdf").resolve()),
                     destfile,
                     "%s-%s" % page_range,
                 ],
@@ -435,20 +433,15 @@ def build_supplementals():
     and copy all other files to build/misc."""
 
     clean_logs()
-    for f in os.listdir(supplemental_directory):
-        if f.startswith(".") or f != "proving_nine_roots.tex":
+    for p in supplemental_directory.iterdir():
+        if p.name.startswith(".") or p != "proving_nine_roots.tex":
             continue
 
-        path_to_f = supplemental_path(f)
-        if f.endswith(".tex"):
-            simple_build_file(path_to_f, build_path("misc/%s.pdf" % filename_no_ext(f)))
+        path_to_p = supplemental_path(p.name)
+        if p.name.endswith(".tex"):
+            simple_build_file(path_to_p, build_path(f"misc/{p.stem}.pdf"))
         else:
             pass
-            # func = shutil.copytree if os.path.isdir(path_to_f) else shutil.copy
-            # dest = build_path("misc/" + f)
-
-            # print(f"Copying {path_to_f} to {dest}")
-            # func(path_to_f, dest)
 
 
 def clean_logs():
@@ -458,19 +451,14 @@ def clean_logs():
     os.mkdir(log_directory)
 
 
-def filename_no_ext(path):
-    return os.path.splitext(path)[0]
+permitted_file = re.compile(r".*[^0-9]\.tex")
 
 
-permitted_file = re.compile(".*[^0-9]\\.tex")
-
-
-def clean_chap_folder(path):
-    print("Cleaning chapter folder %s" % path)
-    for f in os.listdir(path):
-        if not os.path.isdir(f) and not permitted_file.match(f):
+def clean_chap_folder(path: Path):
+    for p in path.iterdir():
+        if not p.is_dir() and not permitted_file.match(p.name):
             # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-            os.remove(os.path.join(path, f))
+            p.unlink()
 
 
 def clean_chapter_folders():
@@ -482,9 +470,7 @@ def clean_chapter_folders():
             clean_chap_folder(book_path(ch))
 
 
-chapter_name = (
-    ""  # If empty, builds as normal; if a chapter name, builds that particular chapter.
-)
+chapter_name = ""  # Builds as normal if empty, otherwise builds specific chapter
 chapter_folder = ""
 open_output_files = False  # Whether to open output files
 
@@ -577,12 +563,12 @@ interactive_task_list = ["clean", "all", "key", "textbook"]
 
 def create_needed_directories():
     for directory in needed_directories:
-        dirname = os.path.join(working_directory, *directory.split("/"))
-        if not os.path.exists(dirname):
+        dirname = working_directory / directory
+        if not dirname.exists():
             print(f"Folder {directory} does not exist!")
             os.mkdir(directory)
             print(f"Created directory {dirname}.")
-        elif not os.path.isdir(dirname):
+        elif not dirname.is_dir():
             raise RequirementError(f"{directory} exists and is not a folder!")
 
 
@@ -636,19 +622,15 @@ def interactive():
 
 
 chapter_list = sorted(
-    filter(
-        lambda p: os.path.isdir(os.path.join(book_directory, p)),
-        os.listdir(book_directory),
-    )
+    [d.stem for d in book_directory.glob("**/") if d.stem not in ("template", "book")]
 )
-chapter_list.remove("template")
 
 
 def get_chapter_name_from_arg(name):
     """Get the chapter name from a partial name, by matching the chapter which starts with the same character(s),
     with alphabetical precedence"""
     for ch in chapter_list:
-        if ch.startswith(name):
+        if ch.startswith(name) or (ch[0] == "0" and ch[1:].startswith(name)):
             return ch
 
     raise ValueError(f"No chapter beginning with '{name}' found")
@@ -688,7 +670,7 @@ if __name__ == "__main__":
 
         if args.chapter:
             chapter_name = get_chapter_name_from_arg(args.chapter)
-            chapter_path = os.path.join(book_directory, chapter_name)
+            chapter_path = book_directory / chapter_name
 
         if args.open:
             open_output_files = True
@@ -696,9 +678,9 @@ if __name__ == "__main__":
         check_things()
         run_operations(tasks)
 
+
 __all__ = [
     "simple_build_file",
-    "filename_no_ext",
     "book_path",
     "log_path",
     "build_path",
