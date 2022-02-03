@@ -1,11 +1,13 @@
 import re
+import os
+import os.path
 
 # This program compares the gatm textbook and the answer key to make sure that all questions correspond correctly.
 
-chapter_names = (
-    "trig_review itsasnap snap_flip rrg inf cmplx_geo vitamin_i mtrx_mult map_plane plane_rot mat_gen "
-    "comp_map inverses mod_m eigen".split(" ")
-)
+book_dir = "./book"
+
+chapter_names = [f for f in os.listdir("./book") if not os.path.isfile(os.path.join(book_dir, f)) and f not in [ "cover", "glossary", "credits" ]]
+chapter_names.sort()
 
 counters = {"enumi": 0, "enumii": 0, "enumiii": 0}
 
@@ -260,8 +262,8 @@ for chapter in chapter_names:
     # ii, iii enumerate
     enum_depth = 0
 
-    with open("%s/%s_source.tex" % (chapter, chapter), "r") as problem_file:
-        with open("%s/%s_answers.tex" % (chapter, chapter), "r") as answer_file:
+    with open(book_dir + "/%s/chapter.tex" % (chapter), "r") as problem_file:
+        with open(book_dir + "/%s/answers.tex" % (chapter), "r") as answer_file:
             file_string = problem_file.read()
             answer_file_string = answer_file.read()
 
