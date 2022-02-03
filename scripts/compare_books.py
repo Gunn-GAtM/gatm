@@ -6,7 +6,12 @@ import os.path
 
 book_dir = "./book"
 
-chapter_names = [f for f in os.listdir("./book") if not os.path.isfile(os.path.join(book_dir, f)) and f not in [ "cover", "glossary", "credits" ]]
+chapter_names = [
+    f
+    for f in os.listdir("./book")
+    if not os.path.isfile(os.path.join(book_dir, f))
+    and f not in ["cover", "glossary", "credits"]
+]
 chapter_names.sort()
 
 counters = {"enumi": 0, "enumii": 0, "enumiii": 0}
