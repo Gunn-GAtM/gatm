@@ -653,7 +653,7 @@ But what is the structure of this group? Is it again, the rotation group of the 
 
 We know that $R$ is a reflection of the $x$-coordinate, and thus through the $xy$-plane. $Q$ and $R$ are indeed symmetries of the cube, but since the full symmetry group of the cube (including reflections) has $48$ elements, we need something a bit more restrictive.
 
-This may seem like a leap in logic, but bear with me for a moment. Have you ever looked carefully at a standard volleyball, like the one in Figure~\ref{fig:standard_volleyball}? It has six sides, but the sides have an extra feature on them: the seams, which are directional.
+This is a leap in logic, but bear with me for a moment. Have you ever looked carefully at a standard volleyball, like the one in Figure~\ref{fig:standard_volleyball}? It has six sides, but the sides have extra features on them: the seams, which are directional.
 
 \begin{asydef}
 	import three;
@@ -723,8 +723,8 @@ for (int i = 0; i < 6; ++i) {
 
 drawSurroundingBoundary();
 \end{asy}
-\label{fig:standard_volleyball}
 \captionof{figure}{A standard volleyball, with its interesting striations.}
+\label{fig:standard_volleyball}
 \end{minipage}\hfill
 \begin{minipage}{0.4\textwidth}
 \begin{asy}[width=0.9\textwidth]
@@ -749,13 +749,13 @@ drawSurroundingBoundary();
 
 	drawSurroundingBoundary();
 \end{asy}
-\label{fig:bad_rotation}
 \captionof{figure}{This rotation of $90^\circ$ is a symmetry of the cube, but \textit{not} of the volleyball.}
+\label{fig:bad_rotation}
 \end{minipage}
 
-This is similar to a cube, in that it has six sides, but it has restricted symmetries. For example, we can't rotate it $90^\circ$ about an axis going straight through two opposite faces, since then the seams would not line up. This is shown in Figure~\ref{fig:bad_rotation}.
+This is similar to a cube, in that it has six sides, but it has fewer symmetries. For example, we can't rotate it $90^\circ$ about an axis going straight through two opposite faces, since then the seams would not line up. This is shown in Figure~\ref{fig:bad_rotation}.
 
-The motivation for analyzing this shape is that it \textit{does} accept the matrices $R$ and $Q$ as symmetries. $R$, or flipping the volleyball over a midplane between two opposite sides, is a symmetry, as shown in Figure~\ref{fig:symmetry_R}. $Q$, or rotating the volleyball $120^\circ$ around a vertex-vertex axis, is also a symmetry, as shown in Figure~\ref{fig:symmetry_Q};
+The motivation for analyzing this shape is that it \textit{does} accept the matrices $R$ and $Q$ as symmetries. $R$, or flipping the volleyball over a midplane between two opposite sides, is a symmetry, as shown in Figure~\ref{fig:symmetry_R}. $Q$, or rotating the volleyball $120^\circ$ around a vertex-vertex axis, is also a symmetry, as shown in Figure~\ref{fig:symmetry_Q}.
 
 \begin{minipage}{0.4\textwidth}
 \begin{asy}[width=0.9\textwidth]
@@ -797,8 +797,8 @@ The motivation for analyzing this shape is that it \textit{does} accept the matr
 	label("$x$",(0,1.5,0),E);
 	label("$z$",(0,0,2),N);
 \end{asy}
-\label{fig:symmetry_R}
 \captionof{figure}{$R$, a reflection through the $yz$-plane, is a symmetry of the volleyball.}
+\label{fig:symmetry_R}
 \end{minipage}\hfill
 \begin{minipage}{0.4\textwidth}
 \begin{asy}[width=0.9\textwidth]
@@ -830,8 +830,8 @@ The motivation for analyzing this shape is that it \textit{does} accept the matr
 	drawSurroundingBoundary();
 	label("$l$", (2,2,2), E);
 \end{asy}
+    \captionof{figure}{$Q$, a $120^\circ$ rotation around the axis $l$, is a symmetry of the volleyball.}
 \label{fig:symmetry_Q}
-\captionof{figure}{$Q$, a rotation around the axis $l$, is a symmetry of the volleyball.}
 \end{minipage}
 
 Indeed, since there are two possible directions for each set of seams, it seems like this should have half the symmetries of the cube. To make this concrete, we observe that there are six faces. Each face can be oriented to face the top, and there are two choices---not four---for its orientation, since it only has bilateral symmetry and not four-fold symmetry like a square. This gives $6\cdot 2$ choices. But we can also mirror the volleyball into the ``mirror world,'' which multiplies the number of choices by $2$. Thus, there are $6\cdot 2\cdot 2=24$ symmetries of the volleyball.
