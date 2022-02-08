@@ -91,7 +91,7 @@
 					// Triangles D and E have a rotation, so we draw a fancy little rotation icon above them
 					if (i == 4 || i == 5) {
 						// Constructing the rotation icon's parameters
-						real angle = (i == 4) ? 2 * pi / 3 : 4 * pi / 3;
+						real angle = (i == 4) ? 2 * pi / 3 : -2 * pi / 3;
 						real radius = 0.8;
 						pair center = (2.4 * i + sqrt(3) / 2, 1.7);
 						pair end = (center + radius * cis(angle));
@@ -100,7 +100,7 @@
 						draw((center + radius * cis(0)) .. (center + radius * cis(angle / 2)) .. end -- end, EndArrow);
 
 						// The phantom degrees are used to keep the label's number centered
-						label((i == 4) ? "$\phantom{\degree}120\degree$" : "$\phantom{\degree}240\degree$", center);
+						label((i == 4) ? "$\phantom{\degree}120\degree$" : "$\phantom{\degree}120\degree$", center);
 					}
 
 					// Draw the triangle, offset by a bit, and label it below
@@ -124,7 +124,7 @@
 
 % VOCAB: DIHEDRAL GROUP, ISOMETRY, ISOMORPHIC (probs gonna change?), GENERATOR
 
-\noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ or $240\degree{}$ counterclockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
+\noindent Please use a paper or cardboard triangle to help visualize the next concept. Cut out an equilateral triangle, label its front vertices $1$, $2$, and $3$ as shown in Figure~\ref{fig:paper_triangle_sf}, and place it down in the shown orientation. Consider the possible ways to transform this triangle, while preserving the position of its shape on the plane. From this starting position, you can reflect the triangle over one of three axes: $A$, $B$, or $C$, as shown in Figure~\ref{fig:triangle_reflections_sf}. You could also rotate the triangle $120\degree{}$ counterclockwise or clockwise. The final possible positions are shown in Figure~\ref{fig:triangle_isos_sf}.
 
 Notice that each position corresponds to a different transformation which preserves the triangle's location. For example, $I$ means ``leave the triangle alone,'' $A$ means ``flip the triangle about the $A$ axis,'' and $D$ means ``rotate the triangle $120\degree{}$ counterclockwise.'' We can combine these operations to form other operations by sequencing them, which we write like multiplication. We evaluate them right-to-left as we did for the snap group. For example, $AD=B$, as shown in Figure~\ref{fig:aid_is_b}.
 
