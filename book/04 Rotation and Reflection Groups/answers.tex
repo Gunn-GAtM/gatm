@@ -20,7 +20,7 @@ There are a couple ways to think about this, but an intuitive way is to consider
 
 Conjecture: The dihedral groups of a shape has twice the order of its rotation group.
 
-Informal Justification: A shape can be flipped or not, and it can have whatever rotational isometries applied to it whether it's flipped or not. Thus, the dihedral group allows for twice the number of elements as the rotation group.
+Informal justification: A shape can be flipped or not, and it can have whatever rotational isometries applied to it whether it's flipped or not. Thus, the dihedral group allows for twice the number of elements as the rotation group.
 
 \begin{outer_problem}
 \item Let $r$ be a $180^{\circ}$ rotation, $x$ be a reflection over the $x$-axis, and $y$ be a reflection over the $y$-axis. Write a table for the dihedral group of the rectangle, recalling that the allowed isometries are reflections and rotations. How does this table differ from the dihedral group of the equilateral triangle? \label{prob:rectangle_group}
@@ -95,7 +95,7 @@ Informal Justification: A shape can be flipped or not, and it can have whatever 
 	\vspace*{-2\baselineskip}
 	\begin{center}
 		\begin{minipage}[t]{\textwidth}
-			\captionof{figure}{A rectangle AMBULATES and FLIPS around.}
+			\captionof{figure}{A rectangle joyously rotates and flips around.}
 			\label{fig:p_rectangle}
 		\end{minipage}
 	\end{center}
@@ -135,7 +135,7 @@ While this has the same order as the rectangle's dihedral group, it has a differ
 \noindent\textbf{\textit{For each of the following problems, find the following:}}
 
 \begin{enumerate}[label=(\alph*)]
-\item The number of elements; this is known as the \textbf{order}. More formally known as \textbf{cardinality}
+\item The number of elements, also known as the \textbf{order} or \textbf{cardinality}
 \item If order $< 10$, name the set of elements; otherwise, explain how you know the order
 \item A smallest possible \textbf{generating set}; in other words, a list of elements which generate a group\footnote{There may be multiple generating sets of the same size.}
 \item Whether the group is \textbf{commutative}; in other words, whether its operation $\cdot$ satisfies $X\cdot Y=Y\cdot X$ for all $X,Y$
@@ -149,7 +149,7 @@ While this has the same order as the rectangle's dihedral group, it has a differ
 \item Number of elements
 \end{inner_problem}
 
-\noindent This group has two elements, the identity and the rotation of $180^\circ$.
+\noindent This group has two elements: the identity and the rotation of $180^\circ$.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
@@ -190,10 +190,10 @@ While this has the same order as the rectangle's dihedral group, it has a differ
 			
 			draw(Ap--Bp--Cp--Dp--cycle);
 			
-			label("$C'$", Ap, SW);
-			label("$D'$", Bp, SE);
-			label("$A'$", Cp, NE);
-			label("$B'$", Dp, NW);
+			label("$C$", Ap, SW);
+			label("$D$", Bp, SE);
+			label("$A$", Cp, NE);
+			label("$B$", Dp, NW);
 			
 			label("$r$", so*(1,-0.5));
 			\end{asy}
@@ -219,13 +219,13 @@ While this has the same order as the rectangle's dihedral group, it has a differ
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent The group is commutative, since it's only comprised of rotations, which commute.
+\noindent The group is commutative, since it only contains rotations, which commute.
 
 \begin{outer_problem}
 \item Rectangle under reflection
 \end{outer_problem}
 
-\noindent We already considered this in Problem 3.
+\noindent We already considered this group in Problem 3.
 
 \begin{inner_problem}[start=1]
 \item Number of elements
@@ -245,13 +245,13 @@ While this has the same order as the rectangle's dihedral group, it has a differ
 
 \noindent (Answers may vary.)
 
-$\{r,x\}$, $\{r,y\}$, and $\{x,y\}$ all generate the group. No single element, however, can generate the group.
+$\{r,x\}$, $\{r,y\}$, and $\{x,y\}$ all generate the group. No single element, however, can generate the group, because it is not a cyclic group.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent This group is commutative.
+\noindent This group may be manually verified to be commutative.
 
 \begin{outer_problem}
 \item Square under rotation
@@ -277,13 +277,13 @@ $\{r,x\}$, $\{r,y\}$, and $\{x,y\}$ all generate the group. No single element, h
 
 \noindent (Answers may vary.)
 
-Both $\{r\}$ and $\{r^3\}$ generate the group, because $1,3$ are coprime to $4$.
+Both $\{r\}$ and $\{r^3\}$ generate the group. $r^2$ alone cannot generate the group, as it cannot achieve $r$ or $r^3$.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent The group is commutative, since it consists of all rotations.
+\noindent The group is commutative, since it is a cyclic group.
 
 \begin{outer_problem}
 \item Square under reflection
@@ -378,7 +378,7 @@ Each of these elements is shown in Figure~\ref{fig:square_reflect}.
 
 \noindent(Answers may vary.)
 
-Any pair of a rotation and flip will generate the set, except for $\{r^2,fr^2\}$ and $\{r^2,f\}$; these will produce the rectangle group instead. Any pair of two flips, except for $\{f,fr^2\}$, will also work. As an example of both of these categories, both $\{r^2,fr^3\}$ and $\{f,fr\}$ will generate the group.
+Any pair of a rotation and flip will generate the set, except for $\{r^2,fr^2\}$ and $\{r^2,f\}$; these will produce the rectangle group instead. Any pair of two flips, except for $\{f,fr^2\}$, will also work. As an example of both of these categories, both $\{r^2,fr^3\}$ and $\{f,fr\}$ will generate the group. A single element cannot generate the whole group, because the group is not cyclic.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
@@ -396,7 +396,7 @@ Any pair of a rotation and flip will generate the set, except for $\{r^2,fr^2\}$
 \item Number of elements
 \end{inner_problem}
 
-\noindent This is a bit more difficult than the previous questions, because we need to understand what elements are possible. We can rotate the prism about its central axis, which an action analogous to just rotating a square: $4$ elements. But we can also rotate the prism $180^\circ$ on a axis through the middle (pictures are shown in the next subpart). This switches the top square face with the bottom face, giving another $4$ elements. In total, we have $8$ elements.
+\noindent This question is a bit more difficult than the previous questions. We can rotate the prism about its central axis, which an action analogous to just rotating a square: $4$ elements. But we can also rotate the prism $180^\circ$ on a axis through the middle (pictures are shown in the next part). This action switches the top square face with the bottom face, giving another $4$ elements. In total, therefore, we have $8$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
@@ -623,7 +623,7 @@ The elements with $b$ in their name are equivalent to the reflections in the dih
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent This group is not commutative. For example, $ba=ba$, but $ab=ba^3$.
+\noindent This group is not commutative. For example, $ab=ba^3\neq ba$, so $a$ and $b$ do not commute.
 
 \begin{outer_problem}
 \item Square prism under reflection
@@ -633,7 +633,7 @@ The elements with $b$ in their name are equivalent to the reflections in the dih
 \item Number of elements
 \end{inner_problem}
 
-\noindent If the previous group---the rotation group of the square prism---had $8$ elements, then this group should have $16$ elements.
+\noindent If the previous group---the rotation group of the square prism---had $8$ elements, then this group should have $2\cdot 8 = 16$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
@@ -649,7 +649,7 @@ The elements with $b$ in their name are equivalent to the reflections in the dih
 
 Since we could generate the previous group with (most) pairs of $\{ba^n,a^m\}$, or (most) pairs of $\{a^n,a^m\}$, we could just add another element $c$ which is a true geometric reflection about, say, the midplane $P$ between $\square DCD'C'$ and $\square ABB'A$ as shown in Figure~\ref{fig:midplane_elem_c}.
 
-Thus, $\{a,b,c\}$ can generate the group. You can prove that two generators are impossible, but the proof either requires making the group table or some more sophisticated abstract algebra. I will give the latter for those who are well-versed in group theory already, but it will probably be inaccessible to most.
+Thus, $\{a,b,c\}$ can generate the group. You can \textit{prove} that two generators are impossible, but the proof either requires making the group table or some more sophisticated abstract algebra. Intuitively, the proof involves showing that there are three properties that each need to be permuted separately by some element---a rotation, a reflection about a vertical axis, and a reflection about a horizontal axis. Note that no pair of these actions can generate the other. I will give a higher-level explanation for those who are well-versed in group theory already, but it will probably be nonsense to most. 
 
 The rotation group generated by $\{a,b\}$ is $D_4$. Define a new element $d$ which is the reflection through the midplane $P$ between the two square faces.\footnote{For the curious, $d=cba^2$.} This is crudely shown in Figure~\ref{fig:midplane_elem_d}; I couldn't be bothered to make a nicer figure. Then the reflection group generated by $\{d\}$ is $Z_2$. Furthermore, the operation sets $\{a,b\}$ and $\{d\}$ are separable, in that $a^xb^yd=da^xb^y\quad$\footnote{This can be shown concretely by simply showing geometrically that $ad=da$ and $bd=db$.}. Thus, the group $G$ described in this problem is (isomorphic to) the direct product:
 
@@ -779,13 +779,13 @@ $$D_4/N = \{\{1,a^2\}, \{a,a^3\}, \{b,ba^2\}, \{ba, ba^3\}\}.$$
 
 $$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} = \{b^{x_1+x_2}a^{y_1+y_2},b^{x_1+x_2}a^{y_1+y_2+2}\}.$$
 
-\noindent Therefore, $$D_4/N \cong Z_2 \times Z_2,$$ so $$Z_2 \times Z_2 \times Z_2 \triangleleft D_4\times Z_2=G.$$ Since the minimal generating set of $Z_2\times Z_2\times Z_2$ is $3$, $G$'s generating set is at least $3$. But we've already found the set $\{a,b,c\}$ which generates $G$!\footnote{$\{a,b,d\}$ also generates $G$.} Thus, it is minimal.
+\noindent Therefore, $$D_4/N \cong Z_2 \times Z_2,$$ so $$Z_2 \times Z_2 \times Z_2 \triangleleft D_4\times Z_2=G.$$ Since the minimal generating set of $Z_2\times Z_2\times Z_2$ is $3$, $G$'s generating set has at least $3$ elements. But we've already found the set $\{a,b,c\}$ which generates $G$!\footnote{$\{a,b,d\}$ also generates $G$.} Thus, it is minimal.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent As we found in the previous problem, the rotation group of the square prism is not commutative, and since that's a subgroup of this group, this group certainly isn't commutative.
+\noindent As we found in the previous problem, the rotation group of the square prism is not commutative, and since that's a subgroup of this group, this group certainly isn't commutative either.
 
 \begin{outer_problem}
 \item Regular pentagon under rotation
@@ -795,7 +795,7 @@ $$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} =
 \item Number of elements
 \end{inner_problem}
 
-\noindent This is just the cyclic group of order $5$, so there are $5$ elements.
+\noindent This group is just the cyclic group of order $5$, so there are $5$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
@@ -858,7 +858,7 @@ $$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} =
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent The group is indeed commutative, since all operations are rotations.
+\noindent The group is indeed commutative, since all operations are two-dimensional rotations. (Note that in 3D, however, rotations do not commute!)
 
 \begin{outer_problem}
 \item Regular pentagon under reflection
@@ -868,7 +868,7 @@ $$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} =
 \item Number of elements
 \end{inner_problem}
 
-\noindent This is the dihedral group of the pentagon, which has $2\cdots 5=10$ elements.
+\noindent This is the dihedral group of the pentagon, which has $2\cdot 5=10$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
@@ -892,19 +892,19 @@ $$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} =
 \item Regular pentagonal prism under rotation
 \end{outer_problem}
 
-\noindent This is isomorphic to the dihedral group of the pentagon, which is Problem 12. The reason is the same as for Problem 9's dependence on 8, thus I will not explain it.
+\noindent This group is isomorphic to the dihedral group of the pentagon, which is Problem 12. The reason is the same as for Problem 9's dependence on 8---see that answer for details.
 
 \begin{outer_problem}
 \item Regular pentagonal prism under reflection
 \end{outer_problem}
 
-\noindent This is akin to Problem 10.
+\noindent This problem is akin to Problem 10.
 
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
 
-\noindent$2\cdot 10=20.$
+\noindent$2\cdot 10=20$.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
@@ -918,7 +918,7 @@ $$\{b^{x_1}a^{y_1},b^{x_1}a^{y_1+2}\}\cdot \{b^{x_2}a^{y_2},b^{x_1}a^{y_2+2}\} =
 
 \noindent If $a$ is a rotation of $72^\circ$ about the central axis, $b$ is a rotation of $180^\circ$ about a horizontal axis, and $d$ is a reflection across the midplane between the two pentagonal faces, then $\{a,b,d\}$ generates the set, since $\{a,b\}$ generates all rotations and $d$ turns them into their mirror images. But this isn't the right answer.
 
-Are there any smaller generating sets? The previous trick asserting no using more advanced abstract algebra doesn't actually work.\footnote{If you understand it, it's because $Z_2\times Z_2\times Z_2$ isn't a quotient of this group, since this group $D_5 \times Z_2$ has order $20$ which is not divisible by $8$.} We have $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$, so that we can potentially generate $a$, $b$ and $d$.
+Are there any smaller generating sets? We have $ad=da$ and $bd=db$ (you can verify this geometrically). So to have a two element subgroup we likely need something like $a^nd$ and $ba^m$ for some integers $n,m$, so that we can potentially generate $a$, $b$ and $d$.
 
 Let's try $ad$ and $b$. Taking successive powers of $ad$, we get
 
@@ -957,19 +957,19 @@ This is a hard problem. Don't worry if you didn't get it.
 \item Regular tetrahedron (triangular pyramid) under rotation
 \end{outer_problem}
 
-\noindent This is isomorphic to a subgroup of $S_4$, the snap group of order $24$, and has order $12$. This group is actually called the alternating group $A_4$, and consists of even permutations of $(1,2,3,4)$. An even permutation is a permutation generated by only swapping two elements at once. 
+\noindent This is isomorphic to a \textit{subgroup} of $S_4$ (order $24$), and has order $12$. This group is actually called the alternating group $A_4$, and consists of even permutations of $(1,2,3,4)$. An even permutation is a permutation generated by swapping an even number of pairs of elements. For example, $(1,2,4,3)$ is an odd permutation (involving one swap), while $(2,1,4,3)$ is an even permutation (involving two swaps).\footnote{The parity of a permutation is of great importance in group theory; Wikipedia has a decent article on the topic.}
 
 \begin{inner_problem}[start=1]
 \item Number of elements
 \end{inner_problem}
 
-\noindent The snap group includes reflections, but this does not: thus, this group has $\frac{4!}{2}=12$ elements.
+\noindent The snap group includes reflections, but this group does not: Thus, this group has $\frac{4!}{2}=12$ elements.
 
 \begin{inner_problem}
 \item If order $< 10$, the set of elements; otherwise, an explanation of how you know the order
 \end{inner_problem}
 
-\noindent We know the order because this is the rotation group of a tetrahedron, and the reflection group of a tetrahedron has $24$ elements, so this must have half that.
+\noindent We know the order because this is the rotation group of a tetrahedron, and the reflection group of a tetrahedron has $24$ elements, so this groups must have half that count.
 
 \begin{inner_problem}
 \item A smallest possible \textbf{generating set}
@@ -1046,7 +1046,7 @@ void draw_axis(string name, pair dir, triple a, triple b, real stretch=0.3) {
 
 \noindent We can rotate by $120^\circ$ or $240^\circ$ (counterclockwise as viewed from the vertex) about any $v_i$, but only by $180^\circ$ about any $e_i$. Along with the identity, this gives all $2\cdot 4+3+1=12$ elements.
 
-To make manipulating these elements easier, treat them as moving elements in a list. We name this list with indices as shown in Figure~\ref{fig:tetra_indices}. Thus, the identity element $I$ is $(A,B,C,D)$. A rotation of $240^\circ$ around $v_A$ swaps vertices in positions $(3\quad 4)$ then $(2\quad 3)$, so $v_A=(A,D,B,C)$ as shown in Figure~\ref{fig:v_a_repr}.
+To make manipulating these elements easier, treat them as permuting vertices in a list. We name this list as shown in Figure~\ref{fig:tetra_indices}. Thus, the identity element $I$ is $(A,B,C,D)$. A rotation of $240^\circ$ around $v_A$ swaps vertices in positions $(3\quad 4)$ then $(2\quad 3)$, so $v_A=(A,D,B,C)$ as shown in Figure~\ref{fig:v_a_repr}.
 
 If we take a look at an edge rotation, say $e_1$, you will see it also swaps two vertices: in this case, $(3\quad 4)$ and $(1\quad 2)$. In general, any edge rotation or vertex rotation will swap two vertices---you can see this by plain symmetry or if you want, working it out for each rotation.
 
@@ -1112,7 +1112,7 @@ If we take a look at an edge rotation, say $e_1$, you will see it also swaps two
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent We now have a more abstract representation of this group: namely, it is the group of \textit{even permutations} of $(A,B,C,D)$. Even permutations are permutations made by swapping two pairs at a time. For example, $(B,A,D,C)$ is even, but $(A,B,D,C)$ is not. The group operation is composing two permutations by chaining them together. Note that the identity, $(A,B,C,D)$ is considered even, just as $0$ is considered even.
+\noindent We now have a more abstract representation of this group: namely, it is the group of even permutations of $(A,B,C,D)$. For example, $(B,A,D,C)$ is even, but $(A,B,D,C)$ is not. The group operation is composing two permutations by chaining them together. Note that the identity, $(A,B,C,D)$ is considered even, just as $0$ is considered even.
 
 One element is clearly not enough, because this group is not cyclic. Can we do it in two elements though?
 
@@ -1128,13 +1128,13 @@ ba^2&=(2,4,3,1), &&\cancel{b^2a^2}&&=ab, &&\cancel{bab}&&=a^2, &&\cancel{b^2ab}&
 
 \noindent We have successfully generated all $12$ elements with the set $\{a,b\}$. Thus, a two element generating set is sufficient! Interestingly, this means you can turn a tetrahedron however you want by holding it at two corners and twisting it with each.
 
-For the curious, this group is known as the alternating group $A_4$.
+For the curious, this group is the alternating group $A_4$.
 
 \begin{inner_problem}
 \item Whether the group is \textbf{commutative}
 \end{inner_problem}
 
-\noindent The group is clearly not commutative, since $ab\neq ba$.
+\noindent The group is clearly not commutative, since $ab\neq ba$. Unlike in two dimensions, rotations in 3D generally do not commute!
 
 \begin{outer_problem}
 \item Regular tetrahedron under reflection
@@ -1158,7 +1158,7 @@ For the curious, this group is known as the alternating group $A_4$.
 \item A smallest possible \textbf{generating set}
 \end{inner_problem}
 
-\noindent This is tricky.
+\noindent This problem is tricky.
 
 The obvious thing to do is keep $\{a,b\}$ from the previous problem and add some reflection $c$. Then $\{a,b,c\}$ has all $24$ elements, since $\{a,b\}$ makes $12$ elements and $c$ makes a copy of each ``in the mirror world.'' This is not, however, the right answer.
 
@@ -1178,9 +1178,9 @@ In more mathematical terms, we can swap indices $i$ and $i+1$, where $1\leq i \l
 
 $$j^{i-1}kj^{5-i}.$$
 
-\noindent Intuitively, if you can swap any two adjacent elements, you can make any permutations. The proof of this is pretty standard and outside the scope of this answer key.
+\noindent Intuitively, if you can swap any two \textit{adjacent} elements, you can make any permutations---not just the even ones---and thus generate the full group.
 
-For fun, let's see what the elements $j$ and $k$ actually are, operating on the tetrahedron.
+Let's see what the elements $j$ and $k$ actually are, operating on the tetrahedron.
 
 \begin{figure}[h]
 	\begin{center}
@@ -1386,9 +1386,9 @@ void drawCube(picture pic, string[] labels) {
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent This is tough until you make a key observation. If we label space-diagonally opposite vertices (that is, vertices which don't share a face) with the same number, as shown in Figure~\ref{fig:cube_vertices_label}, then we can easily enumerate valid rotations.
+\noindent This problem is tough without a simplifying observation. If we label space-diagonally opposite vertices (in other words, vertices which don't share a face) with the same number, as shown in Figure~\ref{fig:cube_vertices_label}, then we can easily enumerate valid rotations.
 
-The front face starts off saying ``1,2,3,4.'' I claim that the $4!$ permutations of these four labels on the front face yields every rotation, and only rotations. This can be manually verified, but the higher-level argument isn't too bad.
+The front face starts off saying ``1,2,3,4.'' I claim that the $4!$ permutations of these four labels on the front face yields every rotation, and only rotations.
 
 First, note that you will always see the numbers ``1,2,3,4`` in \textit{some order} on the front face; you cannot see two of one number because all numbers are placed on diagonals of each other, and never share a side.
 
@@ -1462,9 +1462,9 @@ Third, we demonstrate that the permutation of labels can always be represented a
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent We have demonstrated that every permutation of the front face labels 1. creates a unique orientation of the cube and 2. that orientation is a rotations. Since there are $24$ unique permutations and $24$ unique rotations, every rotation has exactly one corresponding permutation and vice versa. We can now construct an isomorphism! The set of label permutations under the operation of composing permutations (as we did with the tetrahedron) and the set of rotations under the operation of composing rotations are \textit{isomorphic}. In symbols, $S_4\cong G$, our group.
+\noindent We have demonstrated that every permutation of the front face labels creates a unique orientation of the cube, and that each such orientation is a rotation. Since there are $24$ unique permutations and $24$ unique rotations, every rotation has exactly one corresponding permutation and vice versa. We can now construct an isomorphism! The set of label permutations under the operation of composing permutations (as we did with the tetrahedron) and the set of rotations under the operation of composing rotations are isomorphic.
 
-So the group of rotations of a cube is actually $S_4$, the permutation group of $4$ elements. I find this incredible.
+So the group of rotations of a cube is actually $S_4$, the permutation group of $4$ elements. (I find this fact incredible.)
 
 Back to the main question: what is the minimal generating set? In the previous question, we found that the permutations $(4,1,2,3)$---cycling all elements forward---and $(2,1,3,4)$---swapping the first two elements---generate $S_4$. For the cube, those are two rotations $a$ and $b$ as shown in Figure~\ref{fig:cube_generating_rotations}.
 
@@ -1555,7 +1555,7 @@ Back to the main question: what is the minimal generating set? In the previous q
 
 \noindent If $c$ is a reflection about, say, the origin of the cube, then $\{a,b,c\}$ (where $a,b$ are the rotations from before) would generate the whole group, since $\{a,b\}$ generates all rotations and $\{c\}$ generates their respective reflections. But can we do it in two?
 
-As usual it seems, the answer is yes! The proof is not mine, because I couldn't figure it out, but due to math.SE user \textbf{verret}. It does require some more advanced concepts, so it is probably inaccessible to most.
+The answer is yes! The proof is not mine, because I couldn't figure it out, but due to math.SE user \textbf{verret}. It does require some more advanced concepts, so it is probably inaccessible to most.
 
 The group we've been analyzing is $S_4\times Z_2$. Let $S_4$ be permuting elements $\{1,2,3,4\}$ and $Z_2$ be permuting elements $\{5,6\}$ (note that $Z_2=S_2$). Then given two elements $g=(4,1,2,3,5,6)$ in our notation, meaning that indices $(1,2,3,4)$ are cycled, and $h=(3,1,2,4,6,5)$, meaning that indices $(1,2,3)$ and $(5,6)$ are cycled, we can construct the group.
 
