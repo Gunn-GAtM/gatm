@@ -194,7 +194,7 @@ We don't have a rule yet for applying DeMoivre's theorem for division, but we ca
 \item Compare and contrast the methods of division in Problems~\ref{prob:div_1} and \ref{prob:div_2}. Which is more convenient? Or does it depend on the circumstance?
 \end{outer_problem}
 
-Opinions may vary, but 6 is definitely faster to do if the dividend and divisor are already in $\cis$ form. 5 is likely convenient than converting from rectangular to $\cis$, then back to rectangular.
+Opinions may vary, but Problem~\ref{prob:div_1}'s method is definitely faster to do if the dividend and divisor are already in $\cis$ form. Problem~\ref{prob:div_2}'s is likely more convenient than converting from rectangular to $\cis$, then back to rectangular.
 
 \begin{outer_problem}
 \item
@@ -232,7 +232,7 @@ We have $1+i=\sqrt{2} \cis \frac{\pi}{4}$, since it forms a $45^\circ$ angle wit
 
 \begin{align*}
 (1+i)^{13} &= \left(\sqrt{2} \cis \frac{\pi}{4}\right)^{13} \\
-&= (\sqrt{2})^{13} \cis \frac{13\pi}{4} \\
+&= \left(\sqrt{2}\right)^{13} \cis \frac{13\pi}{4} \\
 &= 64\sqrt{2} \left(\cos \frac{5\pi}{4} + i\sin \frac{5\pi}{4}\right) \\
 &= 64\sqrt{2} \left(-\frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}}i\right) \\
 &= 64 (-1-i) \\
@@ -295,7 +295,7 @@ draw((0,-0.6)--(0,2),Arrow);
 \label{fig:add_vectors_prove_expr}
 \end{center}
 
-The drawing is shown in Figure~\ref{fig:add_vectors_prove_expr}. The first vector, starting at the origin, is $\cis \frac{\pi}{4}$. The second vector, starting at the endpoint of the first vector, is $\cis \frac{\pi}{2}$. The origin, along with points $w$ and $z$, form an isosceles triangle. Furthermore, the apex of this triangle, at $w$, has a measure of $\pi - \frac{\pi}{4} = \frac{3\pi}{4}$ radians. Thus, the base angles of the isosceles triangle are
+The drawing is shown in Figure~\ref{fig:add_vectors_prove_expr}. The first vector, starting at the origin, is $\cis \frac{\pi}{4}$. The second vector, starting at the endpoint of the first vector, is $\cis \frac{\pi}{2}$. The origin, along with points $w$ and $z$, form an isosceles triangle. Furthermore, the apex of this triangle, at $w$, has an argument of $\pi - \frac{\pi}{4} = \frac{3\pi}{4}$ radians. Thus, the base angles of the isosceles triangle are
 
 $$\frac{\pi - \frac{3\pi}{4}}{2} = \frac{\pi}{8}.$$
 
@@ -1398,7 +1398,7 @@ Let $z=a+bi=\cis \theta$; note that $r=1$ since $|z|=1$. We know that $\cos\Arg 
 
 This matches our expression using half-angle for $\left|2\sin\left(\frac{\Arg z}{2}\right)\right|$.
 
-Personally, I strongly prefer the algebraic solution because it is quick, easy to understand, and truly complete. Nonetheless, the geometric solution gives a better idea of \textit{why} the equation is true.
+I have a slight preference for the algebraic solution because it is quick, easy to understand, and mathematically complete. Nonetheless, the geometric solution gives a better idea of \textit{why} the equation is true.
 
 \begin{outer_problem}
 \item
@@ -1427,7 +1427,7 @@ If $a-1=a$, then $-1=0$, which is dumb. Thus, $a-1=-a$, so $a=\frac{1}{2}$ and i
 \item How many solutions does this equation have?
 \end{inner_problem}
 
-We have $(z-1)^{10}=z^{10}$, so $(z-1)^{10}-z^{10} = P(z) = 0$, where $P$ is a polynomial of degree $9$. Thus, by the Fundamental Theorem of Algebra, there are $9$ solutions... if there aren't any repeated roots. So this is only truly complete if we know there are no roots which appear in the factorization twice or more. Unfortunately, I can't think of a way to do this without calculus\footnote{For that route, we simply check that $P''(z)=0$ for all solutions, which isn't pleasant until a clever rearrangement and substitution. Try it if you know how!}.
+We have $(z-1)^{10}=z^{10}$, so $(z-1)^{10}-z^{10} = P(z) = 0$, where $P$ is a polynomial of degree $9$. Thus, by the Fundamental Theorem of Algebra, there are $9$ solutions... if there aren't any repeated roots. So this is only truly complete if we know there are no roots which appear in the factorization twice or more. Unfortunately, I can't think of a way to do this without calculus.\footnote{For that route, we simply check that $P''(z)\neq 0$ for all solutions, which isn't pleasant until a clever rearrangement and substitution. Try it if you know how!}
 
 Let's start over. We should use the fact that $\Real(z)=\frac{1}{2}$. A simple diagram reveals that $z$ and $z-1$ are symmetric about the $y$-axis, since $\Real(z) = \Real\left(\frac{1}{2}+bi\right) = -\Real\left(\frac{1}{2}+bi-1\right)$. The diagram is shown in Figure~\ref{fig:z_and_one_minus_z}.
 
@@ -1648,7 +1648,7 @@ s&=\sqrt[3]{q \pm \sqrt{q^2 - p^3}}, \\
 t&=\sqrt[3]{q \mp \sqrt{q^2 - p^3}}. \\
 \end{align*}
 
-We must keep in mind, however, that over the complex numbers, cube rooting has $3$ possible values. Thus, the three solutions for $s$ and $t$ are
+We must keep in mind, however, that over the complex numbers, taking cube roots outputs $3$ possible values. Thus, the three solutions for $s$ and $t$ are
 
 \begin{align*}
 s&=\sqrt[3]{q \pm \sqrt{q^2 - p^3}}\cdot \cis \frac{2\pi k}{3}, \\
@@ -1733,6 +1733,6 @@ The steps to solving an arbitrary cubic are the following:
 \item Substitute this value of $\theta$ into $x=y-\frac{b}{3}=2\sqrt{p}\cos\left(\frac{1}{3}(\theta+2\pi n)\right)-\frac{b}{3}$, where $n\in \{0,1,2\}$.
 \end{enumerate}
 
-These two problems were a doozy!
+These two problems were a doozy! This method of solving the cubic was discovered French mathematician François Viète in the late 16th century. It also has a very pretty geometric interpretation. Wikipedia gives excellent details here: https://en.wikipedia.org/wiki/Cubic_equation#Geometric_interpretation_of_the_roots .
 
 \end{document}
