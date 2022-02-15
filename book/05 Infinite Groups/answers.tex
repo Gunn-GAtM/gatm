@@ -182,11 +182,11 @@ Here is the route we will take:
 $$\mathbb{R} \leftrightarrow [0,1) \leftrightarrow [0,1)^2 \leftrightarrow \mathbb{R}^2.$$
 \end{enumerate}
 
-\noindent Step 1: The most straight forward way to do this is to show there is an injection from $[0,1)$ into $\mathbb{R}$, and vice versa.\footnote{Again, this uses the Cantor-Schröder-Bernstein theorem.} We have $f(x)=x$ as a straightforward injection from $[0,1)$ into $\mathbb{R}$, and
+\noindent Step 1: The most straight forward way to do this is to show there is an injection from $[0,1)$ into $\mathbb{R}$, and vice versa.\footnote{Again, this uses the Cantor-Schröder-Bernstein theorem.} We have $f(x)=x$ as a straightforward injection from $[0,1)$ into $\mathbb{R}$, and the logistic function
 
 $$g(x)=\frac{1}{1+e^{-x}}$$
 
-\noindent as an injection $g\, : \, \mathbb{R} \to [0,1)$. Thus, there exists a one-to-one correspondence $H$ between $\mathbb{R}$ and $[0,1)$.
+\noindent as an injection $g\, : \, \mathbb{R} \to [0,1)$. (In fact, the range of the logistic function is only $(0,1)$.) Thus, there exists a one-to-one correspondence $H$ between $\mathbb{R}$ and $[0,1)$.
 
 Step 2: If $H$ is the function from Step 1, we have
 
@@ -198,11 +198,11 @@ $$J(a,b)=(H(a),H(b))$$
 
 $$k_1(x)=(x, 0).$$
 
-\noindent Step 4: An injection from $[0,1)^2$ into $[0,1)$ is the more challenging portion. The basic idea is to interleave digits like so:
+\noindent Step 4: An injection from $[0,1)^2$ into $[0,1)$ is more challenging. One idea is to interleave digits like so:
 
 $$(0.123456789..., 0.314159265)\mathop{\to} ^ {k_2} 0.132134415569728695...$$
 
-\noindent The main issue with this construction is that $0.5=0.4999...$ gives two different outputs, so this mapping isn't even a function:
+\noindent The main issue with this construction is that the two representations of $0.5=0.4999...$ give two different outputs, so this mapping isn't even a proper function:
 
 $$(0.5,0.0)\to 0.50$$
 $$(0.499...,0.0)\to 0.409090... \neq 0.50.$$
@@ -219,19 +219,19 @@ We chain the correspondences, finally proving that there exists a one-to-one cor
 
 $$\mathbb{R} \mathop{\leftrightarrow} ^{H} [0,1) \mathop{\leftrightarrow} ^ {K} [0,1)^2 \mathop{\leftrightarrow} ^ {J} \mathbb{R}^2.$$
 
-\noindent Thus, $|\mathbb{R}|=\left|\mathbb{R}^2\right|$.
+\noindent Thus, $|\mathbb{R}|=\left|\mathbb{R}^2\right|$. Fascinating! The philosophical interpretation of this mathematical statement is up for debate.
 
 \begin{inner_problem}
 \item real numbers, $\mathbb{R}$ vs. points on a line
 \end{inner_problem}
 
-\noindent This is pretty straightforward if you think of points on a line as points on a number line. We arbitrarily choose a point on the line for $0$ and a point for $1$. In this regime, each point on the line corresponds with a unique real number. Thus, $|\mathbb{R}| = |\text{points on a line}|$.
+\noindent This problem  is pretty straightforward if you think of points on a line as points on a number line. We arbitrarily choose a point on the line for $0$ and a point for $1$. In this regime, each point on the line corresponds with a unique real number. Thus, $|\mathbb{R}| = |\text{points on a line}|$.
 
 \begin{inner_problem}
 \item points on a line vs. points on a line segment
 \end{inner_problem}
 
-\noindent The simplest way to do this is, once again, to show there is an injection going both ways. We can go from segment $\to$ line by observing that a segment is just a subset of a line. We can go from line to segment by representing each point as a real number $\mathbb{R}$ as we already did, then taking the function
+\noindent The simplest way to do this is, once again, to show there is an injection in each direction. We can go from segment to line by observing that a segment is just a subset of a line. We can go from line to segment by representing each point as a real number $\mathbb{R}$ as we already did, then taking the logistic function
 
 $$f(x)=\frac{1}{1+e^{-x}}$$
 
@@ -506,9 +506,9 @@ Inverse: The inverse of $x$ is $-x$, since $x+(-x)=(-x)+x=0$.
 \item Which previous group(s) is it isomorphic to?
 \end{iinner_problem}
 
-\noindent Assuming the axiom of choice\footnote{The axiom of choice states that for every indexed family of sets $(S_i)_{i\in I}$, where $S_i\neq \emptyset$, there exists an indexed family of elements $(x_i)_{i\in I}$  such that $x_i\in S_i$ for all $i\in I$. Intuitively, this means that given a list of non-empty sets, you can select exactly one item from each set.}, it is actually isomorphic to $\mathbb{R}$ under addition. Since $\mathbb{C}$ is uncountable, this is the only candidate.
+\noindent Since $\mathbb{C}$ is uncountable, $\mathbb{R}$ under addition is the only candidate. Assuming the axiom of choice,\footnote{The axiom of choice states that for every indexed family of sets $(S_i)_{i\in I}$, where $S_i\neq \emptyset$, there exists an indexed family of elements $(x_i)_{i\in I}$ such that $x_i\in S_i$ for all $i\in I$. Intuitively, this means that given a list of non-empty sets, you can select exactly one item from each set.} they are actually isomorphic. 
 
-Proving they are isomorphic is tough\footnote{In fact, it is impossible to construct an ``explicit'' isomorphism because $\mathbb{R} \not \cong \mathbb{C}$ is consistent with the axiom of choice.} without the introduction of vector spaces (specifically, $\mathbb{Q}$-vector spaces). I was originally going to put it in, but I couldn't get it under a satisfactory length. If you're really curious, check out https://math.stackexchange.com/a/1511685/677124 for a mildly accessible view of the subject... if you already understand the basics of vector spaces. In summary, both $\mathbb{R}$ and $\mathbb{R}^2$ are vector spaces over the rational numbers $\mathbb{Q}$, and since $|\mathbb{R}|=|\mathbb{R}^2|$ they are isomorphic as vector spaces. This also implies that they are isomorphic as additive groups.
+Proving they are isomorphic is tough\footnote{In fact, it is impossible to construct an ``explicit'' isomorphism because $\mathbb{R} \not \cong \mathbb{C}$ is consistent with the axiom of choice.} without the introduction of vector spaces and related gadgets (specifically, Hamel bases).  If you're really curious, check out https://math.stackexchange.com/a/1511685/677124 for a mildly accessible view of the subject... if you already understand the basics of infinite-dimensional vector spaces. In summary, both $\mathbb{R}$ and $\mathbb{R}^2$ are vector spaces over the rational numbers $\mathbb{Q}$, and since $|\mathbb{R}|=|\mathbb{R}^2|$ they are isomorphic as vector spaces. This also implies that they are isomorphic as additive groups, although such an isomorphism can't really be written down.
 
 \begin{inner_problem}
 \item integers, multiplication
@@ -518,7 +518,7 @@ Proving they are isomorphic is tough\footnote{In fact, it is impossible to const
 \item Does it form a group?
 \end{iinner_problem}
 
-\noindent No, this does not form a group. The identity element would be $1$, so that $1\cdot x = x\cdot 1 = x$, but $1\cdot 0 = 0\neq 1$, so it cannot satisfy invertibility. Even if we removed $0$, for any $p\neq \pm 1$ there is no integer $q$ such that $pq=1$.
+\noindent No, they do not form a group. The identity element would be $1$, so that $1\cdot x = x\cdot 1 = x$, but $1\cdot 0 = 0\neq 1$, so it cannot satisfy invertibility. Even if we removed $0$, for any $p\neq \pm 1$ there is no integer $q$ such that $pq=1$.
 
 \begin{iinner_problem}
 \item Which previous group(s) is it isomorphic to?
@@ -548,7 +548,7 @@ Inverse: The inverse of $2^x$ is $2^{-x}$, since $2^{x}2^{-x}=2^{-x}2^{x}=2^0=1$
 \item Which previous group(s) is it isomorphic to?
 \end{iinner_problem}
 
-\noindent It is isomorphic to integers under addition. $2^n\in \mathcal{W}$ corresponds with $n\in \mathbb{Z}$, since we have $$2^m\cdot 2^n=2^{m+n}\leftrightarrow m+n.$$
+\noindent It is isomorphic to the integers under addition. $2^n\in \mathcal{W}$ corresponds with $n\in \mathbb{Z}$, since we have $$2^m\cdot 2^n=2^{m+n}\leftrightarrow m+n.$$
 
 \begin{inner_problem}
 \item rational numbers, multiplication
@@ -615,7 +615,7 @@ Inverse: The inverse of $x\in \mathbb{R} \setminus {0}$ is $\frac{1}{x}$, since 
 \item Which previous group(s) is it isomorphic to?
 \end{iinner_problem}
 
-\noindent It is not isomorphic to any of the previous groups.
+\noindent It is not isomorphic to any of the previous groups. The only candidate would be the real numbers under addition, but note that this group contains $-1$, which has period $2$, while the real numbers under addition have no elements with period $2$.
 
 \begin{inner_problem}
 \item complex numbers, multiplication
@@ -721,6 +721,6 @@ $$b = a^{\sqrt{2}} = \left(\sqrt{2}^{\sqrt{2}}\right)^{\sqrt{2}} = \sqrt{2} ^ {\
 
 \noindent Suppose $a$ is rational. Then $a=\sqrt{2}^{\sqrt{2}}$ is our desired example, by (2)! So, suppose $a$ is irrational. Then by (3), $2$ is the result of an irrational number (namely, $a$) to an irrational power (namely, $\sqrt{2}$). So then $2=a^{\sqrt{2}}$ is our desired example! $a$ has to be irrational or rational; it can't be something else. But in either case, we can produce a number which satisfies the requirements. Thus, we can answer in the affirmative, but we can't give an explicit example!
 
-In fact, $a$ is the irrational one by the Gelfond-Schneider theorem. Proving this theorem requires some pretty advanced analysis, yet we are able to derive related results with simple logic! Exciting.
+In fact, $a$ is the irrational one by the Gelfond-Schneider theorem. Proving this theorem requires extraordinary and advanced analysis, yet we are able to derive related results with simple logic! Exciting.
 
 \end{document}
