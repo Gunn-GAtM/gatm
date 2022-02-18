@@ -55,13 +55,13 @@ draw(arc2, Arrow);
 \label{fig:iz_perp_to_z}
 \end{center}
 
-You can also rationalize it by the fact that the lines through $z$/$iz$ and the origin have slopes of $\frac{b}{a}$ and $-\frac{a}{b}$, respectively, so they must be perpendicular. Also, $<a,b>\bullet <-b,a> = 0$.
+You can also explain it by observing that the lines through $z$/$iz$ and the origin have slopes of $\frac{b}{a}$ and $-\frac{a}{b}$, respectively, so they must be perpendicular. In terms of vectors, $<a,b>\cdot <-b,a> = 0$, with $\cdot$ being the dot product.
 
 \begin{outer_problem}
 \item How does $\Arg \overline{z}$ relate to $\Arg z$? (Hint: symmetry!)
 \end{outer_problem}
 
-Again, let $z=a+bi$. $\overline{z}=a-bi$ is flipped over the $x$-axis, since the imaginary part is negated. Thus, $\Arg \overline{z} = -\Arg z$ due to congruent triangles formed by $z$ and $\overline{z}$.\footnote{If we are to be pedantic, we'd either use the multivalued function $\arg$ or say this is modulo $2\pi$.} The geometric interpretation is shown in Figure~\ref{fig:arg_conjugate_z}.
+Again, let $z=a+bi$. $\overline{z}=a-bi$ is $z$ flipped over the $x$-axis, since the imaginary part is negated. Thus, $\Arg \overline{z} = -\Arg z$ due to congruent triangles formed by $z$ and $\overline{z}$.\footnote{The pedants may criticize my use of the equality symbol here; take this equality as modulo $2\pi$ if you must. Note that you may eventually learn that $\arg$ is a multivalued function.} The geometric interpretation is shown in Figure~\ref{fig:arg_conjugate_z}.
 
 \begin{asydef}
 real markscalefactor=0.03;
@@ -357,9 +357,9 @@ Since this rotation group is just the identity and a rotation of $180^\circ$, we
 
 We following in the footsteps of the equivalent problem for the equilateral triangle. We have elements
 
-$$\left\{\cis 0, \cis 60^\circ, \cis 120^\circ, \cis 180^\circ, \cis 240^\circ, \circ 300^\circ \right\}.$$
+$$\left\{\cis 0, \cis 60^\circ, \cis 120^\circ, \cis 180^\circ, \cis 240^\circ, \cis 300^\circ \right\}.$$
 
-As should be obvious, these are rotations of $0$, $60^\circ$, $120^\circ$, $180^\circ$, $240^\circ$, and $300^\circ$ respectively. Under multiplication, this is isomorphic to the rotation group of the hexagon, $C_6$.
+These are indeed rotations of $0$, $60^\circ$, $120^\circ$, $180^\circ$, $240^\circ$, and $300^\circ$, respectively. This set under multiplication is isomorphic to the rotation group of the hexagon, $C_6$.
 
 \begin{inner_problem}
 \item Make a table for each group.
@@ -438,7 +438,7 @@ This is not a group under (i) addition, since $1+(-1)=0\not\in\{\pm 1\}$. It is 
 \item $\{1, -1, i, -i\}$
 \end{inner_problem}
 
-This is not a group under (i) addition, since the sum of any two of the elements takes you out of the set. It is a group under (ii) multiplication, however. One easy way to see this is that $1=\cis 0$, $-1 = \cis \pi$, $i=\cis \frac{\pi}{2}$, and $-i=\frac{3\pi}{2}$, which are all rotations of multiples of $90^\circ$. In particular, it is isomorphic to $C_4$, the rotation group of the square.
+This is not a group under (i) addition, since the sum of any two of the elements takes you out of the set. It is a group under (ii) multiplication, however. One easy way to see this is that $1=\cis 0$, $-1 = \cis \pi$, $i=\cis \frac{\pi}{2}$, and $-i=\frac{3\pi}{2}$, which are all rotations of multiples of $90^\circ$. In particular, it is isomorphic to $C_4$, the rotation group of the square.\footnote{Note that the \textit{only} sets of complex numbers that form multiplication groups isomorphic to $C_n$ ($n\geq 1$) are $\left\{ \cis \frac{2\pi m}{n} \right\}$ ($0\leq n < m). It's fun to prove this!}
 
 \begin{inner_problem}
 \item $\{\text{naturals}\}$
@@ -1173,7 +1173,7 @@ label("$\theta$", midpoint(arc2), expi(atan2(z1.y, z1.x) / 2 + pi));
 \label{fig:z_over_z_plus_1_sq}
 \end{center}
 
-As shown in the diagram, $\Arg (z+1) = \theta$. The triangle formed by $O$, $z$ and $z+1$ is isosceles, since it has two sides of length $1$. Furthermore, it has a base angle of $\theta$ by the Parallel Postulate. Thus, the angle marked with a double line is also $\theta$, and $\Arg z = 2\theta$. But $\Arg (z+1)^2 = 2\theta$! Thus, we have
+As shown in the diagram, $\Arg (z+1) = \theta$. The triangle formed by $O$, $z$ and $z+1$ is isosceles, since it has two sides of length $1$. Furthermore, it has a base angle of $\theta$ by the parallel postulate. Thus, the angle marked with a double line is also $\theta$, and $\Arg z = 2\theta$. But $\Arg (z+1)^2 = 2\theta$! Thus, we have
 
 \begin{align*}
 \Imag\left(\frac{z}{(z+1)^2}\right) &= \Imag\left(\frac{r_1\cis 2\theta}{r_2\cis 2\theta}\right) \\
@@ -1492,7 +1492,7 @@ The issue is that $z$ must be in the first or fourth quadrant, so that our premi
 $$0 < \frac{2\pi k}{20} < \pi$$
 $$0 < \pi k < 10\pi$$
 $$0 < k < 10$$
-$$k\in \{1,2,\cdots, 8,9\},$$
+$$k\in \{1,2, ..., 8,9\},$$
 
 which is $9$ solutions, in agreement with our polynomial argument.
 
@@ -1569,7 +1569,7 @@ $$\sin 2\theta = \frac{e^{2i\theta} - e^{-2i\theta}}{2i}.$$
 \item What kind of group is generated by $\left\{e^{i\theta}, e^{-i\theta}\right\}$ under the operation of multiplication if $\theta$ is an integer? A rational multiple of $\pi$?
 \end{inner_problem}
 
-If $\theta=0$, then the group is the trivial group of order $1$. If $\theta$ is any other integer, then a group isomorphic to the additive group of the integers is generated. We correspond $e^{ik\theta}$ with the integer $k$, so that
+If $\theta=0$, then the group is the trivial group of order $1$. If $\theta$ is any other integer, then a group isomorphic to the additive group of the integers is generated. We pair up $e^{ik\theta}$ with the integer $k$, so that
 
 $$e^{ik_1\theta}\cdot e^{ik_2\theta} = e^{i(k_1+k_2)\theta} \leftrightarrow k_1+k_2.$$
 
@@ -1591,7 +1591,7 @@ y^3 + \left(c-\frac{b^2}{3}\right)y + \left(d - \frac{bc}{3} + \frac{2b^3}{27}\r
 y^3 - 3\underbrace{\left(\frac{b^2}{9} - \frac{c}{3}\right)}_{p}y - 2 \underbrace{\left(\frac{bc}{6} - \frac{b^3}{27} - \frac{d}{2}\right)}_{q} &= 0. \\
 \end{align*}
 
-Thus, $p = \frac{b^2}{9} - \frac{c}{3}$ and $q=\frac{bc}{6} - \frac{b^3}{27} - \frac{d}{2}$. This type of cubic equation---where the $x^3$ coefficient is $1$  and the $x^2$ coefficient is $0$---is known as a \textit{depressed cubic}. Make of that what you will.
+Thus, $p = \frac{b^2}{9} - \frac{c}{3}$ and $q=\frac{bc}{6} - \frac{b^3}{27} - \frac{d}{2}$. This type of cubic equation---in which the $x^3$ coefficient is $1$  and the $x^2$ coefficient is $0$---is known as a \textit{depressed cubic}. Make of that what you will.
 
 \begin{inner_problem}
 \item Rearrange this equation as $y^3=3py+2q$.
