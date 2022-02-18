@@ -82,5 +82,103 @@ under the Checks tab for that PR (another way to ensure changes are valid). Fina
 
 **Important note to future maintainers**: an ssh key is what allows the `push.yml` Action from this repo to push to the production site repo; in case it no longer functions, just regenerate a new public/private ssh key (similar to setting up git on your computer to work with GitHub), and place the private key, with the name `DEPLOY_KEY`, as a new secret under `Settings > Secrets > Repository Secrets` in this repo, and the public key, also named `DEPLOY_KEY`, as an actual deploy key under `Settings > Deploy Keys` in the production site repo.
 
-
 Enjoy!
+    
+### History
+
+Just to pat myself on the back a little bit. This repository began as *anematode/gatm* and moved here to the commune (directly, I think). [Here](https://github.com/Gunn-GAtM/gatm/commit/5637169c3534f23efb92e4f2807fe39abb0fe9a2) is the first commit, on February 8, 2019. The first LaTeX is added [a few commits later](https://github.com/Gunn-GAtM/gatm/commit/284264b13b105d04305131dd9f08a6056c6aef5d). I'll note that I never had access to the original textbook source code---didn't think to ask!---but that proved to not be a problem. After working on the first couple chapters, work stagnated until about May, when I decided it was high time to [get started](https://github.com/Gunn-GAtM/gatm/commit/ed7e3e0bf637d0a2992679f18edb3e20d58d3ac0).
+    
+The initial build system was beyond crude. It was just a single bash file `b.sh` that changed little from [this](https://github.com/Gunn-GAtM/gatm/blob/ed7e3e0bf637d0a2992679f18edb3e20d58d3ac0/b.sh). You'll note the handy little disclaimer "expect superfluous errors" in the output. Errors indeed. Tides of them. Poor Brandon had to wade through all that and pick out what was actually the problem. At least I used subfiles from the get go.
+
+`bf.sh` was soon created to build folders. It was nearly as crude as `b.sh`, but at least made life a bit easier. I finished most of the textbook content by the [end of May](https://github.com/Gunn-GAtM/gatm/commit/8d8dbbc9f4f2e6ead86ec8a615b28082bf1795ce) and [began work on the answer key](https://github.com/Gunn-GAtM/gatm/commit/1696dd021d7f1cc142e838e7d4b62733ea33d97a). The following month and a half was a time of prolific output on the answer key, with [corresponding](https://github.com/Gunn-GAtM/gatm/commit/c608d06a4ed20b5df4a5990ecaf28c7cbe200a9f) [high](https://github.com/Gunn-GAtM/gatm/commit/426f76e581d31c31babf8923dac7e17c605a780a) [emotion](https://github.com/Gunn-GAtM/gatm/commit/3061a73d620279d78316bd2644c2167a0ee2732f). I had little progress bars that [I'd occasionally update](https://github.com/Gunn-GAtM/gatm/commit/7d39096f9278fb2352c6eea203fd2e80dacc0662) to indicate how much I'd finished.
+    
+[This](https://github.com/Gunn-GAtM/gatm/commit/042df89a49bac2931e788b2233d6d7c43056508e) was the final commit from June till October 2019, when work began in earnest in preparation for the next junior class, almost entirely by Brandon. I was rewriting the textbook the summer after I took Analysis (having skipped one grade), and wanted it done before my fellow juniors took the class. Brandon finished it up and sent it in February 2020; we were in a bit of a time crunch at that point. Thanks Bulby; couldn't have done it without you.
+    
+The project fell silent for nearly a year. The class remained painful; errors accumulated; but the new textbook was indeed used, even appreciated. A few particularly nasty problems had been reworded or *shhh* removed. The textbook's prose had been rewritten for clarity. And an answer key, although pedantically precise at times and indubitably incorrect at others, had been created. The textbook was physically printed. I actually don't have a copy of it, but it's piss yellow.
+    
+COVID-19 came. I went up a year, and life matters were much more pressing than this textbook. I met Yu-Ting, who since February 2021 has been an incredible collaborator. The textbook has improved significantly even since the 2020 version, largely thanks to his keen eye. I [created a new build system](https://github.com/Gunn-GAtM/gatm/commit/a14aef357eb685ca329c12e31c2cf7c212ac87ba) and made parts of the textbook more uniform, while Yu-Ting [created a system](https://github.com/Gunn-GAtM/gatm/commit/e22152f94e7b0297340fdcf333b7b63e32099cab) that automatically rebuilds the online version of the textbook with every next commit. Works like a charm.
+    
+Some stats:
+    
+    Timoothy:gatm timoothy$ find . -name "chapter.tex" -exec wc -l {} +
+     609 ./book/16 Composition of Functions/chapter.textex
+     604 ./book/12 Composite Mappings of the Plane/chapter.tex
+     535 ./book/06 Geometry of Complex Numbers/chapter.tex
+     479 ./book/08 Matrix Multiplication/chapter.tex
+     424 ./book/09 Mapping the Plane with Matrices/chapter.tex
+     304 ./book/03 From Snaps to Flips/chapter.tex
+     291 ./book/13 Inverses/chapter.
+     245 ./book/02 It's a Snap/chapter.tex
+     233 ./book/04 Rotation and Reflection Groups/chapter.tex
+     231 ./book/14 Multiplication Modulo m Meets Groups/chapter.tex
+     224 ./book/15 Eigenvectors and Eigenvalues/chapter.tex
+     196 ./book/01 Trigonometry Review/chapter.tex
+     192 ./book/11 Matrices Generate Groups/chapter.tex
+     188 ./book/05 Infinite Groups/chapter.tex
+      91 ./book/10 Rotations of the Plane/chapter.tex
+      84 ./book/07 Your Daily Dose of Vitamin i/chapter.tex
+      72 ./book/glossary/chapter.tex
+      51 ./book/credits/chapter.tex
+    5060 total
+    
+    Timoothy:gatm timoothy$ find . -name "answers.tex" -exec wc -l {} +
+    1738 ./book/06 Geometry of Complex Numbers/answers.tex
+    1645 ./book/04 Rotation and Reflection Groups/answers.tex
+    1629 ./book/12 Composite Mappings of the Plane/answers.tex
+    1170 ./book/15 Eigenvectors and Eigenvalues/answers.tex
+    1120 ./book/09 Mapping the Plane with Matrices/answers.tex
+    1105 ./book/08 Matrix Multiplication/answers.tex
+     869 ./book/11 Matrices Generate Groups/answers.tex
+     726 ./book/05 Infinite Groups/answers.tex
+     722 ./book/13 Inverses/answers.tex
+     703 ./book/02 It's a Snap/answers.tex
+     611 ./book/03 From Snaps to Flips/answers.tex
+     590 ./book/16 Composition of Functions/answers.tex
+     541 ./book/01 Trigonometry Review/answers.tex
+     513 ./book/07 Your Daily Dose of Vitamin i/answers.tex
+     473 ./book/10 Rotations of the Plane/answers.tex
+     340 ./book/14 Multiplication Modulo m Meets Groups/answers.tex
+    14502 total
+    
+    Timoothy:book timoothy$ find . -name "*.tex" -exec wc -w {} +
+     807 ./10 Rotations of the Plane/chapter.tex
+    2191 ./10 Rotations of the Plane/answers.tex
+    1310 ./04 Rotation and Reflection Groups/chapter.tex
+    6639 ./04 Rotation and Reflection Groups/answers.tex
+    1736 ./15 Eigenvectors and Eigenvalues/chapter.tex
+    4707 ./15 Eigenvectors and Eigenvalues/answers.tex
+     521 ./key.tex
+    2840 ./08 Matrix Multiplication/chapter.tex
+    5078 ./08 Matrix Multiplication/answers.tex
+       8 ./template/chapter.tex
+       5 ./template/answers.tex
+    1401 ./11 Matrices Generate Groups/chapter.tex
+    5321 ./11 Matrices Generate Groups/answers.tex
+    1715 ./02 It's a Snap/chapter.tex
+    4536 ./02 It's a Snap/answers.tex
+    3733 ./16 Composition of Functions/chapter.tex
+    2164 ./16 Composition of Functions/answers.tex
+    1524 ./14 Multiplication Modulo m Meets Groups/chapter.tex
+    1971 ./14 Multiplication Modulo m Meets Groups/answers.tex
+    2551 ./09 Mapping the Plane with Matrices/chapter.tex
+    5397 ./09 Mapping the Plane with Matrices/answers.tex
+     881 ./01 Trigonometry Review/chapter.tex
+    1897 ./01 Trigonometry Review/answers.tex
+    2206 ./05 Infinite Groups/chapter.tex
+    4565 ./05 Infinite Groups/answers.tex
+     523 ./glossary/chapter.tex
+    1665 ./textbook.tex
+    2113 ./13 Inverses/chapter.tex
+    4786 ./13 Inverses/answers.tex
+    3002 ./06 Geometry of Complex Numbers/chapter.tex
+    8315 ./06 Geometry of Complex Numbers/answers.tex
+    3346 ./12 Composite Mappings of the Plane/chapter.tex
+    6958 ./12 Composite Mappings of the Plane/answers.tex
+    1792 ./03 From Snaps to Flips/chapter.tex
+    2425 ./03 From Snaps to Flips/answers.tex
+     332 ./07 Your Daily Dose of Vitamin i/chapter.tex
+    2497 ./07 Your Daily Dose of Vitamin i/answers.tex
+     279 ./credits/chapter.tex
+     189 ./cover/key_cover.tex
+     186 ./cover/textbook_cover.tex
+    104112 total
