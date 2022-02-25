@@ -75,6 +75,10 @@
 % BEGIN ASYMPTOTE DEFINITIONS FOR CHAPTERS
 
 \begin{asydef}
+settings.render = 0; // helps with transparency bugs in ghostscript
+\end{asydef}
+
+\begin{asydef}
 	int factorial(int n) { // Factorial function for convenience
 		if (n == 0 || n == 1)
 			return 1;
