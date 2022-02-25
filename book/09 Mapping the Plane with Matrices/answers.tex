@@ -137,7 +137,7 @@ yaxis("$y$");
 \item You can conclude that multiplication by matrices does not, in general, preserve which two quantities between the image and preimage?
 \end{inner_problem}
 
-It does not preserve the ratio of lengths or the angle between two vectors. After all, the angle was $90^\circ$ and is now $45^\circ$. Also, the ratio used to be $1$, but is now $\sqrt{2}$ (or $\sqrt{2}{2}$).
+It does not preserve the ratio of lengths or the angle between two vectors. After all, the angle was $90^\circ$ and is now $45^\circ$. Also, the ratio used to be $1$, but is now $\sqrt{2}$ (or $\frac{\sqrt{2}}{2}$).
 
 \begin{outer_problem}
 \item \label{prob:consolidate_matrix}
@@ -231,7 +231,7 @@ The points in the preimage are equidistant, taken as consecutive pairs. This is 
 \item Name two things that seem to be conserved when mapping points with a matrix.
 \end{inner_problem}
 
-It seems (i) collinearity and (ii) equally spaced points have their characteristics preserved. Note that not all equidistant points will have this property conserved. Think back to the first problem, for example, where the pairs of points $((0,0),(1,0))$ and $((0,0),(0,1))$ started off equidistant, but ended up not equidistant. Indeed, they have to be collinear for this to be preserved.
+It seems (i) collinearity and (ii) equally spaced points on a line have their characteristics preserved. Note that not \textit{all} equidistant points will have this property conserved. Think back to the first problem, for example, where the pairs of points $((0,0),(1,0))$ and $((0,0),(0,1))$ started off equidistant, but ended up not equidistant. Indeed, they have to be collinear for this to be preserved.
 
 \begin{outer_problem}
 \item
@@ -1068,7 +1068,7 @@ We multiply:
 
 $$\begin{bmatrix} a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix} a & b & a\alpha + b\beta \\ c & d & c\alpha + d\beta \\ 0 & 0 & 1 \end{bmatrix}$$
 
-Because we have chosen the column vector to represent points, the transformations take place from right to left. Thus, the right matrix is the first transformation, and the left matrix is the second transformation. Therefore, this multiplication represents a translation by $\langle\alpha,\beta,0\rangle$, then a 2D matrix transformation by $\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}$.
+Because we have chosen the column vector to represent points, the transformations take place from right to left. Thus, the right matrix is the first transformation, and the left matrix is the second transformation. Therefore, this multiplication represents a translation by $\langle\alpha,\beta,0\rangle$, then a 2D matrix transformation by $\left[\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\right]$.
 
 \begin{inner_problem}
 \item $\left[\begin{array}{ccc} 1 & 0 & \alpha \\ 0 & 1 & \beta \\ 0 & 0 & 1 \end{array}\right]\left[\begin{array}{ccc}a & b & 0 \\ c & d & 0 \\ 0 & 0 & 1 \end{array}\right]$
@@ -1089,7 +1089,7 @@ Well that was easy. In the same logic as the previous subproblem, this multiplic
 \item $\left[\begin{array}{ccc} a & b & \alpha \\ c & d & \beta \\ 0 & 0 & 1 \end{array}\right]$
 \end{inner_problem}
 
-This is the result to Problem~14b, so it's a 2D matrix transformation by $\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}$, then a translation by $\langle \alpha, \beta, 0\rangle$.
+This is the result to Problem~14b, so it's a 2D matrix transformation by $\left[\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\right]$, then a translation by $\langle \alpha, \beta, 0\rangle$.
 
 \begin{inner_problem}
 \item $\left[\begin{array}{ccc} \cos\theta & -\sin\theta & \alpha \\ \sin\theta & \cos\theta & \beta \\ 0 & 0 & 1 \end{array}\right]$
