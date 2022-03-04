@@ -810,17 +810,17 @@ DC &= \begin{bmatrix}
 Oof! Matrix multiplication is not commutative.
 
 \begin{outer_problem}
-\item Matrix multiplication is associative, though. Prove that $(PX)T=P(XT)$ for $$P=\left[\begin{array}{cc} m & n \\ p & q \\ \end{array}\right],\: X=\left[\begin{array}{cc} x & y \\ z & w \\ \end{array}\right],\: Y=\left[\begin{array}{cc} r & s \\ t & u \\ \end{array}\right].$$
+\item Matrix multiplication is associative, though. Prove that $(PX)Y=P(XY)$ for $$P=\left[\begin{array}{cc} m & n \\ p & q \\ \end{array}\right],\: X=\left[\begin{array}{cc} x & y \\ z & w \\ \end{array}\right],\: Y=\left[\begin{array}{cc} r & s \\ t & u \\ \end{array}\right].$$
 \end{outer_problem}
 
-With great dread, we compute $(PX)T$ and $P(XT)$.
+With great dread, we compute $(PX)Y$ and $P(XY)$.
 
 \begin{align*}
-(PX)T &= \left(\begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix} x & y \\ z & w \end{bmatrix}\right)\begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
+(PX)Y &= \left(\begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix} x & y \\ z & w \end{bmatrix}\right)\begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
 &= \begin{bmatrix} mx + nz & my + nw \\ px + qz & py + qw \end{bmatrix} \begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
 &= \begin{bmatrix} r(mx+nz)+t(my+nw) & s(mx+nz) + u(my+nw) \\ r(px+qz) + t(py+qw) & s(px+qz) + u(py+qw)\end{bmatrix} \\
 &= \begin{bmatrix} mrx+mty+nrz+ntw & msx+muy+nsz+nuw \\ prx+pty+qrz+qtw & psx+puy+qsz+quw \end{bmatrix}. \\
-P(XT) &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\left(\begin{bmatrix} x & y \\ z & w \end{bmatrix}\begin{bmatrix} r & s \\ t & u \end{bmatrix}\right) \\
+P(XY) &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\left(\begin{bmatrix} x & y \\ z & w \end{bmatrix}\begin{bmatrix} r & s \\ t & u \end{bmatrix}\right) \\
 &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix}xr + yt & xs + yu \\ zr + wt & zs + wu \end{bmatrix} \\
 &= \begin{bmatrix} m(xr+yt) + n(zr+wt) & m(xs+yu) + n(zs+wu) \\ p(xr+yt) + q(zr+wt) & p(xs+yu) + q(zs+wu) \end{bmatrix} \\
 &= \begin{bmatrix} mrx+mty+nrz+ntw & msx+muy+nsz+nuw \\ prx+pty+qrz+qtw & psx+puy+qsz+quw \end{bmatrix}.
@@ -831,18 +831,18 @@ They are equal!
 Note that this doesn't prove it's associative for all qualifying\footnote{In terms of dimension.} matrices because we've only shown it for $2\times 2$ matrices.
 
 \begin{outer_problem}
-\item Prove that matrix multiplication is distributive: $P(X+T)=PX+PT$.
+\item Prove that matrix multiplication is distributive: $P(X+Y)=PX+PY$.
 \end{outer_problem}
 
 This isn't as bad.
 
 \begin{align*}
-P(X+T) &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\left(\begin{bmatrix} x & y \\ z & w \end{bmatrix} + \begin{bmatrix} r & s \\ t & u \end{bmatrix}\right) \\
+P(X+Y) &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\left(\begin{bmatrix} x & y \\ z & w \end{bmatrix} + \begin{bmatrix} r & s \\ t & u \end{bmatrix}\right) \\
 &= \begin{bmatrix} m & n \\ p & q \end{bmatrix}\begin{bmatrix} x + r & y + s \\ z + t & w + u\end{bmatrix} \\
 &= \begin{bmatrix}m(x+r) + n(z+t) & m(y+s) + n(w+u) \\ p(x+r) + n(z+t) & p(y+s) + q(w+u) \end{bmatrix} \\
 &= \begin{bmatrix}(mx+nz) + (mr+nt) & (my+nw) + (ms+nu) \\ (px+nz) + (pr+nt) & (py+qw) + (ps+qu)\end{bmatrix} \\
 &= \begin{bmatrix}m & n \\ p & q \end{bmatrix} \begin{bmatrix}x & y \\ z & w \end{bmatrix} + \begin{bmatrix}m & n \\ p & q \end{bmatrix} \begin{bmatrix} r & s \\ t & u \end{bmatrix} \\
-&= PX + PT.
+&= PX + PY.
 \end{align*}
 
 Indeed, they are equal!
