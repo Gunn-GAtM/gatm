@@ -822,7 +822,7 @@ Let $A$ be the area of the parallelogram. We have $A=ah$, and using information 
 	\begin{center}
 		\begin{minipage}[b]{0.3\textwidth}
 			\centering
-			\begin{asy}[width=0.9\textwidth]
+			\begin{asy}[width=\textwidth]
 				pair A = (0,0);
 				pair B = (4,4);
 				pair D = (8,0);
@@ -846,7 +846,7 @@ Let $A$ be the area of the parallelogram. We have $A=ah$, and using information 
 		\hfill
 		\begin{minipage}[b]{0.3\textwidth}
 			\centering
-			\begin{asy}[width=0.7\textwidth]
+			\begin{asy}[width=\textwidth]
 				pair A = (0,0);
 				pair B = (4,4);
 				pair D = (8,0);
@@ -888,7 +888,7 @@ Let $A$ be the area of the parallelogram. We have $A=ah$, and using information 
 		\hfill
 		\begin{minipage}[b]{0.3\textwidth}
 			\centering
-			\begin{asy}[width=0.9\textwidth]
+			\begin{asy}[width=\textwidth]
 
 				draw((0,0)--(7,0),Arrow);
 				draw((0,0)--(0,6),Arrow);
@@ -956,37 +956,44 @@ We substitute $\varphi = \phi - \theta$ to find that $A = ab\sin(\phi - \theta)$
 
 The vector $\overrightarrow{PS}$ is just $\langle a\cos \theta, a\sin\theta \rangle$, and the vector $\overrightarrow{PQ}$ is just $\langle b\cos\phi, b\sin\phi \rangle$. Thus, we have the following coordinates for $P,Q,R,S$:
 
-$$P = (0,0);\quad Q = P+\overrightarrow{PQ} = (b\cos\phi, b\sin\phi);\\ R = P+\overrightarrow{PQ}+\overrightarrow{PS} = (a\cos\theta + b\cos\phi, a\sin\theta + b\sin\phi);\\ S = P+\overrightarrow{PS} = (a\cos\theta, a\sin\theta).$$
+\begin{align*}
+    P &= (0,0) \\
+    Q &= P+\overrightarrow{PQ} = (b\cos\phi, b\sin\phi) \\
+    R &= P+\overrightarrow{PQ}+\overrightarrow{PS} = (a\cos\theta + b\cos\phi, a\sin\theta + b\sin\phi) \\
+    S &= P+\overrightarrow{PS} = (a\cos\theta, a\sin\theta) \\
+\end{align*}
 
 \begin{inner_problem}
-\item Write a matrix so that the first column contains the coordinates of $Q$ and the second column contains the coordinates of $S$. This matrix maps the plane.
+\item Write a matrix so that the first column contains the coordinates of $S$ and the second column contains the coordinates of $Q$. This matrix maps the plane.
 \end{inner_problem}
 
-The matrix is $M=\twomat{b\cos\phi}{a\cos\theta}{b\sin\phi}{a\sin\theta}$.
+The matrix is $M=\twomat{a\cos\theta}{b\cos\phi}{a\sin\theta}{b\sin\phi}$, with $S$ in the first column and $Q$ in the second. Thus, $(1,0)$ is mapped to $S$ and $(0,1)$ is mapped to $Q$.
 
 \begin{inner_problem}
-\item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the ascending diagonal from the product of those of the descending diagonal.
+\item Your matrix has two diagonals. One rises from left to right and the other descends from left to right. Subtract the product of the entries of the descending diagonal from the product of those of the ascending diagonal.
 \end{inner_problem}
 
-This is $ab\cos\phi\sin\theta - ab\cos\theta\sin\phi$.
+This is the determinant of the matrix $M$ in the previous answer, which can be computed as
+
+$$\operatorname{det} M = \underbrace{(a\cos\theta)(b\sin\phi)}_{\text{descending diagonal}} - \underbrace{(b\cos\phi)(a\sin\theta)}_{\text{ascending diagonal}} = ab\cos\theta\sin\phi - ab\cos\phi\sin\theta.$$
 
 \begin{inner_problem}
 \item Use angle addition formulas to simplify your answer.
 \end{inner_problem}
 
-$$ab\cos\phi\sin\theta - ab\cos\theta\sin\phi = ab(\cos\phi\sin\theta - \cos\theta\sin\phi) = ab\sin(\theta-\phi).$$
+$$ab\cos\theta\sin\phi - ab\cos\phi\sin\theta = ab(\cos\theta\sin\phi - \cos\phi\sin\theta) = ab\sin(\phi - \theta).$$
 
 \begin{inner_problem}
 \item You should find some relationship between your answers to problems 11a and 11d. What is it?
 \end{inner_problem}
 
-The answers have the same magnitude, but opposite sign. Indeed, $-ab\sin(\theta-\phi) = ab\sin(\phi-\theta)$.
+The answers are equal! 
 
 \begin{inner_problem}
 \item The difference of the products of the two diagonals of a $2\times 2$ matrix is called the \textbf{determinant} of the matrix, written $\det \left[\begin{smallmatrix}a & c \\ b & d \end{smallmatrix}\right]=ad-bc$. What does it measure?
 \end{inner_problem}
 
-It measures the area (in terms of magnitude) of the parallelogram formed by the two vectors $\langle a,b\rangle$ and $\langle c,d\rangle$.
+It measures the area (in terms of magnitude) of the parallelogram formed by the two vectors $\langle a,b\rangle$ and $\langle c,d\rangle$. The determinant corresponds to the area of the parallelogram.
 
 \begin{inner_problem}
 \item Find a matrix which produces a rotation. What is its determinant?
@@ -1541,7 +1548,6 @@ You get stuck, because it lacks an inverse! The details are given as an aside at
 This matrix projects points onto the line $y=2x$. To project perpendicular on the line, we do as the problem suggests. Consider the point $(1,2)$, which is on the line. If the transformation is a true projection, then the point should not move under the transformation. Thus,
 
 $$\twomat{a}{b}{2a}{2b}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.$$
-
 The left side expands out to $\begin{bmatrix} a+2b \\ 2a+4b \end{bmatrix}$. Thus, as long as $a+2b=1$, the matrix will be a projection onto $y=2x$. A simple example is $a=b=\frac{1}{3}$, so a possible matrix is
 
 $$\begin{bmatrix}
