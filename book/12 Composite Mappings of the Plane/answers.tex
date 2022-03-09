@@ -889,9 +889,6 @@ Let $A$ be the area of the parallelogram. We have $A=ah$, and using information 
 		\begin{minipage}[b]{0.3\textwidth}
 			\centering
 			\begin{asy}[width=0.9\textwidth]
-				import patterns;
-
-				add("brick",brick());
 
 				draw((0,0)--(7,0),Arrow);
 				draw((0,0)--(0,6),Arrow);
@@ -911,12 +908,6 @@ Let $A$ be the area of the parallelogram. We have $A=ah$, and using information 
 
 				draw(A--K1--K2--K3--cycle);
 				draw(L0--L1--C--L3--cycle);
-
-				filldraw(A--K1--B--cycle, pattern("brick"));
-				filldraw(A--K3--D--cycle, pattern("brick"));
-				filldraw(L0--B--K2--D--cycle, pattern("brick"));
-				filldraw(B--L1--C--cycle, pattern("brick"));
-				filldraw(D--C--L3--cycle, pattern("brick"));
 
 				label("$(a,b)$", B, NW);
 				label("$(c,d)$", D, SE);
