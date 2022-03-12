@@ -575,8 +575,10 @@ def run_operations(ops):
 
     for opname in ops:
         if opname not in task_list:
-            fmt_task_list = ', '.join(task_list)
-            raise NotImplementedError(f"Unrecognized operation {opname}. Recognized operations: {fmt_task_list}")
+            fmt_task_list = ", ".join(task_list)
+            raise NotImplementedError(
+                f"Unrecognized operation {opname}. Recognized operations: {fmt_task_list}"
+            )
 
     for opname in ops:
         op = task_list[opname]
