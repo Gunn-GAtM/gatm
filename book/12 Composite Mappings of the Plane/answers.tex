@@ -1567,11 +1567,11 @@ $$\begin{bmatrix}
 \item Use Problem~\ref{prob:project_the_plane} to decompose $\left[\begin{smallmatrix} 2 & 3 \\ 4 & 6 \end{smallmatrix}\right]$ into a projection to a line followed by a size change.
 \end{outer_problem}
 
-We see that this matrix is of the form $M=\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$, but is not quite a projection since $(a,b)=(2,3)$ and $a+2b=10\neq 1$. If we scale the matrix by $\frac{1}{10}$, we then do get a projection. Thus, the decomposition is
+We see that this matrix is of the form $M=\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$, but is not quite a projection since $(a,b)=(2,3)$ and $a+2b=8\neq 1$. If we scale the matrix by $\frac{1}{8}$, we then do get a projection. Thus, the decomposition is
 
-    $$\twomat{2}{3}{4}{6} = \begin{bmatrix}10 & 0 \\ 0 & 10 \end{bmatrix} \begin{bmatrix}
-    \frac{1}{5} & \frac{3}{10} \\
-    \frac{2}{5} & \frac{3}{5}
+    $$\twomat{2}{3}{4}{6} = \begin{bmatrix}8 & 0 \\ 0 & 8 \end{bmatrix} \begin{bmatrix}
+    \frac{1}{4} & \frac{3}{8} \\
+    \frac{1}{2} & \frac{3}{4}
 \end{bmatrix},$$
 
 where the second matrix is the projection and the first matrix is to scale it back up to our original.
