@@ -29,8 +29,6 @@ page_number_typeout_regex = re.compile(
 )
 shipout_page_number_regex = re.compile("\\[([0-9]+)")
 
-FNULL = None
-
 
 def make_progress_bar(percent, width=50):
     """Make a silly progress bar of a given width"""
@@ -54,12 +52,6 @@ def make_progress_bar(percent, width=50):
         + str(int(round(percent * 100)))
         + "%)"
     )
-
-
-def get_devnull():
-    global FNULL
-    if not FNULL:
-        FNULL = open(os.devnull, "w")
 
 
 class LatexError(Exception):
@@ -145,7 +137,7 @@ def run_pdflatex_on_file(
     process = subprocess.Popen(
         ["pdflatex"] + flags + [str(filename.resolve())],
         stdout=subprocess.PIPE,
-        stderr=get_devnull(),
+        stderr=None,
         env=env,
         cwd=output_dir,
         text=True,
