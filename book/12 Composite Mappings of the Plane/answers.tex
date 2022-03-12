@@ -1542,10 +1542,14 @@ It projects onto the line $y=2x$.
 You get stuck, because it lacks an inverse! The details are given as an aside at the end of that problem.
 
 \begin{outer_problem}
-\item Onto what line does $\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. You can do this because you know that a point on the line should not move under the projection and a point on a line perpendicular to the line has its image on the origin. Using this information you can set up two equations with two unknowns. \label{prob:project_the_plane}
+\item Onto what line does $\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$ map the plane? Solve for $a$ and $b$ such that the matrix projects perpendicular onto the line. Hint: The projection of a point already on the line should not move. Choose a suitable point and solve a system of two equations with two unknowns. \label{prob:project_the_plane}
 \end{outer_problem}
 
-This matrix projects points onto the line $y=2x$. To project perpendicular on the line, we do as the problem suggests. Consider the point $(1,2)$, which is on the line. If the transformation is a true projection, then the point should not move under the transformation. Thus,
+Multiply this matrix by some vector $(x,y)$. We find that it is mapped onto
+
+$$\twomat{a}{b}{2a}{2b}\begin{bmatrix}x \\ y\end{bmatrix} = \begin{bmatrix}ax+by \\ 2ax+2by\end{bmatrix},$$
+
+    which falls on the line $y=2x$. To project perpendicular on the line, we do as the problem suggests. Consider the point $(1,2)$, which is on the line. The image could generally be any point on the line, but if the transformation is a \textit{projection}, then the point should not move under the transformation. Thus,
 
 $$\twomat{a}{b}{2a}{2b}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.$$
 The left side expands out to $\begin{bmatrix} a+2b \\ 2a+4b \end{bmatrix}$. Thus, as long as $a+2b=1$, the matrix will be a projection onto $y=2x$. A simple example is $a=b=\frac{1}{3}$, so a possible matrix is
@@ -1559,32 +1563,31 @@ $$\begin{bmatrix}
 \item Use Problem~\ref{prob:project_the_plane} to decompose $\left[\begin{smallmatrix} 2 & 3 \\ 4 & 6 \end{smallmatrix}\right]$ into a projection to a line followed by a size change.
 \end{outer_problem}
 
-We know $\begin{bmatrix}
-\frac{1}{3} & \frac{1}{3} \\
-\frac{2}{3} & \frac{2}{3}
-\end{bmatrix}$ projects to the line $y=2x$. The desired matrix is just this matrix scaled by $6$. Thus, the decomposition is
+We see that this matrix is of the form $M=\left[\begin{smallmatrix} a & b \\ 2a & 2b\end{smallmatrix}\right]$, but is not quite a projection since $(a,b)=(2,3)$ and $a+2b=10\neq 1$. If we scale the matrix by $\frac{1}{10}$, we then do get a projection. Thus, the decomposition is
 
-$$\begin{bmatrix}6 & 0 \\ 0 & 6 \end{bmatrix} \begin{bmatrix}
-\frac{1}{3} & \frac{1}{3} \\
-\frac{2}{3} & \frac{2}{3}
-\end{bmatrix}.$$
+    $$\twomat{2}{3}{4}{6} = \begin{bmatrix}10 & 0 \\ 0 & 10 \end{bmatrix} \begin{bmatrix}
+    \frac{1}{5} & \frac{3}{10} \\
+    \frac{2}{5} & \frac{3}{5}
+\end{bmatrix},$$
+
+where the second matrix is the projection and the first matrix is to scale it back up to our original.
 
 \begin{outer_problem}
 \item Decompose $\left[\begin{smallmatrix} 1 & 2 \\ 3 & 6\end{smallmatrix}\right]$ into a projection perpendicular to a line followed by a size change.
 \end{outer_problem}
 
-This matrix maps onto the line $y=3x$, since it's of the form $\twomat{a}{b}{3a}{3b}$. We try a similar method as the last problem to find the matrix of a true projection, choosing the point $(1,3)$:
+This matrix maps onto the line $y=3x$, since it's of the form $\twomat{a}{b}{3a}{3b}$, but is not a projection. We try a similar method as the last problem to find the matrix of an actual projection, choosing the point $(1,3)$:
 
 $$\twomat{a}{b}{3a}{3b}\begin{bmatrix} 1 \\ 3 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}$$
 $$\begin{bmatrix} a + 3b \\ 3a + 9b \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}.$$
 
-So $a+3b = 1$. We just choose $a=b=\frac{1}{4}$ for simplicity, giving the projection matrix
+    So $a+3b = 1$. We see that $1+3(2)=7$, so we scale down the matrix by a factor of $7$, giving
 
-$$\twomat{\frac{1}{4}}{\frac{1}{4}}{\frac{3}{4}}{\frac{3}{4}}.$$
+$$\twomat{\frac{1}{7}}{\frac{2}{7}}{\frac{3}{7}}{\frac{6}{7}},$$
 
-Scaling this by $4$ gives the desired matrix, so the decomposition is
+ so the decomposition is
 
-$$\twomat{4}{0}{0}{4}\twomat{\frac{1}{4}}{\frac{1}{4}}{\frac{3}{4}}{\frac{3}{4}}.$$
+$$\twomat{7}{0}{0}{7}\twomat{\frac{1}{7}}{\frac{2}{7}}{\frac{3}{7}}{\frac{6}{7}}.$$
 
 \begin{outer_problem}
 \item Write matrices which project onto the following lines:
