@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-# We use this document to build individual chapters/answer key chapters, the cover/credits/glossary, and the entire
-# textbook/answer key. It's a bit involved, but you'll understand, dear traveler. Check README.md for context.
+# Build individual chapters/answer key chapters, the cover/credits/glossary, and the entire
+# textbook/answer key. Check README.md for context.
 
 import argparse
 import os
@@ -146,7 +146,6 @@ def run_pdflatex_on_file(
 
     commit_progress_bar()
 
-    # LOL
     def output_error(err):
         if estimate_progress:
             erase_progress_bar()
@@ -206,7 +205,7 @@ def run_pdflatex_on_file(
                     erase_progress_bar()
                     print_progress_bar(page_count["val"] / float(estimated_pages))
 
-    # Fancy thing which allows the pdflatex command to be run and python to listen to it as a stream of lines
+    # Allows the pdflatex command to be run and python to listen to it as a stream of lines
     if live_output:
         while True:
             line = process.stdout.readline()
@@ -244,6 +243,7 @@ def run_asy_in_dir(dirname, estimate_progress=True):
     commit_progress_bar()
     batch_size=8
 
+    # Multithread into batches 
     for i, filenames in enumerate(chunks(file_list, batch_size)):
         processes=[]
 
@@ -462,12 +462,11 @@ permitted_file = re.compile(r".*[^0-9]\.tex")
 def clean_chap_folder(path: Path):
     for p in path.iterdir():
         if not p.is_dir() and not permitted_file.match(p.name):
-            # DESTROY THE HEATHENS AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             p.unlink()
 
 
 def clean_chapter_folders():
-    # Cleaning chapter folders, deleting anything not of the form *[!0-9].tex
+    # Delete anything not of the form *[!0-9].tex
     if chapter_name:
         clean_chap_folder(chapter_path)
     else:
@@ -596,13 +595,13 @@ def run_operations(ops):
     for opname in ops:
         op = task_list[opname]
         description = op["description"]
-        print(f"Doing operation {opname}: {description}")
+        print(f"Operation {opname}: {description}")
 
         if "callback" in op:
             # Op is not callable
             op["callback"]()
         elif "subtasks" in op:
-            print(f"Subtasks: {op['subtasks']}")
+            # print(f"Subtasks: {op['subtasks']}")
             run_operations(op["subtasks"])
 
 
