@@ -242,7 +242,7 @@ def run_asy_in_dir(dirname, estimate_progress=True):
     print("Total Asymptote files to render: " + str(asy_count))
 
     commit_progress_bar()
-    batch_size=1
+    batch_size=8
 
     for i, filenames in enumerate(chunks(file_list, batch_size)):
         processes=[]
