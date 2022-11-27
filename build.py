@@ -225,11 +225,13 @@ def run_pdflatex_on_file(
 
     return outputted_chapter_page_info
 
+
 # https://stackoverflow.com/a/312464/13458117
 def chunks(lst, n):
     """Yield successive n-sized chunks from lst."""
     for i in range(0, len(lst), n):
-        yield lst[i:i + n]
+        yield lst[i : i + n]
+
 
 def run_asy_in_dir(dirname, estimate_progress=True):
     """Compile all the .asy files in a given directory which were dumped out by the first pdflatex call"""
@@ -241,42 +243,42 @@ def run_asy_in_dir(dirname, estimate_progress=True):
     print("Total Asymptote files to render: " + str(asy_count))
 
     commit_progress_bar()
-    batch_size=8
+    batch_size = 8
 
-    # Multithread into batches 
+    # Multithread into batches
     for i, filenames in enumerate(chunks(file_list, batch_size)):
-        processes=[]
+        processes = []
 
         for filename in filenames:
-                # Run asymptote on each file
-                process = subprocess.Popen(
-                    ["asy", filename],
-                    cwd=str(dirname.resolve()),
-                    text=True,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                )
-                processes.append(process)
+            # Run asymptote on each file
+            process = subprocess.Popen(
+                ["asy", filename],
+                cwd=str(dirname.resolve()),
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            processes.append(process)
 
         for j, process in enumerate(processes):
-                idx = i * batch_size + j
-                process.wait()
+            idx = i * batch_size + j
+            process.wait()
 
-                out, err = process.communicate()
+            out, err = process.communicate()
 
-                if err:
-                    raise RuntimeError(
-                        warn(f"Unexpected Asymptote error in file {filename}") + f":\n{err}"
-                    )
+            if err:
+                raise RuntimeError(
+                    warn(f"Unexpected Asymptote error in file {filename}") + f":\n{err}"
+                )
 
-                if estimate_progress:
-                    erase_progress_bar()
+            if estimate_progress:
+                erase_progress_bar()
 
-                if out:
-                    print(f"Asymptote on file {filename} logged:\n{out}")
+            if out:
+                print(f"Asymptote on file {filename} logged:\n{out}")
 
-                if estimate_progress:
-                    print_progress_bar((idx + 1) / float(asy_count))
+            if estimate_progress:
+                print_progress_bar((idx + 1) / float(asy_count))
 
 
 def book_path(join_with: str) -> Path:
