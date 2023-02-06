@@ -7,7 +7,6 @@ TRACK_DUPLICATES = False
 
 
 def generate_correspondence(max_denom=10):
-
     corresponding = {}
     curr_index = 1
 

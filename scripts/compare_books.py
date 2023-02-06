@@ -42,6 +42,7 @@ get_setcounters1 = re.compile(r"\\setcounter\s*{([^{}]+)}{\\value{([^{}]+)}}")
 get_setcounters2 = re.compile(r"\\setcounter\s*{([^{}]+)}{([0-9]+)}")
 get_setcounters3 = re.compile(r"\\setcounter\s*{([^{}]+)}{\\the([^{}]+)}")
 
+
 # Token types: begin_enumerate, end_enumerate, item, setcounter
 class Token:
     def __init__(self, token_type, contents):
