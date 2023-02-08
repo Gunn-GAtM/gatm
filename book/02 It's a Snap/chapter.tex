@@ -145,7 +145,7 @@ Let's study this snap group and characterize its properties.
 \begin{figure}[h]
 	\begin{center}
 		\centering
-		\begin{minipage}[b]{\textwidth}
+		\begin{minipage}[b]{.45\textwidth}
 			\centering
 			\begin{tabular}{c|cccccc}
 				\hline
@@ -162,13 +162,33 @@ Let's study this snap group and characterize its properties.
 			\end{tabular}
 			\vspace*{0.5\baselineskip}
 		\end{minipage}
+		\begin{minipage}[b]{.45\textwidth}
+			\centering
+			\begin{tabular}{c|ccccc}
+				\hline
+				$\snap$ & $I$ & $B$ & $C$ & $D$ & $E$ \\ \hline
+				\rowcolor{light-gray}
+				$I$    &   &   &   &   &      \\
+				$B$    &$B$&$I$&$E$& ??&$C$   \\
+				\rowcolor{light-gray}
+				$C$    &   &   &   &   &      \\
+				$D$    &   &   &   &   &      \\
+				\rowcolor{light-gray}
+				$E$    &   &   &   &   &      \\ \hline
+			\end{tabular}
+			\vspace*{0.5\baselineskip}
+		\end{minipage}
 	\end{center}
 	\vspace*{-2\baselineskip}
 	\begin{center}
-		\begin{minipage}[t]{\textwidth}
+		\begin{minipage}[t]{.45\textwidth}
 			\caption{Unfilled $3$-post snap group table.}
 			\label{fig:unfilled_table}
 		\end{minipage}
+        \begin{minipage}[t]{.45\textwidth}
+            \caption{Failed attempt at a group table with $5$ elements.}
+            \label{fig:incomplete_group}
+        \end{minipage}
 	\end{center}
 
 	\begin{center}
@@ -217,7 +237,7 @@ Let's study this snap group and characterize its properties.
 
 \begin{enumerate}
 \setcounter{enumi}{\value{some_name}}
-\item If you constructed a group table using only five of the snap elements, the table would not describe a group, because there would be entries in the table outside of those $5$. Indeed, a group must be \textbf{closed} under its operation: If we compose any two elements $X\snap Y = Z$, $Z$ must also be an element of the group. \textit{Some} subsets of our six elements, however, do happen to be closed among themselves. Write valid group tables using exactly one, two, and three elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
+\item If you constructed a group table using only $5$ of the snap elements, the table would not describe a group, because there would be entries in the table outside of those $5$. (See Figure~\ref{fig:incomplete_group} for a failed attempt at a group table, in which the element $A$ was omitted.) Indeed, a group must be \textbf{closed} under its operation: If we compose any two elements $X\snap Y = Z$, $Z$ must also be an element of the group. \textit{Some} subsets of our six elements, however, do happen to be closed among themselves. Write valid group tables using exactly one, two, and three elements from the snap group. These are known as \textbf{subgroups}.\label{prob:group_definition_end}
 \item What do you guess is a good definition of a mathematical group? (Hint: consider your answers to Problems \ref{prob:group_definition_start}--\ref{prob:group_definition_end}.)
 \item Notice that $E\snap E\snap E=I$ (see Figure~\ref{fig:eper3}). We saw that $E$ has a \textbf{period} of $3$ when acting upon itself. Which elements have a period of
 \begin{enumerate}

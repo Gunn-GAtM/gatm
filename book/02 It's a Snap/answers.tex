@@ -534,7 +534,7 @@ If we observe the periodicity of an element with a pretty large period, say, one
 
 We can split up this element into two components: a component with period $3$ and one with period $2$. Let's call these components $C_3$ and $C_2$. After $2$ steps, the $C_3$ has not completed one period, even though $C_2$. After $3$ steps, $C_3$ has completed one period, but $C_2$ has gone through $\frac{3}{2}$. It takes $\operatorname{lcm}(2,3) = 6$ steps before both components ``line up!''
 
-Even if it's not obvious, all snap elements can be split up into some number of these cyclic components. For example, the element from $S_8$ shown in Figure~\ref{fig:period_8_elem} comprises two size $3$ and one size $2$ component. It therefore has a period of $\operatorname{lcm}(2,3,3)=6$. Note that it does \textit{not} have a period of $2\cdot 3\cdot 3 = 18$---we take the least common multiple, not the product.
+Even if it's not obvious, all snap elements can be split up into some number of these cyclic components. For example, the element from $S_8$ shown in Figure~\ref{fig:period_8_elem} comprises two size $3$ and one size $2$ component. It therefore has a period of $\operatorname{lcm}(2,3,3)=6$. Recall that the least common multiple of a set of numbers, here denoted $\text{lcm}$, is the smallest (positive) integer which they all evenly divide. For example, $\operatorname{lcm} \{8, 4\}=4$, $\operatorname{lcm} \{2,3,5\}=30$, and $\operatorname{lcm} \{ 9, 12 \} = 36$. Note that it does \textit{not} have a period of $2\cdot 3\cdot 3 = 18$---we take the least common multiple, not the product.
 
 \begin{figure}[h]
 	\begin{center}
@@ -603,13 +603,15 @@ Even if it's not obvious, all snap elements can be split up into some number of 
 	\vspace*{-2\baselineskip}
 \end{figure}
 
-\noindent Let integers $x_i>0$ and $\displaystyle \sum_i x_i = M$. In other words, the sum of all $x_i$ is $M$. Then $\operatorname{lcm} (x_1, x_2, \cdots, x_n)$ is a valid period; the least common multiple of all $x_i$ is a possible period.
+\noindent Suppose we have some integers $x_i>0$ and if you add them all, the sum is $M$. Then $\operatorname{lcm} (x_1, x_2, \cdots, x_n)$ is a valid period; the least common multiple of all $x_i$ is a possible period. 
 
 In set builder notation, the set of possible periods $P_n$ for the $n$-post snap group as
 
-$$P_n=\left\{\operatorname{lcm} (x_1, x_2, \cdots, x_n)\, \left|\,x_i\in\mathbb{Z}^+ \land \sum_i x_i=n\right.\right\}.$$
+$$P_n=\left\{\operatorname{lcm} (x_1, x_2, \cdots, x_n)\, \left|\,x_i \text{ are positive integers and } \sum_i x_i=n\right.\right\}.$$
 
-\noindent The maximum such period (i.e. $\max P_n$) is actually known as Landau's function, $g(n)$. It turns out that $\operatorname{ln} g(n) \sim \sqrt{n\operatorname{ln} n}$ as $n\to\infty$, a result proved in 1902 by Edmund Landau. Therefore, $g(n)$ is sub-exponential but grows faster than any polynomial.
+\noindent In English: $p$ is the period of some element of the $n$-post snap group if and only if it is the least common multiple of some set of numbers, call them $x_i$, which sum to $n$. In our case of size $5$, we actually got every period from one to six, but the set of possible periods is not necessarily a contiguous range. For example, the possible periods in the $7$-post snap group is $\{1, 2, 3, 4, 5, 6, 7, 10, 12\}$.
+
+A full understanding of these periods requires advanced mathematics. For example, the maximum such period (i.e. $\max P_n$) is known as Landau's function, $g(n)$. It turns out that $\operatorname{ln} g(n) \sim \sqrt{n\operatorname{ln} n}$ as $n\to\infty$, a result proved in 1902 by Edmund Landau. Therefore, $g(n)$ is sub-exponential but grows faster than any polynomial.
 
 \begin{outer_problem}
 \item A \textbf{permutation} of a set of things is an order in which they can be arranged. What is the relationship between the set of permutations of $m$ things and the $m$-post snap group?
