@@ -1121,7 +1121,7 @@ In general, we choose the $n$th roots of unity: the numbers of the form $\cis \f
 
 To draw a diagram, we need to interpret these expressions as points on the complex plane. $|z|=1$ implies that $z$ is $1$ away from the origin. $z+1$ is $z$, translated right by $1$ unit in the $x$-axis. Let $z+1=r\cis \theta$. Then $(z+1)^2=r^2\cis 2\theta$, so it forms an angle of $2\theta$ with the origin.
 
-If the quotient $\frac{z}{(z+1)^2}$ has no imaginary part, then $(z+1)^2$ is a real scalar times $z$. In other words, the two numbers have the same complex argument. Thus, we wish to prove that $\Arg z$ and $\Arg (z+1)^2$ are equal.
+If the quotient $\frac{z}{(z+1)^2}$ has no imaginary part, then $(z+1)^2$ is a real scalar times $z$. In other words, the two numbers have the same complex argument. Thus, we wish to prove that $\Arg z$ and $\Arg ((z+1)^2)$ are equal.
 
 The scenario is shown in Figure~\ref{fig:z_over_z_plus_1_sq}.
 
@@ -1174,7 +1174,7 @@ label("$\theta$", midpoint(arc2), expi(atan2(z1.y, z1.x) / 2 + pi));
 \label{fig:z_over_z_plus_1_sq}
 \end{center}
 
-As shown in the diagram, $\Arg (z+1) = \theta$. The triangle formed by $O$, $z$ and $z+1$ is isosceles, since it has two sides of length $1$. Furthermore, it has a base angle of $\theta$ by the parallel postulate. Thus, the angle marked with a double line is also $\theta$, and $\Arg z = 2\theta$. But $\Arg (z+1)^2 = 2\theta$! Thus, we have
+As shown in the diagram, $\Arg (z+1) = \theta$. The triangle formed by $O$, $z$ and $z+1$ is isosceles, since it has two sides of length $1$. Furthermore, it has a base angle of $\theta$ by the parallel postulate. Thus, the angle marked with a double line is also $\theta$, and $\Arg z = 2\theta$. But $\Arg ((z+1)^2) = 2\theta$! Thus, we have
 
 \begin{align*}
 \Imag\left(\frac{z}{(z+1)^2}\right) &= \Imag\left(\frac{r_1\cis 2\theta}{r_2\cis 2\theta}\right) \\
